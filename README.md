@@ -26,8 +26,8 @@ in person. Light and dark follow the visitor's device.
 Edit `index.html` on GitHub (the pencil icon) and commit. The site updates in a minute
 or two.
 
-When the community opens, change the two "Opening soon" spots in `index.html`: the
-status line under the buttons at the top, and the lime band near the bottom.
+The status line under the buttons at the top and the lime band near the bottom say the
+community is open and free for adults; change them there if that changes.
 
 ## Domain
 
