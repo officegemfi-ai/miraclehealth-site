@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Page not found · Miracle Health</title>
 <meta name="robots" content="noindex">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#121E1D">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0C1413">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <!-- This page is shown for any missing address, at any depth, so its links start with / -->
@@ -18,19 +18,34 @@
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="86" height="30"></a>
-    <a class="btn lime sm" href="https://community.miraclehealth.us/">Community</a>
+    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="/#how">How it works</a>
+      <a href="/#signal">The Signal</a>
+      <a href="/#rules">House rules</a>
+    </nav>
+    <a class="top-link" href="https://community.miraclehealth.us/">Sign in</a>
+    <a class="btn lime sm" href="https://community.miraclehealth.us/">Join</a>
+    <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
   </div>
 </header>
+<nav class="menu-panel" id="menu" aria-label="Menu">
+  <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
+  <a href="/#how">How it works</a>
+  <a href="/#signal">The Signal</a>
+  <a href="/#rules">House rules</a>
+  <a href="https://community.miraclehealth.us/">Sign in</a>
+  <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
+</nav>
 
-<main id="main" class="hero nf-main">
+<main id="main" class="nf-main">
   <div class="wrap nf-in">
-    <p class="kick">// 404</p>
+    <p class="kick lime">// 404</p>
     <h1>That page isn’t here.</h1>
     <p class="lede">It may have moved, or the link has a typo.</p>
     <div class="cta">
-      <a class="btn lime lg" href="/">Go to the front page</a>
-      <a class="btn on-ink lg" href="https://community.miraclehealth.us/">Go to the community</a>
+      <a class="btn lime" href="/">Go to the front page</a>
+      <a class="btn glass" href="https://community.miraclehealth.us/">Go to the community</a>
     </div>
   </div>
 </main>
