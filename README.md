@@ -14,6 +14,7 @@ in person. Light and dark follow the visitor's device.
 | --- | --- |
 | `index.html` | The page |
 | `styles.css` | Its look (the page's security policy allows only its own files, so no inline styles) |
+| `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
 | `404.html` | Shown for any address that doesn't exist |
 | `og.png` | The picture shown when someone shares the link |
 | `CNAME` | Tells GitHub Pages this site is miraclehealth.us |

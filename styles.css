@@ -142,11 +142,37 @@ ul,ol{list-style:none;margin:0;padding:0}
 .closing h2{font-size:clamp(36px,5vw,60px);line-height:1;letter-spacing:-.04em}
 .closing p{margin-top:12px;font-size:18px;color:rgba(18,30,29,.78)}
 
+/* ---------------------------------------------------------------- privacy and terms */
+.doc-head{background:var(--ink);color:var(--on-ink);--focus:var(--lime)}
+.doc-head .wrap{padding-top:64px;padding-bottom:56px}
+.doc-head .kick{color:var(--lime)}
+.doc-head h1{margin-top:14px;font-size:clamp(38px,5.4vw,60px);line-height:1;letter-spacing:-.04em}
+.doc-head p:last-child{margin-top:16px;font:500 13px/1.4 var(--mono);letter-spacing:.04em;color:var(--on-ink-2)}
+.doc{max-width:780px;padding-top:56px;padding-bottom:104px}
+.doc h2{margin-top:48px;font-size:24px;line-height:1.2;letter-spacing:-.02em}
+.doc p,.doc li{font-size:16.5px;line-height:1.7;color:var(--text-2)}
+.doc p{margin-top:14px}
+.doc .intro{margin-top:0;font-size:18px;color:var(--text)}
+.doc ul{list-style:disc;margin:14px 0 0;padding-left:22px}
+.doc li{margin-top:8px;padding-left:4px}
+.doc li::marker{color:var(--muted)}
+.doc b{color:var(--text);font-weight:600}
+.doc a{color:var(--text);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
+.doc .short{margin-top:32px;padding:24px 26px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.doc .short h2{margin-top:0;font-size:19px}
+.doc .short ul{margin-top:10px}
+
 /* ---------------------------------------------------------------- footer */
 .foot{background:var(--ink);color:var(--on-ink-2);font-size:14px;--focus:var(--lime)}
-.foot-in{display:flex;align-items:center;flex-wrap:wrap;gap:14px 32px;padding-top:36px;padding-bottom:calc(36px + env(safe-area-inset-bottom))}
+.foot-in{padding-top:36px;padding-bottom:calc(32px + env(safe-area-inset-bottom))}
+.foot-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px 32px}
+.foot-row+.foot-row{margin-top:24px;padding-top:20px;border-top:1px solid var(--ink-line)}
 .foot img{height:24px;width:auto}
-.foot .copy{margin-left:auto;font:500 12px/1.4 var(--mono);letter-spacing:.06em}
+.foot-links{display:flex;flex-wrap:wrap;gap:8px 22px;font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.foot-links a{color:var(--on-ink);text-decoration:none;transition:color .15s}
+.foot-links a:hover{color:var(--lime)}
+.foot-links .mail{text-transform:none;letter-spacing:.02em}
+.foot .copy{font:500 12px/1.4 var(--mono);letter-spacing:.06em}
 
 /* ---------------------------------------------------------------- 404 */
 body.nf{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
@@ -190,8 +216,10 @@ body.nf{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
   .rules{grid-template-columns:1fr}
   .closing-in{padding-top:56px;padding-bottom:56px}
   .closing .btn{width:100%}
-  .foot .copy{margin-left:0}
   .nf-in{padding-top:56px;padding-bottom:72px}
+  .doc-head .wrap{padding-top:44px;padding-bottom:40px}
+  .doc{padding-top:40px;padding-bottom:72px}
+  .doc .short{padding:20px}
 }
 
 @media (prefers-reduced-motion:reduce){
