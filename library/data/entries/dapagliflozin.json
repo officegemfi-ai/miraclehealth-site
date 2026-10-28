@@ -1,0 +1,187 @@
+{
+  "id": "dapagliflozin",
+  "name": "Dapagliflozin",
+  "summary": "A prescription pill, sold as Farxiga, that makes the kidneys pass extra sugar into the urine; it treats type 2 diabetes and lowers kidney and heart failure risks.",
+  "what_it_is": "Dapagliflozin is an SGLT2 inhibitor. It blocks SGLT2 in the kidney tubules, the protein that takes back most filtered sugar, so more sugar leaves in the urine and blood sugar falls. Besides type 2 diabetes, it is approved for chronic kidney disease and heart failure, and those uses do not require diabetes. Its half-life is about 13 hours.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval for each main use, based on large randomized trials including DECLARE-TIMI 58 (17,160 adults with type 2 diabetes), DAPA-HF (4,744 adults with heart failure) and DAPA-CKD (4,304 adults with kidney disease)."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for kidney disease, heart failure, diabetes",
+    "note": "Approved as Farxiga to slow kidney decline and lower cardiovascular death and heart failure hospitalization in adults with chronic kidney disease at risk of progression, to lower cardiovascular death, heart failure hospitalization and urgent heart failure visits in adults with heart failure, to lower heart failure hospitalization in adults with type 2 diabetes and heart disease or several risk factors, and to improve blood sugar in adults and children 10 and older with type 2 diabetes. It has no boxed warning; in June 2026 FDA expanded its warning on genital and urinary infections, including Fournier's gangrene.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Slower kidney decline and fewer deaths in adults with chronic kidney disease, with or without type 2 diabetes: the main outcome (at least a 50% fall in eGFR, kidney failure, or kidney or cardiovascular death) occurred in 9.2% versus 14.5% with placebo over about 2.4 years, and death from any cause in 4.7% versus 6.8%",
+      "evidence": "strong",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "Lower risk of cardiovascular death, heart failure hospitalization and urgent heart failure visits in adults with heart failure",
+      "evidence": "strong",
+      "sources": [
+        1,
+        4
+      ]
+    },
+    {
+      "claim": "Fewer heart failure hospitalizations in adults with type 2 diabetes and heart disease or several heart risk factors",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lower blood sugar in adults and children 10 and older with type 2 diabetes",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Genital yeast infections: about 7% to 8% of women versus 1.5% on placebo",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Urinary tract infections: 4.3% to 5.7% versus 3.7% on placebo",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Serious genital and urinary infections, including kidney and blood infections and Fournier's gangrene (a rare tissue-destroying infection around the genitals and anus), have led to hospital stays, repeated surgeries and deaths",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Ketoacidosis, which can occur with near-normal blood sugar: 27 cases versus 12 on placebo among about 17,000 adults with type 2 diabetes in DECLARE; risk is much higher in type 1 diabetes",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Dehydration, low blood pressure and acute kidney injury: volume-depletion events in 2.5% versus 2.4% on placebo in DECLARE, more likely in older adults, people with kidney impairment or those taking loop diuretics",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Type 1 diabetes (not recommended for blood sugar control because of ketoacidosis risk)",
+    "Past serious allergic reaction to dapagliflozin",
+    "Dialysis or an eGFR below 25 (not enrolled in its trials)",
+    "Polycystic kidney disease, or recent or current immune-suppressing treatment for kidney disease (not expected to help the kidneys)",
+    "Second or third trimester of pregnancy, or breastfeeding (not recommended)"
+  ],
+  "interactions": [
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Loop diuretics: higher risk of dehydration",
+    "Lithium: levels can fall, so lithium needs closer monitoring",
+    "Urine glucose tests and the 1,5-AG blood test: give misleading results while taking it"
+  ],
+  "labs": {
+    "before": [
+      "Kidney function (creatinine, eGFR)",
+      "Blood pressure and fluid status, especially in older adults, with kidney impairment or with diuretics",
+      "HbA1c or fasting glucose if you have diabetes"
+    ],
+    "during": [
+      "Kidney function as needed (a small dip in eGFR in the first two weeks is expected, then stabilizes)",
+      "Blood pressure, watching for low readings",
+      "Ketones if ketoacidosis is suspected, and considered in type 1 diabetes",
+      "Lithium levels if you take lithium"
+    ],
+    "why": "The label calls for checking kidney function and fluid status before starting and as needed afterward, watching for low blood pressure, and considering ketone checks in people at risk; kidney changes that don't follow the expected early dip should be checked for acute kidney injury."
+  },
+  "studies": [
+    {
+      "title": "Dapagliflozin in patients with chronic kidney disease",
+      "year": 2020,
+      "type": "RCT",
+      "people": "4,304 adults with chronic kidney disease (eGFR 25 to 75 with raised urine albumin), with or without type 2 diabetes",
+      "finding": "Over a median of about 2.4 years, the main outcome occurred in 9.2% versus 14.5% with placebo (hazard ratio 0.61, 95% CI 0.51 to 0.72), and death from any cause in 4.7% versus 6.8% (hazard ratio 0.69); effects were similar with and without diabetes.",
+      "source": 3
+    },
+    {
+      "title": "FARXIGA (dapagliflozin) tablets, for oral use: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "17,160 adults with type 2 diabetes in DECLARE-TIMI 58 (median 4.2 years), plus pooled placebo-controlled trials",
+      "finding": "In DECLARE, ketoacidosis occurred in 27 versus 12 people and severe low blood sugar in 0.7% versus 1.0%. In pooled trials, genital yeast infections affected 6.9% to 8.4% of women versus 1.5%.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Should I pause it before surgery or a procedure that requires fasting?",
+    "Which signs of a genital or urinary infection, or of ketoacidosis, should make me call you right away?",
+    "Does my diuretic or lithium need extra monitoring while I take it?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FARXIGA (dapagliflozin) tablets, for oral use: Prescribing Information (revised 06/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202293s035lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Drug Safety-related Labeling Changes (SrLC): Farxiga",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/scripts/cder/safetylabelingchanges/index.cfm?event=searchdetail.page&DrugNameID=105"
+    },
+    {
+      "n": 3,
+      "title": "Dapagliflozin in patients with chronic kidney disease",
+      "publisher": "New England Journal of Medicine (University of Glasgow Enlighten record)",
+      "year": 2020,
+      "url": "https://eprints.gla.ac.uk/223971"
+    },
+    {
+      "n": 4,
+      "title": "FARXIGA (dapagliflozin) tablets, for oral use: Prescribing Information (revised 04/2021)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2021,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/202293s024lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "Heart failure and DECLARE efficacy results (event rates, hazard ratios) were not read because the label text available ended before its clinical studies section; heart failure benefits are stated as approved claims, with DAPA-HF's size (4,744) from the April 2021 label. DAPA-CKD comes from the trial abstract (University of Glasgow record). The June 2026 label revision expanded the genitourinary infection warning and added a missed-dose instruction (not reported here). Ketoacidosis is given as DECLARE case counts; no rate was calculated. Generic availability was not checked.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,176 @@
+{
+  "id": "mazdutide",
+  "name": "Mazdutide",
+  "summary": "A drug that activates GLP-1 and glucagon receptors, approved in China in 2025 for weight management and type 2 diabetes; it is not approved in the US.",
+  "what_it_is": "Mazdutide (IBI362) is a lab-made drug that switches on the receptors for two hormones, GLP-1 and glucagon; its developer, Innovent Biologics, describes it as an analog of the hormone oxyntomodulin. Innovent develops it in China under a license from Eli Lilly. China approved it in 2025, but it is not approved in the US.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "One published phase 3 randomized trial in 610 Chinese adults with obesity or overweight, plus company-reported phase 3 diabetes trials in China; long-term safety is not known."
+  },
+  "status_us": {
+    "key": "investigational",
+    "label": "Not approved in the US; approved in China in 2025",
+    "note": "Innovent announced Chinese approval for chronic weight management in June 2025 and for blood sugar control in type 2 diabetes in September 2025. It has no US approval, and FDA has warned companies selling mazdutide falsely labeled 'for research purposes' or 'not for human consumption.'",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0.25,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Average weight loss of 11.0% and 14.0% on two doses at 48 weeks versus 0.3% with placebo in 610 Chinese adults with obesity or overweight; 35.7% and 49.5% lost at least 15% of body weight versus 2.0%",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Lower A1C in Chinese adults with type 2 diabetes: about 1.4 to 2.0 points more than placebo over 24 weeks, with 5.6% to 7.8% weight loss versus 1.3% (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Smaller waist and lower blood pressure, blood fats, uric acid, liver enzymes and liver fat than with placebo in the same 610-person trial (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, diarrhea and vomiting were the most common side effects, mostly mild to moderate; 0.5% to 1.5% stopped because of side effects versus 1.0% with placebo",
+      "how_common": "common",
+      "sources": [
+        4,
+        5
+      ]
+    },
+    {
+      "risk": "Long-term safety is not known, and the published and company-reported trials were in Chinese adults",
+      "how_common": "unknown",
+      "sources": [
+        4,
+        2
+      ]
+    },
+    {
+      "risk": "Mazdutide sold in the US as a 'research' product is unapproved and illegally marketed, according to FDA warnings",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Approved GLP-1 drugs carry a boxed warning about thyroid C-cell tumors in rodents; whether this applies to mazdutide was not reported in the sources checked",
+      "how_common": "theoretical",
+      "sources": [
+        6
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anyone in the US outside a clinical trial: it is not an approved medicine here",
+    "Personal or family history of medullary thyroid cancer or MEN 2 (approved GLP-1 drugs carry this contraindication)",
+    "Pregnant, breastfeeding or planning pregnancy"
+  ],
+  "interactions": [
+    "Not well studied. Approved GLP-1 drugs raise the risk of low blood sugar with insulin or sulfonylureas and slow stomach emptying, which can change how oral medicines are absorbed"
+  ],
+  "labs": {
+    "before": [
+      "General health check: weight, blood pressure, HbA1c or fasting glucose, kidney and liver tests"
+    ],
+    "during": [
+      "Same general checks at regular visits",
+      "Resting heart rate"
+    ],
+    "why": "No evidence-based monitoring exists in the US because it is not approved here; these are general health checks, with heart rate added because the label of an approved GLP-1 drug (semaglutide) calls for it."
+  },
+  "studies": [
+    {
+      "title": "Once-Weekly Mazdutide in Chinese Adults with Obesity or Overweight",
+      "year": 2025,
+      "type": "RCT",
+      "people": "610 Chinese adults with obesity or overweight (GLORY-1)",
+      "finding": "At 32 weeks, weight changed by -10.1% and -12.6% on two doses versus +0.45% with placebo; at 48 weeks, by -11.0% and -14.0% versus -0.3%. Stopping because of side effects was 0.5% to 1.5% versus 1.0%. Funded by Innovent.",
+      "source": 4
+    },
+    {
+      "title": "Innovent Announces Mazdutide Received Approval from China's NMPA for Glycemic Control in Adults with Type 2 Diabetes",
+      "year": 2025,
+      "type": "RCT",
+      "people": "Chinese adults with type 2 diabetes (DREAMS-1 and DREAMS-2)",
+      "finding": "A1C fell about 1.4 to 2.0 points more than with placebo at 24 weeks, and slightly more than with dulaglutide at 28 weeks, with greater weight loss. Company-reported.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a clinical trial be an option for me?",
+    "How do approved options, such as semaglutide or tirzepatide, compare for me?",
+    "What are the risks of products sold as 'research' mazdutide?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Innovent's mazdutide approved in China for weight management",
+      "publisher": "FilingReader (summary of an Innovent Biologics Hong Kong exchange announcement)",
+      "year": 2025,
+      "url": "https://filingreader.com/news-wire/hongkong/2025-06-27/innovents-mazdutide-approved-in-china-for-weight-management"
+    },
+    {
+      "n": 2,
+      "title": "Innovent Announces Mazdutide Received Approval from China's NMPA for Glycemic Control in Adults with Type 2 Diabetes",
+      "publisher": "Innovent Biologics (press release via BioSpace)",
+      "year": 2025,
+      "url": "https://www.biospace.com/press-releases/innovent-announces-mazdutide-received-approval-from-chinas-nmpa-for-glycemic-control-in-adults-with-type-2-diabetes"
+    },
+    {
+      "n": 3,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 4,
+      "title": "Once-Weekly Mazdutide in Chinese Adults with Obesity or Overweight",
+      "publisher": "New England Journal of Medicine (Ovid)",
+      "year": 2025,
+      "url": "https://www.ovid.com/journals/nejm/fulltext/10.1056/nejmoa2411528~once-weekly-mazdutide-in-chinese-adults-with-obesity-or"
+    },
+    {
+      "n": 5,
+      "title": "Phase 3 Clinical Study of Mazdutide in Chinese Adults with Overweight or Obesity (GLORY-1) Published in The New England Journal of Medicine (NEJM)",
+      "publisher": "Innovent Biologics (press release via BioSpace)",
+      "year": 2025,
+      "url": "https://www.biospace.com/press-releases/phase-3-clinical-study-of-mazdutide-in-chinese-adults-with-overweight-or-obesity-glory-1-published-in-the-new-england-journal-of-medicine-nejm"
+    },
+    {
+      "n": 6,
+      "title": "WEGOVY (semaglutide) injection and WEGOVY (semaglutide) tablets: Prescribing Information (revised 05/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s031lbl218316s003lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "Mazdutide's approvals are Chinese (NMPA); the June 27, 2025 weight-management date comes from a FilingReader summary of Innovent's stock-exchange announcement, and the diabetes approval from Innovent's September 19, 2025 release. Innovent holds the China license from Eli Lilly; whether Lilly is testing it in the US was not checked. GLORY-1's per-symptom side-effect rates were not in the text opened (the abstract says digestive events were most common and mostly mild to moderate), so 'common' is a judgment. FDA's GLP-1 page names mazdutide among 'research' products it warned about but does not separately address compounding. Class cautions (thyroid boxed warning, low blood sugar, stomach emptying, heart rate) come from the Wegovy label, not from mazdutide data.",
+  "checked": "2026-10-28"
+}

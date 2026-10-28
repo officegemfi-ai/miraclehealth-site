@@ -1,0 +1,187 @@
+{
+  "id": "canagliflozin",
+  "name": "Canagliflozin",
+  "summary": "A prescription pill, sold as Invokana, that lowers blood sugar and heart and kidney risks in type 2 diabetes; anti-aging interest rests on a mouse study.",
+  "what_it_is": "Canagliflozin is an SGLT2 inhibitor. It blocks SGLT2 in the kidney tubules, so less filtered sugar returns to the blood and more leaves in the urine; it also sends more sodium further along the tubule, which may lower pressure inside the kidney's filters. Its half-life is about 11 to 13 hours. Its heart and kidney approvals apply to adults with type 2 diabetes.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval for blood sugar control and for heart and kidney risk reduction in type 2 diabetes, based on large randomized trials including CANVAS and CREDENCE; the anti-aging interest comes from one study in mice."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for type 2 diabetes, heart and kidney risk",
+    "note": "Approved as Invokana to improve blood sugar in adults and children 10 and older with type 2 diabetes, to lower heart attack, stroke and cardiovascular death in adults with type 2 diabetes and heart disease, and to lower kidney failure, cardiovascular death and heart failure hospitalization in adults with type 2 diabetes and kidney disease with heavy albumin in the urine. Its 2018 label carried a boxed warning about leg and foot amputations; the December 2024 label has no boxed warning but keeps amputation as a warning, and use to slow aging is off-label.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.75,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lower risk of heart attack, stroke or cardiovascular death in adults with type 2 diabetes and heart disease",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lower risk of kidney failure, doubling of creatinine, cardiovascular death and heart failure hospitalization in adults with type 2 diabetes and kidney disease with heavy albumin in the urine",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lower blood sugar in adults and children 10 and older with type 2 diabetes",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Longer life in male mice: median lifespan rose 14% when given from 7 months of age, with no lifespan benefit in females; it has not been tested for aging in people",
+      "evidence": "preclinical",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Genital yeast infections: about 11% of women versus 3% on placebo, and about 4% of men versus 0.7%",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Lower-limb amputations, mostly toes and midfoot: about twice as common as with placebo in CANVAS (5.9 versus 2.8 per 1,000 patient-years) but similar in CREDENCE (12.3 versus 11.2); once a boxed warning, now a standard warning",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Bone fractures, mostly low-impact fractures of the lower arms and legs, possibly starting as early as 12 weeks: 1.6 to 1.8 versus 1.1 per 100 patient-years in CANVAS; small losses of hip bone density in older adults",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Ketoacidosis, which can occur with normal or near-normal blood sugar; risk is much higher in type 1 diabetes",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Dehydration and acute kidney injury, sometimes needing hospital care or dialysis; high potassium in people with moderate kidney impairment (up to 8.8% versus 5.3% on placebo)",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Serious urinary infections (urosepsis, pyelonephritis) and Fournier's gangrene, a rare tissue-destroying infection around the genitals and anus",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Type 1 diabetes (not recommended because of ketoacidosis risk)",
+    "Past serious allergic reaction to canagliflozin",
+    "Current foot ulcers, foot infections or other factors that raise amputation risk (needs a clinician's review first)",
+    "Kidney function below an eGFR of 30 when the goal is blood sugar control (not recommended); not studied in people on dialysis",
+    "Second or third trimester of pregnancy, or breastfeeding (not recommended)"
+  ],
+  "interactions": [
+    "Rifampin, phenytoin, phenobarbital, ritonavir and other UGT enzyme inducers: lower canagliflozin levels (rifampin by about half), which can weaken its effect",
+    "Digoxin: canagliflozin raises digoxin levels, so digoxin needs monitoring",
+    "Lithium: levels can fall, so lithium needs closer monitoring",
+    "Insulin or sulfonylureas: higher risk of low blood sugar (49% versus 37% when added to insulin in an 18-week trial)",
+    "Urine glucose tests and the 1,5-AG blood test: give misleading results while taking it"
+  ],
+  "labs": {
+    "before": [
+      "Kidney function (creatinine, eGFR)",
+      "Potassium if kidney function is moderately reduced",
+      "Blood pressure and fluid status",
+      "HbA1c or fasting glucose"
+    ],
+    "during": [
+      "Kidney function as needed (an early creatinine rise usually stabilizes)",
+      "Potassium if kidney function is moderately reduced",
+      "Digoxin levels if you take digoxin",
+      "Lithium levels if you take lithium",
+      "Ketones if ketoacidosis is suspected",
+      "Foot checks for sores, infection or new pain"
+    ],
+    "why": "The label calls for checking kidney function and fluid status, watching for ketoacidosis even when blood sugar is near normal, monitoring digoxin and lithium, and checking the feet because of amputation risk; potassium rose more often in people with moderate kidney impairment in trials."
+  },
+  "studies": [
+    {
+      "title": "INVOKANA (canagliflozin) tablets, for oral use: Prescribing Information",
+      "year": 2024,
+      "type": "Label",
+      "people": "Adults with type 2 diabetes in the CANVAS trial (mean follow-up 5.7 years) and CREDENCE (mean 2.6 years)",
+      "finding": "Lower-limb amputations: 5.9 versus 2.8 per 1,000 patient-years in CANVAS (hazard ratio 2.12, 95% CI 1.34 to 3.38) and 12.3 versus 11.2 in CREDENCE. Fractures in CANVAS: 1.6 to 1.8 versus 1.1 per 100 patient-years.",
+      "source": 1
+    },
+    {
+      "title": "Canagliflozin extends life span in genetically heterogeneous male but not female mice",
+      "year": 2020,
+      "type": "Animal",
+      "people": "Genetically diverse mice at three test sites (mouse Interventions Testing Program)",
+      "finding": "Given from 7 months of age, canagliflozin raised median lifespan by 14% and the age at 90th-percentile survival by 9% in males, with no lifespan benefit in females; it lowered fasting glucose and improved glucose tolerance in both sexes.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Given my feet and circulation, how much does the amputation risk matter for me?",
+    "Should I pause it before surgery or a procedure that requires fasting?",
+    "Is there any evidence it would help me age better, beyond the mouse study?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "INVOKANA (canagliflozin) tablets, for oral use: Prescribing Information (revised 12/2024)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2024,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/204042s043lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "INVOKANA (canagliflozin) tablets, for oral use: Prescribing Information (revised 10/2018)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2018,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/204042s027lbl.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Canagliflozin extends life span in genetically heterogeneous male but not female mice",
+      "publisher": "JCI Insight (UT Health San Antonio research record)",
+      "year": 2020,
+      "url": "https://scholars.uthscsa.edu/en/publications/canagliflozin-extends-life-span-in-genetically-heterogeneous-male/"
+    }
+  ],
+  "notes_for_editor": "Heart (CANVAS program) and kidney (CREDENCE) efficacy results were not read because the label text available ended before its clinical studies section, so those benefits are stated as approved claims. The amputation boxed warning appears in the October 2018 label and is absent from the December 2024 label; the date and FDA's reasons for removing the box were not checked in an FDA source. The mouse lifespan result has not been tested in humans; the authors attribute it to blunted glucose peaks and note that acarbose has a similar effect in male mice. Generic availability was not checked.",
+  "checked": "2026-10-28"
+}

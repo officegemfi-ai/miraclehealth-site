@@ -1,0 +1,181 @@
+{
+  "id": "slupp332",
+  "name": "SLU-PP-332",
+  "summary": "An experimental compound that switches on estrogen-related receptors (ERRs) and mimics some effects of exercise in mice; no human studies have been published.",
+  "what_it_is": "SLU-PP-332 is a synthetic experimental compound developed by academic researchers as an 'exercise mimetic'. It activates all three estrogen-related receptors (ERR alpha, beta and gamma), proteins that control genes linked to exercise capacity and energy use, with the strongest effect on ERR alpha. In mice it raised endurance and energy use and reduced fat gain. It is not approved anywhere, and anti-doping scientists consider it relevant to sports drug testing.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "All published evidence comes from mice and lab cells: it raised endurance and reduced fat gain in mice, and no human studies have been published."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; experimental, animal studies only",
+    "note": "SLU-PP-332 is an experimental drug candidate that is not approved anywhere; in 2023 its developers described human trials as a future step after more animal safety testing. It is not on FDA's May 2026 list of substances nominated for pharmacy compounding.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0.75,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 1,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Longer exercise endurance and more oxidative (type IIa) muscle fibers in mice",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Less fat gain, better insulin sensitivity and higher energy use in obese mice; in one month, obese mice lost 12% of their body weight without eating less or exercising more",
+      "evidence": "preclinical",
+      "sources": [
+        5,
+        1
+      ]
+    },
+    {
+      "claim": "More mitochondrial function and cell respiration in muscle cells in the lab",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human safety data: no human studies have been published",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Animal safety is barely reported: its developers said mice showed no severe side effects so far and planned more animal testing for side effects before any human trials",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Unknown product quality: it is not an approved drug, so any product sold for personal use has not been reviewed by FDA; FDA has warned that drugs sold online labeled 'for research purposes' (in its case, GLP-1 drugs) are of unknown quality and may contain the wrong ingredient or amount",
+      "how_common": "unknown",
+      "sources": [
+        6,
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (never studied)",
+    "Anyone with a chronic illness or on regular medicines (no human data on safety or interactions)",
+    "Athletes in tested sports: it is not named on WADA's 2026 list, but WADA's S0 class covers substances not approved for human use, and anti-doping labs are studying how to detect it"
+  ],
+  "interactions": [
+    "None well documented (it has not been studied in people)"
+  ],
+  "labs": {
+    "before": [
+      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+    ],
+    "during": [],
+    "why": "SLU-PP-332 has not been studied in people, so no evidence-based monitoring exists."
+  },
+  "studies": [
+    {
+      "title": "A Synthetic ERR Agonist Alleviates Metabolic Syndrome",
+      "year": 2024,
+      "type": "Animal",
+      "people": "Diet-induced obese mice and genetically obese (ob/ob) mice",
+      "finding": "Raised energy expenditure and fat burning, reduced fat mass and obesity, and improved insulin sensitivity.",
+      "source": 5
+    },
+    {
+      "title": "Synthetic ERRα/β/γ Agonist Induces an ERRα-Dependent Acute Aerobic Exercise Response and Enhances Exercise Capacity",
+      "year": 2023,
+      "type": "Animal",
+      "people": "Mice, plus a muscle cell line",
+      "finding": "Activated all three ERRs (most strongly ERR alpha), increased oxidative muscle fibers and exercise endurance, and switched on an exercise-like gene program that depended on ERR alpha.",
+      "source": 4
+    },
+    {
+      "title": "In Vitro Metabolism and Analytical Characterization of SLU-PP-332 and SLU-PP-915: Novel Pan-ERR Agonists With Doping Potential",
+      "year": 2026,
+      "type": "Cell",
+      "people": "Human liver enzyme preparations in the lab",
+      "finding": "Anti-doping scientists identified its breakdown products to support possible detection in sports drug testing (as summarized by the authors' institute).",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any human evidence for SLU-PP-332, and which proven options fit my weight or fitness goals?",
+    "How could I know what is actually in a product sold online?",
+    "If I have already used it, which symptoms should prompt a check-up?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Exercise-mimicking drug sheds weight, boosts muscle activity in mice",
+      "publisher": "University of Florida News",
+      "year": 2023,
+      "url": "https://news.ufl.edu/2023/09/exercise-mimicking-drug/"
+    },
+    {
+      "n": 2,
+      "title": "SLU-PP-332 and SLU-PP-915",
+      "publisher": "German Sport University Cologne, Department of Biochemistry (doping glossary)",
+      "year": 2026,
+      "url": "https://www.dshs-koeln.de/en/universitaet/organisation/institute-einrichtungen/department-of-biochemistry/doping-substances/doping-glossary/s/slu-pp-332-and-slu-pp-915-estrogen-receptor-related-err-agonists"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 4,
+      "title": "Synthetic ERRα/β/γ Agonist Induces an ERRα-Dependent Acute Aerobic Exercise Response and Enhances Exercise Capacity",
+      "publisher": "ACS Chemical Biology (UHSP Digital Collections record)",
+      "year": 2023,
+      "url": "https://collections.uhsp.edu/pharm-admin-sciences_pubs/48"
+    },
+    {
+      "n": 5,
+      "title": "A Synthetic ERR Agonist Alleviates Metabolic Syndrome",
+      "publisher": "The Journal of Pharmacology and Experimental Therapeutics (UHSP Digital Collections record)",
+      "year": 2024,
+      "url": "https://collections.uhsp.edu/pharm-admin-sciences_pubs/44/"
+    },
+    {
+      "n": 6,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 7,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "The catalog files SLU-PP-332 under Metabolic & weight; this round's assignment says Energy & mitochondria, so energy is the main goal here. Animal and cell data only; both mouse papers were read as abstracts on a university repository (PMC full text was bot-blocked), so doses, routes and any toxicity details were not reviewed. The 12% weight-loss and 'no severe side effects so far' points come from the University of Florida news release (2023), not the papers. We found no human trial; a search for sources on online sales returned only vendor and blog pages, which are not cited, so the claim that it is sold as a research chemical is left out of the text. The product-quality warning applies FDA's statement about research-labeled GLP-1 drugs by analogy. WADA does not name SLU-PP-332; that its S0 class (non-approved substances) would cover it is our reading. The Cologne anti-doping paper (Rapid Communications in Mass Spectrometry, 2026) was summarized from the institute's glossary page, not opened.",
+  "checked": "2026-10-28"
+}

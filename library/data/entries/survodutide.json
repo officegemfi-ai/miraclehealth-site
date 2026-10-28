@@ -1,0 +1,183 @@
+{
+  "id": "survodutide",
+  "name": "Survodutide",
+  "summary": "An experimental Boehringer Ingelheim drug that activates glucagon and GLP-1 receptors, in phase 3 trials for obesity and fatty-liver disease; it is not FDA-approved.",
+  "what_it_is": "Survodutide (BI 456906) is a lab-made drug that switches on the receptors for two hormones, glucagon and GLP-1. Boehringer Ingelheim licensed it from Zealand Pharma and is testing it for obesity, type 2 diabetes and MASH (fatty-liver inflammation) with liver scarring. It is investigational and not approved.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Two phase 3 randomized trials (725 and 755 adults) reported by Boehringer Ingelheim, which says both were published in NEJM, plus a published phase 2 trial of 387 adults; results on heart outcomes and long-term safety are not yet available."
+  },
+  "status_us": {
+    "key": "investigational",
+    "label": "Investigational; not approved",
+    "note": "Survodutide is in phase 3 trials and holds FDA Fast Track (2021) and Breakthrough Therapy (2024) designations for MASH; no FDA filing was announced in the sources checked. FDA has warned companies selling survodutide falsely labeled 'for research purposes' or 'not for human consumption.'",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0.25,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Average weight loss of up to 16.6% over 76 weeks versus 3.2% with placebo in 725 adults with obesity or overweight without type 2 diabetes (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In 755 adults with obesity or overweight and type 2 diabetes: up to 13.1% weight loss versus 3.1% with placebo, and A1C down by up to 1.21 points versus 0.03, over 76 weeks (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Less liver fat: in a 48-week trial of adults with fatty liver disease and excess weight, 61.0% reached normal liver fat versus 5.7% with placebo (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, vomiting, diarrhea and constipation, mostly while the dose was being raised: 18% to 19% stopped because of digestive side effects versus 1.2% to 2.9% with placebo",
+      "how_common": "common",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "In the phase 2 trial, 91% had a side effect versus 75% with placebo, and 75% had digestive side effects versus 42%",
+      "how_common": "common",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Long-term safety and effects on heart events are not yet known; a heart-outcomes trial had not reported in the sources checked",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Survodutide sold online as a 'research' product is unapproved, and FDA has warned sellers",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Approved GLP-1 drugs carry a boxed warning about thyroid C-cell tumors in rodents; whether this applies to survodutide was not reported in the sources checked",
+      "how_common": "theoretical",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anyone outside a clinical trial: it is not an approved medicine",
+    "Personal or family history of medullary thyroid cancer or MEN 2 (approved GLP-1 drugs carry this contraindication)",
+    "Pregnant, breastfeeding or planning pregnancy"
+  ],
+  "interactions": [
+    "Not well studied. Approved GLP-1 drugs raise the risk of low blood sugar with insulin or sulfonylureas and slow stomach emptying, which can change how oral medicines are absorbed"
+  ],
+  "labs": {
+    "before": [
+      "General health check: weight, blood pressure, HbA1c or fasting glucose, kidney and liver tests"
+    ],
+    "during": [
+      "Same general checks at regular visits",
+      "Resting heart rate"
+    ],
+    "why": "No evidence-based monitoring exists outside clinical trials because it is not approved; these are general health checks, with heart rate added because the label of an approved GLP-1 drug (semaglutide) calls for it."
+  },
+  "studies": [
+    {
+      "title": "Glucagon and GLP-1 receptor dual agonist survodutide for obesity: a randomised, double-blind, placebo-controlled, dose-finding phase 2 trial",
+      "year": 2024,
+      "type": "RCT",
+      "people": "387 adults with overweight or obesity, without diabetes",
+      "finding": "Over 46 weeks, weight fell 6.2% to 14.9% across doses versus 2.8% with placebo; side effects affected 91% versus 75%, mostly digestive.",
+      "source": 4
+    },
+    {
+      "title": "Positive data from two Phase III SYNCHRONIZE obesity trials",
+      "year": 2026,
+      "type": "RCT",
+      "people": "725 adults with obesity or overweight, without type 2 diabetes (SYNCHRONIZE-1)",
+      "finding": "Up to 16.6% average weight loss at 76 weeks versus 3.2% with placebo; 19% stopped because of digestive side effects versus 2.9%. Company-reported.",
+      "source": 1
+    },
+    {
+      "title": "Boehringer Ingelheim's survodutide achieves up to 13.1% weight loss in new Phase III trial, alongside significant improvements in glycemic control in people with obesity and type 2 diabetes",
+      "year": 2026,
+      "type": "RCT",
+      "people": "755 adults with obesity or overweight and type 2 diabetes (SYNCHRONIZE-2)",
+      "finding": "Up to 13.1% weight loss versus 3.1% and A1C reductions of up to 1.21 versus 0.03 points at 76 weeks; 18% stopped because of digestive side effects versus 1.2%. Company-reported.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a clinical trial be an option for me?",
+    "How do approved options, such as semaglutide or tirzepatide, compare for me?",
+    "What are the risks of products sold as 'research' survodutide?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Positive data from two Phase III SYNCHRONIZE obesity trials",
+      "publisher": "Boehringer Ingelheim (press release)",
+      "year": 2026,
+      "url": "https://www.boehringer-ingelheim.com/us/human-health/metabolic-diseases/positive-data-two-phase-iii-synchronize-obesity-trials"
+    },
+    {
+      "n": 2,
+      "title": "Boehringer Ingelheim's survodutide achieves up to 13.1% weight loss in new Phase III trial, alongside significant improvements in glycemic control in people with obesity and type 2 diabetes",
+      "publisher": "Boehringer Ingelheim (press release)",
+      "year": 2026,
+      "url": "https://www.boehringer-ingelheim.com/us/human-health/metabolic-diseases/new-phase-iii-data-people-obesity-and-diabetes"
+    },
+    {
+      "n": 3,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 4,
+      "title": "Glucagon and GLP-1 receptor dual agonist survodutide for obesity: a randomised, double-blind, placebo-controlled, dose-finding phase 2 trial",
+      "publisher": "Lancet Diabetes & Endocrinology (ASOI publication record)",
+      "year": 2024,
+      "url": "https://asoi.info/publication/glucagon-and-glp-1-receptor-dual-agonist-survodutide-for-obesity-a-randomised-double-blind-placebo-controlled-dose-finding-phase-2-trial/"
+    },
+    {
+      "n": 5,
+      "title": "WEGOVY (semaglutide) injection and WEGOVY (semaglutide) tablets: Prescribing Information (revised 05/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s031lbl218316s003lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "Phase 3 results come from Boehringer Ingelheim releases (June 7 and October 1, 2026) that cite NEJM papers (le Roux et al., doi 10.1056/NEJMoa2600751; Wharton et al., doi 10.1056/NEJMoa2607219), which were not opened. The weight figures are 'efficacy estimand' results (as if everyone stayed on treatment), which typically run higher than treatment-policy results. About 1 in 5 stopped because of digestive side effects. Heart-rate effects were not reported in the sources opened and are worth checking in the papers. SYNCHRONIZE-CVOT results were expected later in 2026. FDA's GLP-1 page names survodutide among 'research' products it warned about but does not separately address compounding. Class cautions come from the Wegovy label, not survodutide data.",
+  "checked": "2026-10-28"
+}

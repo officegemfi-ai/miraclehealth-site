@@ -1,0 +1,188 @@
+{
+  "id": "spironolactone",
+  "name": "Spironolactone",
+  "summary": "A prescription water pill for heart failure and high blood pressure that also blocks male hormones, so it is used off-label for acne and hair loss in women.",
+  "what_it_is": "Spironolactone, sold as Aldactone, is a prescription diuretic (water pill) that can raise potassium levels. It is approved for heart failure, high blood pressure, fluid buildup from liver cirrhosis or kidney disease (nephrotic syndrome), and primary hyperaldosteronism. Because it also has anti-androgen (male-hormone-blocking) effects, dermatologists prescribe it off-label for acne and female pattern hair loss.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "For acne, a well-run trial in 410 women found modest benefits; for female pattern hair loss the evidence is small, mostly uncontrolled studies; its heart and fluid uses are FDA-approved."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for heart and fluid problems; acne off-label",
+    "note": "Aldactone is approved for heart failure with reduced ejection fraction, as an add-on for high blood pressure, for fluid buildup from cirrhosis or nephrotic syndrome, and for primary hyperaldosteronism. It is not approved for acne or hair loss; doctors have prescribed it off-label for acne for many years.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.5
+  },
+  "benefits": [
+    {
+      "claim": "Improves survival and reduces hospital stays in heart failure with reduced ejection fraction, and lowers blood pressure as an add-on drug (approved uses)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In 410 women with persistent acne, acne symptom scores improved slightly more than with placebo at 12 weeks, and at 24 weeks 82% versus 63% said their skin had improved",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "In female pattern hair loss, about 81% of patients taking spironolactone tablets improved on photos across four mostly small studies; results were too varied to pool, and the reviewers called for better trials",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "High potassium (hyperkalemia), which can be dangerous; the risk rises with other drugs or supplements that raise potassium",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Breast enlargement in men (gynecomastia), the most common side effect on the label, usually reversible",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Headache (20% versus 12% on placebo) in women treated for acne; dizziness or lightheadedness was also more frequent (19% versus 12%), though not significantly",
+      "how_common": "common",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Low blood pressure, dehydration and worsening kidney function from too much fluid loss; in a study of 185 women treated for hair loss, 5 developed low blood pressure",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        4
+      ]
+    },
+    {
+      "risk": "Menstrual irregularities (about 8%) and dizziness or headache (about 6.5%) in hair-loss studies",
+      "how_common": "uncommon",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "High potassium, Addison's disease, or taking eplerenone (contraindicated)",
+    "Pregnant or could become pregnant (it feminized male fetuses in rats, and the label advises avoiding it in pregnancy)",
+    "Kidney problems, or taking potassium supplements, ACE inhibitors or ARBs (needs a clinician first because of potassium risk)",
+    "Athletes in tested sports (WADA bans it at all times as a diuretic)"
+  ],
+  "interactions": [
+    "ACE inhibitors, ARBs, potassium supplements, NSAIDs, heparin and trimethoprim: risk of severe high potassium",
+    "Lithium: slower lithium clearance and risk of toxicity",
+    "Digoxin: can falsely raise digoxin blood test results",
+    "Cholestyramine: high-potassium metabolic acidosis has been reported",
+    "Aspirin and other NSAIDs: may weaken its effect"
+  ],
+  "labs": {
+    "before": [
+      "Potassium",
+      "Kidney function (creatinine, eGFR)"
+    ],
+    "during": [
+      "Potassium within a week of starting or changing the dose, and regularly after",
+      "Kidney function, electrolytes, uric acid and blood glucose periodically"
+    ],
+    "why": "The heart-failure and blood-pressure label calls for these checks; for healthy young women taking it for acne, the SAFA trial team advised a baseline test and judged ongoing monitoring unnecessary for most."
+  },
+  "studies": [
+    {
+      "title": "Effectiveness of spironolactone for women with acne vulgaris (SAFA) in England and Wales: pragmatic, multicentre, phase 3, double blind, randomised controlled trial",
+      "year": 2023,
+      "type": "RCT",
+      "people": "410 women aged 18 and over with persistent acne",
+      "finding": "Acne symptom scores improved slightly more than with placebo at 12 weeks (adjusted difference 1.27), and at 24 weeks 82% versus 63% reported improvement. Headache was more common on spironolactone (20% versus 12%), with no serious related reactions.",
+      "source": 2
+    },
+    {
+      "title": "The Efficacy and Safety of Oral and Topical Spironolactone in Androgenetic Alopecia Treatment: A Systematic Review",
+      "year": 2023,
+      "type": "Systematic review",
+      "people": "7 studies, 618 people with pattern hair loss (553 women)",
+      "finding": "Most patients on oral spironolactone improved on photos, and combinations with minoxidil did better, but study designs varied too much for a meta-analysis; about 3% stopped because of side effects.",
+      "source": 3
+    },
+    {
+      "title": "Low Risk of Hypotension in Women Treated with Spironolactone for Hair Loss",
+      "year": 2025,
+      "type": "Cohort",
+      "people": "185 women prescribed spironolactone for hair loss (retrospective)",
+      "finding": "Five developed low blood pressure; the retrospective design and missing symptom data limit the findings.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I need potassium or kidney tests, given my health and other medicines?",
+    "What birth control should I use while taking it?",
+    "How long until we can judge whether it is helping my acne or hair?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "ALDACTONE (spironolactone) tablets: prescribing information (revised November 2025)",
+      "publisher": "Pfizer (FDA-approved labeling)",
+      "year": 2025,
+      "url": "https://labeling.pfizer.com/showlabeling.aspx?id=520"
+    },
+    {
+      "n": 2,
+      "title": "Effectiveness of spironolactone for women with acne vulgaris (SAFA) in England and Wales: pragmatic, multicentre, phase 3, double blind, randomised controlled trial",
+      "publisher": "The BMJ (University of Southampton ePrints copy)",
+      "year": 2023,
+      "url": "https://eprints.soton.ac.uk/477069/1/bmj_2022_074349.full.pdf"
+    },
+    {
+      "n": 3,
+      "title": "The Efficacy and Safety of Oral and Topical Spironolactone in Androgenetic Alopecia Treatment: A Systematic Review",
+      "publisher": "Clinical, Cosmetic and Investigational Dermatology (Dove Medical Press)",
+      "year": 2023,
+      "url": "https://dovepress.com/article/download/82119"
+    },
+    {
+      "n": 4,
+      "title": "Low Risk of Hypotension in Women Treated with Spironolactone for Hair Loss",
+      "publisher": "Dermatology Practical & Conceptual",
+      "year": 2025,
+      "url": "https://dpcj.org/index.php/dpc/article/download/5337/3163/94230"
+    },
+    {
+      "n": 5,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "The current Aldactone label (November 2025) has no boxed warning. The SAFA primary result was small (1.27 points on the Acne-QoL symptom subscale); investigator-rated success was 19% versus 6% at 12 weeks. The words after the colon in the SAFA title ('pragmatic, multicentre, phase 3, double blind, randomised controlled trial') were not visible in the text extracted from the copy opened; confirm the full title. The hair-loss evidence is weak: the 2023 review pooled no data, mixed oral and topical use, and included few randomized trials; the 2025 blood-pressure study is retrospective and from one center. The label's gynecomastia rate was not captured, so how_common is 'unknown'. The advice that ongoing potassium checks are usually unnecessary in healthy young women rests on the SAFA authors' view, not a US guideline. Men taking it for hair loss were not covered.",
+  "checked": "2026-10-28"
+}

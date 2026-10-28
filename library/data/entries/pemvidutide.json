@@ -1,0 +1,191 @@
+{
+  "id": "pemvidutide",
+  "name": "Pemvidutide",
+  "summary": "An experimental drug that activates glucagon and GLP-1 receptors, tested for weight loss and now mainly for fatty-liver disease (MASH) and alcohol use disorder; not FDA-approved.",
+  "what_it_is": "Pemvidutide is a lab-made drug that switches on glucagon and GLP-1 receptors in equal measure; its developer, Altimmune, calls it a balanced 1:1 dual agonist. Altimmune tested it for obesity, but its development now focuses on MASH (fatty-liver inflammation with scarring), alcohol use disorder and alcohol-associated liver disease. It is investigational and not approved.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Company-reported phase 2 randomized trials: IMPACT (212 adults with MASH, liver biopsies at 24 weeks), MOMENTUM (391 adults with obesity, 48 weeks) and RECLAIM (about 100 adults with alcohol use disorder, 24 weeks); no phase 3 results yet."
+  },
+  "status_us": {
+    "key": "investigational",
+    "label": "Investigational; phase 3 MASH trial planned",
+    "note": "Altimmune reports FDA Breakthrough Therapy designation for MASH (December 2025) and Fast Track designation for alcohol use disorder (August 2025), and planned to start a phase 3 MASH trial in the third quarter of 2026. It is not approved; FDA warns that GLP-1 drugs sold 'for research purposes' are illegally marketed, though its page does not name pemvidutide.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0.5,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "MASH cleared without worsening scarring in 52% to 58% versus 20% with placebo at 24 weeks in 212 adults with biopsy-confirmed MASH and moderate to advanced scarring; improvement in scarring itself was not statistically significant (33% to 36% versus 28%) (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Average weight loss of 10.3% to 15.6% at 48 weeks versus 2.2% with placebo in 391 adults with obesity or overweight without diabetes (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Fewer heavy drinking days per week than with placebo (a drop of 4.20 versus 2.75) over 24 weeks in about 100 adults with alcohol use disorder and excess weight, with 9.1% more weight loss than placebo (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Lower liver stiffness and blood fibrosis scores than with placebo at 48 weeks in the MASH trial, without a repeat biopsy (company-reported)",
+      "evidence": "limited",
+      "sources": [
+        5,
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, vomiting, diarrhea and constipation: in the alcohol use disorder trial, nausea affected 44% versus 24% on placebo and constipation 26% versus 6%, and 10% stopped because of drug-related side effects versus none on placebo",
+      "how_common": "common",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Long-term safety is not known; only phase 2 results exist",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Pemvidutide sold online as a 'research' product would be an unapproved drug of the GLP-1 type, which FDA says is illegally marketed",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Approved GLP-1 drugs carry a boxed warning about thyroid C-cell tumors in rodents; whether this applies to pemvidutide was not reported in the sources checked",
+      "how_common": "theoretical",
+      "sources": [
+        6
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anyone outside a clinical trial: it is not an approved medicine",
+    "Personal or family history of medullary thyroid cancer or MEN 2 (approved GLP-1 drugs carry this contraindication)",
+    "Pregnant, breastfeeding or planning pregnancy"
+  ],
+  "interactions": [
+    "Not well studied. Approved GLP-1 drugs raise the risk of low blood sugar with insulin or sulfonylureas and slow stomach emptying, which can change how oral medicines are absorbed"
+  ],
+  "labs": {
+    "before": [
+      "General health check: weight, blood pressure, HbA1c or fasting glucose, kidney and liver tests"
+    ],
+    "during": [
+      "Same general checks at regular visits",
+      "Resting heart rate"
+    ],
+    "why": "No evidence-based monitoring exists outside clinical trials because it is not approved; these are general health checks, with heart rate added because the label of an approved GLP-1 drug (semaglutide) calls for it."
+  },
+  "studies": [
+    {
+      "title": "Altimmune, Inc. Form 424B5 (prospectus supplement)",
+      "year": 2026,
+      "type": "RCT",
+      "people": "212 adults with biopsy-confirmed MASH and moderate to advanced liver scarring (IMPACT phase 2b)",
+      "finding": "At 24 weeks, MASH cleared without worsening scarring in 58.2% and 52.1% on two doses versus 19.9% on placebo; scarring improved in 32.6% and 35.7% versus 27.9% (not significant). Stopping because of side effects was under 1% to 1.2% versus 2.4%. Company-reported.",
+      "source": 1
+    },
+    {
+      "title": "Altimmune Presents Data from Phase 2 MOMENTUM Trial of Pemvidutide in Obesity during Oral Presentation at the American Diabetes Association's 84th Scientific Sessions",
+      "year": 2024,
+      "type": "RCT",
+      "people": "391 adults with obesity or overweight, without diabetes (MOMENTUM)",
+      "finding": "Average weight loss at 48 weeks was 10.3%, 11.2% and 15.6% across three doses versus 2.2% with placebo; in an MRI substudy of 50 treated people, about 22% of the weight lost was lean mass. Company-reported.",
+      "source": 4
+    },
+    {
+      "title": "Altimmune Announces Positive Topline Results from RECLAIM Phase 2 Trial of Pemvidutide in Alcohol Use Disorder",
+      "year": 2026,
+      "type": "RCT",
+      "people": "About 100 adults with moderate to severe alcohol use disorder and excess weight (RECLAIM)",
+      "finding": "Heavy drinking days per week fell by 4.20 versus 2.75 with placebo over 24 weeks (p=0.0014); 10% stopped because of drug-related side effects versus none. Company-reported.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a clinical trial for MASH or alcohol use be an option for me?",
+    "How do approved options, such as semaglutide or tirzepatide, compare for me?",
+    "What are the risks of products sold as 'research' pemvidutide?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Altimmune, Inc. Form 424B5 (prospectus supplement, April 23, 2026)",
+      "publisher": "US Securities and Exchange Commission (EDGAR)",
+      "year": 2026,
+      "url": "https://www.sec.gov/Archives/edgar/data/0001326190/000110465926047979/alt-20260423x424b5.htm"
+    },
+    {
+      "n": 2,
+      "title": "Altimmune Announces Positive Topline Results from RECLAIM Phase 2 Trial of Pemvidutide in Alcohol Use Disorder",
+      "publisher": "Altimmune (press release, SEC Form 8-K exhibit 99.1)",
+      "year": 2026,
+      "url": "https://www.sec.gov/Archives/edgar/data/0001326190/000132619026000044/alt-20260728xex99d1.htm"
+    },
+    {
+      "n": 3,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 4,
+      "title": "Altimmune Presents Data from Phase 2 MOMENTUM Trial of Pemvidutide in Obesity during Oral Presentation at the American Diabetes Association's 84th Scientific Sessions",
+      "publisher": "Altimmune (press release)",
+      "year": 2024,
+      "url": "https://altimmune.gcs-web.com/node/16211/pdf"
+    },
+    {
+      "n": 5,
+      "title": "Altimmune Reports Positive 48-Week Phase 2b Data For Pemvidutide In MASH",
+      "publisher": "RTTNews (via Nasdaq)",
+      "year": 2025,
+      "url": "https://www.nasdaq.com/articles/altimmune-reports-positive-48-week-phase-2b-data-pemvidutide-mash"
+    },
+    {
+      "n": 6,
+      "title": "WEGOVY (semaglutide) injection and WEGOVY (semaglutide) tablets: Prescribing Information (revised 05/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s031lbl218316s003lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "All pemvidutide efficacy data are company-reported (an SEC prospectus, an 8-K press release, an earlier press release and a news item); no peer-reviewed paper was opened. MOMENTUM's side-effect and dropout rates were not found in the sources opened; digestive side-effect rates come from the smaller RECLAIM trial (50 per arm), where one serious case of low blood sodium was judged possibly related to the drug. The 48-week IMPACT readout used non-invasive tests only, with no biopsy. Whether the phase 3 MASH trial (PERFORMA) started in the third quarter of 2026 was not confirmed. FDA's GLP-1 page does not name pemvidutide. Class cautions come from the Wegovy label, not pemvidutide data.",
+  "checked": "2026-10-28"
+}

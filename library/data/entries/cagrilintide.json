@@ -1,0 +1,192 @@
+{
+  "id": "cagrilintide",
+  "name": "Cagrilintide",
+  "summary": "An experimental long-acting version of the hormone amylin, tested for weight loss alone and with semaglutide (as CagriSema); it is not FDA-approved.",
+  "what_it_is": "Cagrilintide is a lab-made, long-acting analog of the hormone amylin, developed by Novo Nordisk. In its main trials it is combined with semaglutide, a GLP-1 drug, as CagriSema, and Novo Nordisk asked FDA in December 2025 to approve CagriSema for weight management. No product containing cagrilintide is approved in the US, and FDA says it cannot be used in compounding.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Two large published phase 3 trials (3,417 and 1,206 adults) support cagrilintide combined with semaglutide; evidence for cagrilintide alone rests mainly on one 26-week phase 2 trial, and long-term safety is unknown."
+  },
+  "status_us": {
+    "key": "investigational",
+    "label": "Investigational; CagriSema under FDA review",
+    "note": "Novo Nordisk submitted CagriSema (cagrilintide plus semaglutide) to FDA for weight management in December 2025, and no FDA decision was found as of late October 2026. FDA states that cagrilintide 'cannot be used in compounding under federal law.'",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "With semaglutide (CagriSema): average weight loss of 20.4% versus 3.0% with placebo over 68 weeks in 3,417 adults with obesity or overweight without diabetes",
+      "evidence": "moderate",
+      "sources": [
+        4,
+        5
+      ]
+    },
+    {
+      "claim": "With semaglutide in adults with type 2 diabetes and excess weight: 13.7% versus 3.4% weight loss over 68 weeks, and 74% reached an A1C of 6.5% or lower versus 15.9% with placebo",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Alone: 6.0% to 10.8% average weight loss over 26 weeks, depending on dose, versus 3.0% with placebo, in a phase 2 trial of adults with obesity or overweight without diabetes",
+      "evidence": "moderate",
+      "sources": [
+        6
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea and other digestive side effects: 79.6% with CagriSema versus 39.9% with placebo; in the phase 2 trial of cagrilintide alone, 4% stopped treatment because of side effects",
+      "how_common": "common",
+      "sources": [
+        4,
+        6
+      ]
+    },
+    {
+      "risk": "CagriSema contains semaglutide, whose label carries a boxed warning about thyroid C-cell tumors in rodents (human relevance unknown) and warnings about pancreatitis, gallbladder disease and heart-rate increases",
+      "how_common": "theoretical",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "risk": "Long-term safety is not known; it is not an approved medicine",
+      "how_common": "unknown",
+      "sources": [
+        2,
+        3
+      ]
+    },
+    {
+      "risk": "Cagrilintide sold online or as a 'research' product is unapproved, and FDA says it cannot be used in compounding",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anyone outside a clinical trial: it is not an approved medicine",
+    "Personal or family history of medullary thyroid cancer or MEN 2 (a contraindication for semaglutide, which CagriSema contains)",
+    "Pregnant, breastfeeding or planning pregnancy"
+  ],
+  "interactions": [
+    "Not well studied. The semaglutide in CagriSema raises the risk of low blood sugar with insulin or sulfonylureas and slows stomach emptying, which can change how oral medicines are absorbed"
+  ],
+  "labs": {
+    "before": [
+      "General health check: weight, blood pressure, HbA1c or fasting glucose, kidney function"
+    ],
+    "during": [
+      "Same general checks at regular visits",
+      "Resting heart rate"
+    ],
+    "why": "No evidence-based monitoring exists outside clinical trials because it is not approved; these are general health checks, with heart rate added because the semaglutide label calls for it."
+  },
+  "studies": [
+    {
+      "title": "Coadministered Cagrilintide and Semaglutide in Adults with Overweight or Obesity",
+      "year": 2025,
+      "type": "RCT",
+      "people": "3,417 adults with obesity or overweight, without diabetes (REDEFINE 1)",
+      "finding": "At 68 weeks, average weight change was -20.4% with cagrilintide-semaglutide versus -3.0% with placebo; digestive side effects affected 79.6% versus 39.9%.",
+      "source": 4
+    },
+    {
+      "title": "Cagrilintide-Semaglutide in Adults with Overweight or Obesity and Type 2 Diabetes",
+      "year": 2025,
+      "type": "RCT",
+      "people": "1,206 adults with type 2 diabetes and overweight or obesity (REDEFINE 2)",
+      "finding": "At 68 weeks, weight fell 13.7% versus 3.4% with placebo, and 74% versus 15.9% reached an A1C of 6.5% or lower (as summarized by the American College of Cardiology).",
+      "source": 5
+    },
+    {
+      "title": "Once-weekly cagrilintide for weight management in people with overweight and obesity: a multicentre, randomised, double-blind, placebo-controlled and active-controlled, dose-finding phase 2 trial",
+      "year": 2021,
+      "type": "RCT",
+      "people": "906 adults with obesity or overweight, without diabetes",
+      "finding": "Over 26 weeks, average weight loss was 6.0% to 10.8% across cagrilintide doses versus 3.0% with placebo; 4% stopped treatment because of adverse events.",
+      "source": 6
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a clinical trial be an option for me?",
+    "How do approved options, such as semaglutide or tirzepatide, compare for me?",
+    "What are the risks of products sold as 'research' cagrilintide?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Novo Nordisk files for FDA approval of CagriSema, the first once-weekly combination of GLP-1 and amylin analogues for weight management",
+      "publisher": "Novo Nordisk (press release)",
+      "year": 2025,
+      "url": "https://www.novonordisk.com/content/nncorp/global/en/news-and-media/news-and-ir-materials/news-details.html?embed=true&id=916470"
+    },
+    {
+      "n": 2,
+      "title": "CagriSema FDA Approval Status",
+      "publisher": "Drugs.com",
+      "year": 2026,
+      "url": "https://www.drugs.com/history/cagrisema.html"
+    },
+    {
+      "n": 3,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 4,
+      "title": "Coadministered Cagrilintide and Semaglutide in Adults with Overweight or Obesity",
+      "publisher": "New England Journal of Medicine (University of Rome Tor Vergata repository record)",
+      "year": 2025,
+      "url": "https://art.torvergata.it/handle/2108/426724"
+    },
+    {
+      "n": 5,
+      "title": "REDEFINE 1 and REDEFINE 2: Greater Weight Loss With Combined Cagrilintide-Semaglutide vs. Either Drug Alone or Placebo",
+      "publisher": "American College of Cardiology (journal scan)",
+      "year": 2025,
+      "url": "https://www.acc.org/Latest-in-Cardiology/Journal-Scans/2025/07/02/14/43/REDEFINE-1-and-REDEFINE-2"
+    },
+    {
+      "n": 6,
+      "title": "Once-weekly cagrilintide for weight management in people with overweight and obesity: a multicentre, randomised, double-blind, placebo-controlled and active-controlled, dose-finding phase 2 trial",
+      "publisher": "The Lancet (ASOI publication record)",
+      "year": 2021,
+      "url": "https://asoi.info/publication/once-weekly-cagrilintide-for-weight-management-in-people-with-overweight-and-obesity-a-multicentre-randomised-double-blind-placebo-controlled-and-active-controlled-dose-finding-phase-2-trial/"
+    },
+    {
+      "n": 7,
+      "title": "WEGOVY (semaglutide) injection and WEGOVY (semaglutide) tablets: Prescribing Information (revised 05/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s031lbl218316s003lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "No cagrilintide product is approved. The CagriSema filing (December 18, 2025) is from Novo Nordisk; no FDA decision or decision date was found, and a Drugs.com history with entries through October 20, 2026 lists none. Drugs.com also reports, from company announcements, that REDEFINE 4 (February 2026) missed its non-inferiority goal against tirzepatide; not checked further. The cagrilintide-alone arm of REDEFINE 1 was not reported in the sources opened. Novo's own REDEFINE 1 figure (22.7%) differs from the NEJM figure (20.4%) because of a different analysis. REDEFINE 2 numbers come from an ACC journal summary, not the paper. Semaglutide's boxed warning and interactions are cited from the Wegovy label because CagriSema contains it; cagrilintide alone has no label.",
+  "checked": "2026-10-28"
+}

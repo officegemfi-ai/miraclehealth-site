@@ -1,0 +1,165 @@
+{
+  "id": "telmisartan",
+  "name": "Telmisartan",
+  "summary": "A prescription blood pressure and heart-protection drug; it also partly activates a metabolic switch (PPAR-gamma), but benefits for healthy aging are unproven.",
+  "what_it_is": "Telmisartan, sold as Micardis, is an angiotensin II receptor blocker (ARB). It works by stopping the hormone angiotensin II from binding to its AT1 receptor in blood vessel walls and the adrenal gland. It is approved for high blood pressure and to lower the risk of heart attack, stroke and heart-related death in people 55 and older at high risk who cannot take ACE inhibitors. It also partly activates PPAR-gamma, a receptor involved in metabolism.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Large trials support its approved blood pressure and heart uses, but its use for healthy aging rests on metabolic findings, such as a meta-analysis of 15 small trials showing less belly fat in people with high blood pressure and metabolic problems, not on aging outcomes."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for high blood pressure; aging off-label",
+    "note": "Micardis is approved to treat high blood pressure and to lower the risk of heart attack, stroke and heart-related death in people 55 and older at high risk who cannot take ACE inhibitors. It carries a boxed warning for fetal toxicity; use for healthy aging is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0.5,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lowers blood pressure (approved use)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Matched the ACE inhibitor ramipril for preventing heart-related death, heart attack, stroke or heart-failure hospital stays in 25,620 high-risk patients (16.7% versus 16.5%)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In 5,926 high-risk patients unable to take ACE inhibitors, it did not significantly reduce the main combined outcome versus placebo (15.7% versus 17.0%), though heart-related death, heart attack or stroke was slightly lower (13.0% versus 14.8%)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Less belly (visceral) fat but no change in fat under the skin, compared with other treatments, in a meta-analysis of 15 small trials in people with high blood pressure plus overweight, metabolic syndrome or glucose intolerance",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Boxed warning: drugs acting on this hormone system can injure or kill a developing baby",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Low blood pressure, especially in people low on salt or fluids",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "High potassium and changes in kidney function, especially when combined with other drugs that act on the same hormone system",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Back pain, sinus infection and diarrhea were the most common side effects in blood pressure trials",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In high-risk heart patients, leg pain from narrowed arteries (intermittent claudication) and skin ulcers were reported at least 1% more often than with placebo",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or planning pregnancy (boxed warning)",
+    "Past severe allergic reaction to telmisartan, such as anaphylaxis or angioedema",
+    "Diabetes and taking aliskiren",
+    "Already taking an ACE inhibitor or another drug that blocks the same hormone system (combination not recommended)",
+    "Liver problems (needs a clinician first)"
+  ],
+  "interactions": [
+    "Aliskiren: not to be combined in people with diabetes, and avoided with reduced kidney function",
+    "ACE inhibitors such as ramipril: no added benefit and more kidney problems in a large trial",
+    "Lithium: levels can rise to toxic; monitoring is needed",
+    "Digoxin: levels should be monitored when telmisartan is started, changed or stopped",
+    "NSAIDs, including COX-2 inhibitors: risk of kidney injury and weaker blood pressure lowering"
+  ],
+  "labs": {
+    "before": [
+      "Potassium",
+      "Kidney function (creatinine, eGFR)"
+    ],
+    "during": [
+      "Potassium and kidney function, especially with other drugs acting on the same hormone system",
+      "Lithium or digoxin levels if either is taken too"
+    ],
+    "why": "The label warns that telmisartan can raise potassium and change kidney function and calls for monitoring lithium and digoxin levels when combined; no monitoring plan exists for use in healthy aging."
+  },
+  "studies": [
+    {
+      "title": "MICARDIS (telmisartan) tablets: prescribing information",
+      "year": 2022,
+      "type": "Label",
+      "people": "25,620 (ONTARGET) and 5,926 (TRANSCEND) adults at high cardiovascular risk",
+      "finding": "In ONTARGET, telmisartan matched ramipril on heart-related death, heart attack, stroke or heart-failure hospitalization (hazard ratio 1.01), and combining the two gave no extra benefit but more kidney problems. In TRANSCEND, it did not significantly beat placebo on the main outcome (hazard ratio 0.92).",
+      "source": 1
+    },
+    {
+      "title": "Effects of telmisartan on fat distribution: a meta-analysis of randomized controlled trials",
+      "year": 2016,
+      "type": "Meta-analysis",
+      "people": "15 randomized trials in adults with high blood pressure plus overweight, metabolic syndrome or glucose intolerance",
+      "finding": "Telmisartan lowered visceral fat area (by about 18 square centimeters) and total cholesterol slightly versus control, with no change in fat under the skin; the trials were few and varied.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "What would telmisartan do for me if my blood pressure is normal?",
+    "Which of my medicines or supplements, such as potassium, NSAIDs or lithium, could interact with it?",
+    "What potassium and kidney checks would I need?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "MICARDIS (telmisartan) tablets: prescribing information (revised December 2022)",
+      "publisher": "Drugs.com (FDA-approved labeling)",
+      "year": 2022,
+      "url": "https://www.drugs.com/pro/micardis.html"
+    },
+    {
+      "n": 2,
+      "title": "Effects of telmisartan on fat distribution: a meta-analysis of randomized controlled trials",
+      "publisher": "Current Medical Research and Opinion (Chung-Ang University repository record)",
+      "year": 2016,
+      "url": "https://scholarworks.bwise.kr/cau/handle/2019.sw.cau/8697?mode=full"
+    }
+  ],
+  "notes_for_editor": "The catalog files telmisartan under Heart & circulation; this round's assignment says Longevity, so longevity is the main goal here. Evidence for healthy aging is thin: one search for animal lifespan studies of telmisartan found only studies of other blood pressure drugs, so none are cited, and no human aging trial was found. The PPAR-gamma point comes from the background of the 2016 meta-analysis [2], whose abstract also says little about insulin resistance or weight. ONTARGET and TRANSCEND results are taken from the label's clinical studies section, not the primary papers (search budget). The manufacturer's own label page was bot-blocked; the Drugs.com copy is revised December 2022.",
+  "checked": "2026-10-28"
+}
