@@ -9,6 +9,7 @@
 // Run: node scripts/build_library.mjs   (--check fails if the committed pages are out of date)
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signalviz.js';
 
@@ -73,6 +74,12 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 // ---------------------------------------------------------------------------
 // The page around everything
 // ---------------------------------------------------------------------------
+// Every page asks for the stylesheets and script by a version made from their contents, so a
+// browser or GitHub's cache never pairs a new page with an old stylesheet (GitHub Pages caches
+// files for 10 minutes)
+const version = (...files) => createHash('sha256').update(files.map((f) => fs.readFileSync(path.join(ROOT, f))).join('\n')).digest('hex').slice(0, 10);
+const V = { css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js') };
+
 // The library's banner photo, in three widths
 const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 960w, /img/library-1600.webp 1600w, /img/library-2560.webp 2560w' };
 
@@ -99,9 +106,9 @@ function page({ title, description, url, body, current = 'library', preload = ''
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}
-<link rel="stylesheet" href="/styles.css">
-<link rel="stylesheet" href="/library/library.css">
-<script type="module" src="/library/library.js"></script>
+<link rel="stylesheet" href="/styles.css?v=${V.css}">
+<link rel="stylesheet" href="/library/library.css?v=${V.lib}">
+<script type="module" src="/library/library.js?v=${V.js}"></script>
 </head>
 <body class="lib">
 <a class="skip" href="#main">Skip to content</a>
@@ -435,7 +442,14 @@ const fill = (html, key, inner) => {
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'takeover', `<div class="viz-wide">${takeoverSvg({ w: 50, max: 300 })}</div><div class="viz-compact">${takeoverSvg({ w: 50, max: 300 }, { compact: true })}</div>`);
 front = fill(front, 'levels', LEVELS.map((l) => `<li>${sealSvg(l.key, 30)}<span><b>${e(l.name)}</b>${e(l.rule)}</span></li>`).join(''));
-out.set(frontFile, front);
+out.set(frontFile, front.replace(/href="(\/?)styles\.css(\?v=[0-9a-f]+)?"/, `href="$1styles.css?v=${V.css}"`));
+// The other hand-written pages share the site stylesheet
+for (const f of ['privacy.html', 'terms.html', '404.html']) {
+  const file = path.join(ROOT, f);
+  const html = fs.readFileSync(file, 'utf8');
+  if (!/href="\/?styles\.css(\?v=[0-9a-f]+)?"/.test(html)) throw new Error(`${f} has no styles.css link`);
+  out.set(file, html.replace(/href="(\/?)styles\.css(\?v=[0-9a-f]+)?"/, `href="$1styles.css?v=${V.css}"`));
+}
 
 let stale = 0;
 for (const [file, html] of out) {
