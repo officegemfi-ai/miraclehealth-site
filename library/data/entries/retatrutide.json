@@ -94,10 +94,11 @@
   ],
   "avoid_if": [
     "Anyone outside a clinical trial: it is not an approved medicine",
+    "Personal or family history of medullary thyroid cancer or MEN 2 (approved drugs in this class carry this as a contraindication)",
     "Pregnant, breastfeeding or planning pregnancy"
   ],
   "interactions": [
-    "None well documented; it is still under study"
+    "Not yet studied. A related approved drug, tirzepatide, can raise the risk of low blood sugar with insulin or sulfonylureas, can change how oral medicines are absorbed, and can make birth-control pills less effective"
   ],
   "labs": {
     "before": [
@@ -128,7 +129,7 @@
     }
   ],
   "ask_your_clinician": [
-    "Is there a clinical trial I could join instead of using an unapproved product?",
+    "Would a clinical trial be an option for me?",
     "How do approved options such as tirzepatide or semaglutide compare for me?",
     "Which side effects would mean I should stop and get checked?"
   ],
@@ -153,8 +154,15 @@
       "publisher": "New England Journal of Medicine (Ovid)",
       "year": 2023,
       "url": "https://www.ovid.com/journals/nejm/pdf/10.1056/nejmoa2301972~triple-hormone-receptor-agonist-retatrutide-for-obesity-a"
+    },
+    {
+      "n": 4,
+      "title": "ZEPBOUND (tirzepatide) injection, for subcutaneous use: prescribing information (revised April 2026)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/217806Orig1s050lbl.pdf"
     }
   ],
-  "notes_for_editor": "Phase 3 results (TRIUMPH-2 and TRIUMPH-3) come only from Lilly's July 23, 2026 press release; no peer-reviewed phase 3 paper was found, and TRIUMPH-4 (knee osteoarthritis) results were not checked. In TRIUMPH-3, heart events were not significantly different from placebo (MACE-5 hazard ratio 0.82, 95% CI 0.55 to 1.22). The thyroid C-cell boxed warning carried by approved GLP-1 drugs has not been assessed for retatrutide in the sources used. US status rests on FDA's GLP-1 concerns page (content current as of October 1, 2026) and Lilly's stated filing plan; a news report (Epocrates, July 24, 2026) also describes a planned FDA submission in early 2027.",
+  "notes_for_editor": "Phase 3 results (TRIUMPH-2 and TRIUMPH-3) come only from Lilly's July 23, 2026 press release; no peer-reviewed phase 3 paper was found, and TRIUMPH-4 (knee osteoarthritis) results were not checked. In TRIUMPH-3, heart events were not significantly different from placebo (MACE-5 hazard ratio 0.82, 95% CI 0.55 to 1.22). The thyroid C-cell boxed warning carried by approved GLP-1 drugs has not been assessed for retatrutide in the sources used. US status rests on FDA's GLP-1 concerns page (content current as of October 1, 2026) and Lilly's stated filing plan; a news report (Epocrates, July 24, 2026) also describes a planned FDA submission in early 2027. After review: class interactions and the thyroid-cancer caution come from the Zepbound label [4], a related approved drug; retatrutide's own label doesn't exist yet.",
   "checked": "2026-10-28"
 }

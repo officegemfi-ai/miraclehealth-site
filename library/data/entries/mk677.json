@@ -11,20 +11,87 @@
     "key": "category2",
     "label": "FDA Category 2: pharmacies may not compound it",
     "note": "FDA lists ibutamoren mesylate in Category 2 for both compounding pharmacies (since September 2023) and outsourcing facilities (since December 2022), citing a risk of congestive heart failure, and it remained there on FDA's 2025 and 2026 lists. WADA bans ibutamoren (MK-677) in sport.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0.75, "recovery": 0.25, "energy": 0, "sleep": 0.5, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.25, "gut": 0, "immune": 0, "hormonal": 0.75 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.75,
+    "recovery": 0.25,
+    "energy": 0,
+    "sleep": 0.5,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.75
+  },
   "benefits": [
-    { "claim": "Raised growth hormone and IGF-1 to young-adult levels over 12 months in a randomized trial of 65 healthy adults aged 60 to 81", "evidence": "moderate", "sources": [5] },
-    { "claim": "Increased lean (fat-free) mass by about 1 kg versus a small loss on placebo, without gains in strength or function", "evidence": "moderate", "sources": [5] },
-    { "claim": "Faster walking (gait speed) but no improvement in most other function measures in 123 older adults recovering from hip fracture", "evidence": "limited", "sources": [6] },
-    { "claim": "More deep (stage IV) and REM sleep in short studies of 8 young and 6 older adults", "evidence": "limited", "sources": [7] }
+    {
+      "claim": "Raised growth hormone and IGF-1 to young-adult levels over 12 months in a randomized trial of 65 healthy adults aged 60 to 81",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Increased lean (fat-free) mass by about 1 kg versus a small loss on placebo, without gains in strength or function",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Faster walking (gait speed) but no improvement in most other function measures in 123 older adults recovering from hip fracture",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "More deep (stage IV) and REM sleep in short studies of 8 young and 6 older adults",
+      "evidence": "limited",
+      "sources": [
+        7
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Congestive heart failure: a hip-fracture trial in older adults was stopped early over a heart-failure safety signal, which FDA cites as a significant safety risk", "how_common": "unknown", "sources": [1, 6] },
-    { "risk": "Higher fasting blood sugar and lower insulin sensitivity over a year in older adults", "how_common": "common", "sources": [5] },
-    { "risk": "Increased appetite (usually fading within a few months), mild temporary leg swelling and muscle pain, the most frequent side effects in a 2-year trial", "how_common": "common", "sources": [5] },
-    { "risk": "Weight gain of about 2.7 kg over a year (vs 0.8 kg on placebo), including more fat on the arms and legs", "how_common": "common", "sources": [5] }
+    {
+      "risk": "Congestive heart failure: a hip-fracture trial in older adults was stopped early over a heart-failure safety signal, which FDA cites as a significant safety risk",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        6
+      ]
+    },
+    {
+      "risk": "Higher fasting blood sugar and lower insulin sensitivity over a year in older adults",
+      "how_common": "common",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Increased appetite (usually fading within a few months), mild temporary leg swelling and muscle pain, the most frequent side effects in a 2-year trial",
+      "how_common": "common",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Weight gain of about 2.7 kg over a year (vs 0.8 kg on placebo), including more fat on the arms and legs",
+      "how_common": "common",
+      "sources": [
+        5
+      ]
+    }
   ],
   "avoid_if": [
     "Heart failure or other heart disease (heart-failure safety signal in older adults)",
@@ -37,28 +104,93 @@
     "Diabetes medicines: it raises fasting glucose and lowers insulin sensitivity, which can work against glucose control"
   ],
   "labs": {
-    "before": [ "Fasting glucose and HbA1c", "IGF-1" ],
-    "during": [ "Fasting glucose or HbA1c", "IGF-1", "Watch for swelling, rapid weight gain or shortness of breath (possible fluid retention or heart failure)" ],
-    "why": "No evidence-based monitoring protocol exists; these follow the trial findings of raised IGF-1, higher fasting glucose and a heart-failure signal."
+    "before": [
+      "General health check with a clinician, including fasting glucose"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for MK-677; trials found raised IGF-1, higher fasting glucose and a heart-failure signal."
   },
   "studies": [
-    { "title": "Effects of an oral ghrelin mimetic on body composition and clinical outcomes in healthy older adults: A randomized trial", "year": 2008, "type": "RCT", "people": "65 healthy adults aged 60 to 81", "finding": "Over 12 months, MK-677 raised growth hormone and IGF-1 to young-adult levels and increased fat-free mass by about 1 kg versus a small loss with placebo, without changes in strength or function. Fasting glucose rose and insulin sensitivity fell.", "source": 5 },
-    { "title": "MK-0677 (ibutamoren mesylate) for the treatment of patients recovering from hip fracture: A multicenter, randomized, placebo-controlled phase IIb study", "year": 2011, "type": "RCT", "people": "123 older adults recovering from hip fracture", "finding": "Over 24 weeks, IGF-1 rose and gait speed improved, but most function measures did not. The trial was stopped early over a heart-failure safety signal, and the authors judged its safety profile unfavorable.", "source": 6 },
-    { "title": "Prolonged oral treatment with MK-677, a novel growth hormone secretagogue, improves sleep quality in man", "year": 1997, "type": "Trial", "people": "8 adults aged 18 to 30 and 6 aged 65 to 71", "finding": "Over 1 to 2 weeks, deep sleep rose by about half and REM sleep by more than a fifth versus placebo in young adults; REM sleep rose by nearly half in older adults, whose part may not have been blinded.", "source": 7 }
+    {
+      "title": "Effects of an oral ghrelin mimetic on body composition and clinical outcomes in healthy older adults: A randomized trial",
+      "year": 2008,
+      "type": "RCT",
+      "people": "65 healthy adults aged 60 to 81",
+      "finding": "Over 12 months, MK-677 raised growth hormone and IGF-1 to young-adult levels and increased fat-free mass by about 1 kg versus a small loss with placebo, without changes in strength or function. Fasting glucose rose and insulin sensitivity fell.",
+      "source": 5
+    },
+    {
+      "title": "MK-0677 (ibutamoren mesylate) for the treatment of patients recovering from hip fracture: A multicenter, randomized, placebo-controlled phase IIb study",
+      "year": 2011,
+      "type": "RCT",
+      "people": "123 older adults recovering from hip fracture",
+      "finding": "Over 24 weeks, IGF-1 rose and gait speed improved, but most function measures did not. The trial was stopped early over a heart-failure safety signal, and the authors judged its safety profile unfavorable.",
+      "source": 6
+    },
+    {
+      "title": "Prolonged oral treatment with MK-677, a novel growth hormone secretagogue, improves sleep quality in man",
+      "year": 1997,
+      "type": "Trial",
+      "people": "8 adults aged 18 to 30 and 6 aged 65 to 71",
+      "finding": "Over 1 to 2 weeks, deep sleep rose by about half and REM sleep by more than a fifth versus placebo in young adults; REM sleep rose by nearly half in older adults, whose part may not have been blinded.",
+      "source": 7
+    }
   ],
   "ask_your_clinician": [
-    "Is my heart healthy enough, given that a trial was stopped over heart failure?",
+    "Given FDA's heart-failure concern, should I avoid it?",
     "How would it affect my blood sugar, and should we check glucose or HbA1c?",
     "If my goal is strength, which approaches improve it, since MK-677 added lean mass but not strength?"
   ],
   "sources": [
-    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
-    { "n": 3, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
-    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
-    { "n": 5, "title": "Effects of an oral ghrelin mimetic on body composition and clinical outcomes in healthy older adults: A randomized trial", "publisher": "Annals of Internal Medicine (University of Kentucky repository)", "year": 2008, "url": "https://scholars.uky.edu/en/publications/effects-of-an-oral-ghrelin-mimetic-on-body-composition-and-clinic/" },
-    { "n": 6, "title": "MK-0677 (ibutamoren mesylate) for the treatment of patients recovering from hip fracture: A multicenter, randomized, placebo-controlled phase IIb study", "publisher": "Archives of Gerontology and Geriatrics (Tel Aviv University repository)", "year": 2011, "url": "https://cris.tau.ac.il/en/publications/mk-0677-ibutamoren-mesylate-for-the-treatment-of-patients-recover/" },
-    { "n": 7, "title": "Prolonged oral treatment with MK-677, a novel growth hormone secretagogue, improves sleep quality in man", "publisher": "Neuroendocrinology (PubMed)", "year": 1997, "url": "https://pubmed.ncbi.nlm.nih.gov/9349662/" }
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (March 21, 2025)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/94164/download"
+    },
+    {
+      "n": 4,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 5,
+      "title": "Effects of an oral ghrelin mimetic on body composition and clinical outcomes in healthy older adults: A randomized trial",
+      "publisher": "Annals of Internal Medicine (University of Kentucky repository)",
+      "year": 2008,
+      "url": "https://scholars.uky.edu/en/publications/effects-of-an-oral-ghrelin-mimetic-on-body-composition-and-clinic/"
+    },
+    {
+      "n": 6,
+      "title": "MK-0677 (ibutamoren mesylate) for the treatment of patients recovering from hip fracture: A multicenter, randomized, placebo-controlled phase IIb study",
+      "publisher": "Archives of Gerontology and Geriatrics (Tel Aviv University repository)",
+      "year": 2011,
+      "url": "https://cris.tau.ac.il/en/publications/mk-0677-ibutamoren-mesylate-for-the-treatment-of-patients-recover/"
+    },
+    {
+      "n": 7,
+      "title": "Prolonged oral treatment with MK-677, a novel growth hormone secretagogue, improves sleep quality in man",
+      "publisher": "Neuroendocrinology (PubMed)",
+      "year": 1997,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9349662/"
+    }
   ],
   "notes_for_editor": "FDA's Category 2 entry (503A since September 29, 2023; 503B since December 29, 2022) cites the hip-fracture trial's heart-failure signal; the number of heart-failure cases was not in the abstract we read. The 2008 trial was read on a University of Kentucky repository page and the 2011 trial on a Tel Aviv University repository page, because PubMed records were not reachable. 'Experimental drug' rests on the trial literature; we did not find an approval anywhere. The cancer caution is an inference from its IGF-1 effect. The 2008 Alzheimer's disease trial was not reviewed within the search budget. Frequency labels for appetite, swelling and muscle pain reflect the trial calling them the most common side effects; exact rates were not in the abstract. Cortisol also rose modestly in the 2008 trial (not listed above).",
   "checked": "2026-10-28"

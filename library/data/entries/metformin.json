@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "Lower death rates in people with diabetes taking metformin than in people with diabetes on other drugs, and slightly lower than in people without diabetes, in a meta-analysis of 53 studies; these were comparisons in people with diabetes, not trials in healthy people",
+      "claim": "Lower death rates in people with diabetes taking metformin than in people with diabetes on other drugs, and slightly lower than in people without diabetes, in a meta-analysis of 53 observational studies, a kind of comparison that can reflect differences between the people compared; these were comparisons in people with diabetes, not trials in healthy people",
       "evidence": "limited",
       "sources": [
         3
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "risk": "Low vitamin B12: about 7% developed below-normal levels in 29-week trials; this can cause anemia and usually reverses with stopping or with supplements",
+      "risk": "Low vitamin B12: about 7% developed below-normal levels in 29-week trials; this can cause anemia, and B12 levels are worth checking (any change to metformin is for the prescriber)",
       "how_common": "uncommon",
       "sources": [
         1

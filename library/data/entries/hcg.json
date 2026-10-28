@@ -1,7 +1,7 @@
 {
   "id": "hcg",
   "name": "hCG",
-  "summary": "A pregnancy hormone that acts like LH, prescribed to stimulate the testes in men with pituitary-related hypogonadism, for undescended testes, and to trigger ovulation.",
+  "summary": "A pregnancy hormone that acts like LH, prescribed to stimulate the testes in men with pituitary-related hypogonadism, to treat undescended testes in boys and to trigger ovulation.",
   "what_it_is": "Human chorionic gonadotropin (hCG) is a protein hormone made by the placenta during pregnancy. Its action closely mirrors luteinizing hormone (LH), the pituitary hormone that signals the testes and ovaries, with a small amount of FSH-like activity. Products such as Pregnyl are purified from the urine of pregnant women and given by injection. Its label states it has not been shown to help treat obesity.",
   "evidence": {
     "grade": "strong",
@@ -40,10 +40,18 @@
       ]
     },
     {
-      "claim": "Treats undescended testes in boys when there is no physical blockage, and, after menotropins, induces ovulation in some infertile women",
+      "claim": "After menotropins, induces ovulation in some infertile women",
       "evidence": "strong",
       "sources": [
         1
+      ]
+    },
+    {
+      "claim": "Approved for undescended testes in boys when there is no physical blockage, but the American Urological Association's 2025 guideline says hormonal therapy should not be used to bring the testes down, citing low response rates",
+      "evidence": "limited",
+      "sources": [
+        1,
+        5
       ]
     },
     {
@@ -169,6 +177,13 @@
       "publisher": "Journal of Clinical Endocrinology & Metabolism (Oxford Academic)",
       "year": 2005,
       "url": "https://academic.oup.com/jcem/article/90/5/2595/2836735"
+    },
+    {
+      "n": 5,
+      "title": "Evaluation and Treatment of Cryptorchidism (2025)",
+      "publisher": "American Urological Association",
+      "year": 2025,
+      "url": "https://www.auanet.org/guidelines-and-quality/guidelines/cryptorchidism-guideline"
     }
   ],
   "notes_for_editor": "The label cited is an April 2011 Pregnyl label from Drugs@FDA; newer versions may exist on DailyMed, and Novarel and Ovidrel (choriogonadotropin alfa, a recombinant form) were not checked. The label gives no frequencies for its side effects, so how_common is 'unknown' throughout. The compounding status rests on a post by the Alliance for Pharmacy Compounding (a trade group; the year is inferred from its URL), not an FDA document; round-1 notes say hCG is not among substances nominated for FDA's 503A bulks categories. The FDA hCG-diet warning dates from 2011. The hCG-with-testosterone evidence measures hormone levels inside the testes, not sperm counts or pregnancies.",

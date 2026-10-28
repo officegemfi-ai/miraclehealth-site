@@ -9,21 +9,82 @@
   },
   "status_us": {
     "key": "compounded",
-    "label": "No US product; pharmacies may compound it",
-    "note": "Its US brand, Factrel, has been discontinued, but FDA identifies gonadorelin acetate as a component of an FDA-approved drug, and federal rules let licensed pharmacies compound with such ingredients on a prescription; for outsourcing facilities it is in Category 1 (under evaluation). WADA bans it for male athletes.",
-    "sources": [1, 3, 4, 5]
+    "label": "No US product; compounding appears to be allowed",
+    "note": "Its US brand, Factrel, has been discontinued, but FDA identifies gonadorelin acetate as a component of an FDA-approved drug, and federal rules appear to let licensed pharmacies compound with such ingredients on a prescription (an inference from FDA's listing, not an FDA statement about gonadorelin); for outsourcing facilities it is in Category 1 (under evaluation). WADA bans it for male athletes.",
+    "sources": [
+      1,
+      3,
+      4,
+      5
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0.25, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 1 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
   "benefits": [
-    { "claim": "Sperm production in men with congenital GnRH deficiency when given in pulses by a pump, about as often as with gonadotropin injections and about 5 months sooner, with larger testes, in mostly observational studies of 420 men", "evidence": "limited", "sources": [6] },
-    { "claim": "Sperm induced in 82% of 56 men with congenital GnRH deficiency treated with pulsed GnRH, versus 76% of 99 treated with hCG and hMG, in a single-center study", "evidence": "limited", "sources": [7] }
+    {
+      "claim": "Sperm production in men with congenital GnRH deficiency when given in pulses by a pump, about as often as with gonadotropin injections and about 5 months sooner, with larger testes, in mostly observational studies of 420 men",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Sperm induced in 82% of 56 men with congenital GnRH deficiency treated with pulsed GnRH, versus 76% of 99 treated with hCG and hMG, in a single-center study",
+      "evidence": "limited",
+      "sources": [
+        7
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Allergic reactions, including hives and skin hardening at the injection site with repeated use; trouble breathing, ongoing flushing or a racing heart needs urgent care", "how_common": "unknown", "sources": [1, 6] },
-    { "risk": "Brief flushing, headache, lightheadedness, nausea or stomach discomfort", "how_common": "uncommon", "sources": [1] },
-    { "risk": "It acts only briefly and the body's response depends on pulse timing, so it is unclear whether occasional injections reproduce the effects seen with pump therapy", "how_common": "theoretical", "sources": [2] },
-    { "risk": "In people with a rare GnRH-secreting pituitary tumor, use may cause pituitary problems and sudden blindness", "how_common": "rare", "sources": [1] },
-    { "risk": "Repeated use may raise sex hormones and worsen hormone-dependent tumors", "how_common": "theoretical", "sources": [1] }
+    {
+      "risk": "Allergic reactions, including hives and skin hardening at the injection site with repeated use; trouble breathing, ongoing flushing or a racing heart needs urgent care",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        6
+      ]
+    },
+    {
+      "risk": "Brief flushing, headache, lightheadedness, nausea or stomach discomfort",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "It acts only briefly and the body's response depends on pulse timing, so it is unclear whether occasional injections reproduce the effects seen with pump therapy",
+      "how_common": "theoretical",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "In people with a rare pituitary tumor (described in drug information as a gonadotropin-releasing hormone adenoma), use may cause pituitary problems and sudden blindness",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Repeated use may raise sex hormones and worsen hormone-dependent tumors",
+      "how_common": "theoretical",
+      "sources": [
+        1
+      ]
+    }
   ],
   "avoid_if": [
     "Hormone-dependent cancer, such as prostate or breast cancer (it may worsen)",
@@ -33,16 +94,37 @@
     "Male athletes subject to anti-doping rules (banned by WADA)"
   ],
   "interactions": [
-    "None well documented"
+    "Dopamine-blocking medicines such as haloperidol, chlorpromazine and risperidone are listed as interacting"
   ],
   "labs": {
-    "before": [ "LH and FSH", "Total testosterone (men) or estradiol (women)", "Semen analysis if fertility is the goal" ],
-    "during": [ "LH, FSH and testosterone or estradiol", "Semen analysis when treating infertility" ],
+    "before": [
+      "LH and FSH",
+      "Total testosterone (men) or estradiol (women)",
+      "Semen analysis if fertility is the goal"
+    ],
+    "during": [
+      "LH, FSH and testosterone or estradiol",
+      "Semen analysis when treating infertility"
+    ],
     "why": "No evidence-based monitoring exists for off-label use; in fertility treatment, studies track these hormones and sperm production to judge response."
   },
   "studies": [
-    { "title": "Spermatogenesis of Male Patients with Congenital Hypogonadotropic Hypogonadism Receiving Pulsatile Gonadotropin-Releasing Hormone Therapy Versus Gonadotropin Therapy: A Systematic Review and Meta-Analysis", "year": 2021, "type": "Meta-analysis", "people": "420 men with congenital hypogonadotropic hypogonadism in 7 comparative studies", "finding": "Pulsed GnRH and gonadotropin therapy produced sperm in similar shares of men, but GnRH did so about 5 months sooner and with larger testes. Allergic reactions occurred mostly with GnRH; breast growth and acne were more common with gonadotropins. The authors call for randomized trials.", "source": 6 },
-    { "title": "Comparison of outcomes between pulsatile gonadotropin releasing hormone and combined gonadotropin therapy of spermatogenesis in patients with congenital hypogonadotropic hypogonadism", "year": 2025, "type": "Cohort", "people": "155 men with congenital hypogonadotropic hypogonadism (56 on pulsed GnRH, 99 on hCG/hMG)", "finding": "Sperm induction succeeded in 82.1% with pulsed GnRH and 75.8% with hCG/hMG, not a significant difference; GnRH worked about 2 months faster and produced larger testes, and its users reported no significant side effects.", "source": 7 }
+    {
+      "title": "Spermatogenesis of Male Patients with Congenital Hypogonadotropic Hypogonadism Receiving Pulsatile Gonadotropin-Releasing Hormone Therapy Versus Gonadotropin Therapy: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "type": "Meta-analysis",
+      "people": "420 men with congenital hypogonadotropic hypogonadism in 7 comparative studies",
+      "finding": "Pulsed GnRH and gonadotropin therapy produced sperm in similar shares of men, but GnRH did so about 5 months sooner and with larger testes. Allergic reactions occurred mostly with GnRH; breast growth and acne were more common with gonadotropins. The authors call for randomized trials.",
+      "source": 6
+    },
+    {
+      "title": "Comparison of outcomes between pulsatile gonadotropin releasing hormone and combined gonadotropin therapy of spermatogenesis in patients with congenital hypogonadotropic hypogonadism",
+      "year": 2025,
+      "type": "Cohort",
+      "people": "155 men with congenital hypogonadotropic hypogonadism (56 on pulsed GnRH, 99 on hCG/hMG)",
+      "finding": "Sperm induction succeeded in 82.1% with pulsed GnRH and 75.8% with hCG/hMG, not a significant difference; GnRH worked about 2 months faster and produced larger testes, and its users reported no significant side effects.",
+      "source": 7
+    }
   ],
   "ask_your_clinician": [
     "Why is my testosterone or fertility low, and which approved fertility treatments fit my situation?",
@@ -50,13 +132,55 @@
     "Which hormone tests and semen analyses should we track, and how often?"
   ],
   "sources": [
-    { "n": 1, "title": "Gonadorelin (Intravenous, Injection)", "publisher": "Drugs.com (consumer drug information; updated March 19, 2026)", "year": 2026, "url": "https://www.drugs.com/cons/gonadorelin.html" },
-    { "n": 2, "title": "Gonadorelin (DB00644)", "publisher": "DrugBank", "year": 2026, "url": "https://go.drugbank.com/drugs/DB00644" },
-    { "n": 3, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
-    { "n": 4, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 5, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
-    { "n": 6, "title": "Spermatogenesis of Male Patients with Congenital Hypogonadotropic Hypogonadism Receiving Pulsatile Gonadotropin-Releasing Hormone Therapy Versus Gonadotropin Therapy: A Systematic Review and Meta-Analysis", "publisher": "The World Journal of Men's Health (DOAJ record)", "year": 2021, "url": "https://doaj.org/article/c3f4bd84a1184255b8131f13df43c683" },
-    { "n": 7, "title": "Comparison of outcomes between pulsatile gonadotropin releasing hormone and combined gonadotropin therapy of spermatogenesis in patients with congenital hypogonadotropic hypogonadism", "publisher": "Reproductive Biology and Endocrinology", "year": 2025, "url": "https://biomedcentral-rbej.publicaciones.saludcastillayleon.es/counter/pdf/10.1186/s12958-025-01370-7.pdf" }
+    {
+      "n": 1,
+      "title": "Gonadorelin (Intravenous, Injection)",
+      "publisher": "Drugs.com (consumer drug information; updated March 19, 2026)",
+      "year": 2026,
+      "url": "https://www.drugs.com/cons/gonadorelin.html"
+    },
+    {
+      "n": 2,
+      "title": "Gonadorelin (DB00644)",
+      "publisher": "DrugBank",
+      "year": 2026,
+      "url": "https://go.drugbank.com/drugs/DB00644"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (March 21, 2025)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/94164/download"
+    },
+    {
+      "n": 4,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 5,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 6,
+      "title": "Spermatogenesis of Male Patients with Congenital Hypogonadotropic Hypogonadism Receiving Pulsatile Gonadotropin-Releasing Hormone Therapy Versus Gonadotropin Therapy: A Systematic Review and Meta-Analysis",
+      "publisher": "The World Journal of Men's Health (DOAJ record)",
+      "year": 2021,
+      "url": "https://doaj.org/article/c3f4bd84a1184255b8131f13df43c683"
+    },
+    {
+      "n": 7,
+      "title": "Comparison of outcomes between pulsatile gonadotropin releasing hormone and combined gonadotropin therapy of spermatogenesis in patients with congenital hypogonadotropic hypogonadism",
+      "publisher": "Reproductive Biology and Endocrinology",
+      "year": 2025,
+      "url": "https://biomedcentral-rbej.publicaciones.saludcastillayleon.es/counter/pdf/10.1186/s12958-025-01370-7.pdf"
+    }
   ],
   "notes_for_editor": "Status combines three sources: Drugs.com (multi-source consumer monograph) says the drug is discontinued in the US with Factrel as the US brand; FDA's 503B list (March 21, 2025) marks gonadorelin acetate as a component of an FDA-approved drug and places it in 503B Category 1; FDA's 503A page allows ingredients of FDA-approved drugs. The compounding statement is an inference from these, and the original Factrel and Lutrepulse approvals were not checked on Drugs@FDA. Gonadorelin is not on FDA's 503A nominations list (May 14, 2026) or its Category 2 page. One targeted search found no human study of gonadorelin used alongside testosterone therapy; results were about hCG, so that use rests on anecdote. The pump-therapy evidence is mostly observational. Drugs.com also lists hundreds of heart-rhythm (QT) drug cautions that look generic to the GnRH drug class; omitted. Source 7 was read through a Spanish public-health library proxy of the BMC PDF. DrugBank also lists veterinary approval (not covered). WADA's ban applies to males (S2.2.1).",
   "checked": "2026-10-28"

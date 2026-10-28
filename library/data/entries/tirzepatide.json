@@ -2,7 +2,7 @@
   "id": "tirzepatide",
   "name": "Tirzepatide",
   "summary": "A prescription injection, sold as Mounjaro and Zepbound, that activates two hormone receptors (GIP and GLP-1) to lower blood sugar and body weight.",
-  "what_it_is": "Tirzepatide is a lab-made peptide that switches on the receptors for two hormones, GIP and GLP-1, which help regulate blood sugar and appetite. It reduces appetite and calorie intake and slows stomach emptying. It lasts about 5 to 6 days in the body and is given as an injection under the skin.",
+  "what_it_is": "Tirzepatide is a lab-made peptide that switches on the receptors for two hormones, GIP and GLP-1, which help regulate blood sugar and appetite. It reduces appetite and calorie intake and slows stomach emptying. Its half-life is about 5 to 6 days, and it is given as an injection under the skin.",
   "evidence": {
     "grade": "strong",
     "why": "Large randomized trials such as SURMOUNT-1 (2,539 adults), plus FDA approval for type 2 diabetes, weight management and obstructive sleep apnea."

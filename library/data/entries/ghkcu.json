@@ -11,19 +11,81 @@
     "key": "under_review",
     "label": "Non-injectable compounding allowed; injectable under review",
     "note": "FDA lists GHK-Cu for non-injectable use in Category 1 (under evaluation), which its interim policy lets licensed pharmacies compound under set conditions. Injectable GHK-Cu came off the Category 2 safety-risk list in April 2026 after its nomination was withdrawn, which did not make it eligible for compounding; FDA's advisers are expected to review it before the end of February 2027, with no date set.",
-    "sources": [1, 2, 3, 4, 5]
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0.75, "energy": 0, "sleep": 0, "cognition": 0, "skin": 1, "sexual": 0, "longevity": 0.25, "gut": 0, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0.75,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "Fewer fine lines, shallower wrinkles and thicker, denser skin with copper-peptide face and eye creams over 12 weeks in small studies of 41 to 71 women; most were presented at meetings rather than peer-reviewed", "evidence": "limited", "sources": [6] },
-    { "claim": "More collagen production in women using a copper-peptide thigh cream for one month than with vitamin C or retinoic acid creams, in a small pilot study", "evidence": "limited", "sources": [6] },
-    { "claim": "Faster skin recovery after irritation or tape stripping in human test models, using copper-peptide mixtures rather than GHK-Cu alone", "evidence": "limited", "sources": [6] },
-    { "claim": "Faster wound healing with more new blood vessels and collagen in rabbits, rats, mice, pigs and dogs, including diabetic wounds in rats", "evidence": "preclinical", "sources": [6] },
-    { "claim": "Raises collagen and elastin production and acts on many genes and pathways, according to reviews of mostly laboratory research", "evidence": "preclinical", "sources": [7] }
+    {
+      "claim": "Fewer fine lines, shallower wrinkles and thicker, denser skin with copper-peptide face and eye creams over 12 weeks in small studies of 41 to 71 women; most were presented at meetings rather than peer-reviewed",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "More collagen production in women using a copper-peptide thigh cream for one month than with vitamin C or retinoic acid creams, in a small pilot study",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Faster skin recovery after irritation or tape stripping in human test models, using copper-peptide mixtures rather than GHK-Cu alone",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Faster wound healing with more new blood vessels and collagen in rabbits, rats, mice, pigs and dogs, including diabetic wounds in rats",
+      "evidence": "preclinical",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Raises collagen and elastin production and acts on many genes and pathways, according to reviews of mostly laboratory research",
+      "evidence": "preclinical",
+      "sources": [
+        7
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Possible immune reactions to injected GHK-Cu, because the peptide can clump and carry peptide-related impurities, according to FDA", "how_common": "theoretical", "sources": [1] },
-    { "risk": "Limited human safety data, especially for injections; reviews calling it very safe come from researchers linked to its developer and give no formal safety data", "how_common": "unknown", "sources": [1, 6] }
+    {
+      "risk": "Possible immune reactions to injected GHK-Cu, because the peptide can clump and carry peptide-related impurities, according to FDA",
+      "how_common": "theoretical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Limited human safety data, especially for injections; reviews calling it very safe come from researchers linked to its developer and give no formal safety data",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        6
+      ]
+    }
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
@@ -33,27 +95,85 @@
     "None well documented"
   ],
   "labs": {
-    "before": [ "General health check with a clinician" ],
+    "before": [
+      "General health check with a clinician"
+    ],
     "during": [],
     "why": "No evidence-based monitoring exists for GHK-Cu by any route."
   },
   "studies": [
-    { "title": "GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration", "year": 2015, "type": "Review", "people": "Summary of small cosmetic studies in 41 to 71 women each, human skin-irritation models and animal studies", "finding": "Copper-peptide creams improved wrinkles, skin density and thickness over 12 weeks, and GHK-Cu sped wound healing in several animal species. The authors, from the developer's company, call it very safe but report no formal safety data.", "source": 6 },
-    { "title": "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data", "year": 2018, "type": "Review", "people": "Human, animal and cell studies", "finding": "GHK increases collagen, elastin and glycosaminoglycan production and improves tissue repair; gene data suggest it acts on many biochemical pathways at once.", "source": 7 }
+    {
+      "title": "GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration",
+      "year": 2015,
+      "type": "Review",
+      "people": "Summary of small cosmetic studies in 41 to 71 women each, human skin-irritation models and animal studies",
+      "finding": "Copper-peptide creams improved wrinkles, skin density and thickness over 12 weeks, and GHK-Cu sped wound healing in several animal species. The authors, from the developer's company, call it very safe but report no formal safety data.",
+      "source": 6
+    },
+    {
+      "title": "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data",
+      "year": 2018,
+      "type": "Review",
+      "people": "Human, animal and cell studies",
+      "finding": "GHK increases collagen, elastin and glycosaminoglycan production and improves tissue repair; gene data suggest it acts on many biochemical pathways at once.",
+      "source": 7
+    }
   ],
   "ask_your_clinician": [
     "Is there a proven treatment for my skin, hair or healing goal that I should try first?",
-    "Is a topical product enough, and what are the risks of injecting a peptide that FDA says may cause immune reactions?",
+    "What are the risks of injecting a peptide that FDA says may cause immune reactions?",
     "Could the copper in it matter for any condition I have?"
   ],
   "sources": [
-    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
-    { "n": 3, "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/174456/download" },
-    { "n": 4, "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List", "publisher": "Frier Levitt (law firm)", "year": 2026, "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/" },
-    { "n": 5, "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions", "publisher": "Holland & Knight (law firm)", "year": 2026, "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know" },
-    { "n": 6, "title": "GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration", "publisher": "BioMed Research International (PMC)", "year": 2015, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4508379/" },
-    { "n": 7, "title": "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data", "publisher": "International Journal of Molecular Sciences (PubMed)", "year": 2018, "url": "https://pubmed.ncbi.nlm.nih.gov/29986520/" }
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 3,
+      "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/174456/download"
+    },
+    {
+      "n": 4,
+      "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List",
+      "publisher": "Frier Levitt (law firm)",
+      "year": 2026,
+      "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/"
+    },
+    {
+      "n": 5,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 6,
+      "title": "GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration",
+      "publisher": "BioMed Research International (PMC)",
+      "year": 2015,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4508379/"
+    },
+    {
+      "n": 7,
+      "title": "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data",
+      "publisher": "International Journal of Molecular Sciences (PubMed)",
+      "year": 2018,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29986520/"
+    }
   ],
   "notes_for_editor": "Status nuance: FDA's May 14, 2026 503A list says non-injectable GHK-Cu was removed from Category 1 on April 22, 2026 after the nomination was withdrawn, then re-added after a May 5, 2026 clarification; injectable GHK-Cu sits in the 'nominated but withdrawn' table on FDA's Category 2 page. Both are slated for advisory committee consultation before the end of February 2027 (sources 2, 4, 5). An HHS 'Interim Access Policy for Compounding Using Certain Peptides' went to the White House on October 14, 2026 and was unpublished as of October 16 (source 5); re-check before publishing. The human skin studies (Abdulghani 1998; Leyden 2002; Finkley 2005) were read only as summarized in a developer-affiliated review (source 6); the originals are meeting presentations, a university report or a book chapter. No human studies of injected GHK-Cu were found. Hair-growth claims were not supported by the sources opened and are left out. The Wilson disease caution is an inference from its copper content. Source 7 was read as an abstract only (PMC full text blocked by a bot check). WADA's 2026 list does not name GHK.",
   "checked": "2026-10-28"

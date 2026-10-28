@@ -10,19 +10,73 @@
   "status_us": {
     "key": "approved",
     "label": "Approved (Vyleesi) for low desire in premenopausal women",
-    "note": "Approved in 2019 for acquired, generalized hypoactive sexual desire disorder in premenopausal women; the label says it is not for postmenopausal women or men and not to enhance sexual performance. Because bremelanotide is an ingredient of an approved drug, federal rules allow licensed pharmacies to use it in compounded prescriptions, and any use outside the label is off-label.",
-    "sources": [1, 3]
+    "note": "Approved in 2019 for acquired, generalized hypoactive sexual desire disorder in premenopausal women; the label says it is not for postmenopausal women or men and not to enhance sexual performance. Because bremelanotide is an ingredient of an approved drug, federal rules appear to let licensed pharmacies use it in compounded prescriptions (copies of an approved drug are restricted), and any use outside the label is off-label.",
+    "sources": [
+      1,
+      3
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 1, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 1,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "Modestly higher sexual desire and less distress about low desire than placebo over 24 weeks in premenopausal women with hypoactive sexual desire disorder", "evidence": "strong", "sources": [1, 2] },
-    { "claim": "Erections measured by a rigidity monitor more often than with placebo in small early studies of healthy men and men with erectile dysfunction, including men who had not responded well to Viagra; not approved for men", "evidence": "limited", "sources": [4, 5] }
+    {
+      "claim": "Modestly higher sexual desire and less distress about low desire than placebo over 24 weeks in premenopausal women with hypoactive sexual desire disorder",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Erections measured by a rigidity monitor more often than with placebo in small early studies of healthy men and men with erectile dysfunction, including men who had not responded well to Viagra; not approved for men",
+      "evidence": "limited",
+      "sources": [
+        4,
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Nausea in 40% of women in trials (about 1% on placebo); 13% needed anti-nausea medicine and 8% quit because of it", "how_common": "common", "sources": [1] },
-    { "risk": "Flushing (20%), injection-site reactions (13% vs 8% on placebo) and headache (11%)", "how_common": "common", "sources": [1] },
-    { "risk": "A brief rise in blood pressure and drop in heart rate after each use, usually gone within 12 hours; the label does not recommend it for people at high risk of heart disease", "how_common": "common", "sources": [1] },
-    { "risk": "Darkened skin patches on the face, gums or breasts: 1% in the main trials and 38% in a separate study, more likely with darker skin, and not always fading", "how_common": "uncommon", "sources": [1] }
+    {
+      "risk": "Nausea in 40% of women in trials (about 1% on placebo); 13% needed anti-nausea medicine and 8% quit because of it",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Flushing (20%), injection-site reactions (13% vs 8% on placebo) and headache (11%)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "A brief rise in blood pressure and drop in heart rate after each use, usually gone within 12 hours; the label does not recommend it for people at high risk of heart disease",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Darkened skin patches on the face, gums or breasts: 1% in the main trials, but 38% in a separate study in which it was given daily, far more often than the label allows; more likely with darker skin, and not always fading",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    }
   ],
   "avoid_if": [
     "Uncontrolled high blood pressure or known heart or blood vessel disease (contraindicated)",
@@ -36,15 +90,45 @@
     "Oral medicines that need a steady blood level to work, such as some antibiotics: it may slow stomach emptying and reduce their absorption"
   ],
   "labs": {
-    "before": [ "Blood pressure check and a review of heart risk" ],
+    "before": [
+      "Blood pressure check and a review of heart risk"
+    ],
     "during": [],
     "why": "Blood pressure is the main thing to check, because it rises briefly after each use and the drug is ruled out with uncontrolled hypertension or heart disease; the label's warnings do not involve blood tests."
   },
   "studies": [
-    { "title": "Bremelanotide for the Treatment of Hypoactive Sexual Desire Disorder: Two Randomized Phase 3 Trials", "year": 2019, "type": "RCT", "people": "1,267 premenopausal women with hypoactive sexual desire disorder", "finding": "In two 24-week trials, desire scores rose and distress scores fell more than with placebo, by modest margins (0.30 to 0.42 points on the desire scale). Nausea, flushing and headache each affected 10% or more of treated women.", "source": 2 },
-    { "title": "VYLEESI (bremelanotide) prescribing information (revised January 2025)", "year": 2025, "type": "Label", "people": "1,247 women in two 24-week placebo-controlled trials", "finding": "The number of satisfying sexual events did not increase versus placebo. 18% stopped because of side effects, versus 2% on placebo, most often for nausea.", "source": 1 },
-    { "title": "Double-blind, placebo-controlled evaluation of the safety, pharmacokinetic properties and pharmacodynamic effects of intranasal PT-141, a melanocortin receptor agonist, in healthy males and patients with mild-to-moderate erectile dysfunction", "year": 2004, "type": "Trial", "people": "Healthy men and men with mild to moderate erectile dysfunction (numbers not given in the abstract)", "finding": "A nasal form produced erections, measured by a rigidity monitor, more than placebo at the higher amounts tested. Flushing and nausea were the most common side effects.", "source": 4 },
-    { "title": "Evaluation of the safety, pharmacokinetics and pharmacodynamic effects of subcutaneously administered PT-141, a melanocortin receptor agonist, in healthy male subjects and in patients with an inadequate response to Viagra", "year": 2004, "type": "Trial", "people": "Healthy men and men with an inadequate response to Viagra (numbers not given in the abstract)", "finding": "Injected PT-141 produced measurable erections compared with placebo in both groups and was reported as well tolerated.", "source": 5 }
+    {
+      "title": "Bremelanotide for the Treatment of Hypoactive Sexual Desire Disorder: Two Randomized Phase 3 Trials",
+      "year": 2019,
+      "type": "RCT",
+      "people": "1,267 premenopausal women with hypoactive sexual desire disorder",
+      "finding": "In two 24-week trials, desire scores rose and distress scores fell more than with placebo, by modest margins (0.30 to 0.42 points on the desire scale). Nausea, flushing and headache each affected 10% or more of treated women.",
+      "source": 2
+    },
+    {
+      "title": "VYLEESI (bremelanotide) prescribing information (revised January 2025)",
+      "year": 2025,
+      "type": "Label",
+      "people": "1,247 women in two 24-week placebo-controlled trials",
+      "finding": "The number of satisfying sexual events did not increase versus placebo. 18% stopped because of side effects, versus 2% on placebo, most often for nausea.",
+      "source": 1
+    },
+    {
+      "title": "Double-blind, placebo-controlled evaluation of the safety, pharmacokinetic properties and pharmacodynamic effects of intranasal PT-141, a melanocortin receptor agonist, in healthy males and patients with mild-to-moderate erectile dysfunction",
+      "year": 2004,
+      "type": "Trial",
+      "people": "Healthy men and men with mild to moderate erectile dysfunction (numbers not given in the abstract)",
+      "finding": "A nasal form produced erections, measured by a rigidity monitor, more than placebo at the higher amounts tested. Flushing and nausea were the most common side effects.",
+      "source": 4
+    },
+    {
+      "title": "Evaluation of the safety, pharmacokinetics and pharmacodynamic effects of subcutaneously administered PT-141, a melanocortin receptor agonist, in healthy male subjects and in patients with an inadequate response to Viagra",
+      "year": 2004,
+      "type": "Trial",
+      "people": "Healthy men and men with an inadequate response to Viagra (numbers not given in the abstract)",
+      "finding": "Injected PT-141 produced measurable erections compared with placebo in both groups and was reported as well tolerated.",
+      "source": 5
+    }
   ],
   "ask_your_clinician": [
     "Could a medicine, mood, relationship or hormone issue be behind my low desire, and should we address that first?",
@@ -52,11 +136,41 @@
     "If I am a man or past menopause, which approved options fit me better, since this one is not approved for me?"
   ],
   "sources": [
-    { "n": 1, "title": "VYLEESI (bremelanotide) prescribing information (revised January 2025)", "publisher": "U.S. Food and Drug Administration (FDALabel)", "year": 2025, "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/8c9607a2-5b57-4a59-b159-cf196deebdd9/spl-doc" },
-    { "n": 2, "title": "Bremelanotide for the Treatment of Hypoactive Sexual Desire Disorder: Two Randomized Phase 3 Trials", "publisher": "Obstetrics & Gynecology (PubMed)", "year": 2019, "url": "https://pubmed.ncbi.nlm.nih.gov/31599840/" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "Double-blind, placebo-controlled evaluation of the safety, pharmacokinetic properties and pharmacodynamic effects of intranasal PT-141, a melanocortin receptor agonist, in healthy males and patients with mild-to-moderate erectile dysfunction", "publisher": "International Journal of Impotence Research (PubMed)", "year": 2004, "url": "https://pubmed.ncbi.nlm.nih.gov/14963471/" },
-    { "n": 5, "title": "Evaluation of the safety, pharmacokinetics and pharmacodynamic effects of subcutaneously administered PT-141, a melanocortin receptor agonist, in healthy male subjects and in patients with an inadequate response to Viagra", "publisher": "International Journal of Impotence Research (PubMed)", "year": 2004, "url": "https://pubmed.ncbi.nlm.nih.gov/14999221/" }
+    {
+      "n": 1,
+      "title": "VYLEESI (bremelanotide) prescribing information (revised January 2025)",
+      "publisher": "U.S. Food and Drug Administration (FDALabel)",
+      "year": 2025,
+      "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/8c9607a2-5b57-4a59-b159-cf196deebdd9/spl-doc"
+    },
+    {
+      "n": 2,
+      "title": "Bremelanotide for the Treatment of Hypoactive Sexual Desire Disorder: Two Randomized Phase 3 Trials",
+      "publisher": "Obstetrics & Gynecology (PubMed)",
+      "year": 2019,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31599840/"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "Double-blind, placebo-controlled evaluation of the safety, pharmacokinetic properties and pharmacodynamic effects of intranasal PT-141, a melanocortin receptor agonist, in healthy males and patients with mild-to-moderate erectile dysfunction",
+      "publisher": "International Journal of Impotence Research (PubMed)",
+      "year": 2004,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14963471/"
+    },
+    {
+      "n": 5,
+      "title": "Evaluation of the safety, pharmacokinetics and pharmacodynamic effects of subcutaneously administered PT-141, a melanocortin receptor agonist, in healthy male subjects and in patients with an inadequate response to Viagra",
+      "publisher": "International Journal of Impotence Research (PubMed)",
+      "year": 2004,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14999221/"
+    }
   ],
   "notes_for_editor": "Label read through FDA's FDALabel copy (effective January 10, 2025). Trial size differs slightly by section: 1,247 in the safety population vs 1,267 randomized (label section 14 and the 2019 paper). Men's data are two small 2004 early-phase studies whose abstracts give no participant counts. A 2008 J Urol trial in men who had failed sildenafil (Safarinejad) could not be opened, and a search result titled 'Expression of concern' refers to it, so it is left out. The compounding sentence is an inference from FDA's 503A rule (ingredients of FDA-approved drugs may be used) plus Vyleesi's approval; bremelanotide is not on FDA's 503A nomination lists or its Category 2 page. WADA's 2026 list does not name bremelanotide. Label percentages are for women in the trials; side-effect rates in men are not established.",
   "checked": "2026-10-28"

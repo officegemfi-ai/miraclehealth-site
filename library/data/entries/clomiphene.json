@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "Preserved sperm counts better than testosterone gel at similar testosterone levels: men were much less likely to have a low sperm concentration (risk ratio 0.10)",
+      "claim": "Clomiphene or enclomiphene preserved sperm counts better than testosterone gel at similar testosterone levels: men were much less likely to have a low sperm concentration (risk ratio 0.10)",
       "evidence": "limited",
       "sources": [
         2
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "risk": "Visual symptoms such as blurring, spots or flashes (1.5%), more likely with higher total dose or longer use",
+      "risk": "Visual symptoms such as blurring, spots or flashes (1.5%), more likely with higher total dose or longer use; the label says to stop treatment if they occur, and they can be long-lasting or permanent",
       "how_common": "uncommon",
       "sources": [
         1
@@ -110,7 +110,8 @@
     "Pregnancy",
     "Liver disease or a history of liver problems",
     "Abnormal uterine bleeding of unknown cause",
-    "Ovarian cysts or enlargement not caused by polycystic ovary syndrome"
+    "Ovarian cysts or enlargement not caused by polycystic ovary syndrome",
+    "Uncontrolled thyroid or adrenal problems, or a pituitary tumor or other brain lesion"
   ],
   "interactions": [
     "None well documented"

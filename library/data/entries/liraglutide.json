@@ -51,7 +51,7 @@
       ]
     },
     {
-      "claim": "Fewer heart attacks, strokes and cardiovascular deaths in adults with type 2 diabetes and heart disease: 13.0% versus 14.9% over a median of 3.5 years (hazard ratio 0.87)",
+      "claim": "Fewer heart attacks, strokes and cardiovascular deaths in adults with type 2 diabetes at high heart risk, most with heart disease: 13.0% versus 14.9% over a median of 3.5 years (hazard ratio 0.87)",
       "evidence": "strong",
       "sources": [
         1,
@@ -151,7 +151,7 @@
       "title": "VICTOZA (liraglutide) injection, for subcutaneous use: Prescribing Information",
       "year": 2025,
       "type": "Label",
-      "people": "9,340 adults with type 2 diabetes and atherosclerotic heart disease (LEADER trial)",
+      "people": "9,340 adults with type 2 diabetes and heart disease or, for about 1 in 5, other heart risk factors (LEADER trial)",
       "finding": "Liraglutide lowered the risk of a first major heart event versus placebo (hazard ratio 0.87, 95% CI 0.78 to 0.97).",
       "source": 1
     }

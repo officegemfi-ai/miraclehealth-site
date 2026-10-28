@@ -46,9 +46,10 @@
       ]
     },
     {
-      "claim": "About 2 kg more lean mass and 2 kg less fat, with no change in weight or bone density, in healthy older adults (18 small trials, 220 treated, average age 69); off-label, and the reviewers concluded it cannot be recommended for anti-aging",
+      "claim": "About 2 kg more lean mass and 2 kg less fat, with no change in weight or bone density, in healthy older adults (18 small trials, 220 treated, average age 69); not an approved use, distributing it for anti-aging is illegal in the US, and the reviewers concluded it cannot be recommended",
       "evidence": "moderate",
       "sources": [
+        2,
         3,
         4
       ]
@@ -98,6 +99,20 @@
       "sources": [
         1
       ]
+    },
+    {
+      "risk": "In children: slipped growth plate at the hip (a new limp or hip or knee pain needs checking), and faster worsening of an existing scoliosis during rapid growth",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Pancreatitis, to be considered with persistent severe abdominal pain, especially in children (girls with Turner syndrome may be at greater risk)",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
     }
   ],
   "avoid_if": [
@@ -110,7 +125,7 @@
   "interactions": [
     "Glucocorticoids: replacement doses may need adjusting, and they can blunt growth in children",
     "Insulin and other diabetes medicines: doses may need adjusting",
-    "Oral estrogen: women may need more growth hormone",
+    "Oral estrogen: can reduce its effect",
     "Drugs cleared by CYP450 liver enzymes, such as sex steroids, anticonvulsants and cyclosporine: levels may change"
   ],
   "labs": {
