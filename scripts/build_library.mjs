@@ -73,7 +73,10 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 // ---------------------------------------------------------------------------
 // The page around everything
 // ---------------------------------------------------------------------------
-function page({ title, description, url, body, current = 'library' }) {
+// The library's banner photo, in three widths
+const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 960w, /img/library-1600.webp 1600w, /img/library-2560.webp 2560w' };
+
+function page({ title, description, url, body, current = 'library', preload = '' }) {
   const nav = [['/library/', 'Library', 'library'], ['/#signal', 'The Signal', 'signal'], ['/#how', 'How it works', 'how']];
   return `<!doctype html>
 <html lang="en">
@@ -95,7 +98,7 @@ function page({ title, description, url, body, current = 'library' }) {
 <meta property="og:image" content="${SITE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/library/library.css">
 <script type="module" src="/library/library.js"></script>
@@ -168,6 +171,7 @@ function indexPage() {
   const counts = Object.fromEntries(FAMILIES.map((f) => [f, catalog.filter((c) => c.family === f).length]));
   const flowData = { sources: [{ name: 'Reddit', n: 0 }, { name: 'YouTube', n: 0 }, { name: 'Podcasts', n: 0 }, { name: 'Forums & reviews', n: 0 }], share: 0, reports: 0, sames: 0, signals: 0, levels: {}, weight: 50 };
   const body = `<section class="lib-hero">
+  <img class="lib-hero-photo" src="${BANNER.src}" srcset="${BANNER.srcset}" sizes="100vw" alt="" width="2560" height="1348" fetchpriority="high">
   <div class="wrap lib-hero-in">
     <div>
       <p class="kick lime live"><i aria-hidden="true"></i>The Library · live community data</p>
@@ -240,6 +244,7 @@ function indexPage() {
     description: `${catalog.length} peptides, hormones, supplements and medications: what each is, the evidence, risks and blood markers to watch, checked against primary sources, next to what people who took it report.`,
     url: '/library/',
     body,
+    preload: `<link rel="preload" as="image" href="${BANNER.src}" imagesrcset="${BANNER.srcset}" imagesizes="100vw" fetchpriority="high">`,
   });
 }
 

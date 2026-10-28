@@ -59,17 +59,21 @@
 @keyframes grow{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 
 /* ---------------------------------------------------------------- the front page */
-.lib-hero{position:relative;isolation:isolate;overflow:hidden;background:var(--darker);color:var(--on-ink);--focus:var(--lime)}
+/* The banner: the photo fills the hero; a dark wash on the left keeps the words readable and leaves
+   the view and the figure on the right clear */
+.lib-hero{--col:700px;--text-r:calc(max(0px,(100vw - 1320px) / 2) + 40px + var(--col));position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:clamp(600px,48vw,820px);background:var(--darker);color:var(--on-ink);--focus:var(--lime)}
+.lib-hero-photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
 .lib-hero::before{content:'';position:absolute;inset:0;z-index:-1;background:
-  radial-gradient(50% 70% at 12% 0%,rgba(216,255,61,.12),rgba(216,255,61,0) 62%),
-  radial-gradient(40% 60% at 95% 100%,rgba(155,227,90,.08),rgba(155,227,90,0) 60%)}
-.lib-hero-in{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:end;padding-top:calc(var(--top-h) + 76px);padding-bottom:72px}
+  linear-gradient(180deg,rgba(12,20,19,.72) 0,rgba(12,20,19,0) calc(var(--top-h) + 150px)),
+  linear-gradient(90deg,rgba(12,20,19,.9) 0,rgba(12,20,19,.8) calc(var(--text-r) - 80px),rgba(12,20,19,.5) calc(var(--text-r) + 70px),rgba(12,20,19,0) calc(var(--text-r) + 300px)),
+  linear-gradient(0deg,rgba(12,20,19,.6) 0,rgba(12,20,19,0) 36%)}
+.lib-hero-in{display:grid;grid-template-columns:minmax(0,var(--col));gap:36px;align-items:end;padding-top:calc(var(--top-h) + 76px);padding-bottom:64px}
 .lib-hero h1{margin-top:18px;font-size:clamp(46px,6vw,84px);line-height:.98;letter-spacing:-.045em}
-.lib-hero .lede{max-width:56ch}
-.lib-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line-ink);background:var(--line-ink)}
-.lib-stats div{padding:20px 22px;background:rgba(12,20,19,.92)}
+.lib-hero .lede{max-width:56ch;color:rgba(252,252,252,.86)}
+.lib-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line-ink);background:var(--line-ink)}
+.lib-stats div{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:18px 20px;background:rgba(12,20,19,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .lib-stats dt{font:500 10.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
-.lib-stats dd{margin:8px 0 0;font:600 40px/1 var(--head);letter-spacing:-.03em}
+.lib-stats dd{margin:0;font:600 40px/1 var(--head);letter-spacing:-.03em}
 
 .lib-tools{display:grid;gap:16px;padding-top:36px;padding-bottom:8px}
 .lib-search{position:relative;display:flex;align-items:center}
@@ -245,13 +249,20 @@
 .side-note{font-size:13px;color:var(--muted)}
 
 /* ---------------------------------------------------------------- smaller screens */
+@media (max-width:1240px){
+  .lib-hero{--col:580px}
+}
 @media (max-width:1100px){
   .le-body{grid-template-columns:minmax(0,1fr);gap:24px}
   .le-side{position:static;grid-row:1;grid-template-columns:1fr 1fr}
   .toc{display:none}
 }
 @media (max-width:900px){
-  .lib-hero-in{grid-template-columns:1fr;gap:32px;padding-top:calc(var(--top-h) + 44px);padding-bottom:48px}
+  .lib-hero{display:block;min-height:0}
+  .lib-hero-photo{position:static;display:block;height:auto;aspect-ratio:2560/1348;margin-top:var(--top-h);-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent);mask-image:linear-gradient(180deg,#000 72%,transparent)}
+  .lib-hero::before{display:none}
+  .lib-hero-in{grid-template-columns:1fr;gap:32px;padding-top:20px;padding-bottom:48px}
+  .lib-stats{grid-template-columns:1fr 1fr}
   .le-glance-in{grid-template-columns:1fr}
   .lib-explain .explain-grid{grid-template-columns:1fr}
   .lib-tools{position:static}
