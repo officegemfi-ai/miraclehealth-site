@@ -1,0 +1,175 @@
+{
+  "id": "metformin",
+  "name": "Metformin",
+  "summary": "A prescription pill that lowers blood sugar in type 2 diabetes; some people take it off-label hoping to slow aging, which is unproven.",
+  "what_it_is": "Metformin is a biguanide, a type of oral diabetes medicine. It lowers blood sugar by reducing the sugar the liver makes, reducing sugar absorbed from the gut and helping the body respond better to insulin. Taken alone it rarely causes low blood sugar.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for type 2 diabetes, and a large randomized trial (3,234 adults) showed it delays diabetes in people at high risk; evidence that it slows aging comes mainly from observational comparisons in people with diabetes."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for type 2 diabetes; aging use off-label",
+    "note": "Prescription-only and approved to improve blood sugar control in adults and children 10 and older with type 2 diabetes. Using it to prevent diabetes or to slow aging is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.75,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lowers blood sugar in adults and children 10 and older with type 2 diabetes",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Cut new cases of type 2 diabetes by 31% versus placebo over about 3 years in 3,234 adults with raised blood sugar (intensive lifestyle change cut them by 58%); off-label in the US",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Lower death rates in people with diabetes taking metformin than in people with diabetes on other drugs, and slightly lower than in people without diabetes, in a meta-analysis of 53 studies; these were comparisons in people with diabetes, not trials in healthy people",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Diarrhea, nausea, vomiting, gas and stomach upset: diarrhea in 53% in an immediate-release trial, and in 10% versus 3% on placebo with extended-release tablets",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Low vitamin B12: about 7% developed below-normal levels in 29-week trials; this can cause anemia and usually reverses with stopping or with supplements",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "On average, smaller gains in lean mass and thigh muscle from strength training in healthy adults 65 and older (14-week trial of 94 people)",
+      "how_common": "common",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Boxed warning: lactic acidosis, a rare but serious and sometimes fatal acid buildup in the blood; risk is higher with kidney impairment, age 65 or older, heavy drinking, liver problems, contrast dye, surgery and low-oxygen states",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Severe kidney disease (eGFR below 30)",
+    "Metabolic acidosis, including diabetic ketoacidosis",
+    "Liver disease",
+    "Heavy alcohol use",
+    "Past allergic reaction to metformin"
+  ],
+  "interactions": [
+    "Topiramate, zonisamide, acetazolamide and other carbonic anhydrase inhibitors: higher risk of lactic acidosis",
+    "Ranolazine, vandetanib, dolutegravir and cimetidine: can raise metformin levels",
+    "Alcohol: adds to metformin's effect on lactate; heavy drinking should be avoided",
+    "Insulin or sulfonylureas: higher risk of low blood sugar"
+  ],
+  "labs": {
+    "before": [
+      "Kidney function (eGFR)",
+      "HbA1c or fasting glucose",
+      "Complete blood count"
+    ],
+    "during": [
+      "Kidney function (eGFR) at least once a year, more often in older adults",
+      "Complete blood count once a year",
+      "Vitamin B12 every 2 to 3 years",
+      "HbA1c to track blood sugar"
+    ],
+    "why": "The label calls for checking kidney function before starting and at least yearly, because metformin builds up when the kidneys are weak, plus yearly blood counts and vitamin B12 every 2 to 3 years."
+  },
+  "studies": [
+    {
+      "title": "Metformin reduces all-cause mortality and diseases of ageing independent of its effect on diabetes control: A systematic review and meta-analysis",
+      "year": 2017,
+      "type": "Meta-analysis",
+      "people": "53 studies comparing people with diabetes taking metformin with other groups",
+      "finding": "People with diabetes taking metformin had lower all-cause death rates than people without diabetes (hazard ratio 0.93) and than people with diabetes on other drugs (0.72). The authors noted baseline differences between groups that could bias the results.",
+      "source": 3
+    },
+    {
+      "title": "Reduction in the Incidence of Type 2 Diabetes with Lifestyle Intervention or Metformin",
+      "year": 2002,
+      "type": "RCT",
+      "people": "3,234 adults with raised blood sugar but no diabetes (average age 51)",
+      "finding": "Over an average of 2.8 years, diabetes developed at 7.8 cases per 100 person-years with metformin versus 11.0 with placebo, a 31% reduction; intensive lifestyle change reduced it by 58%.",
+      "source": 2
+    },
+    {
+      "title": "Metformin blunts muscle hypertrophy in response to progressive resistance exercise training in older adults: A randomized, double-blind, placebo-controlled, multicenter trial: The MASTERS trial",
+      "year": 2019,
+      "type": "RCT",
+      "people": "94 healthy adults aged 65 and older",
+      "finding": "During 14 weeks of supervised strength training, the metformin group gained less lean mass and thigh muscle than the placebo group; the strength difference was not statistically significant.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there a reason for me to take metformin if I don't have diabetes or prediabetes?",
+    "Should I pause it before a scan with contrast dye or before surgery?",
+    "If I do strength training, could metformin reduce my gains?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Label: METFORMIN HYDROCHLORIDE tablet, extended release (revised 5/2026)",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=17050df5-9e95-4e1b-ac75-34add289b139"
+    },
+    {
+      "n": 2,
+      "title": "Reduction in the Incidence of Type 2 Diabetes with Lifestyle Intervention or Metformin",
+      "publisher": "New England Journal of Medicine (University of Maryland DRUM record)",
+      "year": 2002,
+      "url": "https://drum.lib.umd.edu/handle/1903/22829"
+    },
+    {
+      "n": 3,
+      "title": "Metformin reduces all-cause mortality and diseases of ageing independent of its effect on diabetes control: A systematic review and meta-analysis",
+      "publisher": "Ageing Research Reviews (Macquarie University research record)",
+      "year": 2017,
+      "url": "https://researchers.mq.edu.au/en/publications/metformin-reduces-all-cause-mortality-and-diseases-of-ageing-inde/"
+    },
+    {
+      "n": 4,
+      "title": "Metformin blunts muscle hypertrophy in response to progressive resistance exercise training in older adults: A randomized, double-blind, placebo-controlled, multicenter trial: The MASTERS trial",
+      "publisher": "Aging Cell (University of Kentucky research record)",
+      "year": 2019,
+      "url": "https://scholars.uky.edu/en/publications/metformin-blunts-muscle-hypertrophy-in-response-to-progressive-re/"
+    }
+  ],
+  "notes_for_editor": "The aging evidence is indirect: the Campbell meta-analysis compares people with diabetes on metformin with other groups (non-randomized comparisons), and its authors note baseline differences. No randomized trial of metformin for aging in healthy people was opened; the planned TAME trial was not checked. The label cited is a repackaged generic extended-release label on DailyMed (revised May 2026); the immediate-release side-effect rate is quoted from it. The 'rare' lactic acidosis wording comes from the label's patient information. The MASTERS trial suggests metformin may blunt muscle gains from strength training in older adults.",
+  "checked": "2026-10-28"
+}

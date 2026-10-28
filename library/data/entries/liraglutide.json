@@ -1,0 +1,224 @@
+{
+  "id": "liraglutide",
+  "name": "Liraglutide",
+  "summary": "A prescription GLP-1 medicine, sold as Victoza for type 2 diabetes and Saxenda for weight management, that lowers blood sugar and appetite.",
+  "what_it_is": "Liraglutide is a lab-made version of GLP-1, a natural hormone that helps regulate blood sugar and appetite. It switches on GLP-1 receptors and slows stomach emptying. Victoza and Saxenda contain the same drug for different uses, and generic versions are approved. It is given as an injection under the skin.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Large randomized trials, including SCALE (3,731 adults) for weight and LEADER (9,340 adults) for heart outcomes, plus FDA approval for each main use."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for diabetes, heart risk and weight",
+    "note": "Approved as Victoza (type 2 diabetes from age 10, and lowering heart risk in adults with type 2 diabetes and heart disease) and Saxenda (weight management from age 12), with generics approved since December 2024; Saxenda's suicidal-thoughts warning was removed in early 2026. FDA listed liraglutide injection as in shortage in early 2025 (current status not confirmed), and in May 2026 proposed keeping it off the outsourcing-facility (503B) bulks list.",
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lower blood sugar in adults and children 10 and older with type 2 diabetes; A1C fell about 0.9 to 1.4 points more than placebo when added to other diabetes drugs",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Average weight loss of 8.4 kg versus 2.8 kg with placebo over 56 weeks in 3,731 adults with obesity or overweight without diabetes; 63% lost at least 5% of body weight versus 27%",
+      "evidence": "strong",
+      "sources": [
+        7,
+        2
+      ]
+    },
+    {
+      "claim": "Fewer heart attacks, strokes and cardiovascular deaths in adults with type 2 diabetes and heart disease: 13.0% versus 14.9% over a median of 3.5 years (hazard ratio 0.87)",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Approved for weight management in children 12 and older with obesity",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea (39% versus 14% on placebo), diarrhea, constipation and vomiting in weight-management trials",
+      "how_common": "common",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Faster resting heart rate: on average 2 to 3 beats per minute higher, and 34% versus 19% on placebo had rises of more than 10 beats per minute at two visits in a row",
+      "how_common": "common",
+      "sources": [
+        8,
+        2
+      ]
+    },
+    {
+      "risk": "Gallstones (2.2% versus 0.8% on placebo) and gallbladder inflammation (0.8% versus 0.4%)",
+      "how_common": "uncommon",
+      "sources": [
+        8,
+        2
+      ]
+    },
+    {
+      "risk": "Acute pancreatitis (0.3% versus 0.1% on placebo)",
+      "how_common": "rare",
+      "sources": [
+        8,
+        2
+      ]
+    },
+    {
+      "risk": "Boxed warning: thyroid C-cell tumors in rats and mice; whether this happens in humans is unknown",
+      "how_common": "theoretical",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "risk": "Breathing stomach contents into the lungs under general anesthesia or deep sedation (a labeled warning)",
+      "how_common": "rare",
+      "sources": [
+        2,
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Personal or family history of medullary thyroid cancer or MEN 2",
+    "Past serious allergic reaction to liraglutide",
+    "Pregnant or planning pregnancy (discuss with a clinician first)"
+  ],
+  "interactions": [
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Oral medicines: slower stomach emptying can change how they are absorbed",
+    "Other liraglutide products or other GLP-1 drugs: using them together is not recommended"
+  ],
+  "labs": {
+    "before": [
+      "HbA1c or fasting glucose",
+      "Kidney function (creatinine, eGFR)",
+      "Resting heart rate"
+    ],
+    "during": [
+      "Resting heart rate at regular visits",
+      "Blood glucose if also taking insulin or a sulfonylurea",
+      "Kidney function if vomiting or diarrhea is severe"
+    ],
+    "why": "The labels warn about heart-rate increases, low blood sugar with insulin or sulfonylureas, and kidney injury from dehydration; they say routine calcitonin or thyroid ultrasound checks are of uncertain value."
+  },
+  "studies": [
+    {
+      "title": "A Randomized, Controlled Trial of […] Liraglutide in Weight Management",
+      "year": 2015,
+      "type": "RCT",
+      "people": "3,731 adults with obesity or overweight, without diabetes",
+      "finding": "Over 56 weeks, weight fell 8.4 kg with liraglutide versus 2.8 kg with placebo, and 63.2% versus 27.1% lost at least 5% of body weight. Mild or moderate nausea and diarrhea were the most common side effects.",
+      "source": 7
+    },
+    {
+      "title": "VICTOZA (liraglutide) injection, for subcutaneous use: Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "9,340 adults with type 2 diabetes and atherosclerotic heart disease (LEADER trial)",
+      "finding": "Liraglutide lowered the risk of a first major heart event versus placebo (hazard ratio 0.87, 95% CI 0.78 to 0.97).",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a newer GLP-1 medicine suit me better than liraglutide?",
+    "Which symptoms, such as severe stomach pain or a racing heart, mean I should call you?",
+    "Should I tell my surgeon or anesthesia team before any procedure with sedation?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "VICTOZA (liraglutide) injection, for subcutaneous use: Prescribing Information (revised 10/2025)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022341s046lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "SAXENDA (liraglutide) injection, for subcutaneous use: Prescribing Information (version effective February 2026)",
+      "publisher": "FDA (FDALabel)",
+      "year": 2026,
+      "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/3946d389-0926-4f77-a708-0acb8153b143/spl-doc"
+    },
+    {
+      "n": 3,
+      "title": "FDA Approves First Generic of Once-Daily GLP-1 Injection to Lower Blood Sugar in Patients with Type 2 Diabetes",
+      "publisher": "FDA (Division of Drug Information bulletin)",
+      "year": 2024,
+      "url": "https://content.govdelivery.com/accounts/USFDA/bulletins/3c8fbca"
+    },
+    {
+      "n": 4,
+      "title": "FDA clarifies policies for compounders as national GLP-1 supply begins to stabilize",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize"
+    },
+    {
+      "n": 5,
+      "title": "List of Bulk Drug Substances for Which There Is a Clinical Need Under Section 503B of the Federal Food, Drug, and Cosmetic Act (91 FR 23431)",
+      "publisher": "Federal Register (FDA)",
+      "year": 2026,
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-01/html/2026-08552.htm"
+    },
+    {
+      "n": 6,
+      "title": "FDA Requests Removal of Suicidal Behavior and Ideation Warning from Glucagon-Like Peptide-1 Receptor Agonist (GLP-1 RA) Medications",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requests-removal-suicidal-behavior-and-ideation-warning-glucagon-peptide-1-receptor-agonist-glp"
+    },
+    {
+      "n": 7,
+      "title": "A Randomized, Controlled Trial of 3.0 mg of Liraglutide in Weight Management",
+      "publisher": "New England Journal of Medicine (University of Pisa repository record)",
+      "year": 2015,
+      "url": "https://arpi.unipi.it/handle/11568/855260"
+    },
+    {
+      "n": 8,
+      "title": "SAXENDA (liraglutide) injection, for subcutaneous use: Prescribing Information (A-S Medication Solutions relabel, version effective January 2024)",
+      "publisher": "FDA (FDALabel)",
+      "year": 2024,
+      "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/7b11f6ac-4c27-4748-9e65-22d4cf3adfb4/spl-doc"
+    }
+  ],
+  "notes_for_editor": "The SCALE paper's title contains a dose, so the dose is shown as […] in the studies list; the full title is kept in sources. The current Saxenda label (effective February 2026) could be read only up to its clinical studies section, so weight results come from the SCALE abstract, and the heart-rate, gallbladder and pancreatitis numbers come from a January 2024 relabeled Saxenda label (the 2026 label keeps those warnings). The 2026 Saxenda label removed the suicidal-ideation warning (February 2026) and the pregnancy contraindication (May 2025). FDA listed liraglutide injection as in shortage in December 2024 and February 2025; a University of Utah shortage listing on Drugs.com still showed Victoza as current in June 2025; FDA's status in late 2026 was not confirmed.",
+  "checked": "2026-10-28"
+}

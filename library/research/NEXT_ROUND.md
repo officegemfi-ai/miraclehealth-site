@@ -157,3 +157,20 @@ triptorelin
 - Searches restricted to nccih.nih.gov or ods.od.nih.gov work well; ODS's sports-supplement
   fact sheet covers DHEA and other performance supplements. Every new source costs a search
   (WebFetch refuses URLs not seen in a result).
+- Supplements: searching with allowed_domains ods.od.nih.gov and several nutrient names returns
+  3-4 fact sheets per search. Fetch URLs exactly as returned (iron's is
+  https://ods.od.nih.gov/factsheets/Iron%20%20-HealthProfessional/). NIH pages over 100k
+  characters get cut off at the end (interactions, update date).
+- Hub pages: ODS exercise and athletic performance (beta-alanine, citrulline, arginine,
+  caffeine) https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/ ;
+  ODS vitamins and minerals list https://ods.od.nih.gov/factsheets/list-VitaminsMinerals/ ;
+  ODS weight loss https://ods.od.nih.gov/factsheets/WeightLoss-HealthProfessional/ ;
+  ODS immune function https://ods.od.nih.gov/factsheets/ImmuneFunction-HealthProfessional/ ;
+  NCCIH diabetes and supplements (chromium) https://www.nccih.nih.gov/health/diabetes-and-dietary-supplements-what-you-need-to-know ;
+  NCCIH headaches (riboflavin) https://www.nccih.nih.gov/health/headaches-what-you-need-to-know ;
+  NCCIH herb-drug interactions https://www.nccih.nih.gov/health/providers/digest/herb-drug-interactions-science
+- Opened fine: NCCIH, MDPI, Frontiers, PLOS, Dove Press, cochrane.org summaries, Cochrane
+  abstract PDFs, aafp.org PDFs, accessdata.fda.gov labels, FDA's GRAS inventory, the UNT web
+  archive of old FDA pages, university repositories, DOAJ. LiverTox opens sometimes.
+  Blocked: ahajournals.org, tandfonline.com, nature.com, most of cmaj.ca, BMC/Springer (cookie
+  wall), PMC (bot check, intermittent).
