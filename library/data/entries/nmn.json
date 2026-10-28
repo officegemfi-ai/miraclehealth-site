@@ -5,7 +5,7 @@
   "what_it_is": "NMN (nicotinamide mononucleotide) is a form of vitamin B3 that cells can turn into NAD+, a coenzyme used in the chemical reactions that release energy from food. NAD+ levels fall with age in mammals, and in mice NMN improved glucose tolerance and insulin sensitivity, which led to its promotion as an anti-aging supplement. Some NMN taken by mouth is converted to nicotinamide before it reaches the bloodstream, and how it enters cells is still debated.",
   "evidence": {
     "grade": "limited",
-    "why": "Eight small randomized trials in 342 mostly healthy adults, lasting up to 12 weeks, found NMN raised blood NAD+ in most but did not improve blood sugar, cholesterol, BMI or blood pressure."
+    "why": "Eight small randomized trials in 342 mostly healthy adults, lasting up to 12 weeks, found NMN raised blood NAD+ in most trials but did not improve blood sugar, cholesterol, BMI or blood pressure."
   },
   "status_us": {
     "key": "supplement",
@@ -32,7 +32,7 @@
   },
   "benefits": [
     {
-      "claim": "Raised blood NAD+ in 5 of 8 small randomized trials in adults; whether it also raises NAD+ inside cells and tissues is unclear",
+      "claim": "Raised blood NAD+ (a lab marker, not a health effect) in 5 of 8 small randomized trials in adults; whether it also raises NAD+ inside cells and tissues is unclear",
       "evidence": "limited",
       "sources": [
         3,
@@ -40,14 +40,14 @@
       ]
     },
     {
-      "claim": "No improvement in fasting blood sugar, insulin, HbA1c, blood fats, BMI or blood pressure versus placebo across 8 trials of 14 days to 12 weeks in 342 adults",
+      "claim": "No benefit shown for fasting blood sugar, insulin, HbA1c, blood fats, BMI or blood pressure versus placebo across 8 trials of 14 days to 12 weeks in 342 adults",
       "evidence": "limited",
       "sources": [
         3
       ]
     },
     {
-      "claim": "Better muscle insulin sensitivity in the only trial of people with prediabetes, which enrolled women",
+      "claim": "Better muscle insulin sensitivity in one small trial of women with prediabetes",
       "evidence": "limited",
       "sources": [
         3

@@ -58,6 +58,17 @@ const date = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', {
 const refs = (ns) => (ns || []).filter((n) => Number.isInteger(n)).map((n) => `<a class="ref" href="#src-${n}" aria-label="Source ${n}">${n}</a>`).join('');
 const familyLine = (c) => `${SINGULAR[c.family] || c.family} · ${c.category}`;
 const blendsWith = (id) => catalog.filter((c) => c.kind === 'blend' && (c.parts || []).includes(id));
+// Product and ingredient brand names stay searchable but aren't printed as "Also called":
+// the library doesn't promote brands or sellers. Class names that aren't really other names
+// for the compound are left out the same way.
+const NOT_SHOWN = new Set(['kyolic', 'ksm-66', 'sensoril', 'bacognize', 'synapsa', 'glucovantage', 'carnosyn', '5-loxin',
+  'rejuvant', 'cognizin', 'meriva', 'longvida', 'bcm-95', 'lmnt', 'liquid i.v.', 'hydration mix', 'testofen', 'pharmagaba',
+  'iodoral', 'suntheanine', 'magtein', 'relora', 'ovasitol', 'niagen', 'tru niagen', 'levagen', 'metamucil', 'florastor',
+  'affron', 'primavie', 'spermidinelife', 'avmacol', 'teacrine', 'lj100', 'mitopure', 'timeline', 'pepzingi', 'senolytic',
+  'niacin flush', 'protein powder']);
+const shownAliases = (c) => (c.aliases || []).filter((a) => !NOT_SHOWN.has(a.toLowerCase()));
+// Not an approved medicine: blood-marker lists describe what a trial or clinician would check
+const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'under_review']);
 
 // ---------------------------------------------------------------------------
 // The page around everything
@@ -141,7 +152,7 @@ function card(c) {
   const text = [c.name, ...(c.aliases || []), c.category, c.family, ...parts].join(' ').toLowerCase();
   const grade = f?.evidence?.grade;
   const sum = f ? f.summary : c.kind === 'blend' ? `A blend of ${parts.join(' and ')}.`
-    : (c.aliases || []).length ? `Also called ${c.aliases.slice(0, 4).join(', ')}.` : `${SINGULAR[c.family] || c.family} for ${c.category.toLowerCase()}.`;
+    : shownAliases(c).length ? `Also called ${shownAliases(c).slice(0, 4).join(', ')}.` : `${SINGULAR[c.family] || c.family} for ${c.category.toLowerCase()}.`;
   return `<a class="lib-card${f ? '' : ' pending'}" href="/library/${c.id}/" data-id="${c.id}" data-family="${e(c.family)}" data-goals="${goals.join(' ')}" data-ev="${grade || ''}" data-checked="${f ? 1 : 0}" data-text="${e(text)}">
     <span class="lc-top"><span class="lc-fam">${e(familyLine(c))}</span><span class="lc-sig" data-sig="${c.id}" hidden></span></span>
     <span class="lc-name">${e(c.name)}</span>
@@ -265,13 +276,14 @@ function factSheet(c, f) {
       <h2>Risks and side effects</h2>
       <ul class="claims risks">${(f.risks || []).map((r) => `<li><span class="hc hc-${r.how_common}">${e(HOW_COMMON[r.how_common] || r.how_common)}</span><p>${e(r.risk)} ${refs(r.sources)}</p></li>`).join('')}</ul>
       <div class="two">
-        <div><h3>Talk to a clinician first if you are</h3>${list(f.avoid_if, 'dots')}</div>
+        <div><h3>Who should avoid it or check with a clinician first</h3>${list(f.avoid_if, 'dots')}</div>
         <div><h3>Interactions</h3>${list(f.interactions, 'dots')}</div>
       </div>
     </section>
 
     <section class="le-sec" id="labs">
       <h2>Blood markers to watch</h2>
+      ${UNAPPROVED.has(f.status_us.key) && ((labs.before || []).length || (labs.during || []).length) ? '<p class="lab-note">Not an approved medicine. These are checks a clinician or a clinical trial would use, not a plan for taking it on your own.</p>' : ''}
       <div class="labs">
         <div class="lab-col"><p class="mono">Before starting</p>${(labs.before || []).length ? list(labs.before, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
         <div class="lab-col"><p class="mono">While taking it</p>${(labs.during || []).length ? list(labs.during, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
@@ -347,7 +359,7 @@ function entryPage(c) {
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/library/">Library</a><span aria-hidden="true">/</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(c.family)}</a></nav>
     <p class="kick lime">${e(familyLine(c))}</p>
     <h1${c.name.length > 22 ? ' class="long"' : ''}>${e(c.name)}</h1>
-    ${(c.aliases || []).length ? `<p class="aka">Also called ${c.aliases.map(e).join(', ')}</p>` : ''}
+    ${shownAliases(c).length ? `<p class="aka">Also called ${shownAliases(c).map(e).join(', ')}</p>` : ''}
     ${f ? `<p class="lede">${e(f.summary)}</p>` : ''}
     <div class="le-badges">
       ${f ? `<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span>

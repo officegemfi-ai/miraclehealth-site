@@ -38,14 +38,14 @@
       ]
     },
     {
-      "claim": "Beat placebo in all 21 randomized trials in its approval program (more than 3,000 men)",
+      "claim": "Worked better than placebo in all 21 randomized trials in its approval program (more than 3,000 men)",
       "evidence": "strong",
       "sources": [
         1
       ]
     },
     {
-      "claim": "In men with ED and low testosterone, PDE5 inhibitors may work better when combined with testosterone therapy (AUA; low-certainty evidence)",
+      "claim": "In men with ED and testosterone deficiency confirmed by a clinician, the AUA says treating the deficiency may improve results (low-certainty evidence)",
       "evidence": "limited",
       "sources": [
         2
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "risk": "Sudden vision loss from NAION (damage to the optic nerve), reported rarely, and sudden hearing loss; a causal link has not been established",
+      "risk": "Sudden vision loss from NAION (damage to the optic nerve) and sudden hearing loss have been reported rarely; the label says to stop it and get medical care right away if either happens, and people who have had NAION before are at higher risk of it happening again",
       "how_common": "rare",
       "sources": [
         1
@@ -98,8 +98,8 @@
     }
   ],
   "avoid_if": [
-    "Taking nitrates or other nitric oxide donors in any form",
-    "Taking riociguat or another guanylate cyclase stimulator",
+    "Taking nitrates or other nitric oxide donors in any form, including the street drugs called \"poppers\" (contraindicated)",
+    "Taking riociguat or another guanylate cyclase stimulator (contraindicated)",
     "Recent heart attack, stroke or life-threatening arrhythmia, or other serious heart disease, unless a clinician confirms sexual activity is safe",
     "Already taking Revatio or another PDE5 inhibitor",
     "Past allergic reaction to sildenafil"

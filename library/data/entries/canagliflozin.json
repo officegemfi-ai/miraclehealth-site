@@ -25,7 +25,7 @@
     "cognition": 0,
     "skin": 0,
     "sexual": 0,
-    "longevity": 0.75,
+    "longevity": 0.5,
     "gut": 0,
     "immune": 0,
     "hormonal": 0
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "risk": "Dehydration and acute kidney injury, sometimes needing hospital care or dialysis; high potassium in people with moderate kidney impairment (up to 8.8% versus 5.3% on placebo)",
+      "risk": "Dehydration, low blood pressure and acute kidney injury, sometimes needing hospital care or dialysis; high potassium in people with moderate kidney impairment (up to 8.8% versus 5.3% on placebo)",
       "how_common": "uncommon",
       "sources": [
         1

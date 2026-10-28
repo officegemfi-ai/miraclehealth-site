@@ -2,15 +2,15 @@
   "id": "turkesterone",
   "name": "Turkesterone",
   "summary": "A plant steroid from Ajuga turkestanica, promoted for building muscle; the few small human studies found no effect, and products often contain less than labeled.",
-  "what_it_is": "Turkesterone is a phytoecdysteroid, one of a group of steroid compounds made by plants and insects that are structurally similar to androgens (male hormones). It makes up most of the ecdysteroids isolated from Ajuga turkestanica; plants rich in these compounds have been used as tonics and to promote muscle growth. Research on a related compound, ecdysterone, suggests these steroids act through estrogen-receptor pathways rather than as androgens.",
+  "what_it_is": "Turkesterone is a phytoecdysteroid, one of a group of steroid compounds made by plants and insects that are structurally similar to androgens (male hormones). It makes up most of the ecdysteroids isolated from Ajuga turkestanica; plants rich in these compounds have been used as tonics and to promote muscle growth. Lab and animal research on a related compound, ecdysterone, suggests these steroids act through estrogen-receptor pathways rather than as androgens.",
   "evidence": {
     "grade": "limited",
     "why": "Turkesterone itself has been tested only in a 4-week trial of 31 adults and single-dose studies in 11 men, all reported as conference or student abstracts, and none found an effect."
   },
   "status_us": {
     "key": "supplement",
-    "label": "Sold as a supplement; not WADA-prohibited (2026)",
-    "note": "Sold as a dietary supplement that has grown popular with recreationally active people. As of March 2026 it was not on WADA's Prohibited List or Monitoring Program, but the related ecdysterone has been on WADA's Monitoring Program as an anabolic agent since 2020.",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement that has grown popular with recreationally active people. As of March 2026 it was not named on WADA's Prohibited List or Monitoring Program, but WADA's list of anabolic agents is not exhaustive, and the related ecdysterone has been on its Monitoring Program since 2020.",
     "sources": [
       1,
       2,
@@ -33,14 +33,14 @@
   },
   "benefits": [
     {
-      "claim": "No difference from placebo in body weight, lean mass or body fat after 4 weeks in a randomized, double-blind trial of 31 active adults (reported as a student symposium abstract)",
+      "claim": "No benefit shown: no difference from placebo in body weight, lean mass or body fat after 4 weeks in a randomized, double-blind trial of 31 active adults (reported as a student symposium abstract)",
       "evidence": "limited",
       "sources": [
         4
       ]
     },
     {
-      "claim": "No change in IGF-1, a growth-related hormone, or in resting metabolism in the hours after single doses in 11 recreationally active men",
+      "claim": "No effect shown on IGF-1, a growth-related hormone, or on resting metabolism in the hours after single doses in 11 recreationally active men",
       "evidence": "limited",
       "sources": [
         1,
@@ -87,6 +87,13 @@
       "sources": [
         6
       ]
+    },
+    {
+      "risk": "Hidden drugs: FDA says supplements found to contain hidden prescription drugs or controlled substances such as anabolic steroids are typically promoted for bodybuilding, weight loss, sexual enhancement or diabetes",
+      "how_common": "unknown",
+      "sources": [
+        7
+      ]
     }
   ],
   "avoid_if": [
@@ -100,7 +107,7 @@
   "labs": {
     "before": [],
     "during": [],
-    "why": "No evidence-based monitoring exists; a strength-training study of the related ecdysterone found no signs of liver or kidney toxicity in blood tests."
+    "why": "No evidence-based monitoring exists, and the safety of turkesterone itself in people is essentially untested."
   },
   "studies": [
     {
@@ -175,6 +182,13 @@
       "publisher": "Processes (MDPI)",
       "year": 2023,
       "url": "https://mdpi-res.com/d_attachment/processes/processes-11-01786/article_deploy/processes-11-01786.pdf"
+    },
+    {
+      "n": 7,
+      "title": "Tainted Dietary Supplements and Foods: Responsibilities of Retailers and Distributors",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2010,
+      "url": "https://www.fda.gov/files/drugs/published/Tainted-Dietary-Supplements-and-Foods--Responsibilities-of-Retailers-and-Distributors.pdf"
     }
   ],
   "notes_for_editor": "Human evidence on turkesterone itself is limited to conference and student-symposium abstracts (31 adults for 4 weeks; 11 men given single doses); no peer-reviewed full trial was found. The ecdysterone muscle finding (Isenmann et al.) is cited through other papers' summaries; the German repository abstract that describes it had no visible title, and a 2025 PMC paper on an ecdysteroid supplement and performance was blocked. The label-accuracy studies tested products bought in Europe, not the US. FDA's view of Ajuga turkestanica extracts as dietary ingredients (for example, new dietary ingredient status) was not checked. WADA status comes from a March 2026 paper, not WADA's own list.",

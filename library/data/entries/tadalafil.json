@@ -53,7 +53,7 @@
       ]
     },
     {
-      "claim": "In men with ED and low testosterone, PDE5 inhibitors may work better when combined with testosterone therapy (AUA; low-certainty evidence)",
+      "claim": "In men with ED and testosterone deficiency confirmed by a clinician, the AUA says treating the deficiency may improve results (low-certainty evidence)",
       "evidence": "limited",
       "sources": [
         3
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "risk": "Sudden vision loss from NAION (damage to the optic nerve), reported rarely; sudden hearing loss has also been reported, though a causal link is not established",
+      "risk": "Sudden vision loss from NAION (damage to the optic nerve) and sudden hearing loss have been reported rarely; the label says to stop it and get medical care right away if either happens, and people who have had NAION before are at higher risk of it happening again",
       "how_common": "rare",
       "sources": [
         1
@@ -99,14 +99,14 @@
     }
   ],
   "avoid_if": [
-    "Taking nitrates in any form, regularly or now and then",
-    "Taking riociguat or another guanylate cyclase stimulator",
+    "Taking nitrates in any form, regularly or now and then (contraindicated)",
+    "Taking riociguat or another guanylate cyclase stimulator (contraindicated)",
     "Heart conditions that make sexual activity unsafe, such as unstable angina or uncontrolled arrhythmia or blood pressure",
     "Severe liver impairment",
     "Past serious allergic reaction to tadalafil"
   ],
   "interactions": [
-    "Nitrates: contraindicated; if a nitrate is needed in a life-threatening emergency, the label says at least 48 hours should pass after the last tadalafil dose, with close monitoring",
+    "Nitrates: contraindicated; tadalafil lasts longer than other ED drugs, so if a nitrate is ever needed in an emergency, medical staff need to know when it was last taken",
     "Alpha-blockers (such as doxazosin, tamsulosin or alfuzosin) and other blood pressure drugs: extra blood pressure lowering; for BPH, combining with an alpha-blocker is not recommended",
     "Strong CYP3A4 inhibitors (ketoconazole, ritonavir, itraconazole; grapefruit juice likely): raise tadalafil levels",
     "CYP3A4 inducers such as rifampin: sharply lower tadalafil levels",

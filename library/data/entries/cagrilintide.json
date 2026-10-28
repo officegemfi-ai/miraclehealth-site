@@ -65,8 +65,15 @@
       ]
     },
     {
-      "risk": "CagriSema contains semaglutide, whose label carries a boxed warning about thyroid C-cell tumors in rodents (human relevance unknown) and warnings about pancreatitis, gallbladder disease and heart-rate increases",
+      "risk": "CagriSema contains semaglutide, whose label carries a boxed warning about thyroid C-cell tumors in rodents (human relevance unknown)",
       "how_common": "theoretical",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "risk": "Pancreatitis, gallbladder disease and a faster heart rate occur with semaglutide, one of CagriSema's two drugs, and are warnings on its label; how often they occur with cagrilintide is not known",
+      "how_common": "unknown",
       "sources": [
         7
       ]
@@ -88,7 +95,7 @@
     }
   ],
   "avoid_if": [
-    "Anyone outside a clinical trial: it is not an approved medicine",
+    "Not for use outside a clinical trial: it is not an approved medicine, and \"research\" versions sold online are unapproved and unregulated",
     "Personal or family history of medullary thyroid cancer or MEN 2 (a contraindication for semaglutide, which CagriSema contains)",
     "Pregnant, breastfeeding or planning pregnancy"
   ],
@@ -126,7 +133,7 @@
       "title": "Once-weekly cagrilintide for weight management in people with overweight and obesity: a multicentre, randomised, double-blind, placebo-controlled and active-controlled, dose-finding phase 2 trial",
       "year": 2021,
       "type": "RCT",
-      "people": "906 adults with obesity or overweight, without diabetes",
+      "people": "706 adults with obesity or overweight, without diabetes",
       "finding": "Over 26 weeks, average weight loss was 6.0% to 10.8% across cagrilintide doses versus 3.0% with placebo; 4% stopped treatment because of adverse events.",
       "source": 6
     }

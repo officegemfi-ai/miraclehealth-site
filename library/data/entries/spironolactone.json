@@ -39,14 +39,14 @@
       ]
     },
     {
-      "claim": "In 410 women with persistent acne, acne symptom scores improved slightly more than with placebo at 12 weeks, and at 24 weeks 82% versus 63% said their skin had improved",
+      "claim": "In 410 women with persistent acne, acne symptom scores improved slightly more than with placebo at 12 weeks, and at 24 weeks 82% versus 63% said their skin had improved (off-label)",
       "evidence": "moderate",
       "sources": [
         2
       ]
     },
     {
-      "claim": "In female pattern hair loss, about 81% of patients taking spironolactone tablets improved on photos across four mostly small studies; results were too varied to pool, and the reviewers called for better trials",
+      "claim": "In female pattern hair loss (off-label), about 81% of patients taking spironolactone tablets improved on photos across four mostly small studies; results were too varied to pool, and the reviewers called for better, controlled trials",
       "evidence": "limited",
       "sources": [
         3
@@ -94,11 +94,11 @@
   "avoid_if": [
     "High potassium, Addison's disease, or taking eplerenone (contraindicated)",
     "Pregnant or could become pregnant (it feminized male fetuses in rats, and the label advises avoiding it in pregnancy)",
-    "Kidney problems, or taking potassium supplements, ACE inhibitors or ARBs (needs a clinician first because of potassium risk)",
+    "Kidney problems, or taking potassium supplements, potassium-containing salt substitutes, ACE inhibitors or ARBs (clinician first because of potassium risk)",
     "Athletes in tested sports (WADA bans it at all times as a diuretic)"
   ],
   "interactions": [
-    "ACE inhibitors, ARBs, potassium supplements, NSAIDs, heparin and trimethoprim: risk of severe high potassium",
+    "ACE inhibitors, ARBs, potassium supplements, salt substitutes containing potassium, NSAIDs, heparin and trimethoprim: risk of severe high potassium",
     "Lithium: slower lithium clearance and risk of toxicity",
     "Digoxin: can falsely raise digoxin blood test results",
     "Cholestyramine: high-potassium metabolic acidosis has been reported",
@@ -113,7 +113,7 @@
       "Potassium within a week of starting or changing the dose, and regularly after",
       "Kidney function, electrolytes, uric acid and blood glucose periodically"
     ],
-    "why": "The heart-failure and blood-pressure label calls for these checks; for healthy young women taking it for acne, the SAFA trial team advised a baseline test and judged ongoing monitoring unnecessary for most."
+    "why": "The heart-failure and blood-pressure label calls for these checks; for healthy young women taking it for acne, the SAFA trial team advised a baseline test and judged ongoing monitoring unnecessary for most. Your prescriber decides which tests you need."
   },
   "studies": [
     {
@@ -129,7 +129,7 @@
       "year": 2023,
       "type": "Systematic review",
       "people": "7 studies, 618 people with pattern hair loss (553 women)",
-      "finding": "Most patients on oral spironolactone improved on photos, and combinations with minoxidil did better, but study designs varied too much for a meta-analysis; about 3% stopped because of side effects.",
+      "finding": "Most patients on oral spironolactone improved on photos, but study designs varied too much for a meta-analysis; about 3% stopped because of side effects.",
       "source": 3
     },
     {

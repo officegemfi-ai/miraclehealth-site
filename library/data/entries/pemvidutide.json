@@ -4,13 +4,13 @@
   "summary": "An experimental drug that activates glucagon and GLP-1 receptors, tested for weight loss and now mainly for fatty-liver disease (MASH) and alcohol use disorder; not FDA-approved.",
   "what_it_is": "Pemvidutide is a lab-made drug that switches on glucagon and GLP-1 receptors in equal measure; its developer, Altimmune, calls it a balanced 1:1 dual agonist. Altimmune tested it for obesity, but its development now focuses on MASH (fatty-liver inflammation with scarring), alcohol use disorder and alcohol-associated liver disease. It is investigational and not approved.",
   "evidence": {
-    "grade": "moderate",
-    "why": "Company-reported phase 2 randomized trials: IMPACT (212 adults with MASH, liver biopsies at 24 weeks), MOMENTUM (391 adults with obesity, 48 weeks) and RECLAIM (about 100 adults with alcohol use disorder, 24 weeks); no phase 3 results yet."
+    "grade": "limited",
+    "why": "Company-reported phase 2 randomized trials: IMPACT (212 adults with MASH, liver biopsies at 24 weeks), MOMENTUM (391 adults with obesity, 48 weeks) and RECLAIM (about 100 adults with alcohol use disorder, 24 weeks); no phase 3 results yet. All results so far come from company announcements and filings."
   },
   "status_us": {
     "key": "investigational",
-    "label": "Investigational; phase 3 MASH trial planned",
-    "note": "Altimmune reports FDA Breakthrough Therapy designation for MASH (December 2025) and Fast Track designation for alcohol use disorder (August 2025), and planned to start a phase 3 MASH trial in the third quarter of 2026. It is not approved; FDA warns that GLP-1 drugs sold 'for research purposes' are illegally marketed, though its page does not name pemvidutide.",
+    "label": "Investigational; phase 3 start not confirmed",
+    "note": "Altimmune reports FDA Breakthrough Therapy designation for MASH (December 2025) and Fast Track designation for alcohol use disorder (August 2025), and planned to start a phase 3 MASH trial in the third quarter of 2026; that start was not confirmed in the sources checked. It is not approved; FDA warns that GLP-1 drugs sold 'for research purposes' are illegally marketed, though its page does not name pemvidutide.",
     "sources": [
       1,
       2,
@@ -34,21 +34,21 @@
   "benefits": [
     {
       "claim": "MASH cleared without worsening scarring in 52% to 58% versus 20% with placebo at 24 weeks in 212 adults with biopsy-confirmed MASH and moderate to advanced scarring; improvement in scarring itself was not statistically significant (33% to 36% versus 28%) (company-reported)",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         1
       ]
     },
     {
       "claim": "Average weight loss of 10.3% to 15.6% at 48 weeks versus 2.2% with placebo in 391 adults with obesity or overweight without diabetes (company-reported)",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         4
       ]
     },
     {
       "claim": "Fewer heavy drinking days per week than with placebo (a drop of 4.20 versus 2.75) over 24 weeks in about 100 adults with alcohol use disorder and excess weight, with 9.1% more weight loss than placebo (company-reported)",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         2
       ]
@@ -94,7 +94,7 @@
     }
   ],
   "avoid_if": [
-    "Anyone outside a clinical trial: it is not an approved medicine",
+    "Not for use outside a clinical trial: it is not an approved medicine, and \"research\" versions sold online are unapproved and unregulated",
     "Personal or family history of medullary thyroid cancer or MEN 2 (approved GLP-1 drugs carry this contraindication)",
     "Pregnant, breastfeeding or planning pregnancy"
   ],

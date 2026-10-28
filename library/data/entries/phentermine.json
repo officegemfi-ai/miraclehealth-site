@@ -38,14 +38,14 @@
       ]
     },
     {
-      "claim": "Among 13,972 adults in US health systems, those who took it continuously for more than a year lost 7.4% more of their body weight at 2 years than short-term users; this kind of study cannot prove cause, and weight came back after stopping",
+      "claim": "Off-label longer use (the label approves only short-term use, a few weeks): among 13,972 adults in US health systems, those who took it continuously for more than a year lost 7.4% more of their body weight at 2 years than short-term users; this kind of study cannot prove cause, and weight came back after stopping",
       "evidence": "limited",
       "sources": [
         2
       ]
     },
     {
-      "claim": "Slightly lower systolic blood pressure at 2 years in longer-term users in that study, which the authors linked to greater weight loss",
+      "claim": "Slightly lower systolic blood pressure at 2 years in longer-term (off-label) users in that study, which the authors linked to greater weight loss",
       "evidence": "limited",
       "sources": [
         2
@@ -54,7 +54,7 @@
   ],
   "risks": [
     {
-      "risk": "Heart and blood pressure: the label rules it out after heart disease and urges caution even with mild high blood pressure; one health-record study of longer use found no significant rise in heart attacks, strokes or deaths, but only 41 occurred, too few to rule out harm",
+      "risk": "Heart and blood pressure: raised blood pressure, palpitations, a fast heart rate and ischemic events such as heart attacks are listed side effects; the label rules it out in people with a history of heart disease and urges caution even with mild high blood pressure; one health-record study of longer use found no significant rise in heart attacks, strokes or deaths, but only 41 occurred, too few to rule out harm",
       "how_common": "unknown",
       "sources": [
         1,
@@ -62,8 +62,15 @@
       ]
     },
     {
-      "risk": "Primary pulmonary hypertension, a rare lung-artery disease, and heart valve disease; valve disease has been reported rarely with phentermine alone, and new, unexplained shortness of breath needs prompt medical review",
+      "risk": "Primary pulmonary hypertension, a rare and frequently fatal lung-artery disease, and heart valve disease; valve disease has been reported rarely with phentermine alone, and new, unexplained shortness of breath needs prompt medical review",
       "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Overstimulation, restlessness, insomnia, dizziness and tremor; psychosis has also been reported",
+      "how_common": "unknown",
       "sources": [
         1
       ]
@@ -91,15 +98,15 @@
     }
   ],
   "avoid_if": [
-    "History of heart disease, including coronary artery disease, stroke, irregular heart rhythm, heart failure or uncontrolled high blood pressure",
-    "Taking an MAO inhibitor now or within the past 14 days",
-    "Overactive thyroid, glaucoma, agitated states or a history of drug misuse",
-    "Pregnant or breastfeeding",
+    "History of heart disease, including coronary artery disease, stroke, irregular heart rhythm, heart failure or uncontrolled high blood pressure (contraindicated)",
+    "Taking an MAO inhibitor now or within the past 14 days (contraindicated)",
+    "Overactive thyroid, glaucoma, agitated states or a history of drug misuse (contraindicated)",
+    "Pregnant or breastfeeding (contraindicated)",
     "Athletes in tested sports (WADA bans phentermine in competition)"
   ],
   "interactions": [
     "MAO inhibitors: risk of a dangerous rise in blood pressure (hypertensive crisis); not to be used together or within 14 days",
-    "Other weight-loss drugs: combined use is not recommended",
+    "Other weight-loss drugs, and serotonergic drugs such as SSRI antidepressants: the label says combining them is not recommended",
     "Alcohol: may cause adverse reactions",
     "Insulin and other diabetes medicines: requirements may change, which the prescriber manages",
     "Adrenergic neuron-blocking blood pressure drugs: their effect may be reduced"
@@ -147,7 +154,7 @@
       "title": "Safety and Effectiveness of Longer-Term Phentermine Use: Clinical Outcomes from an Electronic Health Record Cohort",
       "publisher": "Obesity (copy hosted by the Chilean Society of Obesity)",
       "year": 2019,
-      "url": "https://sochob.cl/web1/wp-content/uploads/2020/01/Safety-and-Effectiveness-of-Longer‐Term-Phentermine-Use-Clinical-Outcomes-from-an-Electronic-Health-Record-Cohort.pdf"
+      "url": "https://sochob.cl/web1/wp-content/uploads/2020/01/Safety-and-Effectiveness-of-Longer%E2%80%90Term-Phentermine-Use-Clinical-Outcomes-from-an-Electronic-Health-Record-Cohort.pdf"
     },
     {
       "n": 3,

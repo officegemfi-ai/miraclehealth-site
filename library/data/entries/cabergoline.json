@@ -5,7 +5,7 @@
   "what_it_is": "Cabergoline is an ergot-derived dopamine agonist that binds strongly to D2 receptors and directly blocks prolactin release from the pituitary gland. Too much prolactin can cause breast milk discharge (galactorrhea) and stop periods; in trials, cabergoline restored periods and stopped discharge in most women. It stays in the body a long time, with an estimated half-life of 63 to 69 hours.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for hyperprolactinemia based on randomized trials, including one where 77% reached normal prolactin versus 59% with bromocriptine; a 2021 Cochrane review supports off-label use to prevent ovarian hyperstimulation."
+    "why": "FDA-approved for hyperprolactinemia based on randomized trials, including one where 77% reached normal prolactin versus 59% with bromocriptine; a 2021 Cochrane review found it probably lowers the risk of ovarian hyperstimulation in IVF (off-label)."
   },
   "status_us": {
     "key": "approved",
@@ -23,7 +23,7 @@
     "sleep": 0,
     "cognition": 0,
     "skin": 0,
-    "sexual": 0.25,
+    "sexual": 0,
     "longevity": 0,
     "gut": 0,
     "immune": 0,
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "Dopamine agonists, including cabergoline, probably cut moderate or severe ovarian hyperstimulation in women at high risk during IVF, from about 27% to 8% to 14% (22 trials, 3,171 women; off-label)",
+      "claim": "Dopamine agonists, including cabergoline, probably cut moderate or severe ovarian hyperstimulation in women at high risk during IVF, from about 27% to between 8% and 14% (22 trials, 3,171 women; off-label)",
       "evidence": "moderate",
       "sources": [
         2
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "risk": "Scarring (fibrosis) of the lungs and pleura, the lining around the heart, or the tissue behind the abdomen",
+      "risk": "Scarring (fibrosis) of the lungs, the lining of the lungs (pleura), the lining of the heart (pericardium) or the tissue behind the abdomen",
       "how_common": "unknown",
       "sources": [
         1
@@ -169,6 +169,6 @@
       "url": "https://ouci.dntb.gov.ua/works/40ON5R37"
     }
   ],
-  "notes_for_editor": "Label is the June 2026 generic cabergoline label (Greenstone, registrant Pfizer, reported to Viatris) as reprinted by Drugs.com; the Dostinex brand label was not checked. Off-label use by men on testosterone or anabolic steroids, and claims about libido, orgasm or recovery time, were not reviewed this round; no source supporting them was opened. Lowering high prolactin from any cause falls under the approved hyperprolactinemia indication. The Cochrane OHSS result pools cabergoline with bromocriptine and quinagolide. The valve meta-analysis was read as an abstract; it did not report absolute rates or a link to cumulative dose.",
+  "notes_for_editor": "Label is the June 2026 generic cabergoline label (Greenstone, registrant Pfizer, reported to Viatris) as reprinted by Drugs.com; the Dostinex brand label was not checked. Off-label use by men on testosterone or anabolic steroids, and claims about libido, orgasm or recovery time, were not reviewed this round; no source supporting them was opened. The approved indication is hyperprolactinemia that is idiopathic or due to a pituitary adenoma; high prolactin from other causes (such as medicines) is off-label. The Cochrane OHSS result pools cabergoline with bromocriptine and quinagolide. The valve meta-analysis was read as an abstract; it did not report absolute rates or a link to cumulative dose.",
   "checked": "2026-10-28"
 }

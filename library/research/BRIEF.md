@@ -95,6 +95,32 @@ an old prototype file (no longer kept)
 correct what's wrong, and cite. Its evidence grades and regulatory notes are especially likely to be
 out of date.
 
+## What reviewers keep catching (rounds 1–3)
+- **Null results:** a benefit line that found no effect starts with "No benefit shown:" (or "No clear
+  benefit shown:"), so a grade badge next to it isn't read as support.
+- **Lab markers aren't health effects:** say so when a "benefit" is only a blood level (e.g. NAD+).
+- **Off-label:** every off-label benefit says "(off-label)", including longer use than the label
+  allows. A comparison with an active drug that found no difference isn't a benefit.
+- **Company numbers:** say "company-reported", and when a weight-loss figure assumes everyone stayed on
+  treatment (the "efficacy estimand"), say "counted as if everyone stayed on treatment".
+- **Contraindications:** the avoid list's heading is "Who should avoid it or check with a clinician
+  first"; add "(contraindicated)" to lines the label rules out. For unapproved compounds, the first line
+  is "Not for use outside a clinical trial: …", never "Anyone outside a clinical trial".
+- **No false reassurance:** don't pair a safety signal with "most reports were IV" or "no severe side
+  effects so far" from a press release; say what hasn't been studied. Mention what the label says to do
+  (e.g. "stop it and get medical care right away") for sudden vision or hearing loss and similar.
+- **Boxed warnings in context:** say who the warning applies to and, where the label says so, that
+  benefits outweigh risks for people being treated (e.g. tamoxifen), plus "talk to your clinician before
+  stopping".
+- **Goals:** a score of 0.75 or more puts "Mostly used for …" in the page header and the goal filter, so
+  don't score a goal above 0.5 on the strength of one animal study, and don't score muscle or sexual goals
+  for drugs (aromatase inhibitors, cabergoline) unless the sheet supports that use.
+- **Brands:** never name supplement extract brands. The catalog's aliases are hidden on the page when
+  they're product brands, but don't add them to the text either.
+- **Questions for your clinician** never ask where to get it or "how could I know what's in a product".
+- **Interactions:** "None well documented" can't sit next to an avoid line about a drug class; reconcile
+  them.
+
 ## When you finish
 Validate with `python3 library/research/validate.py` (structure, source numbers, no doses), then run
 `node scripts/build_library.mjs` and commit.

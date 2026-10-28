@@ -1,7 +1,7 @@
 {
   "id": "raloxifene",
   "name": "Raloxifene",
-  "summary": "A prescription SERM pill that protects bone and lowers breast cancer risk in women after menopause; its label says it is not recommended for men.",
+  "summary": "A prescription SERM pill that lowers the risk of spine fractures and of breast cancer in women after menopause; its label says it is not recommended for men.",
   "what_it_is": "Raloxifene is a selective estrogen receptor modulator (SERM) taken as a tablet. In postmenopausal women it reduces spine fractures and the risk of invasive breast cancer, but it raises the risk of blood clots and, in women with heart disease or high heart risk, of death from stroke. It has not been adequately studied in men, and small trials in older men found mixed effects on testosterone.",
   "evidence": {
     "grade": "strong",
@@ -159,7 +159,8 @@
       "n": 4,
       "title": "Effects of raloxifene on gonadotrophins, sex hormones, bone turnover and lipids in healthy elderly men",
       "publisher": "European Journal of Endocrinology (record at data.zhenzhi.com)",
-      "url": "https://data.zhenzhi.com/details/1/895576502"
+      "url": "https://data.zhenzhi.com/details/1/895576502",
+      "year": 2004
     }
   ],
   "notes_for_editor": "Label is the March 2023 Evista label as reprinted by Drugs.com. Male data are two small trials read as abstracts: Doran et al. 2001 (50 men, 6 months, randomized and placebo-controlled: no changes in bone markers, sex steroids or lipids) and Duschek, Gooren and Netelenbos in the European Journal of Endocrinology (30 men, 3 months, randomized and placebo-controlled: LH, FSH, testosterone, estradiol and PSA rose, total cholesterol fell slightly; the authors saw no clear overall benefit). The Duschek publication year was not shown on the page opened (its DOI, 10.1530/eje.0.1500539, points to volume 150), so no year is given. Use for male gynecomastia was not reviewed; the 2019 EAA guideline says SERMs are not justified for gynecomastia in general. Bone density testing in labs reflects its use for osteoporosis rather than a specific label instruction.",

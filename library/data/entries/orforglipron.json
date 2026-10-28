@@ -48,7 +48,7 @@
       ]
     },
     {
-      "claim": "Lower A1C in adults with type 2 diabetes: up to 2.2 points versus 1.4 with oral semaglutide over 52 weeks, and up to 1.7 versus 0.8 with dapagliflozin over 40 weeks (company-reported; not yet an approved use)",
+      "claim": "Lower A1C in adults with type 2 diabetes: up to 2.2 points versus 1.4 with oral semaglutide over 52 weeks, and up to 1.7 versus 0.8 with dapagliflozin over 40 weeks (company-reported; not an approved use)",
       "evidence": "moderate",
       "sources": [
         4
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "risk": "Boxed warning: thyroid C-cell tumors seen in rodents with GLP-1 drugs; orforglipron is not active in rats or mice and caused no tumors there, so its human relevance is undetermined",
+      "risk": "Boxed warning: thyroid C-cell tumors seen in rodents with GLP-1 drugs that act in rodents; orforglipron does not act in rats or mice, so rodent studies could not show this risk, and whether it applies to people has not been determined",
       "how_common": "theoretical",
       "sources": [
         2

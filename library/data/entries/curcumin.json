@@ -2,7 +2,7 @@
   "id": "curcumin",
   "name": "Curcumin",
   "summary": "The main yellow compound in turmeric, taken mostly for joint pain and inflammation; evidence is preliminary, and turmeric supplements have been linked to rare liver injury.",
-  "what_it_is": "Turmeric (Curcuma longa) is a plant in the ginger family grown mainly in India and Southeast Asia; its underground stem (rhizome) is used in cooking and was used in traditional medicine for indigestion, colds, skin infections, arthritis and liver disease. Curcumin, which gives turmeric its yellow color, belongs to a group of compounds called curcuminoids that are thought to account for its effects. Products vary in how much curcumin they contain, and many add piperine from black pepper, one way to increase how much curcumin the body absorbs.",
+  "what_it_is": "Turmeric (Curcuma longa) is a plant in the ginger family grown mainly in India and Southeast Asia; its underground stem (rhizome) is used in cooking and was used in traditional medicine for indigestion, colds, skin infections, arthritis and liver disease. Curcumin, which gives turmeric its yellow color, belongs to a group of compounds called curcuminoids that are thought to account for its effects. Products vary in how much curcumin they contain, and many add piperine from black pepper, which raises how much curcumin the body absorbs; piperine was in 3 of 7 products tested in US liver-injury cases.",
   "evidence": {
     "grade": "limited",
     "why": "Several meta-analyses of small trials suggest less knee osteoarthritis pain, but NIH says higher-quality studies are needed and there isn't enough evidence to confirm any health benefit."
@@ -70,17 +70,26 @@
       ]
     },
     {
-      "risk": "Turmeric supplements may be unsafe in pregnancy; little is known about safety while breastfeeding",
+      "risk": "Turmeric supplements may be unsafe in pregnancy, and a professional monograph advises avoiding them while pregnant or breastfeeding",
       "how_common": "unknown",
       "sources": [
-        1
+        1,
+        4
       ]
     },
     {
-      "risk": "Long-term safety is unknown; NIH considers recommended amounts likely safe for up to 2 or 3 months",
+      "risk": "Long-term safety is unknown; it is usually well tolerated in short studies, but the rare liver injuries typically began 1 to 4 months after starting",
       "how_common": "unknown",
       "sources": [
-        1
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Bleeding: it may add to the effect of blood thinners, antiplatelet drugs and NSAIDs, and one case report described a sudden rise in INR on warfarin",
+      "how_common": "unknown",
+      "sources": [
+        4
       ]
     },
     {
@@ -93,11 +102,14 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding",
+    "Gallstones or a blocked bile duct",
     "Liver disease or past liver injury from a supplement (clinician first)",
-    "Taking prescription medicines (clinician first)"
+    "Bleeding disorder, upcoming surgery, or taking a blood thinner (clinician first)",
+    "Taking other prescription medicines (clinician first)"
   ],
   "interactions": [
-    "Medicines in general: NIH advises checking with a health care provider before combining herbal products with medicines, since some interact in harmful ways; its turmeric page names no specific drugs",
+    "Blood thinners, antiplatelet drugs and NSAIDs (such as warfarin, apixaban, aspirin or ibuprofen): possible added bleeding risk",
+    "Medicines cleared by the liver enzymes CYP3A or CYP2D6 (such as tacrolimus): turmeric may raise their levels; a case report linked it to high tacrolimus levels",
     "Piperine (black pepper extract): often added to raise curcumin absorption; it was in 3 of 7 products tested in US liver-injury cases, and researchers suggest the combination may help explain rising cases"
   ],
   "labs": {
@@ -149,8 +161,15 @@
       "publisher": "The American Journal of Medicine (IU Indianapolis ScholarWorks)",
       "year": 2023,
       "url": "https://scholarworks.indianapolis.iu.edu/items/4caeb25f-beb5-43e6-9c89-30931674fa03"
+    },
+    {
+      "n": 4,
+      "title": "Turmeric (professional monograph)",
+      "publisher": "Drugs.com (last updated Nov 11, 2025)",
+      "year": 2025,
+      "url": "https://www.drugs.com/npp/turmeric.html"
     }
   ],
-  "notes_for_editor": "NIH's turmeric page (April 2025) says there isn't enough evidence to confirm any benefit. The osteoarthritis and exercise-soreness review details come through NIH's 2022 clinical digest, not the papers themselves. LiverTox's turmeric chapter, a USP review of turmeric-related liver injury and a 2022 knee osteoarthritis meta-analysis on PMC could not be opened (bot checks). The DILIN series is small and from one registry; HLA-B*35:01 testing is not routine. No source opened named specific drug interactions (for example, with blood thinners), so only NIH's general caution is listed. Brand-name formulations in the catalog aliases are not mentioned. The gut goal is used for inflammation.",
+  "notes_for_editor": "NIH's turmeric page (April 2025) says there isn't enough evidence to confirm any benefit. The osteoarthritis and exercise-soreness review details come through NIH's 2022 clinical digest, not the papers themselves. LiverTox's turmeric chapter, a USP review of turmeric-related liver injury and a 2022 knee osteoarthritis meta-analysis on PMC could not be opened (bot checks). The DILIN series is small and from one registry; HLA-B*35:01 testing is not routine. Interactions, the gallstone contraindication and the pregnancy advice were added in review from the Drugs.com professional monograph (Nov 2025); the warfarin INR rise is a single case report. Brand-name formulations in the catalog aliases are not mentioned. The gut goal is used for inflammation.",
   "checked": "2026-10-28"
 }

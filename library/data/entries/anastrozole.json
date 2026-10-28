@@ -17,7 +17,7 @@
   },
   "goals": {
     "weight": 0,
-    "muscle": 0.25,
+    "muscle": 0,
     "recovery": 0,
     "energy": 0,
     "sleep": 0,

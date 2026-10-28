@@ -32,7 +32,7 @@
   },
   "benefits": [
     {
-      "claim": "Reliably raises NAD+ and related molecules in whole blood in human trials; there is no sign it raises NAD+ in muscle",
+      "claim": "Reliably raises NAD+ and related molecules in whole blood in human trials (a lab marker, not a health effect); NAD+ itself has generally not risen in muscle",
       "evidence": "moderate",
       "sources": [
         3,
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "claim": "No meaningful improvement in insulin sensitivity in several placebo-controlled trials, including detailed clamp studies, and generally no gains in muscle function, exercise performance or body composition",
+      "claim": "No benefit shown for insulin sensitivity in several placebo-controlled trials, including detailed clamp studies, and generally none for muscle function, exercise performance or body composition",
       "evidence": "limited",
       "sources": [
         3

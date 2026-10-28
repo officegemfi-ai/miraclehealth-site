@@ -2,7 +2,7 @@
   "id": "tretinoin",
   "name": "Tretinoin",
   "summary": "A prescription skin medicine for acne; one cream version is also approved to soften fine wrinkles, blotchy pigment and roughness of facial skin.",
-  "what_it_is": "Tretinoin, also called retinoic acid, is a prescription skin medicine sold as creams, gels and a liquid under names such as Retin-A. It is approved to treat acne, and a cream version (Renova) was approved to lessen fine wrinkles, blotchy pigment and roughness of facial skin in people who also follow a skin-care and sun-avoidance program. Taken by mouth, tretinoin causes birth defects in animals, so pregnancy is a key concern even with skin use.",
+  "what_it_is": "Tretinoin, also called retinoic acid, is a prescription skin medicine sold as creams, gels and a liquid under names such as Retin-A. It is approved to treat acne, and a cream version (Renova) was approved to lessen fine wrinkles, blotchy pigment and roughness of facial skin in people who also follow a skin-care and sun-avoidance program. Given by mouth in animal studies, tretinoin caused fetal malformations and death, so pregnancy is a key concern even with skin use.",
   "evidence": {
     "grade": "strong",
     "why": "It is FDA-approved for acne, and a cream version was approved for fine wrinkles and sun-related skin changes based on two 24-week trials in 315 people under 50; the wrinkle benefits were modest."
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "claim": "Modest improvement in fine wrinkles (24% versus 8% with a plain cream), blotchy pigment (38% versus 27%) and roughness (16% versus 10%) after 24 weeks in two trials of 315 people under 50 who also used sun protection (approved use); most of the effect fades after stopping",
+      "claim": "Modest improvement in fine wrinkles (24% versus 8% with a plain cream), blotchy pigment (38% versus 27%) and roughness (16% versus 10%) after 24 weeks in two trials of 315 people under 50 who also used sun protection (an approved use for the Renova cream only; other tretinoin products are not approved for wrinkles); most of the effect fades after stopping",
       "evidence": "strong",
       "sources": [
         2
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "risk": "Pregnancy concerns: tretinoin taken by mouth causes malformations in animals, and skin application caused malformations in some rabbit studies; human studies have not shown a link with major birth defects, but the Renova label says not to use it in pregnancy",
+      "risk": "Pregnancy concerns: tretinoin given by mouth caused malformations in animals, and skin application caused malformations in some rabbit studies; published studies of skin use in pregnancy have not found a link with major birth defects or miscarriage, but they have limitations and cannot rule out a risk, and the Renova label says not to use it in pregnancy",
       "how_common": "unknown",
       "sources": [
         1,

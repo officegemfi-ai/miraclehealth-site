@@ -18,7 +18,7 @@
   },
   "goals": {
     "weight": 0,
-    "muscle": 0.25,
+    "muscle": 0,
     "recovery": 0,
     "energy": 0,
     "sleep": 0,
@@ -151,7 +151,7 @@
   "ask_your_clinician": [
     "Do I need a bone density scan and cholesterol test before starting, and how will we follow them?",
     "For fertility treatment: what are the trade-offs of letrozole versus clomiphene for me?",
-    "For men: do my estradiol and testosterone levels justify treatment, and what are the risks of lowering estrogen?"
+    "For men: is there a medical reason to lower my estrogen, and what are the risks of doing so?"
   ],
   "sources": [
     {

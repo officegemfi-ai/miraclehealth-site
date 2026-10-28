@@ -54,7 +54,7 @@
       ]
     },
     {
-      "claim": "Lower blood sugar in adults and children 10 and older with type 2 diabetes: A1C about 0.4 to 0.9 points lower than with placebo, with about 2% to 3% more weight loss",
+      "claim": "Lower blood sugar in adults and children 10 and older with type 2 diabetes: A1C about 0.4 to 0.9 points lower than with placebo, with about 2% to 3% more weight loss (not approved for weight loss)",
       "evidence": "strong",
       "sources": [
         1
@@ -84,7 +84,7 @@
       ]
     },
     {
-      "risk": "Dehydration and low blood pressure (0.3% to 0.5% versus 0.3% on placebo in pooled trials), more likely in older adults, people with kidney impairment or those taking loop diuretics",
+      "risk": "Dehydration and low blood pressure (0.3% to 0.5% versus 0.3% on placebo in pooled trials), more likely in older adults, people with kidney impairment or those taking loop diuretics; acute kidney injury, some cases needing hospital care or dialysis, has been reported after marketing",
       "how_common": "rare",
       "sources": [
         1

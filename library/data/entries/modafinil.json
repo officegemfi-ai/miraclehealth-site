@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "In a separate set of meta-analyses of 14 studies in healthy rested adults, the only clear gain was in memory updating, and the authors said the evidence does not support users' belief that it is an effective cognitive enhancer",
+      "claim": "A separate set of meta-analyses of 14 studies in healthy rested adults, using different methods, found a clear gain only in memory updating (a working-memory task), and the authors said the evidence does not support users' belief that it is an effective cognitive enhancer",
       "evidence": "moderate",
       "sources": [
         3
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "risk": "Heart concerns: not recommended for people with a history of left ventricular hypertrophy (thickened heart muscle)",
+      "risk": "Heart concerns: not recommended for people with a history of left ventricular hypertrophy (thickened heart muscle) or with mitral valve prolapse that caused symptoms on stimulants; the label says closer monitoring of heart rate and blood pressure may be appropriate",
       "how_common": "unknown",
       "sources": [
         1
@@ -113,7 +113,7 @@
   "labs": {
     "before": [],
     "during": [],
-    "why": "The sources reviewed set no routine blood tests for modafinil; the label's cautions concern rash, heart and mental-health history, and pregnancy and birth control."
+    "why": "No routine blood tests are required; the label says closer monitoring of heart rate and blood pressure may be appropriate, and its other cautions concern rash, heart and mental-health history, and pregnancy and birth control."
   },
   "studies": [
     {

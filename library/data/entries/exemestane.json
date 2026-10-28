@@ -1,11 +1,11 @@
 {
   "id": "exemestane",
   "name": "Exemestane",
-  "summary": "A prescription pill that permanently disables aromatase, the enzyme that makes estrogen, approved for hormone-sensitive breast cancer after menopause; studies in men are few and brief.",
+  "summary": "A prescription pill that irreversibly blocks aromatase, the enzyme that makes estrogen, approved for hormone-sensitive breast cancer after menopause; studies in men are few and brief.",
   "what_it_is": "Exemestane is a steroidal aromatase inactivator: it acts as a false substrate, and its metabolite binds the enzyme's active site and inactivates it irreversibly. It lowers circulating estrogens by 85% to 95% at peak effect and cuts the body's estrogen production by 98%, without affecting cortisol or aldosterone. In a small 10-day study of young men, it raised testosterone while lowering estradiol.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for breast cancer after menopause, and a trial in 4,560 women showed it prevents breast cancer (off-label); in men, the main data come from a 10-day study of 12 young men."
+    "why": "FDA-approved for breast cancer after menopause, and a trial in 4,560 women found it lowered breast cancer risk over about 3 years (off-label); in men, the main data come from a 10-day study of 12 young men."
   },
   "status_us": {
     "key": "approved",
@@ -18,7 +18,7 @@
   },
   "goals": {
     "weight": 0,
-    "muscle": 0.25,
+    "muscle": 0,
     "recovery": 0,
     "energy": 0,
     "sleep": 0,
@@ -55,10 +55,11 @@
   ],
   "risks": [
     {
-      "risk": "Hot flashes (21%), fatigue (16%), joint pain (15%), headache (13%), insomnia (12%) and sweating (12%) in women with early breast cancer",
+      "risk": "Hot flashes (21%), fatigue (16%), joint pain (15%), headache (13%), insomnia (12%) and sweating (12%) in women with early breast cancer; in the prevention trial, more hot flashes (40% versus 32%) and joint pain, and worse menopause-related quality of life",
       "how_common": "common",
       "sources": [
-        1
+        1,
+        3
       ]
     },
     {
@@ -83,17 +84,17 @@
       ]
     },
     {
-      "risk": "In the prevention trial, more hot flashes (40% versus 32%) and joint pain, and worse menopause-related quality of life, mainly vasomotor and sexual symptoms",
-      "how_common": "common",
-      "sources": [
-        3
-      ]
-    },
-    {
       "risk": "Harm to a fetus; it is not meant for premenopausal women",
       "how_common": "unknown",
       "sources": [
         1
+      ]
+    },
+    {
+      "risk": "In men, long-term effects on bone, cholesterol and sexual function have not been studied; the main data come from a 10-day study of 12 young men",
+      "how_common": "unknown",
+      "sources": [
+        4
       ]
     }
   ],
@@ -105,7 +106,7 @@
     "Past allergic reaction to exemestane"
   ],
   "interactions": [
-    "Strong CYP3A4 inducers (rifampicin, phenytoin, carbamazepine, phenobarbital, St. John's wort): lower exemestane levels",
+    "Strong CYP3A4 inducers (rifampin, phenytoin, carbamazepine, phenobarbital, St. John's wort): lower exemestane levels",
     "Estrogen-containing products: should not be taken with it, as they may interfere with its action"
   ],
   "labs": {

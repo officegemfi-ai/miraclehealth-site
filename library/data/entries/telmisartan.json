@@ -1,8 +1,8 @@
 {
   "id": "telmisartan",
   "name": "Telmisartan",
-  "summary": "A prescription blood pressure and heart-protection drug; it also partly activates a metabolic switch (PPAR-gamma), but benefits for healthy aging are unproven.",
-  "what_it_is": "Telmisartan, sold as Micardis, is an angiotensin II receptor blocker (ARB). It works by stopping the hormone angiotensin II from binding to its AT1 receptor in blood vessel walls and the adrenal gland. It is approved for high blood pressure and to lower the risk of heart attack, stroke and heart-related death in people 55 and older at high risk who cannot take ACE inhibitors. It also partly activates PPAR-gamma, a receptor involved in metabolism.",
+  "summary": "A prescription blood pressure and heart-protection drug; in lab studies it also partly activates a metabolic switch (PPAR-gamma), but benefits for healthy aging are unproven.",
+  "what_it_is": "Telmisartan, sold as Micardis, is an angiotensin II receptor blocker (ARB). It works by stopping the hormone angiotensin II from binding to its AT1 receptor in blood vessel walls and the adrenal gland. It is approved for high blood pressure and to lower the risk of heart attack, stroke and heart-related death in people 55 and older at high risk who cannot take ACE inhibitors. In lab studies, it also partly activates PPAR-gamma, a receptor involved in metabolism.",
   "evidence": {
     "grade": "limited",
     "why": "Large trials support its approved blood pressure and heart uses, but its use for healthy aging rests on metabolic findings, such as a meta-analysis of 15 small trials showing less belly fat in people with high blood pressure and metabolic problems, not on aging outcomes."
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "In 5,926 high-risk patients unable to take ACE inhibitors, it did not significantly reduce the main combined outcome versus placebo (15.7% versus 17.0%), though heart-related death, heart attack or stroke was slightly lower (13.0% versus 14.8%)",
+      "claim": "No benefit shown on the main outcome: in 5,926 high-risk patients unable to take ACE inhibitors, it did not significantly reduce the main combined outcome versus placebo (15.7% versus 17.0%), though heart-related death, heart attack or stroke was slightly lower (13.0% versus 14.8%)",
       "evidence": "strong",
       "sources": [
         1

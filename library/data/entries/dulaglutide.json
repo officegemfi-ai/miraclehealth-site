@@ -10,7 +10,7 @@
   "status_us": {
     "key": "approved",
     "label": "FDA-approved for type 2 diabetes and heart-risk reduction",
-    "note": "Approved as Trulicity to improve blood sugar control in adults and children 10 and older with type 2 diabetes, and to lower the risk of heart attack, stroke and cardiovascular death in adults with type 2 diabetes and heart disease or several heart risk factors. FDA updated the label in May 2025 and March 2026 with stronger pancreatitis wording (including fatal forms seen with GLP-1 drugs), an acute kidney injury warning, a severe digestive reactions warning, and postmarketing reports of bowel blockage.",
+    "note": "Approved as Trulicity to improve blood sugar control in adults and children 10 and older with type 2 diabetes, and to lower the risk of heart attack, stroke and cardiovascular death in adults with type 2 diabetes and heart disease or several heart risk factors. FDA updated the label in May 2025 and March 2026 with stronger pancreatitis wording (including fatal forms seen with GLP-1 drugs), revised acute kidney injury wording, a severe digestive reactions warning, and postmarketing reports of bowel blockage.",
     "sources": [
       1,
       2
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "risk": "Acute kidney injury, sometimes needing dialysis, mostly after dehydration from vomiting or diarrhea (reported after marketing)",
+      "risk": "Acute kidney injury, sometimes needing dialysis, mostly after dehydration from vomiting or diarrhea (reported after marketing); breathing stomach contents into the lungs under general anesthesia or deep sedation has also been reported rarely, so the label asks people to tell their care team before any planned procedure",
       "how_common": "rare",
       "sources": [
         1,
@@ -94,11 +94,10 @@
       ]
     },
     {
-      "risk": "Breathing stomach contents into the lungs under general anesthesia or deep sedation: rare reports; the label asks people to tell their care team before any planned procedure",
-      "how_common": "rare",
+      "risk": "Gallbladder disease, such as gallstones or inflammation, and worsening diabetic eye disease in people with a history of diabetic retinopathy (both label warnings)",
+      "how_common": "unknown",
       "sources": [
-        1,
-        2
+        1
       ]
     },
     {
@@ -110,10 +109,10 @@
     }
   ],
   "avoid_if": [
-    "Personal or family history of medullary thyroid cancer or MEN 2",
-    "Past serious allergic reaction to dulaglutide",
+    "Personal or family history of medullary thyroid cancer or MEN 2, or a past serious allergic reaction to dulaglutide (contraindicated)",
     "Severe digestive disease, including severe gastroparesis (not recommended)",
     "History of pancreatitis (not studied in this group)",
+    "History of diabetic retinopathy (needs closer eye monitoring)",
     "Pregnancy or planning pregnancy (animal studies showed harm; the label says to use it only if the benefit justifies the risk)"
   ],
   "interactions": [
@@ -171,7 +170,7 @@
       "title": "Drug Safety-related Labeling Changes (SrLC): Trulicity",
       "publisher": "FDA",
       "year": 2026,
-      "url": "https://www.accessdata.fda.gov/scripts/cder/safetylabelingchanges/index.cfm?event=searchdetail.page&amp=&DrugNameID=816"
+      "url": "https://www.accessdata.fda.gov/scripts/cder/safetylabelingchanges/index.cfm?event=searchdetail.page&DrugNameID=816"
     },
     {
       "n": 3,

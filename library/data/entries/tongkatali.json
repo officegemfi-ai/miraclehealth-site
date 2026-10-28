@@ -10,7 +10,7 @@
   "status_us": {
     "key": "supplement",
     "label": "Dietary supplement",
-    "note": "Sold as a dietary supplement. A professional drug-information monograph notes that FDA does not consider Eurycoma longifolia generally recognized as safe (GRAS).",
+    "note": "Sold as a dietary supplement. A professional monograph notes that FDA has not reviewed it for safety or effectiveness and does not consider it generally recognized as safe (GRAS), a status for food ingredients that supplements are not required to have.",
     "sources": [
       1
     ]
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "claim": "No clear improvement in erectile function versus placebo in 2 randomized trials (139 men) at high risk of bias; an older review counted benefit in 7 of 11 small studies of male sexual health",
+      "claim": "No clear benefit shown for erectile function versus placebo in 2 randomized trials (139 men) at high risk of bias; an older review counted benefit in 7 of 11 small studies of male sexual health",
       "evidence": "limited",
       "sources": [
         1,
@@ -83,6 +83,13 @@
       "sources": [
         1
       ]
+    },
+    {
+      "risk": "Hidden drugs: FDA says supplements found to contain hidden prescription drugs, controlled substances or untested drug ingredients are typically promoted for sexual enhancement, weight loss, bodybuilding or diabetes",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
     }
   ],
   "avoid_if": [
@@ -111,7 +118,7 @@
       "source": 2
     },
     {
-      "title": "Eurycoma Longifolia as a potential adoptogen of male sexual health: a systematic review on clinical studies",
+      "title": "Eurycoma Longifolia as a potential adoptogen [sic] of male sexual health: a systematic review on clinical studies",
       "year": 2017,
       "type": "Systematic review",
       "people": "11 human studies of male sexual health published from 2000 to 2014",
@@ -141,10 +148,17 @@
     },
     {
       "n": 3,
-      "title": "Eurycoma Longifolia as a potential adoptogen of male sexual health: a systematic review on clinical studies",
+      "title": "Eurycoma Longifolia as a potential adoptogen [sic] of male sexual health: a systematic review on clinical studies",
       "publisher": "Chinese Journal of Natural Medicines (WHO Global Index Medicus record)",
       "year": 2017,
       "url": "https://search.bvsalud.org/gim/resource/en/wpr-812546"
+    },
+    {
+      "n": 4,
+      "title": "Tainted Dietary Supplements and Foods: Responsibilities of Retailers and Distributors",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2010,
+      "url": "https://www.fda.gov/files/drugs/published/Tainted-Dietary-Supplements-and-Foods--Responsibilities-of-Retailers-and-Distributors.pdf"
     }
   ],
   "notes_for_editor": "Evidence rests on a few small trials, several sharing authors and most using one commercial extract (not named here); trial funding was not shown in the text read. The meta-analysis places one trial described as healthy volunteers in its low-testosterone subgroup, and very high heterogeneity makes the pooled estimate unstable. Safety, the propranolol interaction, lead contamination and the liver-injury signal come from a Drugs.com professional monograph (updated July 2026) rather than primary studies; no NIH or LiverTox page on tongkat ali was opened. The 2017 review was read only as an abstract, and its authors' conclusion of convincing evidence is stronger than its mixed results. The branded extract in the catalog aliases is not mentioned.",

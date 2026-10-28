@@ -1,6 +1,6 @@
 # Library research: notes for the next rounds
 
-Written after round 1 (Oct 28, 2026). Round 1 produced 34 fact sheets; the shared web-search
+Started after round 1 (Oct 28, 2026); updated after round 3. Round 1 produced 34 fact sheets; the shared web-search
 budget (200 searches per turn, all agents together) ran out. Give each agent this file with
 BRIEF.md.
 
@@ -94,10 +94,18 @@ BRIEF.md.
 - CJC-1295 / ipamorelin / AOD-9604: an FDA-law blog mentions a lawsuit; no outcome reported.
 
 ## Where to pick up
-Every id in `batches/*.txt` without a file in `../data/entries/` is still to do (266 after round 1,
-including 8 of the 9 blends, which are composed from their parts' sheets). Write entries to
+Every id in `batches/*.txt` without a file in `../data/entries/` is still to do: 178 after round 3
+(169 to research; the 9 blends are composed from their parts' sheets). Write entries to
 `library/data/entries/<id>.json`, run `python3 library/research/validate.py`, then
-`node scripts/build_library.mjs`, and commit.
+`node scripts/build_library.mjs`, and commit. Work on a branch until the two desk reviews are done and
+fixed; the site deploys from main.
+
+Suggested round 4 (about 44): the hormones (abaloparatide, calcitonin, ndt, estriol, hydrocortisone,
+insulin, levothyroxine, liothyronine, mecasermin, teriparatide), the remaining medications (amino1mq,
+acarbose, phenylpiracetam, piracetam, tesofensine), and the peptides (ace031, ahkcu, ara290,
+argireline, cartalax, chonluten, cortagen, cortexin, foxo4dri, larazotide, livagen, matrixyl, naselank,
+nasemax, p21, pinealon, teduglutide, thymalin, thymogen, thymulin, vip, vesugen, vilon), plus a few
+popular supplements. Rounds 5 to 7: the remaining supplements (ODS fact sheets cover 3–4 per search).
 
 ## Entries written in round 1 (34)
 bpc157 bronchogen cjc1295 crystagen dsip epithalon estradiol follistatin ghrp2 ghrp6 hexarelin
@@ -115,6 +123,13 @@ triptorelin
   or reviews; primary papers still to add.
 - ovagen: identity rests on one peptide catalog; bronchogen: sources disagree on amino-acid order.
 - mgf vs pegmgf: make sure the two agree.
+- tb4: SEER-2 (RGN-259 eye drops) results were due in November 2026; update the sheet when out.
+- Decisions to watch: CagriSema (filed Dec 2025), orforglipron for type 2 diabetes, pemvidutide's
+  phase 3 start, survodutide's filing; pramlintide's US discontinuation rests on one drug reference;
+  exenatide's generic availability is unconfirmed.
+- tb4 has 10 sources, so its compounding status (not nominated on FDA's 503A list) isn't on the page;
+  add it if a source can be retired.
+- finasteride: blood-donation deferral (in dutasteride's label) wasn't checked for finasteride.
 
 ## Round 2 additions (Oct 28, 2026)
 - SS-31 (elamipretide): FDA accelerated approval as Forzinity for Barth syndrome (patients of at
@@ -196,3 +211,147 @@ triptorelin
   generic clomiphene label (Aug 2025) https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/72719958-7454-4c54-9bb4-f3054d0c5d82/spl-doc
 - Drugs.com /pro/ pages give current label text with revision dates when FDA's own copy is old.
   FDALabel pages cut off around 100k characters (often before clinical studies).
+
+## Round 3 additions (Oct 28, 2026)
+
+### Access
+- URLs already listed in NEXT_ROUND.md or in existing entry files fetch directly without a search.
+- `www.pubmed.gov/<id>/` links from search results opened while pubmed.ncbi and PMC showed bot
+  checks; `www.ncbi.nlm.nih.gov/pmc/` links redirect to a blocked address.
+- ecfr.gov fails; law.cornell.edu works for the CFR. cochranelibrary.com failed; cochrane.org
+  summaries opened.
+- Drugs.com `/npp/` monographs cover herbs with no NIH page. One drugs.com-restricted search
+  naming 4–5 brands returns several `/pro/` label pages.
+
+### Supplements
+- NMN: FDA's Sept 2025 reversal is cited in nad.json; follow-up letters Dec 2, 2025 (trade news):
+  https://www.nutraingredients.com/Article/2025/12/09/fda-reinstates-ndi-status-of-nmn-with-new-letters-to-ingredient-players ;
+  NMN meta-analysis (open PDF): https://ira.lib.polyu.edu.hk/bitstream/10397/110061/1/s11892-024-01557-z.pdf
+- NAC: FDA guidance (Aug 2022) https://www.fda.gov/media/157784/download ; final guidance (Nov 2023)
+  https://www.fda.gov/food/hfp-constituent-updates/fda-releases-final-guidance-enforcement-discretion-certain-nac-products ;
+  Acetadote label (July 2025) https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/021539s021lbl.pdf .
+  FDA's 2023 safety review: findings not found.
+- NR GRAS letter (foods, not supplements): https://www.fda.gov/food/gras-notice-inventory/agency-response-letter-gras-notice-no-grn-000635
+- NCCIH turmeric https://www.nccih.nih.gov/health/turmeric ; rhodiola https://www.nccih.nih.gov/health/rhodiola ;
+  musculoskeletal pain digest https://www.nccih.nih.gov/health/providers/digest/nutritional-approaches-for-musculoskeletal-pain-and-inflammation-science
+- Turmeric liver-injury case series (US DILIN): https://scholarworks.indianapolis.iu.edu/items/4caeb25f-beb5-43e6-9c89-30931674fa03
+- Glycine food rule: https://www.law.cornell.edu/cfr/text/21/170.50
+- NIH taurine release (2025): https://www.nih.gov/news-events/news-releases/nih-researchers-conclude-taurine-unlikely-be-good-aging-biomarker
+
+### Hormone and men's-health drugs
+- Enclomiphene: PCAC June 8, 2022 voted 4 yes, 8 no on compounding https://www.fda.gov/media/161293/download ;
+  transcript with FDA's 2015 complete response https://www.fda.gov/media/161294/download ; still
+  Category 1 on the May 14, 2026 list; EMA refused EnCyzix (2018) https://www.ema.europa.eu/en/medicines/human/EPAR/encyzix
+- Menopur, Gonal-f, Follistim AQ, Bravelle, Novarel and Pregnyl became biologics on March 23, 2020:
+  https://fda.gov/media/119229/download
+- WADA 2026: S4.1 names anastrozole, letrozole, exemestane; S4.2 names clomifene, raloxifene,
+  tamoxifen ("including, but not limited to"); hCG and LH banned in males; FSH, hMG, finasteride,
+  dutasteride, cabergoline and PDE5 inhibitors not named.
+- FDA alert on compounded topical finasteride (Apr 22, 2025):
+  https://www.fda.gov/drugs/human-drug-compounding/fda-alerts-health-care-providers-compounders-and-consumers-potential-risks-associated-compounded
+- EMA on suicidal thoughts with finasteride and dutasteride (May 8, 2025):
+  https://www.ema.europa.eu/en/news/measures-minimise-risk-suicidal-thoughts-finasteride-dutasteride-medicines
+- Guidelines: AUA ED (2018) https://www.auanet.org/documents/Guidelines/PDF/ED-JU.pdf ; AUA BPH (2021)
+  https://www.auanet.org/documents/guidelines/pdf/bph%20surgical-mgmt.pdf ; EAA gynecomastia (2019)
+  https://www.pubmed.gov/31099174/ ; Handbook of Andrology chapter
+  https://andrologysociety.org/wp-content/uploads/2023/04/Chapter-34-Bieniek-and-Lo.pdf
+- MAP.3 exemestane trial PDF opens at cinj.org.
+
+### Off-label drugs and research compounds
+- WADA 2026 (https://www.wada-ama.org/en/prohibited-list): "Thymosin-β4 and its derivatives e.g.
+  TB-500" under S2.3; modafinil, adrafinil and phentermine S6.A (in competition only);
+  spironolactone S5 (at all times); S4.4.1 names BAM15, AICAR, MOTS-c, GW1516, SR9009, SR9011.
+  Not named: armodafinil, methylene blue, telmisartan, naltrexone, minoxidil, SLU-PP-332.
+- RGN-259 (thymosin beta-4 eye drops): SEER-3 missed its primary endpoint (July 1, 2025)
+  https://www.ophthalmologytimes.com/view/hlb-therapeutics-misses-primary-endpoint-in-phase-3-seer-3-trial-of-rgn-259?b=ot ;
+  SEER-2 last visit Aug 26, 2026, results expected November 2026 (re-check), orphan designation
+  https://en.edaily.co.kr/news/eda202608265430 ; FDA said in 2022 the dry-eye data weren't enough
+  https://www.biospace.com/regenerx-reasses-pipeline-in-light-of-development-delays-with-lead-asset
+- FDA TB-500 briefing, footnote 35 (p. 21): "thymosin beta-4 and TB-500 are not the same
+  substance"; thymosin beta-4 is 43 amino acids. https://www.fda.gov/media/193349/download
+- FDA 503A list (May 14, 2026): none of tb4's group listed; a garbled "Thylene blue" in Category 3
+  may be methylene blue (unverified).
+- Labels: ProvayBlue (Feb 2024) https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/204630Orig1s023correctedlbl.pdf ;
+  Provigil (Feb 2025) https://www.drugs.com/pro/provigil.html ; Nuvigil (Feb 2025)
+  https://www.drugs.com/pro/nuvigil.html ; Adipex-P (Mar 2024) https://drugs.com/pro/adipex-p.html ;
+  Aldactone (Nov 2025, no boxed warning) https://labeling.pfizer.com/showlabeling.aspx?id=520 ;
+  Micardis (Dec 2022) https://www.drugs.com/pro/micardis.html ; Loniten (Jan 2015)
+  https://www.rxlist.com/loniten-drug.htm ; Rogaine https://www.drugs.com/pro/rogaine-mens.html ,
+  https://www.drugs.com/pro/rogaine-women-s.html ; tretinoin microsphere gel (Sept 2025)
+  https://www.drugs.com/pro/tretinoin.html
+- SLU-PP-332: Cologne anti-doping glossary (2026)
+  https://www.dshs-koeln.de/en/universitaet/organisation/institute-einrichtungen/department-of-biochemistry/doping-substances/doping-glossary/s/slu-pp-332-and-slu-pp-915-estrogen-receptor-related-err-agonists ;
+  mouse papers https://collections.uhsp.edu/pharm-admin-sciences_pubs/48 ,
+  https://collections.uhsp.edu/pharm-admin-sciences_pubs/44/
+- Access: PMC opens only when the exact pmc.ncbi.nlm.nih.gov link appears in a search result.
+  MDPI pages not seen in results are refused. Boehringer's label site is bot-blocked. Opened
+  fine: bvsalud.org, QxMD, collections.uhsp.edu, scholars.uthscsa.edu, eprints.soton.ac.uk,
+  core.ac.uk, Cochrane abstract PDFs, DrugCentral, MedLibrary.
+
+### Metabolic drugs
+- Orforglipron (Foundayo) approved April 1, 2026 for weight management only; first new molecular
+  entity under FDA's priority-voucher pilot.
+  https://www.fda.gov/news-events/press-announcements/fda-approves-first-new-molecular-entity-under-national-priority-voucher-program ;
+  label (July 2026) https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/220934s003lbl.pdf ;
+  Lilly diabetes trials (June 2026) https://investor.lilly.com/node/54406/pdf
+- CagriSema filed with FDA Dec 18, 2025 (Novo release); no decision through Oct 20, 2026
+  (https://www.drugs.com/history/cagrisema.html). REDEFINE 1 copy: https://art.torvergata.it/handle/2108/426724
+- Mazdutide approved in China: weight (June 2025)
+  https://filingreader.com/news-wire/hongkong/2025-06-27/innovents-mazdutide-approved-in-china-for-weight-management ;
+  type 2 diabetes (Sept 2025)
+  https://www.biospace.com/press-releases/innovent-announces-mazdutide-received-approval-from-chinas-nmpa-for-glycemic-control-in-adults-with-type-2-diabetes
+- Survodutide phase 3 (company releases): June 2026
+  https://www.boehringer-ingelheim.com/us/human-health/metabolic-diseases/positive-data-two-phase-iii-synchronize-obesity-trials ;
+  Oct 2026 https://www.boehringer-ingelheim.com/us/human-health/metabolic-diseases/new-phase-iii-data-people-obesity-and-diabetes ;
+  Fast Track (2021) and Breakthrough (2024) for MASH.
+- Pemvidutide: alcohol-use-disorder trial (July 2026, SEC 8-K)
+  https://www.sec.gov/Archives/edgar/data/0001326190/000132619026000044/alt-20260728xex99d1.htm ;
+  Breakthrough for MASH (Dec 2025, SEC prospectus)
+  https://www.sec.gov/Archives/edgar/data/0001326190/000110465926047979/alt-20260423x424b5.htm
+- Exenatide: Byetta and Bydureon BCise discontinued Oct 2024 (insurer notice)
+  https://www.uhcprovider.com/en/resource-library/news/2024/discontinuation-bydureon-bcise-byetta.html ;
+  generic Byetta approved Nov 2024 (Amneal); phase 3 Parkinson's trial negative
+  https://www.dpag.ox.ac.uk/publications/2084557/modal
+- Pramlintide discontinued in the US per AHFS: https://www.drugs.com/monograph/symlin.html
+- Labels: Jardiance (Oct 2025) https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/204629s063lbl.pdf ;
+  Farxiga (June 2026; genital/urinary infection warning expanded June 3, 2026)
+  https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202293s035lbl.pdf ; Invokana (Dec 2024,
+  no boxed warning) https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/204042s043lbl.pdf ;
+  Trulicity (Nov 2024) https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/125469s061s062lbl.pdf
+- DAPA-CKD (Glasgow copy) https://eprints.gla.ac.uk/223971 ; canagliflozin mouse lifespan
+  https://scholars.uthscsa.edu/en/publications/canagliflozin-extends-life-span-in-genetically-heterogeneous-male/
+- Access: long FDA label PDFs cut off around section 14 (trial results); older, shorter labels
+  from the same search usually still have the numbers. FDA's safety-labeling-changes pages
+  (accessdata.fda.gov/scripts/cder/safetylabelingchanges/) give dated changes. SEC filings and
+  asoi.info opened reliably.
+
+### Checked during the round 3 reviews
+- Soltamox boxed warning: applies to risk reduction (high-risk women, DCIS); "For most patients already
+  diagnosed with breast cancer, the benefits of tamoxifen outweigh its risks."
+- Viagra and Cialis labels: stop and get medical care for sudden vision or hearing loss; people who had
+  NAION before are at higher risk of recurrence. Viagra's patient information names "poppers".
+- Adipex-P: primary pulmonary hypertension "frequently fatal"; combining with SSRIs not recommended;
+  contraindications include heart disease, MAOIs within 14 days, hyperthyroidism, glaucoma, agitated
+  states, drug-abuse history, pregnancy and nursing; approved only for short-term use (a few weeks).
+- Provigil: not recommended with left ventricular hypertrophy or symptomatic mitral valve prolapse on
+  stimulants; closer heart rate and blood pressure monitoring may be appropriate; IUGR and miscarriage
+  reported in pregnancy.
+- WADA S6: "All stimulants, including all optical isomers ... are prohibited", which covers armodafinil.
+- Aldactone (Nov 2025): no boxed warning; salt substitutes with potassium named; no drospirenone.
+- Labels with gallbladder and aspiration warnings: Trulicity (5.8, 5.9), Byetta (5.9, 5.10).
+- SGLT2 labels: Invokana, Farxiga and Jardiance list only hypersensitivity as a contraindication (no
+  dialysis contraindication); all three report post-marketing acute kidney injury.
+- Cagrilintide phase 2 trial: 706 participants (asoi.info abstract).
+- Survodutide releases: 16.6% and 13.1% are efficacy-estimand figures (as if everyone stayed on
+  treatment); no heart-rate data given.
+- Orforglipron label: both 72-week trials had 26.8% of placebo patients losing at least 5%.
+- LDN: "Because there is no commercial formulation of LDN, research studies obtain the medication via
+  compounding pharmacies" (Younger 2014, core.ac.uk).
+- NAC with nitroglycerin: symptomatic hypotension in 7 vs 0 patients (Horowitz, Circulation 1988):
+  https://ahro.austin.org.au/austinjspui/handle/1/12932
+- Turmeric professional monograph (Nov 2025): bleeding-risk interactions, CYP2D6/CYP3A, avoid with
+  gallstones, avoid in pregnancy and lactation: https://www.drugs.com/npp/turmeric.html
+- FDA tainted-supplements guide (2010): hidden drugs are typically in products promoted for sexual
+  enhancement, weight loss, bodybuilding and diabetes:
+  https://www.fda.gov/files/drugs/published/Tainted-Dietary-Supplements-and-Foods--Responsibilities-of-Retailers-and-Distributors.pdf
+- MedlinePlus no longer returns herb and supplement monographs in search; don't spend searches on it.

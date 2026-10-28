@@ -1,7 +1,7 @@
 {
   "id": "pramlintide",
   "name": "Pramlintide",
-  "summary": "A lab-made form of the hormone amylin, approved as Symlin for adults with type 1 or type 2 diabetes who use mealtime insulin; no longer marketed in the US.",
+  "summary": "A lab-made form of the hormone amylin, approved as Symlin for adults with type 1 or type 2 diabetes who use mealtime insulin; reported discontinued in the US.",
   "what_it_is": "Pramlintide is a synthetic version of amylin, a hormone that the pancreas's beta cells release along with insulin after meals; it differs from human amylin at three amino acid positions. It slows stomach emptying, blunts the rise in glucagon after meals and increases fullness, which lowers after-meal blood sugar and food intake. It acts briefly, with a half-life of about 48 minutes, and was given as an injection under the skin.",
   "evidence": {
     "grade": "strong",
@@ -9,7 +9,7 @@
   },
   "status_us": {
     "key": "approved",
-    "label": "FDA-approved (Symlin); no longer marketed in the US",
+    "label": "FDA-approved (Symlin); reported discontinued in the US",
     "note": "Approved as an add-on to mealtime insulin for adults with type 1 or type 2 diabetes who have not reached their blood sugar goals despite optimal insulin therapy. A drug reference (AHFS, reviewed April 2026) says pramlintide has been discontinued in the US; the date and reason were not found.",
     "sources": [
       1,
@@ -122,7 +122,7 @@
     }
   ],
   "ask_your_clinician": [
-    "Is pramlintide still available to me, and if not, what are the alternatives?",
+    "If pramlintide is no longer available, what alternatives suit me?",
     "How should my insulin plan change to lower the risk of severe lows?",
     "Is it safe for me to drive in the hours after an injection?"
   ],

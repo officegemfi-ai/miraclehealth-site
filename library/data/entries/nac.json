@@ -8,8 +8,8 @@
     "why": "It is an approved antidote for acetaminophen overdose, but evidence for everyday supplement uses is weak or conflicting; a 2023 meta-analysis of 9 COPD trials found no benefit."
   },
   "status_us": {
-    "key": "approved",
-    "label": "FDA-approved drug; supplements allowed under FDA policy",
+    "key": "restricted",
+    "label": "Approved drug; supplement sales tolerated by FDA",
     "note": "Approved since 1963; current labels cover acetaminophen overdose (by mouth or IV) and, inhaled, thick mucus in lung disease. Because it was a drug first, FDA says NAC is excluded from the definition of a dietary supplement, but since August 2022 it has said it will not act against otherwise lawful NAC supplements while it considers rulemaking; no final decision was found as of October 2026.",
     "sources": [
       1,
@@ -34,7 +34,7 @@
   },
   "benefits": [
     {
-      "claim": "Approved antidote that prevents or lessens liver injury after a potentially toxic acetaminophen overdose, given by mouth or IV in medical care; it works best the sooner it is started",
+      "claim": "Approved antidote that prevents or lessens liver injury after a potentially toxic acetaminophen overdose, given by mouth or IV in emergency care, where it works best the sooner it is started; supplement NAC taken at home is no substitute",
       "evidence": "strong",
       "sources": [
         3,
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "risk": "Allergic-type (hypersensitivity) reactions to the IV antidote, mostly rash, flushing and itching, in about 8% to 17% of patients in label studies; anaphylaxis, which can be life-threatening, in about 1 to 2 per 1,000",
+      "risk": "Allergic-type (hypersensitivity) reactions to the IV antidote, mostly rash, flushing and itching: 17% of patients in the label's infusion study and 8% of adults and 10% of children in a large safety study; anaphylaxis, which can be life-threatening, in about 1 to 2 per 1,000",
       "how_common": "common",
       "sources": [
         3
@@ -80,6 +80,13 @@
       ]
     },
     {
+      "risk": "Low blood pressure with nitroglycerin: in a hospital trial in unstable angina, symptomatic low blood pressure occurred in 7 patients given nitroglycerin plus IV NAC versus none given nitroglycerin alone",
+      "how_common": "unknown",
+      "sources": [
+        6
+      ]
+    },
+    {
       "risk": "Rash, with or without mild fever, and hives, rarely with oral use",
       "how_common": "rare",
       "sources": [
@@ -90,9 +97,11 @@
   "avoid_if": [
     "Possible acetaminophen (Tylenol) overdose: get emergency care rather than self-treating",
     "Asthma (clinician first)",
+    "Taking nitroglycerin or another nitrate for the heart (clinician first)",
     "Pregnant or breastfeeding (clinician first; not well studied in pregnancy)"
   ],
   "interactions": [
+    "Nitroglycerin: NAC can strengthen its blood-pressure-lowering effect; symptomatic low blood pressure was more common with the combination in a hospital trial",
     "Activated charcoal: binds acetylcysteine in lab tests and may reduce its effect, per the drug label"
   ],
   "labs": {
@@ -116,6 +125,14 @@
       "people": "Safety studies in 4,709 adults and 1,905 children treated for acetaminophen overdose",
       "finding": "Hypersensitivity reactions occurred in 8% of adults and 10% of children, mostly rash, flushing and itching; anaphylaxis occurred in 0.1% of adults and 0.2% of children.",
       "source": 3
+    },
+    {
+      "title": "Combined use of nitroglycerin and N-acetylcysteine in the management of unstable angina pectoris",
+      "year": 1988,
+      "type": "Trial",
+      "people": "Patients hospitalized with unstable angina",
+      "finding": "Symptomatic low blood pressure occurred in 7 patients given nitroglycerin with IV NAC versus none given nitroglycerin alone; a later group given NAC by continuous infusion had none.",
+      "source": 6
     }
   ],
   "ask_your_clinician": [
@@ -158,6 +175,13 @@
       "publisher": "Therapeutic Advances in Respiratory Disease (SAGE)",
       "year": 2023,
       "url": "https://journals.sagepub.com/doi/10.1177/17534666231158563"
+    },
+    {
+      "n": 6,
+      "title": "Combined use of nitroglycerin and N-acetylcysteine in the management of unstable angina pectoris",
+      "publisher": "Circulation (Austin Health research repository record)",
+      "year": 1988,
+      "url": "https://ahro.austin.org.au/austinjspui/handle/1/12932"
     }
   ],
   "notes_for_editor": "FDA said in November 2023 that it had completed a safety review of NAC and sent it for peer review; the findings were not on the pages opened, and one search found no later decision. Evidence for popular supplement uses (general detox, liver support in healthy people, mental health) was not reviewed: NIH has no NAC fact sheet, and LiverTox and a 2021 PMC review could not be opened (bot check). COPD evidence conflicts: six earlier meta-analyses reported fewer flare-ups and the 2023 one, limited to trials since 2000, did not, so that benefit is graded limited. Label risks come from IV, inhaled and high-dose oral drug use, which may not reflect typical supplement use. Status key is approved because NAC is an approved drug; restricted could also fit, since it is legally excluded from supplements but sold under FDA enforcement discretion. Goals map liver and detox to gut (as for glutathione) and lung use roughly to immune.",

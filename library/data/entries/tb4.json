@@ -1,11 +1,11 @@
 {
   "id": "tb4",
   "name": "Thymosin beta-4",
-  "summary": "A natural 43-amino-acid repair protein used for injury recovery; tested as eye drops and a skin gel with mixed results, it is not approved and differs from TB-500.",
+  "summary": "A natural 43-amino-acid protein promoted for injury recovery based on animal studies; tested in people as eye drops and a skin gel with mixed results, it is not approved and differs from TB-500.",
   "what_it_is": "Thymosin beta-4 is a 43-amino-acid protein first isolated from calf thymus and found in blood, saliva, tears and wound fluid. Inside cells it binds actin, a building block of the cell skeleton, and in several animal models it speeds skin repair. A drug company has tested it in people as eye drops (RGN-259) and as a skin gel (RGN-137). FDA stresses that TB-500, a short synthetic peptide based on one part of it, is not the same substance.",
   "evidence": {
     "grade": "limited",
-    "why": "Human evidence is mixed: the eye drops narrowly missed significance in an 18-person cornea trial and missed their main goals in larger dry-eye and cornea trials, skin-gel wound trials gave inconsistent reports, and the evidence for injury recovery comes from animal studies."
+    "why": "Human evidence is mixed: the eye drops did not reach statistical significance in an 18-person cornea trial and missed their main goals in larger dry-eye and cornea trials, skin-gel wound trials gave inconsistent reports, and the evidence for injury recovery comes from animal studies."
   },
   "status_us": {
     "key": "investigational",
@@ -32,7 +32,7 @@
   },
   "benefits": [
     {
-      "claim": "In neurotrophic keratopathy, a rare nerve-related cornea disease, persistent corneal wounds healed by 4 weeks in 6 of 10 people on the eye drops versus 1 of 8 on placebo, narrowly missing statistical significance in a trial stopped early for slow recruitment; a later European phase 3 trial missed its main goal",
+      "claim": "In neurotrophic keratopathy, a rare nerve-related cornea disease, persistent corneal wounds healed by 4 weeks in 6 of 10 people on the eye drops versus 1 of 8 on placebo, not a statistically significant difference in a trial stopped early for slow recruitment; a later European phase 3 trial missed its main goal",
       "evidence": "limited",
       "sources": [
         3,
@@ -74,7 +74,7 @@
   ],
   "risks": [
     {
-      "risk": "Long-term safety is unknown: the eye-drop and skin-gel trials were short or small, and although they reported no serious drug-related side effects, longer use has not been studied",
+      "risk": "Long-term safety is unknown: the eye-drop and skin-gel trials were short or small and reported no serious drug-related side effects, but there are almost no human safety data for injecting it",
       "how_common": "unknown",
       "sources": [
         4,
@@ -98,6 +98,13 @@
     },
     {
       "risk": "Mix-ups with TB-500: FDA says TB-500 is not the same substance, so findings for one do not apply to the other",
+      "how_common": "unknown",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "Unregulated products: FDA found that sellers of \"research use only\" peptides often treat TB-500 and thymosin beta-4 as interchangeable, and that purity, impurities and bacterial endotoxins are not controlled for TB-500, so a vial sold under either name may not contain what it says",
       "how_common": "unknown",
       "sources": [
         8
@@ -129,7 +136,7 @@
       "source": 4
     },
     {
-      "title": "RGN-259 (Thymosin ß4) Ophthalmic Solution Promotes Healing and Improves Comfort in Neurotrophic Keratopathy Patients in a Randomized, Placebo-Controlled, Double-Masked Phase III Clinical Trial",
+      "title": "RGN-259 (Thymosin β4) Ophthalmic Solution Promotes Healing and Improves Comfort in Neurotrophic Keratopathy Patients in a Randomized, Placebo-Controlled, Double-Masked Phase III Clinical Trial",
       "year": 2023,
       "type": "RCT",
       "people": "18 people with neurotrophic keratopathy",
@@ -175,7 +182,7 @@
     },
     {
       "n": 3,
-      "title": "RGN-259 (Thymosin ß4) Ophthalmic Solution Promotes Healing and Improves Comfort in Neurotrophic Keratopathy Patients in a Randomized, Placebo-Controlled, Double-Masked Phase III Clinical Trial",
+      "title": "RGN-259 (Thymosin β4) Ophthalmic Solution Promotes Healing and Improves Comfort in Neurotrophic Keratopathy Patients in a Randomized, Placebo-Controlled, Double-Masked Phase III Clinical Trial",
       "publisher": "International Journal of Molecular Sciences (BVS record of the MEDLINE abstract)",
       "year": 2023,
       "url": "https://pesquisa.bvsalud.org/ses/resource/es/mdl-36613994"

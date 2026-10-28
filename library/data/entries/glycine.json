@@ -9,8 +9,8 @@
   },
   "status_us": {
     "key": "supplement",
-    "label": "Dietary supplement; not GRAS in ordinary foods",
-    "note": "Used as a dietary supplement. Since 1971 FDA has not regarded glycine added to ordinary foods as generally recognized as safe, citing harm in animals fed high levels, so food uses need a food-additive regulation; the rule does not mention supplements.",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement. Separately, since 1971 FDA has not treated glycine added to ordinary foods as generally recognized as safe, after harm in rats fed high levels, so food uses need a food-additive regulation; that rule does not cover supplements.",
     "sources": [
       1,
       2
@@ -39,7 +39,7 @@
       ]
     },
     {
-      "claim": "Improved blood sugar markers, including HbA1c, insulin resistance and fasting glucose, over 3 months in people with type 2 diabetes",
+      "claim": "Improved blood sugar markers, including HbA1c, insulin resistance and fasting glucose, over 3 months in one trial of people with type 2 diabetes; in a study of people with metabolic syndrome, fasting glucose rose instead",
       "evidence": "limited",
       "sources": [
         2
@@ -60,13 +60,6 @@
       "sources": [
         2
       ]
-    },
-    {
-      "risk": "Harm in animals fed high levels led FDA to stop treating glycine added to foods as generally recognized as safe in 1971",
-      "how_common": "unknown",
-      "sources": [
-        1
-      ]
     }
   ],
   "avoid_if": [
@@ -74,7 +67,7 @@
     "Taking medicines for schizophrenia or another psychiatric condition (clinician first)"
   ],
   "interactions": [
-    "None well documented"
+    "None well documented; people taking medicines for schizophrenia or another psychiatric condition should check with their prescriber first"
   ],
   "labs": {
     "before": [],

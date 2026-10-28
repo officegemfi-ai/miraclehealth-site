@@ -2,15 +2,15 @@
   "id": "enclomiphene",
   "name": "Enclomiphene",
   "summary": "One of the two forms in the fertility drug clomiphene, studied as a pill to raise men's own testosterone; it is not approved in the US or Europe.",
-  "what_it_is": "Enclomiphene is the trans isomer of clomiphene; clomiphene tablets are a mix of enclomiphene and zuclomiphene. It is a selective estrogen receptor modulator (SERM) that acts as an estrogen blocker, and in men it raises the pituitary hormones LH and FSH, which signal the testes to make testosterone and sperm. A drug company sought US approval to treat secondary hypogonadism (low testosterone because the pituitary sends too little LH), but FDA issued a complete response in 2015, and the European Medicines Agency refused approval in 2018.",
+  "what_it_is": "Enclomiphene is the trans isomer of clomiphene; clomiphene tablets are a mix of enclomiphene and zuclomiphene. It is a selective estrogen receptor modulator (SERM) that acts as an estrogen blocker, and in men it raises the pituitary hormones LH and FSH, which signal the testes to make testosterone and sperm. A drug company sought US approval to treat secondary hypogonadism (low testosterone because the pituitary sends too little LH), but FDA declined to approve it in 2015 (a complete response letter), and the European Medicines Agency refused approval in 2018.",
   "evidence": {
     "grade": "moderate",
     "why": "Several randomized trials, the largest in 256 men, show it raises testosterone, LH and FSH, but FDA concluded the trials did not show a clinically meaningful improvement in symptoms or signs of low testosterone."
   },
   "status_us": {
     "key": "compounded",
-    "label": "Not FDA-approved; compoundable while FDA decides",
-    "note": "No enclomiphene product is FDA-approved; FDA issued a complete response to the maker's application in 2015. FDA lists enclomiphene citrate in Category 1 (under evaluation), so under its interim policy pharmacies may compound it while FDA decides, although FDA proposed in 2022 not to add it to the list of allowed bulk substances and its advisory committee agreed 8 to 4.",
+    "label": "Not FDA-approved; FDA advisers voted against compounding",
+    "note": "No enclomiphene product is FDA-approved; FDA declined the maker's application in 2015. FDA lists enclomiphene citrate in Category 1 (under evaluation), so under its interim policy pharmacies may compound it for now. But FDA recommended in 2022 against adding it to the list of allowed bulk substances, its advisory committee agreed 8 to 4, and this could change whenever FDA makes a final decision.",
     "sources": [
       1,
       2,
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "risk": "Headache and other mostly mild side effects; in the largest trial, side effects were not more frequent with enclomiphene than with placebo",
+      "risk": "Headache and other mostly mild side effects; in the largest trial, side effects were not more frequent with enclomiphene than with placebo, but the trials were too small to rule out rare serious events such as blood clots",
       "how_common": "unknown",
       "sources": [
         5
@@ -93,7 +93,7 @@
     "History of blood clots (deep vein thrombosis or pulmonary embolism)",
     "Low testosterone caused by testicular failure (primary hypogonadism); it was studied only for secondary hypogonadism",
     "Liver or kidney disease (not well studied)",
-    "Athletes tested under anti-doping rules: WADA bans SERMs such as clomifene, and its list is not exhaustive"
+    "Athletes tested under anti-doping rules: WADA bans SERMs such as clomiphene, and its list is not exhaustive"
   ],
   "interactions": [
     "None well documented"

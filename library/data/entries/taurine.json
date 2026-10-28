@@ -10,10 +10,11 @@
   "status_us": {
     "key": "supplement",
     "label": "Dietary supplement; common energy-drink ingredient",
-    "note": "Sold as a dietary supplement and added to energy drinks. NIH said in 2025 that there is no solid clinical data showing that taurine supplements benefit people.",
+    "note": "Sold as a dietary supplement and added to energy drinks. NIH said in 2025 that despite lifespan gains in worms and mice, there is no solid clinical data showing taurine supplements benefit people; a 2024 meta-analysis found only small drops in blood pressure, blood sugar and triglycerides.",
     "sources": [
       1,
-      2
+      2,
+      3
     ]
   },
   "goals": {

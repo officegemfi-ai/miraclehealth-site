@@ -40,7 +40,7 @@
       ]
     },
     {
-      "claim": "Less fat gain, better insulin sensitivity and higher energy use in obese mice; in one month, obese mice lost 12% of their body weight without eating less or exercising more",
+      "claim": "Less fat gain, better insulin sensitivity and higher energy use in obese mice; in one month, obese mice lost 12% of their body weight",
       "evidence": "preclinical",
       "sources": [
         5,
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "risk": "Animal safety is barely reported: its developers said mice showed no severe side effects so far and planned more animal testing for side effects before any human trials",
+      "risk": "Animal safety is barely reported: its developers planned more animal testing for side effects before any human trials",
       "how_common": "unknown",
       "sources": [
         1
@@ -80,6 +80,7 @@
     }
   ],
   "avoid_if": [
+    "Everyone outside a research study: it has never been tested in people",
     "Pregnant or breastfeeding (never studied)",
     "Anyone with a chronic illness or on regular medicines (no human data on safety or interactions)",
     "Athletes in tested sports: it is not named on WADA's 2026 list, but WADA's S0 class covers substances not approved for human use, and anti-doping labs are studying how to detect it"
@@ -122,7 +123,7 @@
   ],
   "ask_your_clinician": [
     "Is there any human evidence for SLU-PP-332, and which proven options fit my weight or fitness goals?",
-    "How could I know what is actually in a product sold online?",
+    "What are the risks of taking a compound that has never been tested in people?",
     "If I have already used it, which symptoms should prompt a check-up?"
   ],
   "sources": [

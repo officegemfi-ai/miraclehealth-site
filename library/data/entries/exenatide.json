@@ -48,7 +48,7 @@
       ]
     },
     {
-      "claim": "No increase in heart attacks, strokes or cardiovascular deaths in 14,752 adults with type 2 diabetes; a reduction was not shown (hazard ratio 0.91)",
+      "claim": "Heart safety: no increase in heart attacks, strokes or cardiovascular deaths in 14,752 adults with type 2 diabetes; a reduction was not shown (hazard ratio 0.91)",
       "evidence": "strong",
       "sources": [
         2
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "risk": "Rare serious reactions: pancreatitis, kidney injury after dehydration, and drug-induced low platelet counts that have caused serious, sometimes fatal bleeding",
+      "risk": "Rare serious reactions: pancreatitis, kidney injury after dehydration, and drug-induced low platelet counts that have caused serious, sometimes fatal bleeding; the labels also warn about gallbladder disease such as gallstones, and about breathing stomach contents into the lungs under general anesthesia or deep sedation",
       "how_common": "rare",
       "sources": [
         1,
@@ -162,7 +162,7 @@
     }
   ],
   "ask_your_clinician": [
-    "With the brand-name products discontinued, which exenatide product, if any, is available to me?",
+    "If exenatide is no longer available to me, what alternatives suit me?",
     "Do I need more frequent INR checks if I take warfarin?",
     "How would we tell if antibodies are making it work less well for me?"
   ],

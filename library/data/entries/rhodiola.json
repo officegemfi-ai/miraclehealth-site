@@ -38,7 +38,7 @@
       ]
     },
     {
-      "claim": "Mixed results for depression: a 2025 review of 3 studies reported lower symptom scores, but in a 12-week placebo-controlled trial of 57 adults with mild to moderate major depression, neither rhodiola nor the antidepressant sertraline improved scores significantly more than placebo",
+      "claim": "Mixed results for depression: a 2025 review of 3 studies reported lower symptom scores, but in a 12-week placebo-controlled trial of 57 adults with mild to moderate major depression, neither rhodiola nor the antidepressant sertraline improved scores significantly more than placebo; the trial was too small to settle the question (sertraline is an approved antidepressant)",
       "evidence": "limited",
       "sources": [
         3,
@@ -55,14 +55,14 @@
       ]
     },
     {
-      "risk": "Side effects were reported by 30% of people on rhodiola versus 17% on placebo (and 63% on sertraline) in a 12-week depression trial",
+      "risk": "Side effects were reported by 30% of people on rhodiola versus 17% on placebo in a 12-week depression trial",
       "how_common": "common",
       "sources": [
         4
       ]
     },
     {
-      "risk": "Interactions with losartan, a blood pressure medicine, have been reported",
+      "risk": "Interactions with losartan, a blood pressure medicine, have been reported (NIH gives no details)",
       "how_common": "unknown",
       "sources": [
         1

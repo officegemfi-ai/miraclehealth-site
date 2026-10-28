@@ -1,11 +1,11 @@
 {
   "id": "tamoxifen",
   "name": "Tamoxifen",
-  "summary": "A prescription SERM that treats and helps prevent hormone-sensitive breast cancer, including in men; it is also used off-label for male breast enlargement and infertility.",
+  "summary": "A prescription SERM that treats hormone-sensitive breast cancer, including in men, and lowers breast cancer risk in high-risk women; it is also used off-label for male breast enlargement and infertility.",
   "what_it_is": "Tamoxifen is a selective estrogen receptor modulator (SERM), available as tablets and as an oral solution (Soltamox). It counters estrogen's effect on estrogen receptor-positive breast cancer, but it also acts on other tissues, raising the risk of uterine cancer and blood clots. In men with low sperm counts, it raised LH, FSH, testosterone and estrogen levels.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved to treat breast cancer in adults and to lower breast cancer risk in women; for breast enlargement caused by prostate cancer drugs, a review of 4 randomized trials found it highly effective (off-label), while trials in male infertility conflict."
+    "why": "FDA-approved to treat breast cancer in adults and to lower breast cancer risk in women; for breast enlargement caused by prostate cancer drugs, a review of 4 randomized trials found it reduced breast enlargement (off-label), while trials in male infertility conflict."
   },
   "status_us": {
     "key": "approved",
@@ -18,7 +18,7 @@
   },
   "goals": {
     "weight": 0,
-    "muscle": 0.25,
+    "muscle": 0,
     "recovery": 0,
     "energy": 0,
     "sleep": 0,
@@ -64,7 +64,7 @@
   ],
   "risks": [
     {
-      "risk": "Boxed warning: uterine cancers, stroke and pulmonary embolism, sometimes fatal; in a prevention trial, endometrial cancer occurred at 2.20 versus 0.71 and pulmonary embolism at 0.75 versus 0.25 per 1,000 women a year",
+      "risk": "Boxed warning: uterine cancers, stroke and pulmonary embolism, sometimes fatal, for women taking it to lower breast cancer risk (high-risk women and women with DCIS); in the prevention trial, endometrial cancer occurred at 2.20 versus 0.71 and pulmonary embolism at 0.75 versus 0.25 per 1,000 women a year. The label says that for most patients already diagnosed with breast cancer, the benefits outweigh these risks; talk to your oncologist before stopping it",
       "how_common": "rare",
       "sources": [
         1

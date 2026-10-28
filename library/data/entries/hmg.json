@@ -5,16 +5,16 @@
   "what_it_is": "Human menopausal gonadotropin (hMG, menotropins) is a mix of the pituitary hormones FSH and LH, purified from the urine of postmenopausal women; in Menopur, most of the LH activity comes from hCG. FSH and LH drive egg development in women and, in men, sperm and testosterone production in the testes. Menopur's US approval was converted to a biologics license on March 23, 2020.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for multiple-egg development in IVF based on a randomized trial of 373 women; use in men is off-label, supported by a meta-analysis of 44 studies of gonadotropin therapy that did not report hMG separately."
+    "why": "FDA-approved for multiple-egg development in IVF based on a randomized trial of 373 women; use in men is off-label, with only indirect evidence (a meta-analysis of 44 studies of gonadotropin therapy that did not report hMG separately)."
   },
   "status_us": {
     "key": "approved",
     "label": "FDA-approved biologic for IVF; off-label in men",
-    "note": "Menopur is approved for developing multiple follicles and pregnancy in ovulatory women undergoing assisted reproduction such as IVF; its label has no use in men. Its approval was converted to a biologics license on March 23, 2020, and menotropins does not appear on FDA's May 2026 list of bulk substances nominated for pharmacy compounding.",
+    "note": "Menopur is approved for developing multiple follicles and pregnancy in ovulatory women undergoing assisted reproduction such as IVF; its label has no use in men. Its approval was converted to a biologics license on March 23, 2020. For athletes: WADA bans hCG and LH in males, and hMG has LH activity.",
     "sources": [
       1,
       2,
-      3
+      5
     ]
   },
   "goals": {
@@ -41,16 +41,16 @@
     },
     {
       "claim": "Gonadotropin therapy, including urine-derived products such as hMG, produced sperm in the ejaculate in about 75% of men with hypogonadotropic hypogonadism and no sperm, across 44 studies (off-label for hMG in the US)",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
-        4
+        3
       ]
     },
     {
-      "claim": "In that meta-analysis, earlier testosterone therapy did not reduce the success of gonadotropin therapy, and results were better when hypogonadism began after puberty",
+      "claim": "In that meta-analysis of men with hypogonadotropic hypogonadism, earlier testosterone treatment did not reduce the success of gonadotropin therapy, and results were better when hypogonadism began after puberty; this says nothing about recovery after testosterone or steroid use in other men",
       "evidence": "limited",
       "sources": [
-        4
+        3
       ]
     }
   ],
@@ -91,10 +91,11 @@
       ]
     },
     {
-      "risk": "Side effects in men are not described in its US label",
+      "risk": "Its US label covers only women; in men treated with FSH plus hCG, the Gonal-f label reports acne and breast enlargement",
       "how_common": "unknown",
       "sources": [
-        1
+        1,
+        4
       ]
     }
   ],
@@ -127,8 +128,8 @@
       "year": 2014,
       "type": "Meta-analysis",
       "people": "Men with hypogonadotropic hypogonadism and no sperm (44 gonadotropin studies and 16 GnRH studies)",
-      "finding": "Gonadotropin therapy produced sperm in about 75% of men; success was higher with hCG plus FSH and with onset after puberty, and earlier testosterone therapy did not affect results.",
-      "source": 4
+      "finding": "Gonadotropin therapy produced sperm in about 75% of men; success was higher with hCG plus FSH and with onset after puberty, and earlier testosterone therapy did not affect results in these men.",
+      "source": 3
     },
     {
       "title": "MENOPUR (menotropins for injection): Prescribing Information",
@@ -140,7 +141,7 @@
     }
   ],
   "ask_your_clinician": [
-    "Is my infertility or low testosterone caused by low pituitary hormones, so that gonadotropins could help?",
+    "Is my infertility caused by low pituitary hormones, so that gonadotropins could help?",
     "How will we watch for ovarian hyperstimulation and multiple pregnancy?",
     "For men: how long does it usually take to see sperm, and how will we track progress?"
   ],
@@ -161,17 +162,24 @@
     },
     {
       "n": 3,
-      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
-      "publisher": "FDA",
-      "year": 2026,
-      "url": "https://www.fda.gov/media/94155/download"
-    },
-    {
-      "n": 4,
       "title": "Factors affecting spermatogenesis upon gonadotropin-replacement therapy: a meta-analytic study",
       "publisher": "Andrology (University of Florence repository record)",
       "year": 2014,
       "url": "https://flore.unifi.it/handle/2158/956376"
+    },
+    {
+      "n": 4,
+      "title": "GONAL-f (follitropin alfa for injection): Prescribing Information (revised 3/2025)",
+      "publisher": "Drugs.com (FDA-approved labeling)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/gonal-f.html"
+    },
+    {
+      "n": 5,
+      "title": "Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
     }
   ],
   "notes_for_editor": "Menopur's US label covers only women in IVF. Use in men (usually alongside hCG to start sperm production in hypogonadotropic hypogonadism) is off-label in the US, while FSH products (Gonal-f, Follistim AQ) carry that male indication. The Rastrelli meta-analysis was read as an abstract and does not report hMG-specific results. WADA's 2026 list does not name hMG or FSH but bans chorionic gonadotropin (hCG) and LH in males; Menopur's LH activity comes mostly from hCG, so athletes should check with their anti-doping organization. Whether biologics such as menotropins can be compounded was not separately sourced here; the only finding is that menotropins is absent from FDA's May 2026 503A nominations list.",

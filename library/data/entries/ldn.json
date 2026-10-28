@@ -8,9 +8,9 @@
     "why": "The best trial, in 99 women with fibromyalgia, found no pain benefit over placebo; a review of two small Crohn's disease trials found the evidence too thin for firm conclusions, and other studies are small."
   },
   "status_us": {
-    "key": "approved",
-    "label": "Naltrexone FDA-approved for addiction; LDN off-label",
-    "note": "Naltrexone tablets are approved to treat alcohol dependence and to block the effects of opioids. No low-dose product is approved: low-dose use for pain or inflammation is off-label, and the low-dose medicine used in studies has come from compounding pharmacies.",
+    "key": "compounded",
+    "label": "Off-label; low-dose forms are compounded",
+    "note": "Naltrexone tablets are approved to treat alcohol dependence and to block the effects of opioids. No low-dose product is approved or sold commercially: low-dose use for pain or inflammation is off-label, and the low-dose medicine used in studies comes from compounding pharmacies.",
     "sources": [
       1,
       2,
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "claim": "No better than placebo for pain in a 12-week trial of 99 women with fibromyalgia; memory problems improved slightly, a result the authors said may be due to chance",
+      "claim": "No benefit shown for pain: no better than placebo in a 12-week trial of 99 women with fibromyalgia; memory problems improved slightly, a result the authors said may be due to chance",
       "evidence": "moderate",
       "sources": [
         3
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "claim": "In active Crohn's disease, two small trials (46 people) found no significant difference in remission, though more adults improved on endoscopy; the evidence is low certainty",
+      "claim": "No clear benefit shown in active Crohn's disease: two small trials (46 people) found no significant difference in remission, though more adults improved on endoscopy; the evidence is low certainty",
       "evidence": "limited",
       "sources": [
         4
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "risk": "Diarrhea, dizziness and hot flushes, each in about 3 in 10 women versus about 1 in 7 on placebo in that trial; headache and nausea were as common as on placebo",
+      "risk": "Diarrhea, dizziness and hot flashes, each in about 3 in 10 women versus about 1 in 7 on placebo in that trial; headache and nausea were as common as on placebo",
       "how_common": "common",
       "sources": [
         3
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "risk": "Opioid overdose (label warning for standard-strength naltrexone): after stopping, or when trying to override the block, people can respond to lower opioid doses than before, and fatal overdoses have been reported",
+      "risk": "Opioid overdose (a label warning for standard-strength naltrexone; its relevance at low doses is unknown): after stopping, or when trying to override the block, an opioid dose used before can now be life-threatening, and fatal overdoses have been reported",
       "how_common": "unknown",
       "sources": [
         1

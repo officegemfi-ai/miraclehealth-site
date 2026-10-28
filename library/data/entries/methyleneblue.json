@@ -39,7 +39,7 @@
       ]
     },
     {
-      "claim": "About 7% more correct answers on a short-term memory test, plus more brain activity during attention and memory tasks, one hour after a single dose in a placebo-controlled study of 26 healthy adults",
+      "claim": "About 7% more correct answers on a short-term memory test, plus more brain activity during attention and memory tasks, after a single dose in a placebo-controlled study of 26 healthy adults",
       "evidence": "limited",
       "sources": [
         3
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "claim": "A related compound (LMTM, a stabilized reduced form of methylene blue) did not slow decline in the main planned analyses of a 15-month trial in 891 people with mild to moderate Alzheimer's disease",
+      "claim": "No benefit shown: a related compound (LMTM, a stabilized reduced form of methylene blue) did not slow decline in the main planned analyses of a 15-month trial in 891 people with mild to moderate Alzheimer's disease",
       "evidence": "moderate",
       "sources": [
         5
@@ -62,7 +62,7 @@
   ],
   "risks": [
     {
-      "risk": "Boxed warning: serious or fatal serotonin syndrome when combined with SSRI or SNRI antidepressants, MAO inhibitors or opioids; most reports involved IV use, and the risk with oral products has not been well studied",
+      "risk": "Boxed warning: serious or fatal serotonin syndrome when combined with SSRI or SNRI antidepressants, MAO inhibitors or opioids; the risk with oral wellness products has not been studied, so the same caution applies",
       "how_common": "unknown",
       "sources": [
         1,
@@ -85,7 +85,7 @@
     },
     {
       "risk": "Headache, low potassium, diarrhea, low magnesium, muscle jerks, nausea and seizure-like events, each in at least 2 in 100 patients given the injection",
-      "how_common": "uncommon",
+      "how_common": "unknown",
       "sources": [
         1
       ]
@@ -108,7 +108,7 @@
   ],
   "avoid_if": [
     "Taking antidepressants (SSRIs, SNRIs, MAO inhibitors), opioids or other serotonergic drugs (boxed warning)",
-    "G6PD deficiency",
+    "G6PD deficiency (contraindicated)",
     "Allergy to methylene blue or other thiazine dyes",
     "Pregnant or breastfeeding (it may harm a fetus, and the label advises pausing breastfeeding after treatment)",
     "Kidney or liver disease (slower clearance may raise the risk of side effects)"
@@ -140,7 +140,7 @@
       "year": 2016,
       "type": "RCT",
       "people": "26 healthy adults aged 22 to 62",
-      "finding": "One hour after a single dose, brain activity rose during attention and short-term memory tasks, and correct memory answers rose 7% compared with placebo.",
+      "finding": "After a single dose, brain activity rose during attention and short-term memory tasks, and correct memory answers rose 7% compared with placebo.",
       "source": 3
     },
     {
@@ -153,7 +153,7 @@
     }
   ],
   "ask_your_clinician": [
-    "Could methylene blue interact with my antidepressant, pain medicine or other prescriptions?",
+    "Could methylene blue interact with my antidepressant, pain medicine or other prescriptions, and would stopping either one be safe?",
     "Should I be tested for G6PD deficiency?",
     "Is there good evidence it would help my focus or energy, and what else could I try?"
   ],
