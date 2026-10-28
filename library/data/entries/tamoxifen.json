@@ -1,0 +1,223 @@
+{
+  "id": "tamoxifen",
+  "name": "Tamoxifen",
+  "summary": "A prescription SERM that treats and helps prevent hormone-sensitive breast cancer, including in men; it is also used off-label for male breast enlargement and infertility.",
+  "what_it_is": "Tamoxifen is a selective estrogen receptor modulator (SERM), available as tablets and as an oral solution (Soltamox). It counters estrogen's effect on estrogen receptor-positive breast cancer, but it also acts on other tissues, raising the risk of uterine cancer and blood clots. In men with low sperm counts, it raised LH, FSH, testosterone and estrogen levels.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved to treat breast cancer in adults and to lower breast cancer risk in women; for breast enlargement caused by prostate cancer drugs, a review of 4 randomized trials found it highly effective (off-label), while trials in male infertility conflict."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for breast cancer; off-label in men",
+    "note": "Approved for metastatic breast cancer in adults (including men), adjuvant treatment of early breast cancer, lowering invasive cancer risk after DCIS, and lowering breast cancer risk in high-risk women. Use for gynecomastia or male infertility is off-label, and WADA bans SERMs, including tamoxifen, in sport.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Treats estrogen receptor-positive breast cancer; in men with metastatic breast cancer, about half of 132 evaluable patients responded",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lowered invasive breast cancer by 43% in 1,804 women with DCIS (ductal carcinoma in situ) after surgery and radiation",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Prevented or treated breast enlargement and breast pain caused by antiandrogen drugs for prostate cancer (risk ratio 0.10 for breast enlargement versus no treatment) and worked better than anastrozole; a 2019 European guideline says SERMs are not justified for gynecomastia in general (off-label)",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        4
+      ]
+    },
+    {
+      "claim": "Possibly more pregnancies in couples with unexplained male infertility: a 2013 meta-analysis of 11 trials of clomiphene or tamoxifen found a benefit, but a 2025 meta-analysis found the effect uncertain (off-label)",
+      "evidence": "limited",
+      "sources": [
+        5,
+        6
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Boxed warning: uterine cancers, stroke and pulmonary embolism, sometimes fatal; in a prevention trial, endometrial cancer occurred at 2.20 versus 0.71 and pulmonary embolism at 0.75 versus 0.25 per 1,000 women a year",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Hot flashes (64% versus 48% with placebo), vaginal discharge, irregular periods and fluid retention",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Eye problems, including cataracts (more cataract surgery than with placebo), retinal changes and changes in color vision",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Liver problems, from enzyme changes to rare severe or fatal liver injury and liver cancer, and lower platelet counts",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In men treated for breast cancer, loss of libido and impotence led some to stop it",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Fetal harm, including birth defects and fetal death",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy or possible pregnancy, and breastfeeding",
+    "History of deep vein thrombosis or pulmonary embolism, or taking warfarin, when the goal is lowering breast cancer risk",
+    "High risk of stroke or blood clots (discuss the boxed warning first)",
+    "Unexplained vaginal bleeding (needs prompt evaluation)",
+    "Past allergic reaction to tamoxifen, including angioedema"
+  ],
+  "interactions": [
+    "Warfarin and other coumarin blood thinners: markedly stronger effect; the combination is contraindicated when tamoxifen is used to lower breast cancer risk",
+    "Strong CYP2D6 inhibitors such as paroxetine: may reduce tamoxifen's effect (studies are inconsistent)",
+    "Strong CYP3A4 inducers such as rifampin: lower tamoxifen levels and should not be combined",
+    "Aromatase inhibitors (anastrozole, letrozole): combining is not recommended"
+  ],
+  "labs": {
+    "before": [
+      "Complete blood count",
+      "Liver function tests",
+      "Gynecological exam for women with a uterus",
+      "Cholesterol and triglycerides if already high",
+      "Men (off-label): testosterone, estradiol, LH and FSH"
+    ],
+    "during": [
+      "Complete blood count and liver tests periodically",
+      "Yearly gynecological exam",
+      "Eye exam if vision changes",
+      "Men (off-label): hormones, and semen analysis if fertility is the goal"
+    ],
+    "why": "The label calls for periodic blood counts and liver tests, yearly gynecological exams and lipid checks in people who already have high lipids; for off-label use in men there is no label guidance."
+  },
+  "studies": [
+    {
+      "title": "Tamoxifen for the management of breast events induced by non-steroidal antiandrogens in patients with prostate cancer: a systematic review",
+      "year": 2012,
+      "type": "Systematic review",
+      "people": "Men with prostate cancer taking non-steroidal antiandrogens, in 4 randomized trials",
+      "finding": "Tamoxifen sharply cut breast enlargement and breast pain compared with no treatment, and prevented them better than anastrozole or radiotherapy; long-term effects on cancer progression and survival are unclear.",
+      "source": 3
+    },
+    {
+      "title": "Revisiting oestrogen antagonists (clomiphene or tamoxifen) as medical empiric therapy for idiopathic male infertility: a meta-analysis",
+      "year": 2013,
+      "type": "Meta-analysis",
+      "people": "Men with unexplained low sperm count or quality in 11 randomized trials",
+      "finding": "Clomiphene or tamoxifen was linked to more pregnancies (odds ratio 2.42) and better sperm concentration and motility, with no more side effects than controls.",
+      "source": 5
+    },
+    {
+      "title": "Efficacy of clomiphene citrate and tamoxifen on pregnancy rates in idiopathic male subfertility: A systematic review and meta-analysis",
+      "year": 2025,
+      "type": "Meta-analysis",
+      "people": "Men with unexplained subfertility in 10 randomized trials",
+      "finding": "Pregnancy rates did not clearly differ between clomiphene and placebo, and tamoxifen versus placebo could not be pooled; the authors called the evidence limited and inconsistent.",
+      "source": 6
+    },
+    {
+      "title": "SOLTAMOX (tamoxifen citrate) oral solution: Prescribing Information",
+      "year": 2020,
+      "type": "Label",
+      "people": "Women at high risk of breast cancer (NSABP P-1), women with DCIS (NSABP B-24) and men with metastatic breast cancer",
+      "finding": "In the prevention trial, uterine cancers and pulmonary emboli were more common with tamoxifen (strokes too, though not significantly); after DCIS it cut invasive cancer by 43%; about half of men with metastatic breast cancer responded.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Given the boxed warning, how do my own risks of blood clots, stroke and uterine cancer compare with the expected benefit?",
+    "For men: is the cause of my breast enlargement known, and what does the evidence say for my situation?",
+    "Do any of my other medicines, such as antidepressants or blood thinners, interact with tamoxifen?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "SOLTAMOX (tamoxifen citrate) oral solution: Prescribing Information (revised 12/2020)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2020,
+      "url": "https://www.drugs.com/pro/soltamox.html"
+    },
+    {
+      "n": 2,
+      "title": "Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 3,
+      "title": "Tamoxifen for the management of breast events induced by non-steroidal antiandrogens in patients with prostate cancer: a systematic review",
+      "publisher": "BMC Medicine (PubMed)",
+      "year": 2012,
+      "url": "https://www.pubmed.gov/22925442/"
+    },
+    {
+      "n": 4,
+      "title": "EAA clinical practice guidelines – gynecomastia evaluation and management",
+      "publisher": "Andrology (PubMed)",
+      "year": 2019,
+      "url": "https://www.pubmed.gov/31099174/"
+    },
+    {
+      "n": 5,
+      "title": "Revisiting oestrogen antagonists (clomiphene or tamoxifen) as medical empiric therapy for idiopathic male infertility: a meta-analysis",
+      "publisher": "Andrology (QxMD abstract)",
+      "year": 2013,
+      "url": "https://www.qxmd.com/r/23970453"
+    },
+    {
+      "n": 6,
+      "title": "Efficacy of clomiphene citrate and tamoxifen on pregnancy rates in idiopathic male subfertility: A systematic review and meta-analysis",
+      "publisher": "Asian Journal of Urology (DOAJ)",
+      "year": 2025,
+      "url": "https://doaj.org/article/1065efb32a724ebcb14ff11309a2c334"
+    }
+  ],
+  "notes_for_editor": "The label used is Soltamox (oral solution, revised 12/2020) as reprinted by Drugs.com; tablet labels were not checked, and the NSABP P-1 efficacy numbers sat in a part of the page that could not be read. Gynecomastia evidence comes from men on antiandrogens for prostate cancer; the 2019 EAA guideline abstract says SERMs, aromatase inhibitors and non-aromatizable androgens are not justified for gynecomastia in general, and use for pubertal or drug-induced gynecomastia in otherwise healthy men was not reviewed. The two male-infertility meta-analyses conflict (2013 positive, 2025 uncertain), both pool tamoxifen with clomiphene, and both were read as abstracts; the 2013 abstract's confidence interval for sperm concentration looks garbled. The Kunath review abstract did not give total patient numbers. The label also reports that LH, FSH, testosterone and estrogen rose in men with low sperm counts.",
+  "checked": "2026-10-28"
+}

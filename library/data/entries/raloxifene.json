@@ -1,0 +1,167 @@
+{
+  "id": "raloxifene",
+  "name": "Raloxifene",
+  "summary": "A prescription SERM pill that protects bone and lowers breast cancer risk in women after menopause; its label says it is not recommended for men.",
+  "what_it_is": "Raloxifene is a selective estrogen receptor modulator (SERM) taken as a tablet. In postmenopausal women it reduces spine fractures and the risk of invasive breast cancer, but it raises the risk of blood clots and, in women with heart disease or high heart risk, of death from stroke. It has not been adequately studied in men, and small trials in older men found mixed effects on testosterone.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for osteoporosis and breast cancer risk reduction after menopause, based on large randomized trials; in men, only two small trials were found (30 and 50 older men), with conflicting hormone results and no clear benefit."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for women after menopause; not for men",
+    "note": "Approved to treat and prevent osteoporosis in postmenopausal women and to lower invasive breast cancer risk in postmenopausal women with osteoporosis or at high risk. The label says it has not been adequately studied in men and is not recommended for them, and WADA bans it in sport.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Cut first spine fractures from 4.3% to 1.9% in postmenopausal women with osteoporosis (MORE trial)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lowered invasive breast cancer by 44% to 71% versus placebo across trials in postmenopausal women",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Small trials in older men disagree: over 6 months in 50 men it changed neither bone turnover, sex hormones nor lipids versus placebo, while a 3-month trial in 30 men found LH, FSH and testosterone rose by about 16% to 29% (off-label)",
+      "evidence": "limited",
+      "sources": [
+        3,
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Boxed warning: blood clots in the legs or lungs, most likely in the first 4 months; about 1 in 100 women over an average of 2.6 years",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Boxed warning: death from stroke in women with heart disease or at high heart risk (1.2% versus 0.8% with placebo over about 5.6 years)",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Hot flashes (9.7% versus 6.4%), leg cramps (7.0% versus 3.7%) and leg swelling",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In older men, PSA rose about 17% over 3 months in a small trial",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Current or past blood clots, including deep vein thrombosis, pulmonary embolism or retinal vein thrombosis",
+    "Pregnancy",
+    "Premenopausal women",
+    "Men (not adequately studied; the label does not recommend it)",
+    "High stroke risk, or long periods of immobility such as after surgery"
+  ],
+  "interactions": [
+    "Cholestyramine and similar resins: block its absorption; not to be combined",
+    "Warfarin: prothrombin time should be checked when starting or stopping raloxifene",
+    "Estrogen therapy: combined use is not recommended",
+    "Other highly protein-bound drugs, such as diazepam or lidocaine: use with caution"
+  ],
+  "labs": {
+    "before": [
+      "Bone density (DEXA) scan",
+      "Triglycerides, if they rose sharply on past estrogen therapy",
+      "Men (off-label): PSA, testosterone, LH and FSH"
+    ],
+    "during": [
+      "Bone density at intervals",
+      "Triglycerides in women whose triglycerides rose on estrogen",
+      "Men (off-label): PSA and testosterone"
+    ],
+    "why": "Bone density tracks osteoporosis, its main use; the label asks for triglyceride monitoring in women whose triglycerides rose markedly on estrogen. In men, PSA rose in one small trial."
+  },
+  "studies": [
+    {
+      "title": "Effects of Raloxifene, a Selective Estrogen Receptor Modulator, on Bone Turnover Markers and Serum Sex Steroid and Lipid Levels in Elderly Men",
+      "year": 2001,
+      "type": "RCT",
+      "people": "50 older men (average age 69)",
+      "finding": "Over 6 months, raloxifene did not change bone turnover markers, sex steroid levels or lipids compared with placebo; men with lower starting estradiol may have responded.",
+      "source": 3
+    },
+    {
+      "title": "EVISTA (raloxifene hydrochloride) tablets: Prescribing Information",
+      "year": 2023,
+      "type": "Label",
+      "people": "Postmenopausal women with osteoporosis (MORE) and women with heart disease or high heart risk (RUTH)",
+      "finding": "Raloxifene cut new spine fractures by 55% and invasive breast cancer by 44% to 71% across trials, but raised blood clots and, in RUTH, deaths from stroke (1.2% versus 0.8%).",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Do my risks for blood clots or stroke make raloxifene a poor fit for me?",
+    "How will we track whether it is protecting my bones?",
+    "For men: what evidence supports using it, given the label does not recommend it for men?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "EVISTA (raloxifene hydrochloride) tablets: Prescribing Information (revised 3/2023)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2023,
+      "url": "https://www.drugs.com/pro/evista.html"
+    },
+    {
+      "n": 2,
+      "title": "Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 3,
+      "title": "Effects of Raloxifene, a Selective Estrogen Receptor Modulator, on Bone Turnover Markers and Serum Sex Steroid and Lipid Levels in Elderly Men",
+      "publisher": "Journal of Bone and Mineral Research (Scilit record)",
+      "year": 2001,
+      "url": "https://scilit.com/publications/1d19abee906f545cbc9e37f0f8a10723"
+    },
+    {
+      "n": 4,
+      "title": "Effects of raloxifene on gonadotrophins, sex hormones, bone turnover and lipids in healthy elderly men",
+      "publisher": "European Journal of Endocrinology (record at data.zhenzhi.com)",
+      "url": "https://data.zhenzhi.com/details/1/895576502"
+    }
+  ],
+  "notes_for_editor": "Label is the March 2023 Evista label as reprinted by Drugs.com. Male data are two small trials read as abstracts: Doran et al. 2001 (50 men, 6 months, randomized and placebo-controlled: no changes in bone markers, sex steroids or lipids) and Duschek, Gooren and Netelenbos in the European Journal of Endocrinology (30 men, 3 months, randomized and placebo-controlled: LH, FSH, testosterone, estradiol and PSA rose, total cholesterol fell slightly; the authors saw no clear overall benefit). The Duschek publication year was not shown on the page opened (its DOI, 10.1530/eje.0.1500539, points to volume 150), so no year is given. Use for male gynecomastia was not reviewed; the 2019 EAA guideline says SERMs are not justified for gynecomastia in general. Bone density testing in labs reflects its use for osteoporosis rather than a specific label instruction.",
+  "checked": "2026-10-28"
+}

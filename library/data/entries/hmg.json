@@ -1,0 +1,179 @@
+{
+  "id": "hmg",
+  "name": "hMG",
+  "summary": "A prescription fertility injection of FSH and LH activity purified from postmenopausal women's urine, approved for IVF; it is used off-label in men to start sperm production.",
+  "what_it_is": "Human menopausal gonadotropin (hMG, menotropins) is a mix of the pituitary hormones FSH and LH, purified from the urine of postmenopausal women; in Menopur, most of the LH activity comes from hCG. FSH and LH drive egg development in women and, in men, sperm and testosterone production in the testes. Menopur's US approval was converted to a biologics license on March 23, 2020.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for multiple-egg development in IVF based on a randomized trial of 373 women; use in men is off-label, supported by a meta-analysis of 44 studies of gonadotropin therapy that did not report hMG separately."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved biologic for IVF; off-label in men",
+    "note": "Menopur is approved for developing multiple follicles and pregnancy in ovulatory women undergoing assisted reproduction such as IVF; its label has no use in men. Its approval was converted to a biologics license on March 23, 2020, and menotropins does not appear on FDA's May 2026 list of bulk substances nominated for pharmacy compounding.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Supports multiple-egg development for IVF: in a trial of 373 women, the continuing pregnancy rate (23%) was not inferior to recombinant FSH",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Gonadotropin therapy, including urine-derived products such as hMG, produced sperm in the ejaculate in about 75% of men with hypogonadotropic hypogonadism and no sperm, across 44 studies (off-label for hMG in the US)",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "In that meta-analysis, earlier testosterone therapy did not reduce the success of gonadotropin therapy, and results were better when hypogonadism began after puberty",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Ovarian hyperstimulation syndrome in 7.2% of women in the IVF trial; it can be serious and can start after treatment stops",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Multiple pregnancy: 35% of pregnancies in the IVF trial were multiples",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Blood clots and lung complications, with rare deaths",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Ovarian torsion, ectopic pregnancy and miscarriage",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Abdominal pain (6.7%), headache (6.2%) and injection-site pain or reactions (3.9%)",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Side effects in men are not described in its US label",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy",
+    "High FSH showing primary ovarian failure",
+    "Uncontrolled thyroid, adrenal or pituitary disorders",
+    "Sex hormone-dependent tumors of the reproductive tract, or pituitary or hypothalamic tumors",
+    "Abnormal uterine bleeding, or ovarian cysts or enlargement of unknown cause not due to PCOS"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Pregnancy test",
+      "FSH (to rule out primary ovarian failure)",
+      "Evaluation of the male partner's fertility",
+      "Men (off-label): testosterone, LH, FSH and semen analysis"
+    ],
+    "during": [
+      "Ultrasound and estradiol levels to track ovarian response",
+      "Men (off-label): semen analysis and testosterone"
+    ],
+    "why": "The label calls for evaluating the male partner and monitoring ovarian response with ultrasound and estradiol; for off-label use in men, studies tracked sperm in the ejaculate."
+  },
+  "studies": [
+    {
+      "title": "Factors affecting spermatogenesis upon gonadotropin-replacement therapy: a meta-analytic study",
+      "year": 2014,
+      "type": "Meta-analysis",
+      "people": "Men with hypogonadotropic hypogonadism and no sperm (44 gonadotropin studies and 16 GnRH studies)",
+      "finding": "Gonadotropin therapy produced sperm in about 75% of men; success was higher with hCG plus FSH and with onset after puberty, and earlier testosterone therapy did not affect results.",
+      "source": 4
+    },
+    {
+      "title": "MENOPUR (menotropins for injection): Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "373 women undergoing IVF or IVF with ICSI",
+      "finding": "Continuing pregnancy (23%) was non-inferior to recombinant FSH; ovarian hyperstimulation occurred in 7.2%, and 35% of pregnancies were multiples.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my infertility or low testosterone caused by low pituitary hormones, so that gonadotropins could help?",
+    "How will we watch for ovarian hyperstimulation and multiple pregnancy?",
+    "For men: how long does it usually take to see sperm, and how will we track progress?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "MENOPUR (menotropins for injection): Prescribing Information (revised 3/2025)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/menopur.html"
+    },
+    {
+      "n": 2,
+      "title": "List of Approved NDAs for Biological Products That Were Deemed to be BLAs on March 23, 2020",
+      "publisher": "FDA",
+      "year": 2020,
+      "url": "https://fda.gov/media/119229/download"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 4,
+      "title": "Factors affecting spermatogenesis upon gonadotropin-replacement therapy: a meta-analytic study",
+      "publisher": "Andrology (University of Florence repository record)",
+      "year": 2014,
+      "url": "https://flore.unifi.it/handle/2158/956376"
+    }
+  ],
+  "notes_for_editor": "Menopur's US label covers only women in IVF. Use in men (usually alongside hCG to start sperm production in hypogonadotropic hypogonadism) is off-label in the US, while FSH products (Gonal-f, Follistim AQ) carry that male indication. The Rastrelli meta-analysis was read as an abstract and does not report hMG-specific results. WADA's 2026 list does not name hMG or FSH but bans chorionic gonadotropin (hCG) and LH in males; Menopur's LH activity comes mostly from hCG, so athletes should check with their anti-doping organization. Whether biologics such as menotropins can be compounded was not separately sourced here; the only finding is that menotropins is absent from FDA's May 2026 503A nominations list.",
+  "checked": "2026-10-28"
+}

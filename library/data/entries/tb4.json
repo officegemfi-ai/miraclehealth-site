@@ -1,0 +1,235 @@
+{
+  "id": "tb4",
+  "name": "Thymosin beta-4",
+  "summary": "A natural 43-amino-acid repair protein used for injury recovery; tested as eye drops and a skin gel with mixed results, it is not approved and differs from TB-500.",
+  "what_it_is": "Thymosin beta-4 is a 43-amino-acid protein first isolated from calf thymus and found in blood, saliva, tears and wound fluid. Inside cells it binds actin, a building block of the cell skeleton, and in several animal models it speeds skin repair. A drug company has tested it in people as eye drops (RGN-259) and as a skin gel (RGN-137). FDA stresses that TB-500, a short synthetic peptide based on one part of it, is not the same substance.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Human evidence is mixed: the eye drops narrowly missed significance in an 18-person cornea trial and missed their main goals in larger dry-eye and cornea trials, skin-gel wound trials gave inconsistent reports, and the evidence for injury recovery comes from animal studies."
+  },
+  "status_us": {
+    "key": "investigational",
+    "label": "Not approved; eye drops in phase 3 trials",
+    "note": "No thymosin beta-4 product is approved. Its eye-drop form, RGN-259, has FDA orphan drug designation for neurotrophic keratopathy; a European phase 3 trial missed its main goal in 2025, and results of a mostly US phase 3 trial were expected in November 2026.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 1,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0.5,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "In neurotrophic keratopathy, a rare nerve-related cornea disease, persistent corneal wounds healed by 4 weeks in 6 of 10 people on the eye drops versus 1 of 8 on placebo, narrowly missing statistical significance in a trial stopped early for slow recruitment; a later European phase 3 trial missed its main goal",
+      "evidence": "limited",
+      "sources": [
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "In dry eye, a 72-person phase 2 trial and three phase 3 trials in more than 1,600 people missed their main goals; some symptoms, such as discomfort and grittiness, improved in secondary analyses",
+      "evidence": "limited",
+      "sources": [
+        4,
+        5
+      ]
+    },
+    {
+      "claim": "Skin-gel trials in 71 people with pressure ulcers and 72 with venous leg ulcers found it well tolerated; the developer reported no significant improvement in complete healing of pressure ulcers, while a later summary described faster healing",
+      "evidence": "limited",
+      "sources": [
+        6,
+        7
+      ]
+    },
+    {
+      "claim": "In 30 people with epidermolysis bullosa, a fragile, blistering skin disease, wounds tended to heal better than with placebo by day 15",
+      "evidence": "limited",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "claim": "Faster skin-wound repair in several animal models, including aged mice",
+      "evidence": "preclinical",
+      "sources": [
+        8,
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Long-term safety is unknown: the eye-drop and skin-gel trials were short or small, and although they reported no serious drug-related side effects, longer use has not been studied",
+      "how_common": "unknown",
+      "sources": [
+        4,
+        3,
+        6
+      ]
+    },
+    {
+      "risk": "Possible cancer concern: thymosin beta-4 drives new blood vessel growth and plays a role in tumor progression in research studies; its effect on existing cancers in people is unknown",
+      "how_common": "theoretical",
+      "sources": [
+        9
+      ]
+    },
+    {
+      "risk": "Immune reactions: FDA says injected peptides may pose a significant risk of immune reactions",
+      "how_common": "theoretical",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "Mix-ups with TB-500: FDA says TB-500 is not the same substance, so findings for one do not apply to the other",
+      "how_common": "unknown",
+      "sources": [
+        8
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "Current or past cancer, unless a cancer specialist advises otherwise (linked to blood vessel growth and tumor progression in research)",
+    "Athletes subject to anti-doping rules (WADA bans thymosin beta-4 and its derivatives)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+    ],
+    "during": [],
+    "why": "Thymosin beta-4 has been studied in people only as eye drops and skin gel in trials, so no evidence-based monitoring exists for other uses."
+  },
+  "studies": [
+    {
+      "title": "Thymosin beta 4 ophthalmic solution for dry eye: a randomized, placebo-controlled, Phase II clinical trial conducted using the controlled adverse environment (CAE™) model",
+      "year": 2015,
+      "type": "RCT",
+      "people": "72 adults with dry eye (28 days)",
+      "finding": "The main goals, corneal staining and eye discomfort, were not met; some secondary measures of discomfort and staining improved, and no safety issues arose.",
+      "source": 4
+    },
+    {
+      "title": "RGN-259 (Thymosin ß4) Ophthalmic Solution Promotes Healing and Improves Comfort in Neurotrophic Keratopathy Patients in a Randomized, Placebo-Controlled, Double-Masked Phase III Clinical Trial",
+      "year": 2023,
+      "type": "RCT",
+      "people": "18 people with neurotrophic keratopathy",
+      "finding": "Complete healing at 4 weeks in 6 of 10 on the drops versus 1 of 8 on placebo (p=0.07); healing differed significantly two weeks after treatment ended, comfort improved, and no significant adverse effects were seen.",
+      "source": 3
+    },
+    {
+      "title": "FDA Briefing Document for TB-500-Related Bulk Drug Substances (TB-500 (free base) and TB-500 acetate)",
+      "year": 2026,
+      "type": "Review",
+      "people": "Published research on TB-500 and related peptides",
+      "finding": "FDA states that thymosin beta-4 and TB-500 are not the same substance and describes thymosin beta-4 as a 43-amino-acid, actin-binding peptide found in body fluids such as blood, saliva and tears.",
+      "source": 8
+    },
+    {
+      "title": "Thymosin β4 and angiogenesis: modes of action and therapeutic potential",
+      "year": 2007,
+      "type": "Review",
+      "people": "Lab and animal research",
+      "finding": "Reviews how thymosin beta-4 regulates new blood vessel growth and its roles in wound healing, tumor progression and possible treatment of heart disease.",
+      "source": 9
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there a clinical trial of thymosin beta-4 eye drops that fits my eye condition?",
+    "Which proven treatments should I try first for my injury or wound?",
+    "Given my personal and family cancer history, are there reasons to avoid it?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "HLB Therapeutics Completes Global Phase 3 Clinical Trial for ‘RGN-259’… Topline Results to Be Announced in November",
+      "publisher": "EDAILY (news)",
+      "year": 2026,
+      "url": "https://en.edaily.co.kr/news/eda202608265430"
+    },
+    {
+      "n": 2,
+      "title": "HLB Therapeutics misses primary end point in phase 3 SEER-3 trial of RGN-259",
+      "publisher": "Ophthalmology Times",
+      "year": 2025,
+      "url": "https://www.ophthalmologytimes.com/view/hlb-therapeutics-misses-primary-endpoint-in-phase-3-seer-3-trial-of-rgn-259?b=ot"
+    },
+    {
+      "n": 3,
+      "title": "RGN-259 (Thymosin ß4) Ophthalmic Solution Promotes Healing and Improves Comfort in Neurotrophic Keratopathy Patients in a Randomized, Placebo-Controlled, Double-Masked Phase III Clinical Trial",
+      "publisher": "International Journal of Molecular Sciences (BVS record of the MEDLINE abstract)",
+      "year": 2023,
+      "url": "https://pesquisa.bvsalud.org/ses/resource/es/mdl-36613994"
+    },
+    {
+      "n": 4,
+      "title": "Thymosin beta 4 ophthalmic solution for dry eye: a randomized, placebo-controlled, Phase II clinical trial conducted using the controlled adverse environment (CAE™) model",
+      "publisher": "Clinical Ophthalmology (Dove Medical Press)",
+      "year": 2015,
+      "url": "https://dovepress.com/thymosin-beta-4-ophthalmic-solution-for-dry-eye-a-randomized-placebo-c-peer-reviewed-fulltext-article-OPTH"
+    },
+    {
+      "n": 5,
+      "title": "RegeneRx Eyes Pipeline Shuffle in Light of Development Delays",
+      "publisher": "BioSpace (news)",
+      "year": 2022,
+      "url": "https://www.biospace.com/regenerx-reasses-pipeline-in-light-of-development-delays-with-lead-asset"
+    },
+    {
+      "n": 6,
+      "title": "RegeneRx Biopharmaceuticals, Inc. Reports Phase II Pressure Ulcer Trial Results",
+      "publisher": "RegeneRx press release (BioSpace)",
+      "year": 2009,
+      "url": "https://www.biospace.com/regenerx-biopharmaceuticals-inc-reports-phase-ii-pressure-ulcer-trial-results"
+    },
+    {
+      "n": 7,
+      "title": "What's new this month?",
+      "publisher": "European Journal of Dermatology, Residents' Corner (Cairn)",
+      "year": 2019,
+      "url": "https://stm.cairn.info/article/EJD_295_0568/pdf?lang=en"
+    },
+    {
+      "n": 8,
+      "title": "FDA Briefing Document for TB-500-Related Bulk Drug Substances (TB-500 (free base) and TB-500 acetate), Pharmacy Compounding Advisory Committee, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193349/download"
+    },
+    {
+      "n": 9,
+      "title": "Thymosin β4 and angiogenesis: modes of action and therapeutic potential",
+      "publisher": "Angiogenesis (Springer)",
+      "year": 2007,
+      "url": "https://link.springer.com/doi/10.1007/s10456-007-9077-x"
+    },
+    {
+      "n": 10,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "Kept separate from tb500 as FDA instructs. Status: SEER-3 (Europe) missed its primary endpoint per a July 2025 trade report [2]; SEER-2 (41 US and 9 EU sites) finished patient visits on August 26, 2026, with topline results expected November 2026 [1]; re-check before publishing. Orphan designation is reported by a Korean news outlet [1], not confirmed on FDA's database. The dry-eye program (ARISE-1 to -3, more than 1,600 people) missed co-primary endpoints, and in 2022 FDA said the results did not support a BLA [5]; ARISE-4 was being prepared. Skin-wound evidence conflicts: the developer's own 2009 release said the pressure-ulcer trial showed no significant difference in complete healing or healing rate [6], while a 2019 journal column summarizing a review said topical thymosin beta-4 accelerated healing in the pressure and venous ulcer trials and reported the epidermolysis bullosa trial of 30 as a trend [7]; the primary trial papers were not opened. The SEER-1 abstract was read through a BVS record because PubMed/PMC/MDPI full text was blocked; the strength was removed from its title. The developer's venous-ulcer release (2009) reported safety and an earlier start of healing at the middle dose, without healing rates; not cited because of the 10-source cap. Compounding: thymosin beta-4 does not appear on FDA's May 14, 2026 503A nominations list (checked, https://www.fda.gov/media/94155/download; not cited for the same reason). The cancer concern rests on a 2007 review of angiogenesis and tumor biology [9], not on human reports. No human data on injected thymosin beta-4 beyond a 14-day phase 1 safety study mentioned in [4].",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,174 @@
+{
+  "id": "cabergoline",
+  "name": "Cabergoline",
+  "summary": "A prescription pill that lowers high prolactin by acting like dopamine on the pituitary; approved for hyperprolactinemia, including prolactin-making pituitary tumors.",
+  "what_it_is": "Cabergoline is an ergot-derived dopamine agonist that binds strongly to D2 receptors and directly blocks prolactin release from the pituitary gland. Too much prolactin can cause breast milk discharge (galactorrhea) and stop periods; in trials, cabergoline restored periods and stopped discharge in most women. It stays in the body a long time, with an estimated half-life of 63 to 69 hours.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for hyperprolactinemia based on randomized trials, including one where 77% reached normal prolactin versus 59% with bromocriptine; a 2021 Cochrane review supports off-label use to prevent ovarian hyperstimulation."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for high prolactin (hyperprolactinemia)",
+    "note": "Approved for hyperprolactinemic disorders in adults, either of unknown cause or due to pituitary adenomas; the label says not to use it to suppress breast milk after childbirth. Other uses, such as preventing ovarian hyperstimulation during IVF, are off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Brought prolactin to normal in 77% of women with hyperprolactinemia versus 59% with bromocriptine over 8 weeks, restoring periods in 77% and stopping milk discharge in 73%",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In a 4-week placebo-controlled study, 74% to 95% reached normal prolactin, versus none on placebo",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Dopamine agonists, including cabergoline, probably cut moderate or severe ovarian hyperstimulation in women at high risk during IVF, from about 27% to 8% to 14% (22 trials, 3,171 women; off-label)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea (27%), headache, dizziness (15%), constipation (10%), fatigue and dizziness on standing",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Heart valve damage, reported mostly at the higher amounts once used for Parkinson's disease but also in hyperprolactinemia; in people treated for hyperprolactinemia, a meta-analysis of 13 studies found more tricuspid regurgitation (odds ratio 3.74), of unclear clinical importance",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Scarring (fibrosis) of the lungs and pleura, the lining around the heart, or the tissue behind the abdomen",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Impulse control problems such as compulsive gambling, spending or sexual urges; psychosis and aggression have also been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Using dopamine agonists to stop breast milk after childbirth has been linked to high blood pressure, stroke, heart attack, seizures and death",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Uncontrolled high blood pressure",
+    "History of heart valve disease or pericardial fibrosis",
+    "History of lung, pleural or retroperitoneal fibrosis",
+    "Allergy to ergot medicines",
+    "Severe liver impairment, pregnancy or the weeks after childbirth (dopamine agonists are generally avoided)"
+  ],
+  "interactions": [
+    "Dopamine blockers (phenothiazines, butyrophenones, thioxanthenes, metoclopramide): not recommended together",
+    "Other drugs linked to heart valve disease: only if the expected benefit outweighs the risk",
+    "Blood pressure-lowering drugs: higher risk of dizziness or fainting on standing"
+  ],
+  "labs": {
+    "before": [
+      "Echocardiogram (heart ultrasound)",
+      "Prolactin",
+      "Blood pressure"
+    ],
+    "during": [
+      "Echocardiogram every 6 to 12 months or as clinically indicated",
+      "Prolactin",
+      "Blood pressure"
+    ],
+    "why": "The label calls for an echocardiogram before starting and repeat scans every 6 to 12 months to check the heart valves, plus blood pressure checks; prolactin shows whether treatment is working."
+  },
+  "studies": [
+    {
+      "title": "Dopamine agonists for preventing ovarian hyperstimulation syndrome",
+      "year": 2021,
+      "type": "Meta-analysis",
+      "people": "3,171 women at high risk of ovarian hyperstimulation in 22 randomized trials",
+      "finding": "Dopamine agonists probably reduce moderate or severe ovarian hyperstimulation (odds ratio 0.32); effects on live birth and side effects are uncertain.",
+      "source": 2
+    },
+    {
+      "title": "A Meta-Analysis of the Prevalence of Cardiac Valvulopathy in Patients With Hyperprolactinemia Treated With Cabergoline",
+      "year": 2018,
+      "type": "Meta-analysis",
+      "people": "Patients treated for hyperprolactinemia in 13 case-control studies",
+      "finding": "Tricuspid regurgitation was more common with cabergoline than in controls (odds ratio 3.74), but no patient had symptoms from it and no other valve problem was increased.",
+      "source": 3
+    },
+    {
+      "title": "Cabergoline tablets: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "Women with hyperprolactinemia (8-week comparison with bromocriptine)",
+      "finding": "77% reached normal prolactin with cabergoline versus 59% with bromocriptine, and more had periods restored and milk discharge resolved.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I need an echocardiogram before starting, and how often should it be repeated?",
+    "What is causing my high prolactin, and does it need further tests?",
+    "Which mood, behavior or impulse changes should I report?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Cabergoline tablets: Prescribing Information (Greenstone, revised 6/2026)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2026,
+      "url": "https://www.drugs.com/pro/cabergoline.html"
+    },
+    {
+      "n": 2,
+      "title": "Can dopamine agonists prevent ovarian hyperstimulation syndrome in women undergoing fertility treatment with IVF or ICSI?",
+      "publisher": "Cochrane (summary of the 2021 review Dopamine agonists for preventing ovarian hyperstimulation syndrome)",
+      "year": 2021,
+      "url": "https://www.cochrane.org/evidence/CD008605_can-dopamine-agonists-prevent-ovarian-hyperstimulation-syndrome-women-undergoing-fertility-treatment"
+    },
+    {
+      "n": 3,
+      "title": "A Meta-Analysis of the Prevalence of Cardiac Valvulopathy in Patients With Hyperprolactinemia Treated With Cabergoline",
+      "publisher": "Journal of Clinical Endocrinology & Metabolism (OUCI record)",
+      "year": 2018,
+      "url": "https://ouci.dntb.gov.ua/works/40ON5R37"
+    }
+  ],
+  "notes_for_editor": "Label is the June 2026 generic cabergoline label (Greenstone, registrant Pfizer, reported to Viatris) as reprinted by Drugs.com; the Dostinex brand label was not checked. Off-label use by men on testosterone or anabolic steroids, and claims about libido, orgasm or recovery time, were not reviewed this round; no source supporting them was opened. Lowering high prolactin from any cause falls under the approved hyperprolactinemia indication. The Cochrane OHSS result pools cabergoline with bromocriptine and quinagolide. The valve meta-analysis was read as an abstract; it did not report absolute rates or a link to cumulative dose.",
+  "checked": "2026-10-28"
+}

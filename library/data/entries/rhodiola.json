@@ -1,0 +1,156 @@
+{
+  "id": "rhodiola",
+  "name": "Rhodiola rosea",
+  "summary": "A cold-climate herb (golden root) taken to fight fatigue and stress and lift mood; trials are small and conflicting, and NIH says the evidence is insufficient.",
+  "what_it_is": "Rhodiola (Rhodiola rosea), also called golden root, rose root or arctic root, is a plant that grows in cold regions and at high altitudes in Europe, Asia and North America. It has a long history of traditional use in Russia, Scandinavia and other parts of Europe for work performance, endurance, fatigue, depression and altitude sickness. Today it is promoted for athletic performance, mood, thinking, energy and stress.",
+  "evidence": {
+    "grade": "limited",
+    "why": "A review of 11 controlled trials found contradictory results for fatigue, all at high risk of bias or poorly reported, and NIH calls most human research low to moderate quality."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement. NIH notes that supplements are not approved by FDA before they are sold and that manufacturers are responsible for their safety and labeling.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0.75,
+    "sleep": 0,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Less mental fatigue in 3 of 5 randomized trials and less physical fatigue in 2 of 6 trials in healthy people; every study had a high risk of bias or reporting flaws",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Mixed results for depression: a 2025 review of 3 studies reported lower symptom scores, but in a 12-week placebo-controlled trial of 57 adults with mild to moderate major depression, neither rhodiola nor the antidepressant sertraline improved scores significantly more than placebo",
+      "evidence": "limited",
+      "sources": [
+        3,
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Dizziness, headache, trouble sleeping, and dry mouth or excess saliva",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Side effects were reported by 30% of people on rhodiola versus 17% on placebo (and 63% on sertraline) in a 12-week depression trial",
+      "how_common": "common",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Interactions with losartan, a blood pressure medicine, have been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Possibly safe for up to 12 weeks; longer-term safety, and safety in pregnancy and breastfeeding, are unknown",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (little is known)",
+    "Taking losartan or other blood pressure medicines (clinician first)",
+    "Depression, or taking an antidepressant (clinician first; don't stop prescribed treatment on your own)"
+  ],
+  "interactions": [
+    "Losartan (blood pressure medicine): interactions have been reported",
+    "Other medicines: NIH advises talking with a health care provider before using any herbal product with medicines"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed; none are linked to its use."
+  },
+  "studies": [
+    {
+      "title": "Rhodiola rosea for physical and mental fatigue: a systematic review",
+      "year": 2012,
+      "type": "Systematic review",
+      "people": "11 controlled trials (10 randomized) in healthy people and patients",
+      "finding": "Results were contradictory: 2 of 6 physical-fatigue trials and 3 of 5 mental-fatigue trials reported benefit, and all studies had a high risk of bias or reporting flaws.",
+      "source": 2
+    },
+    {
+      "title": "Rhodiola rosea versus sertraline for major depressive disorder: A randomized placebo-controlled trial",
+      "year": 2015,
+      "type": "RCT",
+      "people": "57 adults with mild to moderate major depression",
+      "finding": "Over 12 weeks, neither rhodiola nor sertraline lowered depression scores significantly more than placebo. Side effects were reported by 30% on rhodiola, 63% on sertraline and 17% on placebo.",
+      "source": 4
+    },
+    {
+      "title": "Rhodiola rosea L. reduces the depression symptoms – A systematic review",
+      "year": 2025,
+      "type": "Systematic review",
+      "people": "3 studies in people with mild to moderate depression",
+      "finding": "The authors conclude the extract reduced symptom severity; participant numbers and study quality were not reported in the abstract.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Could rhodiola interact with my blood pressure medicine, antidepressant or anything else I take?",
+    "Should my fatigue or low mood be checked for an underlying cause first?",
+    "How would we judge whether it is helping?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Rhodiola: Usefulness and Safety",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2025,
+      "url": "https://www.nccih.nih.gov/health/rhodiola"
+    },
+    {
+      "n": 2,
+      "title": "Rhodiola rosea for physical and mental fatigue: a systematic review",
+      "publisher": "BMC Complementary and Alternative Medicine (DOAJ record in a university library catalog)",
+      "year": 2012,
+      "url": "https://oalib-perpustakaan.upi.edu/Record/doaj_68ff74d8a4804600b3cd862fb9d9aa75/Description"
+    },
+    {
+      "n": 3,
+      "title": "Rhodiola rosea L. reduces the depression symptoms – A systematic review",
+      "publisher": "Revista de Medicina (Universidade de São Paulo)",
+      "year": 2025,
+      "url": "https://revistas.usp.br/revistadc/article/view/227539"
+    },
+    {
+      "n": 4,
+      "title": "Rhodiola Rosea vs Sertraline for Major Depression",
+      "publisher": "Natural Medicine Journal (review of a 2015 Phytomedicine trial)",
+      "year": 2015,
+      "url": "https://naturalmedicinejournal.com/journal/rhodiola-rosea-vs-sertraline-major-depression"
+    }
+  ],
+  "notes_for_editor": "NIH's April 2025 page says there isn't enough reliable evidence for any use and lists losartan interactions without details. The fatigue review is from 2012 and was read only as an abstract (BMC site blocked); newer fatigue and exercise trials were not reviewed. The 2025 depression review, from a Brazilian journal, is small and reports no quality ratings; it likely includes the 2015 sertraline trial. That trial was read through a Natural Medicine Journal review (the PMC copy was blocked); the reviewer favors rhodiola mainly for its lower side-effect rate, which goes beyond the trial's results. Penn Medicine's 2015 news release on the trial (NIH-funded) agrees on design and side-effect rates.",
+  "checked": "2026-10-28"
+}

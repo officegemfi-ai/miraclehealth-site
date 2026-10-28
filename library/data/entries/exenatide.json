@@ -1,0 +1,208 @@
+{
+  "id": "exenatide",
+  "name": "Exenatide",
+  "summary": "A prescription GLP-1 medicine, first approved as Byetta in 2005, that lowers blood sugar in type 2 diabetes; the brand-name versions were discontinued in the US in 2024.",
+  "what_it_is": "Exenatide is a lab-made 39-amino-acid peptide first found in a lizard, Heloderma suspectum (the Gila monster); its sequence partly overlaps that of human GLP-1. It switches on GLP-1 receptors, which raises insulin release when blood sugar is high, lowers excess glucagon and slows stomach emptying. Byetta is a short-acting form with a half-life of about 2.4 hours, and Bydureon BCise is an extended-release form; both are injected under the skin.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval for blood sugar control in type 2 diabetes based on randomized trials; a heart-safety trial of 14,752 adults (EXSCEL) found no increase in heart events, and a phase 3 trial in 194 people found no benefit in Parkinson's disease."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for type 2 diabetes; brands discontinued",
+    "note": "Byetta (adults) and Bydureon BCise (adults and children 10 and older) are approved to improve blood sugar control in type 2 diabetes; AstraZeneca discontinued both in October 2024, according to an insurer notice, and FDA approved Amneal's generic version of Byetta in November 2024. Exenatide is not approved for weight loss or Parkinson's disease.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lower blood sugar in adults with type 2 diabetes: with Byetta, A1C fell about 0.5 to 1.0 points more than with placebo",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Approved (as Bydureon BCise) for children and teens 10 and older with type 2 diabetes: in 82 young people aged 10 to 17, A1C fell 0.71 points more than with placebo over 24 weeks",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "No increase in heart attacks, strokes or cardiovascular deaths in 14,752 adults with type 2 diabetes; a reduction was not shown (hazard ratio 0.91)",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Small weight loss in adults with type 2 diabetes: about 0.3 to 2.7 kg more than with placebo (not approved for weight loss)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, vomiting and diarrhea: with Byetta, nausea affected 44% versus 18% on placebo",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Lumps and other reactions at the injection site with Bydureon BCise: nodules in about 1 in 10 users, and rare serious skin infections or tissue death, some needing surgery",
+      "how_common": "common",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Antibodies against exenatide, which can weaken its effect on blood sugar: high antibody levels developed in 32% of adults on Bydureon BCise",
+      "how_common": "common",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "risk": "Low blood sugar when combined with a sulfonylurea: 14% to 36% on Byetta versus 3% on placebo",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Rare serious reactions: pancreatitis, kidney injury after dehydration, and drug-induced low platelet counts that have caused serious, sometimes fatal bleeding",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Boxed warning (Bydureon BCise only): thyroid C-cell tumors in rats; whether this happens in humans is unknown",
+      "how_common": "theoretical",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Personal or family history of medullary thyroid cancer or MEN 2 (a contraindication for Bydureon BCise)",
+    "Past serious allergic reaction to exenatide, or low platelets caused by an exenatide product",
+    "Severe kidney disease or kidney failure (not recommended)",
+    "Severe digestive disease, including severe gastroparesis (not recommended)",
+    "Pregnancy (animal studies showed harm to the fetus) or breastfeeding (no human data)"
+  ],
+  "interactions": [
+    "Warfarin: reports of a raised INR, sometimes with bleeding; INR needs closer monitoring when starting or changing exenatide",
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Oral medicines that need to act quickly, including birth control pills: slower stomach emptying can delay absorption; the Byetta label advises on timing",
+    "Other exenatide products: using two together is not recommended"
+  ],
+  "labs": {
+    "before": [
+      "HbA1c or fasting glucose",
+      "Kidney function (creatinine, eGFR)",
+      "INR if taking warfarin"
+    ],
+    "during": [
+      "HbA1c to track blood sugar (worsening control can signal antibodies)",
+      "Blood glucose if also taking insulin or a sulfonylurea",
+      "Kidney function if vomiting or diarrhea is severe",
+      "INR more often if taking warfarin"
+    ],
+    "why": "The labels call for watching kidney function when digestive side effects could cause dehydration, INR in people on warfarin and blood sugar with insulin or sulfonylureas, and for considering another treatment if blood sugar control worsens, which antibodies can cause; routine calcitonin or thyroid ultrasound checks are of uncertain value."
+  },
+  "studies": [
+    {
+      "title": "Exenatide once a week versus placebo as a potential disease-modifying treatment for people with Parkinson's disease in the UK: a phase 3, multicentre, double-blind, parallel-group, randomised, placebo-controlled trial",
+      "year": 2025,
+      "type": "RCT",
+      "people": "194 adults aged 25 to 80 with Parkinson's disease",
+      "finding": "After 96 weeks, movement scores off medication worsened by 5.7 points with exenatide and 4.5 with placebo (adjusted difference 0.92, 95% CI -1.56 to 3.39); the authors found no evidence that exenatide slows the disease. Serious adverse events: 9% versus 11%.",
+      "source": 5
+    },
+    {
+      "title": "BYDUREON BCISE (exenatide extended-release) injectable suspension, for subcutaneous use: Prescribing Information",
+      "year": 2024,
+      "type": "Label",
+      "people": "14,752 adults with type 2 diabetes (EXSCEL trial)",
+      "finding": "Heart attack, stroke or cardiovascular death: hazard ratio 0.91 (95% CI 0.832 to 1.004); the drug did not raise heart risk, and a reduction was not shown.",
+      "source": 2
+    },
+    {
+      "title": "BYETTA (exenatide) injection, for subcutaneous use: Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Adults with type 2 diabetes in placebo-controlled trials",
+      "finding": "A1C fell about 0.5 to 1.0 points and weight about 0.3 to 2.7 kg more than with placebo; nausea affected 44% versus 18%.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "With the brand-name products discontinued, which exenatide product, if any, is available to me?",
+    "Do I need more frequent INR checks if I take warfarin?",
+    "How would we tell if antibodies are making it work less well for me?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "BYETTA (exenatide) injection, for subcutaneous use: Prescribing Information (revised 09/2025)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/021773Orig1s051correctedlbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "BYDUREON BCISE (exenatide extended-release) injectable suspension, for subcutaneous use: Prescribing Information (revised 11/2024)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2024,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/209210s024lbl.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Discontinuation of Bydureon BCise and Byetta",
+      "publisher": "UnitedHealthcare Provider News",
+      "year": 2024,
+      "url": "https://www.uhcprovider.com/en/resource-library/news/2024/discontinuation-bydureon-bcise-byetta.html"
+    },
+    {
+      "n": 4,
+      "title": "Amneal Resubmits DHE Autoinjector New Drug Application and Receives U.S. FDA Approval of Exenatide its First Generic Injectable GLP-1 Agonist",
+      "publisher": "Amneal Pharmaceuticals (press release)",
+      "year": 2024,
+      "url": "https://investors.amneal.com/news/press-releases/press-release-details/2024/Amneal-Resubmits-DHE-Autoinjector-New-Drug-Application-and-Receives-U.S.-FDA-Approval-of-Exenatide-its-First-Generic-Injectable-GLP-1-Agonist/"
+    },
+    {
+      "n": 5,
+      "title": "Exenatide once a week versus placebo as a potential disease-modifying treatment for people with Parkinson's disease in the UK: a phase 3, multicentre, double-blind, parallel-group, randomised, placebo-controlled trial",
+      "publisher": "The Lancet (University of Oxford DPAG publication record)",
+      "year": 2025,
+      "url": "https://www.dpag.ox.ac.uk/publications/2084557/modal"
+    }
+  ],
+  "notes_for_editor": "Discontinuation of Byetta (October 25, 2024) and Bydureon BCise (October 28, 2024) is sourced to a UnitedHealthcare provider notice that cites AstraZeneca's report to FDA, not to FDA's own records. Amneal's release on its generic Byetta gave no launch date, so current US availability of any exenatide product was not confirmed. The Byetta label was still revised in September 2025. The boxed thyroid warning applies to the extended-release product only; Byetta's label has none. Exenatide-PD3 was a UK academic trial of the long-acting form; findings come from the abstract record. The rare serious reactions are graded rare because they come from postmarketing reports without trial rates.",
+  "checked": "2026-10-28"
+}

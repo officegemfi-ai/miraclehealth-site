@@ -1,0 +1,178 @@
+{
+  "id": "tadalafil",
+  "name": "Tadalafil",
+  "summary": "A prescription PDE5-inhibitor pill for erectile dysfunction and for urinary symptoms of an enlarged prostate; in trials, its effect on erections lasted up to 36 hours.",
+  "what_it_is": "Tadalafil is a phosphodiesterase type 5 (PDE5) inhibitor. During sexual stimulation, nerves and blood vessel linings release nitric oxide, which raises cGMP and relaxes smooth muscle so blood flows into the penis; blocking PDE5 keeps cGMP higher, so tadalafil has no effect without sexual stimulation. The same drug is sold as Adcirca for pulmonary arterial hypertension, and the two should not be taken together.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for erectile dysfunction and for urinary symptoms of benign prostatic hyperplasia based on randomized trials; AUA guidelines recommend PDE5 inhibitors for ED and list tadalafil as an option for these urinary symptoms."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for ED and enlarged-prostate symptoms",
+    "note": "Approved for erectile dysfunction, the signs and symptoms of benign prostatic hyperplasia (BPH), and both together. Tadalafil is also sold as Adcirca for pulmonary arterial hypertension.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 1,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Improved erections in men with erectile dysfunction: in two US trials, successful intercourse attempts rose to 50% and 64% versus 25% and 23% on placebo, with effects lasting up to 36 hours",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Improved erectile function compared with placebo in 216 men with type 1 or type 2 diabetes",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Treats urinary symptoms of benign prostatic hyperplasia, with or without erectile dysfunction; the AUA lists it as a treatment option",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "In men with ED and low testosterone, PDE5 inhibitors may work better when combined with testosterone therapy (AUA; low-certainty evidence)",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Headache (about 11% to 15% versus 5% on placebo), indigestion, back pain, muscle aches, nasal congestion, flushing and limb pain",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Severe drop in blood pressure if combined with nitrates or riociguat; added blood pressure lowering with alpha-blockers, other blood pressure drugs and heavy drinking",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Erection lasting more than 4 hours (priapism), which needs emergency care",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Sudden vision loss from NAION (damage to the optic nerve), reported rarely; sudden hearing loss has also been reported, though a causal link is not established",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Serious skin reactions, including Stevens-Johnson syndrome and exfoliative dermatitis, have been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Taking nitrates in any form, regularly or now and then",
+    "Taking riociguat or another guanylate cyclase stimulator",
+    "Heart conditions that make sexual activity unsafe, such as unstable angina or uncontrolled arrhythmia or blood pressure",
+    "Severe liver impairment",
+    "Past serious allergic reaction to tadalafil"
+  ],
+  "interactions": [
+    "Nitrates: contraindicated; if a nitrate is needed in a life-threatening emergency, the label says at least 48 hours should pass after the last tadalafil dose, with close monitoring",
+    "Alpha-blockers (such as doxazosin, tamsulosin or alfuzosin) and other blood pressure drugs: extra blood pressure lowering; for BPH, combining with an alpha-blocker is not recommended",
+    "Strong CYP3A4 inhibitors (ketoconazole, ritonavir, itraconazole; grapefruit juice likely): raise tadalafil levels",
+    "CYP3A4 inducers such as rifampin: sharply lower tadalafil levels",
+    "Other PDE5 inhibitors, including Adcirca: not to be combined"
+  ],
+  "labs": {
+    "before": [
+      "Morning total testosterone if low testosterone is suspected"
+    ],
+    "during": [],
+    "why": "The label sets no routine lab tests; the AUA notes that erectile dysfunction can be a marker of underlying heart disease and that PDE5 inhibitors may work better when low testosterone is treated."
+  },
+  "studies": [
+    {
+      "title": "Erectile Dysfunction: AUA Guideline",
+      "year": 2018,
+      "type": "Guideline",
+      "people": "Men with erectile dysfunction",
+      "finding": "Recommends telling men with ED about PDE5 inhibitors, finds sildenafil, tadalafil, vardenafil and avanafil similarly effective, and says men taking nitrates regularly should not use them.",
+      "source": 3
+    },
+    {
+      "title": "Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline",
+      "year": 2021,
+      "type": "Guideline",
+      "people": "Men with urinary symptoms from an enlarged prostate",
+      "finding": "Tadalafil should be discussed as an option whether or not a man has erectile dysfunction; combining it with an alpha-blocker adds no symptom benefit over either drug alone.",
+      "source": 2
+    },
+    {
+      "title": "CIALIS (tadalafil) tablets: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "Men with erectile dysfunction in two US trials, and 216 men with diabetes",
+      "finding": "Tadalafil raised the share of successful intercourse attempts versus placebo, with effects up to 36 hours after taking it.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my heart healthy enough for sexual activity, and could my ED be an early sign of heart disease?",
+    "Do any of my medicines, including nitrates, alpha-blockers or other blood pressure drugs, interact with tadalafil?",
+    "Should my testosterone be checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "CIALIS (tadalafil) tablets: Prescribing Information (revised 3/2026)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2026,
+      "url": "https://www.drugs.com/pro/cialis.html"
+    },
+    {
+      "n": 2,
+      "title": "Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (amended 2021)",
+      "publisher": "American Urological Association",
+      "year": 2021,
+      "url": "https://www.auanet.org/documents/guidelines/pdf/bph%20surgical-mgmt.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Erectile Dysfunction: AUA Guideline",
+      "publisher": "Journal of Urology (American Urological Association PDF)",
+      "year": 2018,
+      "url": "https://www.auanet.org/documents/Guidelines/PDF/ED-JU.pdf"
+    }
+  ],
+  "notes_for_editor": "Label is the March 2026 Cialis label as reprinted by Drugs.com. The BPH trial results (symptom-score changes) were in a part of the page that could not be read, so the BPH benefit rests on the approved indication and the AUA guideline. That Adcirca treats pulmonary arterial hypertension comes from Drugs.com's related-drugs text; the label itself only says not to combine Cialis with Adcirca. Off-label uses such as daily use for general blood flow or exercise were not reviewed.",
+  "checked": "2026-10-28"
+}

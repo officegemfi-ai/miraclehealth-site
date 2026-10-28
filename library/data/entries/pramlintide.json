@@ -1,0 +1,147 @@
+{
+  "id": "pramlintide",
+  "name": "Pramlintide",
+  "summary": "A lab-made form of the hormone amylin, approved as Symlin for adults with type 1 or type 2 diabetes who use mealtime insulin; no longer marketed in the US.",
+  "what_it_is": "Pramlintide is a synthetic version of amylin, a hormone that the pancreas's beta cells release along with insulin after meals; it differs from human amylin at three amino acid positions. It slows stomach emptying, blunts the rise in glucagon after meals and increases fullness, which lowers after-meal blood sugar and food intake. It acts briefly, with a half-life of about 48 minutes, and was given as an injection under the skin.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval as an add-on to mealtime insulin, based on placebo-controlled trials in adults with type 1 and type 2 diabetes; the A1C improvement over placebo was modest, about 0.3 points."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved (Symlin); no longer marketed in the US",
+    "note": "Approved as an add-on to mealtime insulin for adults with type 1 or type 2 diabetes who have not reached their blood sugar goals despite optimal insulin therapy. A drug reference (AHFS, reviewed April 2026) says pramlintide has been discontinued in the US; the date and reason were not found.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Slightly lower A1C when added to insulin in adults with type 1 diabetes: about 0.25 to 0.34 points more than placebo at 6 months in three trials",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Slightly lower A1C when added to insulin in adults with type 2 diabetes: about 0.3 points more than placebo at 6 months in two trials",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Modest weight loss instead of the small gain seen with placebo: about 0.8 to 1.6 kg in type 1 and 1.4 to 1.6 kg in type 2 diabetes trials (not approved for weight loss)",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Boxed warning: severe low blood sugar when used with insulin, especially in type 1 diabetes, usually within about 3 hours after an injection; in type 1 trials, 16.8% versus 10.8% on placebo had a severe episode in the first 3 months, and serious injury can follow if it strikes while driving or operating machinery",
+      "how_common": "common",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Nausea, loss of appetite and vomiting, mostly early in treatment: nausea affected 48% versus 17% on placebo in type 1 diabetes and 28% versus 12% in type 2",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Headache: 13% versus 7% on placebo in type 2 diabetes trials",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Hypoglycemia unawareness (trouble sensing low blood sugar)",
+    "Confirmed gastroparesis (very slow stomach emptying)",
+    "Severe low blood sugar needing help in the past 6 months, A1C above 9%, or trouble keeping up with insulin and glucose checks (the label says not to consider it)",
+    "Children and teens under 18 (not recommended)",
+    "Past serious allergic reaction to pramlintide"
+  ],
+  "interactions": [
+    "Insulin: higher risk of severe low blood sugar, and mixing the two in one syringe changes how both act",
+    "Drugs that slow the gut, such as anticholinergics (for example atropine), and alpha-glucosidase inhibitors (such as acarbose): not studied together and not recommended",
+    "Oral medicines that need to act quickly, such as pain relievers, antibiotics or birth control pills: slower stomach emptying can delay them; the label advises on timing",
+    "Other drugs that can raise the risk of low blood sugar, such as ACE inhibitors, fluoxetine, MAO inhibitors, salicylates and sulfonamide antibiotics: use with caution",
+    "Beta-blockers: can hide the warning signs of low blood sugar"
+  ],
+  "labs": {
+    "before": [
+      "HbA1c",
+      "Recent home glucose readings and any history of low blood sugar"
+    ],
+    "during": [
+      "Blood glucose before and after meals and at bedtime, especially when starting or changing treatment",
+      "HbA1c"
+    ],
+    "why": "The label calls for frequent glucose checks around meals and at bedtime because severe low blood sugar is the main danger, and it treats a rise in milder lows as a warning sign; it lists no other routine blood tests."
+  },
+  "studies": [
+    {
+      "title": "SYMLIN (pramlintide acetate) injection, for subcutaneous use: Prescribing Information",
+      "year": 2019,
+      "type": "Label",
+      "people": "Adults with type 1 diabetes using mealtime insulin (placebo-controlled trials)",
+      "finding": "A1C fell 0.25 to 0.34 points more than with placebo at 6 months in three trials (a fourth showed no meaningful difference), with 0.8 to 1.6 kg average weight loss; severe low blood sugar in the first 3 months: 16.8% versus 10.8%.",
+      "source": 1
+    },
+    {
+      "title": "SYMLIN (pramlintide acetate) injection, for subcutaneous use: Prescribing Information",
+      "year": 2019,
+      "type": "Label",
+      "people": "Adults with type 2 diabetes using insulin (placebo-controlled trials)",
+      "finding": "A1C fell 0.30 to 0.34 points more than with placebo at 6 months; weight fell 1.4 to 1.6 kg versus small gains with placebo; severe low blood sugar in the first 3 months: 8.2% versus 2.1%.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is pramlintide still available to me, and if not, what are the alternatives?",
+    "How should my insulin plan change to lower the risk of severe lows?",
+    "Is it safe for me to drive in the hours after an injection?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "SYMLIN (pramlintide acetate) injection, for subcutaneous use: Prescribing Information (revised 12/2019)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2019,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/021332s028lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Pramlintide (Monograph)",
+      "publisher": "Drugs.com (AHFS Drug Information, ASHP)",
+      "year": 2026,
+      "url": "https://www.drugs.com/monograph/symlin.html"
+    }
+  ],
+  "notes_for_editor": "The newest Symlin label on Drugs@FDA is from December 2019 (Medication Guide 2015). US discontinuation rests on the AHFS monograph on Drugs.com (reviewed April 10, 2026), which says it is no longer updated; no FDA or manufacturer notice was found, so the date and reason are unconfirmed. AstraZeneca, which markets Symlin, also discontinued Byetta and Bydureon BCise in October 2024 (see the exenatide entry). The label lists postmarketing reports of pancreatitis and injection-site reactions without rates, so they are not in the risk list. Weight changes are secondary trial findings; it is not approved for weight loss.",
+  "checked": "2026-10-28"
+}

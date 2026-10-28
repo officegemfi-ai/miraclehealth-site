@@ -1,0 +1,167 @@
+{
+  "id": "armodafinil",
+  "name": "Armodafinil",
+  "summary": "The R-form of modafinil: a prescription wakefulness drug for sleep disorders, used off-label for focus with little direct evidence in healthy people.",
+  "what_it_is": "Armodafinil, sold as Nuvigil, is a prescription drug that promotes wakefulness. Modafinil is a 50-50 mix of two mirror-image forms of the same molecule; armodafinil is one of them, the R-form. It is approved for adults with excessive sleepiness from obstructive sleep apnea, narcolepsy or shift work disorder, and it is a Schedule IV controlled substance.",
+  "evidence": {
+    "grade": "limited",
+    "why": "It is approved for sleepiness from three sleep disorders; for focus in rested healthy people, the evidence comes from studies of modafinil, which found only small effects on a few kinds of thinking tests."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for sleep disorders; Schedule IV",
+    "note": "Nuvigil is approved to improve wakefulness in adults with excessive sleepiness from obstructive sleep apnea (it treats the sleepiness, not the airway obstruction), narcolepsy or shift work disorder. It is a Schedule IV controlled substance, it is not approved for children, and use for focus is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0.5,
+    "sleep": 0.25,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Improves wakefulness in adults with excessive sleepiness from obstructive sleep apnea, narcolepsy or shift work disorder (approved use)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Evidence for focus in rested people comes from modafinil, its parent mixture: across 19 placebo-controlled trials the overall effect on thinking tests was small, and another set of meta-analyses found a clear gain only in memory updating",
+      "evidence": "limited",
+      "sources": [
+        2,
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Headache (17% versus 9% on placebo), nausea (7% versus 3%), dizziness (5% versus 2%) and insomnia (5% versus 1%) in trials",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Serious rash, including Stevens-Johnson syndrome, has required hospital care; in children given modafinil, rash led to stopping in about 8 in 1,000; any new rash needs prompt medical review",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Allergic and multi-organ reactions, including angioedema, anaphylaxis and DRESS (a drug reaction with rash, fever and organ involvement)",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Psychiatric effects: anxiety, agitation and irritability led some trial patients to stop, and mania, delusions, hallucinations, suicidal thoughts and aggression have been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Small rises in blood pressure and pulse; the label advises against use with a history of left ventricular hypertrophy, or with mitral valve prolapse that caused symptoms on stimulants before",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Misuse, physical dependence and tolerance have been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or planning pregnancy (animal data suggest harm, and fetal growth restriction and miscarriage have been reported)",
+    "Allergy to armodafinil or modafinil",
+    "Heart disease, left ventricular hypertrophy, or mitral valve prolapse that caused symptoms on stimulants (needs a clinician first)",
+    "History of psychosis, depression or mania (needs a clinician first)",
+    "Athletes in tested sports: WADA bans modafinil in competition; armodafinil is not named on the 2026 list, so check with your anti-doping organization"
+  ],
+  "interactions": [
+    "Hormonal birth control: may be less effective during use and for one month after stopping",
+    "Cyclosporine: blood levels may drop",
+    "Drugs cleared by the liver enzyme CYP2C19: they may stay in the body longer",
+    "Drugs cleared by the liver enzymes CYP3A4/5: they may be cleared faster and work less well",
+    "Warfarin: more frequent INR checks may be needed; MAO inhibitors: use with caution"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "The sources reviewed set no routine blood tests; the label says closer monitoring of heart rate and blood pressure may be appropriate."
+  },
+  "studies": [
+    {
+      "title": "NUVIGIL (armodafinil) tablets: prescribing information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Adults with obstructive sleep apnea, narcolepsy or shift work disorder (645 on armodafinil in pooled placebo-controlled trials)",
+      "finding": "Approved to improve wakefulness; headache was the most common side effect (17% versus 9%), and the label warns about serious rash, psychiatric symptoms and reduced birth-control effectiveness.",
+      "source": 1
+    },
+    {
+      "title": "The Efficacy of Modafinil as a Cognitive Enhancer: A Systematic Review and Meta-Analysis",
+      "year": 2019,
+      "type": "Meta-analysis",
+      "people": "19 placebo-controlled trials, 767 adults who were not sleep-deprived (modafinil, not armodafinil)",
+      "finding": "Modafinil had a small overall effect on cognition (g = 0.10), mainly on executive function and processing speed; the authors saw only limited potential as a cognitive enhancer in rested people.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my sleepiness from a sleep disorder that needs diagnosis and treatment first?",
+    "Will armodafinil weaken my birth control or change the levels of my other medicines?",
+    "Do my heart or mental-health history make it unsafe for me?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "NUVIGIL (armodafinil) tablets: prescribing information (revised February 2025)",
+      "publisher": "Drugs.com (FDA-approved labeling)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/nuvigil.html"
+    },
+    {
+      "n": 2,
+      "title": "The Efficacy of Modafinil as a Cognitive Enhancer: A Systematic Review and Meta-Analysis",
+      "publisher": "Journal of Clinical Psychopharmacology (copy hosted at gwern.net)",
+      "year": 2019,
+      "url": "https://Www.Gwern.net/doc/modafinil/2019-kredlow.pdf"
+    },
+    {
+      "n": 3,
+      "title": "How effective are pharmaceuticals for cognitive enhancement in healthy adults? A series of meta-analyses of cognitive performance during acute administration of modafinil, methylphenidate and D-amphetamine",
+      "publisher": "European Neuropsychopharmacology (Read by QxMD abstract)",
+      "year": 2020,
+      "url": "https://read.qxmd.com/read/32709551/how-effective-are-pharmaceuticals-for-cognitive-enhancement-in-healthy-adults-a-series-of-meta-analyses-of-cognitive-performance-during-acute-administration-of-modafinil-methylphenidate-and-d-amphetamine"
+    },
+    {
+      "n": 4,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "No study of armodafinil for focus in rested healthy people was found within the search budget; the focus evidence is borrowed from modafinil meta-analyses and graded 'limited' for that reason. The label was read from the Drugs.com copy (revised February 2025); the last ~7% of the page was not read. 'Fetal harm based on animal data' appears in the label Highlights; section 8.1 reports growth restriction and miscarriage. WADA's 2026 list names modafinil (S6.A, in competition) and the related fladrafinil and flmodafinil but not armodafinil; whether armodafinil falls under the 'similar' wording of S6 was not checked.",
+  "checked": "2026-10-28"
+}

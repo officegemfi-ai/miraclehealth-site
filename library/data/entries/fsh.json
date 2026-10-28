@@ -1,0 +1,222 @@
+{
+  "id": "fsh",
+  "name": "FSH",
+  "summary": "A prescription fertility hormone injection, made by recombinant DNA technology, approved for ovulation induction and IVF in women and, with hCG, to start sperm production in men.",
+  "what_it_is": "Follicle-stimulating hormone (FSH) is a pituitary hormone that drives egg development in women and sperm production in men. Follitropin alfa (Gonal-f) and follitropin beta (Follistim AQ) are recombinant human FSH made in Chinese hamster ovary cells. In men, it is approved, together with hCG, only to start sperm production when the pituitary or hypothalamus fails to drive the testes (hypogonadotropic hypogonadism). Both products' approvals were converted to biologics licenses on March 23, 2020.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for female infertility and, with hCG, for starting sperm production in men with hypogonadotropic hypogonadism, though the male trials were small and open-label; for unexplained male infertility (off-label), a Cochrane review rated much of the evidence very low quality."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved biologics for female and male infertility",
+    "note": "Gonal-f and Follistim AQ are approved for ovulation induction and assisted reproduction in women and for inducing sperm production in men with hypogonadotropic hypogonadism whose infertility is not due to testicular failure. Their approvals were converted to biologics licenses on March 23, 2020.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "With hCG, started sperm production in men with hypogonadotropic hypogonadism and no sperm: 46% to 80% reached the target sperm density across three Gonal-f trials, and 43% of 30 men in the Follistim AQ trial, after a median of about 5 to 12 months",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Induced ovulation in anovulatory women: 58% ovulated in the first cycle, rising to 81% by the third (118 women)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Across 44 studies of gonadotropin therapy in men with hypogonadotropic hypogonadism, combining hCG with FSH was linked to higher success than other regimens",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "In men with unexplained infertility, gonadotropins raised spontaneous pregnancy rates from 7% to 16% (5 trials, 412 couples), but live-birth evidence is very low quality; the AUA/ASRM guideline says FSH may be considered, though its cost-effectiveness is questionable (off-label)",
+      "evidence": "limited",
+      "sources": [
+        5,
+        6
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "In men: acne (27%), injection-site pain (11%), fatigue (10%) and breast enlargement (6%; one case needed surgery)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In women: ovarian hyperstimulation syndrome, which can be serious, progress rapidly and start after treatment stops",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Multiple pregnancies and births",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Blood clots in veins or arteries and lung complications, more likely in women with clotting risk factors",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Allergic reactions, including anaphylaxis",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Ovarian torsion, ectopic pregnancy and miscarriage",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "High FSH showing primary failure of the ovaries or testes, where it cannot work",
+    "Uncontrolled thyroid, adrenal or pituitary disorders",
+    "Sex hormone-dependent tumors, or tumors of the pituitary or hypothalamus",
+    "Pregnancy, or vaginal bleeding or ovarian cysts of unknown cause",
+    "Allergy to recombinant FSH products, or to streptomycin or neomycin (Follistim AQ)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Men: testosterone, LH and FSH, to confirm low pituitary hormones rather than testicular failure",
+      "Men: semen analysis",
+      "Women: pregnancy test and FSH",
+      "Thyroid, adrenal or pituitary tests if a disorder is suspected"
+    ],
+    "during": [
+      "Men: semen analysis and testosterone",
+      "Women: ovarian response monitoring by a fertility specialist"
+    ],
+    "why": "The labels exclude primary gonadal failure (high FSH) and uncontrolled gland disorders; trials in men tracked sperm density in the ejaculate."
+  },
+  "studies": [
+    {
+      "title": "Gonadotrophins for idiopathic male factor subfertility",
+      "year": 2013,
+      "type": "Meta-analysis",
+      "people": "456 men or couples with unexplained male subfertility in 6 randomized trials",
+      "finding": "Spontaneous pregnancy was more common with gonadotropins (16% versus 7%); one small trial reported live births (27% versus 0%), and the authors called the evidence insufficient for firm conclusions.",
+      "source": 5
+    },
+    {
+      "title": "Factors affecting spermatogenesis upon gonadotropin-replacement therapy: a meta-analytic study",
+      "year": 2014,
+      "type": "Meta-analysis",
+      "people": "Men with hypogonadotropic hypogonadism and no sperm (44 gonadotropin studies)",
+      "finding": "About 75% achieved sperm in the ejaculate; combined hCG and FSH and onset after puberty predicted better results, and earlier testosterone therapy did not affect outcomes.",
+      "source": 4
+    },
+    {
+      "title": "GONAL-f (follitropin alfa for injection): Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "78 men aged 16 to 48 with hypogonadotropic hypogonadism in three open-label trials (63 treated)",
+      "finding": "With hCG, 46% to 80% reached the target sperm density after a median of 9 to 12 months; acne and breast enlargement were the notable side effects.",
+      "source": 1
+    },
+    {
+      "title": "FOLLISTIM AQ (follitropin beta injection): Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "30 men with hypogonadotropic hypogonadism",
+      "finding": "With hCG, 43% reached the target sperm density, after a median of 165 days.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Do my hormone tests show a pituitary cause, so that FSH with hCG could work for me?",
+    "How long might it take to see sperm, and how will we track it?",
+    "Which side effects, such as breast enlargement or acne, should I report?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "GONAL-f (follitropin alfa for injection): Prescribing Information (revised 3/2025)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/gonal-f.html"
+    },
+    {
+      "n": 2,
+      "title": "FOLLISTIM AQ (follitropin beta injection): Prescribing Information (revised 2/2026)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2026,
+      "url": "https://www.drugs.com/pro/follistim-aq.html"
+    },
+    {
+      "n": 3,
+      "title": "List of Approved NDAs for Biological Products That Were Deemed to be BLAs on March 23, 2020",
+      "publisher": "FDA",
+      "year": 2020,
+      "url": "https://fda.gov/media/119229/download"
+    },
+    {
+      "n": 4,
+      "title": "Factors affecting spermatogenesis upon gonadotropin-replacement therapy: a meta-analytic study",
+      "publisher": "Andrology (University of Florence repository record)",
+      "year": 2014,
+      "url": "https://flore.unifi.it/handle/2158/956376"
+    },
+    {
+      "n": 5,
+      "title": "Gonadotrophins for idiopathic male factor subfertility",
+      "publisher": "Cochrane (summary of Cochrane Database of Systematic Reviews CD005071)",
+      "year": 2013,
+      "url": "https://www.cochrane.org/evidence/CD005071_gonadotrophins-idiopathic-male-factor-subfertility"
+    },
+    {
+      "n": 6,
+      "title": "Can empiric medical treatments improve idiopathic male infertility? (Chapter 34)",
+      "publisher": "Handbook of Andrology, 3rd edition (American Society of Andrology)",
+      "year": 2023,
+      "url": "https://andrologysociety.org/wp-content/uploads/2023/04/Chapter-34-Bieniek-and-Lo.pdf"
+    }
+  ],
+  "notes_for_editor": "Labels are the March 2025 Gonal-f and February 2026 Follistim AQ labels as reprinted by Drugs.com. The male trials were small, open-label and uncontrolled, and the approved male use requires hCG. The Cochrane review (2013) is old and covers gonadotropins generally; the AUA/ASRM position is taken from a 2023 Handbook of Andrology chapter, not the guideline text itself. The Gonal-f summary listed a testosterone entry threshold with implausible units, so it is not used here. FSH and hMG are not named on WADA's 2026 list. Urofollitropin (Bravelle), a urine-derived FSH, also appears on FDA's March 2020 biologics transition list; its current availability was not checked. Using FSH alongside ongoing testosterone therapy was not reviewed; the Rastrelli meta-analysis looked only at earlier testosterone therapy.",
+  "checked": "2026-10-28"
+}

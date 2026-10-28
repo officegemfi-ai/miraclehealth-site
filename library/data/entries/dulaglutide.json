@@ -1,0 +1,186 @@
+{
+  "id": "dulaglutide",
+  "name": "Dulaglutide",
+  "summary": "A prescription injection, sold as Trulicity, that activates GLP-1 receptors to lower blood sugar in type 2 diabetes and reduce the risk of heart attack and stroke.",
+  "what_it_is": "Dulaglutide is a lab-made protein built from two identical chains, each joining a GLP-1-like peptide (90% the same as natural human GLP-1) to part of an antibody, the Fc portion of human IgG4. It switches on GLP-1 receptors, which raises insulin release when blood sugar is high, lowers glucagon and slows stomach emptying. Its half-life is about 5 days, and it is given as an injection under the skin. It is approved for type 2 diabetes, not for weight management.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval for blood sugar control and heart-risk reduction, based on randomized trials including REWIND, which followed 9,901 adults with type 2 diabetes for a median of 5.4 years."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for type 2 diabetes and heart-risk reduction",
+    "note": "Approved as Trulicity to improve blood sugar control in adults and children 10 and older with type 2 diabetes, and to lower the risk of heart attack, stroke and cardiovascular death in adults with type 2 diabetes and heart disease or several heart risk factors. FDA added label warnings in May 2025 and March 2026 on pancreatitis (including fatal forms seen with GLP-1 drugs), acute kidney injury, severe digestive reactions and reports of bowel blockage.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lower blood sugar in adults with type 2 diabetes: A1C fell about 0.7 to 1.1 points more than with placebo when added to other diabetes medicines",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Fewer heart attacks, strokes and cardiovascular deaths in adults with type 2 diabetes, about a third of whom had known heart disease: 12.0% versus 13.4% with placebo over a median of 5.4 years (hazard ratio 0.88)",
+      "evidence": "strong",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "Approved to improve blood sugar control in children and teens 10 and older with type 2 diabetes, based on a 26-week placebo-controlled trial of 154 young people",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Modest weight loss in adults with type 2 diabetes: about 2 to 3 kg more than with placebo or insulin glargine in label trials (it is not approved for weight loss)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, diarrhea, vomiting and stomach pain: nausea affected about 12% to 21% versus 5% on placebo, and 1% to 4% stopped because of digestive side effects versus 0.2%",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Low blood sugar when combined with insulin or a sulfonylurea: in trials with mealtime insulin, 69% to 77% had low readings and about 3% had severe episodes",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Acute pancreatitis, including rare bleeding or tissue-destroying forms that can be fatal: confirmed cases ran about 1.4 per 1,000 patient-years versus 0.88 with comparison drugs",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Acute kidney injury, sometimes needing dialysis, mostly after dehydration from vomiting or diarrhea (reported after marketing)",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Breathing stomach contents into the lungs under general anesthesia or deep sedation: rare reports; the label asks people to tell their care team before any planned procedure",
+      "how_common": "rare",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Boxed warning: thyroid C-cell tumors in rats; whether this happens in humans is unknown",
+      "how_common": "theoretical",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Personal or family history of medullary thyroid cancer or MEN 2",
+    "Past serious allergic reaction to dulaglutide",
+    "Severe digestive disease, including severe gastroparesis (not recommended)",
+    "History of pancreatitis (not studied in this group)",
+    "Pregnancy or planning pregnancy (animal studies showed harm; the label says to use it only if the benefit justifies the risk)"
+  ],
+  "interactions": [
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Oral medicines with a narrow safety margin, such as warfarin: slower stomach emptying can change absorption, so levels need monitoring"
+  ],
+  "labs": {
+    "before": [
+      "HbA1c or fasting glucose",
+      "Kidney function (creatinine, eGFR)",
+      "Eye exam if you have diabetic retinopathy"
+    ],
+    "during": [
+      "HbA1c to track blood sugar",
+      "Blood glucose if also taking insulin or a sulfonylurea",
+      "Kidney function if you have kidney disease and severe vomiting or diarrhea",
+      "Eye checks if you have diabetic retinopathy",
+      "INR if taking warfarin"
+    ],
+    "why": "The label calls for watching kidney function in people with kidney impairment who have severe digestive side effects, eye disease in people with a history of diabetic retinopathy, blood sugar with insulin or sulfonylureas, and narrow-margin drugs such as warfarin; it says routine calcitonin or thyroid ultrasound checks are of uncertain value."
+  },
+  "studies": [
+    {
+      "title": "TRULICITY (dulaglutide) injection, for subcutaneous use: Prescribing Information",
+      "year": 2020,
+      "type": "Label",
+      "people": "9,901 adults with type 2 diabetes, 31.5% with established heart disease (REWIND trial)",
+      "finding": "Over a median of 5.4 years, a first heart attack, stroke or cardiovascular death occurred in 12.0% with dulaglutide versus 13.4% with placebo (hazard ratio 0.88, 95% CI 0.79 to 0.99).",
+      "source": 3
+    },
+    {
+      "title": "TRULICITY (dulaglutide) injection, for subcutaneous use: Prescribing Information",
+      "year": 2024,
+      "type": "Label",
+      "people": "Adults with type 2 diabetes in placebo-controlled add-on trials",
+      "finding": "A1C fell about 0.7 to 1.1 points more than with placebo, and nausea affected about 12% to 21% versus 5%. About 1.6% developed antibodies to the drug, with no effect on how well it worked.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Does my heart risk make dulaglutide's heart benefit relevant to me?",
+    "Do my insulin or sulfonylurea doses need review to avoid low blood sugar?",
+    "Should I tell my surgeon or anesthesia team before any procedure with sedation?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "TRULICITY (dulaglutide) injection, for subcutaneous use: Prescribing Information (revised 11/2024)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2024,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/125469s061s062lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Drug Safety-related Labeling Changes (SrLC): Trulicity",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/scripts/cder/safetylabelingchanges/index.cfm?event=searchdetail.page&amp=&DrugNameID=816"
+    },
+    {
+      "n": 3,
+      "title": "TRULICITY (dulaglutide) injection, for subcutaneous use: Prescribing Information (revised 09/2020)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2020,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2020/125469s036lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "The newest full label read is the November 2024 PDF on Drugs@FDA; later changes (May 2025: acute kidney injury warning and fatal pancreatitis wording; March 2026: severe digestive reactions, ileus and intestinal obstruction reports) are cited from FDA's safety-labeling-changes database, not from newer label text. REWIND results come from the September 2020 label because the 2024 label text available to the fetcher ended before them. The pediatric trial's A1C result was not read. The label also warns about gallbladder disease and worsening diabetic retinopathy in people who already have it; no rates were extracted. Shortage and compounding status were not checked.",
+  "checked": "2026-10-28"
+}

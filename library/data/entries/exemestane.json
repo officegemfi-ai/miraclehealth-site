@@ -1,0 +1,187 @@
+{
+  "id": "exemestane",
+  "name": "Exemestane",
+  "summary": "A prescription pill that permanently disables aromatase, the enzyme that makes estrogen, approved for hormone-sensitive breast cancer after menopause; studies in men are few and brief.",
+  "what_it_is": "Exemestane is a steroidal aromatase inactivator: it acts as a false substrate, and its metabolite binds the enzyme's active site and inactivates it irreversibly. It lowers circulating estrogens by 85% to 95% at peak effect and cuts the body's estrogen production by 98%, without affecting cortisol or aldosterone. In a small 10-day study of young men, it raised testosterone while lowering estradiol.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for breast cancer after menopause, and a trial in 4,560 women showed it prevents breast cancer (off-label); in men, the main data come from a 10-day study of 12 young men."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for breast cancer; off-label in men",
+    "note": "Approved for postmenopausal women with estrogen receptor-positive early breast cancer who switch to it after 2 to 3 years of tamoxifen, and for advanced breast cancer that progressed on tamoxifen. Use for breast cancer prevention or in men is off-label, and WADA bans aromatase inhibitors, including exemestane, in sport.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Treats estrogen receptor-positive breast cancer in postmenopausal women, as follow-on treatment after tamoxifen and for advanced disease",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Cut invasive breast cancer by 65% (0.19% versus 0.55% a year) over about 3 years in 4,560 postmenopausal women at moderately increased risk (MAP.3; off-label for prevention)",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Raised testosterone by about 60% and lowered estradiol by about 38% over 10 days in 12 healthy young men (off-label)",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Hot flashes (21%), fatigue (16%), joint pain (15%), headache (13%), insomnia (12%) and sweating (12%) in women with early breast cancer",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Bone loss: bone density falls over time; osteoporosis (4.6% versus 2.8%) and fractures (4.2% versus 3.1%) were more common than with tamoxifen",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Heart ischemic events in 1.6% versus 0.6% with tamoxifen",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Blood test changes, including low lymphocyte counts and raised liver tests, bilirubin, alkaline phosphatase and creatinine",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In the prevention trial, more hot flashes (40% versus 32%) and joint pain, and worse menopause-related quality of life, mainly vasomotor and sexual symptoms",
+      "how_common": "common",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Harm to a fetus; it is not meant for premenopausal women",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy or possible pregnancy, and breastfeeding",
+    "Premenopausal women (it is not indicated for them)",
+    "Osteoporosis or high fracture risk without a bone-protection plan",
+    "Vitamin D deficiency that has not been checked and treated",
+    "Past allergic reaction to exemestane"
+  ],
+  "interactions": [
+    "Strong CYP3A4 inducers (rifampicin, phenytoin, carbamazepine, phenobarbital, St. John's wort): lower exemestane levels",
+    "Estrogen-containing products: should not be taken with it, as they may interfere with its action"
+  ],
+  "labs": {
+    "before": [
+      "Bone density (DEXA) scan",
+      "25-hydroxy vitamin D",
+      "Pregnancy test if pregnancy is possible",
+      "Men (off-label): testosterone and estradiol"
+    ],
+    "during": [
+      "Bone density at intervals",
+      "Men (off-label): testosterone and estradiol"
+    ],
+    "why": "The label calls for bone density assessment in women with or at risk of osteoporosis, a vitamin D level before starting and pregnancy testing in women who could become pregnant; there is no label guidance for men."
+  },
+  "studies": [
+    {
+      "title": "Exemestane for Breast-Cancer Prevention in Postmenopausal Women",
+      "year": 2011,
+      "type": "RCT",
+      "people": "4,560 postmenopausal women at moderately increased risk of breast cancer",
+      "finding": "Over a median of 35 months, invasive breast cancer fell by 65% with exemestane versus placebo; fractures, heart events and other cancers did not differ, but hot flashes and joint pain were more common.",
+      "source": 3
+    },
+    {
+      "title": "Pharmacokinetics and dose finding of a potent aromatase inhibitor, aromasin (exemestane), in young males",
+      "year": 2003,
+      "type": "Trial",
+      "people": "12 healthy young men aged 14 to 26",
+      "finding": "Over 10 days, estradiol fell by about a third and testosterone rose by more than half; lipids and IGF-I did not change. Long-term efficacy and safety were not studied.",
+      "source": 4
+    },
+    {
+      "title": "AROMASIN (exemestane) tablets: Prescribing Information",
+      "year": 2024,
+      "type": "Label",
+      "people": "Postmenopausal women with early breast cancer who switched from tamoxifen, compared with continuing tamoxifen",
+      "finding": "Exemestane caused more joint pain, osteoporosis and fractures than continuing tamoxifen, and slightly more heart ischemic events.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Should I have a bone density scan and vitamin D test before starting?",
+    "Which joint, muscle or mood symptoms should I report?",
+    "For men: what evidence supports it in my situation, given how little it has been studied in men?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "AROMASIN (exemestane) tablets: Prescribing Information (revised 12/2024)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2024,
+      "url": "https://www.drugs.com/pro/aromasin.html"
+    },
+    {
+      "n": 2,
+      "title": "Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 3,
+      "title": "Exemestane for Breast-Cancer Prevention in Postmenopausal Women",
+      "publisher": "New England Journal of Medicine (PDF copy at cinj.org)",
+      "year": 2011,
+      "url": "https://cinj.org/sites/cinj/files/documents/ExemestaneforBreastCaPrevention.pdf"
+    },
+    {
+      "n": 4,
+      "title": "Pharmacokinetics and dose finding of a potent aromatase inhibitor, aromasin (exemestane), in young males",
+      "publisher": "Journal of Clinical Endocrinology and Metabolism (QxMD abstract)",
+      "year": 2003,
+      "url": "https://read.qxmd.com/read/14671195/pharmacokinetics-and-dose-finding-of-a-potent-aromatase-inhibitor-aromasin-exemestane-in-young-males"
+    }
+  ],
+  "notes_for_editor": "Label is the December 2024 Aromasin label as reprinted by Drugs.com. MAP.3 was read in a PDF copy of the NEJM paper (median follow-up 35 months); the authors noted short follow-up and few breast cancer events. The only study in men opened is a 10-day dose-finding study in 12 young men, read as an abstract; no trial of exemestane alongside testosterone therapy was found, and its effects on bone, lipids and sexual function in men over longer periods are unknown. The label notes animal data suggesting impaired fertility in both sexes. The 2019 European Academy of Andrology guideline says aromatase inhibitors are not justified for gynecomastia in general (see the tamoxifen entry).",
+  "checked": "2026-10-28"
+}

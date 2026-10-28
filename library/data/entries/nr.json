@@ -1,0 +1,148 @@
+{
+  "id": "nr",
+  "name": "NR (nicotinamide riboside)",
+  "summary": "A form of vitamin B3 that raises NAD+, a molecule cells use for energy, taken in hopes of healthier aging; trials show few clear health effects.",
+  "what_it_is": "Nicotinamide riboside (NR) is a form of vitamin B3 that the body can convert into NAD+, a molecule involved in energy metabolism whose levels decline with age and in many diseases. Taken by mouth, it reliably raises NAD+ in the blood, but there is no sign that it raises NAD+ in muscle; rises in its breakdown products there suggest much of the excess is simply cleared. Some trials have tested it combined with another compound, pterostilbene.",
+  "evidence": {
+    "grade": "limited",
+    "why": "About 25 mostly small human trials show NR raises blood NAD+ and appears safe in the short term, but a 2023 critical review found few clinically relevant effects."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; GRAS notice for some foods",
+    "note": "Used as a dietary supplement. In 2016 FDA had no questions about a company's conclusion that NR is generally recognized as safe (GRAS) as a vitamin B3 source in certain drinks, bars and other foods, though FDA made no GRAS determination of its own.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0.5,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0.25,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Reliably raises NAD+ and related molecules in whole blood in human trials; there is no sign it raises NAD+ in muscle",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        2
+      ]
+    },
+    {
+      "claim": "Modest drops in some blood markers of inflammation, the most consistent effect across trials",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "No meaningful improvement in insulin sensitivity in several placebo-controlled trials, including detailed clamp studies, and generally no gains in muscle function, exercise performance or body composition",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Raised NAD levels in the brain in a placebo-controlled trial of 30 people with newly diagnosed Parkinson's disease; reported symptom gains came only from an after-the-fact subgroup analysis",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Blood fats: total and LDL cholesterol rose more than with placebo in a trial of 120 older adults taking NR combined with pterostilbene (clinical relevance uncertain), and triglycerides rose with NR in a placebo-controlled trial of men with obesity",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Small drops in potassium, hemoglobin and platelets in an uncontrolled study of 8 volunteers, not seen versus placebo in a heart-failure trial; reviewers judged them not clinically relevant",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Long-term safety is unknown: the longest trials of NR alone lasted about 4 to 5 months",
+      "how_common": "unknown",
+      "sources": [
+        3,
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "High cholesterol or triglycerides (clinician first, especially for products combined with pterostilbene)"
+  ],
+  "interactions": [
+    "Pterostilbene: the NR-plus-pterostilbene combination raised LDL cholesterol versus placebo in one trial"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed and none are evidence-based; trials found kidney markers unchanged, though blood fats rose in some trials, which may matter for people with high cholesterol."
+  },
+  "studies": [
+    {
+      "title": "What is really known about the effects of nicotinamide riboside supplementation in humans",
+      "year": 2023,
+      "type": "Review",
+      "people": "25 published human trials of oral NR",
+      "finding": "NR reliably raised blood NAD+ and appeared safe, but showed few clinically relevant effects; the most consistent was a modest drop in inflammatory markers, and the authors warn that the literature tends to exaggerate effects.",
+      "source": 3
+    },
+    {
+      "title": "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
+      "year": 2023,
+      "type": "Review",
+      "people": "Human trials of NR, NR with pterostilbene, and NMN",
+      "finding": "These supplements appear safe and can raise NAD+ in several tissues, but evidence that they improve physiological function is unclear, and small trials limit conclusions.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Given how few clinical effects trials have shown, is there a measurable reason to expect NR to help me?",
+    "Should I avoid NR products combined with pterostilbene because of my cholesterol?",
+    "Do any of my conditions or medicines make an NAD+ booster a bad idea?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Agency Response Letter GRAS Notice No. GRN 000635",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2016,
+      "url": "https://www.fda.gov/food/gras-notice-inventory/agency-response-letter-gras-notice-no-grn-000635"
+    },
+    {
+      "n": 2,
+      "title": "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
+      "publisher": "The Journals of Gerontology: Series A (University of Delaware repository)",
+      "year": 2023,
+      "url": "https://udspace.udel.edu/items/93b26729-8e64-4319-acf9-22bed742b00b/full"
+    },
+    {
+      "n": 3,
+      "title": "What is really known about the effects of nicotinamide riboside supplementation in humans",
+      "publisher": "Science Advances (PubMed Central)",
+      "year": 2023,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10361580/"
+    }
+  ],
+  "notes_for_editor": "The main source is a critical 2023 narrative review (Science Advances) that does not pool data; trial sizes and funding were not tabulated in what was read. The GRAS letter covers use in foods, not supplements, and FDA said it did not consider whether drug-related rules (section 301(ll)) apply; FDA's new dietary ingredient records for NR were not opened. No source opened addressed pregnancy, liver injury or drug interactions for NR alone; LiverTox was not checked. Brand names in the catalog aliases are not used.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,181 @@
+{
+  "id": "modafinil",
+  "name": "Modafinil",
+  "summary": "A prescription wakefulness drug for narcolepsy, sleep apnea and shift work sleepiness, used off-label for focus; in rested healthy people its effects are small.",
+  "what_it_is": "Modafinil, sold as Provigil, is a prescription drug that promotes wakefulness. It is approved for adults with excessive sleepiness from narcolepsy, obstructive sleep apnea or shift work disorder. How it works is not known. It is a Schedule IV controlled substance, and prescribers are told to watch for misuse.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "It is approved for sleepiness from three sleep disorders; for focus in rested healthy people, meta-analyses of small placebo-controlled trials found only small effects on a few kinds of thinking tests."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for sleep disorders; Schedule IV",
+    "note": "Provigil is approved to improve wakefulness in adults with excessive sleepiness from narcolepsy, obstructive sleep apnea (it treats the sleepiness, not the airway obstruction) or shift work disorder. It is a Schedule IV controlled substance, it is not approved for children, and use for focus in healthy people is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0.5,
+    "sleep": 0.25,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Improves wakefulness in adults with excessive sleepiness from narcolepsy, obstructive sleep apnea or shift work disorder (approved use)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "A small overall gain on thinking tests in adults who were not sleep-deprived (average effect size 0.10 across 19 placebo-controlled trials with 767 people), mainly in executive function and processing speed; attention and memory did not improve",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "In a separate set of meta-analyses of 14 studies in healthy rested adults, the only clear gain was in memory updating, and the authors said the evidence does not support users' belief that it is an effective cognitive enhancer",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Headache, the most common side effect, in about a third of patients versus about a quarter on placebo; nausea, nervousness, anxiety, insomnia and dizziness are among the other frequent ones",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Serious skin reactions, including Stevens-Johnson syndrome and toxic epidermal necrolysis, are rare but can be life-threatening; any new rash needs prompt medical review",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Allergic reactions: swelling of the face and throat (angioedema), anaphylaxis and multi-organ reactions, including at least one death reported after approval",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Psychiatric symptoms; the label urges caution in people with a history of psychosis, depression or mania",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Heart concerns: not recommended for people with a history of left ventricular hypertrophy (thickened heart muscle)",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Misuse and dependence: a Schedule IV controlled substance, and prescribers are told to watch for misuse, especially in people with a history of drug or stimulant misuse",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or planning pregnancy (animal data suggest harm, and fetal growth restriction and miscarriage have been reported)",
+    "Allergy to modafinil or armodafinil",
+    "History of left ventricular hypertrophy or other heart disease (needs a clinician first)",
+    "History of psychosis, depression or mania (needs a clinician first)",
+    "Athletes in tested sports (WADA bans modafinil in competition)"
+  ],
+  "interactions": [
+    "Hormonal birth control: may fail during use and for one month after stopping; the label advises another or an additional method",
+    "Cyclosporine: blood levels may drop",
+    "Omeprazole, phenytoin, diazepam, propranolol, clomipramine and other drugs cleared by the CYP2C19 enzyme: levels may rise",
+    "Warfarin: more frequent INR checks may be needed",
+    "MAO inhibitors: use with caution"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "The sources reviewed set no routine blood tests for modafinil; the label's cautions concern rash, heart and mental-health history, and pregnancy and birth control."
+  },
+  "studies": [
+    {
+      "title": "The Efficacy of Modafinil as a Cognitive Enhancer: A Systematic Review and Meta-Analysis",
+      "year": 2019,
+      "type": "Meta-analysis",
+      "people": "19 placebo-controlled trials, 767 adults who were not sleep-deprived",
+      "finding": "The overall effect on cognition was small but significant (g = 0.10), driven by executive function and processing speed; the authors concluded it has only limited potential as a cognitive enhancer in rested people.",
+      "source": 2
+    },
+    {
+      "title": "How effective are pharmaceuticals for cognitive enhancement in healthy adults? A series of meta-analyses of cognitive performance during acute administration of modafinil, methylphenidate and D-amphetamine",
+      "year": 2020,
+      "type": "Meta-analysis",
+      "people": "14 modafinil studies in healthy, non-sleep-deprived adults (plus studies of two other stimulants)",
+      "finding": "Modafinil had a small overall effect (SMD 0.12), mainly on memory updating; the authors said the effects are small and the test conditions may not reflect real-world use.",
+      "source": 3
+    },
+    {
+      "title": "PROVIGIL (modafinil) tablets: prescribing information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Adults with narcolepsy, obstructive sleep apnea or shift work disorder",
+      "finding": "Approved to improve wakefulness in these conditions; warns of serious rash and allergic and psychiatric reactions, and of reduced effectiveness of hormonal birth control.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my daytime sleepiness from a sleep disorder that should be diagnosed and treated first?",
+    "Will modafinil affect my birth control or my other medicines?",
+    "Given my heart and mental-health history, is it safe for me?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "PROVIGIL (modafinil) tablets: prescribing information (revised February 2025)",
+      "publisher": "Drugs.com (FDA-approved labeling)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/provigil.html"
+    },
+    {
+      "n": 2,
+      "title": "The Efficacy of Modafinil as a Cognitive Enhancer: A Systematic Review and Meta-Analysis",
+      "publisher": "Journal of Clinical Psychopharmacology (copy hosted at gwern.net)",
+      "year": 2019,
+      "url": "https://Www.Gwern.net/doc/modafinil/2019-kredlow.pdf"
+    },
+    {
+      "n": 3,
+      "title": "How effective are pharmaceuticals for cognitive enhancement in healthy adults? A series of meta-analyses of cognitive performance during acute administration of modafinil, methylphenidate and D-amphetamine",
+      "publisher": "European Neuropsychopharmacology (Read by QxMD abstract)",
+      "year": 2020,
+      "url": "https://read.qxmd.com/read/32709551/how-effective-are-pharmaceuticals-for-cognitive-enhancement-in-healthy-adults-a-series-of-meta-analyses-of-cognitive-performance-during-acute-administration-of-modafinil-methylphenidate-and-d-amphetamine"
+    },
+    {
+      "n": 4,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "Label read from the Drugs.com copy (revised February 2025; the page said it reproduces an Apotex PROVIGIL label); the last ~7% of the page (likely clinical studies) was not read. Headline side-effect figures (about a third versus a quarter for headache) are as summarized from the label's trial table. The pregnancy wording ('based on animal data, may cause fetal harm'; growth restriction and miscarriage reported) is from the label; we did not see a congenital-malformation statement in the US label. The Kredlow meta-analysis was read from a copy hosted on gwern.net (a personal site) because PubMed showed a bot check; the Roberts meta-analysis from an abstract page only. Kredlow included some psychiatric populations as well as healthy people. The 'heart disease' wording in avoid_if extends the label's left ventricular hypertrophy line; the armodafinil (Nuvigil) label also names mitral valve prolapse syndrome, which we did not confirm in this Provigil copy.",
+  "checked": "2026-10-28"
+}

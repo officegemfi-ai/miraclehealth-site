@@ -1,0 +1,147 @@
+{
+  "id": "nmn",
+  "name": "NMN",
+  "summary": "Nicotinamide mononucleotide, a building block the body uses to make NAD+, taken in hopes of slowing aging and boosting metabolism; human benefits are unproven.",
+  "what_it_is": "NMN (nicotinamide mononucleotide) is a form of vitamin B3 that cells can turn into NAD+, a coenzyme used in the chemical reactions that release energy from food. NAD+ levels fall with age in mammals, and in mice NMN improved glucose tolerance and insulin sensitivity, which led to its promotion as an anti-aging supplement. Some NMN taken by mouth is converted to nicotinamide before it reaches the bloodstream, and how it enters cells is still debated.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Eight small randomized trials in 342 mostly healthy adults, lasting up to 12 weeks, found NMN raised blood NAD+ in most but did not improve blood sugar, cholesterol, BMI or blood pressure."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement since FDA's September 2025 reversal",
+    "note": "FDA said in late 2022 that NMN could not be a dietary supplement because it had first been investigated as a drug, then reversed that position in letters dated September 29 and December 2, 2025. NMN is still a new dietary ingredient, so a premarket notification to FDA is required.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.5,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0.5,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Raised blood NAD+ in 5 of 8 small randomized trials in adults; whether it also raises NAD+ inside cells and tissues is unclear",
+      "evidence": "limited",
+      "sources": [
+        3,
+        4
+      ]
+    },
+    {
+      "claim": "No improvement in fasting blood sugar, insulin, HbA1c, blood fats, BMI or blood pressure versus placebo across 8 trials of 14 days to 12 weeks in 342 adults",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Better muscle insulin sensitivity in the only trial of people with prediabetes, which enrolled women",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Long-term safety is uncertain, especially at higher amounts and in older adults; the longest trials lasted 12 weeks",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "No serious side effects were reported in trials, but adverse events tended to be more frequent in the higher-dose groups of two trials",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Theoretical concerns raised by reviewers: higher NAD+ might feed tumor growth or harmful signals from aging cells, and its by-product nicotinamide has a possible link with heart disease risk",
+      "how_common": "theoretical",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "Current or past cancer (clinician first, given a theoretical concern about tumor growth)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed and no evidence-based monitoring exists; trials found no changes in liver enzymes, BMI or blood pressure."
+  },
+  "studies": [
+    {
+      "title": "Effects of Nicotinamide Mononucleotide on Glucose and Lipid Metabolism in Adults: A Systematic Review and Meta-analysis of Randomised Controlled Trials",
+      "year": 2025,
+      "type": "Meta-analysis",
+      "people": "342 adults in 8 randomized trials in Japan, India and the US, mostly healthy and middle-aged or older",
+      "finding": "NMN did not improve fasting glucose, insulin, HbA1c, blood fats, BMI or blood pressure; a borderline drop in insulin resistance disappeared when one trial was removed. The authors say the results do not support NMN for the general population.",
+      "source": 3
+    },
+    {
+      "title": "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
+      "year": 2023,
+      "type": "Review",
+      "people": "Human trials of NR, NMN and related compounds in healthy midlife and older adults and some patient groups",
+      "finding": "These supplements appear safe and can raise NAD+ in several tissues, but evidence that they improve how the body functions is unclear, and small trials limit conclusions.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any reason, such as a past cancer, that I should avoid NAD+ boosters?",
+    "Since trials found no change in blood sugar or cholesterol, how would we tell whether NMN is doing anything for me?",
+    "Which proven steps should come first for my metabolic or healthy-aging goals?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FDA Declares Nicotinamide Mononucleotide Is a Dietary Supplement",
+      "publisher": "Venable LLP (law firm)",
+      "year": 2025,
+      "url": "https://www.venable.com/insights/publications/2025/10/fda-declares-nicotinamide-mononucleotide-is"
+    },
+    {
+      "n": 2,
+      "title": "FDA reinstates NDI status of NMN with new letters to ingredient players",
+      "publisher": "NutraIngredients (trade news)",
+      "year": 2025,
+      "url": "https://www.nutraingredients.com/Article/2025/12/09/fda-reinstates-ndi-status-of-nmn-with-new-letters-to-ingredient-players"
+    },
+    {
+      "n": 3,
+      "title": "Effects of Nicotinamide Mononucleotide on Glucose and Lipid Metabolism in Adults: A Systematic Review and Meta-analysis of Randomised Controlled Trials",
+      "publisher": "Current Diabetes Reports (Hong Kong Polytechnic University repository)",
+      "year": 2025,
+      "url": "https://ira.lib.polyu.edu.hk/bitstream/10397/110061/1/s11892-024-01557-z.pdf"
+    },
+    {
+      "n": 4,
+      "title": "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
+      "publisher": "The Journals of Gerontology: Series A (University of Delaware repository)",
+      "year": 2023,
+      "url": "https://udspace.udel.edu/items/93b26729-8e64-4319-acf9-22bed742b00b/full"
+    }
+  ],
+  "notes_for_editor": "Trials were small (14 to 108 people), short (14 days to 12 weeks) and mostly in Asia; their funding sources were in a supplementary table that was not opened. The cancer and heart concerns are theoretical points from the meta-analysis discussion, not trial findings. FDA's 2025 letters themselves were not opened; the status rests on a law-firm summary and a trade-news report, which agree with each other and with nad.json. The meta-analysis was accepted in October 2024 and appears in the journal's 2025 volume. The NAD+ booster review was read only as an abstract.",
+  "checked": "2026-10-28"
+}

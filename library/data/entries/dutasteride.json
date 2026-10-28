@@ -1,0 +1,168 @@
+{
+  "id": "dutasteride",
+  "name": "Dutasteride",
+  "summary": "A prescription capsule that blocks DHT production, approved in the US for an enlarged prostate; it is used off-label for male pattern hair loss.",
+  "what_it_is": "Dutasteride is a 5-alpha-reductase inhibitor that blocks both the type 1 and type 2 enzymes that convert testosterone into DHT, cutting blood DHT by about 85% to 95%. It lasts a long time in the body: its half-life is about 5 weeks, and it can be detected for 4 to 6 months after stopping. It lowers PSA by about half within 3 to 6 months.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for a symptomatic enlarged prostate; for hair loss (off-label in the US), a meta-analysis of 3 short randomized trials in 576 men found more hair growth than with finasteride."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for enlarged prostate; off-label for hair",
+    "note": "Approved for symptomatic benign prostatic hyperplasia in men with an enlarged prostate, alone or with tamsulosin; the label says it is not approved to prevent prostate cancer. Use for hair loss is off-label in the US.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.25
+  },
+  "benefits": [
+    {
+      "claim": "Improves symptoms of an enlarged prostate and lowers the risk of acute urinary retention and BPH surgery",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Increased hair counts more than finasteride, with better photo ratings, in men with male pattern hair loss (3 randomized trials, 576 men, 24 weeks; off-label)",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Sexual side effects in the first 6 months: impotence (4.7% versus 1.7% on placebo), lower libido (3.0% versus 1.4%) and ejaculation problems (1.4% versus 0.5%); rates generally fell after the first year, some may persist after stopping, and guidelines say men should be told about them before starting",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Breast enlargement or tenderness; reports after approval of male breast cancer, depressed mood, and testicular pain or swelling",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Higher chance that a prostate cancer, if found, is high grade: Gleason 8 to 10 cancer in 1.0% versus 0.5% on placebo in the REDUCE trial",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Lower semen volume (26%), total sperm count (23%) and sperm motility (18%) after a year; total sperm count had not recovered after 24 weeks of follow-up, and the effect on fertility is unknown",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Possible suicidal thoughts: in 2025 EU regulators found insufficient evidence of a causal link but added the potential risk to labeling as a precaution, given a possible class effect",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Women who are or may be pregnant: must not take it or handle leaking capsules, since it is absorbed through the skin and can harm a male fetus",
+    "Women and children (not approved for them)",
+    "Past serious allergic reaction to dutasteride or another 5-alpha-reductase inhibitor",
+    "Blood donors: no donating until at least 6 months after the last dose"
+  ],
+  "interactions": [
+    "Strong, long-term CYP3A4 inhibitors such as ritonavir or ketoconazole: can raise dutasteride levels"
+  ],
+  "labs": {
+    "before": [
+      "PSA (baseline)"
+    ],
+    "during": [
+      "PSA: a new baseline after at least 3 months; any confirmed rise from the lowest value should be evaluated"
+    ],
+    "why": "Dutasteride lowers PSA by about half, so the label calls for a new PSA baseline after at least 3 months of treatment and evaluation of any confirmed rise; no other routine labs are required."
+  },
+  "studies": [
+    {
+      "title": "The efficacy and safety of dutasteride compared with finasteride in treating men with androgenetic alopecia: a systematic review and meta-analysis",
+      "year": 2019,
+      "type": "Meta-analysis",
+      "people": "576 men with male pattern hair loss in 3 randomized trials (24 weeks)",
+      "finding": "Dutasteride increased hair counts and photo ratings more than finasteride, with similar rates of sexual side effects; the authors noted the trials were few and short.",
+      "source": 3
+    },
+    {
+      "title": "AVODART (dutasteride) capsules: Prescribing Information",
+      "year": 2023,
+      "type": "Label",
+      "people": "Men with an enlarged prostate, and men in the REDUCE prostate cancer prevention trial",
+      "finding": "Sexual side effects were more common than with placebo early on and declined over time; in REDUCE, high-grade prostate cancer was more common (1.0% versus 0.5%).",
+      "source": 1
+    },
+    {
+      "title": "Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline",
+      "year": 2021,
+      "type": "Guideline",
+      "people": "Men with urinary symptoms from an enlarged prostate",
+      "finding": "Recommends 5-alpha-reductase inhibitors for men with an enlarged prostate, and says clinicians should tell patients about sexual side effects before starting.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Given how long dutasteride stays in the body, what should I know about side effects, PSA tests and blood donation?",
+    "Which sexual or mood changes should I report?",
+    "If my goal is hair loss, how does off-label dutasteride compare with approved options?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "AVODART (dutasteride) capsules: Prescribing Information (revised 10/2023)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2023,
+      "url": "https://www.drugs.com/pro/avodart.html"
+    },
+    {
+      "n": 2,
+      "title": "Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (amended 2021)",
+      "publisher": "American Urological Association",
+      "year": 2021,
+      "url": "https://www.auanet.org/documents/guidelines/pdf/bph%20surgical-mgmt.pdf"
+    },
+    {
+      "n": 3,
+      "title": "The efficacy and safety of dutasteride compared with finasteride in treating men with androgenetic alopecia: a systematic review and meta-analysis",
+      "publisher": "Clinical Interventions in Aging (Dove Press)",
+      "year": 2019,
+      "url": "https://www.dovepress.com/the-efficacy-and-safety-of-dutasteride-compared-with-finasteride-in-tr-peer-reviewed-article-CIA"
+    },
+    {
+      "n": 4,
+      "title": "Measures to minimise risk of suicidal thoughts with finasteride and dutasteride medicines",
+      "publisher": "European Medicines Agency",
+      "year": 2025,
+      "url": "https://www.ema.europa.eu/en/news/measures-minimise-risk-suicidal-thoughts-finasteride-dutasteride-medicines"
+    }
+  ],
+  "notes_for_editor": "Label is the October 2023 Avodart label as reprinted by Drugs.com. The hair-loss evidence is a meta-analysis of 3 trials lasting 24 weeks; long-term hair data were not opened, and dutasteride's approval for hair loss in some other countries was not confirmed this round. The meta-analysis reports conflicting p-values for erectile dysfunction (0.70 in the text, 0.07 in the abstract). The EMA review (May 2025) found insufficient evidence for a causal link with suicidal thoughts but added the potential risk to EU labels; the US label lists depressed mood only as a postmarketing report. The AUA guideline excerpt read did not name individual 5-alpha-reductase inhibitors.",
+  "checked": "2026-10-28"
+}

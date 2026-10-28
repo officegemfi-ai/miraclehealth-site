@@ -1,0 +1,143 @@
+{
+  "id": "taurine",
+  "name": "Taurine",
+  "summary": "An amino acid found in energy drinks and supplements, taken for energy and healthy aging; lifespan gains seen in animals haven't been shown in people.",
+  "what_it_is": "Taurine is a conditionally essential amino acid involved in many functions in the body, and it is a common ingredient in energy drinks. Interest in it for healthy aging grew after research found that taurine supplements improved age-related traits and extended lifespan in worms and mice. A 2025 NIH-led study, however, found that blood taurine rises or stays the same with age in people, monkeys and mice, so falling taurine is not a universal feature of aging.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Lifespan benefits have been shown only in worms and mice; in people, a 2024 meta-analysis of 25 small trials found modest drops in blood pressure, blood sugar and triglycerides."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; common energy-drink ingredient",
+    "note": "Sold as a dietary supplement and added to energy drinks. NIH said in 2025 that there is no solid clinical data showing that taurine supplements benefit people.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.5,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0.75,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Small drops in blood pressure (about 4 mmHg systolic and 1.5 mmHg diastolic), fasting blood sugar and triglycerides, with no change in HDL cholesterol, in a 2024 meta-analysis of 25 randomized trials (1,024 people)",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Improved age-related traits and longer lifespan in worms and mice given taurine",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Long-term safety is not established: trials lasted 5 days to 1 year, though they found no significant side effects versus control",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Energy drinks that contain taurine also contain caffeine, which in large amounts may cause heart rhythm problems and raise heart rate and blood pressure; energy-drink emergency visits doubled from 2007 to 2011",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Could add to the effects of blood pressure or diabetes medicines, given its small lowering effects (not directly studied)",
+      "how_common": "theoretical",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "Children and teens, when the taurine comes from caffeinated energy drinks",
+    "Taking blood pressure or diabetes medicines (clinician first)"
+  ],
+  "interactions": [
+    "Caffeine and alcohol: energy drinks pair taurine with caffeine, and mixing energy drinks with alcohol is linked to binge drinking and alcohol-related injuries",
+    "Blood pressure and diabetes medicines: a small added lowering effect is possible (not directly studied)"
+  ],
+  "labs": {
+    "before": [],
+    "during": [
+      "Blood pressure and blood sugar, if you take medicines for them"
+    ],
+    "why": "No routine tests are needed; because taurine slightly lowered blood pressure and blood sugar in trials, people on medicines for these may want them checked."
+  },
+  "studies": [
+    {
+      "title": "Taurine reduces the risk for metabolic syndrome: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2024,
+      "type": "Meta-analysis",
+      "people": "1,024 people in 25 randomized trials lasting 5 days to 1 year",
+      "finding": "Taurine modestly lowered systolic and diastolic blood pressure, fasting glucose and triglycerides, did not change HDL cholesterol, and caused no significant side effects versus control.",
+      "source": 3
+    },
+    {
+      "title": "Is taurine an aging biomarker?",
+      "year": 2025,
+      "type": "Cohort",
+      "people": "Three human cohorts (ages 20 to 100), rhesus monkeys and mice",
+      "finding": "Blood taurine rose or stayed the same with age rather than falling, varied more between individuals than over time, and was inconsistently linked to muscle strength, body weight and energy measures.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there anything about my heart, blood pressure or blood sugar that makes taurine or energy drinks a concern?",
+    "Would any of my medicines add to taurine's blood pressure or blood sugar effects?",
+    "Which proven steps should come first for my energy or healthy-aging goals?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "NIH researchers conclude that taurine is unlikely to be a good aging biomarker",
+      "publisher": "National Institutes of Health (news release)",
+      "year": 2025,
+      "url": "https://www.nih.gov/news-events/news-releases/nih-researchers-conclude-taurine-unlikely-be-good-aging-biomarker"
+    },
+    {
+      "n": 2,
+      "title": "Energy Drinks",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2018,
+      "url": "https://www.nccih.nih.gov/health/energy-drinks"
+    },
+    {
+      "n": 3,
+      "title": "Taurine reduces the risk for metabolic syndrome: a systematic review and meta-analysis of randomized controlled trials",
+      "publisher": "Nutrition & Diabetes (DOAJ record)",
+      "year": 2024,
+      "url": "https://doaj.org/article/b67c7515c6a84058937007867e4fe8ed"
+    },
+    {
+      "n": 4,
+      "title": "Is taurine an aging biomarker?",
+      "publisher": "Science (EBSCO research summary)",
+      "year": 2025,
+      "url": "https://www.ebsco.com/articles/health-and-medicine/29e891ed-d69f-59b5-abad-9073d46f42e4/is-taurine-an-aging-biomarker"
+    }
+  ],
+  "notes_for_editor": "The 2023 Science study proposing taurine deficiency as a driver of aging (worms, mice, monkeys) was not opened (PMC bot check); the lifespan finding is cited through NIH's 2025 release, which names worms and mice. The metabolic meta-analysis was read as an abstract (DOAJ); trial populations, quality and funding were not visible. NCCIH's energy-drink page (2018) mentions taurine only as an ingredient, so the energy-drink risks mainly reflect caffeine. A PMC paper titled 'Experimental Evidence Against Taurine Deficiency as a Driver of Aging in Humans' could not be opened. The catalog lists taurine under Longevity; this round's brief listed it under Energy & mitochondria.",
+  "checked": "2026-10-28"
+}

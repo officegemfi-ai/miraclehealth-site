@@ -1,0 +1,200 @@
+{
+  "id": "finasteride",
+  "name": "Finasteride",
+  "summary": "A prescription pill that blocks the conversion of testosterone to DHT, approved for male pattern hair loss and enlarged prostate; sexual and mood side effects are a known concern.",
+  "what_it_is": "Finasteride is a 5-alpha-reductase inhibitor: it blocks the Type II enzyme that converts testosterone into dihydrotestosterone (DHT), lowering DHT in the blood and scalp, which is how it treats male pattern hair loss and an enlarged prostate. It also lowers PSA, a blood test used in prostate cancer screening. No topical (skin) finasteride product is FDA-approved; topical versions are compounded.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for male pattern hair loss and enlarged prostate based on large randomized trials (1,879 men in the hair-loss trials; about 3,000 men in each of two prostate trials)."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for hair loss and enlarged prostate",
+    "note": "Approved as Propecia for male pattern hair loss in men and as Proscar for symptomatic benign prostatic hyperplasia; Proscar's label says it is not approved to prevent prostate cancer. No topical finasteride is FDA-approved, and in April 2025 FDA warned about compounded topical products marketed by compounders and telemedicine platforms.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.25
+  },
+  "benefits": [
+    {
+      "claim": "Grew hair in men aged 18 to 41 with mild to moderate male pattern hair loss: on photographs, 48% improved at one year versus 7% on placebo, and 66% versus 7% at two years; gains reversed within 12 months of stopping",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In men with an enlarged prostate, cut BPH surgery from 10.1% to 4.6% and acute urinary retention from 6.6% to 2.8% over 4 years",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Combined with doxazosin, lowered the risk of BPH getting worse by 67% versus placebo (3,047 men)",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Lower libido, erection problems and ejaculation problems: each in about 1% to 2% of men in the hair-loss trials (versus about 1% on placebo), and more often in older men treated for an enlarged prostate; guidelines say men should be told about these before starting",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "risk": "Sexual problems that continue after stopping, and infertility or poor semen quality, reported after approval",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Depression and suicidal thoughts: reported after approval; in 2025 EU regulators confirmed suicidal thoughts as a side effect of unknown frequency, mostly in men taking it for hair loss",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        5
+      ]
+    },
+    {
+      "risk": "Higher chance that a prostate cancer, if found, is high grade: Gleason 8 to 10 cancer in 1.8% versus 1.1% on placebo over 7 years (18,882 men aged 55 and older)",
+      "how_common": "uncommon",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Breast tenderness or enlargement (2.2% versus 0.7% in one long trial), and reports of male breast cancer",
+      "how_common": "uncommon",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Compounded topical versions: 32 reports to FDA (2019 to 2024) of problems including erectile dysfunction, anxiety, depression, suicidal thoughts and brain fog, mostly lasting after stopping; the product can also transfer to other people",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Women who are or may be pregnant: must not take it or handle crushed or broken tablets (risk to a male fetus)",
+    "Women and children (not approved for them)",
+    "History of depression or suicidal thoughts (discuss the mood risks first)",
+    "Past allergic reaction to finasteride"
+  ],
+  "interactions": [
+    "None well documented (the label found no clinically important drug interactions)"
+  ],
+  "labs": {
+    "before": [
+      "PSA, for men who have prostate cancer screening"
+    ],
+    "during": [
+      "PSA, read with the knowledge that finasteride lowers it by about half; a confirmed rise from the lowest value should be evaluated"
+    ],
+    "why": "Finasteride lowers PSA, so the labels say a confirmed rise from the lowest on-treatment value may signal prostate cancer even within the normal range; no other routine labs are required."
+  },
+  "studies": [
+    {
+      "title": "PROPECIA (finasteride) tablets: Prescribing Information",
+      "year": 2022,
+      "type": "Label",
+      "people": "1,879 men aged 18 to 41 with mild to moderate hair loss in three 12-month trials",
+      "finding": "Hair counts rose versus placebo, and the difference grew through 5 years; sexual side effects affected about 1% to 2% of men and generally resolved.",
+      "source": 1
+    },
+    {
+      "title": "PROSCAR (finasteride) tablets: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "About 3,000 men with an enlarged prostate (PLESS), and 18,882 men aged 55 and older in the Prostate Cancer Prevention Trial",
+      "finding": "Finasteride halved BPH surgery and urinary retention over 4 years; in the prevention trial, high-grade (Gleason 8 to 10) cancer was more common (1.8% versus 1.1%).",
+      "source": 2
+    },
+    {
+      "title": "Measures to minimise risk of suicidal thoughts with finasteride and dutasteride medicines",
+      "year": 2025,
+      "type": "Review",
+      "people": "EU-wide safety review of 325 reported cases and an estimated 270 million patient-years of finasteride use",
+      "finding": "Confirmed suicidal thoughts as a side effect of finasteride tablets, with unknown frequency, and noted that sexual side effects may contribute to mood changes; a patient card was added for the hair-loss tablets.",
+      "source": 5
+    },
+    {
+      "title": "FDA alerts health care providers, compounders and consumers of potential risks associated with compounded topical finasteride products",
+      "year": 2025,
+      "type": "Review",
+      "people": "32 adverse event reports to FDA, 2019 to 2024",
+      "finding": "Reported problems included erectile dysfunction, anxiety, depression, suicidal thoughts and brain fog, which mostly persisted after the product was stopped.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "What sexual or mood changes should I watch for, and what should I do if they happen?",
+    "Should anyone reading my PSA results know I take finasteride?",
+    "How does a compounded topical version compare with the approved tablet in evidence and safety?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "PROPECIA (finasteride) tablets: Prescribing Information (revised 8/2022)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2022,
+      "url": "https://www.drugs.com/pro/propecia.html"
+    },
+    {
+      "n": 2,
+      "title": "PROSCAR (finasteride) tablets: Prescribing Information (revised 3/2026)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2026,
+      "url": "https://www.drugs.com/pro/proscar.html"
+    },
+    {
+      "n": 3,
+      "title": "FDA alerts health care providers, compounders and consumers of potential risks associated with compounded topical finasteride products",
+      "publisher": "FDA",
+      "year": 2025,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/fda-alerts-health-care-providers-compounders-and-consumers-potential-risks-associated-compounded"
+    },
+    {
+      "n": 4,
+      "title": "Management of Lower Urinary Tract Symptoms Attributed to Benign Prostatic Hyperplasia: AUA Guideline (amended 2021)",
+      "publisher": "American Urological Association",
+      "year": 2021,
+      "url": "https://www.auanet.org/documents/guidelines/pdf/bph%20surgical-mgmt.pdf"
+    },
+    {
+      "n": 5,
+      "title": "Measures to minimise risk of suicidal thoughts with finasteride and dutasteride medicines",
+      "publisher": "European Medicines Agency",
+      "year": 2025,
+      "url": "https://www.ema.europa.eu/en/news/measures-minimise-risk-suicidal-thoughts-finasteride-dutasteride-medicines"
+    }
+  ],
+  "notes_for_editor": "Propecia prescribing information is dated 8/2022 on Drugs.com (patient information 11/2023); Proscar is 3/2026. In the US labels, depression and suicidal ideation appear only as postmarketing reports with no established causal link; the year this was added to the US label was not confirmed. EU regulators confirmed suicidal ideation as a side effect of finasteride tablets in May 2025 but found no evidence linking it to finasteride skin sprays. FDA's April 2025 alert covers compounded topical products, none of which is FDA-approved. Persistent sexual side effects after stopping ('post-finasteride syndrome') appear only as postmarketing reports in the label; no systematic review of them was opened. The PSA halving figure is from the Proscar label; the Propecia label also says it lowers PSA.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,199 @@
+{
+  "id": "ldn",
+  "name": "Low-dose naltrexone (LDN)",
+  "summary": "Naltrexone, an opioid-blocking addiction drug, taken off-label at much lower doses for chronic pain and inflammatory conditions; small trials have given mixed results.",
+  "what_it_is": "Naltrexone is a prescription drug that blocks opioid receptors; at its standard strength it is approved to treat alcohol dependence and to block the effects of opioids. Low-dose naltrexone (LDN) uses a small fraction of that amount, which is not sold as an approved product, so it is made by compounding pharmacies. Researchers think low doses may calm immune cells in the brain and spinal cord by blocking a receptor called TLR4, or briefly raise the body's own endorphins, but these ideas are unproven.",
+  "evidence": {
+    "grade": "limited",
+    "why": "The best trial, in 99 women with fibromyalgia, found no pain benefit over placebo; a review of two small Crohn's disease trials found the evidence too thin for firm conclusions, and other studies are small."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "Naltrexone FDA-approved for addiction; LDN off-label",
+    "note": "Naltrexone tablets are approved to treat alcohol dependence and to block the effects of opioids. No low-dose product is approved: low-dose use for pain or inflammation is off-label, and the low-dose medicine used in studies has come from compounding pharmacies.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0.25,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0.5,
+    "immune": 1,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "At its standard strength, treats alcohol dependence and blocks the effects of opioids as part of a treatment plan (approved uses, not low-dose)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "No better than placebo for pain in a 12-week trial of 99 women with fibromyalgia; memory problems improved slightly, a result the authors said may be due to chance",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Earlier, much smaller fibromyalgia trials (10 and 30 women) had suggested less pain than with placebo",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "In active Crohn's disease, two small trials (46 people) found no significant difference in remission, though more adults improved on endoscopy; the evidence is low certainty",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Vivid dreams: 39% versus 18% on placebo in the fibromyalgia trial",
+      "how_common": "common",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Diarrhea, dizziness and hot flushes, each in about 3 in 10 women versus about 1 in 7 on placebo in that trial; headache and nausea were as common as on placebo",
+      "how_common": "common",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Blocks opioid medicines: in people taking or dependent on opioids it can bring on sudden withdrawal, sometimes severe enough to need hospital care, and opioid pain, cough or diarrhea medicines may not work",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        5
+      ]
+    },
+    {
+      "risk": "Opioid overdose (label warning for standard-strength naltrexone): after stopping, or when trying to override the block, people can respond to lower opioid doses than before, and fatal overdoses have been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Liver injury is a label warning for naltrexone; signs of hepatitis need prompt medical review",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        5
+      ]
+    },
+    {
+      "risk": "Long-term safety at low doses is largely unknown",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Taking opioid pain medicines or other opioids (including tramadol), being dependent on opioids, or on opioid treatment for addiction",
+    "Liver disease or hepatitis (needs a clinician's review first)",
+    "Past allergic reaction to naltrexone",
+    "Pregnant or breastfeeding (no adequate studies in pregnancy)",
+    "Depression or past suicidal thoughts (the naltrexone label calls for monitoring)"
+  ],
+  "interactions": [
+    "Opioids, including pain medicines such as tramadol and opioid-containing cough, cold and diarrhea medicines: their effect is blocked, with a risk of sudden withdrawal",
+    "Thioridazine: sleepiness and lethargy reported when taken together",
+    "Disulfiram: the safety of the combination is unknown"
+  ],
+  "labs": {
+    "before": [
+      "Liver function tests (liver injury is a label warning for naltrexone)"
+    ],
+    "during": [],
+    "why": "No monitoring plan has been established for low-dose use; a baseline liver panel is reasonable because the naltrexone label warns about liver injury."
+  },
+  "studies": [
+    {
+      "title": "Naltrexone versus placebo in women with fibromyalgia: a randomised, double-blind, placebo-controlled trial",
+      "year": 2023,
+      "type": "RCT",
+      "people": "99 women with fibromyalgia (12 weeks)",
+      "finding": "Pain fell no more than with placebo (difference 0.34 points on a 0 to 10 scale, not significant). Vivid dreams were more common on naltrexone; the one serious adverse event was in the placebo group.",
+      "source": 3
+    },
+    {
+      "title": "Low dose naltrexone for induction of remission in Crohn's disease",
+      "year": 2018,
+      "type": "Systematic review",
+      "people": "2 trials, 46 people (34 adults, 12 children) with active Crohn's disease",
+      "finding": "Remission in adults was 30% versus 18% on placebo (not significant), while endoscopic response was 72% versus 25%. The evidence was low certainty and too limited for firm conclusions; no serious adverse events were reported.",
+      "source": 4
+    },
+    {
+      "title": "The use of low-dose naltrexone (LDN) as a novel anti-inflammatory treatment for chronic pain",
+      "year": 2014,
+      "type": "Review",
+      "people": "Small trials in fibromyalgia, Crohn's disease and multiple sclerosis",
+      "finding": "Describes a possible anti-inflammatory action through TLR4 on immune cells of the nervous system; the authors called the clinical data very preliminary and said little is known about long-term safety at low doses.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Would LDN interfere with any opioid or other medicine I might need, including for surgery or an emergency?",
+    "What does the trial evidence show for my specific condition?",
+    "How would we judge whether it is helping?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Naltrexone hydrochloride tablets: prescribing information (indications, contraindications and warnings)",
+      "publisher": "MedLibrary.org copy of FDA labeling",
+      "year": null,
+      "url": "https://medlibrary.org/lib/rx/meds/naltrexone-hydrochloride/page/2/"
+    },
+    {
+      "n": 2,
+      "title": "The use of low-dose naltrexone (LDN) as a novel anti-inflammatory treatment for chronic pain",
+      "publisher": "Clinical Rheumatology (CORE open-access copy)",
+      "year": 2014,
+      "url": "https://core.ac.uk/download/191409343.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Naltrexone versus placebo in women with fibromyalgia: a randomised, double-blind, placebo-controlled trial",
+      "publisher": "The Lancet Rheumatology (Odense University Hospital copy)",
+      "year": 2023,
+      "url": "https://ouh.dk/media/uzvc0uv4/84-bruun-kd-et-al-lancet-rheumatology-2023-002.pdf"
+    },
+    {
+      "n": 4,
+      "title": "Low dose naltrexone for induction of remission in Crohn's disease",
+      "publisher": "Cochrane Database of Systematic Reviews (abstract)",
+      "year": 2018,
+      "url": "https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010410.pub3/pdf/CDSR/CD010410/CD010410_abstract.pdf"
+    },
+    {
+      "n": 5,
+      "title": "Naltrexone hydrochloride tablets: prescribing information",
+      "publisher": "DrugCentral copy of FDA labeling",
+      "year": null,
+      "url": "https://drugcentral.org/label/e71de213-5250-4a63-9ef7-9ef2f9954d8b/view"
+    }
+  ],
+  "notes_for_editor": "The naltrexone label was read from two undated copies of a generic label (MedLibrary.org [1] and DrugCentral [5]); no revision date was visible, so source years are left blank. Neither copy showed a boxed warning. The FINAL trial title had its strength and dosing frequency removed per the no-dose rule; the published title includes both. LDN availability as a compounded-only product is sourced to a 2014 review [2] and the 2023 trial's use of a compounding pharmacy [3]; we did not check whether any approved low-dose product has appeared since, though none turned up. The label's overdose, liver and depression warnings come from standard-dose use in addiction treatment; their relevance at low doses is not established. Multiple sclerosis and long COVID uses were not researched. The FINAL paper reports discontinuations for adverse events as 8% versus 6% in the results but 4% for placebo in the discussion; not used.",
+  "checked": "2026-10-28"
+}

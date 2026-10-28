@@ -1,0 +1,156 @@
+{
+  "id": "curcumin",
+  "name": "Curcumin",
+  "summary": "The main yellow compound in turmeric, taken mostly for joint pain and inflammation; evidence is preliminary, and turmeric supplements have been linked to rare liver injury.",
+  "what_it_is": "Turmeric (Curcuma longa) is a plant in the ginger family grown mainly in India and Southeast Asia; its underground stem (rhizome) is used in cooking and was used in traditional medicine for indigestion, colds, skin infections, arthritis and liver disease. Curcumin, which gives turmeric its yellow color, belongs to a group of compounds called curcuminoids that are thought to account for its effects. Products vary in how much curcumin they contain, and many add piperine from black pepper, one way to increase how much curcumin the body absorbs.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Several meta-analyses of small trials suggest less knee osteoarthritis pain, but NIH says higher-quality studies are needed and there isn't enough evidence to confirm any health benefit."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; also a common spice",
+    "note": "Sold as a dietary supplement and widely used as a cooking spice. Supplements are not approved by FDA before they are sold; manufacturers are responsible for their safety and labeling.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0.75,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 1,
+    "immune": 0.25,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Less knee osteoarthritis pain and better function than placebo, similar to NSAID pain relievers, in a 2021 review of 10 studies (1,287 people); NIH calls this initial evidence that needs higher-quality confirmation",
+      "evidence": "limited",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "claim": "Less muscle soreness and lower muscle-damage markers after exercise in a 2020 review of 11 studies",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Some benefit in early studies of fatty liver disease, though it is unclear which measures improve consistently",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Liver injury, usually starting 1 to 4 months after beginning a turmeric supplement; of 10 US cases in a national registry, 5 people were hospitalized and 1 died of liver failure. Cases have risen since 2011 and are strongly linked to the gene variant HLA-B*35:01",
+      "how_common": "rare",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "risk": "Stomach upset, nausea, vomiting, acid reflux, diarrhea or constipation",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Turmeric supplements may be unsafe in pregnancy; little is known about safety while breastfeeding",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Long-term safety is unknown; NIH considers recommended amounts likely safe for up to 2 or 3 months",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Hives or itching when used on the skin",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding",
+    "Liver disease or past liver injury from a supplement (clinician first)",
+    "Taking prescription medicines (clinician first)"
+  ],
+  "interactions": [
+    "Medicines in general: NIH advises checking with a health care provider before combining herbal products with medicines, since some interact in harmful ways; its turmeric page names no specific drugs",
+    "Piperine (black pepper extract): often added to raise curcumin absorption; it was in 3 of 7 products tested in US liver-injury cases, and researchers suggest the combination may help explain rising cases"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed, but tiredness, dark urine or yellow skin or eyes should prompt stopping it and calling a clinician, who may check liver tests."
+  },
+  "studies": [
+    {
+      "title": "Therapeutic effects of turmeric or curcumin extract on pain and function for individuals with knee osteoarthritis",
+      "year": 2021,
+      "type": "Systematic review",
+      "people": "1,287 people with knee osteoarthritis in 10 studies",
+      "finding": "Turmeric or curcumin may improve knee pain and function compared with placebo, with effects similar to NSAIDs; the best amount, frequency and form remain unclear. Summarized by NIH; the paper itself was not opened.",
+      "source": 2
+    },
+    {
+      "title": "Liver Injury Associated with Turmeric-A Growing Problem: Ten Cases from the Drug-Induced Liver Injury Network [DILIN]",
+      "year": 2023,
+      "type": "Case series",
+      "people": "10 people with liver injury in a US registry (2004 to 2022)",
+      "finding": "Injury was mostly of the liver-cell (hepatocellular) type and began 1 to 4 months after starting; 5 were hospitalized and 1 died. Seven of the 10 carried HLA-B*35:01, and the authors say cases appear to be increasing.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Is curcumin likely to help my joint pain, and how would we judge whether it is working?",
+    "Which liver symptoms should make me stop it and call you?",
+    "Could it interact with any of my medicines?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Turmeric: Usefulness and Safety",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2025,
+      "url": "https://www.nccih.nih.gov/health/turmeric"
+    },
+    {
+      "n": 2,
+      "title": "Nutritional Approaches for Musculoskeletal Pain: What the Science Says",
+      "publisher": "NIH National Center for Complementary and Integrative Health (Clinical Digest)",
+      "year": 2022,
+      "url": "https://www.nccih.nih.gov/health/providers/digest/nutritional-approaches-for-musculoskeletal-pain-and-inflammation-science"
+    },
+    {
+      "n": 3,
+      "title": "Liver Injury Associated with Turmeric-A Growing Problem: Ten Cases from the Drug-Induced Liver Injury Network [DILIN]",
+      "publisher": "The American Journal of Medicine (IU Indianapolis ScholarWorks)",
+      "year": 2023,
+      "url": "https://scholarworks.indianapolis.iu.edu/items/4caeb25f-beb5-43e6-9c89-30931674fa03"
+    }
+  ],
+  "notes_for_editor": "NIH's turmeric page (April 2025) says there isn't enough evidence to confirm any benefit. The osteoarthritis and exercise-soreness review details come through NIH's 2022 clinical digest, not the papers themselves. LiverTox's turmeric chapter, a USP review of turmeric-related liver injury and a 2022 knee osteoarthritis meta-analysis on PMC could not be opened (bot checks). The DILIN series is small and from one registry; HLA-B*35:01 testing is not routine. No source opened named specific drug interactions (for example, with blood thinners), so only NIH's general caution is listed. Brand-name formulations in the catalog aliases are not mentioned. The gut goal is used for inflammation.",
+  "checked": "2026-10-28"
+}

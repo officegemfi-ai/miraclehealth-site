@@ -1,0 +1,117 @@
+{
+  "id": "glycine",
+  "name": "Glycine",
+  "summary": "An amino acid taken mainly to improve sleep; the evidence is three small, very short trials in healthy adults.",
+  "what_it_is": "Glycine is an amino acid. Researchers suggest it may aid sleep by acting on NMDA receptors in the brain's body-clock center (the suprachiasmatic nucleus), lowering core body temperature and widening blood vessels, though this needs more study. It has also been studied in schizophrenia and in type 2 diabetes.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Three small trials of 2 to 4 nights in healthy adults reported better sleep quality and less daytime sleepiness, but a systematic review rated them at high risk of bias."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; not GRAS in ordinary foods",
+    "note": "Used as a dietary supplement. Since 1971 FDA has not regarded glycine added to ordinary foods as generally recognized as safe, citing harm in animals fed high levels, so food uses need a food-additive regulation; the rule does not mention supplements.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 1,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Better self-rated sleep quality and less daytime fatigue and sleepiness in three small trials of healthy adults (10 to 19 people each, 2 to 4 nights), all at high risk of bias",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Improved blood sugar markers, including HbA1c, insulin resistance and fasting glucose, over 3 months in people with type 2 diabetes",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "High single doses impaired sensory filtering (sensorimotor gating) and thinking performance in healthy adults",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Side effects were not assessed systematically; reviewers call it likely safe, but the trials were short",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Harm in animals fed high levels led FDA to stop treating glycine added to foods as generally recognized as safe in 1971",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied in the sleep trials)",
+    "Taking medicines for schizophrenia or another psychiatric condition (clinician first)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed; none are linked to its use."
+  },
+  "studies": [
+    {
+      "title": "The effect of glycine administration on the characteristics of physiological systems in human adults: A systematic review",
+      "year": 2024,
+      "type": "Systematic review",
+      "people": "About 50 human studies (42 randomized) in healthy adults and in people with conditions such as schizophrenia and type 2 diabetes",
+      "finding": "Glycine improved sleep and daytime fatigue in small studies of healthy adults and helped some measures in schizophrenia and type 2 diabetes; the authors say evidence for healthy people is limited and larger, longer trials are needed.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Could something treatable, such as sleep apnea or a medicine side effect, be behind my poor sleep?",
+    "Is glycine safe with my other medicines, especially any psychiatric medicines?",
+    "How would we judge whether it is helping my sleep?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "21 CFR § 170.50 - Glycine (aminoacetic acid) in food for human consumption.",
+      "publisher": "Code of Federal Regulations (Legal Information Institute, Cornell Law School)",
+      "year": 2026,
+      "url": "https://www.law.cornell.edu/cfr/text/21/170.50"
+    },
+    {
+      "n": 2,
+      "title": "The effect of glycine administration on the characteristics of physiological systems in human adults: A systematic review",
+      "publisher": "GeroScience (Springer)",
+      "year": 2024,
+      "url": "https://link.springer.com/content/pdf/10.1007/s11357-023-00970-8.pdf"
+    }
+  ],
+  "notes_for_editor": "Sleep evidence is three tiny, short trials rated at high risk of bias; their funding was not visible (the review itself declares no conflicts). The review counts 50 studies, but its healthy and disease subgroups add up to 52. The diabetes finding is reported in the review without trial size. The 1971 FDA rule removed GRAS status for glycine in ordinary foods; it does not mention supplements, and any food-additive regulation now permitting specific uses was not checked. Whether glycine was studied in pregnancy was not checked. A trade-news story on the review was read but not cited.",
+  "checked": "2026-10-28"
+}

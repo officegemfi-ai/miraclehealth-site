@@ -1,0 +1,155 @@
+{
+  "id": "lions",
+  "name": "Lion’s mane",
+  "summary": "An edible mushroom (Hericium erinaceus) taken for memory, focus and mood; small human trials show mixed results, and most evidence comes from lab and animal studies.",
+  "what_it_is": "Lion's mane (Hericium erinaceus) is an edible mushroom native to North America, Europe and Asia, with deep roots in traditional Chinese medicine. It contains compounds called hericenones and, in its mycelium (the root-like threads), erinacines, which stimulated nerve growth factor in lab studies. It is eaten as food and taken in supplements; trials have used capsules, powders and baked goods containing it.",
+  "evidence": {
+    "grade": "limited",
+    "why": "A 2025 systematic review found 9 small human studies (about 325 people) with mixed effects on memory and some improvement in mood scores; most support for brain benefits comes from lab and animal work."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; also eaten as food",
+    "note": "Eaten as a culinary mushroom and sold in powders and other supplements.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.25,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0.25,
+    "immune": 0.25,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Mixed effects on memory and thinking: a small randomized trial and a year-long pilot study in early Alzheimer's disease reported better cognitive screening scores, but a 4-week trial in young adults and an observational study found no lasting gains",
+      "evidence": "limited",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Lower depression and anxiety scores in two small randomized trials",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Faster on one attention task an hour after a single dose, and lower self-rated stress after 28 days, in 41 young adults; other measures, including a standard stress questionnaire, did not improve and one memory measure favored placebo",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Compounds from the mushroom stimulated nerve growth factor in lab studies, with signs of nerve protection in animals",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Stomach discomfort, diarrhea, nausea, headache or skin rash in some trials; most trials reported no side effects, but reporting was often incomplete",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Possible allergic reactions: a case report described a severe lung reaction (acute respiratory distress syndrome) in a man who had taken it for a long time; the cause was not proven",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Long-term safety is unknown; trials were small and lasted from weeks to about a year",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Mushroom allergy",
+    "Pregnant or breastfeeding (not studied)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed; none are linked to its use."
+  },
+  "studies": [
+    {
+      "title": "Benefits, side effects, and uses of Hericium erinaceus as a supplement: a systematic review",
+      "year": 2025,
+      "type": "Systematic review",
+      "people": "About 325 people in 9 human studies (5 randomized trials), plus lab studies",
+      "finding": "Cognitive results were mixed, depression and anxiety scores improved in two trials, and side effects were mostly mild; the evidence is small and varied, and some numbers in the review are inconsistent.",
+      "source": 1
+    },
+    {
+      "title": "The Acute and Chronic Effects of Lion’s Mane Mushroom Supplementation on Cognitive Function, Stress and Mood in Young Adults: A Double-Blind, Parallel Groups, Pilot Study",
+      "year": 2023,
+      "type": "RCT",
+      "people": "41 healthy adults aged 18 to 45",
+      "finding": "A single dose sped up one attention task, and after 28 days self-rated stress was somewhat lower, but other cognitive and mood measures did not improve; the authors call the findings tentative.",
+      "source": 2
+    },
+    {
+      "title": "A Pilot Proof-of-Concept Study to Evaluate the Physiological and Cognitive Impacts of Hericium erinaceus on Healthy Adults",
+      "year": 2026,
+      "type": "Trial",
+      "people": "10 healthy adults aged 18 to 55, no control group",
+      "finding": "No significant changes in executive function or the blood marker BDNF after 28 days, and no side effects reported; some authors had supplement-industry ties.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Should my memory or mood symptoms be checked before I try a supplement?",
+    "Is it safe for me given any mushroom or other allergies?",
+    "How would we judge whether it is making a difference?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Benefits, side effects, and uses of Hericium erinaceus as a supplement: a systematic review",
+      "publisher": "Frontiers in Nutrition",
+      "year": 2025,
+      "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2025.1641246/full"
+    },
+    {
+      "n": 2,
+      "title": "The Acute and Chronic Effects of Lion’s Mane Mushroom Supplementation on Cognitive Function, Stress and Mood in Young Adults: A Double-Blind, Parallel Groups, Pilot Study",
+      "publisher": "Nutrients (MDPI)",
+      "year": 2023,
+      "url": "https://www.mdpi.com/2072-6643/15/22/4842"
+    },
+    {
+      "n": 3,
+      "title": "A Pilot Proof-of-Concept Study to Evaluate the Physiological and Cognitive Impacts of Hericium erinaceus on Healthy Adults",
+      "publisher": "Nutrients (MDPI)",
+      "year": 2026,
+      "url": "https://www.mdpi.com/2072-6643/18/19/3177"
+    }
+  ],
+  "notes_for_editor": "Human evidence is a handful of small trials; the 2025 systematic review has internal inconsistencies (participant counts, which trials enrolled healthy people), its conclusions are stronger than its data, and its funding statement was not visible. The 2026 pilot had industry-linked authors and no control group; the 2023 trial's product was supplied by a supplement company that had no role in the study. Primary trials in mild cognitive impairment and early Alzheimer's disease were not opened directly, and two PMC papers were blocked. No source addressed pregnancy or drug interactions.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,199 @@
+{
+  "id": "methyleneblue",
+  "name": "Methylene blue",
+  "summary": "A blue dye and approved hospital drug for a rare blood disorder, now promoted for focus and energy; human evidence for those uses is thin.",
+  "what_it_is": "Methylene blue is a water-soluble thiazine dye. As the prescription injection ProvayBlue it treats acquired methemoglobinemia, a condition in which some hemoglobin cannot carry oxygen, by helping convert it back to its normal form. It is also sold online as drops and other wellness products for focus, mood and energy; these are not FDA-approved, and some are industrial grade rather than pharmaceutical grade.",
+  "evidence": {
+    "grade": "limited",
+    "why": "It is approved only for methemoglobinemia; for focus in healthy people the evidence is two small single-dose brain-scan studies, and a related compound failed its main analyses in a large Alzheimer's trial."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved injection for methemoglobinemia only",
+    "note": "ProvayBlue is a prescription injection approved for children and adults with acquired methemoglobinemia, with a boxed warning about serotonin syndrome. Methylene blue drops and capsules sold for wellness are not FDA-approved, and pharmacist reviewers warn that some products are industrial rather than pharmaceutical grade.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0.75,
+    "sleep": 0,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Treats acquired methemoglobinemia in children and adults (approved use, as an IV drug)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "About 7% more correct answers on a short-term memory test, plus more brain activity during attention and memory tasks, one hour after a single dose in a placebo-controlled study of 26 healthy adults",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Changes in resting brain connectivity on scans after a single dose in 28 healthy adults; thinking skills were not measured",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "A related compound (LMTM, a stabilized reduced form of methylene blue) did not slow decline in the main planned analyses of a 15-month trial in 891 people with mild to moderate Alzheimer's disease",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Boxed warning: serious or fatal serotonin syndrome when combined with SSRI or SNRI antidepressants, MAO inhibitors or opioids; most reports involved IV use, and the risk with oral products has not been well studied",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Breakdown of red blood cells (hemolytic anemia), especially in people with G6PD deficiency, in whom it must not be used",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Confusion, dizziness and vision disturbances that can affect driving",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Headache, low potassium, diarrhea, low magnesium, muscle jerks, nausea and seizure-like events, each in at least 2 in 100 patients given the injection",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Blue urine, which can interfere with urine tests; it can also make pulse oximeter oxygen readings falsely low",
+      "how_common": "common",
+      "sources": [
+        1,
+        4
+      ]
+    },
+    {
+      "risk": "Unregulated products: wellness products are not FDA-approved and vary widely in quality, and some are industrial-grade dye not meant to be swallowed",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Taking antidepressants (SSRIs, SNRIs, MAO inhibitors), opioids or other serotonergic drugs (boxed warning)",
+    "G6PD deficiency",
+    "Allergy to methylene blue or other thiazine dyes",
+    "Pregnant or breastfeeding (it may harm a fetus, and the label advises pausing breastfeeding after treatment)",
+    "Kidney or liver disease (slower clearance may raise the risk of side effects)"
+  ],
+  "interactions": [
+    "SSRIs, SNRIs and MAO inhibitors: serious or fatal serotonin syndrome (boxed warning)",
+    "Bupropion, buspirone, clomipramine, mirtazapine, linezolid, opioids and dextromethorphan: avoid together because of serotonin syndrome",
+    "St. John's wort and other serotonergic supplements: caution advised",
+    "Drugs broken down by liver CYP enzymes: methylene blue blocks several of these enzymes in lab studies"
+  ],
+  "labs": {
+    "before": [
+      "G6PD test (G6PD deficiency rules it out)"
+    ],
+    "during": [],
+    "why": "G6PD deficiency is a contraindication because of the risk of red-cell breakdown; no monitoring plan exists for wellness use."
+  },
+  "studies": [
+    {
+      "title": "Efficacy and safety of tau-aggregation inhibitor therapy in patients with mild or moderate Alzheimer's disease: a randomised, controlled, double-blind, parallel-arm, phase 3 trial",
+      "year": 2016,
+      "type": "RCT",
+      "people": "891 people with mild to moderate Alzheimer's disease (15 months)",
+      "finding": "LMTM, a methylene blue-related compound, did not beat a low control dose in the planned main analyses. People taking it without other Alzheimer's drugs appeared to do better, a pattern the authors could not explain. Gut and urinary effects were the most common side effects.",
+      "source": 5
+    },
+    {
+      "title": "Multimodal randomized functional MR imaging of the effects of methylene blue in the human brain",
+      "year": 2016,
+      "type": "RCT",
+      "people": "26 healthy adults aged 22 to 62",
+      "finding": "One hour after a single dose, brain activity rose during attention and short-term memory tasks, and correct memory answers rose 7% compared with placebo.",
+      "source": 3
+    },
+    {
+      "title": "Methylene blue modulates functional connectivity in the human brain",
+      "year": 2017,
+      "type": "RCT",
+      "people": "28 healthy adults (average age about 30)",
+      "finding": "A single dose changed blood flow and resting connectivity in brain networks; behavior was not measured, and the only side effect noted was temporary urine discoloration.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Could methylene blue interact with my antidepressant, pain medicine or other prescriptions?",
+    "Should I be tested for G6PD deficiency?",
+    "Is there good evidence it would help my focus or energy, and what else could I try?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "PROVAYBLUE (methylene blue) injection, for intravenous use: prescribing information (revised February 2024)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2024,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/204630Orig1s023correctedlbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Natural Medicines: Evidence in Practice: Methylene Blue: Trendy, Clinical, and Not So Simple",
+      "publisher": "TRC Healthcare (Natural Medicines podcast page)",
+      "year": 2026,
+      "url": "https://trchealthcare.com/natural-medicines-evidence-in-practice-methylene-blue-trendy-clinical-and-not-so-simple/"
+    },
+    {
+      "n": 3,
+      "title": "Multimodal randomized functional MR imaging of the effects of methylene blue in the human brain",
+      "publisher": "Radiology (UT Health San Antonio Scholars record)",
+      "year": 2016,
+      "url": "https://scholars.uthscsa.edu/en/publications/multimodal-randomized-functional-mr-imaging-of-the-effects-of-met/"
+    },
+    {
+      "n": 4,
+      "title": "Methylene blue modulates functional connectivity in the human brain",
+      "publisher": "Brain Imaging and Behavior (PubMed Central)",
+      "year": 2017,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5018244"
+    },
+    {
+      "n": 5,
+      "title": "Efficacy and safety of tau-aggregation inhibitor therapy in patients with mild or moderate Alzheimer's disease: a randomised, controlled, double-blind, parallel-arm, phase 3 trial",
+      "publisher": "The Lancet (University of Aberdeen research portal)",
+      "year": 2016,
+      "url": "https://abdn.elsevierpure.com/en/publications/efficacy-and-safety-of-tau-aggregation-inhibitor-therapy-in-patie/"
+    }
+  ],
+  "notes_for_editor": "The catalog files methylene blue under Energy & mitochondria; this round's assignment says Cognition & focus, so cognition is the main goal here. All label data come from the IV product ProvayBlue (revised February 2024); there is no approved oral product in our sources, so side-effect rates for oral wellness use are unknown. The 'at least 2 in 100' side-effect list is the label's threshold, not exact rates. The serotonin-syndrome point that most reports involved IV use comes from a pharmacist-run podcast page (TRC Natural Medicines, August 2026) [2], which also says the oral risk has not been documented; we did not repeat that as reassurance. The Alzheimer's trial tested LMTM, not methylene blue itself, and was funded by TauRx; the abstract was read via the Aberdeen portal, and the Lancet title is given as on that record. The two brain-scan studies are tiny single-dose studies from the same group. No source was found on heavy-metal contamination; the industrial-grade warning rests on [2]. FDA's May 2026 503A list contains a garbled 'Thylene blue' entry in Category 3 that may be methylene blue; not verified, so not used.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,182 @@
+{
+  "id": "turkesterone",
+  "name": "Turkesterone",
+  "summary": "A plant steroid from Ajuga turkestanica, promoted for building muscle; the few small human studies found no effect, and products often contain less than labeled.",
+  "what_it_is": "Turkesterone is a phytoecdysteroid, one of a group of steroid compounds made by plants and insects that are structurally similar to androgens (male hormones). It makes up most of the ecdysteroids isolated from Ajuga turkestanica; plants rich in these compounds have been used as tonics and to promote muscle growth. Research on a related compound, ecdysterone, suggests these steroids act through estrogen-receptor pathways rather than as androgens.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Turkesterone itself has been tested only in a 4-week trial of 31 adults and single-dose studies in 11 men, all reported as conference or student abstracts, and none found an effect."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Sold as a supplement; not WADA-prohibited (2026)",
+    "note": "Sold as a dietary supplement that has grown popular with recreationally active people. As of March 2026 it was not on WADA's Prohibited List or Monitoring Program, but the related ecdysterone has been on WADA's Monitoring Program as an anabolic agent since 2020.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 1,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.25
+  },
+  "benefits": [
+    {
+      "claim": "No difference from placebo in body weight, lean mass or body fat after 4 weeks in a randomized, double-blind trial of 31 active adults (reported as a student symposium abstract)",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "No change in IGF-1, a growth-related hormone, or in resting metabolism in the hours after single doses in 11 recreationally active men",
+      "evidence": "limited",
+      "sources": [
+        1,
+        5
+      ]
+    },
+    {
+      "claim": "In a strength-training study, men given ecdysterone, a related plant steroid, gained more muscle mass than those who were not; turkesterone itself has not been tested this way",
+      "evidence": "limited",
+      "sources": [
+        6,
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Products often don't match their labels: in a 2023 test of products bought online, 2 of 3 labeled as turkesterone held about 1% and 12% of the stated amount, and a 2026 study again found wide variation",
+      "how_common": "common",
+      "sources": [
+        6,
+        2
+      ]
+    },
+    {
+      "risk": "For tested athletes: some turkesterone-labeled products contained as much or more ecdysterone, which WADA monitors as a possible anabolic agent",
+      "how_common": "unknown",
+      "sources": [
+        2,
+        3
+      ]
+    },
+    {
+      "risk": "Safety in people is essentially unstudied beyond 4 weeks; no stomach upset was reported after single doses in 11 men",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        4
+      ]
+    },
+    {
+      "risk": "Effects on hormones in people are unknown; related ecdysteroids are thought to act through estrogen-receptor pathways",
+      "how_common": "theoretical",
+      "sources": [
+        6
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "Athletes subject to drug testing (check with your anti-doping organization first)",
+    "Hormone-sensitive conditions (clinician first)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No evidence-based monitoring exists; a strength-training study of the related ecdysterone found no signs of liver or kidney toxicity in blood tests."
+  },
+  "studies": [
+    {
+      "title": "The Effects of Turkesterone Supplementation on Body Composition",
+      "year": 2025,
+      "type": "RCT",
+      "people": "31 physically active adults (14 men, 17 women)",
+      "finding": "After 4 weeks, body scans (DEXA) showed no differences from placebo in body mass, lean mass, fat mass or percent body fat. Reported as a student symposium abstract, not a peer-reviewed paper.",
+      "source": 4
+    },
+    {
+      "title": "Influence of Acute Turkesterone Dosing on Serum Insulin-like Growth Factor 1 (IGF-1) and Subjective Digestibility Scores in Recreationally-active Males",
+      "year": 2023,
+      "type": "Trial",
+      "people": "11 recreationally active men (single-blind, placebo-controlled crossover)",
+      "finding": "Single doses did not change IGF-1 at 3 or 24 hours, and no one reported stomach upset.",
+      "source": 1
+    },
+    {
+      "title": "Influence of Acute Turkesterone Dosing on Resting Metabolic Rate and Substrate Utilization in Recreationally-active Males",
+      "year": 2023,
+      "type": "RCT",
+      "people": "11 recreationally active men (randomized, single-blind, placebo-controlled crossover)",
+      "finding": "Over 3 hours after single doses, resting metabolic rate and fat and carbohydrate burning did not change significantly versus placebo.",
+      "source": 5
+    }
+  ],
+  "ask_your_clinician": [
+    "Which proven approaches to building muscle should I focus on first?",
+    "If I compete in tested sport, could a mislabeled product put me at risk?",
+    "Could a plant steroid affect any hormone-related condition I have?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Influence of Acute Turkesterone Dosing on Serum Insulin-like Growth Factor 1 (IGF-1) and Subjective Digestibility Scores in Recreationally-active Males",
+      "publisher": "International Journal of Exercise Science: Conference Proceedings (Western Kentucky University)",
+      "year": 2023,
+      "url": "https://digitalcommons.wku.edu/ijesab/vol14/iss3/50"
+    },
+    {
+      "n": 2,
+      "title": "Simultaneous LC–MS Profiling of Bioactive Ecdysteroids in Nutrient-Dense Plant Sources and Dietary Supplements",
+      "publisher": "Molecules (MDPI)",
+      "year": 2026,
+      "url": "https://mdpi-res.com/d_attachment/molecules/molecules-31-01090/article_deploy/molecules-31-01090.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Urinary Elimination of Ecdysterone and Its Metabolites Following a Single-Dose Administration in Humans",
+      "publisher": "Metabolites (CORE repository copy)",
+      "year": 2021,
+      "url": "https://core.ac.uk/download/481259864.pdf"
+    },
+    {
+      "n": 4,
+      "title": "The Effects of Turkesterone Supplementation on Body Composition",
+      "publisher": "NSUWorks, Nova Southeastern University (undergraduate student symposium abstract)",
+      "year": 2025,
+      "url": "https://nsuworks.nova.edu/student_symposium/2025/program/80"
+    },
+    {
+      "n": 5,
+      "title": "Influence of Acute Turkesterone Dosing on Resting Metabolic Rate and Substrate Utilization in Recreationally-active Males",
+      "publisher": "International Journal of Exercise Science: Conference Proceedings (Western Kentucky University)",
+      "year": 2023,
+      "url": "https://digitalcommons.wku.edu/ijesab/vol14/iss3/58"
+    },
+    {
+      "n": 6,
+      "title": "Development and Validation of High-Performance Liquid Chromatography for Identification and Quantification of Phytoecdysteroids Ecdysterone and Turkesterone in Dietary Supplements",
+      "publisher": "Processes (MDPI)",
+      "year": 2023,
+      "url": "https://mdpi-res.com/d_attachment/processes/processes-11-01786/article_deploy/processes-11-01786.pdf"
+    }
+  ],
+  "notes_for_editor": "Human evidence on turkesterone itself is limited to conference and student-symposium abstracts (31 adults for 4 weeks; 11 men given single doses); no peer-reviewed full trial was found. The ecdysterone muscle finding (Isenmann et al.) is cited through other papers' summaries; the German repository abstract that describes it had no visible title, and a 2025 PMC paper on an ecdysteroid supplement and performance was blocked. The label-accuracy studies tested products bought in Europe, not the US. FDA's view of Ajuga turkestanica extracts as dietary ingredients (for example, new dietary ingredient status) was not checked. WADA status comes from a March 2026 paper, not WADA's own list.",
+  "checked": "2026-10-28"
+}

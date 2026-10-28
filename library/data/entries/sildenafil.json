@@ -1,0 +1,161 @@
+{
+  "id": "sildenafil",
+  "name": "Sildenafil",
+  "summary": "A prescription PDE5-inhibitor pill for erectile dysfunction (Viagra); the same drug is also sold as Revatio for pulmonary arterial hypertension.",
+  "what_it_is": "Sildenafil is a phosphodiesterase type 5 (PDE5) inhibitor, the same drug class as tadalafil, which improves erections by strengthening the blood-flow signal released during sexual stimulation. As Viagra, it was tested in 21 placebo-controlled trials in more than 3,000 men aged 19 to 87 with erectile dysfunction. Viagra is not indicated for women or children.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for erectile dysfunction after 21 randomized trials in more than 3,000 men; the AUA recommends telling men with ED about PDE5 inhibitors and finds the drugs in the class similarly effective."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for erectile dysfunction",
+    "note": "Viagra is approved for erectile dysfunction in men and is not indicated for women or children. Sildenafil is also sold as Revatio for pulmonary arterial hypertension, and the Viagra label says not to combine the two.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 1,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Improved erections in men aged 19 to 87 with erectile dysfunction of many causes: in pooled fixed-dose studies, 63% to 82% reported better erections versus 24% on placebo",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Beat placebo in all 21 randomized trials in its approval program (more than 3,000 men)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In men with ED and low testosterone, PDE5 inhibitors may work better when combined with testosterone therapy (AUA; low-certainty evidence)",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Headache (16% versus 4% on placebo), flushing (10% versus 1%), indigestion, nasal congestion, back and muscle pain, nausea, dizziness and rash",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Vision changes, mainly a color tinge or blurring",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Severe drop in blood pressure with nitrates or riociguat; added blood pressure lowering with alpha-blockers and other blood pressure drugs",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Sudden vision loss from NAION (damage to the optic nerve), reported rarely, and sudden hearing loss; a causal link has not been established",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Erection lasting more than 4 hours (priapism), which can cause permanent damage without prompt care",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Serious heart events, seizures, nosebleeds and blood in the urine reported after approval",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Taking nitrates or other nitric oxide donors in any form",
+    "Taking riociguat or another guanylate cyclase stimulator",
+    "Recent heart attack, stroke or life-threatening arrhythmia, or other serious heart disease, unless a clinician confirms sexual activity is safe",
+    "Already taking Revatio or another PDE5 inhibitor",
+    "Past allergic reaction to sildenafil"
+  ],
+  "interactions": [
+    "Nitrates and other nitric oxide donors: contraindicated because of a dangerous drop in blood pressure",
+    "Alpha-blockers: added blood pressure lowering; the label advises that patients be stable on the alpha-blocker first",
+    "Ritonavir: raises sildenafil levels about 11-fold; erythromycin and saquinavir also raise levels substantially",
+    "Amlodipine and other blood pressure drugs: added blood pressure lowering"
+  ],
+  "labs": {
+    "before": [
+      "Morning total testosterone if low testosterone is suspected"
+    ],
+    "during": [],
+    "why": "The label sets no routine lab tests; the AUA notes that erectile dysfunction can be a marker of underlying heart disease and that PDE5 inhibitors may work better when low testosterone is treated."
+  },
+  "studies": [
+    {
+      "title": "Erectile Dysfunction: AUA Guideline",
+      "year": 2018,
+      "type": "Guideline",
+      "people": "Men with erectile dysfunction",
+      "finding": "Recommends telling men with ED about PDE5 inhibitors, finds sildenafil, tadalafil, vardenafil and avanafil similarly effective, and says men taking nitrates regularly should not use them.",
+      "source": 2
+    },
+    {
+      "title": "VIAGRA (sildenafil citrate) tablets: Prescribing Information",
+      "year": 2017,
+      "type": "Label",
+      "people": "More than 3,000 men aged 19 to 87 with erectile dysfunction in 21 placebo-controlled trials",
+      "finding": "Sildenafil improved erections versus placebo in all 21 trials; headache and flushing were the most common side effects.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my heart healthy enough for sexual activity, and could my ED be an early sign of heart disease?",
+    "Do any of my medicines, including nitrates, alpha-blockers or HIV drugs, interact with sildenafil?",
+    "Should my testosterone be checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "VIAGRA (sildenafil citrate) tablets: Prescribing Information (revised 12/2017)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2017,
+      "url": "https://www.drugs.com/pro/viagra.html"
+    },
+    {
+      "n": 2,
+      "title": "Erectile Dysfunction: AUA Guideline",
+      "publisher": "Journal of Urology (American Urological Association PDF)",
+      "year": 2018,
+      "url": "https://www.auanet.org/documents/Guidelines/PDF/ED-JU.pdf"
+    }
+  ],
+  "notes_for_editor": "The Viagra label on Drugs.com is the December 2017 revision; no newer version was found this round. Revatio (sildenafil for pulmonary arterial hypertension) is named in the Viagra label, but its own label was not opened. The mechanism sentence is drawn from the PDE5-inhibitor class description in the Cialis label, since the Viagra mechanism section was not read. The label says sildenafil appears in human milk, with limited data. Off-label uses (women's sexual arousal, altitude sickness and others) were not reviewed. Whether the patient leaflet names 'poppers' (alkyl nitrites) was not confirmed; the label's contraindication covers nitric oxide donors in any form.",
+  "checked": "2026-10-28"
+}

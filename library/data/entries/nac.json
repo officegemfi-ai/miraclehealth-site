@@ -1,0 +1,165 @@
+{
+  "id": "nac",
+  "name": "NAC (N-acetylcysteine)",
+  "summary": "A modified form of the amino acid cysteine, approved as an antidote for acetaminophen overdose and as a mucus thinner, and sold for decades as a dietary supplement.",
+  "what_it_is": "N-acetylcysteine (acetylcysteine) is the N-acetyl form of the amino acid L-cysteine. After an acetaminophen overdose it probably protects the liver by maintaining or restoring glutathione levels and by helping neutralize a toxic breakdown product of acetaminophen; inhaled, it thins abnormally thick mucus. It was approved as a drug in 1963, and products labeled as dietary supplements have been sold in the US for over 30 years.",
+  "evidence": {
+    "grade": "limited",
+    "why": "It is an approved antidote for acetaminophen overdose, but evidence for everyday supplement uses is weak or conflicting; a 2023 meta-analysis of 9 COPD trials found no benefit."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved drug; supplements allowed under FDA policy",
+    "note": "Approved since 1963; current labels cover acetaminophen overdose (by mouth or IV) and, inhaled, thick mucus in lung disease. Because it was a drug first, FDA says NAC is excluded from the definition of a dietary supplement, but since August 2022 it has said it will not act against otherwise lawful NAC supplements while it considers rulemaking; no final decision was found as of October 2026.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 1,
+    "immune": 0.25,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Approved antidote that prevents or lessens liver injury after a potentially toxic acetaminophen overdose, given by mouth or IV in medical care; it works best the sooner it is started",
+      "evidence": "strong",
+      "sources": [
+        3,
+        4
+      ]
+    },
+    {
+      "claim": "Approved as an inhaled add-on treatment to thin abnormally thick mucus in lung conditions such as chronic bronchopulmonary disease and cystic fibrosis",
+      "evidence": "strong",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Fewer COPD flare-ups in six meta-analyses published before 2020, mostly of trials from before 2000; a 2023 meta-analysis of 9 trials since 2000 (2,137 adults) found no fewer flare-ups and no slower lung-function decline",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, vomiting and other stomach symptoms, common with oral use, especially at high doses",
+      "how_common": "common",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Allergic-type (hypersensitivity) reactions to the IV antidote, mostly rash, flushing and itching, in about 8% to 17% of patients in label studies; anaphylaxis, which can be life-threatening, in about 1 to 2 per 1,000",
+      "how_common": "common",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Airway narrowing (bronchospasm), which can occur unpredictably with the inhaled form; people with asthma need close watching",
+      "how_common": "unknown",
+      "sources": [
+        4,
+        3
+      ]
+    },
+    {
+      "risk": "Rash, with or without mild fever, and hives, rarely with oral use",
+      "how_common": "rare",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Possible acetaminophen (Tylenol) overdose: get emergency care rather than self-treating",
+    "Asthma (clinician first)",
+    "Pregnant or breastfeeding (clinician first; not well studied in pregnancy)"
+  ],
+  "interactions": [
+    "Activated charcoal: binds acetylcysteine in lab tests and may reduce its effect, per the drug label"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed for supplement use; when it is given as an antidote, blood acetaminophen levels guide treatment."
+  },
+  "studies": [
+    {
+      "title": "The efficacy of N-acetylcysteine in chronic obstructive pulmonary disease patients: a meta-analysis",
+      "year": 2023,
+      "type": "Meta-analysis",
+      "people": "2,137 adults with COPD in 9 randomized trials published from 2000 to 2022",
+      "finding": "Long-term oral NAC did not reduce flare-ups, slow lung-function decline or improve quality of life versus placebo, with similar side effects; 4 of the 9 trials had a high risk of bias.",
+      "source": 5
+    },
+    {
+      "title": "ACETADOTE (acetylcysteine) injection, for intravenous use: prescribing information (revised July 2025)",
+      "year": 2025,
+      "type": "Label",
+      "people": "Safety studies in 4,709 adults and 1,905 children treated for acetaminophen overdose",
+      "finding": "Hypersensitivity reactions occurred in 8% of adults and 10% of children, mostly rash, flushing and itching; anaphylaxis occurred in 0.1% of adults and 0.2% of children.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Could NAC interact with my medicines or affect my asthma?",
+    "Is there evidence it would help my specific liver or lung condition, and how would we tell?",
+    "What should I do if I ever think I have taken too much acetaminophen?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Policy Regarding N-acetyl-L-cysteine: Guidance for Industry",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2022,
+      "url": "https://www.fda.gov/media/157784/download"
+    },
+    {
+      "n": 2,
+      "title": "FDA Releases Final Guidance on Enforcement Discretion for Certain NAC Products",
+      "publisher": "U.S. Food and Drug Administration (constituent update, content current as of Nov 29, 2023)",
+      "year": 2023,
+      "url": "https://www.fda.gov/food/hfp-constituent-updates/fda-releases-final-guidance-enforcement-discretion-certain-nac-products"
+    },
+    {
+      "n": 3,
+      "title": "ACETADOTE (acetylcysteine) injection, for intravenous use: prescribing information (revised July 2025)",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/021539s021lbl.pdf"
+    },
+    {
+      "n": 4,
+      "title": "ACETYLCYSTEINE solution (Acetylcysteine Solution, USP), label revised September 2018",
+      "publisher": "DailyMed (National Library of Medicine)",
+      "year": 2018,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5558a5f5-e821-473b-7d8a-5d33d09f0586"
+    },
+    {
+      "n": 5,
+      "title": "The efficacy of N-acetylcysteine in chronic obstructive pulmonary disease patients: a meta-analysis",
+      "publisher": "Therapeutic Advances in Respiratory Disease (SAGE)",
+      "year": 2023,
+      "url": "https://journals.sagepub.com/doi/10.1177/17534666231158563"
+    }
+  ],
+  "notes_for_editor": "FDA said in November 2023 that it had completed a safety review of NAC and sent it for peer review; the findings were not on the pages opened, and one search found no later decision. Evidence for popular supplement uses (general detox, liver support in healthy people, mental health) was not reviewed: NIH has no NAC fact sheet, and LiverTox and a 2021 PMC review could not be opened (bot check). COPD evidence conflicts: six earlier meta-analyses reported fewer flare-ups and the 2023 one, limited to trials since 2000, did not, so that benefit is graded limited. Label risks come from IV, inhaled and high-dose oral drug use, which may not reflect typical supplement use. Status key is approved because NAC is an approved drug; restricted could also fit, since it is legally excluded from supplements but sold under FDA enforcement discretion. Goals map liver and detox to gut (as for glutathione) and lung use roughly to immune.",
+  "checked": "2026-10-28"
+}

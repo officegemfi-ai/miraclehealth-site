@@ -1,0 +1,162 @@
+{
+  "id": "phentermine",
+  "name": "Phentermine",
+  "summary": "A prescription appetite suppressant related to amphetamine, approved for short-term use alongside a weight-loss program; a Schedule IV controlled substance.",
+  "what_it_is": "Phentermine, sold under brand names including Adipex-P, is a prescription appetite suppressant. Its label describes it as a sympathomimetic amine, chemically and pharmacologically related to amphetamine. It is approved only for short-term use (a few weeks) as an add-on to a weight-reduction program in people with a body mass index (BMI) of 30 or more, or 27 or more with other risk factors.",
+  "evidence": {
+    "grade": "strong",
+    "why": "It is FDA-approved for short-term weight loss; evidence on longer use comes mainly from observational health-record studies, not long-term randomized trials."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for short-term weight loss; Schedule IV",
+    "note": "Adipex-P is approved only as a short-term (a few weeks) add-on in a weight-reduction program for people with a BMI of 30 or more, or 27 or more with other risk factors. It is a Schedule IV controlled substance, and longer-term use is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Short-term weight loss as an add-on to a weight-reduction program in people with a BMI of 30 or more, or 27 or more with other risk factors (approved use)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Among 13,972 adults in US health systems, those who took it continuously for more than a year lost 7.4% more of their body weight at 2 years than short-term users; this kind of study cannot prove cause, and weight came back after stopping",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Slightly lower systolic blood pressure at 2 years in longer-term users in that study, which the authors linked to greater weight loss",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Heart and blood pressure: the label rules it out after heart disease and urges caution even with mild high blood pressure; one health-record study of longer use found no significant rise in heart attacks, strokes or deaths, but only 41 occurred, too few to rule out harm",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Primary pulmonary hypertension, a rare lung-artery disease, and heart valve disease; valve disease has been reported rarely with phentermine alone, and new, unexplained shortness of breath needs prompt medical review",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Misuse and dependence: it is related to amphetamine and is a Schedule IV controlled substance; stopping after long, high-dose use can cause extreme tiredness and depression",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "The appetite effect can wear off as tolerance develops",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "It can impair driving and other hazardous tasks, and alcohol may cause adverse reactions",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "History of heart disease, including coronary artery disease, stroke, irregular heart rhythm, heart failure or uncontrolled high blood pressure",
+    "Taking an MAO inhibitor now or within the past 14 days",
+    "Overactive thyroid, glaucoma, agitated states or a history of drug misuse",
+    "Pregnant or breastfeeding",
+    "Athletes in tested sports (WADA bans phentermine in competition)"
+  ],
+  "interactions": [
+    "MAO inhibitors: risk of a dangerous rise in blood pressure (hypertensive crisis); not to be used together or within 14 days",
+    "Other weight-loss drugs: combined use is not recommended",
+    "Alcohol: may cause adverse reactions",
+    "Insulin and other diabetes medicines: requirements may change, which the prescriber manages",
+    "Adrenergic neuron-blocking blood pressure drugs: their effect may be reduced"
+  ],
+  "labs": {
+    "before": [],
+    "during": [
+      "Blood glucose in people with diabetes, whose medicine needs may change"
+    ],
+    "why": "The label focuses on heart and blood-pressure history rather than blood tests; people with diabetes may need closer glucose checks."
+  },
+  "studies": [
+    {
+      "title": "Safety and Effectiveness of Longer-Term Phentermine Use: Clinical Outcomes from an Electronic Health Record Cohort",
+      "year": 2019,
+      "type": "Cohort",
+      "people": "13,972 adults aged 18 to 64 in US integrated health systems",
+      "finding": "Compared with short-term use, more than a year of continuous use was linked with 7.4% more weight loss at 2 years and no significant difference in heart events or death (41 events in total). The design was observational, and the authors called for randomized trials.",
+      "source": 2
+    },
+    {
+      "title": "ADIPEX-P (phentermine hydrochloride): prescribing information",
+      "year": 2024,
+      "type": "Label",
+      "people": "People with a BMI of 30 or more, or 27 or more with other risk factors",
+      "finding": "Approved for short-term use only; ruled out with heart disease, MAO inhibitors, overactive thyroid, glaucoma, agitated states, a history of drug misuse, pregnancy and nursing.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Are my heart and blood pressure healthy enough for phentermine?",
+    "How long would I take it, and what is the plan for keeping weight off afterward?",
+    "Would a medicine approved for long-term weight management suit me better?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "ADIPEX-P (phentermine hydrochloride): prescribing information (revised March 2024)",
+      "publisher": "Drugs.com (FDA-approved labeling)",
+      "year": 2024,
+      "url": "https://drugs.com/pro/adipex-p.html"
+    },
+    {
+      "n": 2,
+      "title": "Safety and Effectiveness of Longer-Term Phentermine Use: Clinical Outcomes from an Electronic Health Record Cohort",
+      "publisher": "Obesity (copy hosted by the Chilean Society of Obesity)",
+      "year": 2019,
+      "url": "https://sochob.cl/web1/wp-content/uploads/2020/01/Safety-and-Effectiveness-of-Longer‐Term-Phentermine-Use-Clinical-Outcomes-from-an-Electronic-Health-Record-Cohort.pdf"
+    },
+    {
+      "n": 3,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "Label is Adipex-P (revised March 2024, Drugs.com copy); the Lomaira label was not opened. The label's adverse-reaction section, as read, lists only body systems without rates, so no side-effect frequencies are given. The label's pulmonary hypertension warning was only partly read (the valve-disease line about phentermine alone was read in full). The Lewis cohort is observational, the long-term continuous group was small (144), and the referent group may include people who stopped because it did not work; it did not assess anxiety, sleep problems or addiction. The PDF is a copy on the Chilean Society of Obesity's site (the URL contains a non-ASCII hyphen). The phentermine-topiramate combination product (Qsymia) was not researched.",
+  "checked": "2026-10-28"
+}
