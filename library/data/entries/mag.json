@@ -1,0 +1,156 @@
+{
+  "id": "mag",
+  "name": "Magnesium glycinate",
+  "summary": "A form of the mineral magnesium bound to the amino acid glycine, taken mainly for sleep and relaxation and to top up magnesium intake.",
+  "what_it_is": "Magnesium is a mineral that acts as a cofactor in more than 300 enzyme systems and is involved in energy production, bone structure, DNA and RNA synthesis, and moving calcium and potassium across cell membranes. Magnesium glycinate, also called bisglycinate, is a chelated form that combines magnesium with glycine. It may be slightly better absorbed than inorganic forms, but direct comparisons are limited, and glycine itself has been studied for sleep with inconclusive results.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Sleep evidence for the glycinate form rests on one four-week trial with a small effect; other magnesium trials show marginal blood pressure lowering and mixed results for migraine and blood sugar."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement; magnesium is also an ingredient in some laxatives and heartburn remedies. FDA allows a qualified health claim linking magnesium to lower risk of high blood pressure but has concluded the evidence is inconsistent and inconclusive.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0.25,
+    "sleep": 1,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Slightly lower insomnia severity than placebo after 4 weeks in a trial of 155 adults with self-reported poor sleep; the difference was below the usual threshold for a meaningful change",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Marginally lower blood pressure in clinical trials of magnesium supplements",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Possibly fewer migraine attacks: NIH's complementary health center calls it possibly effective, and the American Academy of Neurology and American Headache Society rate it probably effective for prevention",
+      "evidence": "limited",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "May improve insulin sensitivity in people at high risk of diabetes; effects on blood sugar control in people with diabetes are uncertain",
+      "evidence": "limited",
+      "sources": [
+        4,
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Diarrhea, nausea and stomach cramps, mainly at high doses; NIH notes these most often with the carbonate, chloride, gluconate and oxide forms, and in the glycinate trial side effects were no more frequent than with placebo",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "risk": "Magnesium toxicity from very high doses: low blood pressure, nausea, vomiting, flushing and lethargy that can progress to muscle weakness, trouble breathing, irregular heartbeat and cardiac arrest; a few deaths have been reported",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Higher risk of magnesium toxicity when kidney function is impaired",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Kidney disease or reduced kidney function",
+    "Using it to prevent migraines, which NIH advises should be done under a health care provider's supervision",
+    "Taking osteoporosis drugs (bisphosphonates), tetracycline or quinolone antibiotics, or diuretics (check with a clinician first)"
+  ],
+  "interactions": [
+    "Bisphosphonates (osteoporosis drugs): magnesium-rich products can reduce their absorption",
+    "Tetracycline and quinolone antibiotics: magnesium can form insoluble complexes with them",
+    "Diuretics: loop and thiazide types increase magnesium loss in urine, while potassium-sparing types reduce it",
+    "Proton pump inhibitors: long-term use, typically over a year, can cause low magnesium levels"
+  ],
+  "labs": {
+    "before": [
+      "Serum magnesium if you are starting long-term proton pump inhibitor treatment (FDA advises checking)"
+    ],
+    "during": [
+      "Periodic serum magnesium during long-term proton pump inhibitor use"
+    ],
+    "why": "Most people need no tests; serum magnesium is the usual test but does not reflect total body magnesium well, and no single method is considered satisfactory."
+  },
+  "studies": [
+    {
+      "title": "Magnesium Bisglycinate Supplementation in Healthy Adults Reporting Poor Sleep: A Randomized, Placebo-Controlled Trial",
+      "year": 2025,
+      "type": "RCT",
+      "people": "155 adults aged 18 to 65 with self-reported poor sleep",
+      "finding": "Over 4 weeks, insomnia scores fell more with magnesium bisglycinate than with placebo (small effect), but fatigue, daytime sleepiness, mood and stress measures did not differ; most participants reported no side effects.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my kidney function normal enough for a magnesium supplement?",
+    "Do any of my medicines, such as antibiotics, osteoporosis drugs, diuretics or acid reducers, interact with magnesium, and how should I time them?",
+    "Could something other than low magnesium be behind my sleep problems?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Magnesium - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2026,
+      "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Magnesium Bisglycinate Supplementation in Healthy Adults Reporting Poor Sleep: A Randomized, Placebo-Controlled Trial",
+      "publisher": "Nature and Science of Sleep (Dove Medical Press)",
+      "year": 2025,
+      "url": "https://dovepress.com/magnesium-bisglycinate-supplementation-in-healthy-adults-reporting--peer-reviewed-fulltext-article-NSS"
+    },
+    {
+      "n": 3,
+      "title": "Headaches: What You Need To Know",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2021,
+      "url": "https://www.nccih.nih.gov/health/headaches-what-you-need-to-know"
+    },
+    {
+      "n": 4,
+      "title": "Diabetes and Dietary Supplements: What You Need To Know",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2023,
+      "url": "https://www.nccih.nih.gov/health/diabetes-and-dietary-supplements-what-you-need-to-know"
+    }
+  ],
+  "notes_for_editor": "Evidence specific to the glycinate form is one 4-week trial with self-reported outcomes and a small effect; one author receives research funding from nutraceutical companies. NIH's magnesium fact sheet (updated January 2026) does not discuss glycinate or sleep, and the trial itself cites a systematic review that found inconsistent results from earlier sleep trials (not opened). Blood pressure, migraine and blood sugar findings come from NIH summaries rather than the underlying trials.",
+  "checked": "2026-10-28"
+}
