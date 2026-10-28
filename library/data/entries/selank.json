@@ -1,0 +1,58 @@
+{
+  "id": "selank",
+  "name": "Selank",
+  "summary": "A lab-made seven-amino-acid peptide based on tuftsin, an immune protein fragment, taken for anxiety and focus; human evidence is one small Russian study.",
+  "what_it_is": "Selank is a synthetic seven-amino-acid peptide built from tuftsin, a natural four-amino-acid fragment of human antibodies (immunoglobulin G), with three amino acids added so it lasts longer in the body. Researchers propose that it calms anxiety by acting on the brain's GABA system, the target of benzodiazepines, but this rests mainly on rat studies. It is not an FDA-approved drug.",
+  "evidence": {
+    "grade": "limited",
+    "why": "The only human evidence we found is one Russian comparative study of 62 patients, in which selank eased anxiety about as much as the drug medazepam; other data come from rat studies."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; not on any FDA compounding list",
+    "note": "Its compounding nomination was withdrawn, moving it off FDA's Category 2 safety-risk list, but FDA still says it may provoke immune reactions and that important information on its safety in people is lacking. It is not on FDA's May 2026 list of nominated substances or among the peptides set for advisory review in 2026 and early 2027.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 1, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0.25, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Eased anxiety about as much as the anti-anxiety drug medazepam in a study of 62 adults with generalized anxiety disorder or neurasthenia, with added anti-fatigue and mildly stimulating effects", "evidence": "limited", "sources": [5] },
+    { "claim": "Changed the activity of GABA receptor genes in the rat brain within hours of a single dose, which researchers suggest could explain calming effects", "evidence": "preclinical", "sources": [6] }
+  ],
+  "risks": [
+    { "risk": "Possible immune reactions, because the peptide can clump and carry peptide-related impurities, according to FDA", "how_common": "theoretical", "sources": [1] },
+    { "risk": "Human safety is essentially unstudied: FDA says important safety information is lacking, and the clinical study abstract reports no side-effect data", "how_common": "unknown", "sources": [1, 5] },
+    { "risk": "Researchers describe marked effects on the immune system, with unknown consequences in people", "how_common": "theoretical", "sources": [6] }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no safety data)",
+    "Taking benzodiazepines or other sedatives, unless a clinician advises (it is thought to act on the same GABA system)",
+    "Autoimmune disease or a weakened immune system, unless a clinician advises (it may affect immune function)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [ "General health check with a clinician" ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for selank."
+  },
+  "studies": [
+    { "title": "Efficacy and possible mechanisms of action of a new peptide anxiolytic selank in the therapy of generalized anxiety disorders and neurasthenia", "year": 2008, "type": "RCT", "people": "62 adults with generalized anxiety disorder or neurasthenia (30 on selank, 32 on medazepam)", "finding": "Both drugs reduced anxiety to a similar degree; selank also had anti-fatigue and stimulating effects, and blood enkephalin activity rose during treatment. The abstract does not report blinding, duration or side effects.", "source": 5 },
+    { "title": "Selank Administration Affects the Expression of Some Genes Involved in GABAergic Neurotransmission", "year": 2016, "type": "Animal", "people": "30 rats", "finding": "A single nasal dose changed the activity of dozens of brain genes within 1 to 3 hours, including GABA receptor genes. These are gene-activity measurements in pooled tissue, not evidence of an effect on behavior.", "source": 6 }
+  ],
+  "ask_your_clinician": [
+    "Which proven treatments for anxiety fit my situation, and how does their evidence compare?",
+    "Could it interact with sedatives, sleep aids or other medicines I take?",
+    "What are the risks of using an unapproved peptide whose purity is not verified?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
+    { "n": 3, "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List", "publisher": "Frier Levitt (law firm)", "year": 2026, "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/" },
+    { "n": 4, "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions", "publisher": "Holland & Knight (law firm)", "year": 2026, "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know" },
+    { "n": 5, "title": "Efficacy and possible mechanisms of action of a new peptide anxiolytic selank in the therapy of generalized anxiety disorders and neurasthenia", "publisher": "Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova (PubMed; article in Russian)", "year": 2008, "url": "https://pubmed.ncbi.nlm.nih.gov/18454096/" },
+    { "n": 6, "title": "Selank Administration Affects the Expression of Some Genes Involved in GABAergic Neurotransmission", "publisher": "Frontiers in Pharmacology", "year": 2016, "url": "https://frontiersin.org/articles/10.3389/fphar.2016.00031/full" }
+  ],
+  "notes_for_editor": "Selank is reportedly a registered drug in Russia, but no source we opened confirmed this, so it is left out. The human evidence is a single 2008 Russian-language comparative study read as a PubMed abstract; blinding, duration and side effects were not given. Claims that it lacks benzodiazepine-type amnesia, dependence and withdrawal come from older papers cited in source 6 that appear to be animal research; omitted. Status: FDA's page lists 'Selank acetate (TP-7)' among former Category 2 substances whose nominations were withdrawn; it is in no category on the May 14, 2026 503A list or the March 2025 503B list, and it is not among the seven peptides reviewed in July 2026 or the five set for review by February 2027 (sources 3, 4). 'Not FDA-approved' is inferred from its status as a nominated bulk substance. WADA's 2026 list does not name selank.",
+  "checked": "2026-10-28"
+}

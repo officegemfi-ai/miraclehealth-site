@@ -5,7 +5,7 @@
   "what_it_is": "HGH Fragment 176-191 is a 16-amino-acid synthetic peptide matching the tail end (amino acids 176 to 191) of human growth hormone, the region tied to fat breakdown in lab studies. It differs from the better-studied AOD-9604 by a single amino acid at the start (phenylalanine instead of the tyrosine that AOD-9604 carries to make it more stable). In mice, AOD-9604 increased fat burning without binding the growth hormone receptor or causing cell growth, unlike full growth hormone. It is not an FDA-approved medicine.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Fat-loss effects come from short studies in obese mice and rats of the closely related AOD-9604. In people, AOD-9604's weight-loss trials (six trials, about 900 adults) did not show a benefit, according to a 2013 news report; only their safety results were published."
+    "why": "Fat-loss effects come from short studies in obese mice and rats of the closely related AOD-9604. In people, AOD-9604's main obesity trial (502 adults randomized) found no significant difference in weight loss from placebo, and its development for obesity ended in 2007."
   },
   "status_us": {
     "key": "not_approved",
@@ -95,6 +95,14 @@
     "why": "No evidence-based monitoring exists for this research peptide, and there is no lab test specific to it."
   },
   "studies": [
+    {
+      "title": "Evaluation of AOD-9604-related Bulk Drug Substances for Inclusion on the 503A Bulk Drug Substances List",
+      "year": 2024,
+      "type": "Review",
+      "people": "FDA's review of the AOD-9604 trials, including 502 adults with obesity in the main trial",
+      "finding": "The main obesity trial found no significant difference in weight loss between AOD-9604 and placebo, and development for obesity was ended in 2007.",
+      "source": 11
+    },
     {
       "title": "Safety and Tolerability of the Hexadecapeptide AOD9604 in Humans",
       "year": 2013,
@@ -195,8 +203,15 @@
       "publisher": "InvestSMART (news report)",
       "year": 2013,
       "url": "https://www.investsmart.com.au/investment-news/much-ado-about-nothing-the-peptide-they-say-never-worked/39245"
+    },
+    {
+      "n": 11,
+      "title": "Evaluation of AOD-9604-related Bulk Drug Substances (AOD-9604 (free base) and AOD-9604 acetate) for Inclusion on the 503A Bulk Drug Substances List, in FDA Briefing Document, Pharmacy Compounding Advisory Committee, December 4, 2024",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2024,
+      "url": "https://fda.gov/media/183584/download"
     }
   ],
-  "notes_for_editor": "No study of fragment 176-191 itself was found; every finding here is for AOD-9604 (hGH 177-191 with an added N-terminal tyrosine, per source 8). The one-amino-acid difference comes from the sequences in source 9 (hGH 176-191 FLRIVQCRSVEGSCGF vs AOD-9604 YLRIVQCRSVEGSCGF). Products sold under either name are unverified. Source 8 is a developer-funded safety write-up that omits efficacy; a 2013 news report (source 10, not peer reviewed) quotes the trials' lead investigator saying the six trials in 925 patients showed the drug failed to treat obesity. Any statement that it cannot legally be compounded is an inference: FDA's 503A rules (source 4) allow only substances with a USP monograph, in an approved drug, or on the 503A bulks list, and this fragment is on none of FDA's lists.",
+  "notes_for_editor": "No study of fragment 176-191 itself was found; every finding here is for AOD-9604 (hGH 177-191 with an added N-terminal tyrosine, per source 8). The one-amino-acid difference comes from the sequences in source 9 (hGH 176-191 FLRIVQCRSVEGSCGF vs AOD-9604 YLRIVQCRSVEGSCGF). Products sold under either name are unverified. Source 8 is a developer-funded safety write-up that omits efficacy; a 2013 news report (source 10, not peer reviewed) quotes the trials' lead investigator saying the six trials in 925 patients showed the drug failed to treat obesity. Any statement that it cannot legally be compounded is an inference: FDA's 503A rules (source 4) allow only substances with a USP monograph, in an approved drug, or on the 503A bulks list, and this fragment is on none of FDA's lists. After review: the failed AOD-9604 obesity trial is now sourced to FDA's own December 2024 evaluation [11] (OPTIONS: 502 randomized, no significant difference; obesity development terminated after a February 21, 2007 announcement).",
   "checked": "2026-10-28"
 }

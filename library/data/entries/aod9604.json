@@ -1,0 +1,61 @@
+{
+  "id": "aod9604",
+  "name": "AOD-9604",
+  "summary": "A lab-made fragment of human growth hormone taken for fat loss; it was developed as an obesity drug, but its main weight-loss trial failed and it is not approved.",
+  "what_it_is": "AOD-9604 is a synthetic 16-amino-acid peptide: the tail end of human growth hormone (amino acids 177 to 191) plus an extra tyrosine. In obese mice it increased fat burning and reduced weight gain without raising blood sugar, and in lab tests it did not bind the growth hormone receptor or make cells multiply as full growth hormone does. An Australian company tested it as an obesity pill and ended that work in 2007 after a key trial failed.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Fat-loss effects come from mouse and rat studies; in people, a 24-week trial of 502 adults with obesity missed its weight-loss goal, earlier small trials showed little or no effect, and FDA found no evidence that it works."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; FDA advisers voted against compounding",
+    "note": "FDA says AOD-9604 is not part of any FDA-approved drug or official drug standard; after its compounding nomination was withdrawn, FDA reviewed it anyway, and in December 2024 FDA's advisers voted 12-0 against letting pharmacies compound it. FDA still cites possible immune reactions and serious adverse events of unclear cause, and WADA bans it in sport.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": { "weight": 1, "muscle": 0, "recovery": 0.25, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Less weight gain and more fat burning in obese mice, without the rise in blood sugar seen with full growth hormone", "evidence": "preclinical", "sources": [6] },
+    { "claim": "Slightly more weight loss than placebo over 12 weeks in 300 adults with obesity, reported only in an abstract; FDA called the differences small and of unclear benefit, and a larger 24-week trial failed", "evidence": "limited", "sources": [1] },
+    { "claim": "No change in IGF-1 or glucose tolerance versus placebo in six human trials, unlike full growth hormone", "evidence": "limited", "sources": [5] },
+    { "claim": "Better knee joint healing in a rabbit study cited by FDA; FDA did not evaluate joint uses for lack of information", "evidence": "preclinical", "sources": [1] }
+  ],
+  "risks": [
+    { "risk": "Possible immune reactions to injected peptide because of clumping and unknown impurities; FDA cannot rule this out, and there are no human data for injection under the skin", "how_common": "theoretical", "sources": [1, 3] },
+    { "risk": "Serious adverse events that may be linked to it, identified by FDA, though cause is unclear", "how_common": "unknown", "sources": [3] },
+    { "risk": "Headache, diarrhea and colds were common in trials of the pill form, at rates similar to placebo", "how_common": "common", "sources": [5] },
+    { "risk": "Possible signals in animal toxicity studies, including liver cell changes in monkeys and bone-marker changes in rats", "how_common": "unknown", "sources": [1] }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no safety data)",
+    "Competitive athletes (prohibited by WADA)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [ "General health check with a clinician" ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for AOD-9604; human trials found no change in IGF-1 or glucose tolerance."
+  },
+  "studies": [
+    { "title": "Evaluation of AOD-9604-related Bulk Drug Substances (AOD-9604 (free base) and AOD-9604 acetate) for Inclusion on the 503A Bulk Drug Substances List", "year": 2024, "type": "Review", "people": "All published human and animal data, including a 502-person obesity trial and six developer-run trials", "finding": "FDA found a lack of evidence that AOD-9604 works for obesity: the 24-week OPTIONS trial missed its 12-week weight-loss goal, and the developer ended obesity development in 2007 without publishing it. FDA found no human data for injection under the skin and could not rule out immune reactions.", "source": 1 },
+    { "title": "Safety and Tolerability of the Hexadecapeptide AOD9604 in Humans", "year": 2013, "type": "Trial", "people": "893 adults in six randomized, placebo-controlled trials", "finding": "Side effects were similar to placebo, with no change in IGF-1 or glucose tolerance and no antibodies detected. Weight-loss results were not reported, and the developer funded all six trials.", "source": 5 },
+    { "title": "Increase of fat oxidation and weight loss in obese mice caused by chronic treatment with human growth hormone or a modified C-terminal fragment", "year": 2001, "type": "Animal", "people": "Obese and lean mice", "finding": "Over 14 days, both growth hormone and AOD-9604 reduced weight gain and increased fat burning in obese mice. Unlike growth hormone, AOD-9604 did not raise blood sugar or bind the growth hormone receptor.", "source": 6 }
+  ],
+  "ask_your_clinician": [
+    "Which approved weight-loss options fit me, given that AOD-9604 failed its main trial?",
+    "What are the risks of injecting an unregulated peptide that FDA says may cause immune reactions?",
+    "If I compete in a tested sport, would this cause an anti-doping violation?"
+  ],
+  "sources": [
+    { "n": 1, "title": "FDA Briefing Document, Pharmacy Compounding Advisory Committee Meeting, December 4, 2024 (includes: Evaluation of AOD-9604-related Bulk Drug Substances (AOD-9604 (free base) and AOD-9604 acetate) for Inclusion on the 503A Bulk Drug Substances List)", "publisher": "U.S. Food and Drug Administration", "year": 2024, "url": "https://fda.gov/media/183584/download" },
+    { "n": 2, "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, December 4, 2024", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/185642/download" },
+    { "n": 3, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
+    { "n": 5, "title": "Safety and Tolerability of the Hexadecapeptide AOD9604 in Humans", "publisher": "Journal of Endocrinology and Metabolism", "year": 2013, "url": "https://jofem.org/index.php/jofem/article/download/157/195" },
+    { "n": 6, "title": "Increase of fat oxidation and weight loss in obese mice caused by chronic treatment with human growth hormone or a modified C-terminal fragment", "publisher": "International Journal of Obesity", "year": 2001, "url": "https://www.nature.com/articles/0801740.pdf" }
+  ],
+  "notes_for_editor": "FDA's November 2024 evaluation memo inside the December 4, 2024 briefing document (source 1) documents the failed OPTIONS trial (536 enrolled, 502 randomized, 24 weeks, 12-week weight-loss endpoint not met, development ended February 21, 2007, never published). It can replace the news-report sourcing for failed trials in the hghfrag entry. The memo places the added tyrosine at the N-terminus in one place and the C-terminus in another; the Stier paper and the hghfrag entry put it at the N-terminus. The 300-patient study (Herd 2005) exists only as an abstract. The memo says FDA searched its GRAS inventory, but the part we read reported no GRAS determination, so food or GRAS claims are left out. Per the memo, Australia schedules AOD-9604 as a performance and image enhancing drug. AOD-9604 is in no category on FDA's May 2026 503A list or March 2025 503B list. Round-1 notes say an FDA-law blog mentions a lawsuit involving AOD-9604 with no reported outcome; not re-checked. Adverse event rates in source 5 are for the oral form.",
+  "checked": "2026-10-28"
+}

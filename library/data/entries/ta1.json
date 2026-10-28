@@ -1,0 +1,63 @@
+{
+  "id": "ta1",
+  "name": "Thymosin alpha-1",
+  "summary": "A 28-amino-acid immune-signaling peptide, sold abroad as Zadaxin mainly for hepatitis B and taken for immune support; FDA found the evidence insufficient for every use it reviewed.",
+  "what_it_is": "Thymosin alpha-1 is a 28-amino-acid peptide that acts on the immune system; a synthetic form is sold as Zadaxin. Its maker reports approvals in several countries, mainly for chronic hepatitis B and as a helper for flu vaccines in people with weak immunity, but FDA could not verify these and has approved no thymosin alpha-1 product. People take it hoping to strengthen immune defenses.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Many human trials exist, but FDA judged the evidence insufficient for every use it reviewed, and the largest well-designed trial, in 1,106 adults with sepsis, found no effect on survival."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; FDA advisers voted against compounding",
+    "note": "No thymosin alpha-1 product is FDA-approved, though it has four US orphan-drug designations; its compounding nomination was withdrawn, but FDA reviewed it anyway, and in December 2024 FDA's advisers voted 17-4 against adding it to the list pharmacies may compound from. FDA still cites possible immune reactions, and for outsourcing facilities it sits in Category 3 (nominated without adequate support).",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 1, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Fewer deaths at 28 days (26% vs 35%) in an earlier trial of 361 adults with sepsis, though ICU deaths did not differ; a later placebo-controlled trial of 1,106 adults found no survival benefit (23.4% vs 24.1%)", "evidence": "limited", "sources": [5, 6] },
+    { "claim": "Mixed results in chronic hepatitis B: in one placebo-controlled trial the virus became undetectable about as often as with placebo (20% vs 21%), and FDA found the evidence insufficient", "evidence": "limited", "sources": [5] },
+    { "claim": "Somewhat higher tumor response rates than control (6% to 12% vs 4%) in a 488-patient melanoma trial, but the difference was not statistically significant", "evidence": "limited", "sources": [5] },
+    { "claim": "Fewer COVID-19 deaths in one of four meta-analyses; the other three found no reduction", "evidence": "limited", "sources": [5] }
+  ],
+  "risks": [
+    { "risk": "Injection-site irritation, redness or discomfort, the most commonly reported side effects", "how_common": "unknown", "sources": [5] },
+    { "risk": "Possible immune reactions to the peptide or to impurities and clumps, which FDA could not rule out", "how_common": "theoretical", "sources": [1, 3] },
+    { "risk": "Liver enzyme (ALT) flares in people with chronic hepatitis B and thyroid test (TSH) changes in people with hepatitis C were reported in trials", "how_common": "unknown", "sources": [3, 5] },
+    { "risk": "A fatal immune destruction of red blood cells in 1 of 6 stem-cell transplant recipients who also received donor immune cells; FDA could not tell whether thymosin alpha-1 contributed", "how_common": "unknown", "sources": [3] },
+    { "risk": "FDA flagged safety concerns about use in transplant patients and alongside flu vaccines", "how_common": "theoretical", "sources": [5] }
+  ],
+  "avoid_if": [
+    "Stem-cell transplant recipients (FDA flagged a fatal immune reaction and more infections after stem-cell transplant)",
+    "Chronic hepatitis B or C, unless a liver specialist is involved (liver flares and thyroid changes reported; approved antiviral drugs exist)",
+    "Pregnant or breastfeeding (no safety data)"
+  ],
+  "interactions": [
+    "Flu vaccines: FDA raised safety concerns about using it as a vaccine helper and found too little evidence of benefit"
+  ],
+  "labs": {
+    "before": [ "Complete blood count", "Liver enzymes (ALT) and thyroid test (TSH), especially with viral hepatitis" ],
+    "during": [ "Liver enzymes and TSH if used with viral hepatitis" ],
+    "why": "No evidence-based monitoring exists for thymosin alpha-1; liver enzyme flares and thyroid test changes were reported in hepatitis trials."
+  },
+  "studies": [
+    { "title": "The efficacy and safety of thymosin α1 for sepsis (TESTS): multicentre, double blinded, randomised, placebo controlled, phase 3 trial", "year": 2025, "type": "RCT", "people": "1,106 adults with sepsis in 22 hospitals in China", "finding": "Deaths within 28 days were 23.4% with thymosin alpha-1 and 24.1% with placebo, and no secondary or safety outcome differed. Possible differences by age and diabetes were called hypothesis-generating.", "source": 6 },
+    { "title": "FDA Evaluation of Thymosin Alpha-1 (Ta1) – Related Bulk Drug Substances (Ta1 (free base) and Ta1 acetate)", "year": 2024, "type": "Review", "people": "Published human and animal studies, including trials in hepatitis, sepsis, cancer and COVID-19", "finding": "FDA found too little nonclinical safety data, listed adverse events including liver enzyme flares, thyroid test changes and a fatal case after stem-cell transplant, and concluded the evidence weighed against allowing compounding.", "source": 3 },
+    { "title": "Pharmacy Compounding Advisory Committee Meeting: Thymosin Alpha-1 (Ta1) Related Bulk Drug Substances (FDA presentation)", "year": 2024, "type": "Review", "people": "Trials in hepatitis B and C, sepsis, melanoma, liver cancer and COVID-19", "finding": "FDA judged effectiveness insufficient for every use reviewed: hepatitis B results were mixed, a 488-patient melanoma trial showed no significant difference, and three of four COVID-19 meta-analyses found no effect on deaths.", "source": 5 }
+  ],
+  "ask_your_clinician": [
+    "What is behind my concern about immunity, and which proven treatments or vaccines fit?",
+    "If I have hepatitis B or C, how does this compare with approved antiviral drugs?",
+    "Which side effects or lab changes should make me stop?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, December 4, 2024", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/185642/download" },
+    { "n": 3, "title": "FDA Evaluation of Thymosin Alpha-1 (Ta1) – Related Bulk Drug Substances (Ta1 (free base) and Ta1 acetate)", "publisher": "U.S. Food and Drug Administration (Pharmacy Compounding Advisory Committee briefing memo)", "year": 2024, "url": "https://fda.gov/media/183820/download" },
+    { "n": 4, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
+    { "n": 5, "title": "Pharmacy Compounding Advisory Committee Meeting: Thymosin Alpha-1 (Ta1) Related Bulk Drug Substances (FDA presentation)", "publisher": "U.S. Food and Drug Administration", "year": 2024, "url": "https://fda.gov/media/183892/download" },
+    { "n": 6, "title": "The efficacy and safety of thymosin α1 for sepsis (TESTS): multicentre, double blinded, randomised, placebo controlled, phase 3 trial", "publisher": "BMJ (PubMed)", "year": 2025, "url": "https://pubmed.ncbi.nlm.nih.gov/39814420/" }
+  ],
+  "notes_for_editor": "Main sources are FDA's evaluation memo (November 15, 2024) and FDA's presentation slides (December 4, 2024); the slide-deck title is descriptive. Other-country approvals of Zadaxin come from the manufacturer (a 2014 SciClone report and a product monograph), which FDA could not verify. FDA reports more than 4,400 trial participants, a figure from a review co-written by manufacturer employees. The earlier sepsis result (ETASS, 361 patients, 26% vs 35%) is as reported in FDA's slides; its design was not checked. NEXT_ROUND says the 503A nomination was withdrawn in September 2024; FDA's page lists it in the withdrawn table without a date. The 503B Category 3 listing is from FDA's March 21, 2025 list. WADA's 2026 list names thymosin beta-4 but not thymosin alpha-1. Round-1 notes (cjc1295) say the FDA Law Blog mentions a lawsuit involving thymosin alpha-1 with no reported outcome; not re-checked here.",
+  "checked": "2026-10-28"
+}

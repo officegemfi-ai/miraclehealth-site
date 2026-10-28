@@ -115,3 +115,26 @@ triptorelin
   or reviews; primary papers still to add.
 - ovagen: identity rests on one peptide catalog; bronchogen: sources disagree on amino-acid order.
 - mgf vs pegmgf: make sure the two agree.
+
+## Round 2 additions (Oct 28, 2026)
+- SS-31 (elamipretide): FDA accelerated approval as Forzinity for Barth syndrome (patients of at
+  least 30 kg body weight), Sept 19, 2025, after a May 2025 rejection. Label:
+  https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=146bf34c-76f2-48db-ac07-fb29cce2cd75
+- AOD-9604: FDA's own evaluation (Dec 2024 PCAC briefing): main obesity trial OPTIONS, 502
+  randomized, no significant difference in weight loss; obesity development ended after a
+  Feb 21, 2007 announcement. https://fda.gov/media/183584/download (advisers voted 0-12).
+- Thymosin alpha-1: FDA memo https://fda.gov/media/183820/download, slides
+  https://fda.gov/media/183892/download, 2025 BMJ sepsis trial https://pubmed.ncbi.nlm.nih.gov/39814420/
+- FDA 503B nominations list (March 21, 2025): https://www.fda.gov/media/94164/download
+  (gonadorelin acetate Category 1 and a component of an approved drug; ibutamoren Category 2;
+  thymosin alpha-1 Category 3).
+- Ibutamoren (MK-677): Category 2 for pharmacies since Sept 29, 2023 and for outsourcing
+  facilities since Dec 29, 2022 (heart failure).
+- Non-injectable GHK-Cu: removed from Category 1 on April 22, 2026, re-added after a May 5, 2026
+  clarification (May 14, 2026 list).
+- WADA 2026 names ibutamoren, AOD-9604 and gonadorelin (males only); it does not name
+  bremelanotide, thymosin alpha-1, LL-37, elamipretide, selank, Cerebrolysin or GHK.
+- Vyleesi (bremelanotide) label, FDALabel copy (Jan 10, 2025):
+  https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/8c9607a2-5b57-4a59-b159-cf196deebdd9/spl-doc
+- Access: pubmed.gov redirect links are refused; PubMed/PMC bot checks come and go (a retry
+  sometimes works); university repositories, Cochrane PDFs and MDPI open reliably.

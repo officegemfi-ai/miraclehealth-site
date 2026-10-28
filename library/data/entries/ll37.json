@@ -1,0 +1,62 @@
+{
+  "id": "ll37",
+  "name": "LL-37",
+  "summary": "The body's own germ-fighting and inflammation-steering peptide, made by immune and skin cells, taken for immune support and wound healing; human evidence is limited to leg-ulcer trials.",
+  "what_it_is": "LL-37 is the only human member of the cathelicidin family of antimicrobial peptides: a 37-amino-acid peptide cut from a precursor protein called hCAP18. White blood cells and skin cells release it, especially after injury, inflammation or infection, and in lab studies it kills bacteria, some viruses and fungi while also steering inflammation. A lab-made version has been tested as a gel on chronic leg ulcers; it is not an approved drug.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Human evidence is limited to chronic leg-ulcer trials of a topical gel; the larger, 144-patient trial found no benefit across all patients, only in larger wounds, according to the developer. Immune benefits come from lab and animal work."
+  },
+  "status_us": {
+    "key": "under_review",
+    "label": "Not approved; compounding review pending",
+    "note": "FDA took LL-37 off its Category 2 safety-risk list in April 2026 after the nomination was withdrawn, which did not make it eligible for compounding. FDA's advisers are expected to review it before the end of February 2027, with no date set.",
+    "sources": [1, 2, 3]
+  },
+  "goals": { "weight": 0, "muscle": 0, "recovery": 0.5, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0.25, "sexual": 0, "longevity": 0, "gut": 0, "immune": 1, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Better healing of large chronic venous leg ulcers with a topical gel than with placebo in a 144-patient trial, but no difference across all wound sizes; reported by the developer in a press release", "evidence": "limited", "sources": [4] },
+    { "claim": "Kills bacteria, enveloped viruses and fungi and recruits immune cells in laboratory studies", "evidence": "preclinical", "sources": [5] },
+    { "claim": "Promotes the movement and growth of skin cells involved in wound repair, in laboratory studies", "evidence": "preclinical", "sources": [5] }
+  ],
+  "risks": [
+    { "risk": "Possible immune reactions, which FDA flags for some routes of use", "how_common": "theoretical", "sources": [1] },
+    { "risk": "Laboratory and animal findings suggest it may harm male reproduction and promote tumors in some tissues, according to FDA", "how_common": "theoretical", "sources": [1, 6] },
+    { "risk": "LL-37 is part of the immune attack in psoriasis and lupus, where LL-37 bound to the body's own DNA switches on inflammatory immune cells; adding more could in theory worsen these diseases", "how_common": "theoretical", "sources": [5] },
+    { "risk": "FDA says it lacks enough safety information to know whether it would cause harm in people; we found no human studies of injected LL-37", "how_common": "unknown", "sources": [1] }
+  ],
+  "avoid_if": [
+    "Psoriasis, lupus, psoriatic or rheumatoid arthritis, or another autoimmune disease (LL-37 is involved in the inflammation)",
+    "Current or past cancer (laboratory findings suggest it may promote some tumors)",
+    "Men trying to conceive (animal and laboratory findings suggest harm to male reproduction)",
+    "Pregnant or breastfeeding (no safety data)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [ "General health check with a clinician" ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for LL-37."
+  },
+  "studies": [
+    { "title": "Promore Pharma announces positive results from Phase IIb study of ropocamptide in the treatment of venous leg ulcers", "year": 2020, "type": "RCT", "people": "144 adults with chronic venous leg ulcers", "finding": "After 13 weeks of a topical LL-37 gel, healing did not differ from placebo across all patients; in wounds of at least 10 square centimeters, complete healing and wound shrinkage were better. No serious adverse events were judged drug-related.", "source": 4 },
+    { "title": "Immunomodulatory Role of the Antimicrobial LL-37 Peptide in Autoimmune Diseases and Viral Infections", "year": 2020, "type": "Review", "people": "Patient, animal and cell studies", "finding": "LL-37 kills microbes and steers immune responses; in psoriasis and lupus, LL-37 bound to self-DNA activates immune cells, and patients can develop T cells or antibodies against LL-37.", "source": 5 },
+    { "title": "Significance of LL-37 on Immunomodulation and Disease Outcome", "year": 2020, "type": "Review", "people": "Laboratory and animal studies", "finding": "Depending on the tissue and setting, LL-37 can boost inflammation and fight tumors, or dampen inflammation and promote cancer.", "source": 6 }
+  ],
+  "ask_your_clinician": [
+    "Do I have an autoimmune or inflammatory condition, such as psoriasis or lupus, that LL-37 could worsen?",
+    "Given laboratory signals for tumor growth and harm to male fertility, what is my personal risk?",
+    "Which proven treatments fit my wound or infection problem?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List", "publisher": "Frier Levitt (law firm)", "year": 2026, "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/" },
+    { "n": 3, "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions", "publisher": "Holland & Knight (law firm)", "year": 2026, "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know" },
+    { "n": 4, "title": "Promore Pharma announces positive results from Phase IIb study of ropocamptide in the treatment of venous leg ulcers", "publisher": "Promore Pharma AB (company press release)", "year": 2020, "url": "https://storage.mfn.se/ce27b894-962d-4628-bada-a8baa109c0fb/promore-pharma-announces-positive-results-from-phase-iib-study-of-ropocamptide-in-the-treatment-of-venous-leg-ulcers.pdf" },
+    { "n": 5, "title": "Immunomodulatory Role of the Antimicrobial LL-37 Peptide in Autoimmune Diseases and Viral Infections", "publisher": "Vaccines (MDPI)", "year": 2020, "url": "https://www.mdpi.com/2076-393X/8/3/517/html" },
+    { "n": 6, "title": "Significance of LL-37 on Immunomodulation and Disease Outcome", "publisher": "BioMed Research International (Griffith University repository)", "year": 2020, "url": "https://research-repository.griffith.edu.au/items/63fc0a21-3ed5-4abe-bee1-420fe50e5535" }
+  ],
+  "notes_for_editor": "The 2014 phase I/II leg-ulcer trial (Grönberg et al., Wound Repair and Regeneration; PubMed 25041740) and PubMed record 34687253, which may be the peer-reviewed phase IIb report, could not be opened (bot check), so trial results come from the developer's November 19, 2020 press release, which calls the results positive although the full group showed no difference. The press-release title is taken from its file name. FDA's statements on male reproduction and tumor promotion rest on nonclinical research. 'Not an approved drug' is inferred from its status as a nominated bulk substance and its development history. WADA's 2026 list does not name LL-37, but its S0 class bans substances with no human approval anywhere, which may cover it; athletes should check. Status could change if the HHS interim access policy for certain peptides (sent to the White House October 14, 2026) is issued.",
+  "checked": "2026-10-28"
+}

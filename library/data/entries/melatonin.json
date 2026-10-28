@@ -1,0 +1,152 @@
+{
+  "id": "melatonin",
+  "name": "Melatonin",
+  "summary": "A hormone the brain makes in the dark to time sleep, sold in the US as a supplement mainly to fall asleep faster or ease jet lag.",
+  "what_it_is": "Melatonin is a hormone the brain produces in response to darkness. It helps set the timing of the body's internal clock (circadian rhythm) and sleep, and light at night can block its production. In the US it is sold over the counter as a dietary supplement, while several other countries treat it as a prescription drug.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "A meta-analysis of 19 randomized trials shows modest effects on falling asleep, and reviews support it for delayed sleep timing and possibly jet lag, but guidelines do not recommend it for chronic insomnia and long-term safety data are lacking."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement in the US; prescription elsewhere",
+    "note": "Sold in the US as a dietary supplement, which FDA does not approve for safety or effectiveness before sale; several other countries regulate it as a prescription drug. FDA also lists melatonin in Category 1 (under evaluation) for pharmacy compounding, which lets pharmacies compound it while FDA decides.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 1,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Fell asleep about 7 minutes sooner and slept about 8 minutes longer than with placebo, with slightly better sleep quality, in people with primary sleep disorders (19 trials, 1,683 people)",
+      "evidence": "moderate",
+      "sources": [5]
+    },
+    {
+      "claim": "Fell asleep about 34 minutes earlier, with better daytime functioning, in a 2018 trial of 307 people with delayed sleep-wake phase disorder",
+      "evidence": "moderate",
+      "sources": [1]
+    },
+    {
+      "claim": "May ease jet lag, mainly after eastward flights, though the evidence is of low quality",
+      "evidence": "limited",
+      "sources": [1]
+    },
+    {
+      "claim": "Children with autism fell asleep 37 minutes earlier and slept 48 minutes longer, and children with ADHD 20 minutes earlier and 33 minutes longer, in reviews of small, short trials",
+      "evidence": "limited",
+      "sources": [1]
+    },
+    {
+      "claim": "Less anxiety before surgery than with placebo, according to a review of trials",
+      "evidence": "moderate",
+      "sources": [1]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Mild side effects in short-term studies, such as headache, dizziness, nausea and sleepiness",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "Labels are often wrong: in a 2023 study, 22 of 25 gummy products were mislabeled, holding 74% to 347% of the stated amount (one had none), and in a 2017 study of 31 supplements most did not match their labels and 26% contained serotonin",
+      "how_common": "common",
+      "sources": [1]
+    },
+    {
+      "risk": "Accidental swallowing by young children: about 11,000 emergency visits for children 5 and under in 2019 to 2022, and poison-center reports for ages 19 and under rose from 8,337 in 2012 to 52,563 in 2021, though most had no symptoms",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "Long-term safety is unknown; in children, possible effects on puberty and hormone development have been raised but not established",
+      "how_common": "theoretical",
+      "sources": [1]
+    },
+    {
+      "risk": "Next-day drowsiness, especially in older adults, in whom melatonin may stay active longer",
+      "how_common": "unknown",
+      "sources": [1]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (safety has not been researched)",
+    "People with dementia (a 2015 American Academy of Sleep Medicine guideline recommends against it)",
+    "Children, unless a health care provider advises it",
+    "Epilepsy, or use of blood thinners, without medical supervision"
+  ],
+  "interactions": [
+    "Blood thinners (anticoagulants): use only under medical supervision"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed; benefit is judged by sleep, and NCCIH advises checking with a health care provider before giving melatonin to a child."
+  },
+  "studies": [
+    {
+      "title": "Meta-analysis: melatonin for the treatment of primary sleep disorders",
+      "year": 2013,
+      "type": "Meta-analysis",
+      "people": "1,683 people with primary sleep disorders in 19 trials",
+      "finding": "Melatonin shortened the time to fall asleep by about 7 minutes and lengthened sleep by about 8 minutes versus placebo and slightly improved sleep quality; the effects were modest but did not fade with continued use.",
+      "source": 5
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my sleep problem the kind melatonin may help, such as jet lag or a delayed sleep schedule, or would CBT for insomnia be better?",
+    "Could melatonin interact with my medicines, such as a blood thinner or seizure medicine?",
+    "If it is for my child, is it appropriate, and how should we store it safely?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Melatonin: What You Need To Know",
+      "publisher": "National Center for Complementary and Integrative Health (NIH)",
+      "year": 2024,
+      "url": "https://www.nccih.nih.gov/health/melatonin-what-you-need-to-know"
+    },
+    {
+      "n": 2,
+      "title": "Information for Consumers on Using Dietary Supplements",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/food/dietarysupplements/usingdietarysupplements/"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 4,
+      "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/174456/download"
+    },
+    {
+      "n": 5,
+      "title": "Meta-analysis: melatonin for the treatment of primary sleep disorders",
+      "publisher": "PLoS ONE (reprinted in FOCUS, American Psychiatric Association)",
+      "year": 2013,
+      "url": "https://focus.psychiatryonline.org/doi/10.1176/appi.focus.16101"
+    }
+  ],
+  "notes_for_editor": "Most claims come from NCCIH's page (last updated May 2024), which summarizes reviews, guidelines, the 2023 gummy study and a 2024 CDC report; those primary papers were not opened directly, and the autism and ADHD figures may come from a different review than the 2019 one NCCIH names. The meta-analysis was read through the APA FOCUS reprint because PubMed and PMC blocked the fetcher; the reprint did not list authors. The AASM chronic-insomnia and dementia guidance is cited only through NCCIH. Category 1 compounding status probably matters little for an over-the-counter supplement but is included for completeness.",
+  "checked": "2026-10-28"
+}

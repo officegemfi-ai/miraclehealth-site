@@ -1,0 +1,189 @@
+{
+  "id": "creatine",
+  "name": "Creatine monohydrate",
+  "summary": "A compound the body makes and gets from animal foods, taken as a supplement to add strength and power for short, intense exercise.",
+  "what_it_is": "Creatine is made in the body by the liver and kidneys from the amino acids glycine, arginine and methionine, and small amounts also come from animal foods. Most of it is stored in skeletal and heart muscle, partly as phosphocreatine, which muscles use to regenerate ATP, the cell's energy molecule, at the start of intense effort. Supplements raise the amount of creatine stored in muscle.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Meta-analyses of dozens of randomized trials show greater strength and lean-mass gains when creatine is added to resistance training, in both younger and older adults."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement. NIH's Office of Dietary Supplements says it is considered safe for short-term use by healthy adults and that evidence shows use for several years is safe.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 1,
+    "recovery": 0.25,
+    "energy": 0.25,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Larger gains in upper- and lower-body strength than resistance training alone in adults under 50, based on 23 randomized trials (mostly in men)",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Better performance in repeated short bursts of high-intensity activity such as sprinting and weightlifting; little value for endurance sports",
+      "evidence": "strong",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "claim": "More lean mass (about 1.3 kg on average) and small extra strength gains when added to resistance training in adults over 50",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Weight gain, mainly from water retention",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Raises blood creatinine, so standard kidney tests (creatinine and eGFR) can look worse than they are even when the kidneys are healthy",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Very little safety evidence in people who already have kidney disease; reviewers advise people with very low kidney function to avoid it",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Nausea, diarrhea, muscle cramps, stiffness and heat intolerance have been reported anecdotally; in trials in older adults, stomach upset and cramps were about as common as with placebo",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        4
+      ]
+    },
+    {
+      "risk": "Contaminated products may pose risks, so product purity matters",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Kidney disease or reduced kidney function",
+    "Teenagers: pediatric and high-school professional associations advise against performance supplements",
+    "Older adults or people with chronic medical conditions planning long-term use (have kidney function checked with a clinician first)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Kidney function (creatinine with eGFR, or cystatin C) for older adults or people with medical conditions planning long-term use"
+    ],
+    "during": [
+      "Periodic kidney function checks in those higher-risk groups during long-term use; cystatin C or a measured GFR avoids the creatinine effect"
+    ],
+    "why": "Creatine raises blood creatinine without harming healthy kidneys, so creatinine-based kidney estimates can look worse than they are; tell your clinician and the lab that you take it."
+  },
+  "studies": [
+    {
+      "title": "Effects of Creatine Supplementation and Resistance Training on Muscle Strength Gains in Adults <50 Years of Age: A Systematic Review and Meta-Analysis",
+      "year": 2024,
+      "type": "Meta-analysis",
+      "people": "Adults under 50 in 23 randomized trials (20 enrolled only men)",
+      "finding": "Creatine plus resistance training added about 4.4 kg to upper-body and 11.4 kg to lower-body strength gains versus placebo; gains in women were not statistically significant, but only three trials included women.",
+      "source": 2
+    },
+    {
+      "title": "Meta-Analysis Examining the Importance of Creatine Ingestion Strategies on Lean Tissue Mass and Strength in Older Adults",
+      "year": 2021,
+      "type": "Meta-analysis",
+      "people": "509 adults with an average age over 50 in 16 randomized trials (lean mass analysis)",
+      "finding": "Creatine with resistance training added about 1.3 kg of lean mass, small gains in chest-press strength and borderline gains in leg-press strength versus placebo; several authors disclosed ties to creatine companies.",
+      "source": 4
+    },
+    {
+      "title": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
+      "year": 2017,
+      "type": "Review",
+      "people": "Review of studies in athletes, healthy adults and patient groups",
+      "finding": "Concluded that creatine improves high-intensity exercise performance and training adaptations, and that short- and long-term use is safe and well tolerated in healthy people and in a number of patient groups.",
+      "source": 3
+    },
+    {
+      "title": "Is It Time for a Requiem for Creatine Supplementation-Induced Kidney Failure? A Narrative Review",
+      "year": 2023,
+      "type": "Review",
+      "people": "Review of controlled trials, a small meta-analysis and case reports",
+      "finding": "Controlled trials do not show kidney harm in healthy people; creatine raises creatinine and can mislead kidney tests, and safety evidence in people with kidney disease is very limited.",
+      "source": 5
+    }
+  ],
+  "ask_your_clinician": [
+    "Should my kidney function be checked before I start, and should future tests use cystatin C because creatine raises creatinine?",
+    "Is creatine reasonable for me given my age, kidney health and training goals?",
+    "Could water weight from creatine affect anything you track, such as my weight or lab results?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Dietary Supplements for Exercise and Athletic Performance - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2026,
+      "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Effects of Creatine Supplementation and Resistance Training on Muscle Strength Gains in Adults <50 Years of Age: A Systematic Review and Meta-Analysis",
+      "publisher": "Nutrients (MDPI)",
+      "year": 2024,
+      "url": "https://www.mdpi.com/2072-6643/16/21/3665"
+    },
+    {
+      "n": 3,
+      "title": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
+      "publisher": "Journal of the International Society of Sports Nutrition (DOAJ record)",
+      "year": 2017,
+      "url": "https://doaj.org/article/4a276c2d31944beaab82cdc923c69c83"
+    },
+    {
+      "n": 4,
+      "title": "Meta-Analysis Examining the Importance of Creatine Ingestion Strategies on Lean Tissue Mass and Strength in Older Adults",
+      "publisher": "Nutrients (MDPI)",
+      "year": 2021,
+      "url": "https://www.mdpi.com/2072-6643/13/6/1912"
+    },
+    {
+      "n": 5,
+      "title": "Is It Time for a Requiem for Creatine Supplementation-Induced Kidney Failure? A Narrative Review",
+      "publisher": "Nutrients (MDPI)",
+      "year": 2023,
+      "url": "https://www.mdpi.com/2072-6643/15/6/1466"
+    }
+  ],
+  "notes_for_editor": "The ISSN position stand was read through its DOAJ abstract record because PMC showed a bot check. A 2025 BMC Nephrology meta-analysis on creatine and kidney function and a 2017 older-adult meta-analysis on Taylor & Francis could not be opened. Several authors of the 2021 older-adult meta-analysis disclosed ties to creatine companies. The ODS fact sheet showed no visible update date, so its year is the page's last-modified year. The creatinine point comes from a narrative review; a clinician may want guideline wording on interpreting eGFR in creatine users.",
+  "checked": "2026-10-28"
+}

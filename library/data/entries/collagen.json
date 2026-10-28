@@ -1,0 +1,133 @@
+{
+  "id": "collagen",
+  "name": "Collagen peptides",
+  "summary": "Collagen broken down into small protein fragments, taken by mouth mainly to improve skin hydration, elasticity and wrinkles, and sometimes for joint symptoms.",
+  "what_it_is": "Collagen is a structural protein of skin, cartilage and other connective tissue. Collagen peptide supplements (hydrolyzed collagen) contain collagen broken down into small fragments, often made from fish skin or scales or other animal sources, and are taken by mouth. They have been tested mainly for skin aging and for osteoarthritis symptoms.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Many randomized trials report better skin hydration and elasticity, but a 2025 meta-analysis found the benefit only in industry-funded or lower-quality trials, not in independent or high-quality ones; joint evidence is a meta-analysis with mixed results."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; not FDA-evaluated for these uses",
+    "note": "Collagen peptides are sold as dietary supplements. Under US law, FDA does not approve supplements for safety or effectiveness before they are marketed.",
+    "sources": [1]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0.5,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Better skin hydration, elasticity and wrinkles when 23 randomized trials (1,474 people) were pooled, but no effect in trials without industry funding or in high-quality trials",
+      "evidence": "limited",
+      "sources": [2]
+    },
+    {
+      "claim": "Better skin hydration and brightness and a modest effect on wrinkles in a 2026 pooling of 19 trials (1,341 people), mostly of oral collagen peptides, with very large differences between trials",
+      "evidence": "limited",
+      "sources": [3]
+    },
+    {
+      "claim": "Lower overall osteoarthritis symptom scores and less stiffness than placebo in people with osteoarthritis, though pain and function subscores did not improve",
+      "evidence": "limited",
+      "sources": [4]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Few side effects reported in trials and no severe ones; mild stomach discomfort occurred in isolated cases",
+      "how_common": "rare",
+      "sources": [3]
+    },
+    {
+      "risk": "Not reviewed by FDA for safety or effectiveness before it is sold",
+      "how_common": "unknown",
+      "sources": [1]
+    }
+  ],
+  "avoid_if": [
+    "Allergy to fish or another animal source the product is made from (check the label)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed for collagen supplements; trials judged results by skin measurements and joint symptom scores, not lab markers."
+  },
+  "studies": [
+    {
+      "title": "Effects of Collagen Supplements on Skin Aging: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "year": 2025,
+      "type": "Meta-analysis",
+      "people": "1,474 participants in 23 randomized trials",
+      "finding": "Pooled results showed better hydration, elasticity and wrinkles, but trials without industry funding and high-quality trials showed no effect; the authors concluded there is no clinical evidence to support collagen for preventing or treating skin aging.",
+      "source": 2
+    },
+    {
+      "title": "Oral and topical peptides for skin aging: systematic review and meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "type": "Meta-analysis",
+      "people": "1,341 participants in 19 randomized trials (17 oral, 2 topical)",
+      "finding": "Peptides, mostly oral collagen, were linked to better hydration and brightness and a modest wrinkle improvement, with very high variation between trials and no severe side effects.",
+      "source": 3
+    },
+    {
+      "title": "Effect of collagen supplementation on osteoarthritis symptoms: a meta-analysis of randomized placebo-controlled trials",
+      "year": 2019,
+      "type": "Meta-analysis",
+      "people": "People with osteoarthritis in randomized placebo-controlled trials",
+      "finding": "Collagen lowered total WOMAC and VAS scores and stiffness versus placebo, but WOMAC pain and function subscores did not differ.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Is the evidence for collagen strong enough to justify trying it for my skin or joints, compared with better-studied options?",
+    "Could any of my allergies or health conditions make a collagen supplement a poor choice?",
+    "What change would count as a real improvement, and how would we measure it?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Information for Consumers on Using Dietary Supplements",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/food/dietarysupplements/usingdietarysupplements/"
+    },
+    {
+      "n": 2,
+      "title": "Effects of Collagen Supplements on Skin Aging: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+      "publisher": "The American Journal of Medicine (ScienceDirect)",
+      "year": 2025,
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0002934325002839"
+    },
+    {
+      "n": 3,
+      "title": "Oral and topical peptides for skin aging: systematic review and meta-analysis of randomized controlled trials",
+      "publisher": "Frontiers in Medicine",
+      "year": 2026,
+      "url": "https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2026.1618306/full"
+    },
+    {
+      "n": 4,
+      "title": "Effect of collagen supplementation on osteoarthritis symptoms: a meta-analysis of randomized placebo-controlled trials",
+      "publisher": "International Orthopaedics (Springer)",
+      "year": 2019,
+      "url": "https://link.springer.com/10.1007/s00264-018-4211-5"
+    }
+  ],
+  "notes_for_editor": "The 2025 American Journal of Medicine meta-analysis was read as its abstract (the full PDF would not load); collagen industry groups disputed how it classed trials by funding, seen only in trade press and not cited. The 2026 Frontiers review pooled oral and topical peptides (17 oral trials, all visible ones collagen-based) and reported very high heterogeneity. The osteoarthritis meta-analysis abstract (online 2018, print 2019) did not give trial or participant counts. No source on allergic reactions was found; the avoid_if item is a common-sense inference about the animal source. The FDA consumer page shows no date.",
+  "checked": "2026-10-28"
+}

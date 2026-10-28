@@ -1,0 +1,139 @@
+{
+  "id": "nad",
+  "name": "NAD+",
+  "summary": "A molecule cells use to make energy, given by IV drip or injection or taken by mouth hoping for more energy and slower aging; human evidence is minimal.",
+  "what_it_is": "NAD+ (nicotinamide adenine dinucleotide) is a molecule in the body's cells that takes part in energy metabolism. People try to raise their levels with NAD+ itself, given by IV infusion or injection, or with precursors taken by mouth such as nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN). In a small study, infused NAD+ was rapidly removed from the blood, probably broken down by enzymes such as CD38, with some passed in urine.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Human data on NAD+ itself are a pilot infusion study of 11 men and a small clinic chart review with no health outcomes; trials of oral precursors show higher NAD+ levels but unclear benefits."
+  },
+  "status_us": {
+    "key": "compounded",
+    "label": "Not FDA-approved; pharmacies may compound it",
+    "note": "FDA lists NAD in Category 1 (under evaluation) of its interim policy for substances that are not part of an FDA-approved drug and have no applicable USP monograph, so state-licensed pharmacies may compound it while FDA decides. Oral NAD+-boosting compounds such as NR and NMN are used and studied as dietary supplements.",
+    "sources": [1, 2, 3]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 1,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.75,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Raised blood NAD+ during a 6-hour IV infusion in healthy men, but only after about 2 hours, because infused NAD+ was at first rapidly and completely removed from the blood (8 men on NAD+, 3 on saline)",
+      "evidence": "limited",
+      "sources": [4]
+    },
+    {
+      "claim": "Oral precursors such as NR and NMN can raise NAD+ in several human tissues and appear safe in trials so far, but whether this improves physical function is unclear",
+      "evidence": "limited",
+      "sources": [3]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Discomfort during IV infusion: all 6 clinic clients given IV NAD+ in a small chart review had moderate to severe cramping, nausea, vomiting, diarrhea, fast heart rate or chest pressure, which stopped when the infusion ended and led them to slow it down; a 2019 pilot in 8 men reported no adverse events",
+      "how_common": "common",
+      "sources": [5, 4]
+    },
+    {
+      "risk": "Little safety information beyond the short term: human studies are small and brief",
+      "how_common": "unknown",
+      "sources": [3, 4]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "Liver or kidney disease (excluded from the infusion study; ask a clinician)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check",
+      "Liver and kidney function"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists; the small infusion studies checked liver, kidney and other blood markers and found no meaningful changes."
+  },
+  "studies": [
+    {
+      "title": "A Pilot Study Investigating Changes in the Human Plasma and Urine NAD+ Metabolome During a 6 Hour Intravenous Infusion of NAD+",
+      "year": 2019,
+      "type": "Trial",
+      "people": "11 healthy men aged 30 to 55 (8 NAD+, 3 saline)",
+      "finding": "Blood NAD+ did not rise for the first 2 hours, then peaked at the end of the infusion; breakdown products rose and some NAD+ was passed in urine. No adverse events were reported, and some authors were linked to an IV NAD+ clinic.",
+      "source": 4
+    },
+    {
+      "title": "Intravenous infusion of nicotinamide adenine dinucleotide (NAD+) versus nicotinamide riboside (NR): a retrospective tolerability pilot study in a real-world setting",
+      "year": 2026,
+      "type": "Case series",
+      "people": "14 wellness-clinic clients (6 IV NAD+, 8 IV NR)",
+      "finding": "All NAD+ clients had moderate to severe symptoms during infusions, versus mostly mild tingling or cramping with NR; blood markers stayed stable. The review was small, uncontrolled and run by the clinic company.",
+      "source": 5
+    },
+    {
+      "title": "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
+      "year": 2023,
+      "type": "Review",
+      "people": "Human trials of NR, NMN and related compounds",
+      "finding": "These supplements can raise NAD+ in several tissues and appear safe and tolerable, but evidence that they improve physiological function is unclear and most trials are small.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any evidence that NAD+ infusions would help the symptoms I want to treat?",
+    "What should happen if I get chest pressure, cramping or a racing heart during an infusion?",
+    "Would an oral precursor be a lower-risk option, and how would we judge whether it works?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/174456/download"
+    },
+    {
+      "n": 3,
+      "title": "Dietary Supplementation With NAD+-Boosting Compounds in Humans: Current Knowledge and Future Directions",
+      "publisher": "The Journals of Gerontology: Series A (University of Delaware repository)",
+      "year": 2023,
+      "url": "https://udspace.udel.edu/items/93b26729-8e64-4319-acf9-22bed742b00b/full"
+    },
+    {
+      "n": 4,
+      "title": "A Pilot Study Investigating Changes in the Human Plasma and Urine NAD+ Metabolome During a 6 Hour Intravenous Infusion of NAD+",
+      "publisher": "Frontiers in Aging Neuroscience",
+      "year": 2019,
+      "url": "https://www.frontiersin.org/journals/aging-neuroscience/articles/10.3389/fnagi.2019.00257/full"
+    },
+    {
+      "n": 5,
+      "title": "Intravenous infusion of nicotinamide adenine dinucleotide (NAD+) versus nicotinamide riboside (NR): a retrospective tolerability pilot study in a real-world setting",
+      "publisher": "Frontiers in Aging",
+      "year": 2026,
+      "url": "https://www.frontiersin.org/articles/10.3389/fragi.2026.1652582/full"
+    }
+  ],
+  "notes_for_editor": "Both human NAD+ infusion studies have commercial ties: some 2019 pilot authors were linked to an IV NAD+ clinic, and the 2026 chart review was run and funded by a wellness-clinic company. They disagree on tolerability (no adverse events versus symptoms in all six NAD+ clients), possibly because of infusion speed, which was not compared directly. FDA's list also puts NADH in Category 1 and a disodium salt of NAD in Category 3 (nominated without adequate support). The NAD+-booster review was read only as an abstract, and no source on oral NAD+ itself (as opposed to its precursors) was opened.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,171 @@
+{
+  "id": "dhea",
+  "name": "DHEA",
+  "summary": "A hormone made by the adrenal glands that the body converts to testosterone and estrogen; sold as a supplement for libido, well-being and aging, with weak evidence.",
+  "what_it_is": "DHEA (dehydroepiandrosterone) is a steroid hormone made by the adrenal glands. The body converts it into androgens such as testosterone and into estrogens such as estradiol. Oral DHEA is sold in the US as a dietary supplement, and the same molecule, called prasterone, is FDA-approved as a vaginal insert (Intrarosa) for painful sex caused by menopause.",
+  "evidence": {
+    "grade": "limited",
+    "why": "A Cochrane review of 28 randomized trials in menopausal women found no quality-of-life benefit and at most a slight effect on sexual function, two small trials in men found no strength or muscle gain, and guidelines advise against routine use; only the vaginal form is approved, for one use."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Supplement; prescription vaginal form approved",
+    "note": "Oral DHEA is sold as a dietary supplement, which FDA does not approve for safety or effectiveness before sale. Prasterone vaginal inserts (Intrarosa) are FDA-approved for moderate to severe painful sex due to menopause, and the World Anti-Doping Agency bans DHEA in sport at all times.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0.75,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Eases moderate to severe painful sex after menopause as a prescription vaginal insert (Intrarosa), in two 12-week placebo-controlled trials of 255 and 558 women",
+      "evidence": "strong",
+      "sources": [3]
+    },
+    {
+      "claim": "Slightly better sexual function than placebo in peri- and postmenopausal women (5 trials, 261 women), without better quality of life",
+      "evidence": "limited",
+      "sources": [5]
+    },
+    {
+      "claim": "Small improvements in quality of life and depression in people with adrenal insufficiency, in a 2009 meta-analysis of 10 studies, though the Endocrine Society still advises against routine use",
+      "evidence": "limited",
+      "sources": [6]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Acne and other male-pattern (androgenic) side effects in about 15% of women on DHEA versus under 3% on placebo; longer use in women can also cause facial hair growth",
+      "how_common": "common",
+      "sources": [5, 1]
+    },
+    {
+      "risk": "Raises testosterone and estrogen levels; long-term effects on the breast and the lining of the uterus are unknown",
+      "how_common": "unknown",
+      "sources": [6]
+    },
+    {
+      "risk": "Lower HDL (good) cholesterol with oral DHEA in postmenopausal women",
+      "how_common": "unknown",
+      "sources": [6]
+    },
+    {
+      "risk": "With the vaginal insert: vaginal discharge (5.7% versus 3.7% on placebo) and abnormal Pap smears (2.1% over a year, without a placebo comparison)",
+      "how_common": "uncommon",
+      "sources": [3]
+    },
+    {
+      "risk": "Long-term safety poorly studied: trials had a median follow-up of only about 3 months",
+      "how_common": "unknown",
+      "sources": [6]
+    }
+  ],
+  "avoid_if": [
+    "Current or past breast cancer or another hormone-sensitive cancer (estrogen is one of its breakdown products)",
+    "Undiagnosed abnormal genital bleeding",
+    "Pregnant or breastfeeding (no data)",
+    "Competitive athletes (banned by WADA)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Lipid panel",
+      "Breast and pelvic exams as recommended for age",
+      "Evaluation of any abnormal genital bleeding"
+    ],
+    "during": [
+      "Lipid panel"
+    ],
+    "why": "No routine monitoring is set for supplement use; oral DHEA can lower HDL, abnormal bleeding should be checked before using the vaginal form, and guideline authors caution that DHEA-S blood tests vary by method."
+  },
+  "studies": [
+    {
+      "title": "Dehydroepiandrosterone for women in the peri- or postmenopausal phase",
+      "year": 2015,
+      "type": "Systematic review",
+      "people": "1,273 peri- and postmenopausal women in 28 randomized trials",
+      "finding": "DHEA did not improve quality of life, had unclear effects on menopausal symptoms, may slightly improve sexual function, and caused more androgenic side effects such as acne than placebo.",
+      "source": 5
+    },
+    {
+      "title": "INTRAROSA (prasterone) vaginal inserts prescribing information",
+      "year": 2018,
+      "type": "Label",
+      "people": "813 postmenopausal women in two 12-week trials",
+      "finding": "Prasterone inserts reduced painful sex more than placebo and improved vaginal cell measures and pH; vaginal discharge was the most common side effect.",
+      "source": 3
+    },
+    {
+      "title": "Androgen Therapy in Women: A Reappraisal: An Endocrine Society Clinical Practice Guideline",
+      "year": 2014,
+      "type": "Guideline",
+      "people": "Expert panel review of evidence in women",
+      "finding": "Recommends against generalized use of DHEA in women and against routine use in adrenal insufficiency, citing small benefits, low-quality evidence and limited long-term safety data.",
+      "source": 6
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I have a condition, such as adrenal insufficiency or painful sex after menopause, where DHEA or prasterone has evidence?",
+    "Should my cholesterol or hormone levels be checked before and during use?",
+    "Is DHEA safe with my personal or family history of breast or other hormone-sensitive cancer?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Dietary Supplements for Exercise and Athletic Performance - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2026,
+      "url": "https://ods.od.nih.gov/factsheets/ExerciseAndAthleticPerformance-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Information for Consumers on Using Dietary Supplements",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/food/dietarysupplements/usingdietarysupplements/"
+    },
+    {
+      "n": 3,
+      "title": "INTRAROSA (prasterone) vaginal inserts prescribing information",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA)",
+      "year": 2018,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/208470s001lbl.pdf"
+    },
+    {
+      "n": 4,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 5,
+      "title": "Dehydroepiandrosterone for women in the peri- or postmenopausal phase",
+      "publisher": "Cochrane Database of Systematic Reviews",
+      "year": 2015,
+      "url": "https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011066.pub2"
+    },
+    {
+      "n": 6,
+      "title": "Androgen Therapy in Women: A Reappraisal: An Endocrine Society Clinical Practice Guideline",
+      "publisher": "Journal of Clinical Endocrinology & Metabolism (copy hosted by the Alabama Board of Medical Examiners)",
+      "year": 2014,
+      "url": "https://www.albme.gov/uploads/pdfs/Androgen_Therapy_in_Women_A_Reappraisal_An_Endocrine_Society_Clinical_Practice_Guideline.pdf"
+    }
+  ],
+  "notes_for_editor": "The Cochrane review (published 2015, search to June 2014) and the Endocrine Society guideline (2014) are the newest syntheses opened; later trials were not searched. Evidence is mostly in women; men are covered only by the NIH ODS summary of two small trials showing no strength or muscle benefit. The Intrarosa label opened is the February 2018 version. US supplement status rests on NIH ODS covering DHEA as a supplement ingredient; the federal anabolic-steroid law exemption and supplement product quality were not checked. DHEA is not on FDA's 503A compounding nominations list (only 7-keto-DHEA is, in Category 1).",
+  "checked": "2026-10-28"
+}
