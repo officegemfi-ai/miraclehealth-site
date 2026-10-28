@@ -1,0 +1,197 @@
+{
+  "id": "anastrozole",
+  "name": "Anastrozole",
+  "summary": "A prescription pill that blocks estrogen production, approved to treat hormone-sensitive breast cancer after menopause; it has also been studied off-label in men with low testosterone.",
+  "what_it_is": "Anastrozole is a nonsteroidal aromatase inhibitor: it blocks aromatase, the enzyme that converts androgens into estrogen. In postmenopausal women it lowers estradiol by about 70% within a day and about 80% after two weeks, without affecting cortisol or aldosterone. In men it raises testosterone and lowers estradiol.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for hormone receptor-positive breast cancer after menopause; the evidence in men comes from a few small randomized trials that showed rises in testosterone but no bone benefit."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for breast cancer; off-label in men",
+    "note": "Approved for postmenopausal women with hormone receptor-positive early breast cancer (after primary treatment), as first-line treatment of advanced breast cancer, and for advanced disease that progressed on tamoxifen. Use for breast cancer prevention or in men is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Treats hormone receptor-positive breast cancer in postmenopausal women, both early (after surgery) and advanced",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lowered invasive breast cancer from 3% to 2% over 5 years in 3,864 high-risk postmenopausal women in the IBIS-II trial (off-label for prevention in the US)",
+      "evidence": "moderate",
+      "sources": [
+        2,
+        3
+      ]
+    },
+    {
+      "claim": "Raised testosterone over one year in 69 older men with low or borderline-low testosterone, but did not improve bone health (off-label)",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Hot flashes (36%), weakness, joint pain and stiffness, and depression in the main breast cancer trial",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Bone thinning and fractures: osteoporosis 11% and fractures 10% in the main trial, more than with tamoxifen; in older men, spine bone density fell compared with placebo",
+      "how_common": "common",
+      "sources": [
+        1,
+        4
+      ]
+    },
+    {
+      "risk": "Higher cholesterol (9% versus 3.5% with tamoxifen)",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "More heart events than with tamoxifen in women with existing ischemic heart disease (17% versus 10%)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In men, blocking estrogen raised body fat and contributed to lower sexual desire and function (400 healthy men, 16 weeks)",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy or possible pregnancy",
+    "Premenopausal women (it is approved only after menopause)",
+    "Osteoporosis or high fracture risk without a bone-protection plan",
+    "Existing ischemic heart disease (discuss the higher heart-event rate first)",
+    "Past allergic reaction to anastrozole"
+  ],
+  "interactions": [
+    "Tamoxifen: lowers anastrozole levels by 27% and adds no benefit, so the two are not used together",
+    "Estrogen-containing products: can weaken its effect"
+  ],
+  "labs": {
+    "before": [
+      "Bone density (DEXA) scan",
+      "Cholesterol (lipid panel)",
+      "Pregnancy test if pregnancy is possible",
+      "Men (off-label): testosterone and estradiol"
+    ],
+    "during": [
+      "Bone density at intervals",
+      "Cholesterol periodically",
+      "Men (off-label): testosterone and estradiol"
+    ],
+    "why": "The label advises considering bone density and cholesterol monitoring because anastrozole can thin bone and raise cholesterol; there is no label guidance for men, where trials tracked testosterone, estradiol and bone density."
+  },
+  "studies": [
+    {
+      "title": "Anastrozole for prevention of breast cancer in high-risk postmenopausal women (IBIS-II): an international, double-blind, randomised placebo-controlled trial",
+      "year": 2014,
+      "type": "RCT",
+      "people": "3,864 postmenopausal women at high risk of breast cancer",
+      "finding": "Over 5 years, invasive breast cancer occurred in 2% with anastrozole versus 3% with placebo (number needed to treat 62); death rates did not differ.",
+      "source": 3
+    },
+    {
+      "title": "Gonadal steroids and body composition, strength, and sexual function in men",
+      "year": 2013,
+      "type": "RCT",
+      "people": "400 healthy men aged 20 to 50",
+      "finding": "With their own hormones suppressed, a cohort also given anastrozole showed that estrogen deficiency mainly accounted for increases in body fat and contributed to lower sexual function, while low testosterone drove losses in lean mass and strength.",
+      "source": 5
+    },
+    {
+      "title": "Effects of Aromatase Inhibition on Bone Mineral Density and Bone Turnover in Older Men with Low Testosterone Levels",
+      "year": 2009,
+      "type": "RCT",
+      "people": "69 men aged 60 and older with low or borderline-low testosterone",
+      "finding": "One year of anastrozole raised testosterone and modestly lowered estradiol, but spine bone density fell compared with placebo; the authors concluded it does not improve skeletal health in aging men.",
+      "source": 4
+    },
+    {
+      "title": "ARIMIDEX (anastrozole) tablets: Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Postmenopausal women with early breast cancer (ATAC trial, compared with tamoxifen)",
+      "finding": "Anastrozole caused more joint symptoms, osteoporosis and fractures than tamoxifen, and raised cholesterol more often (9% versus 3.5%).",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I need a bone density scan before starting, and how will we protect my bones?",
+    "For men: is there a medical reason to lower my estrogen, given its role in bone, body fat and sexual function?",
+    "Which joint, muscle or mood symptoms should I report?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "ARIMIDEX (anastrozole) tablets: Prescribing Information (revised 12/2025)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/arimidex.html"
+    },
+    {
+      "n": 2,
+      "title": "Anastrozole for prevention of breast cancer in high-risk postmenopausal women (IBIS-II): an international, double-blind, randomised placebo-controlled trial",
+      "publisher": "The Lancet (University of Aberdeen repository record)",
+      "year": 2014,
+      "url": "https://aura.abdn.ac.uk/items/2865368c-4a06-40b3-b725-57a89ff67e16/full"
+    },
+    {
+      "n": 3,
+      "title": "Anastrozole Decreases Rate of Breast Cancer in High-Risk Postmenopausal Women",
+      "publisher": "American Family Physician (POEM)",
+      "year": 2014,
+      "url": "https://aafp.org/pubs/afp/issues/2014/0815/od7.html"
+    },
+    {
+      "n": 4,
+      "title": "Effects of Aromatase Inhibition on Bone Mineral Density and Bone Turnover in Older Men with Low Testosterone Levels",
+      "publisher": "Journal of Clinical Endocrinology & Metabolism (PMC)",
+      "year": 2009,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2795655"
+    },
+    {
+      "n": 5,
+      "title": "Gonadal steroids and body composition, strength, and sexual function in men",
+      "publisher": "New England Journal of Medicine (PubMed)",
+      "year": 2013,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24024838/"
+    }
+  ],
+  "notes_for_editor": "The label cited is the December 2025 Arimidex label as reprinted by Drugs.com; the FDA-hosted copy found was from 2014. IBIS-II results are taken from an American Family Physician summary; the Lancet paper itself was not opened (only its repository record). Evidence in men is limited to small trials, and no trial of adding anastrozole to testosterone therapy was found in this round. The Finkelstein trial used anastrozole with goserelin to create near-total estrogen deficiency, which is more extreme than typical off-label use. The label's pediatric trials (boys with pubertal gynecomastia, girls with McCune-Albright syndrome) showed no benefit. The label also warns of fetal harm and advises checking pregnancy status before starting.",
+  "checked": "2026-10-28"
+}

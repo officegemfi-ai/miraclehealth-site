@@ -1,0 +1,176 @@
+{
+  "id": "hcg",
+  "name": "hCG",
+  "summary": "A pregnancy hormone that acts like LH, prescribed to stimulate the testes in men with pituitary-related hypogonadism, for undescended testes, and to trigger ovulation.",
+  "what_it_is": "Human chorionic gonadotropin (hCG) is a protein hormone made by the placenta during pregnancy. Its action closely mirrors luteinizing hormone (LH), the pituitary hormone that signals the testes and ovaries, with a small amount of FSH-like activity. Products such as Pregnyl are purified from the urine of pregnant women and given by injection. Its label states it has not been shown to help treat obesity.",
+  "evidence": {
+    "grade": "strong",
+    "why": "An FDA-approved prescription drug for male hypogonadism of pituitary origin, undescended testes and ovulation induction; evidence for its off-label use alongside testosterone comes from small, short studies."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved prescription biologic; not for weight loss",
+    "note": "Approved (for example as Pregnyl) for undescended testes, hypogonadism of pituitary origin in men and, after menotropins, ovulation induction. It has been regulated as a biologic since March 2020, which the compounding pharmacists' trade group says put it outside the reach of most compounding pharmacies; FDA has said over-the-counter and 'homeopathic' hCG diet products are illegal.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Treats hypogonadism caused by a pituitary deficiency in selected men",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Treats undescended testes in boys when there is no physical blockage, and, after menotropins, induces ovulation in some infertile women",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Kept testosterone inside the testes near normal in 29 healthy men whose own LH and FSH were shut down by testosterone for 3 weeks; testosterone alone cut it by 94% (studied for off-label use alongside testosterone therapy)",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Ovarian hyperstimulation syndrome (sudden ovarian enlargement with fluid in the abdomen or chest) when used to induce ovulation",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Multiple pregnancy (twins or more) with ovulation induction",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Breast enlargement in men, fluid retention, headache, irritability, restlessness, depression and fatigue",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Early puberty in boys treated for undescended testes",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Blood clots in arteries, and allergic reactions including anaphylaxis",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Very low-calorie 'hCG diets' can cause gallstones, electrolyte imbalance and irregular heartbeat; FDA says any weight loss comes from the diet, not the hCG",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Early (precocious) puberty",
+    "Prostate cancer or another androgen-dependent tumor",
+    "Past allergic reaction to hCG",
+    "Heart or kidney disease, epilepsy, migraine or asthma (needs caution because of fluid retention)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Morning testosterone with LH and FSH, to confirm the cause of low testosterone",
+      "Semen analysis if fertility is the goal"
+    ],
+    "during": [
+      "Testosterone levels",
+      "Semen analysis if fertility is the goal"
+    ],
+    "why": "The hCG label sets no lab schedule for men; tests like these show whether the testes are responding. Ovulation induction is managed by clinicians experienced in infertility, as the label requires."
+  },
+  "studies": [
+    {
+      "title": "Low-Dose Human Chorionic Gonadotropin Maintains Intratesticular Testosterone in Normal Men with Testosterone-Induced Gonadotropin Suppression",
+      "year": 2005,
+      "type": "RCT",
+      "people": "29 healthy men",
+      "finding": "Testosterone suppressed LH and FSH and cut testosterone inside the testes by 94% over 3 weeks; adding hCG limited the drop to 25% or less, or raised the level, depending on the amount. Sperm production was not measured.",
+      "source": 4
+    },
+    {
+      "title": "PREGNYL (chorionic gonadotropin for injection, USP): Prescribing Information",
+      "year": 2011,
+      "type": "Label",
+      "people": "Boys with undescended testes, men with pituitary-related hypogonadism and women undergoing ovulation induction",
+      "finding": "Lists the approved uses and states that hCG has not been demonstrated to be effective additional therapy for obesity.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my low testosterone caused by a pituitary problem that hCG could treat?",
+    "If I need testosterone therapy, how can we protect my fertility?",
+    "Which symptoms, such as breast swelling or fluid retention, should I report?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "PREGNYL (chorionic gonadotropin for injection, USP): Prescribing Information (revised 4/2011)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2011,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2011/017692s021lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Why not compound peptides and HCG?",
+      "publisher": "Alliance for Pharmacy Compounding",
+      "year": 2022,
+      "url": "https://a4pc.org/news/2022-04/why-not-compound-peptides-and-hcg"
+    },
+    {
+      "n": 3,
+      "title": "HCG Diet Products Are Illegal",
+      "publisher": "FDA Consumer Updates (UNT Libraries web archive)",
+      "year": 2011,
+      "url": "https://webarchive.library.unt.edu/web/20121019100019/http://www.fda.gov/ForConsumers/ConsumerUpdates/ucm281333.htm"
+    },
+    {
+      "n": 4,
+      "title": "Low-Dose Human Chorionic Gonadotropin Maintains Intratesticular Testosterone in Normal Men with Testosterone-Induced Gonadotropin Suppression",
+      "publisher": "Journal of Clinical Endocrinology & Metabolism (Oxford Academic)",
+      "year": 2005,
+      "url": "https://academic.oup.com/jcem/article/90/5/2595/2836735"
+    }
+  ],
+  "notes_for_editor": "The label cited is an April 2011 Pregnyl label from Drugs@FDA; newer versions may exist on DailyMed, and Novarel and Ovidrel (choriogonadotropin alfa, a recombinant form) were not checked. The label gives no frequencies for its side effects, so how_common is 'unknown' throughout. The compounding status rests on a post by the Alliance for Pharmacy Compounding (a trade group; the year is inferred from its URL), not an FDA document; round-1 notes say hCG is not among substances nominated for FDA's 503A bulks categories. The FDA hCG-diet warning dates from 2011. The hCG-with-testosterone evidence measures hormone levels inside the testes, not sperm counts or pregnancies.",
+  "checked": "2026-10-28"
+}

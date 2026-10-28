@@ -1,0 +1,187 @@
+{
+  "id": "somatropin",
+  "name": "Somatropin (HGH)",
+  "summary": "Lab-made human growth hormone, prescribed for growth hormone deficiency and certain growth disorders; distributing it for anti-aging or bodybuilding is a federal crime.",
+  "what_it_is": "Somatropin is recombinant human growth hormone: a 191-amino-acid protein made in E. coli bacteria with the same sequence as the growth hormone made by the pituitary gland. In children it promotes growth; in adults it shifts body composition toward more lean mass and less fat. Blood levels of IGF-1 rise during treatment. It is given by injection.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for growth hormone deficiency and several childhood growth disorders; in healthy older adults, a review of 18 small trials found small body-composition changes and more side effects."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved; illegal to distribute for anti-aging",
+    "note": "Approved as a prescription biologic for children with growth hormone deficiency, Prader-Willi syndrome, Turner syndrome, short stature after being born small for gestational age or idiopathic short stature, and for adults with growth hormone deficiency. Federal law (21 U.S.C. 333(e)) makes distributing it for other uses a crime punishable by up to 5 years in prison, FDA says no anti-aging, bodybuilding or athletic use has been authorized, and as a biologic it cannot be compounded under sections 503A or 503B.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0.75,
+    "recovery": 0.25,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Improves growth in children with growth hormone deficiency, Prader-Willi syndrome, Turner syndrome, small-for-gestational-age short stature or idiopathic short stature",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "More lean mass and less body fat and waist size than placebo after 6 months in adults with growth hormone deficiency, maintained with continued treatment",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "About 2 kg more lean mass and 2 kg less fat, with no change in weight or bone density, in healthy older adults (18 small trials, 220 treated, average age 69); off-label, and the reviewers concluded it cannot be recommended for anti-aging",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Swelling of the hands and feet, joint pain, limb pain, tingling and stiffness: swelling in 17.5% versus 5.1% on placebo in adults",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Carpal tunnel syndrome (about 2% in adult extension studies) and, in healthy older adults, breast enlargement in men",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Higher blood sugar: it can unmask impaired glucose tolerance or diabetes, and new diabetes or impaired fasting glucose was somewhat more likely in healthy older adults",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Raised pressure inside the skull (intracranial hypertension), which usually resolves after stopping or lowering the dose",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Growth of existing tumors, and second tumors (especially meningiomas) in childhood cancer survivors treated with head radiation",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Higher death rates when given to critically ill adults after major surgery, trauma or acute respiratory failure",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Acute critical illness, such as after open-heart or abdominal surgery, major trauma or acute respiratory failure",
+    "Active cancer",
+    "Active proliferative or severe nonproliferative diabetic retinopathy",
+    "Prader-Willi syndrome with severe obesity, airway obstruction, sleep apnea or severe breathing problems",
+    "Past serious allergic reaction to somatropin"
+  ],
+  "interactions": [
+    "Glucocorticoids: replacement doses may need adjusting, and they can blunt growth in children",
+    "Insulin and other diabetes medicines: doses may need adjusting",
+    "Oral estrogen: women may need more growth hormone",
+    "Drugs cleared by CYP450 liver enzymes, such as sex steroids, anticonvulsants and cyclosporine: levels may change"
+  ],
+  "labs": {
+    "before": [
+      "IGF-1",
+      "Fasting glucose or HbA1c",
+      "Thyroid function",
+      "Eye exam (fundoscopy)",
+      "Cortisol if adrenal insufficiency is possible"
+    ],
+    "during": [
+      "IGF-1",
+      "Glucose periodically",
+      "Thyroid function periodically",
+      "Eye exams periodically"
+    ],
+    "why": "The label calls for periodic glucose and thyroid checks and eye exams for raised pressure in the skull; IGF-1, phosphate, alkaline phosphatase and parathyroid hormone may rise during treatment."
+  },
+  "studies": [
+    {
+      "title": "Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly",
+      "year": 2007,
+      "type": "Systematic review",
+      "people": "220 healthy older adults given growth hormone in 18 randomized study populations (average age 69)",
+      "finding": "Lean mass rose about 2.1 kg and fat fell about 2.1 kg with no change in weight or bone density; swelling, joint pain, carpal tunnel syndrome and breast enlargement were more common. The authors concluded growth hormone cannot be recommended as an anti-aging therapy.",
+      "source": 3
+    },
+    {
+      "title": "GENOTROPIN (somatropin) for injection: Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Adults with growth hormone deficiency (placebo-controlled trials)",
+      "finding": "At 6 months, lean body mass rose and body fat and waist size fell versus placebo; bone density dipped at 6 months and returned to baseline by 12 months. Swelling and joint pain were the most common side effects.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Have I been properly tested for growth hormone deficiency, and what did the tests show?",
+    "How will we watch my blood sugar, thyroid and eyes during treatment?",
+    "What are the safety and legal concerns with growth hormone used outside an approved condition?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "GENOTROPIN (somatropin) for injection: Prescribing Information (revised 07/2025)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/020280s108lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Import Alert 66-71: Detention Without Physical Examination of Unapproved Human Growth Hormone (HGH)",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/cms_ia/importalert_204.html"
+    },
+    {
+      "n": 3,
+      "title": "Systematic Review: The Safety and Efficacy of Growth Hormone in the Healthy Elderly",
+      "publisher": "Annals of Internal Medicine (Stanford FSI record)",
+      "year": 2007,
+      "url": "https://fsi.stanford.edu/publications/systematic_review_the_safety_and_efficacy_of_growth_hormone_in_the_healthy_elderly"
+    },
+    {
+      "n": 4,
+      "title": "Growth hormone is not recommended as an antiaging therapy",
+      "publisher": "AHRQ Research Activities (UNT Libraries web archive)",
+      "year": 2007,
+      "url": "https://webarchive.library.unt.edu/eot2008/20080917104706/http:/www.ahrq.gov/research/may07/0507RA21.htm"
+    }
+  ],
+  "notes_for_editor": "The label used is Genotropin (July 2025); other somatropin brands have similar but not identical indications (for example, brand-specific HIV wasting or short bowel syndrome indications were not checked). The label summary used gives no frequencies for intracranial hypertension, tumors or diabetes, so those are marked 'unknown'. The healthy-elderly review is from 2007 and pooled small, short trials. FDA's Import Alert 66-71 (revised April 7, 2026) states the 21 U.S.C. 333(e) restriction (up to 10 years if minors are involved) and that HGH, as a biologic, is not eligible for 503A or 503B compounding. Whether it is a controlled substance was not checked.",
+  "checked": "2026-10-28"
+}

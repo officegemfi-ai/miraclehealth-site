@@ -1,0 +1,186 @@
+{
+  "id": "clomiphene",
+  "name": "Clomiphene",
+  "summary": "A prescription fertility pill that triggers ovulation in women who don't ovulate regularly; it is also used off-label in men to raise their own testosterone.",
+  "what_it_is": "Clomiphene is a selective estrogen receptor modulator (SERM) taken as a tablet. It raises the pituitary hormones LH and FSH, which in women leads to ovulation and in men stimulates the testes to make testosterone. It is a mix of two forms, enclomiphene and zuclomiphene (30% to 50% of the mix); zuclomiphene stays in the body for more than a month.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for ovulation induction; in men, a 2025 meta-analysis of 10 randomized trials (819 men) found it raises testosterone, with mixed effects on symptoms."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for ovulation induction; off-label in men",
+    "note": "Approved to treat ovulatory dysfunction in women who want to become pregnant. The label says there are no adequate or well-controlled studies in male infertility, so use in men is off-label.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Induces ovulation in women with ovulatory dysfunction; about 30% of treated patients became pregnant in the label's studies",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Raises total testosterone, LH and FSH in men with low testosterone compared with placebo (10 randomized trials, 819 men; moderate-certainty evidence)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Preserved sperm counts better than testosterone gel at similar testosterone levels: men were much less likely to have a low sperm concentration (risk ratio 0.10)",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Improved symptom scores (ADAM questionnaire) in mostly observational studies of men with hypogonadism; results in randomized trials were mixed",
+      "evidence": "limited",
+      "sources": [
+        3,
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Ovarian enlargement (13.6%), hot flashes (10.4%) and abdominal or pelvic discomfort or bloating (5.5%)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Visual symptoms such as blurring, spots or flashes (1.5%), more likely with higher total dose or longer use",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Multiple pregnancy, in about 8% of pregnancies in trials",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Ovarian hyperstimulation syndrome, which can progress within a day to several days and become serious",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Possible higher risk of borderline or invasive ovarian tumors with prolonged use",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In men, side effects were reported in under 10% of study participants, including headache and drowsiness; the label notes reports of testicular tumors and breast enlargement in men",
+      "how_common": "uncommon",
+      "sources": [
+        3,
+        2,
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy",
+    "Liver disease or a history of liver problems",
+    "Abnormal uterine bleeding of unknown cause",
+    "Ovarian cysts or enlargement not caused by polycystic ovary syndrome"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Pregnancy test (women)",
+      "Men: morning total testosterone, LH, FSH and estradiol",
+      "Semen analysis if fertility is a goal"
+    ],
+    "during": [
+      "Men: testosterone, estradiol and hematocrit",
+      "Eye exam if vision changes occur"
+    ],
+    "why": "For women, the label rules out pregnancy and ovarian cysts before treatment; for off-label use in men there is no label guidance, and trials tracked testosterone, LH, FSH, estradiol and hematocrit."
+  },
+  "studies": [
+    {
+      "title": "Clomiphene or enclomiphene citrate for the treatment of male hypogonadism: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "type": "Meta-analysis",
+      "people": "819 men with hypogonadism in 10 randomized trials",
+      "finding": "Clomiphene or enclomiphene raised total testosterone, LH and FSH versus placebo; testosterone levels were similar to testosterone gel, but sperm counts were better preserved. Symptom results were mixed.",
+      "source": 2
+    },
+    {
+      "title": "Clomiphene citrate for men with hypogonadism: a systematic review and meta-analysis",
+      "year": 2022,
+      "type": "Meta-analysis",
+      "people": "1,642 men with hypogonadism in 19 studies (4 randomized)",
+      "finding": "Testosterone, LH, FSH and estradiol rose during treatment and symptom scores improved; side effects were reported in under 10% of participants and none were serious.",
+      "source": 3
+    },
+    {
+      "title": "Clomiphene Citrate Tablets, USP: Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Women with ovulatory dysfunction",
+      "finding": "About 30% of treated patients became pregnant; multiple pregnancies made up about 8% of pregnancies.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "For men: would clomiphene protect my fertility better than testosterone therapy?",
+    "Which vision changes mean I should stop and get checked?",
+    "How will we watch for ovarian enlargement or hyperstimulation?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Clomiphene Citrate Tablets, USP: Prescribing Information (Cosette Pharmaceuticals, effective August 2025)",
+      "publisher": "FDA (FDALabel)",
+      "year": 2025,
+      "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/72719958-7454-4c54-9bb4-f3054d0c5d82/spl-doc"
+    },
+    {
+      "n": 2,
+      "title": "Clomiphene or enclomiphene citrate for the treatment of male hypogonadism: a systematic review and meta-analysis of randomized controlled trials",
+      "publisher": "Archives of Endocrinology and Metabolism (SciELO)",
+      "year": 2025,
+      "url": "https://new.scielo.br/j/aem/a/jyRkLt4MbHqk3tpgvsMfMmP/?lang=en"
+    },
+    {
+      "n": 3,
+      "title": "Clomiphene citrate for men with hypogonadism: a systematic review and meta-analysis",
+      "publisher": "Andrology (UMC Utrecht research record)",
+      "year": 2022,
+      "url": "https://researchinformation.umcutrecht.nl/en/publications/clomiphene-citrate-for-men-with-hypogonadism-a-systematic-review-/"
+    }
+  ],
+  "notes_for_editor": "Clomiphene is approved only for women. Studies in men are mostly small or observational; the 2025 meta-analysis rated certainty moderate for hormone levels and low for some comparisons, and its authors' suggestion that it is a viable alternative to testosterone gel goes beyond their symptom data. Hematocrit appears in the labs because the 2025 review noted discontinuations for raised hematocrit in some trial arms. The label used is a generic (Cosette) label from August 2025; the brand Clomid label was not checked. The label also says long-term cyclic use is not recommended beyond a limited number of cycles. Enclomiphene, one of its two isomers, has its own entry.",
+  "checked": "2026-10-28"
+}

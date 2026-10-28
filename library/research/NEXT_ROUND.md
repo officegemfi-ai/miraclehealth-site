@@ -174,3 +174,25 @@ triptorelin
   archive of old FDA pages, university repositories, DOAJ. LiverTox opens sometimes.
   Blocked: ahajournals.org, tandfonline.com, nature.com, most of cmaj.ca, BMC/Springer (cookie
   wall), PMC (bot check, intermittent).
+- Approved drugs: Zepbound label (April 2026; sleep apnea; suicidal-thoughts warning removed
+  Feb 2026) https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/217806Orig1s050lbl.pdf ;
+  Saxenda (Feb 2026) https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/3946d389-0926-4f77-a708-0acb8153b143/spl-doc ;
+  Victoza (Oct 2025) https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022341s046lbl.pdf ;
+  first generic Victoza Dec 23, 2024 https://content.govdelivery.com/accounts/USFDA/bulletins/3c8fbca ;
+  retatrutide phase 3 (TRIUMPH-2/3) and a Q1 2027 filing plan, Lilly release
+  https://lilly.gcs-web.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-successful-two-additional
+- Testosterone: FDA class-wide labeling changes (Feb 28, 2025: TRAVERSE results added, heart
+  language out of the boxed warning, blood-pressure warning for all products)
+  https://www.fda.gov/drugs/drug-alerts-and-statements/fda-issues-class-wide-labeling-changes-testosterone-products ;
+  Endocrine Society 2018 guideline (full copy)
+  https://www.albme.gov/uploads/forms/Testosterone_Therapy_in_Men_with_Hypogonadism_An_Endocrone_Society_Clinical_Practice_Guideline.pdf
+- HGH: FDA Import Alert 66-71 (revised April 7, 2026): distributing HGH for unapproved uses is
+  illegal (21 U.S.C. 333(e)), no anti-aging use is authorized, and as a biologic it can't be
+  compounded. https://www.accessdata.fda.gov/cms_ia/importalert_204.html
+- hCG: compounding trade-group post https://a4pc.org/news/2022-04/why-not-compound-peptides-and-hcg ;
+  FDA 2011 "HCG diet products are illegal" (archived)
+  https://webarchive.library.unt.edu/web/20121019100019/http://www.fda.gov/ForConsumers/ConsumerUpdates/ucm281333.htm
+- Clomiphene/enclomiphene 2025 meta-analysis (10 trials) https://new.scielo.br/j/aem/a/jyRkLt4MbHqk3tpgvsMfMmP/?lang=en ;
+  generic clomiphene label (Aug 2025) https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/72719958-7454-4c54-9bb4-f3054d0c5d82/spl-doc
+- Drugs.com /pro/ pages give current label text with revision dates when FDA's own copy is old.
+  FDALabel pages cut off around 100k characters (often before clinical studies).

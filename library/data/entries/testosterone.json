@@ -1,0 +1,217 @@
+{
+  "id": "testosterone",
+  "name": "Testosterone",
+  "summary": "A male sex hormone (androgen) prescribed to men with low testosterone from testicular, pituitary or hypothalamic problems; a Schedule III controlled substance in the US.",
+  "what_it_is": "Testosterone is an androgen, a male sex hormone. Together with dihydrotestosterone (DHT), it is responsible for the normal growth and development of the male sex organs and for maintaining male secondary sex characteristics. Prescription testosterone replaces it in men whose testes fail or whose pituitary or hypothalamus does not signal the testes properly. It comes in several forms, including gels applied to the skin.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for male hypogonadism, and large randomized trials (TRAVERSE, 5,246 men; the Testosterone Trials, 790 men) describe its heart safety and its modest benefits in older men."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for male hypogonadism; Schedule III",
+    "note": "Approved for men with low testosterone from testicular failure or pituitary/hypothalamic causes; benefit is not established for 'age-related' low testosterone, and men's products are labeled not for use in women. In February 2025 FDA had all makers add the TRAVERSE results, remove heart-risk language from the boxed warning and add a blood-pressure warning; AndroGel's label keeps a boxed warning about transfer of the gel to children.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.5,
+    "recovery": 0,
+    "energy": 0.25,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0.75,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Replaces missing testosterone in men with hypogonadism caused by testicular failure (such as Klinefelter syndrome, chemotherapy or removal of the testes) or by pituitary or hypothalamic disease",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Modest gains in sexual activity, desire and erectile function, and small improvements in mood and depressive symptoms, over one year in 790 men 65 and older with low testosterone; no benefit for vitality or walking distance",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Better sexual desire, arousal, orgasm and satisfying sexual events in postmenopausal women with low sexual desire causing distress (meta-analysis of 36 trials, 8,480 women); off-label in the US",
+      "evidence": "strong",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Prostate effects: PSA rose in 11.1% versus 0% on placebo in a gel trial, and an enlarged prostate can worsen; men with prostate cancer should not use it",
+      "how_common": "common",
+      "sources": [
+        1,
+        5
+      ]
+    },
+    {
+      "risk": "Too many red blood cells (high hematocrit), which thickens the blood; the Endocrine Society advises holding treatment if hematocrit goes above 54%",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        5,
+        3
+      ]
+    },
+    {
+      "risk": "Lower sperm production and possible infertility, because added testosterone suppresses LH and FSH, the signals that drive the testes",
+      "how_common": "common",
+      "sources": [
+        1,
+        5,
+        6
+      ]
+    },
+    {
+      "risk": "Higher blood pressure: FDA says blood-pressure monitoring studies confirmed increases with all testosterone products",
+      "how_common": "unknown",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "risk": "More atrial fibrillation (3.5% versus 2.4%), acute kidney injury (2.3% versus 1.5%), lung clots (0.9% versus 0.5%) and fractures (3.5% versus 2.5%) than placebo in the TRAVERSE trial",
+      "how_common": "uncommon",
+      "sources": [
+        1,
+        7
+      ]
+    },
+    {
+      "risk": "Boxed warning for gels: male-type changes (virilization) in children exposed to skin where the gel was applied",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Men planning to father a child soon",
+    "Breast cancer, prostate cancer, or an unexplained prostate lump or high PSA",
+    "High hematocrit, untreated severe sleep apnea or severe urinary symptoms",
+    "Uncontrolled heart failure, or a heart attack or stroke in the past 6 months",
+    "Pregnancy (it can masculinize a female fetus)"
+  ],
+  "interactions": [
+    "Insulin and other diabetes medicines: testosterone may lower blood sugar",
+    "Warfarin and other oral blood thinners: their effect can change, so INR needs checking",
+    "Corticosteroids: more fluid retention"
+  ],
+  "labs": {
+    "before": [
+      "Morning fasting total testosterone on two separate days",
+      "LH and FSH",
+      "Hematocrit",
+      "PSA and prostate exam"
+    ],
+    "during": [
+      "Testosterone and hematocrit at 3 to 6 months, at 12 months, then yearly",
+      "PSA and prostate exam 3 to 12 months after starting, then routine screening",
+      "Blood pressure and lipids periodically"
+    ],
+    "why": "Tests confirm the diagnosis before starting, then watch for high hematocrit (treatment is held above 54%), PSA rises that need a urologist, and blood pressure or cholesterol changes, as the label and the Endocrine Society guideline advise."
+  },
+  "studies": [
+    {
+      "title": "Safety and efficacy of testosterone for women: a systematic review and meta-analysis of randomised controlled trial data",
+      "year": 2019,
+      "type": "Meta-analysis",
+      "people": "8,480 women in 36 randomized trials",
+      "finding": "Testosterone improved sexual desire, arousal, orgasm, pleasure and satisfying sexual events in postmenopausal women. Oral forms worsened cholesterol, and acne and hair growth were more common; no serious adverse events were recorded.",
+      "source": 4
+    },
+    {
+      "title": "Cardiovascular Safety of Testosterone-Replacement Therapy",
+      "year": 2023,
+      "type": "RCT",
+      "people": "5,246 men aged 45 to 80 with low testosterone and heart disease or high heart risk",
+      "finding": "Major heart events occurred in 7.0% with testosterone versus 7.3% with placebo (hazard ratio 0.96), meeting the trial's noninferiority goal; atrial fibrillation, acute kidney injury and lung clots were more common with testosterone.",
+      "source": 7
+    },
+    {
+      "title": "Effects of Testosterone Treatment in Older Men",
+      "year": 2016,
+      "type": "RCT",
+      "people": "790 men aged 65 and older with low testosterone",
+      "finding": "One year of testosterone gel modestly improved sexual function and slightly improved mood and depressive symptoms, but not vitality or walking distance; the trial was too small to judge risks firmly.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Do my symptoms and two morning tests confirm low testosterone, and what is causing it?",
+    "How would this affect my fertility, and what are my options if I want children?",
+    "How often will you check my hematocrit, PSA and blood pressure?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "AndroGel (testosterone gel) Prescribing Information (revised 10/2025)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2025,
+      "url": "https://www.drugs.com/pro/androgel.html"
+    },
+    {
+      "n": 2,
+      "title": "FDA issues class-wide labeling changes for testosterone products",
+      "publisher": "FDA",
+      "year": 2025,
+      "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-issues-class-wide-labeling-changes-testosterone-products"
+    },
+    {
+      "n": 3,
+      "title": "Effects of Testosterone Treatment in Older Men",
+      "publisher": "New England Journal of Medicine (PMC)",
+      "year": 2016,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5209754"
+    },
+    {
+      "n": 4,
+      "title": "Safety and efficacy of testosterone for women: a systematic review and meta-analysis of randomised controlled trial data",
+      "publisher": "The Lancet Diabetes & Endocrinology (Monash University research record)",
+      "year": 2019,
+      "url": "https://research.monash.edu/en/publications/safety-and-efficacy-of-testosterone-for-women-a-systematic-review/"
+    },
+    {
+      "n": 5,
+      "title": "Testosterone Therapy in Men With Hypogonadism: An Endocrine Society Clinical Practice Guideline",
+      "publisher": "Journal of Clinical Endocrinology & Metabolism (copy hosted by the Alabama Board of Medical Examiners)",
+      "year": 2018,
+      "url": "https://www.albme.gov/uploads/forms/Testosterone_Therapy_in_Men_with_Hypogonadism_An_Endocrone_Society_Clinical_Practice_Guideline.pdf"
+    },
+    {
+      "n": 6,
+      "title": "Low-Dose Human Chorionic Gonadotropin Maintains Intratesticular Testosterone in Normal Men with Testosterone-Induced Gonadotropin Suppression",
+      "publisher": "Journal of Clinical Endocrinology & Metabolism (Oxford Academic)",
+      "year": 2005,
+      "url": "https://academic.oup.com/jcem/article/90/5/2595/2836735"
+    },
+    {
+      "n": 7,
+      "title": "Cardiovascular Safety of Testosterone-Replacement Therapy",
+      "publisher": "New England Journal of Medicine (Ovid)",
+      "year": 2023,
+      "url": "https://www.ovid.com/journals/nejm/pdf/10.1056/nejmoa2215025~cardiovascular-safety-of-testosterone-replacement-therapy"
+    }
+  ],
+  "notes_for_editor": "The label cited is AndroGel's (revised October 2025) as reprinted by Drugs.com; FDA's own copy was not opened. Other products differ, and FDA's February 2025 page does not say whether product-specific blood-pressure boxed warnings remain on some injectable or oral products (not checked). PSA, hematocrit and fracture figures come from gel trials and TRAVERSE; rates with injections may differ and were not checked. Use in women is off-label in the US and no product for women was checked; the meta-analysis authors say long-term safety in women needs more study. The Endocrine Society guideline (2018) predates TRAVERSE. The fertility risk is described by the label as possible; the Coviello study shows how strongly testosterone suppresses LH and FSH in healthy men.",
+  "checked": "2026-10-28"
+}

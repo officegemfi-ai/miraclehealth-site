@@ -39,7 +39,7 @@ for f in sorted(glob.glob(os.path.join(HERE, '..', 'data', 'entries', '*.json'))
     if e.get('status_us', {}).get('key') not in KEYS: p.append(f'status key {e.get("status_us",{}).get("key")}')
     g = e.get('goals', {})
     if set(g) != set(GOALS) or any(v not in (0, 0.25, 0.5, 0.75, 1) for v in g.values()): p.append(f'goals {g}')
-    text = json.dumps({k: v for k, v in e.items() if k not in ('sources',)})
+    text = json.dumps(e)   # titles too: a source title with a strength is still a dose on the page
     for m in DOSE.finditer(text):
         ctx = text[max(0, m.start()-60): m.end()+30]
         p.append(f'possible dose: ...{ctx}...')

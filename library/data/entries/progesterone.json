@@ -1,0 +1,216 @@
+{
+  "id": "progesterone",
+  "name": "Progesterone (micronized)",
+  "summary": "A prescription form of the natural hormone progesterone, used mainly to protect the uterine lining in postmenopausal women taking estrogen and to treat periods that have stopped.",
+  "what_it_is": "Progesterone is a female sex hormone made by the ovaries. In women taking estrogen after menopause, it counters estrogen's growth effect on the lining of the uterus. Prometrium is micronized progesterone, made from a plant-derived starting material and chemically identical to the hormone the ovaries make. It differs from synthetic progestins such as medroxyprogesterone acetate, the progestin used in the WHI trial.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved to protect the uterine lining during estrogen therapy and to treat secondary amenorrhea, based on randomized trials; evidence for hot flashes and sleep with progesterone alone is limited and mixed."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved prescription hormone (Prometrium)",
+    "note": "Approved to prevent overgrowth of the uterine lining (endometrial hyperplasia) in postmenopausal women with a uterus taking estrogen, and to treat periods that have stopped (secondary amenorrhea). FDA lists Prometrium among menopausal hormone products relabeled in February 2026, when heart disease, breast cancer and dementia statements were removed from boxed warnings; the current label shows no boxed warning, and the Menopause Society has raised safety concerns about compounded 'bioidentical' hormones.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.5,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Protects the uterine lining in postmenopausal women taking estrogen: overgrowth (hyperplasia) in 6% versus 64% with estrogen alone over up to 3 years (358 women)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Brings on a period in women whose periods have stopped: 80% had withdrawal bleeding versus 10% with placebo",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Fewer and milder hot flashes and night sweats when taken alone by 133 women in early postmenopause over 12 weeks (off-label)",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Better self-rated sleep quality and night sweats in 189 perimenopausal women over 3 months, although the main hot-flash score did not differ from placebo (off-label)",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Breast tenderness (27% versus 6%), bloating, dizziness, headache and low mood in a 3-year trial taken with estrogen",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Drowsiness and dizziness, which can affect driving",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "With estrogen plus a synthetic progestin, WHI found about 9 extra strokes, 9 extra lung clots and 12 extra leg clots per 10,000 women per year; the label carries these warnings although WHI did not test progesterone itself",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Breast cancer: estrogen plus micronized progesterone did not raise risk for up to 5 years, with limited evidence of higher risk after longer use",
+      "how_common": "unknown",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "risk": "Compounded 'bioidentical' hormone products: risk of getting too much or too little, impurities, and no product label describing risks",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Peanut allergy (Prometrium capsules contain peanut oil)",
+    "Unexplained vaginal bleeding",
+    "Current or past breast cancer",
+    "Current or past blood clots, stroke or heart attack",
+    "Liver disease"
+  ],
+  "interactions": [
+    "Ketoconazole and other drugs that block the liver enzyme CYP3A4 may raise progesterone levels (clinical importance unknown)"
+  ],
+  "labs": {
+    "before": [
+      "Breast exam and mammogram as recommended for age",
+      "Pelvic exam",
+      "Evaluation of any unexplained vaginal bleeding"
+    ],
+    "during": [
+      "Yearly breast exam, pelvic exam and mammogram",
+      "Prompt evaluation of any unusual vaginal bleeding"
+    ],
+    "why": "The label asks for yearly pelvic and breast exams with mammography and prompt evaluation of unusual bleeding; it does not call for routine blood tests."
+  },
+  "studies": [
+    {
+      "title": "The impact of micronized progesterone on breast cancer risk: a systematic review",
+      "year": 2018,
+      "type": "Systematic review",
+      "people": "Studies of postmenopausal women using estrogen with micronized progesterone",
+      "finding": "Up to 5 years of estrogen with oral or vaginal micronized progesterone did not raise breast cancer risk; there was limited evidence of higher risk with longer use.",
+      "source": 7
+    },
+    {
+      "title": "Oral micronized progesterone for vasomotor symptoms--a placebo-controlled randomized trial in healthy postmenopausal women",
+      "year": 2012,
+      "type": "RCT",
+      "people": "133 healthy women 1 to 10 years after menopause",
+      "finding": "Over 12 weeks, the combined hot flash and night sweat score fell by 10.0 points with progesterone versus 4.4 with placebo.",
+      "source": 5
+    },
+    {
+      "title": "Oral micronized progesterone for perimenopausal night sweats and hot flushes: a Phase III Canada-wide randomized placebo-controlled 4-month trial",
+      "year": 2023,
+      "type": "RCT",
+      "people": "189 perimenopausal women",
+      "finding": "After 3 months the main hot-flash score did not differ significantly from placebo, but women rated night sweats, sleep quality and interference with daily life as better on progesterone.",
+      "source": 6
+    },
+    {
+      "title": "PROMETRIUM (progesterone, USP) capsules: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "358 postmenopausal women with a uterus taking estrogen",
+      "finding": "Endometrial hyperplasia developed in 6% with added progesterone versus 64% with estrogen alone over up to 36 months.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I need progesterone to protect my uterus with the estrogen I take?",
+    "Could drowsiness or dizziness affect my driving or interact with my other medicines?",
+    "Would an FDA-approved product be safer for me than a compounded cream?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "PROMETRIUM (progesterone, USP) capsules: Prescribing Information (Rev. 02/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/019781s026lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "FDA Approves Labeling Changes to Menopausal Hormone Therapy Products",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-labeling-changes-menopausal-hormone-therapy-products"
+    },
+    {
+      "n": 3,
+      "title": "Menopausal Hormone Therapies with Updated Prescribing Information",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/menopausal-hormone-therapies-updated-prescribing-information"
+    },
+    {
+      "n": 4,
+      "title": "The North American Menopause Society releases its 2022 Hormone Therapy Position Statement",
+      "publisher": "EurekAlert! (The Menopause Society news release)",
+      "year": 2022,
+      "url": "https://www.eurekalert.org/news-releases/958174"
+    },
+    {
+      "n": 5,
+      "title": "Oral micronized progesterone for vasomotor symptoms--a placebo-controlled randomized trial in healthy postmenopausal women",
+      "publisher": "Menopause (RRM Academy library record)",
+      "year": 2012,
+      "url": "https://www.rrmacademy.org/library/oral-micronized-progesterone-for-vasomotor-symptoms--a-placebo-controlled-random-recbsvlhgcdjae3ng"
+    },
+    {
+      "n": 6,
+      "title": "Oral micronized progesterone for perimenopausal night sweats and hot flushes: a Phase III Canada-wide randomized placebo-controlled 4-month trial",
+      "publisher": "Scientific Reports (Nature)",
+      "year": 2023,
+      "url": "https://www.nature.com/articles/s41598-023-35826-w.pdf"
+    },
+    {
+      "n": 7,
+      "title": "The impact of micronized progesterone on breast cancer risk: a systematic review",
+      "publisher": "Climacteric (University of Bern BORIS record)",
+      "year": 2018,
+      "url": "https://boris.unibe.ch/125894"
+    }
+  ],
+  "notes_for_editor": "The current Prometrium label (Rev. 02/2026) shows no boxed warning, and FDA lists Prometrium among relabeled hormone products; FDA's February 2026 announcement says heart disease, breast cancer and dementia statements were removed from boxed warnings but does not discuss progesterone specifically. Most cardiovascular, breast-cancer and dementia data in the label come from WHI, which used medroxyprogesterone acetate, not progesterone; the label still describes WHIMS (probable dementia about doubled with estrogen plus MPA in women 65 and older). Evidence for progesterone alone for hot flashes, sleep or mood is limited to small trials, and the 2023 perimenopause trial missed its primary endpoint. The Stute review summary did not state how many studies it included. Use in men is not addressed by the label.",
+  "checked": "2026-10-28"
+}
