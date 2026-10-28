@@ -34,11 +34,9 @@
 /* The drawings from signalviz.js */
 .t-mono{font-family:var(--mono);font-weight:500}
 .t-head{font-family:var(--head);font-weight:600;letter-spacing:-.02em}
-.flowviz .flow{animation:flowdash 1.3s linear infinite}
-.flowviz .flow.m{animation-duration:2.4s}
-.flowviz .flow.o{animation-duration:.9s}
-@keyframes flowdash{to{stroke-dashoffset:-13}}
-.flowviz .spin{animation:spin 48s linear infinite;transform-box:view-box}
+.flowviz .spin{animation:spin 60s linear infinite;transform-box:view-box}
+.flowviz .ping{animation:fvping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes fvping{0%{transform:scale(1);opacity:.8}100%{transform:scale(3.2);opacity:0}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .takeover .draw{animation:draw 1.8s cubic-bezier(.2,.7,.2,1) .2s both}
 .takeover.still .draw{animation:none}
@@ -283,4 +281,5 @@
 }
 @media (prefers-reduced-motion:reduce){
   .rd-layer{animation:none}
+  .flowviz .pt,.flowviz .ping{display:none}
 }
