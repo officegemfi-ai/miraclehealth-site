@@ -91,11 +91,32 @@ ul,ol{list-style:none;margin:0;padding:0}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .btn.line{border-color:rgba(18,30,29,.5);color:var(--ink)}
 .btn.line:hover{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
-.hero-card{position:absolute;right:max(40px,4vw);top:calc(var(--top-h) + 32px);width:320px}
+/* The hero card: a small instrument. Deep glass, a live dot, Sig, and the 0-100 scale with a
+   marker that drifts the way a Signal moves as reports come in */
+.hero-card{position:absolute;right:max(40px,4vw);top:calc(var(--top-h) + 32px);width:340px;padding:22px 22px 18px;border-radius:20px;color:var(--on-ink);
+  background:linear-gradient(155deg,rgba(30,42,40,.84),rgba(10,16,15,.9));border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 60px -28px rgba(12,20,19,.65),0 2px 8px rgba(12,20,19,.2);
+  -webkit-backdrop-filter:saturate(1.2) blur(18px);backdrop-filter:saturate(1.2) blur(18px);--focus:var(--lime)}
+.hero-card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(70% 55% at 15% 0%,rgba(216,255,61,.13),rgba(216,255,61,0) 70%)}
+.hc-head{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 10.5px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.hero .hero-card .live i{outline:0}
+.hc-range{padding:2px 9px;border-radius:40px;border:1px solid rgba(255,255,255,.18);color:var(--on-ink-2);letter-spacing:.08em}
+.hc-body{position:relative;display:flex;align-items:center;gap:14px;margin-top:16px}
+.hc-sig{flex:none;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 50% 58%,rgba(216,255,61,.24),rgba(216,255,61,0) 68%)}
+.hc-body p{font-size:14.5px;line-height:1.45;color:var(--on-ink-2)}
+.hc-body b{font-weight:600;color:var(--on-ink)}
+.hc-scale{position:relative;margin-top:20px}
+.hc-track{position:relative;height:8px;border-radius:8px;background:var(--scale);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.hc-track i{position:absolute;top:0;bottom:0;width:1px;background:rgba(12,20,19,.38)}
+.hc-track .t25{left:25%}.hc-track .t50{left:50%}.hc-track .t75{left:75%}
+.hc-knob{position:absolute;top:50%;left:72%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#FCFCFC;box-shadow:0 0 0 3px var(--lime),0 0 16px 3px rgba(216,255,61,.5);animation:hc-drift 8s ease-in-out infinite}
+@keyframes hc-drift{0%,100%{left:69%}30%{left:76%}55%{left:71%}78%{left:74%}}
+.hc-labels{display:flex;justify-content:space-between;margin-top:10px;font:500 10px/1 var(--mono);letter-spacing:.08em;color:var(--on-ink-3)}
+.hc-foot{position:relative;display:flex;align-items:center;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-2)}
+.hc-foot svg{flex:none;color:var(--lime)}
 .glass.smoke{border-color:rgba(255,255,255,.14);background:rgba(12,20,19,.76);-webkit-backdrop-filter:saturate(1.1) blur(14px);backdrop-filter:saturate(1.1) blur(14px)}
 .gc-body{display:flex;align-items:center;gap:14px;margin-top:14px}
 .gc-body p{font-size:14px;line-height:1.45;color:var(--on-ink-2)}
-.hero-card .bar{margin-top:16px}
 .gc-foot{margin-top:12px;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
 
 /* Sig, the Signal in person */

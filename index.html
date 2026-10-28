@@ -23,7 +23,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img/hero-1600.webp" imagesrcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w, img/hero-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=e42e11803d">
+<link rel="stylesheet" href="styles.css?v=c25e1fcbae">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -66,29 +66,34 @@
         </div>
       </div>
     </div>
-    <aside class="glass smoke hero-card" aria-label="The Community Signal">
-      <div class="gc-head"><span>Community Signal</span><span class="dim">0 – 100</span></div>
-      <div class="gc-body">
-        <svg class="sig" viewBox="0 0 64 64" width="54" height="54" aria-hidden="true">
-          <defs>
-            <linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
-            <radialGradient id="sg1h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-          </defs>
-          <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity=".35"/>
-          <g class="sig-body">
-            <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg1)" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
-            <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg1h)"/>
-            <circle cx="32" cy="9.2" r="3.1" fill="#fff"/>
-            <path d="M21.8 39 Q25 34.4 28.2 39 M35.8 39 Q39 34.4 42.2 39" fill="none" stroke="#121E1D" stroke-width="2.3" stroke-linecap="round"/>
-            <path d="M25.5 44.5 Q32 52.5 38.5 44.5 Z" fill="#121E1D"/>
-            <path d="M28.6 47.4 Q32 49.6 35.4 47.4" fill="none" stroke="#FF8FA3" stroke-width="1.6" stroke-linecap="round"/>
-            <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
-          </g>
-        </svg>
-        <p>One number per compound, built from what members report happened to them.</p>
+    <aside class="hero-card" aria-label="The Community Signal">
+      <div class="hc-head"><span class="live"><i aria-hidden="true"></i>Community Signal</span><span class="hc-range">0–100</span></div>
+      <div class="hc-body">
+        <span class="hc-sig">
+          <svg class="sig" viewBox="0 0 64 64" width="50" height="50" aria-hidden="true">
+            <defs>
+              <linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
+              <radialGradient id="sg1h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity=".35"/>
+            <g class="sig-body">
+              <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg1)" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
+              <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg1h)"/>
+              <circle cx="32" cy="9.2" r="3.1" fill="#fff"/>
+              <path d="M21.8 39 Q25 34.4 28.2 39 M35.8 39 Q39 34.4 42.2 39" fill="none" stroke="#121E1D" stroke-width="2.3" stroke-linecap="round"/>
+              <path d="M25.5 44.5 Q32 52.5 38.5 44.5 Z" fill="#121E1D"/>
+              <path d="M28.6 47.4 Q32 49.6 35.4 47.4" fill="none" stroke="#FF8FA3" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
+            </g>
+          </svg>
+        </span>
+        <p><b>One number per compound,</b> built from what members report happened to them.</p>
       </div>
-      <div class="bar" aria-hidden="true"><span></span></div>
-      <p class="gc-foot">Moves with every first-hand report</p>
+      <div class="hc-scale" aria-hidden="true">
+        <div class="hc-track"><i class="t25"></i><i class="t50"></i><i class="t75"></i><span class="hc-knob"></span></div>
+        <div class="hc-labels"><span>0</span><span>50</span><span>100</span></div>
+      </div>
+      <p class="hc-foot"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.6 8.2A5.6 5.6 0 1 1 11.9 4M12.4 1.6v2.9H9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Moves with every first-hand report</p>
     </aside>
   </section>
 
