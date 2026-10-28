@@ -8,7 +8,7 @@
     "why": "There are no human studies; the case for it rests on cell and rodent studies of the unmodified MGF peptide, and those results conflict."
   },
   "status_us": {
-    "key": "not_approved",
+    "key": "under_review",
     "label": "Not approved; not eligible for pharmacy compounding",
     "note": "FDA took PEG-MGF off its Category 2 list of compounding substances with significant safety risks in April 2026 after the nomination was withdrawn, but that did not make it eligible for compounding. FDA plans to ask its compounding advisory committee about it before the end of February 2027; plain MGF sits in Category 3 (nominated without adequate support).",
     "sources": [

@@ -8,22 +8,87 @@
     "why": "Its effects on skin color and erections come from a pilot study of 3 men and a placebo-controlled crossover trial of 10 men; most safety information comes from case reports."
   },
   "status_us": {
-    "key": "not_approved",
+    "key": "under_review",
     "label": "Not approved; compounding review pending",
     "note": "It is an unapproved drug; in 2007 FDA warned a seller and told consumers to stop using it. FDA took it off its Category 2 safety-risk list in April 2026 after the nomination was withdrawn, but it is not on the list pharmacies may compound from; an FDA advisory committee is expected to review it before the end of February 2027.",
-    "sources": [4, 5, 6, 7, 8]
+    "sources": [
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 1, "sexual": 0.5, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0.5,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "Darker skin on the face and upper body in 2 of 3 healthy men in a pilot study", "evidence": "limited", "sources": [1] },
-    { "claim": "Erections in men with erectile dysfunction: after 12 of 19 injections versus 1 of 21 placebo injections, in a trial of 10 men", "evidence": "limited", "sources": [2] },
-    { "claim": "Higher sexual desire than placebo in the same 10-man trial", "evidence": "limited", "sources": [2] }
+    {
+      "claim": "Darker skin on the face and upper body in 2 of 3 healthy men in a pilot study",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Erections in men with erectile dysfunction: after 12 of 19 injections versus 1 of 21 placebo injections, in a trial of 10 men",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Higher sexual desire than placebo in the same 10-man trial",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Nausea, sometimes severe, along with yawning and stretching", "how_common": "common", "sources": [1, 2] },
-    { "risk": "New or changing moles, and case reports of melanoma during or soon after use (cause not proven)", "how_common": "unknown", "sources": [3, 4] },
-    { "risk": "Priapism (a prolonged erection that needs emergency care), a brain condition called posterior reversible encephalopathy syndrome (PRES), and stimulant-like toxic reactions, in case reports", "how_common": "unknown", "sources": [4] },
-    { "risk": "Unregulated products of uncertain content and purity; impurities may trigger immune reactions", "how_common": "unknown", "sources": [3, 4, 7] }
+    {
+      "risk": "Nausea, sometimes severe, along with yawning and stretching",
+      "how_common": "common",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "New or changing moles, and case reports of melanoma during or soon after use (cause not proven)",
+      "how_common": "unknown",
+      "sources": [
+        3,
+        4
+      ]
+    },
+    {
+      "risk": "Priapism (a prolonged erection that needs emergency care), a brain condition called posterior reversible encephalopathy syndrome (PRES), and stimulant-like toxic reactions, in case reports",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Unregulated products of uncertain content and purity; impurities may trigger immune reactions",
+      "how_common": "unknown",
+      "sources": [
+        3,
+        4,
+        7
+      ]
+    }
   ],
   "avoid_if": [
     "History of melanoma, or many or unusual moles",
@@ -31,16 +96,44 @@
     "Past priapism",
     "Heart disease or uncontrolled high blood pressure, given reports of stimulant-like toxic reactions"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "None well documented"
+  ],
   "labs": {
-    "before": [ "General health check including blood pressure", "Full-body skin and mole exam" ],
-    "during": [ "Regular skin checks for new or changing moles" ],
+    "before": [
+      "General health check including blood pressure",
+      "Full-body skin and mole exam"
+    ],
+    "during": [
+      "Regular skin checks for new or changing moles"
+    ],
     "why": "No evidence-based monitoring exists for this unapproved drug; skin checks follow from case reports of mole changes and melanoma."
   },
   "studies": [
-    { "title": "Effect of an alpha-melanocyte stimulating hormone analog on penile erection and sexual desire in men with organic erectile dysfunction", "year": 2000, "type": "RCT", "people": "10 men with erectile dysfunction (crossover)", "finding": "Erections followed 12 of 19 Melanotan II injections versus 1 of 21 placebo injections, and sexual desire rose. Nausea and yawning were more common, with severe nausea after 4 of 19 injections.", "source": 2 },
-    { "title": "Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide in a pilot phase-I clinical study", "year": 1996, "type": "Trial", "people": "3 healthy men", "finding": "Two of the three men had measurably darker skin. Spontaneous erections with yawning and stretching followed doses, and mild nausea was common.", "source": 1 },
-    { "title": "Risks of unregulated use of alpha-melanocyte-stimulating hormone analogues: A review", "year": 2017, "type": "Review", "people": "Case reports of unregulated users", "finding": "Case reports link melanotan use to changes in existing moles and new atypical moles, plus four melanomas; the authors note conclusive proof of cause is lacking.", "source": 3 }
+    {
+      "title": "Effect of an alpha-melanocyte stimulating hormone analog on penile erection and sexual desire in men with organic erectile dysfunction",
+      "year": 2000,
+      "type": "RCT",
+      "people": "10 men with erectile dysfunction (crossover)",
+      "finding": "Erections followed 12 of 19 Melanotan II injections versus 1 of 21 placebo injections, and sexual desire rose. Nausea and yawning were more common, with severe nausea after 4 of 19 injections.",
+      "source": 2
+    },
+    {
+      "title": "Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide in a pilot phase-I clinical study",
+      "year": 1996,
+      "type": "Trial",
+      "people": "3 healthy men",
+      "finding": "Two of the three men had measurably darker skin. Spontaneous erections with yawning and stretching followed doses, and mild nausea was common.",
+      "source": 1
+    },
+    {
+      "title": "Risks of unregulated use of alpha-melanocyte-stimulating hormone analogues: A review",
+      "year": 2017,
+      "type": "Review",
+      "people": "Case reports of unregulated users",
+      "finding": "Case reports link melanotan use to changes in existing moles and new atypical moles, plus four melanomas; the authors note conclusive proof of cause is lacking.",
+      "source": 3
+    }
   ],
   "ask_your_clinician": [
     "Should I have a full skin exam, and how often should my moles be checked?",
@@ -48,14 +141,62 @@
     "Which symptoms, such as an erection lasting hours or a severe headache, mean I need emergency care?"
   ],
   "sources": [
-    { "n": 1, "title": "Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide in a pilot phase-I clinical study", "publisher": "Life Sciences (University of Arizona research portal)", "year": 1996, "url": "https://experts.arizona.edu/en/publications/evaluation-of-melanotan-ii-a-superpotent-cyclic-melanotropic-pept/" },
-    { "n": 2, "title": "Effect of an alpha-melanocyte stimulating hormone analog on penile erection and sexual desire in men with organic erectile dysfunction", "publisher": "Urology (University of Arizona research portal)", "year": 2000, "url": "https://experts.arizona.edu/en/publications/effect-of-an-alpha-melanocyte-stimulating-hormone-analog-on-penil/" },
-    { "n": 3, "title": "Risks of unregulated use of alpha-melanocyte-stimulating hormone analogues: A review", "publisher": "International Journal of Dermatology (Erasmus University repository)", "year": 2017, "url": "https://repub.eur.nl/pub/98589" },
-    { "n": 4, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 5, "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions", "publisher": "Holland & Knight", "year": 2026, "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know" },
-    { "n": 6, "title": "FDA Consumer Update on Melanotan II (September 5, 2007; archived copy)", "publisher": "U.S. Food and Drug Administration (UNT web archive)", "year": 2007, "url": "https://webarchive.library.unt.edu/eot2008/20080916230938/http://www.fda.gov/consumer/updates/melanotan090507.html" },
-    { "n": 7, "title": "Former Owner And Employees Of Brentwood Based Melanocorp, Inc. Plead Guilty To Federal Charges", "publisher": "U.S. Department of Justice", "year": 2015, "url": "https://www.justice.gov/usao-mdtn/pr/former-owner-and-employees-brentwood-based-melanocorp-inc-plead-guilty-federal-charges" },
-    { "n": 8, "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting", "publisher": "McDermott Will & Schulte", "year": 2026, "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/" }
+    {
+      "n": 1,
+      "title": "Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide in a pilot phase-I clinical study",
+      "publisher": "Life Sciences (University of Arizona research portal)",
+      "year": 1996,
+      "url": "https://experts.arizona.edu/en/publications/evaluation-of-melanotan-ii-a-superpotent-cyclic-melanotropic-pept/"
+    },
+    {
+      "n": 2,
+      "title": "Effect of an alpha-melanocyte stimulating hormone analog on penile erection and sexual desire in men with organic erectile dysfunction",
+      "publisher": "Urology (University of Arizona research portal)",
+      "year": 2000,
+      "url": "https://experts.arizona.edu/en/publications/effect-of-an-alpha-melanocyte-stimulating-hormone-analog-on-penil/"
+    },
+    {
+      "n": 3,
+      "title": "Risks of unregulated use of alpha-melanocyte-stimulating hormone analogues: A review",
+      "publisher": "International Journal of Dermatology (Erasmus University repository)",
+      "year": 2017,
+      "url": "https://repub.eur.nl/pub/98589"
+    },
+    {
+      "n": 4,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 5,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 6,
+      "title": "FDA Consumer Update on Melanotan II (September 5, 2007; archived copy)",
+      "publisher": "U.S. Food and Drug Administration (UNT web archive)",
+      "year": 2007,
+      "url": "https://webarchive.library.unt.edu/eot2008/20080916230938/http://www.fda.gov/consumer/updates/melanotan090507.html"
+    },
+    {
+      "n": 7,
+      "title": "Former Owner And Employees Of Brentwood Based Melanocorp, Inc. Plead Guilty To Federal Charges",
+      "publisher": "U.S. Department of Justice",
+      "year": 2015,
+      "url": "https://www.justice.gov/usao-mdtn/pr/former-owner-and-employees-brentwood-based-melanocorp-inc-plead-guilty-federal-charges"
+    },
+    {
+      "n": 8,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott Will & Schulte",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    }
   ],
   "notes_for_editor": "Seed record was out of date: Melanotan II is no longer in Category 2 (moved to FDA's 'nominated but withdrawn' list, April 2026), but it still cannot be lawfully compounded; a second advisory committee meeting is expected before end of February 2027 with no date set (sources 5, 8). Human efficacy data are tiny (3 and 10 men); the 1998 Wessells psychogenic ED study could not be opened and is omitted. Frequencies of melanoma, priapism and PRES are unknown because evidence is case reports. 'Heart disease' in avoid_if is an inference from FDA's mention of stimulant-like toxic reactions.",
   "checked": "2026-10-28"

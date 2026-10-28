@@ -1,0 +1,12 @@
+- bcaa | BCAAs | Supplements | Muscle & performance | aka: Branched-chain amino acids, Leucine, Isoleucine, Valine
+- eaa | EAAs | Supplements | Muscle & performance | aka: Essential amino acids
+- hmb | HMB | Supplements | Muscle & performance | aka: Beta-hydroxy beta-methylbutyrate, HMB-FA
+- whey | Whey protein | Supplements | Muscle & performance | aka: Whey, Protein powder, Whey isolate
+- llysine | L-lysine | Supplements | Immune & inflammation | aka: Lysine
+- tryptophan | L-tryptophan | Supplements | Mood & stress | aka: Tryptophan
+- 5htp | 5-HTP | Supplements | Mood & stress | aka: 5-hydroxytryptophan, Griffonia
+- gaba | GABA | Supplements | Mood & stress | aka: Gamma-aminobutyric acid, PharmaGABA
+- carnosine | Carnosine | Supplements | Longevity | aka: L-carnosine
+- tmg | TMG (betaine) | Supplements | Longevity | aka: Trimethylglycine, Betaine anhydrous, Betaine
+- same | SAMe | Supplements | Mood & stress | aka: S-adenosylmethionine
+- agmatine | Agmatine | Supplements | Mood & stress | aka: Agmatine sulfate

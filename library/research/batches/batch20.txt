@@ -1,0 +1,12 @@
+- ginseng | Panax ginseng | Supplements | Energy & mitochondria | aka: Korean red ginseng, Ginseng
+- eleuthero | Eleuthero | Supplements | Energy & mitochondria | aka: Siberian ginseng
+- schisandra | Schisandra | Supplements | Mood & stress | aka: Schisandra chinensis
+- kava | Kava | Supplements | Mood & stress | aka: Kavalactones
+- magnolia | Magnolia bark | Supplements | Sleep | aka: Honokiol, Relora
+- stjohns | St. John’s wort | Supplements | Mood & stress | aka: St. John's wort, Hypericum
+- mucuna | Mucuna pruriens | Supplements | Mood & stress | aka: L-DOPA, Velvet bean
+- melatonin | Melatonin | Supplements | Sleep | aka: - | [seed]
+- apigenin | Apigenin | Supplements | Sleep | aka: Chamomile extract
+- valerian | Valerian root | Supplements | Sleep | aka: Valerian
+- lemonbalm | Lemon balm | Supplements | Sleep | aka: Melissa officinalis
+- tartcherry | Tart cherry | Supplements | Sleep | aka: Montmorency cherry

@@ -1,0 +1,12 @@
+- snap8 | SNAP-8 (acetyl octapeptide-3) | Peptides | Skin & hair | aka: Acetyl octapeptide-3
+- mt2 | Melanotan II | Peptides | Skin & hair | aka: MT2, MT-II, Melanotan 2 | [seed]
+- afamelanotide | Melanotan I (afamelanotide) | Peptides | Skin & hair | aka: Afamelanotide, Melanotan 1, MT1, MT-I, Scenesse | [seed]
+- kpv | KPV | Peptides | Gut & digestion | aka: Lys-Pro-Val, Alpha-MSH fragment | [seed]
+- larazotide | Larazotide | Peptides | Gut & digestion | aka: AT-1001
+- teduglutide | Teduglutide | Peptides | Gut & digestion | aka: Gattex, GLP-2 analog
+- ta1 | Thymosin alpha-1 | Peptides | Immune & inflammation | aka: TA1, Tα1, Thymalfasin, Zadaxin | [seed]
+- ll37 | LL-37 | Peptides | Immune & inflammation | aka: Cathelicidin, CAP-18 | [seed]
+- vip | VIP | Peptides | Immune & inflammation | aka: Vasoactive intestinal peptide, Aviptadil
+- thymalin | Thymalin | Peptides | Immune & inflammation | aka: Thymalinum
+- thymulin | Thymulin | Peptides | Immune & inflammation | aka: Zinc-thymulin, FTS-Zn
+- thymogen | Thymogen | Peptides | Immune & inflammation | aka: Glu-Trp

@@ -1,0 +1,12 @@
+- daa | D-aspartic acid | Supplements | Hormone balance | aka: DAA
+- nad | NAD+ | Supplements | Energy & mitochondria | aka: NAD, Nicotinamide adenine dinucleotide, NAD+ injections, NAD IV | [seed]
+- nmn | NMN | Supplements | Longevity | aka: Nicotinamide mononucleotide
+- nr | NR (nicotinamide riboside) | Supplements | Longevity | aka: Nicotinamide riboside, Niagen, Tru Niagen
+- resveratrol | Resveratrol | Supplements | Longevity | aka: Trans-resveratrol
+- pterostilbene | Pterostilbene | Supplements | Longevity | aka: -
+- fisetin | Fisetin | Supplements | Longevity | aka: Senolytic
+- quercetin | Quercetin | Supplements | Longevity | aka: Quercetin phytosome, Senolytic
+- spermidine | Spermidine | Supplements | Longevity | aka: spermidineLIFE, Wheat germ extract
+- urolithina | Urolithin A | Supplements | Longevity | aka: Mitopure, Timeline
+- akg | Calcium AKG | Supplements | Longevity | aka: Alpha-ketoglutarate, Ca-AKG, AKG, Rejuvant
+- coq10 | CoQ10 | Supplements | Energy & mitochondria | aka: Coenzyme Q10, Ubiquinone, Ubiquinol

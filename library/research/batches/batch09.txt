@@ -1,0 +1,12 @@
+- insulin | Insulin | Hormones | Metabolic & weight | aka: Humalog, Novolog, Lantus, Humulin, Tresiba
+- oxytocin | Oxytocin | Hormones | Mood & stress | aka: Pitocin | [seed]
+- teriparatide | Teriparatide | Hormones | Joints & bones | aka: Forteo, PTH 1-34
+- abaloparatide | Abaloparatide | Hormones | Joints & bones | aka: Tymlos
+- calcitonin | Calcitonin | Hormones | Joints & bones | aka: Miacalcin
+- metformin | Metformin | Medications | Longevity | aka: Glucophage, Glumetza, Fortamet | [seed]
+- rapamycin | Rapamycin | Medications | Longevity | aka: Sirolimus, Rapamune, Rapa | [seed]
+- acarbose | Acarbose | Medications | Longevity | aka: Precose
+- empagliflozin | Empagliflozin | Medications | Metabolic & weight | aka: Jardiance, SGLT2 inhibitor
+- canagliflozin | Canagliflozin | Medications | Longevity | aka: Invokana, SGLT2 inhibitor
+- dapagliflozin | Dapagliflozin | Medications | Metabolic & weight | aka: Farxiga, SGLT2 inhibitor
+- orforglipron | Orforglipron | Medications | Metabolic & weight | aka: LY3502970, Oral GLP-1

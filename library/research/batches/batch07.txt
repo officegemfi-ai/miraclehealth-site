@@ -1,0 +1,12 @@
+- ovagen | Ovagen | Peptides | Liver & detox | aka: Khavinson bioregulator
+- prostamax | Prostamax | Peptides | Hormone balance | aka: Khavinson bioregulator
+- testagen | Testagen | Peptides | Hormone balance | aka: Khavinson bioregulator
+- crystagen | Crystagen | Peptides | Immune & inflammation | aka: Khavinson bioregulator
+- pancragen | Pancragen | Peptides | Metabolic & weight | aka: Khavinson bioregulator
+- bronchogen | Bronchogen | Peptides | Immune & inflammation | aka: Khavinson bioregulator
+- glutathione | Glutathione | Peptides | Liver & detox | aka: GSH, L-glutathione, Reduced glutathione, Liposomal glutathione | [seed]
+- testosterone | Testosterone | Hormones | Hormone balance | aka: TRT, Test, Testosterone cypionate, Test cyp, Testosterone enanthate, Test E, Testosterone undecanoate, Testosterone gel, Testosterone cream, Depo-Testosterone, Xyosted, AndroGel, Testim, Jatenzo, Kyzatrex, Tlando, Aveed, Natesto | [seed]
+- hcg | hCG | Hormones | Hormone balance | aka: Human chorionic gonadotropin, Pregnyl, Novarel, Ovidrel | [seed]
+- hmg | hMG | Hormones | Hormone balance | aka: Human menopausal gonadotropin, Menopur
+- fsh | FSH | Hormones | Hormone balance | aka: Follicle-stimulating hormone, Follitropin, Gonal-f, Follistim
+- gonadorelin | Gonadorelin | Hormones | Hormone balance | aka: GnRH, LHRH, Factrel | [seed]

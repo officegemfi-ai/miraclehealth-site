@@ -1,0 +1,12 @@
+- hghfrag | HGH Fragment 176-191 | Peptides | Metabolic & weight | aka: Frag 176-191, HGH frag, Fragment 176-191
+- sermorelin | Sermorelin | Peptides | Growth-hormone axis | aka: GRF 1-29, Geref | [seed]
+- tesamorelin | Tesamorelin | Peptides | Growth-hormone axis | aka: Egrifta, Tesa | [seed]
+- cjc1295 | CJC-1295 with DAC | Peptides | Growth-hormone axis | aka: CJC-1295 DAC, CJC DAC, DAC:GRF, CJC-1295 | [seed]
+- modgrf129 | CJC-1295 no DAC (Mod GRF 1-29) | Peptides | Growth-hormone axis | aka: Mod GRF 1-29, Modified GRF 1-29, CJC no DAC, CJC-1295 without DAC
+- ipamorelin | Ipamorelin | Peptides | Growth-hormone axis | aka: Ipa, Ipam | [seed]
+- ghrp2 | GHRP-2 | Peptides | Growth-hormone axis | aka: Pralmorelin | [seed]
+- ghrp6 | GHRP-6 | Peptides | Growth-hormone axis | aka: - | [seed]
+- hexarelin | Hexarelin | Peptides | Growth-hormone axis | aka: Examorelin | [seed]
+- igf1lr3 | IGF-1 LR3 | Peptides | Growth-hormone axis | aka: Long R3 IGF-1, IGF LR3, IGF-1 | [seed]
+- igf1des | IGF-1 DES | Peptides | Growth-hormone axis | aka: DES(1-3) IGF-1, IGF DES
+- mgf | MGF | Peptides | Muscle & performance | aka: Mechano growth factor, IGF-1Ec

@@ -1,0 +1,12 @@
+- semax | Semax | Peptides | Cognition & focus | aka: ACTH 4-10 analog | [seed]
+- nasemax | N-Acetyl Semax Amidate | Peptides | Cognition & focus | aka: NA-Semax-Amidate, NA Semax, NASA
+- dihexa | Dihexa | Peptides | Cognition & focus | aka: PNB-0408 | [seed]
+- cerebrolysin | Cerebrolysin | Peptides | Cognition & focus | aka: FPF-1070 | [seed]
+- p21 | P21 | Peptides | Cognition & focus | aka: P021
+- pinealon | Pinealon | Peptides | Cognition & focus | aka: EDR peptide, Glu-Asp-Arg
+- cortexin | Cortexin | Peptides | Cognition & focus | aka: -
+- selank | Selank | Peptides | Mood & stress | aka: - | [seed]
+- naselank | N-Acetyl Selank Amidate | Peptides | Mood & stress | aka: NA-Selank-Amidate, NA Selank
+- dsip | DSIP | Peptides | Sleep | aka: Delta sleep-inducing peptide | [seed]
+- pt141 | PT-141 | Peptides | Sexual health | aka: Bremelanotide, Vyleesi | [seed]
+- kisspeptin | Kisspeptin-10 | Peptides | Sexual health | aka: Kisspeptin, KP-10, Metastin 45-54 | [seed]

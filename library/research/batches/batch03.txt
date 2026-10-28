@@ -1,0 +1,12 @@
+- pegmgf | PEG-MGF | Peptides | Muscle & performance | aka: Pegylated MGF, Pegylated mechano growth factor
+- follistatin | Follistatin 344 | Peptides | Muscle & performance | aka: FST-344, Follistatin
+- ace031 | ACE-031 | Peptides | Muscle & performance | aka: Ramatercept
+- bpc157 | BPC-157 | Peptides | Healing & recovery | aka: Body Protection Compound, PL 14736, BPC, Bepecin | [seed]
+- tb500 | TB-500 | Peptides | Healing & recovery | aka: Thymosin beta-4 fragment, TB4 fragment, TB 500 | [seed]
+- tb4 | Thymosin beta-4 | Peptides | Healing & recovery | aka: TB4, Tβ4, Thymosin beta 4
+- pda | Pentadeca Arginate | Peptides | Healing & recovery | aka: PDA, BPC-157 arginate, Pentadecapeptide arginate | [seed]
+- ghkcu | GHK-Cu | Peptides | Healing & recovery | aka: Copper peptide, GHK copper, Copper tripeptide-1 | [seed]
+- ara290 | ARA-290 | Peptides | Healing & recovery | aka: Cibinetide
+- ahkcu | AHK-Cu | Peptides | Skin & hair | aka: Copper tripeptide-3
+- matrixyl | Matrixyl (palmitoyl pentapeptide-4) | Peptides | Skin & hair | aka: Palmitoyl pentapeptide-4, Pal-KTTKS
+- argireline | Argireline (acetyl hexapeptide-8) | Peptides | Skin & hair | aka: Acetyl hexapeptide-8, Acetyl hexapeptide-3

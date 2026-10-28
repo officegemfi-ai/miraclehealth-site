@@ -1,0 +1,12 @@
+- semaglutide | Semaglutide | Peptides | Metabolic & weight | aka: Ozempic, Wegovy, Rybelsus, Sema, GLP-1 | [seed]
+- tirzepatide | Tirzepatide | Peptides | Metabolic & weight | aka: Mounjaro, Zepbound, Tirz, Tirze, GLP-1/GIP | [seed]
+- liraglutide | Liraglutide | Peptides | Metabolic & weight | aka: Victoza, Saxenda, Lira | [seed]
+- retatrutide | Retatrutide | Peptides | Metabolic & weight | aka: Reta, LY3437943, Triple agonist | [seed]
+- dulaglutide | Dulaglutide | Peptides | Metabolic & weight | aka: Trulicity
+- exenatide | Exenatide | Peptides | Metabolic & weight | aka: Byetta, Bydureon
+- survodutide | Survodutide | Peptides | Metabolic & weight | aka: BI 456906
+- mazdutide | Mazdutide | Peptides | Metabolic & weight | aka: IBI362, LY3305677
+- pemvidutide | Pemvidutide | Peptides | Metabolic & weight | aka: ALT-801
+- cagrilintide | Cagrilintide | Peptides | Metabolic & weight | aka: Cagri, Amylin analog
+- pramlintide | Pramlintide | Peptides | Metabolic & weight | aka: Symlin
+- aod9604 | AOD-9604 | Peptides | Metabolic & weight | aka: AOD, Advanced Obesity Drug | [seed]

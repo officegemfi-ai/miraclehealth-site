@@ -43,6 +43,7 @@ line. No doses, no sellers.
 | `scripts/build_library.mjs` | Writes `library/index.html`, `library/<id>/index.html` and `sitemap.xml` from the data. Run `node scripts/build_library.mjs` after changing the data, and commit what it writes (`--check` says whether the pages are up to date) |
 | `library/library.css`, `library/library.js` | The library's look, and its script: search and filters, and the live numbers |
 | `library/signalviz.js` | The drawings (the rose, the Signal's flow, the takeover line, the seals), copied from the community's `web/lib/signalviz.js` |
+| `library/research/` | How the fact sheets are researched: `BRIEF.md` (the rules every entry follows), `NEXT_ROUND.md` (what's already confirmed, and where to pick up), `batches/` (the 300 entries in groups of 12; the ones without a file in `data/entries/` are still to do) and `validate.py` (checks every entry) |
 
 The live numbers come from https://community.miraclehealth.us/snapshot.json, which the
 community's site build refreshes every hour: aggregate totals only (no posts, no names,

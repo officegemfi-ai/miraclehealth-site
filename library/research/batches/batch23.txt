@@ -1,0 +1,12 @@
+- sboulardii | Saccharomyces boulardii | Supplements | Gut & digestion | aka: S. boulardii, Florastor
+- prebiotic | Prebiotic fiber | Supplements | Gut & digestion | aka: Inulin, PHGG, Partially hydrolyzed guar gum, GOS
+- colostrum | Colostrum | Supplements | Gut & digestion | aka: Bovine colostrum
+- zinccarnosine | Zinc carnosine | Supplements | Gut & digestion | aka: PepZinGI, Polaprezinc
+- butyrate | Butyrate | Supplements | Gut & digestion | aka: Sodium butyrate, Tributyrin
+- enzymes | Digestive enzymes | Supplements | Gut & digestion | aka: Enzymes
+- betainehcl | Betaine HCl | Supplements | Gut & digestion | aka: Betaine hydrochloride
+- curcumin | Curcumin | Supplements | Immune & inflammation | aka: Turmeric, Meriva, Longvida, BCM-95
+- boswellia | Boswellia | Supplements | Immune & inflammation | aka: Boswellia serrata, AKBA, 5-Loxin
+- pea | PEA (palmitoylethanolamide) | Supplements | Immune & inflammation | aka: Palmitoylethanolamide, Levagen
+- blackseed | Black seed oil | Supplements | Immune & inflammation | aka: Nigella sativa, Thymoquinone
+- elderberry | Elderberry | Supplements | Immune & inflammation | aka: Sambucus

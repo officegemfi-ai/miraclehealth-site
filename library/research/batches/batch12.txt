@@ -1,0 +1,12 @@
+- armodafinil | Armodafinil | Medications | Cognition & focus | aka: Nuvigil
+- piracetam | Piracetam | Medications | Cognition & focus | aka: Nootropil, Racetam
+- phenylpiracetam | Phenylpiracetam | Medications | Cognition & focus | aka: Phenotropil, Fonturacetam
+- vita | Vitamin A | Supplements | Vitamins & minerals | aka: Retinol, Retinyl palmitate
+- b1 | Vitamin B1 (thiamine) | Supplements | Vitamins & minerals | aka: Thiamine
+- benfotiamine | Benfotiamine | Supplements | Vitamins & minerals | aka: -
+- b2 | Vitamin B2 (riboflavin) | Supplements | Vitamins & minerals | aka: Riboflavin
+- niacin | Niacin (vitamin B3) | Supplements | Vitamins & minerals | aka: Vitamin B3, Nicotinic acid, Niacin flush
+- niacinamide | Niacinamide | Supplements | Vitamins & minerals | aka: Nicotinamide
+- b5 | Vitamin B5 (pantothenic acid) | Supplements | Vitamins & minerals | aka: Pantothenic acid, Pantethine
+- b6 | Vitamin B6 | Supplements | Vitamins & minerals | aka: P5P, Pyridoxal 5'-phosphate, Pyridoxine
+- biotin | Biotin (vitamin B7) | Supplements | Skin & hair | aka: Vitamin B7, Vitamin H

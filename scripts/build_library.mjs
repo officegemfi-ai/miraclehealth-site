@@ -420,7 +420,7 @@ for (const [file, html] of out) {
 // Pages for compounds no longer in the catalog go
 const known = new Set(catalog.map((c) => c.id));
 for (const d of fs.readdirSync(LIB, { withFileTypes: true })) {
-  if (d.isDirectory() && d.name !== 'data' && !known.has(d.name)) {
+  if (d.isDirectory() && !['data', 'research'].includes(d.name) && !known.has(d.name)) {
     if (CHECK) { console.error(`left over: library/${d.name}`); stale += 1; } else fs.rmSync(path.join(LIB, d.name), { recursive: true });
   }
 }

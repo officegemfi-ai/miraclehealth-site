@@ -8,10 +8,16 @@
     "why": "Its anti-aging case rests on cell and animal studies, mostly from the Russian group that developed it; FDA found only three human studies, none of which assessed safety."
   },
   "status_us": {
-    "key": "unclear",
+    "key": "under_review",
     "label": "Not approved; compounding status under FDA review",
-    "note": "Status unclear: FDA dropped epitalon from its Category 2 safety-risk list in April 2026 after the nominator withdrew it, then recommended against adding it to the list of substances pharmacies may compound. Its advisory committee voted 7 to 4 for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
-    "sources": [1, 2, 3, 4, 5]
+    "note": "FDA dropped epitalon from its Category 2 safety-risk list in April 2026 after the nominator withdrew it, then recommended against adding it to the list of substances pharmacies may compound. Its advisory committee voted 7 to 4 for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,39 +37,53 @@
     {
       "claim": "Restored melatonin output (measured in urine) to age-typical levels in a small 20-day placebo-controlled study of 40 women aged 40 to 50 with low melatonin; sleep was not measured",
       "evidence": "limited",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "Raised evening melatonin more than fourfold and lowered evening cortisol in older rhesus monkeys",
       "evidence": "preclinical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "Increased telomerase activity and lengthened telomeres in human fetal lung cells grown in a dish",
       "evidence": "preclinical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "Fewer spontaneous tumors and slower signs of aging in several studies of female mice",
       "evidence": "preclinical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Human safety is unstudied: FDA found no clinical studies assessing its safety and no clinical data supporting safe use",
       "how_common": "unknown",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "risk": "Possible cancer risk: because it activates telomerase, FDA says it has the potential to be carcinogenic with long-term exposure, and the animal studies were too short and limited to rule this out",
       "how_common": "theoretical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "risk": "Immune reactions when injected, from the peptide itself or from impurities and clumped (aggregated) peptide; there is no official quality standard, as it is not in the European or Japanese Pharmacopoeia",
       "how_common": "theoretical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     }
   ],
   "avoid_if": [

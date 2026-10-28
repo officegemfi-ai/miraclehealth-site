@@ -1,0 +1,12 @@
+- folate | Folate (methylfolate) | Supplements | Vitamins & minerals | aka: Methylfolate, L-methylfolate, 5-MTHF, Folic acid, Vitamin B9
+- b12 | Vitamin B12 | Supplements | Vitamins & minerals | aka: Methylcobalamin, Cyanocobalamin, Hydroxocobalamin, B12 shots
+- bcomplex | B-complex | Supplements | Vitamins & minerals | aka: B vitamins, Vitamin B complex
+- vitc | Vitamin C | Supplements | Vitamins & minerals | aka: Ascorbic acid, Liposomal vitamin C, IV vitamin C
+- vitd3 | Vitamin D3 | Supplements | Vitamins & minerals | aka: Cholecalciferol, Vitamin D
+- vite | Vitamin E | Supplements | Vitamins & minerals | aka: Tocopherol, Tocotrienols
+- vitk2 | Vitamin K2 | Supplements | Vitamins & minerals | aka: MK-7, MK-4, Menaquinone
+- multivitamin | Multivitamin | Supplements | Vitamins & minerals | aka: Multi, Multivitamin and mineral
+- mag | Magnesium glycinate | Supplements | Vitamins & minerals | aka: Magnesium, Magnesium bisglycinate
+- magthreonate | Magnesium L-threonate | Supplements | Cognition & focus | aka: Magtein, Magnesium threonate
+- magcitrate | Magnesium citrate | Supplements | Vitamins & minerals | aka: -
+- magmalate | Magnesium malate | Supplements | Vitamins & minerals | aka: -

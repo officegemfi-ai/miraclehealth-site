@@ -1,0 +1,12 @@
+- tesofensine | Tesofensine | Medications | Metabolic & weight | aka: NS2330
+- phentermine | Phentermine | Medications | Metabolic & weight | aka: Adipex-P, Lomaira
+- mk677 | MK-677 | Medications | Growth-hormone axis | aka: Ibutamoren, MK677, Nutrobal | [seed]
+- amino1mq | 5-Amino-1MQ | Medications | Metabolic & weight | aka: 5-Amino-1-methylquinolinium, NNMT inhibitor
+- slupp332 | SLU-PP-332 | Medications | Metabolic & weight | aka: SLU PP 332, Exercise mimetic
+- telmisartan | Telmisartan | Medications | Heart & circulation | aka: Micardis
+- ldn | Low-dose naltrexone (LDN) | Medications | Immune & inflammation | aka: LDN, Naltrexone
+- methyleneblue | Methylene blue | Medications | Energy & mitochondria | aka: MB, Methylthioninium chloride, ProvayBlue
+- anastrozole | Anastrozole | Medications | Hormone balance | aka: Arimidex, Adex, Aromatase inhibitor, AI | [seed]
+- letrozole | Letrozole | Medications | Hormone balance | aka: Femara
+- exemestane | Exemestane | Medications | Hormone balance | aka: Aromasin
+- clomiphene | Clomiphene | Medications | Hormone balance | aka: Clomid, Clomiphene citrate | [seed]

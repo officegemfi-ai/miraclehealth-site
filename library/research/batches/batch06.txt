@@ -1,0 +1,12 @@
+- triptorelin | Triptorelin | Peptides | Hormone balance | aka: Trelstar, Decapeptyl, Triptodur
+- epithalon | Epitalon | Peptides | Longevity | aka: Epithalon, Epithalone, AEDG | [seed]
+- motsc | MOTS-c | Peptides | Longevity | aka: MOTSc | [seed]
+- humanin | Humanin | Peptides | Longevity | aka: HNG | [seed]
+- ss31 | SS-31 | Peptides | Longevity | aka: Elamipretide, Bendavia, MTP-131, SS31 | [seed]
+- foxo4dri | FOXO4-DRI | Peptides | Longevity | aka: Proxofim
+- vilon | Vilon | Peptides | Longevity | aka: Lys-Glu
+- vesugen | Vesugen | Peptides | Heart & circulation | aka: Lys-Glu-Asp, Khavinson bioregulator
+- cortagen | Cortagen | Peptides | Cognition & focus | aka: Khavinson bioregulator
+- livagen | Livagen | Peptides | Liver & detox | aka: Khavinson bioregulator
+- cartalax | Cartalax | Peptides | Joints & bones | aka: Khavinson bioregulator
+- chonluten | Chonluten | Peptides | Immune & inflammation | aka: Khavinson bioregulator

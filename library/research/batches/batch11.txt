@@ -1,0 +1,12 @@
+- enclomiphene | Enclomiphene | Medications | Hormone balance | aka: Androxal, Enclomiphene citrate
+- tamoxifen | Tamoxifen | Medications | Hormone balance | aka: Nolvadex, Nolva, Soltamox
+- raloxifene | Raloxifene | Medications | Hormone balance | aka: Evista
+- cabergoline | Cabergoline | Medications | Hormone balance | aka: Dostinex, Caber
+- finasteride | Finasteride | Medications | Skin & hair | aka: Propecia, Proscar
+- dutasteride | Dutasteride | Medications | Skin & hair | aka: Avodart
+- minoxidil | Minoxidil | Medications | Skin & hair | aka: Rogaine, Oral minoxidil, Loniten
+- spironolactone | Spironolactone | Medications | Skin & hair | aka: Aldactone, Spiro
+- tretinoin | Tretinoin | Medications | Skin & hair | aka: Retin-A, Retinoic acid
+- tadalafil | Tadalafil | Medications | Sexual health | aka: Cialis
+- sildenafil | Sildenafil | Medications | Sexual health | aka: Viagra, Revatio
+- modafinil | Modafinil | Medications | Cognition & focus | aka: Provigil

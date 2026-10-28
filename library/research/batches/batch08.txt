@@ -1,0 +1,12 @@
+- leuprolide | Leuprolide | Hormones | Hormone balance | aka: Lupron, Eligard, Leuprorelin
+- estradiol | Estradiol | Hormones | Hormone balance | aka: E2, Estrace, Vivelle-Dot, Climara, Divigel, Estrogel, Evamist, Estradiol patch, Estradiol valerate, Delestrogen, Estradiol cypionate | [seed]
+- estriol | Estriol | Hormones | Hormone balance | aka: E3
+- progesterone | Progesterone (micronized) | Hormones | Hormone balance | aka: Micronized progesterone, Prometrium, P4 | [seed]
+- dhea | DHEA | Hormones | Hormone balance | aka: Dehydroepiandrosterone, Prasterone | [seed]
+- pregnenolone | Pregnenolone | Hormones | Hormone balance | aka: - | [seed]
+- levothyroxine | Levothyroxine (T4) | Hormones | Hormone balance | aka: T4, Synthroid, Levoxyl, Tirosint, Unithroid, Euthyrox
+- liothyronine | Liothyronine (T3) | Hormones | Hormone balance | aka: T3, Cytomel
+- ndt | Desiccated thyroid (NDT) | Hormones | Hormone balance | aka: NDT, Armour Thyroid, NP Thyroid, Nature-Throid, WP Thyroid
+- hydrocortisone | Hydrocortisone | Hormones | Hormone balance | aka: Cortisol, Cortef
+- somatropin | Somatropin (HGH) | Hormones | Growth-hormone axis | aka: HGH, GH, Growth hormone, rHGH, Genotropin, Norditropin, Omnitrope, Humatrope, Saizen, Serostim, Zomacton | [seed]
+- mecasermin | Mecasermin (IGF-1) | Hormones | Growth-hormone axis | aka: Increlex, rhIGF-1

@@ -8,7 +8,7 @@
     "why": "Most data come from rodent studies; the handful of human studies are tiny, uncontrolled or published only as meeting abstracts, and FDA judged them insufficient to establish safety or effectiveness."
   },
   "status_us": {
-    "key": "not_approved",
+    "key": "under_review",
     "label": "Not approved; compounding not yet allowed",
     "note": "FDA took BPC-157 off its Category 2 safety-risk list in April 2026, and in July 2026 its compounding advisory committee voted 8-6 (1 abstention) to recommend allowing pharmacy compounding, against FDA staff advice. As of mid-October 2026 FDA had not added it to the compounding list or issued an interim policy, so compounding was still not permitted.",
     "sources": [

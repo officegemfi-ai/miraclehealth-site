@@ -8,7 +8,7 @@
     "why": "There are no human studies; the evidence is animal and lab work, mostly on the full thymosin beta-4 protein or related peptides, and a lab test of TB-500 itself found no wound-healing effect."
   },
   "status_us": {
-    "key": "not_approved",
+    "key": "under_review",
     "label": "Not approved; compounding not yet allowed",
     "note": "FDA took TB-500 off its Category 2 safety-risk list in April 2026; in July 2026 its advisory committee voted 8-6 (1 abstention) to recommend allowing compounding for wound healing, although FDA staff had proposed not adding it. As of mid-October 2026 FDA had not added it to the compounding list or issued an interim policy, so compounding was still not permitted.",
     "sources": [
