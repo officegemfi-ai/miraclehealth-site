@@ -1,7 +1,7 @@
 /* Miracle Health (miraclehealth.us)
-   AlgoRx's look: deep green-black and near-white paper, one lime accent, dark photography
-   with soft shades, frosted glass cards, Inter headlines, Plus Jakarta Sans text and
-   IBM Plex Mono labels. No scripts. */
+   AlgoRx's look: deep green-black and near-white paper, one lime accent, photography,
+   frosted glass cards, Inter headlines, Plus Jakarta Sans text and IBM Plex Mono labels.
+   The photo at the top is shown exactly as supplied. No scripts. */
 
 @font-face{font-family:'Inter';src:url('fonts/inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta.woff2') format('woff2');font-weight:200 800;font-display:swap}
@@ -64,7 +64,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .bar span{display:block;height:100%;border-radius:4px;background:var(--scale)}
 
 /* ---------------------------------------------------------------- header */
-.top{position:fixed;inset:0 0 auto;z-index:40;height:var(--top-h);color:var(--on-ink);background:rgba(12,20,19,.5);-webkit-backdrop-filter:saturate(1.2) blur(16px);backdrop-filter:saturate(1.2) blur(16px);border-bottom:1px solid rgba(255,255,255,.08);--focus:var(--lime)}
+.top{position:fixed;inset:0 0 auto;z-index:40;height:var(--top-h);color:var(--on-ink);background:rgba(12,20,19,.9);-webkit-backdrop-filter:saturate(1.2) blur(16px);backdrop-filter:saturate(1.2) blur(16px);border-bottom:1px solid rgba(255,255,255,.08);--focus:var(--lime)}
 .top-in{display:flex;align-items:center;gap:30px;height:100%}
 .logo{display:block;flex:none;border-radius:6px}
 .logo img{height:28px;width:auto}
@@ -75,18 +75,23 @@ ul,ol{list-style:none;margin:0;padding:0}
 .top-link:hover{color:var(--lime)}
 .menu-btn,.menu-panel{display:none}
 
-/* ---------------------------------------------------------------- hero: a photo, shaded, text at the bottom */
-.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:max(640px,min(100svh,980px));background:var(--darker);color:var(--on-ink);--focus:var(--lime)}
-.hero-photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:62% 30%}
-.hero-shade{position:absolute;inset:0;z-index:-1;background:
-  linear-gradient(to top,rgba(8,12,11,.86) 0%,rgba(8,12,11,.5) 30%,rgba(8,12,11,.1) 60%,rgba(8,12,11,0) 84%),
-  linear-gradient(90deg,rgba(8,12,11,.6) 0%,rgba(8,12,11,.18) 45%,rgba(8,12,11,0) 70%)}
-.hero-in{padding-top:calc(var(--top-h) + 48px);padding-bottom:84px}
-.hero-copy{max-width:700px}
-.hero h1{margin-top:20px;font-size:clamp(42px,6.3vw,88px);line-height:.98;letter-spacing:-.04em}
+/* ---------------------------------------------------------------- hero: the photo as it is, the words on its sky
+   The photo starts under the header and is never recoloured or shaded. Wide screens show
+   its whole width (only the bottom is trimmed on short screens), with the words on the sky
+   under the arm. Phones, and tall screens, show the whole photo with the words below it. */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:max(431px + 26vw,min(100svh,var(--top-h) + 66.67vw));padding-top:var(--top-h);background:#D5D1CC;color:var(--ink);--focus:var(--ink)}
+.hero-photo{position:absolute;top:var(--top-h);left:0;z-index:-1;width:100%;height:calc(100% - var(--top-h));object-fit:cover;object-position:50% 0}
+.hero-in{padding-top:48px;padding-bottom:64px}
+.hero .kick{color:var(--ink)}
+.hero .live i{outline:1px solid rgba(18,30,29,.6)}
+.hero h1{margin-top:18px;font-size:clamp(44px,4.45vw,64px);line-height:1;letter-spacing:-.04em}
 .lede{margin-top:22px;max-width:50ch;font-size:18px;line-height:1.6;color:var(--on-ink-2)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
-.hero-card{position:absolute;right:max(40px,calc((100vw - 1320px)/2 + 40px));top:calc(var(--top-h) + 36px);width:330px}
+.hero .lede{max-width:min(470px,38vw);font-size:17px;color:#2B3534}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn.line{border-color:rgba(18,30,29,.5);color:var(--ink)}
+.btn.line:hover{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.hero-card{position:absolute;right:max(40px,4vw);top:calc(var(--top-h) + 32px);width:320px}
+.glass.smoke{border-color:rgba(255,255,255,.14);background:rgba(12,20,19,.76);-webkit-backdrop-filter:saturate(1.1) blur(14px);backdrop-filter:saturate(1.1) blur(14px)}
 .gc-body{display:flex;align-items:center;gap:14px;margin-top:14px}
 .gc-body p{font-size:14px;line-height:1.45;color:var(--on-ink-2)}
 .hero-card .bar{margin-top:16px}
@@ -214,8 +219,23 @@ ul,ol{list-style:none;margin:0;padding:0}
 .foot .copy{font:500 12px/1.4 var(--mono);letter-spacing:.06em}
 
 /* ---------------------------------------------------------------- smaller screens */
+@media (max-width:1279px){
+  .hero-card{display:none}
+}
 @media (max-width:1100px){
   .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+/* Phones and tall screens: the whole photo, then the words on the dark below it */
+@media (max-width:900px),(max-aspect-ratio:5/4){
+  .hero{display:block;min-height:0;background:radial-gradient(80% 60% at 0% 100%,rgba(216,255,61,.08),rgba(216,255,61,0) 62%),var(--darker);color:var(--on-ink);--focus:var(--lime)}
+  .hero-photo{position:static;height:auto}
+  .hero .hero-in{padding-top:36px;padding-bottom:56px}
+  .hero .kick{color:var(--lime)}
+  .hero .live i{outline:0}
+  .hero h1{font-size:clamp(40px,7vw,64px)}
+  .hero .lede{max-width:50ch;color:var(--on-ink-2)}
+  .hero .btn.line{border-color:rgba(255,255,255,.3);color:var(--on-ink)}
+  .hero .btn.line:hover{background:transparent;border-color:var(--lime);color:var(--lime)}
   .hero-card{display:none}
 }
 @media (max-width:900px){
@@ -239,10 +259,6 @@ ul,ol{list-style:none;margin:0;padding:0}
   .menu-close span{position:relative;width:20px;height:20px}
   .menu-close span::before,.menu-close span::after{content:'';position:absolute;top:9px;left:0;width:20px;height:2px;border-radius:2px;background:var(--on-ink);transform:rotate(45deg)}
   .menu-close span::after{transform:rotate(-45deg)}
-  .hero{min-height:max(600px,100svh)}
-  .hero-photo{object-position:66% 30%}
-  .hero-shade{background:linear-gradient(to top,rgba(8,12,11,.94) 0%,rgba(8,12,11,.62) 34%,rgba(8,12,11,.14) 62%,rgba(8,12,11,0) 82%)}
-  .hero-in{padding-bottom:56px}
   .band{padding:80px 0}
   .sec-note{text-align:left;max-width:none}
   .steps,.signal-grid,.join-cards{grid-template-columns:1fr}

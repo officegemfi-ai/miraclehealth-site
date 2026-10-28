@@ -4,7 +4,8 @@ The front page of Miracle Health, at https://miraclehealth.us. The community its
 lives at https://community.miraclehealth.us (the `miracle-health-community` repository).
 
 One static page with no scripts, no tracking and no cookies, served by GitHub Pages
-from the `main` branch. The look: a full-width photo under a dark see-through header,
+from the `main` branch. The look: a full-width photo (shown exactly as supplied, with
+the headline on its sky) under a dark see-through header,
 paper-white sections between deep green-black bands, lime accents, frosted "glass"
 cards, Inter headlines, Plus Jakarta Sans text, IBM Plex Mono labels, and Sig, the
 Community Signal in person. The colors stay the same whatever the visitor's device is
