@@ -1,0 +1,222 @@
+{
+  "id": "estradiol",
+  "name": "Estradiol",
+  "summary": "The body's most potent estrogen, prescribed mainly to relieve menopausal hot flashes and vaginal symptoms and to prevent bone loss after menopause.",
+  "what_it_is": "Estradiol (17-beta-estradiol) is the main estrogen made by the ovaries before menopause and the most potent of the body's estrogens. Prescription estradiol is the same molecule and comes in several forms, including tablets, skin gels and patches, and vaginal products. It works through estrogen receptors in tissues such as the uterus, breast and bone, and after menopause it lowers the high LH and FSH levels.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Many randomized trials, pooled in a Cochrane review, support hormone therapy for hot flashes, and estradiol is FDA-approved for menopausal symptoms, vaginal atrophy, low-estrogen states and osteoporosis prevention."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved prescription hormone",
+    "note": "Approved for menopausal hot flashes, vaginal atrophy, low estrogen from hypogonadism or ovarian failure, osteoporosis prevention and some cancer palliation. In 2025-2026 FDA had makers remove the heart, breast-cancer and dementia statements from the boxed warning (estrogen-alone products keep an endometrial-cancer warning), and labels are being updated product by product.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.25,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.5,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Cuts hot flash frequency by about 75% versus placebo and eases night sweats in menopausal women",
+      "evidence": "strong",
+      "sources": [5, 4]
+    },
+    {
+      "claim": "Treats vaginal dryness and thinning (vulvar and vaginal atrophy) after menopause",
+      "evidence": "strong",
+      "sources": [1]
+    },
+    {
+      "claim": "Approved to prevent postmenopausal osteoporosis in women at significant risk who cannot use non-estrogen drugs; in the WHI trials, hormone therapy (conjugated estrogens, not estradiol) cut hip fractures by a third",
+      "evidence": "strong",
+      "sources": [1, 6]
+    },
+    {
+      "claim": "Replaces estrogen in women with low estrogen from hypogonadism, removal of the ovaries or primary ovarian failure",
+      "evidence": "strong",
+      "sources": [1]
+    },
+    {
+      "claim": "Slower thickening of the neck artery wall when oral estradiol was started within 6 years of menopause, but not when started 10 or more years after",
+      "evidence": "moderate",
+      "sources": [7]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Endometrial cancer if estrogen is taken without a progestogen by a woman with a uterus: risk reported 2 to 12 times higher than in non-users (boxed warning)",
+      "how_common": "unknown",
+      "sources": [4, 1]
+    },
+    {
+      "risk": "Blood clots and stroke: about 9 extra strokes and 9 extra lung clots per 10,000 women per year on combined therapy in WHI; in a large UK study, tablets raised clot risk but patches and gels did not",
+      "how_common": "rare",
+      "sources": [6, 8]
+    },
+    {
+      "risk": "Breast cancer: risk rises with longer use and more with estrogen plus progestogen; about 1 extra case per 200 women using estrogen alone for 5 years from age 50, and 1 per 50 with a daily progestogen",
+      "how_common": "uncommon",
+      "sources": [6, 9]
+    },
+    {
+      "risk": "Breast tenderness, irregular bleeding or spotting, headache, bloating and nausea",
+      "how_common": "common",
+      "sources": [1, 4]
+    },
+    {
+      "risk": "Gallbladder disease needing surgery, reported 2 to 4 times more often in postmenopausal estrogen users",
+      "how_common": "unknown",
+      "sources": [1, 6]
+    },
+    {
+      "risk": "Probable dementia was about doubled when combined therapy was started at 65 or older in WHI; FDA removed this warning from labels in 2025-2026",
+      "how_common": "unknown",
+      "sources": [6, 2]
+    }
+  ],
+  "avoid_if": [
+    "Current or past breast cancer, or another estrogen-sensitive cancer",
+    "Unexplained vaginal bleeding",
+    "Current or past blood clots, stroke or heart attack, or a known clotting disorder",
+    "Liver disease",
+    "Pregnancy"
+  ],
+  "interactions": [
+    "St. John's wort, carbamazepine, phenobarbital and rifampin can lower estrogen levels and its effect",
+    "Clarithromycin, erythromycin, ketoconazole, itraconazole, ritonavir and grapefruit juice can raise estrogen levels and side effects",
+    "Thyroid hormone: estrogen raises thyroid-binding protein, so people on thyroid replacement may need their dose rechecked"
+  ],
+  "labs": {
+    "before": [
+      "Breast exam and mammogram as recommended for age",
+      "Blood pressure",
+      "Triglycerides if they are known to be high",
+      "Evaluation of any unexplained vaginal bleeding"
+    ],
+    "during": [
+      "Breast exams and mammography as recommended",
+      "Blood pressure at regular intervals",
+      "Thyroid function in people on thyroid hormone",
+      "Endometrial sampling if unexplained bleeding occurs"
+    ],
+    "why": "Labels advise breast screening, blood pressure checks and prompt review of abnormal bleeding; blood FSH and estradiol levels are not useful for managing menopausal symptoms, which are judged by how symptoms respond."
+  },
+  "studies": [
+    {
+      "title": "Oral oestrogen and combined oestrogen/progestogen therapy versus placebo for hot flushes",
+      "year": 2004,
+      "type": "Systematic review",
+      "people": "3,329 menopausal women in 24 randomized trials",
+      "finding": "Hormone therapy cut weekly hot flushes by about 75% versus placebo and made them less severe.",
+      "source": 5
+    },
+    {
+      "title": "Type and timing of menopausal hormone therapy and breast cancer risk: individual participant meta-analysis of the worldwide epidemiological evidence",
+      "year": 2019,
+      "type": "Meta-analysis",
+      "people": "108,647 postmenopausal women who developed breast cancer",
+      "finding": "All types of hormone therapy except vaginal estrogen were linked to more breast cancer, more so for estrogen plus progestogen and for longer use; some excess risk lasted over 10 years after stopping.",
+      "source": 9
+    },
+    {
+      "title": "Menopausal hormone therapy and health outcomes during the intervention and extended poststopping phases of the Women's Health Initiative randomized trials",
+      "year": 2013,
+      "type": "RCT",
+      "people": "27,347 postmenopausal women aged 50 to 79",
+      "finding": "Conjugated estrogens with or without a progestin relieved hot flashes and cut hip fractures but raised stroke and clot risk, and the combined pill raised breast cancer; the authors did not support hormone therapy for preventing chronic disease.",
+      "source": 6
+    },
+    {
+      "title": "Vascular effects of early versus late postmenopausal treatment with estradiol",
+      "year": 2016,
+      "type": "RCT",
+      "people": "643 healthy postmenopausal women",
+      "finding": "Oral estradiol slowed artery-wall thickening when started within 6 years of menopause but not 10 or more years after; heart CT measures did not differ.",
+      "source": 7
+    }
+  ],
+  "ask_your_clinician": [
+    "Given my age and years since menopause, do the benefits outweigh the risks for me?",
+    "Would a patch or gel be safer for me than a tablet, given my clot and stroke risk?",
+    "Do I need a progestogen to protect my uterus, and what bleeding should I report?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "ESTRADIOL tablet (estradiol tablets, USP) label",
+      "publisher": "DailyMed (U.S. National Library of Medicine)",
+      "year": 2026,
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a1e744c-7926-0e0c-e063-6294a90a80d0"
+    },
+    {
+      "n": 2,
+      "title": "FDA Requests Labeling Changes Related to Safety Information to Clarify the Benefit/Risk Considerations for Menopausal Hormone Therapies",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-requests-labeling-changes-related-safety-information-clarify-benefitrisk-considerations"
+    },
+    {
+      "n": 3,
+      "title": "FDA Approves Labeling Changes to Menopausal Hormone Therapy Products",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-labeling-changes-menopausal-hormone-therapy-products"
+    },
+    {
+      "n": 4,
+      "title": "DIVIGEL (estradiol gel) prescribing information",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/022038s017lbl.pdf"
+    },
+    {
+      "n": 5,
+      "title": "Oral oestrogen and combined oestrogen/progestogen therapy versus placebo for hot flushes",
+      "publisher": "Cochrane Database of Systematic Reviews",
+      "year": 2004,
+      "url": "https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002978.pub2/pdf/CDSR/CD002978/CD002978_abstract.pdf"
+    },
+    {
+      "n": 6,
+      "title": "Menopausal hormone therapy and health outcomes during the intervention and extended poststopping phases of the Women's Health Initiative randomized trials",
+      "publisher": "JAMA (PMC)",
+      "year": 2013,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3963523"
+    },
+    {
+      "n": 7,
+      "title": "Vascular effects of early versus late postmenopausal treatment with estradiol",
+      "publisher": "New England Journal of Medicine (PMC)",
+      "year": 2016,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4921205"
+    },
+    {
+      "n": 8,
+      "title": "Use of hormone replacement therapy and risk of venous thromboembolism: nested case-control studies using the QResearch and CPRD databases",
+      "publisher": "BMJ (University of Nottingham repository)",
+      "year": 2019,
+      "url": "https://nottingham-repository.worktribe.com/output/1380039"
+    },
+    {
+      "n": 9,
+      "title": "Type and timing of menopausal hormone therapy and breast cancer risk: individual participant meta-analysis of the worldwide epidemiological evidence",
+      "publisher": "The Lancet (ANU Open Research repository)",
+      "year": 2019,
+      "url": "https://openresearch-repository.anu.edu.au/handle/1885/227671"
+    }
+  ],
+  "notes_for_editor": "The largest trials (WHI) used conjugated equine estrogens with or without medroxyprogesterone, not estradiol, so several risk and benefit numbers are class data. FDA's boxed-warning changes are being applied product by product: Divigel was updated in February 2026, while a generic estradiol tablet label on DailyMed (January 2026) still carried the old warning at this check. FDA also dropped the probable-dementia warning even though WHI found more dementia when combined therapy started at 65 or older; a clinician should decide how to present this. The 2022 Menopause Society position statement could not be opened (site and PubMed blocked automated fetching). FDA reported strained estradiol patch supply in September 2026 (seen only in trade press, not cited).",
+  "checked": "2026-10-28"
+}

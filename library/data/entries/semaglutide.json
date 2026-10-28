@@ -1,0 +1,73 @@
+{
+  "id": "semaglutide",
+  "name": "Semaglutide",
+  "summary": "A prescription GLP-1 medicine, sold as Ozempic, Rybelsus and Wegovy, used to lower blood sugar in type 2 diabetes and to lose weight.",
+  "what_it_is": "Semaglutide is a lab-made, long-lasting version of GLP-1, a natural hormone that helps regulate appetite and food intake; it shares 94% of its sequence with human GLP-1. It switches on GLP-1 receptors, which lowers calorie intake, slows stomach emptying, and raises insulin while lowering glucagon when blood sugar is high. Binding to the blood protein albumin makes it long-acting, with a half-life of about a week. It comes as an injection and as a tablet.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Large randomized trials such as STEP 1 (1,961 adults) and SELECT (17,604 adults), plus FDA approval for each of its main uses."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for diabetes, weight, heart, kidney, MASH",
+    "note": "Approved as Ozempic (type 2 diabetes, plus heart and kidney risk), Rybelsus (type 2 diabetes, plus heart risk) and Wegovy injection and tablets (weight and heart risk; the injection also for MASH). The shortage ended in February 2025, so pharmacies may no longer routinely copy it; in May 2026 FDA proposed keeping it off the outsourcing-facility (503B) bulks list, and it warns against compounded and 'research-use' versions.",
+    "sources": [1, 2, 3, 4, 5, 6]
+  },
+  "goals": { "weight": 1, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.5, "gut": 0.25, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "About 15% average body-weight loss over 68 weeks in adults with obesity or overweight without diabetes, versus about 2% with placebo", "evidence": "strong", "sources": [7, 2] },
+    { "claim": "Lower blood sugar in adults with type 2 diabetes", "evidence": "strong", "sources": [1, 3] },
+    { "claim": "20% fewer heart attacks, strokes and cardiovascular deaths over about 40 months in adults with heart disease and overweight or obesity but no diabetes", "evidence": "strong", "sources": [8, 2] },
+    { "claim": "Lower risk of kidney function decline, kidney failure and cardiovascular death in adults with type 2 diabetes and chronic kidney disease", "evidence": "strong", "sources": [1] },
+    { "claim": "Approved under FDA accelerated approval to treat noncirrhotic MASH (fatty-liver inflammation) with moderate to advanced liver scarring in adults", "evidence": "strong", "sources": [2] }
+  ],
+  "risks": [
+    { "risk": "Nausea, vomiting, diarrhea, constipation and stomach pain; in STEP 1, 74% had digestive side effects versus 48% on placebo", "how_common": "common", "sources": [2, 7] },
+    { "risk": "Most lost weight tends to come back after stopping: about two-thirds was regained within a year in STEP 1", "how_common": "common", "sources": [9] },
+    { "risk": "Gallstones and gallbladder inflammation (gallstones in 1.6% versus 0.7% on placebo)", "how_common": "uncommon", "sources": [2] },
+    { "risk": "Acute pancreatitis", "how_common": "rare", "sources": [2] },
+    { "risk": "Sudden vision loss from optic nerve damage (NAION), judged a very rare side effect by the European Medicines Agency", "how_common": "rare", "sources": [10] },
+    { "risk": "Boxed warning: thyroid C-cell tumors in rodents; whether this happens in humans is unknown", "how_common": "theoretical", "sources": [2, 1] }
+  ],
+  "avoid_if": [
+    "Personal or family history of medullary thyroid cancer or MEN 2",
+    "Past serious allergic reaction to semaglutide",
+    "Pregnancy, or planning a pregnancy within about 2 months",
+    "Severe gastroparesis (very slow stomach emptying)",
+    "History of diabetic retinopathy (needs closer eye monitoring)"
+  ],
+  "interactions": [
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Oral medicines with a narrow safety margin, such as levothyroxine: slower stomach emptying can change how much is absorbed",
+    "Other semaglutide products or other GLP-1 drugs: using them together is not recommended"
+  ],
+  "labs": {
+    "before": [ "HbA1c or fasting glucose", "Kidney function (creatinine, eGFR)", "Resting heart rate", "Eye exam if you have diabetic retinopathy" ],
+    "during": [ "Blood glucose if also taking insulin or a sulfonylurea", "Kidney function if vomiting or diarrhea is severe", "Resting heart rate at regular visits", "Eye checks if you have diabetic retinopathy" ],
+    "why": "The labels call for watching kidney function when vomiting or diarrhea could cause dehydration, blood sugar with insulin or sulfonylureas, heart rate and diabetic eye disease; they say routine calcitonin or thyroid ultrasound checks are of uncertain value."
+  },
+  "studies": [
+    { "title": "Once-Weekly Semaglutide in Adults with Overweight or Obesity", "year": 2021, "type": "RCT", "people": "1,961 adults with obesity or overweight, without diabetes", "finding": "Average weight change at 68 weeks was -14.9% with semaglutide versus -2.4% with placebo. Digestive side effects were more common (74% versus 48%).", "source": 7 },
+    { "title": "Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes", "year": 2023, "type": "RCT", "people": "17,604 adults aged 45 or older with heart disease and overweight or obesity, without diabetes", "finding": "Heart attack, stroke or cardiovascular death occurred in 6.5% versus 8.0% with placebo over about 40 months (hazard ratio 0.80). More people stopped because of side effects (16.6% versus 8.2%).", "source": 8 },
+    { "title": "Weight regain and cardiometabolic effects after withdrawal of semaglutide: The STEP 1 trial extension", "year": 2022, "type": "Trial", "people": "327 STEP 1 participants followed for a year after treatment stopped", "finding": "People who had taken semaglutide regained about two-thirds of the weight they had lost, and most cardiometabolic improvements drifted back toward baseline.", "source": 9 }
+  ],
+  "ask_your_clinician": [
+    "What is our plan if I stop, given that most of the weight tends to return?",
+    "Should I tell my surgeon or anesthesia team before any procedure with sedation?",
+    "Which symptoms, such as severe stomach pain or sudden vision changes, mean I should call you right away?"
+  ],
+  "sources": [
+    { "n": 1, "title": "OZEMPIC (semaglutide) injection, for subcutaneous use: Prescribing Information (revised June 2026)", "publisher": "FDA (FDALabel)", "year": 2026, "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/adec4fd2-6858-4c99-91d4-531f5f2a2d79/spl-doc" },
+    { "n": 2, "title": "WEGOVY (semaglutide) injection and WEGOVY (semaglutide) tablets: Prescribing Information (revised 05/2026)", "publisher": "FDA (Drugs@FDA)", "year": 2026, "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s031lbl218316s003lbl.pdf" },
+    { "n": 3, "title": "RYBELSUS (semaglutide) tablets, for oral use: Prescribing Information (revised October 2025)", "publisher": "FDA (Structured Product Labeling)", "year": 2025, "url": "https://www.accessdata.fda.gov/spl/data/d66c588c-f975-45de-819e-f879c453385d/d66c588c-f975-45de-819e-f879c453385d.xml" },
+    { "n": 4, "title": "FDA clarifies policies for compounders as national GLP-1 supply begins to stabilize", "publisher": "FDA", "year": 2026, "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize" },
+    { "n": 5, "title": "List of Bulk Drug Substances for Which There Is a Clinical Need Under Section 503B of the Federal Food, Drug, and Cosmetic Act (91 FR 23431)", "publisher": "Federal Register (FDA)", "year": 2026, "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-01/html/2026-08552.htm" },
+    { "n": 6, "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss", "publisher": "FDA", "year": 2026, "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss" },
+    { "n": 7, "title": "Once-Weekly Semaglutide in Adults with Overweight or Obesity", "publisher": "New England Journal of Medicine (UCL Discovery copy)", "year": 2021, "url": "https://discovery.ucl.ac.uk/10127569/1/nejmoa2032183.pdf" },
+    { "n": 8, "title": "Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes", "publisher": "New England Journal of Medicine (UT Southwestern research record)", "year": 2023, "url": "https://utsouthwestern.elsevierpure.com/en/publications/semaglutide-and-cardiovascular-outcomes-in-obesity-without-diabet" },
+    { "n": 9, "title": "Weight regain and cardiometabolic effects after withdrawal of semaglutide: The STEP 1 trial extension", "publisher": "Diabetes, Obesity and Metabolism (UCL Discovery copy)", "year": 2022, "url": "https://discovery.ucl.ac.uk/id/eprint/10149199/1/Diabetes Obesity Metabolism - 2022 - Wilding - Weight regain and cardiometabolic effects after withdrawal of semaglutide .pdf" },
+    { "n": 10, "title": "PRAC concludes eye condition NAION is a very rare side effect of semaglutide medicines Ozempic, Rybelsus and Wegovy", "publisher": "European Medicines Agency", "year": 2025, "url": "https://www.ema.europa.eu/cs/news/prac-concludes-eye-condition-naion-very-rare-side-effect-semaglutide-medicines-ozempic-rybelsus-wegovy" }
+  ],
+  "notes_for_editor": "Seed record was broadly right; its lab schedule was not label-based and has been replaced with the label's monitoring points. Wegovy tablets now appear on the US label (a news report citing Novo Nordisk dates approval to December 2025; not cited here). The Wegovy label's Recent Major Changes show the suicidal-ideation warning was removed in January 2026 after an FDA review. FDA's May 2026 proposal to keep semaglutide off the 503B bulks list had its comment period extended to July 30, 2026; no final decision found as of late October 2026. FDA's April 2026 update says it will not act against 503A pharmacies filling four or fewer 'essentially copy' prescriptions a month, so small-scale compounding continues in a gray zone. NAION frequency is EMA's (EU) assessment; US label wording on NAION was not checked. PubMed pages would not load, so trials are cited from institutional copies.",
+  "checked": "2026-10-28"
+}

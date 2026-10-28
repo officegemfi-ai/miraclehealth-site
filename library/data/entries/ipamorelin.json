@@ -1,0 +1,59 @@
+{
+  "id": "ipamorelin",
+  "name": "Ipamorelin",
+  "summary": "A small lab-made peptide taken to raise growth hormone through the ghrelin receptor; its only treatment trial, for bowel recovery after surgery, missed its main goal.",
+  "what_it_is": "Ipamorelin is a synthetic peptide of five amino acids, some of them not found in nature. It switches on the ghrelin receptor, the target of a natural gut hormone, which prompts the pituitary gland to release growth hormone and stimulates stomach and gut movement. It was developed as a drug and tested in hospital patients recovering from bowel surgery, but development was discontinued and it is not an approved medicine.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Human data are one pharmacology study in 48 healthy men and one 117-patient surgery trial that missed its main goal; there are no human studies of the under-the-skin use common today."
+  },
+  "status_us": {
+    "key": "category2",
+    "label": "Not approved; on FDA's safety-risk list (503B)",
+    "note": "FDA keeps ipamorelin acetate in Category 2 (significant safety risks) for outsourcing facilities; for ordinary compounding pharmacies the nomination was withdrawn, and FDA's advisory committee voted 12-0 (one abstention) in October 2024 against adding it to the list they may compound. WADA bans it in sport.",
+    "sources": [1, 2, 3, 4, 5]
+  },
+  "goals": { "weight": 0.25, "muscle": 0.5, "recovery": 0.25, "energy": 0, "sleep": 0.25, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.25, "gut": 0.25, "immune": 0, "hormonal": 1 },
+  "benefits": [
+    { "claim": "Raised growth hormone in proportion to blood levels in a placebo-controlled study of 48 healthy men; levels fell back to very low within 6 hours", "evidence": "limited", "sources": [6] },
+    { "claim": "Possibly faster return of bowel function after open abdominal surgery, seen only in a subgroup; the trial's main result (time to first tolerated meal) was not significant", "evidence": "limited", "sources": [6] }
+  ],
+  "risks": [
+    { "risk": "In the 117-patient surgery trial, two deaths and serious complications occurred after treatment in the ipamorelin group; FDA notes causality was not reported", "how_common": "unknown", "sources": [1, 6] },
+    { "risk": "More low potassium, trouble sleeping and high blood sugar at discharge than with placebo in the surgery trial", "how_common": "unknown", "sources": [6] },
+    { "risk": "No human data for injection under the skin, and no animal toxicity, cancer or reproductive studies, so FDA says it cannot rule out safety concerns", "how_common": "unknown", "sources": [1, 6] },
+    { "risk": "Possible immune reactions from aggregation and impurities; FDA found ipamorelin acetate 'not well characterized'", "how_common": "unknown", "sources": [1, 6] }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no reproductive studies)",
+    "Active cancer",
+    "Diabetes or prediabetes (clinician first: higher blood sugar was seen in a trial)",
+    "Competitive athletes (prohibited by WADA at all times)"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [ "General health check with a clinician", "IGF-1", "Fasting glucose or HbA1c" ],
+    "during": [ "IGF-1", "Fasting glucose or HbA1c" ],
+    "why": "No evidence-based monitoring exists for ipamorelin; a review of growth hormone secretagogues advises tracking IGF-1 and blood sugar, and high blood sugar was seen in the surgery trial."
+  },
+  "studies": [
+    { "title": "Pharmacy Compounding Advisory Committee meeting transcript, October 29, 2024 (afternoon session: ipamorelin)", "year": 2024, "type": "Review", "people": "FDA review of a 48-man pharmacology study, a 117-patient surgery trial and animal data", "finding": "The only treatment trial (bowel recovery after surgery) did not meet its main goal, there were no data for under-the-skin use, and FDA found insufficient data to conclude it would not raise safety concerns.", "source": 6 }
+  ],
+  "ask_your_clinician": [
+    "Since the only treatment trial failed and there are no human data for injection under the skin, what would make this worth the risk for me?",
+    "How would we watch my blood sugar and IGF-1?",
+    "Is there an approved treatment for my actual goal or diagnosis?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
+    { "n": 3, "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, October 29, 2024", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/185412/download" },
+    { "n": 4, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
+    { "n": 5, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
+    { "n": 6, "title": "Pharmacy Compounding Advisory Committee meeting transcript, October 29, 2024 (afternoon session: ipamorelin)", "publisher": "U.S. Food and Drug Administration", "year": 2024, "url": "https://www.fda.gov/media/185414/download" },
+    { "n": 7, "title": "WADA Verbotsliste 2021: detailed list for section 2.3 (growth hormone, its fragments and releasing factors)", "publisher": "German Sport University Cologne, Institute of Biochemistry (in German)", "year": 2021, "url": "https://www.dshs-koeln.de/fileadmin/redaktion/Institute/Biochemie/PDF/Wachstumshormon_Verbotsliste_Detail_2021.pdf" },
+    { "n": 8, "title": "The Safety and Efficacy of Growth Hormone Secretagogues", "publisher": "Sexual Medicine Reviews (PMC)", "year": 2018, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5632578/" }
+  ],
+  "notes_for_editor": "The primary papers (Gobburu 1999 pharmacology study; Beck 2014 postoperative ileus trial; Raun 1998 animal selectivity study) were not opened because the web-search budget ran out; human findings come from FDA's October 2024 PCAC presentation (source 6). The prototype's claim that ipamorelin releases GH without raising cortisol or prolactin (from animal work) is left out because no opened source confirmed it. Seed correction: ipamorelin is not 'awaiting formal committee review' - the committee voted against it in October 2024 and it is not on the 2026-27 PCAC agendas. Status nuance: it remains in 503B Category 2 but was withdrawn from 503A review; the FDA Law Blog mentions a lawsuit involving ipamorelin with no reported outcome. The five-amino-acid structure is from source 7; the GH-secretagogue monitoring advice is from source 8.",
+  "checked": "2026-10-28"
+}

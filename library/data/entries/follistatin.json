@@ -1,0 +1,58 @@
+{
+  "id": "follistatin",
+  "name": "Follistatin 344",
+  "summary": "A natural protein that blocks myostatin, a brake on muscle growth; taken to build muscle, it has been tested in people as a gene therapy for muscle diseases.",
+  "what_it_is": "Follistatin is a protein the body makes. It blocks myostatin, a muscle protein that limits muscle growth, and it also binds activins. FS344 is one of its naturally occurring forms, made by alternative splicing of the follistatin gene. Researchers picked FS344 for gene-therapy trials because it has minimal effects on the hormone system that controls reproduction.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Human evidence comes from two small, uncontrolled gene-therapy studies in 12 patients with muscle diseases; the rest is animal research."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; not on FDA's compounding lists",
+    "note": "Follistatin is not an FDA-approved drug and does not appear on FDA's list of bulk substances nominated for pharmacy compounding (updated May 2026). Follistatin gene therapy has been tested only in small phase 1/2a trials.",
+    "sources": [1, 2, 3]
+  },
+  "goals": { "weight": 0, "muscle": 1, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Walking distance improved over a year in 6 men with inclusion body myositis given follistatin gene therapy, while matched untreated patients declined", "evidence": "limited", "sources": [3] },
+    { "claim": "Longer 6-minute walk in 4 of 6 patients with Becker muscular dystrophy after gene therapy into both thigh muscles", "evidence": "limited", "sources": [2] },
+    { "claim": "Less scarring (fibrosis) and more signs of muscle repair on biopsies after gene therapy in patients with muscle diseases", "evidence": "limited", "sources": [2, 3] },
+    { "claim": "Larger muscles in mice when follistatin was increased, a stronger effect than switching off myostatin", "evidence": "preclinical", "sources": [3] }
+  ],
+  "risks": [
+    { "risk": "Possible effects on reproductive hormones; the FS344 form was chosen to keep these small, and none were seen in the myositis trial", "how_common": "theoretical", "sources": [3, 4] },
+    { "risk": "Human safety data are limited to 12 gene-therapy patients, in whom no treatment-related adverse events were reported", "how_common": "unknown", "sources": [2, 3] }
+  ],
+  "avoid_if": [
+    "Pregnant, breastfeeding or trying to conceive (follistatin acts on the reproductive hormone system)",
+    "Athletes subject to anti-doping rules (follistatin is banned by WADA)"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [
+      "General health check (complete blood count and metabolic panel) if a clinician is involved",
+      "Pituitary and sex hormone levels, which the gene-therapy trial monitored"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for injected follistatin; in the myositis gene-therapy trial, hormone, heart, liver, kidney and bone marrow checks showed no changes."
+  },
+  "studies": [
+    { "title": "Follistatin Gene Therapy for Sporadic Inclusion Body Myositis Improves Functional Outcomes", "year": 2017, "type": "Trial", "people": "6 men with sporadic inclusion body myositis, compared with 8 matched untreated patients", "finding": "After gene therapy into both thigh muscles, 6-minute walk distance rose by a median 56 m per year, versus a 26 m per year decline in untreated patients. No treatment-related adverse events were reported.", "source": 3 },
+    { "title": "A phase 1/2a follistatin gene therapy trial for becker muscular dystrophy", "year": 2014, "type": "Trial", "people": "6 patients with Becker muscular dystrophy", "finding": "Four of six walked farther on the 6-minute walk test, and biopsies showed less fibrosis and some muscle growth. No adverse effects were reported.", "source": 2 }
+  ],
+  "ask_your_clinician": [
+    "Is there any evidence that injected follistatin builds muscle in healthy people?",
+    "Could this affect my fertility or hormone levels?",
+    "Which proven ways to build muscle should I try first?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
+    { "n": 2, "title": "A phase 1/2a follistatin gene therapy trial for becker muscular dystrophy", "publisher": "Molecular Therapy (abstract record on sigmaaldrich.com)", "year": 2014, "url": "https://www.sigmaaldrich.com/PL/en/tech-docs/paper/537310" },
+    { "n": 3, "title": "Follistatin Gene Therapy for Sporadic Inclusion Body Myositis Improves Functional Outcomes", "publisher": "Molecular Therapy (copy hosted by The Myositis Association)", "year": 2017, "url": "https://www.myositis.org/wp-content/uploads/2018/02/Follistatin_gene_therapy_for_IBM_-_2017.pdf" },
+    { "n": 4, "title": "Reply to Letter to the Editor", "publisher": "Molecular Therapy (PMC)", "year": 2017, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5628931" },
+    { "n": 5, "title": "The Prohibited List (2026)", "publisher": "World Anti-Doping Agency", "year": 2026, "url": "https://www.wada-ama.org/en/prohibited-list" }
+  ],
+  "notes_for_editor": "Thin and indirect evidence: all human data are from AAV1-FS344 gene therapy in 12 patients with Becker muscular dystrophy or inclusion body myositis (single-arm, small), not from injected follistatin protein, which is what people buy. We found no published trial of injected follistatin in people, but our search was cut short by a search budget limit, so animal primary studies (for example in mice and monkeys) are cited only through the 2017 paper's background. Source 2 is a supplier-hosted abstract record; the PMC copy (PMC4426808) was behind a browser check, so swap the link if it opens. The 2017 trial used historical matched controls and prednisone, and a published letter challenged its design (Mendell's reply is source 4). WADA source [5] backs the anti-doping line. 'Not FDA-approved' is from general knowledge plus absence from FDA's compounding lists; a Drugs@FDA check would firm it up.",
+  "checked": "2026-10-28"
+}

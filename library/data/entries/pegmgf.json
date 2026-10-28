@@ -1,0 +1,187 @@
+{
+  "id": "pegmgf",
+  "name": "PEG-MGF",
+  "summary": "A lab-made, pegylated version of a short peptide from the IGF-1 gene, promoted for muscle growth and repair but never studied in people.",
+  "what_it_is": "MGF (mechano growth factor) is the name given to a synthetic 24-amino-acid peptide that matches the tail end of one form of IGF-1, a growth signal whose gene activity rises in muscle after exercise or injury. PEG-MGF is that peptide with a polyethylene glycol (PEG) chain attached. Researchers have not shown that this peptide exists on its own in the body or that it does anything beyond full-length IGF-1, and lab results conflict.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "There are no human studies; the case for it rests on cell and rodent studies of the unmodified MGF peptide, and those results conflict."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; not eligible for pharmacy compounding",
+    "note": "FDA took PEG-MGF off its Category 2 list of compounding substances with significant safety risks in April 2026 after the nomination was withdrawn, but that did not make it eligible for compounding. FDA plans to ask its compounding advisory committee about it before the end of February 2027; plain MGF sits in Category 3 (nominated without adequate support).",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 1,
+    "recovery": 0.5,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "More growth of muscle precursor cells in some lab-dish studies of unmodified MGF, though a 2014 study could not reproduce this",
+      "evidence": "preclinical",
+      "sources": [
+        5,
+        6
+      ]
+    },
+    {
+      "claim": "Nerve-cell protection after brain ischemia in gerbils given synthetic MGF, and in rodent nerve-injury models using MGF gene delivery",
+      "evidence": "preclinical",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Better heart function and survival after an induced heart attack in mice when the MGF peptide was released from tiny gel rods in the heart",
+      "evidence": "preclinical",
+      "sources": [
+        7
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human safety data for any route of use",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Immune reactions to the peptide, which FDA flagged as a possible significant risk",
+      "how_common": "theoretical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Impurities and product quality that are hard to characterize, a concern FDA raised",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no human safety data)",
+    "Athletes subject to anti-doping rules (mechano growth factors are banned by WADA)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+    ],
+    "during": [],
+    "why": "PEG-MGF has never been studied in people, so no evidence-based monitoring exists."
+  },
+  "studies": [
+    {
+      "title": "Mechano-growth factor peptide, the COOH terminus of unprocessed insulin-like growth factor 1, has no apparent effect on myoblasts or primary muscle stem cells",
+      "year": 2014,
+      "type": "Cell",
+      "people": "Mouse and human muscle cells, and heart muscle cells, in the lab",
+      "finding": "MGF peptide did not increase growth or block maturation of muscle cells, and neither native nor stabilized MGF switched on growth signaling in heart muscle cells; mature IGF-1 did both. The authors questioned whether MGF has any physiological role.",
+      "source": 6
+    },
+    {
+      "title": "Minireview: Mechano-Growth Factor: A Putative Product of IGF-I Gene Expression Involved in Tissue Repair and Regeneration",
+      "year": 2010,
+      "type": "Review",
+      "people": "Cell and animal studies",
+      "finding": "Found inadequate evidence that MGF is made as a separate peptide in the body or acts beyond full-length IGF-1, despite positive cell and rodent reports.",
+      "source": 5
+    },
+    {
+      "title": "Localized Delivery of Mechano-Growth Factor E-domain Peptide via Polymeric Microstructures Improves Cardiac Function following Myocardial Infarction",
+      "year": 2015,
+      "type": "Animal",
+      "people": "Mice after an induced heart attack",
+      "finding": "Gel microrods releasing the MGF peptide into heart muscle improved heart function and survival over 10 weeks compared with untreated mice. The peptide was not pegylated.",
+      "source": 7
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any human evidence that PEG-MGF builds muscle or speeds healing?",
+    "Which proven options for my muscle or recovery goal should I try first?",
+    "If I have already used it, what symptoms should make me stop and get checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List",
+      "publisher": "Frier Levitt (law firm)",
+      "year": 2026,
+      "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/"
+    },
+    {
+      "n": 3,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 4,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 5,
+      "title": "Minireview: Mechano-Growth Factor: A Putative Product of IGF-I Gene Expression Involved in Tissue Repair and Regeneration",
+      "publisher": "Endocrinology (PMC)",
+      "year": 2010,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2840678/"
+    },
+    {
+      "n": 6,
+      "title": "Mechano-growth factor peptide, the COOH terminus of unprocessed insulin-like growth factor 1, has no apparent effect on myoblasts or primary muscle stem cells",
+      "publisher": "American Journal of Physiology: Endocrinology and Metabolism (Duke Scholars record)",
+      "year": 2014,
+      "url": "https://scholars.duke.edu/publication/1158959"
+    },
+    {
+      "n": 7,
+      "title": "Localized Delivery of Mechano-Growth Factor E-domain Peptide via Polymeric Microstructures Improves Cardiac Function following Myocardial Infarction",
+      "publisher": "Biomaterials (PMC)",
+      "year": 2015,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4328136/"
+    },
+    {
+      "n": 8,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "We found no published study of the pegylated form itself; all efficacy data here are for unmodified MGF peptides in cells or rodents, and the field is contested (Matheny 2010; Fornaro 2014). FDA's April 2026 page states there are no human exposure data for PEG-MGF by any route. WADA source [8] backs the anti-doping line in avoid_if. Regulatory position is moving: an HHS/FDA interim access policy for some peptides was sent to the White House on October 14, 2026, but its scope was not public as of October 16, 2026 [3]. Re-check before publishing.",
+  "checked": "2026-10-28"
+}

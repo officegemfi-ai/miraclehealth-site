@@ -1,0 +1,70 @@
+{
+  "id": "ghrp2",
+  "name": "GHRP-2",
+  "summary": "A lab-made peptide that releases growth hormone and increases appetite; used in Japan as a diagnostic test and sold elsewhere as a research chemical.",
+  "what_it_is": "GHRP-2 (pralmorelin) is a synthetic peptide of six amino acids, including one not found in nature, from a family of growth hormone-releasing peptides originally derived from enkephalin, a natural opioid-like peptide. It acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone, and it also raises appetite and cortisol. In Japan it is used clinically as a diagnostic agent for growth hormone deficiency; it has no approved use in the US.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Small, short human studies show growth hormone release, more appetite and normal growth rates in children with growth hormone deficiency; a 5-day course in nine healthy men did not raise IGF-1, and there are no long-term trials."
+  },
+  "status_us": {
+    "key": "category2",
+    "label": "Not approved; on FDA's safety-risk list (503B)",
+    "note": "FDA lists injectable and nasal GHRP-2 in Category 2 (significant safety risks) for outsourcing facilities and places GHRP-2 in Category 3 (nominated without adequate support) for ordinary compounding pharmacies, which leaves compounding open to FDA enforcement. WADA bans it in sport.",
+    "sources": [1, 2, 3, 4, 5]
+  },
+  "goals": { "weight": 0.25, "muscle": 0.5, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 1 },
+  "benefits": [
+    { "claim": "Normal growth rates, though no catch-up growth, in short children with growth hormone deficiency given a nasal form", "evidence": "limited", "sources": [6, 7] },
+    { "claim": "More appetite and food intake in lean and obese adults", "evidence": "limited", "sources": [6] },
+    { "claim": "Normalized IGF-1 in people with prolonged critical illness when infused together with GHRH", "evidence": "limited", "sources": [6, 7] },
+    { "claim": "Higher IGF-1 in 14 men on testosterone therapy who took it with sermorelin and GHRP-6", "evidence": "limited", "sources": [7] },
+    { "claim": "Weight gain and more hunger in one woman with severe, long-standing anorexia nervosa", "evidence": "limited", "sources": [8] }
+  ],
+  "risks": [
+    { "risk": "FDA cites reports of serious adverse events, including higher insulin needs, deaths of critically ill study subjects, infection and pancreatitis; causality not established", "how_common": "unknown", "sources": [1] },
+    { "risk": "Increased appetite with weight gain, and higher cortisol, which a review calls built into how ghrelin-type drugs work", "how_common": "unknown", "sources": [9] },
+    { "risk": "Possible immune reactions from aggregation and impurities in injectable or nasal compounded products, per FDA", "how_common": "unknown", "sources": [1] },
+    { "risk": "Long-term safety data are lacking for growth hormone secretagogues, with some concern about raised blood sugar", "how_common": "unknown", "sources": [6] },
+    { "risk": "Black-market supply: a review reports ghrelin mimetics are sold on the black market, so identity and purity are uncertain", "how_common": "unknown", "sources": [9] }
+  ],
+  "avoid_if": [
+    "Critical illness (deaths were reported in critically ill study subjects)",
+    "Diabetes or insulin use (clinician first: higher insulin needs reported)",
+    "Pregnant or breastfeeding (no safety data)",
+    "Competitive athletes (prohibited by WADA at all times)"
+  ],
+  "interactions": [
+    "Insulin and other diabetes medicines: FDA has reports of increased insulin requirements in people given GHRP-2"
+  ],
+  "labs": {
+    "before": [ "General health check with a clinician", "Fasting glucose or HbA1c", "IGF-1" ],
+    "during": [ "Fasting glucose or HbA1c", "IGF-1" ],
+    "why": "No evidence-based monitoring exists for GHRP-2; a review of growth hormone secretagogues advises tracking IGF-1, blood sugar and HbA1c, and FDA has reports of rising insulin needs."
+  },
+  "studies": [
+    { "title": "The Safety and Efficacy of Growth Hormone Secretagogues", "year": 2018, "type": "Review", "people": "Review of human studies of growth hormone secretagogues", "finding": "GHRP-2 increased growth rates in short children, increased appetite in lean and obese adults and normalized IGF-1 in prolonged critical illness. The authors flag rising blood sugar and missing long-term safety data for the class.", "source": 6 },
+    { "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels", "year": 2017, "type": "Case series", "people": "14 men on testosterone therapy (retrospective chart review)", "finding": "A combination of GHRP-2, GHRP-6 and sermorelin raised average IGF-1 from about 160 to 239 ng/mL; the authors note an earlier 5-day study in nine healthy young men showed no IGF-1 rise with GHRP-2 alone.", "source": 7 },
+    { "title": "One-year intranasal application of growth hormone releasing peptide-2 improves body weight and hypoglycemia in a severely emaciated anorexia nervosa patient", "year": 2015, "type": "Case report", "people": "One 38-year-old woman with severe anorexia nervosa", "finding": "Over 14 months, body weight rose from 21.1 to 27.8 kg with more hunger, less fatigue and fewer low-blood-sugar episodes; no obvious side effects were reported.", "source": 8 },
+    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research", "finding": "Nasal or oral GHRP-2 roughly doubled growth hormone secretion in children without changing IGF-1; higher cortisol and appetite are intrinsic side effects of the drug class.", "source": 9 }
+  ],
+  "ask_your_clinician": [
+    "Would the appetite and cortisol effects work against my goals?",
+    "How would we watch my blood sugar and IGF-1, especially if I have diabetes risk?",
+    "Is there an approved treatment for my actual goal or diagnosis?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
+    { "n": 3, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
+    { "n": 4, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
+    { "n": 5, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
+    { "n": 6, "title": "The Safety and Efficacy of Growth Hormone Secretagogues", "publisher": "Sexual Medicine Reviews (PMC)", "year": 2018, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5632578/" },
+    { "n": 7, "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels", "publisher": "American Journal of Men's Health (PMC)", "year": 2017, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5675260/" },
+    { "n": 8, "title": "One-year intranasal application of growth hormone releasing peptide-2 improves body weight and hypoglycemia in a severely emaciated anorexia nervosa patient", "publisher": "Journal of Cachexia, Sarcopenia and Muscle (PMC)", "year": 2015, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4575555/" },
+    { "n": 9, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" },
+    { "n": 10, "title": "WADA Verbotsliste 2021: detailed list for section 2.3 (growth hormone, its fragments and releasing factors)", "publisher": "German Sport University Cologne, Institute of Biochemistry (in German)", "year": 2021, "url": "https://www.dshs-koeln.de/fileadmin/redaktion/Institute/Biochemie/PDF/Wachstumshormon_Verbotsliste_Detail_2021.pdf" }
+  ],
+  "notes_for_editor": "Primary trials (Laferrere 2005 on food intake; Mericq 1998 and Pihoker 1997 in children; Van den Berghe on critical illness) were not opened: PMC/PubMed pages were blocked by a browser check and the web-search budget ran out, so findings come from two Sigalos papers and Baumann 2012. The Japan diagnostic use is from source 8 (it does not name the product or 'pralmorelin'; the pralmorelin name is from WADA, source 5). US status is split: Category 2 under 503B (injectable and nasal routes; other routes are 503B Category 1) but Category 3 under 503A; no 2025-2026 change was found for GHRP-2. The prototype's 'restricted from pharmacy compounding (Category 2)' label was only partly right. The six-amino-acid structure with non-natural D-amino acids is from source 10.",
+  "checked": "2026-10-28"
+}

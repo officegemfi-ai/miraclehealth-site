@@ -1,0 +1,201 @@
+{
+  "id": "modgrf129",
+  "name": "CJC-1295 no DAC (Mod GRF 1-29)",
+  "summary": "A modified copy of the hormone that triggers growth hormone release, sold as a research chemical to raise growth hormone; evidence comes only from related peptides.",
+  "what_it_is": "Mod GRF 1-29 is a synthetic peptide matching the first 29 amino acids of growth hormone-releasing hormone (GHRH), the same stretch as sermorelin, with four amino acids swapped (at positions 2, 8, 15 and 27). FDA's review calls this 29-amino-acid peptide 'CJC-1295 (free base)' and treats it as a different active ingredient from CJC-1295 with DAC, which carries an extra unit that makes it last for days. Like natural GHRH, it is meant to signal the pituitary gland to release growth hormone. It is not an approved medicine.",
+  "evidence": {
+    "grade": "anecdotal",
+    "why": "No studies of this exact peptide were identified; the only human data FDA cited for 'CJC-1295' are two small studies of the long-acting form, with no effectiveness endpoints."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; FDA advisers voted against compounding",
+    "note": "In December 2024 FDA's compounding advisory committee voted 13-0 (free base) and 12-1 (acetate) against adding non-DAC CJC-1295 to the list of substances pharmacies may compound. FDA's 'CJC-1295' entry is on its 'nominated but withdrawn' list and not in Category 1, so there is no clear legal compounding route; anti-doping rules ban GHRH analogues in sport.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0.5,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.25,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Built on the active part of GHRH, so it is expected to trigger growth hormone release like sermorelin; no study of this exact peptide was identified",
+      "evidence": "anecdotal",
+      "sources": [
+        5,
+        6
+      ]
+    },
+    {
+      "claim": "GHRH-type peptides and growth hormone-releasing peptides (GHRPs) act together to release more growth hormone than either alone, the rationale for combining it with a GHRP such as ipamorelin; shown with related peptides, not this one",
+      "evidence": "limited",
+      "sources": [
+        7
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human safety data for this exact peptide; in FDA's review of CJC-1295, human studies of the long-acting form showed frequent injection-site and vasodilatory reactions and increased heart rate",
+      "how_common": "unknown",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "FDA found the free base poorly soluble in water and all CJC-1295 forms 'not well characterized', raising impurity and immune-reaction concerns",
+      "how_common": "unknown",
+      "sources": [
+        2,
+        8
+      ]
+    },
+    {
+      "risk": "Animal studies of CJC-1295 found DNA damage in pituitary cells, and no cancer studies exist",
+      "how_common": "unknown",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "Gray-market supply: a review reports GHRH analogs have entered the black market, so identity and purity are uncertain",
+      "how_common": "unknown",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "risk": "Fluid retention, joint pain and higher blood sugar are label warnings for tesamorelin, an approved drug that works the same way",
+      "how_common": "theoretical",
+      "sources": [
+        9
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Active cancer or a history of pituitary tumors",
+    "Pregnant or breastfeeding (no safety data)",
+    "Diabetes or prediabetes (clinician first)",
+    "Competitive athletes (prohibited by WADA at all times)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check with a clinician",
+      "IGF-1",
+      "Fasting glucose or HbA1c"
+    ],
+    "during": [
+      "IGF-1",
+      "Fasting glucose or HbA1c"
+    ],
+    "why": "No evidence-based monitoring exists for this research peptide; the tesamorelin label, for a drug that works the same way, advises checking IGF-1 and blood sugar."
+  },
+  "studies": [
+    {
+      "title": "Pharmacy Compounding Advisory Committee meeting transcript, December 4, 2024 (morning session: CJC-1295)",
+      "year": 2024,
+      "type": "Review",
+      "people": "FDA review of CJC-1295 forms: two small studies in healthy adults plus rat and dog studies",
+      "finding": "FDA treated the non-DAC and DAC forms as distinct, judged all forms poorly characterized, and found no information on effectiveness for growth hormone deficiency.",
+      "source": 8
+    },
+    {
+      "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels",
+      "year": 2017,
+      "type": "Case series",
+      "people": "14 men on testosterone therapy (retrospective chart review)",
+      "finding": "A combination of sermorelin (the unmodified GHRH 1-29) with GHRP-2 and GHRP-6 raised average IGF-1 from about 160 to 239 ng/mL; the authors note GHRH and GHRPs act together.",
+      "source": 7
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any lawful, quality-checked source for this, or would sermorelin or an approved option be more appropriate?",
+    "What would we measure to know whether my growth hormone axis actually needs support?",
+    "If I compete in a tested sport, would this cause an anti-doping violation?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, December 4, 2024",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/185642/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download?attachment"
+    },
+    {
+      "n": 4,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 5,
+      "title": "WADA Verbotsliste 2021: detailed list for section 2.3 (growth hormone, its fragments and releasing factors)",
+      "publisher": "German Sport University Cologne, Institute of Biochemistry (in German)",
+      "year": 2021,
+      "url": "https://www.dshs-koeln.de/fileadmin/redaktion/Institute/Biochemie/PDF/Wachstumshormon_Verbotsliste_Detail_2021.pdf"
+    },
+    {
+      "n": 6,
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)",
+      "year": 2012,
+      "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf"
+    },
+    {
+      "n": 7,
+      "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels",
+      "publisher": "American Journal of Men's Health (PMC)",
+      "year": 2017,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5675260/"
+    },
+    {
+      "n": 8,
+      "title": "Pharmacy Compounding Advisory Committee meeting transcript, December 4, 2024 (morning session: CJC-1295)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2024,
+      "url": "https://www.fda.gov/media/185641/download"
+    },
+    {
+      "n": 9,
+      "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "Very thin evidence: no study of this exact peptide was opened (the web-search budget ran out). Identity is pieced together from two sources: FDA describes 'CJC-1295 (free base)' as a synthetic 29-amino-acid GHRH analog distinct from the DAC form (source 8), and the Cologne/WADA 2021 detail list gives the 29-amino-acid 'CJC-1295' sequence, whose four substitutions were read by comparing it with sermorelin (source 5). That the 2006 human studies used the DAC form is inferred from their days-long half-life; FDA called the salt forms unspecified. 'No clear legal compounding route' is an inference from FDA's 503A rules.",
+  "checked": "2026-10-28"
+}

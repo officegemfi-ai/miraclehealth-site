@@ -1,0 +1,172 @@
+{
+  "id": "triptorelin",
+  "name": "Triptorelin",
+  "summary": "A prescription hormone drug that, with continued use, shuts down testosterone and estrogen production; approved for advanced prostate cancer and for early puberty in children.",
+  "what_it_is": "Triptorelin is a lab-made version of gonadotropin-releasing hormone (GnRH), the brain signal that tells the pituitary gland to release LH and FSH. A first dose briefly raises LH, FSH, testosterone and estradiol; with continued use the pituitary stops responding and testosterone falls to castrate levels. In the US it is sold as Trelstar (prostate cancer) and Triptodur (early puberty); in the UK it is sold as Decapeptyl, with added uses such as endometriosis. Because the first dose stimulates testosterone, anti-doping rules ban it in male athletes.",
+  "evidence": {
+    "grade": "strong",
+    "why": "It is an approved drug: controlled trials in men with advanced prostate cancer and a single-arm trial in 44 children with early puberty support its labeled uses."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved (Trelstar, Triptodur)",
+    "note": "Trelstar (first approved in 2000) is approved for advanced prostate cancer, and Triptodur for central precocious puberty in children 2 and older. The 2026 WADA Prohibited List bans it at all times in male athletes.",
+    "sources": [1, 2, 3]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Lowers testosterone to castrate levels in men with advanced prostate cancer (91% to 98% of men by day 29 across three trials)",
+      "evidence": "strong",
+      "sources": [1]
+    },
+    {
+      "claim": "Halts early puberty in children 2 and older with central precocious puberty (LH suppressed in over 93% of 44 children)",
+      "evidence": "strong",
+      "sources": [2, 4]
+    },
+    {
+      "claim": "Treats endometriosis in women, an approved use in the UK but not in the US",
+      "evidence": "strong",
+      "sources": [5, 1, 2]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Hot flashes (in 59% to 73% of men in prostate cancer trials)",
+      "how_common": "common",
+      "sources": [1]
+    },
+    {
+      "risk": "Erectile dysfunction and testicular shrinkage while testosterone is suppressed (about 2% to 10% across trials)",
+      "how_common": "uncommon",
+      "sources": [1]
+    },
+    {
+      "risk": "The early hormone surge can briefly worsen symptoms: tumor flare in prostate cancer (including urinary blockage or spinal cord compression) and vaginal bleeding in children",
+      "how_common": "uncommon",
+      "sources": [1, 2]
+    },
+    {
+      "risk": "Higher risk of diabetes, heart attack, sudden cardiac death and stroke with long-term testosterone suppression; FDA describes the risk as low",
+      "how_common": "unknown",
+      "sources": [6, 1]
+    },
+    {
+      "risk": "Bone thinning with long-term use, which may raise fracture risk",
+      "how_common": "unknown",
+      "sources": [5]
+    },
+    {
+      "risk": "Mood changes, depression and seizures; in children, raised pressure inside the skull (pseudotumor cerebri) has been reported",
+      "how_common": "unknown",
+      "sources": [5, 1, 2]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or could become pregnant (it can harm a fetus)",
+    "Allergic to triptorelin or other GnRH agonist drugs",
+    "Heart disease, diabetes, a long QT interval or a history of seizures (needs a clinician's assessment first)",
+    "Osteoporosis or other risk factors for weak bones",
+    "Male athlete in drug-tested sport (banned at all times)"
+  ],
+  "interactions": [
+    "Drugs that prolong the QT interval, such as certain antiarrhythmics, methadone, moxifloxacin and antipsychotics",
+    "Drugs that raise prolactin (the US label advises against using them together)"
+  ],
+  "labs": {
+    "before": [
+      "Testosterone (men) or LH and sex-hormone levels (children)",
+      "Blood glucose or HbA1c and a lipid panel",
+      "Blood pressure and a heart rhythm check if there are QT risk factors"
+    ],
+    "during": [
+      "Testosterone, to confirm it stays suppressed (men with prostate cancer)",
+      "Blood glucose or HbA1c, lipids and blood pressure, periodically",
+      "In children: LH and sex-hormone levels, height every 3 to 6 months, and bone age"
+    ],
+    "why": "The labels call for confirming hormone suppression and periodic checks of blood sugar and lipids; in children, growth and bone age are tracked."
+  },
+  "studies": [
+    {
+      "title": "TRELSTAR (triptorelin pamoate for injectable suspension), for intramuscular use: prescribing information",
+      "year": 2026,
+      "type": "Label",
+      "people": "Three trials in 277, 346 and 120 men with advanced prostate cancer",
+      "finding": "Testosterone reached castrate levels by day 29 in 91% to 98% of men and stayed suppressed in 93% to 96% over the treatment period. Hot flashes were the most common side effect.",
+      "source": 1
+    },
+    {
+      "title": "Efficacy and safety of triptorelin 6-month formulation in patients with central precocious puberty",
+      "year": 2016,
+      "type": "Trial",
+      "people": "44 children with central precocious puberty (39 girls, 5 boys)",
+      "finding": "LH fell to prepubertal levels in 93% of children at month 6 and suppression held through month 12, with no unexpected drug-related side effects.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Is triptorelin right for my situation, or is there a better-studied option for my goal?",
+    "If I have used anabolic steroids, is there any evidence for using triptorelin to restart my own testosterone, and what are the alternatives?",
+    "How will we watch my blood sugar, lipids, heart rhythm and bone health while I take it?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "TRELSTAR (triptorelin pamoate for injectable suspension), for intramuscular use: prescribing information (revised 06/2026)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/020715s052lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "TRIPTODUR (triptorelin) for extended-release injectable suspension, for intramuscular use: prescribing information (revised 09/2025)",
+      "publisher": "U.S. Food and Drug Administration (FDALabel)",
+      "year": 2025,
+      "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/f41380e7-b830-432d-a5f5-a872932f107e/spl-doc"
+    },
+    {
+      "n": 3,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 4,
+      "title": "Efficacy and safety of triptorelin 6-month formulation in patients with central precocious puberty",
+      "publisher": "Journal of Pediatric Endocrinology and Metabolism (De Gruyter)",
+      "year": 2016,
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/jpem-2015-0376"
+    },
+    {
+      "n": 5,
+      "title": "Decapeptyl SR 11.25mg Powder and solvent for suspension for injection: Summary of Product Characteristics (revised 1 June 2026)",
+      "publisher": "electronic medicines compendium (emc), UK",
+      "year": 2026,
+      "url": "https://www.medicines.org.uk/emc/product/780/smpc"
+    },
+    {
+      "n": 6,
+      "title": "FDA Drug Safety Communication: Update to Ongoing Safety Review of GnRH Agonists and Notification to Manufacturers of GnRH Agonists to Add New Safety Information to Labeling Regarding Increased Risk of Diabetes and Certain Cardiovascular Diseases",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2010,
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-update-ongoing-safety-review-gnrh-agonists-and-notification"
+    }
+  ],
+  "notes_for_editor": "The library files triptorelin under hormone balance, presumably for off-label single-dose use by men to 'restart' natural testosterone after anabolic steroids. I found no published trial of that use; the only support is the label's description of a brief LH/testosterone surge after a first dose, so no benefit is claimed for it. The Triptodur trial was single-arm (no control group); it is graded strong only because the drug is approved for that use. Endometriosis is a UK (Decapeptyl) indication, not a US one. Risk frequencies for metabolic, bone and mood effects are not quantified in the labels, so they are marked unknown.",
+  "checked": "2026-10-28"
+}

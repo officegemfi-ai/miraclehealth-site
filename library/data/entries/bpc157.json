@@ -1,0 +1,173 @@
+{
+  "id": "bpc157",
+  "name": "BPC-157",
+  "summary": "A 15-amino-acid fragment of a protein first found in human stomach juice, taken for tendon, muscle and gut healing based mostly on rodent studies.",
+  "what_it_is": "BPC-157 is a 15-amino-acid peptide, a fragment of a protein called body protection compound that was first isolated from human gastric juice. In rodents it has helped injured tendons, gut lining and other tissues heal; researchers suspect it works partly by encouraging new blood vessels and nitric oxide signaling, but FDA says its mechanisms remain poorly understood. No country has approved a medicine containing it.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Most data come from rodent studies; the handful of human studies are tiny, uncontrolled or published only as meeting abstracts, and FDA judged them insufficient to establish safety or effectiveness."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; compounding not yet allowed",
+    "note": "FDA took BPC-157 off its Category 2 safety-risk list in April 2026, and in July 2026 its compounding advisory committee voted 8-6 (1 abstention) to recommend allowing pharmacy compounding, against FDA staff advice. As of mid-October 2026 FDA had not added it to the compounding list or issued an interim policy, so compounding was still not permitted.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 1,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0.25,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0.75,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Faster healing of cut tendons in rodents",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Healing of surgically created colon fistulas and protection against stomach and intestinal damage from NSAID painkillers in rats",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In one placebo-controlled trial in 53 people with mild to moderate ulcerative colitis, BPC-157 enemas lowered a disease activity score more than placebo; it was reported only as a meeting abstract, and FDA judged the data inadequate",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Protection in rodent models of stroke, encephalopathy (brain dysfunction) and spinal cord injury",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Too little human safety information to describe its side effects; FDA noted no serious adverse events reported in the small human studies",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Immune reactions, which FDA called a possibly significant risk that peptide clumping could make worse",
+      "how_common": "theoretical",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Unknown cancer risk: no cancer studies exist, and it may promote new blood vessel growth",
+      "how_common": "theoretical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Changed blood-clotting tests in rats and dogs, plus higher liver enzyme (ALT), glucose and triglyceride levels in animal toxicity studies",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Reports to FDA after injections, including injection-site swelling, shortness of breath leading to an ER visit, and skin and gum darkening; cause not established",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied in people)",
+    "Current or past cancer, unless a clinician advises otherwise (possible blood vessel growth effects; no cancer studies)",
+    "Bleeding or clotting disorders, or taking blood thinners (clotting tests changed in animal studies)",
+    "Athletes subject to anti-doping rules (BPC-157 is banned by WADA)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Complete blood count and comprehensive metabolic panel (includes liver enzymes and glucose) as a general health check"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for BPC-157; a general check is a reasonable baseline, and animal studies flagged liver enzyme, glucose and clotting changes."
+  },
+  "studies": [
+    {
+      "title": "FDA Briefing Document for BPC-157-Related Bulk Drug Substances (BPC-157 (free base) and BPC-157 acetate)",
+      "year": 2026,
+      "type": "Review",
+      "people": "All published human and animal studies, including 5 small human studies",
+      "finding": "FDA found too little clinical safety information to characterize BPC-157's safety and no adequate evidence that it treats ulcerative colitis. It found no human data on how the body absorbs it by mouth, injection under the skin, nose or skin.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "What does the human evidence actually show for my injury or gut condition?",
+    "Which proven treatments should I try first?",
+    "If I have already used it, which symptoms should make me stop and get checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FDA Briefing Document for BPC-157-Related Bulk Drug Substances (BPC-157 (free base) and BPC-157 acetate), Pharmacy Compounding Advisory Committee, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193343/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott (law firm)",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    },
+    {
+      "n": 4,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 5,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "Status is moving fast: HHS/FDA sent an 'Interim Access Policy for Compounding Using Certain Peptides' to the White House on October 14, 2026 [4]; it had not been issued as of October 16, and we could not check after that, so re-confirm before publishing. Seed record was partly out of date (it said 'under advisory review'; the committee has since voted, and FDA has not acted). Grade set to 'limited' rather than the seed's 'preclinical' because small human studies now exist (ulcerative colitis RCT of 53 reported only as an abstract; knee-injection study of 17, partly with thymosin beta-4; interstitial cystitis study of 12; IV safety study of 2), all judged insufficient by FDA. Exact titles of those human papers were not visible in the FDA document we opened, so they are not listed as studies. FDA's adverse-event summaries name specific pharmacies and a seller; omitted on purpose. The seed's key study (Sikiric review) was not re-verified because our search budget ran out. WADA source [5] backs the anti-doping line. Law-firm sources [3, 4] report the vote and current status; FDA had not posted minutes on its meeting page as of August 2026.",
+  "checked": "2026-10-28"
+}

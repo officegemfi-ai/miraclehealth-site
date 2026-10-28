@@ -1,0 +1,67 @@
+{
+  "id": "semax",
+  "name": "Semax",
+  "summary": "A lab-made peptide based on a fragment of the hormone ACTH, registered in Russia as nasal drops and taken for focus, memory and stroke recovery.",
+  "what_it_is": "Semax is a synthetic chain of seven amino acids modeled on a fragment of ACTH, a pituitary hormone. It is a registered drug in Russia, sold there as nasal drops, but it is not approved in the US. In rats it raises brain levels of growth factors such as BDNF, which support nerve cells. FDA reviewers note that its mechanisms are poorly understood.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Rat studies show effects on brain growth factors, but human data are a few small Russian studies, and FDA judged the evidence insufficient for stroke, migraine and nerve pain."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not FDA-approved; compounding decision pending",
+    "note": "FDA dropped semax from its Category 2 safety-risk list in April 2026, which did not make it legal to compound, and in July 2026 its advisers voted 8-5 to add it to the compounding list, against FDA staff advice. As of mid-October 2026 no rule had been started, and an interim access policy for certain peptides, sent for White House review on October 14, had not been issued.",
+    "sources": [1, 2, 3, 4, 5, 6]
+  },
+  "goals": { "weight": 0, "muscle": 0, "recovery": 0.25, "energy": 0, "sleep": 0, "cognition": 1, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Raised BDNF and its receptor in the hippocampus and improved avoidance learning in rats", "evidence": "preclinical", "sources": [7] },
+    { "claim": "Countered the drop in brain growth-factor genes after reduced blood flow to the brain in rats", "evidence": "preclinical", "sources": [8] },
+    { "claim": "Higher blood BDNF and faster functional gains in a Russian study of 110 adults in stroke rehabilitation", "evidence": "limited", "sources": [9] }
+  ],
+  "risks": [
+    { "risk": "Possible immune reactions to impurities or clumped peptide in unregulated products", "how_common": "theoretical", "sources": [4] },
+    { "risk": "Boosted amphetamine-triggered dopamine release in mice; abuse potential has not been studied", "how_common": "theoretical", "sources": [4] },
+    { "risk": "Anti-clotting effects in animal studies; bleeding risk in people is unclear", "how_common": "theoretical", "sources": [4] },
+    { "risk": "No standard toxicity studies, including reproductive safety, were found by FDA", "how_common": "unknown", "sources": [4] },
+    { "risk": "One FDA adverse event report of eye pain and burning after using nasal drops bought online", "how_common": "unknown", "sources": [4] }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no reproductive safety data)",
+    "Bleeding disorder or taking blood thinners",
+    "Taking stimulant medicines, or a history of stimulant misuse"
+  ],
+  "interactions": [
+    "Amphetamine and other stimulants (semax increased amphetamine-induced dopamine release in mice; not studied in people)",
+    "Blood thinners and antiplatelet drugs (anti-clotting effects seen in animals; not studied in people)"
+  ],
+  "labs": {
+    "before": [ "General health check with a clinician, including a review of bleeding risk" ],
+    "during": [],
+    "why": "No evidence-based lab monitoring exists for semax; any testing is a general health check."
+  },
+  "studies": [
+    { "title": "The efficacy of semax in the tretament of patients at different stages of ischemic stroke", "year": 2018, "type": "Trial", "people": "110 adults in rehabilitation after ischemic stroke (Russia)", "finding": "People given semax had higher blood BDNF and faster functional improvement than those who were not. The abstract does not say whether patients were randomized or blinded.", "source": 9 },
+    { "title": "Semax – Related Bulk Drug Substances (Semax (free base) and Semax acetate)", "year": 2026, "type": "Review", "people": "Published studies in about 33 to 47 healthy adults, 69 adults with medical conditions and 451 children", "finding": "FDA found insufficient evidence of effectiveness for cerebral ischemia, migraine or trigeminal neuralgia, little safety data, and possible immunogenicity and abuse-potential concerns.", "source": 4 },
+    { "title": "Semax, an analog of ACTH(4–10) with cognitive effects, regulates BDNF and trkB expression in the rat hippocampus", "year": 2006, "type": "Animal", "people": "Rats", "finding": "A single treatment raised hippocampal BDNF protein about 1.4-fold and trkB activation about 1.6-fold, with better performance on a learning task.", "source": 7 },
+    { "title": "Effect of semax and its C-terminal peptide PGP on expression of neurotrophins and their receptors in rat brain during incomplete global ischemia", "year": 2011, "type": "Animal", "people": "Rats", "finding": "Semax counteracted the ischemia-induced fall in neurotrophin and receptor gene expression, most strongly in the hippocampus.", "source": 8 }
+  ],
+  "ask_your_clinician": [
+    "Is there an approved treatment with stronger evidence for the problem I want semax to help with?",
+    "Could semax interact with any stimulant or blood-thinning medicine I take?",
+    "How could I know what is really in a product that FDA does not regulate?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "FDA to Remove 12 Popular Peptides from the Category 2 “Do Not Compound” List", "publisher": "Frier Levitt", "year": 2026, "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/" },
+    { "n": 3, "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting", "publisher": "McDermott Will & Schulte", "year": 2026, "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/" },
+    { "n": 4, "title": "Semax – Related Bulk Drug Substances (Semax (free base) and Semax acetate)", "publisher": "FDA Briefing Document, Pharmacy Compounding Advisory Committee", "year": 2026, "url": "https://www.fda.gov/media/193348/download" },
+    { "n": 5, "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions", "publisher": "Holland & Knight", "year": 2026, "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know" },
+    { "n": 6, "title": "Interim Access Policy for Compounding Using Certain Peptides", "publisher": "Office of Information and Regulatory Affairs (reginfo.gov)", "year": 2026, "url": "https://www.reginfo.gov/public/do/eoDetails?rrid=1568964" },
+    { "n": 7, "title": "Semax, an analog of ACTH(4–10) with cognitive effects, regulates BDNF and trkB expression in the rat hippocampus", "publisher": "Brain Research (ScienceDirect)", "year": 2006, "url": "https://www.sciencedirect.com/science/article/abs/pii/S0006899306022955" },
+    { "n": 8, "title": "Effect of semax and its C-terminal peptide PGP on expression of neurotrophins and their receptors in rat brain during incomplete global ischemia", "publisher": "Molecular Biology (Springer)", "year": 2011, "url": "https://link.springer.com/article/10.1134/S0026893311050128" },
+    { "n": 9, "title": "The efficacy of semax in the tretament of patients at different stages of ischemic stroke", "publisher": "Zhurnal Nevrologii i Psikhiatrii imeni S.S. Korsakova (MEDLINE record via BVS)", "year": 2018, "url": "https://pesquisa.bvsalud.org/ses/resource/pt/mdl-29798983" }
+  ],
+  "notes_for_editor": "Status is in flux: the July 2026 advisory vote is non-binding, and an HHS/FDA 'Interim Access Policy for Compounding Using Certain Peptides' has been pending White House (OIRA) review since October 14, 2026 without a published list of covered peptides, so re-check before publishing. Other batches used both not_approved (BPC-157) and unclear (epitalon, MOTS-c) for peptides in this same position; worth harmonizing. Semax is a registered drug in Russia. FDA's review cited only a meeting abstract for cerebral ischemia, while the 2018 Russian study of 110 stroke patients exists; only its abstract was available and it does not say whether allocation was randomized. The title typo ('tretament') is as indexed in MEDLINE; PubMed was unreachable, so the record was opened via the BVS mirror (PMID 29798983). The seed's 2005 Gusev stroke paper could not be verified and was dropped.",
+  "checked": "2026-10-28"
+}

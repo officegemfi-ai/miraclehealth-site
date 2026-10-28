@@ -1,0 +1,156 @@
+{
+  "id": "motsc",
+  "name": "MOTS-c",
+  "summary": "A small peptide encoded in mitochondrial DNA, taken in hopes of improving metabolism, exercise capacity and aging; its effects have only been tested in rodents and cells.",
+  "what_it_is": "MOTS-c is a 16-amino-acid peptide encoded by a short stretch of mitochondrial DNA (inside the 12S rRNA gene), and it circulates naturally in the blood of people and rodents. In mice and rats, giving extra MOTS-c changed how the body handles glucose and fat. It is not an approved drug, and FDA found no studies in which it was given to people.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "All evidence of benefit comes from mouse, rat and cell studies; FDA found no clinical studies of MOTS-c given to people and no toxicity studies."
+  },
+  "status_us": {
+    "key": "unclear",
+    "label": "Not approved; compounding status under FDA review",
+    "note": "Status unclear: FDA dropped MOTS-c from its Category 2 safety-risk list in April 2026 after the nominator withdrew it, then proposed not adding it to the list of substances pharmacies may compound. Its advisory committee voted 7 to 5 for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
+    "sources": [1, 2, 3, 4, 5]
+  },
+  "goals": {
+    "weight": 0.75,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0.5,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Less weight gain and lower insulin levels in mice fed a high-fat diet",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "Lower blood glucose in obese mice, and protection from obesity and insulin resistance in female mice after ovary removal",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "Better physical capacity, and longer lifespan, in aged mice",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "Less bone loss in mice and less blood-vessel calcification in rats",
+      "evidence": "preclinical",
+      "sources": [3]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Human safety is unknown: FDA found no clinical studies and no animal toxicity studies to show what it does to people",
+      "how_common": "unknown",
+      "sources": [3]
+    },
+    {
+      "risk": "Immune reactions when injected, from the peptide itself or from impurities and clumped (aggregated) peptide",
+      "how_common": "theoretical",
+      "sources": [3]
+    },
+    {
+      "risk": "Effects on other organs are hard to predict, according to FDA",
+      "how_common": "theoretical",
+      "sources": [3]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no safety data)",
+    "Under 18 (no safety data)",
+    "Diabetes or taking glucose-lowering medicine, unless a clinician is involved (it lowered blood sugar in mice)"
+  ],
+  "interactions": [
+    "Diabetes medicines: theoretical only, because MOTS-c lowered blood glucose in obese mice; not studied in people"
+  ],
+  "labs": {
+    "before": [
+      "General health check, including fasting glucose or HbA1c"
+    ],
+    "during": [
+      "General health check"
+    ],
+    "why": "No evidence-based monitoring exists for MOTS-c; blood sugar is the most relevant marker only because animal studies show effects on glucose."
+  },
+  "studies": [
+    {
+      "title": "FDA Briefing Document for MOTS-c-Related Bulk Drug Substances (Pharmacy Compounding Advisory Committee, July 23-24, 2026)",
+      "year": 2026,
+      "type": "Review",
+      "people": "FDA review of rodent and cell studies",
+      "finding": "FDA found no studies of MOTS-c given to people and no toxicity studies, raised immunogenicity concerns, and proposed not adding it to the compounding list.",
+      "source": 3
+    },
+    {
+      "title": "The Mitochondrial-Derived Peptide MOTS-c Promotes Metabolic Homeostasis and Reduces Obesity and Insulin Resistance",
+      "year": 2015,
+      "type": "Animal",
+      "people": "Mice on a high-fat diet",
+      "finding": "MOTS-c reduced diet-induced weight gain and high insulin levels in mice.",
+      "source": 3
+    },
+    {
+      "title": "MOTS-c Is an Exercise-Induced Mitochondrial-Encoded Regulator of Age-Dependent Physical Decline and Muscle Homeostasis",
+      "year": 2021,
+      "type": "Animal",
+      "people": "Aged mice",
+      "finding": "Treatment improved physical capacity in older mice, and FDA's summary notes that lifespan also increased.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Since MOTS-c has never been tested in people, what would make it worth the risk for me?",
+    "Would exercise or an approved medicine do more for my blood sugar or weight goals?",
+    "If I have diabetes, how could this affect my blood sugar and medicines?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks (content current as of 04/22/2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 3,
+      "title": "FDA Briefing Document for MOTS-c-Related Bulk Drug Substances, Pharmacy Compounding Advisory Committee meeting, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193347/download"
+    },
+    {
+      "n": 4,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott (law firm analysis, July 27, 2026)",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    },
+    {
+      "n": 5,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm alert, October 16, 2026)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    }
+  ],
+  "notes_for_editor": "Seed record was partly right: MOTS-c was removed from Category 2 in April 2026 (nominator withdrawal) and went to the July 2026 advisory committee, which voted 7-5 in favor (count from a law-firm summary; FDA has not posted minutes). FDA staff had recommended against listing it. An HHS/FDA 'Interim Access Policy' for compounding certain peptides went to White House review on Oct 14, 2026 and was still unpublished in late October; recheck before publishing. The seed's claims that MOTS-c rises with exercise in humans and that an analog (CB4211) finished phase 1 could not be verified: FDA's document mentions neither, and the shared web-search budget ran out before the papers could be opened, so both are left out. Study findings are taken from FDA's briefing document, not the original papers. FAERS searches through March 2025 found no reports, but FDA notes 503A compounders generally do not report adverse events, so this is not reassurance.",
+  "checked": "2026-10-28"
+}

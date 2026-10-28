@@ -1,0 +1,148 @@
+{
+  "id": "epithalon",
+  "name": "Epitalon",
+  "summary": "A lab-made four-amino-acid peptide from Russian aging research, taken in hopes of slowing aging and restoring melatonin rhythms; human evidence is very thin.",
+  "what_it_is": "Epitalon (also spelled epithalon; sequence Ala-Glu-Asp-Gly, or AEDG) is a synthetic tetrapeptide developed by Vladimir Khavinson's group in St. Petersburg, Russia. It was modeled on epithalamin, an extract of cattle pineal glands. In lab studies it switched on telomerase, the enzyme that rebuilds chromosome tips, and in older monkeys it raised evening melatonin. FDA found no approved epitalon product in Canada, Australia, the UK or the EU.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "Its anti-aging case rests on cell and animal studies, mostly from the Russian group that developed it; FDA found only three human studies, none of which assessed safety."
+  },
+  "status_us": {
+    "key": "unclear",
+    "label": "Not approved; compounding status under FDA review",
+    "note": "Status unclear: FDA dropped epitalon from its Category 2 safety-risk list in April 2026 after the nominator withdrew it, then recommended against adding it to the list of substances pharmacies may compound. Its advisory committee voted 7 to 4 for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
+    "sources": [1, 2, 3, 4, 5]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.5,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Restored melatonin output (measured in urine) to age-typical levels in a small 20-day placebo-controlled study of 40 women aged 40 to 50 with low melatonin; sleep was not measured",
+      "evidence": "limited",
+      "sources": [3]
+    },
+    {
+      "claim": "Raised evening melatonin more than fourfold and lowered evening cortisol in older rhesus monkeys",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "Increased telomerase activity and lengthened telomeres in human fetal lung cells grown in a dish",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "Fewer spontaneous tumors and slower signs of aging in several studies of female mice",
+      "evidence": "preclinical",
+      "sources": [3]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Human safety is unstudied: FDA found no clinical studies assessing its safety and no clinical data supporting safe use",
+      "how_common": "unknown",
+      "sources": [3]
+    },
+    {
+      "risk": "Possible cancer risk: because it activates telomerase, FDA says it has the potential to be carcinogenic with long-term exposure, and the animal studies were too short and limited to rule this out",
+      "how_common": "theoretical",
+      "sources": [3]
+    },
+    {
+      "risk": "Immune reactions when injected, from the peptide itself or from impurities and clumped (aggregated) peptide; there is no official quality standard, as it is not in the European or Japanese Pharmacopoeia",
+      "how_common": "theoretical",
+      "sources": [3]
+    }
+  ],
+  "avoid_if": [
+    "Current or past cancer (because of the telomerase concern)",
+    "Pregnant or breastfeeding (no safety data)",
+    "Under 18 (no safety data)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check with a clinician, including up-to-date age-appropriate cancer screening"
+    ],
+    "during": [
+      "General health check"
+    ],
+    "why": "No evidence-based monitoring exists for epitalon because it has not been studied for safety in people."
+  },
+  "studies": [
+    {
+      "title": "FDA Briefing Document for Epitalon-Related Bulk Drug Substances (Pharmacy Compounding Advisory Committee, July 23-24, 2026)",
+      "year": 2026,
+      "type": "Review",
+      "people": "FDA review of the human, animal and cell studies",
+      "finding": "FDA found three small human studies, no clinical safety data and no evidence of effectiveness for insomnia, raised immunogenicity and cancer concerns, and proposed not adding epitalon to the compounding list.",
+      "source": 3
+    },
+    {
+      "title": "Inhibitory Effect of the Peptide Epitalon on the Development of Spontaneous Mammary Tumors in HER-2/neu Transgenic Mice",
+      "year": 2002,
+      "type": "Animal",
+      "people": "HER-2/neu transgenic mice",
+      "finding": "Reported that epitalon held back spontaneous breast tumors in mice bred to develop them. FDA notes that studies like this do not show whether epitalon itself could cause cancer.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Given that human safety hasn't been studied, what would make epitalon worth the risk for me?",
+    "Does my personal or family cancer history change the picture, given the telomerase concern?",
+    "Are there proven ways to improve my sleep and melatonin rhythm that we should try first?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks (content current as of 04/22/2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 3,
+      "title": "FDA Briefing Document for Epitalon-Related Bulk Drug Substances, Pharmacy Compounding Advisory Committee meeting, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193345/download"
+    },
+    {
+      "n": 4,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott (law firm analysis, July 27, 2026)",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    },
+    {
+      "n": 5,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm alert, October 16, 2026)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    }
+  ],
+  "notes_for_editor": "Seed record was out of date: it said FDA Category 2 and graded evidence 'limited'. Epitalon was removed from Category 2 in April 2026 (nominator withdrawal), FDA staff recommended against the 503A bulks list (May 2026 evaluation), and the advisory committee voted 7-4 in favor on July 24, 2026 (vote count from a law-firm summary; FDA has not posted minutes). An HHS/FDA 'Interim Access Policy' for compounding certain peptides went to White House review on Oct 14, 2026 and was still unpublished as of late October, so the status could change soon; recheck before publishing. Study details (including the Ivko 2021 melatonin trial and the telomerase and mouse studies) are taken from FDA's briefing document rather than the original papers, because the shared web-search budget ran out before the papers could be located; the FDA document itself flags that one human study reported 75 subjects in one place and 20 in another. The seed's note that a related pineal extract is used in Russia was not verified and is omitted.",
+  "checked": "2026-10-28"
+}

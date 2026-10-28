@@ -1,0 +1,181 @@
+{
+  "id": "tb500",
+  "name": "TB-500",
+  "summary": "A synthetic 7-amino-acid fragment of thymosin beta-4, promoted for injury and wound recovery; FDA found no studies of it in people.",
+  "what_it_is": "TB-500 is a synthetic seven-amino-acid peptide (acetylated LKKTETQ) that copies amino acids 17 to 23 of thymosin beta-4, a protein found in most cells and in blood, saliva, tears and wound fluid. That stretch of thymosin beta-4 has been linked to wound repair and new blood vessel growth in lab and animal work. FDA stresses that TB-500 and thymosin beta-4 are not the same substance, and a 2024 lab study found TB-500 itself had no wound-healing effect.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "There are no human studies; the evidence is animal and lab work, mostly on the full thymosin beta-4 protein or related peptides, and a lab test of TB-500 itself found no wound-healing effect."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; compounding not yet allowed",
+    "note": "FDA took TB-500 off its Category 2 safety-risk list in April 2026; in July 2026 its advisory committee voted 8-6 (1 abstention) to recommend allowing compounding for wound healing, although FDA staff had proposed not adding it. As of mid-October 2026 FDA had not added it to the compounding list or issued an interim policy, so compounding was still not permitted.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 1,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0.25,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Faster skin-wound closure and more collagen in aged mice treated with thymosin beta-4 or a non-acetylated peptide with the same LKKTETQ sequence",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "The LKKTETQ sequence has been reported to stimulate new blood vessel growth in lab studies",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "One TB-500 breakdown product caused a small but significant wound closure in a lab-dish test, although TB-500 itself did not",
+      "evidence": "preclinical",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human safety data: FDA found no clinical studies, case reports or other human exposure data by any route",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Immune reactions to the injected peptide, possibly worsened by clumping and impurities",
+      "how_common": "theoretical",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "No animal toxicology or cancer studies to judge longer-term safety",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "A report to FDA of skin and gum darkening, which returned on re-use, after injections of a product blending TB-500 with BPC-157; cause not established",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied in people)",
+    "Current or past cancer, unless a clinician advises otherwise (linked to blood vessel growth in lab work; no cancer studies)",
+    "Athletes subject to anti-doping rules (TB-500 is banned by WADA)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+    ],
+    "during": [],
+    "why": "TB-500 has not been studied in people, so no evidence-based monitoring exists."
+  },
+  "studies": [
+    {
+      "title": "FDA Briefing Document for TB-500-Related Bulk Drug Substances (TB-500 (free base) and TB-500 acetate)",
+      "year": 2026,
+      "type": "Review",
+      "people": "All published studies; no human studies found",
+      "finding": "FDA found no human studies, case reports or toxicology studies of TB-500 and proposed not adding it to the compounding list. It noted no TB-500 products are authorized in the EU, Canada, Australia or the UK.",
+      "source": 1
+    },
+    {
+      "title": "Simultaneous Quantification of TB-500 and Its Metabolites in In-Vitro Experiments and Rats",
+      "year": 2024,
+      "type": "Cell",
+      "people": "Fibroblasts (connective-tissue cells) in a lab-dish scratch test, plus rats",
+      "finding": "TB-500 showed no wound-healing effect in the scratch test; one of its breakdown products caused a small closure. Findings as summarized by FDA.",
+      "source": 1
+    },
+    {
+      "title": "Thymosin β4 and a synthetic peptide containing its actin-binding domain promote dermal wound repair in db/db diabetic mice and in aged mice",
+      "year": 2003,
+      "type": "Animal",
+      "people": "Diabetic and aged mice",
+      "finding": "Thymosin beta-4 and a non-acetylated LKKTETQ peptide applied to wounds increased wound closure and collagen in aged mice. Findings as summarized by FDA, which urged caution in interpreting them.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any human evidence for TB-500, as opposed to the full thymosin beta-4 protein?",
+    "Which proven treatments fit my injury?",
+    "If I have used a blend with BPC-157, which side effects should I watch for?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FDA Briefing Document for TB-500-Related Bulk Drug Substances (TB-500 (free base) and TB-500 acetate), Pharmacy Compounding Advisory Committee, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193349/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott (law firm)",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    },
+    {
+      "n": 4,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 5,
+      "title": "FDA Briefing Document for BPC-157-Related Bulk Drug Substances (BPC-157 (free base) and BPC-157 acetate), Pharmacy Compounding Advisory Committee, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193343/download"
+    },
+    {
+      "n": 6,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "The seed record conflated TB-500 with full-length thymosin beta-4 (its 'limited' grade and trial list came from the full protein's eye-drop and gel trials). FDA's 2026 review says they are not the same substance and found no human data for TB-500, so the grade is now 'preclinical'; full-protein trials belong in the separate tb4 entry. The two animal and lab studies are cited through FDA's summary, not opened directly (our search budget ran out). Status is moving: an HHS/FDA interim access policy for some peptides went to the White House on October 14, 2026 and had not been issued as of October 16 [4]; re-check before publishing. WADA source [6] backs the anti-doping line. FDA's adverse-event summary names the seller of the blended product; omitted on purpose.",
+  "checked": "2026-10-28"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "cjc1295",
+  "name": "CJC-1295 with DAC",
+  "summary": "A long-acting, lab-made version of the hormone that triggers growth hormone release, taken to raise growth hormone and IGF-1; human data come from short studies in healthy adults.",
+  "what_it_is": "CJC-1295 with DAC is a synthetic, 29-amino-acid analog of growth hormone-releasing hormone (GHRH), the brain signal that tells the pituitary gland to release growth hormone. It carries an extra chemical unit at one end (MPA-lysine, the 'DAC'), part of a design meant to latch onto albumin, a blood protein, so its half-life stretches to about 6 to 8 days instead of minutes. It reached early human studies but is not an approved medicine.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Two small 2006 studies in healthy adults showed higher growth hormone and IGF-1 for days after injection; FDA found no data on effectiveness for any health outcome."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; FDA advisers voted against compounding",
+    "note": "In December 2024 FDA's compounding advisory committee voted 13-0 against adding CJC-1295 DAC to the list of substances pharmacies may compound. FDA has moved it off its Category 2 'significant safety risks' list only because the nomination was withdrawn, and it is not in Category 1, so there is no clear legal compounding route; WADA bans it in sport.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": { "weight": 0.25, "muscle": 0.5, "recovery": 0, "energy": 0, "sleep": 0.25, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.25, "gut": 0, "immune": 0, "hormonal": 1 },
+  "benefits": [
+    { "claim": "Raised growth hormone and IGF-1 above baseline for days after a single injection in healthy adults", "evidence": "limited", "sources": [5, 6] },
+    { "claim": "Raised baseline growth hormone between pulses (not peak levels) and lifted IGF-1 about 40% a week after one dose in healthy adults", "evidence": "limited", "sources": [6] }
+  ],
+  "risks": [
+    { "risk": "Side effects in 94% of volunteers after one injection in the first human study, mostly injection-site reactions (about 70%)", "how_common": "common", "sources": [5] },
+    { "risk": "Flushing and body-wide vasodilatory reactions, headache, nausea, dizziness and low blood pressure after repeat injections; increased heart rate in a second study", "how_common": "unknown", "sources": [2, 5] },
+    { "risk": "One death from a heart attack was reported in a halted, unpublished HIV trial; the treating physician blamed existing heart disease, and causality was not established", "how_common": "rare", "sources": [5] },
+    { "risk": "Animal studies found lower hemoglobin, higher cholesterol, injection-site tissue damage and DNA damage in pituitary cells; no cancer studies exist", "how_common": "unknown", "sources": [5] },
+    { "risk": "Possible immune reactions from impurities; FDA judged all CJC-1295 forms 'not well characterized' for compounding", "how_common": "unknown", "sources": [2, 5] },
+    { "risk": "Long-term safety unknown; FDA says the known risks of raised growth hormone and IGF-1 should be assumed, such as the fluid retention and higher blood sugar on the label of tesamorelin, which works the same way", "how_common": "theoretical", "sources": [5, 7] }
+  ],
+  "avoid_if": [
+    "Active cancer or a history of pituitary tumors",
+    "Heart disease or heart rhythm problems",
+    "Pregnant or breastfeeding (no full reproductive studies)",
+    "Diabetes or prediabetes (clinician first)",
+    "Competitive athletes (prohibited by WADA at all times)"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [ "General health check with a clinician", "IGF-1", "Fasting glucose or HbA1c" ],
+    "during": [ "IGF-1 (one dose group in a study rose above the normal range)", "Fasting glucose or HbA1c" ],
+    "why": "No evidence-based monitoring exists for CJC-1295; FDA says growth hormone and IGF-1 risks should be assumed, and the label of tesamorelin (same mechanism) monitors IGF-1 and blood sugar."
+  },
+  "studies": [
+    { "title": "Pharmacy Compounding Advisory Committee meeting transcript, December 4, 2024 (morning session: CJC-1295)", "year": 2024, "type": "Review", "people": "FDA review of two small studies in healthy adults (one with 12 men) plus rat and dog studies", "finding": "Growth hormone and IGF-1 rose for days after injection and side effects were frequent, mostly injection-site and vasodilatory reactions. FDA found no information on effectiveness for growth hormone deficiency.", "source": 5 },
+    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research, including CJC-1295 studies in healthy adults", "finding": "Reports a half-life of 6 to 8 days, higher baseline growth hormone and about 40% higher IGF-1 a week after one dose; calls the effect moderate and notes long-acting GHRH analogs have reached the black market.", "source": 6 }
+  ],
+  "ask_your_clinician": [
+    "Is there a lawful, quality-checked source for this, or is an approved option better for my goal?",
+    "Given my heart health, blood pressure and blood sugar, is a long-acting growth hormone booster safe for me?",
+    "If I compete in a tested sport, would this cause an anti-doping violation?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, December 4, 2024", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/185642/download" },
+    { "n": 2, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 3, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
+    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
+    { "n": 5, "title": "Pharmacy Compounding Advisory Committee meeting transcript, December 4, 2024 (morning session: CJC-1295)", "publisher": "U.S. Food and Drug Administration", "year": 2024, "url": "https://www.fda.gov/media/185641/download" },
+    { "n": 6, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" },
+    { "n": 7, "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)", "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)", "year": 2025, "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf" },
+    { "n": 8, "title": "FDA's Pep(tide) Rally! What Compounders and Industry Need to Know (Post 1 of 2)", "publisher": "FDA Law Blog (Hyman, Phelps & McNamara)", "year": 2026, "url": "https://thefdalawblog.com/2026/04/fdas-peptide-rally-what-compounders-and-industry-need-to-know-post-1-of-2" }
+  ],
+  "notes_for_editor": "The primary papers (Teichman 2006; Ionescu and Frohman 2006, J Clin Endocrinol Metab) were not opened because the web-search budget ran out; their findings are taken from FDA's December 2024 PCAC presentation (source 5) and the 2012 Endocrine Reviews summary. The death report is described by FDA as anecdotal (found by internet search, unpublished trial). The transcript title is descriptive (FDA posts it as a download). Seed correction: CJC-1295 is not 'awaiting formal committee review' - the committee already voted against all five CJC-1295 forms in December 2024, and it is not on the 2026-27 PCAC agendas. The FDA Law Blog (source 8) mentions a lawsuit over CJC-1295, ipamorelin, AOD-9604 and thymosin alpha-1 with no outcome reported, so status could change; 'no clear legal compounding route' is an inference from FDA's 503A rules.",
+  "checked": "2026-10-28"
+}

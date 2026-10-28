@@ -1,7 +1,8 @@
 /* Miracle Health (miraclehealth.us)
    AlgoRx's look: deep green-black and near-white paper, one lime accent, photography,
    frosted glass cards, Inter headlines, Plus Jakarta Sans text and IBM Plex Mono labels.
-   The photo at the top is shown exactly as supplied. No scripts. */
+   The photo at the top is shown exactly as supplied. No scripts on these pages; the library
+   (library/) adds its own styles and a small script for search and live numbers. */
 
 @font-face{font-family:'Inter';src:url('fonts/inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta.woff2') format('woff2');font-weight:200 800;font-display:swap}
@@ -164,6 +165,15 @@ ul,ol{list-style:none;margin:0;padding:0}
 .rules h3{margin-top:26px;font-size:21px;line-height:1.2;letter-spacing:-.02em}
 .rules h3+p{font-size:15px;color:var(--text-2)}
 
+/* The Library: white cards on paper, like the rules */
+.lib-band{padding-bottom:40px;border-top:1px solid var(--line)}
+.lib-points{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:60px}
+.lib-points li{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:14px;border:1px solid var(--line);background:var(--white)}
+.lib-points .mono{color:var(--muted)}
+.lib-points h3{margin-top:22px;font-size:21px;line-height:1.2;letter-spacing:-.02em}
+.lib-points h3+p{font-size:15px;color:var(--text-2)}
+.lib-band .btn{margin-top:32px}
+
 /* Join: the darkest band, a lime glow from the top, frosted cards */
 .join{position:relative;isolation:isolate;overflow:hidden;background:var(--darker);color:var(--on-ink);text-align:center;--focus:var(--lime)}
 .join::before{content:'';position:absolute;inset:0;z-index:-1;background:
@@ -223,7 +233,7 @@ ul,ol{list-style:none;margin:0;padding:0}
   .hero-card{display:none}
 }
 @media (max-width:1100px){
-  .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rules,.lib-points{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 /* Phones and tall screens: the whole photo, then the words on the dark below it */
 @media (max-width:900px),(max-aspect-ratio:5/4){
@@ -272,7 +282,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 @media (max-width:600px){
   .lede{font-size:16.5px}
   .cta .btn{flex:1 1 auto}
-  .rules{grid-template-columns:1fr}
+  .rules,.lib-points{grid-template-columns:1fr}
   .rules li{min-height:0}
   .rules h3{margin-top:10px}
   .strip-in{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;padding-top:20px;padding-bottom:20px;font-size:10.5px}

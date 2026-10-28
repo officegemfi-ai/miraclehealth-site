@@ -1,0 +1,58 @@
+{
+  "id": "snap8",
+  "name": "SNAP-8 (acetyl octapeptide-3)",
+  "summary": "A lab-made eight-amino-acid peptide used in anti-wrinkle skin products, marketed as a topical alternative to Botox for expression lines.",
+  "what_it_is": "SNAP-8 is a synthetic chain of eight amino acids (acetyl octapeptide-3) added to creams and serums. It copies the end of SNAP-25, a protein that nerve endings use to release signaling chemicals, and in lab tests it partly blocked the protein complex involved in that release. It is a slightly longer version of argireline (acetyl hexapeptide-3). Peptides in general cross the skin's outer layer poorly, which limits how much of a topical peptide gets through.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Support comes from lab tests, manufacturer-reported wrinkle data and small studies of multi-ingredient products; no independent controlled trial of SNAP-8 alone was found."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Cosmetic ingredient; not an approved drug",
+    "note": "It is used in cosmetics, which do not need FDA approval before sale; FDA treats products intended to change skin structure, such as removing wrinkles, as drugs or medical devices, and drugs need approval. It is not an approved drug and does not appear on FDA's list of substances nominated for pharmacy compounding (updated May 14, 2026).",
+    "sources": [2, 3, 6]
+  },
+  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 1, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Shallower expression wrinkles in manufacturer testing (up to 62%, about 35% on average); these figures are not from peer-reviewed trials", "evidence": "limited", "sources": [1] },
+    { "claim": "Partly blocks the nerve-signal protein complex (SNARE) in lab tests, the basis for its Botox-like claim", "evidence": "preclinical", "sources": [1] },
+    { "claim": "Better hydration, dermal thickness and skin density in a small study of 20 women using microneedle patches that combined it with other active ingredients", "evidence": "limited", "sources": [4] },
+    { "claim": "Its shorter relative, argireline, reduced eye-area wrinkles compared with placebo in a 4-week trial of 60 Chinese adults", "evidence": "limited", "sources": [5] }
+  ],
+  "risks": [
+    { "risk": "Little independent safety testing; most published data on it come from the manufacturer", "how_common": "unknown", "sources": [1] },
+    { "risk": "Skin products that carry it are not reviewed by FDA for safety or effectiveness before sale", "how_common": "unknown", "sources": [2] }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding, since no safety data exist",
+    "Considering injecting it: it has only been studied in skin products"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed for a topical cosmetic ingredient, and none have been studied for it."
+  },
+  "studies": [
+    { "title": "The anti-wrinkle efficacy of argireline, a synthetic hexapeptide, in Chinese subjects: a randomized, placebo-controlled study", "year": 2013, "type": "RCT", "people": "60 Chinese adults with eye-area wrinkles", "finding": "The related peptide argireline, used for 4 weeks, reduced wrinkle roughness compared with placebo. SNAP-8 itself was not tested.", "source": 5 },
+    { "title": "3D Printed Hollow Microneedles for Treating Skin Wrinkles Using Different Anti-Wrinkle Agents: A Possible Futuristic Approach", "year": 2023, "type": "Review", "people": "Review; describes a study in 20 women over 41", "finding": "Describes a study of microneedle patches combining acetyl octapeptide-3 with other actives that reported gains in hydration, dermal thickness and skin density. The effect of SNAP-8 alone cannot be separated.", "source": 4 },
+    { "title": "Cosmeceutical Peptides in the Framework of Sustainable Wellness Economy", "year": 2020, "type": "Review", "people": "Lab studies and manufacturer data", "finding": "SNAP-8 mimics part of SNAP-25 and partly blocked the nerve-signal release process in lab tests (up to 43% inhibition). Its wrinkle-reduction figures come from the manufacturer.", "source": 1 }
+  ],
+  "ask_your_clinician": [
+    "What treatments with stronger evidence exist for my expression lines?",
+    "Could anything in this product irritate my skin or clash with the skin treatments I already use?",
+    "Is it reasonable to use during pregnancy or breastfeeding?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Cosmeceutical Peptides in the Framework of Sustainable Wellness Economy", "publisher": "Frontiers in Chemistry", "year": 2020, "url": "https://frontiersin.org/journals/chemistry/articles/10.3389/fchem.2020.572923/full" },
+    { "n": 2, "title": "Wrinkle Treatments and Other Anti-aging Products", "publisher": "U.S. Food and Drug Administration", "year": 2022, "url": "https://www.fda.gov/cosmetics/products/wrinkle-treatments-and-other-anti-aging-products" },
+    { "n": 3, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
+    { "n": 4, "title": "3D Printed Hollow Microneedles for Treating Skin Wrinkles Using Different Anti-Wrinkle Agents: A Possible Futuristic Approach", "publisher": "Cosmetics (MDPI)", "year": 2023, "url": "https://mdpi.com/2079-9284/10/2/41" },
+    { "n": 5, "title": "The anti-wrinkle efficacy of argireline, a synthetic hexapeptide, in Chinese subjects: a randomized, placebo-controlled study", "publisher": "American Journal of Clinical Dermatology (PubMed)", "year": 2013, "url": "https://pubmed.ncbi.nlm.nih.gov/23417317/" },
+    { "n": 6, "title": "Acetyl Octapeptide-3", "publisher": "COSMILE Europe (Cosmetics Europe)", "year": 2026, "url": "https://cosmileeurope.eu/inci/detail/18108/acetyl-octapeptide-3/" },
+    { "n": 7, "title": "Design and Evaluation of Complex Polypeptide-Loaded Dissolving Microneedles for Improving Facial Wrinkles in Different Areas", "publisher": "Polymers (MDPI)", "year": 2022, "url": "https://pdfs.semanticscholar.org/9bc3/469551ad2589fb695a1088ce7a82fb600f98.pdf" }
+  ],
+  "notes_for_editor": "No independent, peer-reviewed controlled trial of SNAP-8 alone was found. The wrinkle percentages are manufacturer figures reported in a review (source 1). The 20-woman microneedle study (J Cosmet Dermatol, doi 10.1111/jocd.13009) tested a multi-ingredient patch; the original could not be opened, so details come from a 2023 review (source 4). 'not_approved' is the closest status key: it is legal as a cosmetic ingredient but is not an approved drug and is not nominated for compounding. Source 7 supports the general point that peptides penetrate skin poorly.",
+  "checked": "2026-10-28"
+}

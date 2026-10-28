@@ -1,0 +1,57 @@
+{
+  "id": "igf1des",
+  "name": "IGF-1 DES",
+  "summary": "A shortened, more potent form of IGF-1 missing its first three amino acids, sold as a research chemical for muscle growth; evidence is limited to lab studies.",
+  "what_it_is": "IGF-1 DES, or des(1-3)IGF-1, is insulin-like growth factor 1 with its first three amino acids removed. That change makes it bind poorly to the IGF-binding proteins that normally hold IGF-1 in check, so it acts more strongly in lab tests. IGF-1 carries out some of growth hormone's effects, including on muscle. Natural IGF-1 (mecasermin) is sold as a medicine for rare conditions, but this truncated form is not approved for human use.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "Its extra potency comes from lab studies; no human studies were identified, and a review notes little evidence that IGF-1 improves performance in healthy people."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; not on FDA's compounding lists",
+    "note": "IGF-1 DES is not an approved drug and does not appear on FDA's 503A or 503B lists of nominated bulk substances, so pharmacies have no recognized basis to compound it. WADA bans IGF-1 and its analogues in sport at all times.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": { "weight": 0, "muscle": 1, "recovery": 0.25, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Stronger IGF-1 activity than natural IGF-1 in lab studies, because it binds poorly to IGF-binding proteins", "evidence": "preclinical", "sources": [5] },
+    { "claim": "Taken by athletes for muscle growth, but a review found little information on whether IGF-1 improves performance in healthy people", "evidence": "anecdotal", "sources": [5] }
+  ],
+  "risks": [
+    { "risk": "Effects in people are unknown: no human studies of this form were identified, and data on IGF-1 in healthy people are scarce", "how_common": "unknown", "sources": [5] },
+    { "risk": "Escapes the binding proteins that normally buffer IGF-1, which makes it more potent; the consequences in people are untested", "how_common": "theoretical", "sources": [5] },
+    { "risk": "Lab-only IGF-1 products have reached athletes and black-market supplements have contained IGF-1 analogs, so identity and purity are uncertain", "how_common": "unknown", "sources": [5] },
+    { "risk": "Approved drugs that raise IGF-1, such as tesamorelin, carry label warnings about tumor growth in people with cancer", "how_common": "theoretical", "sources": [6] }
+  ],
+  "avoid_if": [
+    "Current or past cancer",
+    "Diabetes or insulin use (clinician first)",
+    "Pregnant or breastfeeding (no safety data)",
+    "Competitive athletes (prohibited by WADA at all times)"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [ "General health check with a clinician" ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for this research chemical, because it has not been studied in people."
+  },
+  "studies": [
+    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research", "finding": "Describes des(1-3)IGF-I as a more potent IGF-1 analog with low affinity for IGF-binding proteins because its first three amino acids are deleted, and notes IGF-1 analogs have been found in black-market supplements.", "source": 5 }
+  ],
+  "ask_your_clinician": [
+    "What lawful, studied options exist for my muscle or body-composition goal?",
+    "Given my cancer history and blood sugar, is any IGF-1 product safe for me?",
+    "If I compete in a tested sport, would this cause an anti-doping violation?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
+    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
+    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
+    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
+    { "n": 5, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" },
+    { "n": 6, "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)", "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)", "year": 2025, "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf" }
+  ],
+  "notes_for_editor": "Very thin sourcing: the web-search budget ran out before any primary study of des(1-3)IGF-1 (its isolation from brain or colostrum, rat studies) could be opened, so this rests almost entirely on the 2012 Endocrine Reviews article; claims that it occurs naturally in the body were left out for that reason. Low blood sugar (a labeled risk of mecasermin) could not be confirmed from an opened source and is not listed; please add from the Increlex label. The diabetes caution in avoid_if is general prudence. 'No recognized basis to compound' is an inference from FDA's lists and 503A rules.",
+  "checked": "2026-10-28"
+}

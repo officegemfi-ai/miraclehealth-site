@@ -1,0 +1,202 @@
+{
+  "id": "hghfrag",
+  "name": "HGH Fragment 176-191",
+  "summary": "A lab-made piece of the tail end of human growth hormone, sold as a research chemical for fat loss; the evidence comes from animal studies of a related peptide.",
+  "what_it_is": "HGH Fragment 176-191 is a 16-amino-acid synthetic peptide matching the tail end (amino acids 176 to 191) of human growth hormone, the region tied to fat breakdown in lab studies. It differs from the better-studied AOD-9604 by a single amino acid at the start (phenylalanine instead of the tyrosine that AOD-9604 carries to make it more stable). In mice, AOD-9604 increased fat burning without binding the growth hormone receptor or causing cell growth, unlike full growth hormone. It is not an FDA-approved medicine.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "Fat-loss effects come from short studies in obese mice and rats of the closely related AOD-9604; six human trials of AOD-9604 in about 900 adults reported safety data but no published weight-loss benefit."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; sold as a research chemical",
+    "note": "Not an FDA-approved drug, and not on FDA's May 2026 list of substances nominated for pharmacy compounding. For the near-identical AOD-9604, FDA's compounding advisory committee voted 12-0 in December 2024 against allowing compounding, and FDA lists immune-reaction and adverse-event concerns; WADA bans hGH 176-191 in sport.",
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Less weight gain and less body fat in obese mice and rats given the related peptide AOD-9604",
+      "evidence": "preclinical",
+      "sources": [
+        6,
+        7
+      ]
+    },
+    {
+      "claim": "More fat breakdown and fat burning in obese mice, without the rise in blood sugar seen with full growth hormone",
+      "evidence": "preclinical",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "No change in IGF-1 or glucose tolerance versus placebo in human trials of AOD-9604, unlike full growth hormone",
+      "evidence": "limited",
+      "sources": [
+        8
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human studies of fragment 176-191 itself; human data come only from the related AOD-9604, mostly tested as a pill",
+      "how_common": "unknown",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "FDA cites possible immune reactions and peptide impurities, plus serious adverse events of unclear cause, for the related AOD-9604",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Headache and stomach complaints were among the side effects in AOD-9604 trials, at rates the authors called similar to placebo",
+      "how_common": "unknown",
+      "sources": [
+        8
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (no safety data)",
+    "Competitive athletes (prohibited by WADA in and out of competition)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check with a clinician"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for this research peptide, and there is no lab test specific to it."
+  },
+  "studies": [
+    {
+      "title": "Safety and Tolerability of the Hexadecapeptide AOD9604 in Humans",
+      "year": 2013,
+      "type": "Trial",
+      "people": "893 adults in six randomized, placebo-controlled trials of the related AOD-9604",
+      "finding": "Side effects were similar to placebo, with no change in IGF-1 or glucose tolerance and no antibodies detected. Weight-loss results were not reported, and the developer funded all six trials.",
+      "source": 8
+    },
+    {
+      "title": "Increase of fat oxidation and weight loss in obese mice caused by chronic treatment with human growth hormone or a modified C-terminal fragment",
+      "year": 2001,
+      "type": "Animal",
+      "people": "Obese and lean mice",
+      "finding": "Over 14 days, both growth hormone and AOD-9604 reduced weight gain and increased fat burning in obese mice. Unlike growth hormone, AOD-9604 did not raise blood sugar or bind the growth hormone receptor.",
+      "source": 6
+    },
+    {
+      "title": "Metabolic Studies of a Synthetic Lipolytic Domain (AOD9604) of Human Growth Hormone",
+      "year": 2000,
+      "type": "Animal",
+      "people": "Obese Zucker rats",
+      "finding": "Over 19 days, AOD-9604 cut weight gain by more than half and increased fat breakdown in fat tissue, without harming insulin sensitivity.",
+      "source": 7
+    }
+  ],
+  "ask_your_clinician": [
+    "Which approved weight-loss options fit my situation, and how does their evidence compare with a peptide that has no proven effect in people?",
+    "What are the risks of injecting an unregulated product that may contain impurities?",
+    "If I compete in a tested sport, would this cause an anti-doping violation?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download?attachment"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, December 4, 2024",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/185642/download"
+    },
+    {
+      "n": 4,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 5,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 6,
+      "title": "Increase of fat oxidation and weight loss in obese mice caused by chronic treatment with human growth hormone or a modified C-terminal fragment",
+      "publisher": "International Journal of Obesity",
+      "year": 2001,
+      "url": "https://www.nature.com/articles/0801740.pdf"
+    },
+    {
+      "n": 7,
+      "title": "Metabolic Studies of a Synthetic Lipolytic Domain (AOD9604) of Human Growth Hormone",
+      "publisher": "Hormone Research (Karger)",
+      "year": 2000,
+      "url": "https://karger.com/hrp/article/53/6/274/371690/Metabolic-Studies-of-a-Synthetic-Lipolytic-Domain"
+    },
+    {
+      "n": 8,
+      "title": "Safety and Tolerability of the Hexadecapeptide AOD9604 in Humans",
+      "publisher": "Journal of Endocrinology and Metabolism",
+      "year": 2013,
+      "url": "https://jofem.org/index.php/jofem/article/download/157/195"
+    },
+    {
+      "n": 9,
+      "title": "WADA Verbotsliste 2021: detailed list for section 2.3 (growth hormone, its fragments and releasing factors)",
+      "publisher": "German Sport University Cologne, Institute of Biochemistry (in German)",
+      "year": 2021,
+      "url": "https://www.dshs-koeln.de/fileadmin/redaktion/Institute/Biochemie/PDF/Wachstumshormon_Verbotsliste_Detail_2021.pdf"
+    },
+    {
+      "n": 10,
+      "title": "Much ado about nothing: the peptide they say never worked",
+      "publisher": "InvestSMART (news report)",
+      "year": 2013,
+      "url": "https://www.investsmart.com.au/investment-news/much-ado-about-nothing-the-peptide-they-say-never-worked/39245"
+    }
+  ],
+  "notes_for_editor": "No study of fragment 176-191 itself was found; every finding here is for AOD-9604 (hGH 177-191 with an added N-terminal tyrosine, per source 8). The one-amino-acid difference comes from the sequences in source 9 (hGH 176-191 FLRIVQCRSVEGSCGF vs AOD-9604 YLRIVQCRSVEGSCGF). Products sold under either name are unverified. Source 8 is a developer-funded safety write-up that omits efficacy; a 2013 news report (source 10, not peer reviewed) quotes the trials' lead investigator saying the six trials in 925 patients showed the drug failed to treat obesity. Any statement that it cannot legally be compounded is an inference: FDA's 503A rules (source 4) allow only substances with a USP monograph, in an approved drug, or on the 503A bulks list, and this fragment is on none of FDA's lists.",
+  "checked": "2026-10-28"
+}

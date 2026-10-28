@@ -1,0 +1,58 @@
+{
+  "id": "kisspeptin",
+  "name": "Kisspeptin-10",
+  "summary": "The smallest fully active fragment of kisspeptin, a natural hormone that switches on the reproductive hormone chain; taken to raise testosterone and for sexual health.",
+  "what_it_is": "Kisspeptin is a hormone made in the hypothalamus, coded by the KISS1 gene, and a key trigger for the release of GnRH, which drives the reproductive hormone chain. It acts on a receptor called KISS1R (GPR54), and this signaling is needed for normal puberty. Kisspeptin-10 is a 10-amino-acid piece of the longer kisspeptin-54 and is the smallest fragment with full activity. In men it quickly raises LH, the pituitary hormone that drives testosterone.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Short human physiology studies, often with 4 to 6 people per group, show it raises LH and testosterone; there are no treatment trials, and FDA's advisers found no convincing efficacy data."
+  },
+  "status_us": {
+    "key": "category2",
+    "label": "FDA Category 2: pharmacies may not compound it",
+    "note": "FDA placed kisspeptin-10 in Category 2 in September 2023 over immunogenicity and limited safety data, and it was still there on FDA's May 2026 list; in October 2024 FDA's advisers voted 11-0 against adding it to the compounding list. Kisspeptin is also banned for male athletes on the 2026 World Anti-Doping list.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 1, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 1 },
+  "benefits": [
+    { "claim": "Rapid, dose-related rise in LH in healthy men", "evidence": "limited", "sources": [5, 6] },
+    { "claim": "Higher testosterone and more frequent LH pulses during continuous infusion in small groups of healthy men", "evidence": "limited", "sources": [5] },
+    { "claim": "LH rise in women around ovulation, but not earlier in the menstrual cycle", "evidence": "limited", "sources": [6] }
+  ],
+  "risks": [
+    { "risk": "Possible immune reactions to the peptide or its impurities", "how_common": "theoretical", "sources": [1] },
+    { "risk": "FDA has little or no safety information for the routes people use and lists it as a significant safety risk", "how_common": "unknown", "sources": [1] },
+    { "risk": "Human safety data cover only hours of use in a handful of people; no adverse events were seen in 6 healthy men", "how_common": "unknown", "sources": [5] },
+    { "risk": "It raises testosterone and other reproductive hormones, which could matter in hormone-sensitive conditions", "how_common": "theoretical", "sources": [5] }
+  ],
+  "avoid_if": [
+    "Hormone-sensitive cancer, such as prostate or breast cancer, now or in the past",
+    "Pregnant or breastfeeding (no safety data)",
+    "Competitive athletes, since kisspeptin is on the 2026 prohibited list for males"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [ "LH and FSH", "Total testosterone (men) or estradiol (women)" ],
+    "during": [ "LH and testosterone or estradiol, if a clinician is supervising use" ],
+    "why": "No evidence-based monitoring exists for kisspeptin-10; these are the hormones it acts on in studies."
+  },
+  "studies": [
+    { "title": "Contrasting effects of kisspeptin-10 between men and women reveal sexual dimorphism in the hypothalamic regulation of human reproduction", "year": 2012, "type": "RCT", "people": "Healthy men and women, 4 to 5 per group (conference abstract)", "finding": "In a randomized, double-blind study, kisspeptin-10 raised LH in men and in women near ovulation, but not in women earlier in the cycle.", "source": 6 },
+    { "title": "Kisspeptin-10 is a potent stimulator of LH and increases pulse frequency in men", "year": 2011, "type": "Trial", "people": "14 healthy men (6 in a dose-response study, 4 in each of two infusion studies)", "finding": "Single doses rapidly raised LH; hours-long exposure raised testosterone and LH pulse frequency. No adverse events were reported in the dose-response study.", "source": 5 }
+  ],
+  "ask_your_clinician": [
+    "What is causing my low testosterone or low libido, and which approved treatments fit?",
+    "Could raising my sex hormones affect any cancer risk or other condition I have?",
+    "Which hormone tests should I have before and during any treatment?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
+    { "n": 3, "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, October 29, 2024", "publisher": "US Food and Drug Administration", "year": 2025, "url": "https://fda.gov/media/185412/download" },
+    { "n": 4, "title": "Prohibited List", "publisher": "World Anti-Doping Agency", "year": 2026, "url": "https://wada-ama.org/en/prohibited-list" },
+    { "n": 5, "title": "Kisspeptin-10 is a potent stimulator of LH and increases pulse frequency in men", "publisher": "Journal of Clinical Endocrinology and Metabolism (University of Pretoria repository)", "year": 2011, "url": "https://repository.up.ac.za/handle/2263/18059" },
+    { "n": 6, "title": "Contrasting effects of kisspeptin-10 between men and women reveal sexual dimorphism in the hypothalamic regulation of human reproduction", "publisher": "Endocrine Abstracts (Society for Endocrinology BES 2012)", "year": 2012, "url": "https://www.endocrine-abstracts.org/ea/0028/ea0028oc2.2" }
+  ],
+  "notes_for_editor": "Category 2 status confirmed on FDA's list updated May 14, 2026; the October 2024 advisory vote concerned secondary hypogonadism in men. Studies of kisspeptin and sexual desire or sexual brain processing (JAMA Network Open, JCI) could not be opened during research, and several used kisspeptin-54 rather than kisspeptin-10, so libido claims were left out; the seed's Dhillo 2005 and Mills 2023 citations were not verified. The 2012 randomized study is a conference abstract only. The minutes were approved in January 2025, hence the source year.",
+  "checked": "2026-10-28"
+}

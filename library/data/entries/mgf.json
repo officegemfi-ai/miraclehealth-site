@@ -1,0 +1,55 @@
+{
+  "id": "mgf",
+  "name": "MGF",
+  "summary": "A lab-made peptide based on a variant of the IGF-1 gene, used for muscle growth and banned in sport; its role in the body is disputed.",
+  "what_it_is": "Mechano growth factor (MGF) is a peptide based on IGF-1Ec, a product of the IGF-1 gene that includes an extra stretch coded by exon 5, a part left out of the IGF-1 made in the liver. Products sold as MGF, and a pegylated version (PEG-MGF), are lab-made. A 2012 review called the physiological importance of IGF-1Ec controversial and said MGF's existence as a natural peptide is not established. It is not approved for human use.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "A review calls the role of the underlying IGF-1Ec variant controversial, FDA found no human exposure data for PEG-MGF, and no human studies of MGF were identified."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; FDA Category 3, PEG-MGF under review",
+    "note": "MGF sits in FDA's 503A Category 3 (nominated without adequate support), which leaves compounding open to FDA enforcement. PEG-MGF was taken off Category 2 in April 2026 after its nomination was withdrawn and is due for FDA advisory-committee review before the end of February 2027; WADA bans MGFs in sport.",
+    "sources": [1, 2, 3, 4, 5]
+  },
+  "goals": { "weight": 0, "muscle": 1, "recovery": 0.5, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "benefits": [
+    { "claim": "Used for muscle growth and repair as a doping agent, but untested in people; a review says its existence as a natural peptide is not established", "evidence": "anecdotal", "sources": [6, 5] },
+    { "claim": "Based on the IGF-1 gene, whose product IGF-1 has anabolic effects on muscle; whether the MGF variant adds anything is disputed", "evidence": "preclinical", "sources": [6] }
+  ],
+  "risks": [
+    { "risk": "No human exposure data for PEG-MGF, so FDA says it lacks information on whether it would cause harm", "how_common": "unknown", "sources": [3] },
+    { "risk": "FDA flags a possible significant risk of immune reactions, plus peptide-impurity and characterization problems, for PEG-MGF", "how_common": "unknown", "sources": [3] },
+    { "risk": "Its intended action is uncertain because the natural peptide it copies may not exist in the body", "how_common": "unknown", "sources": [6] }
+  ],
+  "avoid_if": [
+    "Current or past cancer (growth factor with no safety data)",
+    "Pregnant or breastfeeding (no safety data)",
+    "Competitive athletes (prohibited by WADA at all times)"
+  ],
+  "interactions": [ "None well documented" ],
+  "labs": {
+    "before": [ "General health check with a clinician" ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for this research peptide, because it has not been studied in people."
+  },
+  "studies": [
+    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research", "finding": "Describes MGF as derived from an IGF-1 gene splice variant including an exon 5 sequence, calls its physiological importance controversial and says its existence as a natural peptide is not established.", "source": 6 }
+  ],
+  "ask_your_clinician": [
+    "What lawful, studied options exist for my muscle or recovery goal?",
+    "What are the risks of injecting a peptide with no human safety data?",
+    "If I compete in a tested sport, would this cause an anti-doping violation?"
+  ],
+  "sources": [
+    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
+    { "n": 2, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
+    { "n": 3, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
+    { "n": 4, "title": "FDA's Pep(tide) Rally! What Compounders and Industry Need to Know (Post 1 of 2)", "publisher": "FDA Law Blog (Hyman, Phelps & McNamara)", "year": 2026, "url": "https://thefdalawblog.com/2026/04/fdas-peptide-rally-what-compounders-and-industry-need-to-know-post-1-of-2" },
+    { "n": 5, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
+    { "n": 6, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" }
+  ],
+  "notes_for_editor": "Very thin sourcing: the web-search budget ran out before the MGF lab literature (e.g., Yang and Goldspink 2002; Fornaro 2014, which found no effect on muscle stem cells) could be opened, so the evidence section rests on one 2012 review and FDA statements; consider adding those papers after checking. Status detail: plain MGF is in 503A Category 3; PEG-MGF was in Category 2, is now on FDA's 'nominated but withdrawn' list, and is one of five peptides FDA plans to take to the PCAC before the end of February 2027 (source 4; DLA Piper's July 2026 summary agrees). Status could change after that meeting. Benefit 2's 'anabolic effects on muscle' refers to IGF-1 in general, per source 6.",
+  "checked": "2026-10-28"
+}
