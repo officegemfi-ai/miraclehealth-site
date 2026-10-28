@@ -1,0 +1,195 @@
+{
+  "id": "orforglipron",
+  "name": "Orforglipron",
+  "summary": "A GLP-1 medicine taken as a pill, sold as Foundayo, approved in April 2026 for weight management in adults with obesity or overweight with a related health problem.",
+  "what_it_is": "Orforglipron is a small-molecule drug, not a peptide, that switches on the GLP-1 receptor. It lowers food intake, likely by reducing appetite, and slows stomach emptying. It is taken by mouth, and its half-life is about 29 to 49 hours. Eli Lilly has also tested it in type 2 diabetes, but so far it is approved only for weight management.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval for weight management based on two 72-week randomized trials in 4,740 adults, 1,613 of them with type 2 diabetes."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for weight management (April 2026)",
+    "note": "Approved April 1, 2026 as Foundayo for adults with obesity, or overweight with at least one weight-related condition; it was the first new molecular entity approved under FDA's Commissioner's National Priority Voucher pilot. It is not approved for type 2 diabetes: Lilly said in June 2026 it planned to file for that use by the end of the second quarter, and no FDA decision was found.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Average weight loss of about 7% to 11% over 72 weeks, depending on dose, versus about 2% with placebo, in 3,127 adults with obesity or overweight without diabetes; 60% to 72% lost at least 5% of body weight versus 27%",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Average weight loss of about 5% to 10% over 72 weeks versus 2.5% with placebo in 1,613 adults with type 2 diabetes and obesity or overweight",
+      "evidence": "strong",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Lower A1C in adults with type 2 diabetes: up to 2.2 points versus 1.4 with oral semaglutide over 52 weeks, and up to 1.7 versus 0.8 with dapagliflozin over 40 weeks (company-reported; not yet an approved use)",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, constipation, diarrhea, vomiting and indigestion: nausea affected 26% to 35% versus 10% on placebo; severe digestive reactions occurred in about 3% versus 1%, and 8% stopped because of side effects versus 3%",
+      "how_common": "common",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Faster heart rate: an average rise of about 4 to 5 beats per minute, and a racing heartbeat (tachycardia) in 3% versus 0.9% on placebo",
+      "how_common": "uncommon",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Hair loss in 4% to 5% versus 2% on placebo",
+      "how_common": "uncommon",
+      "sources": [
+        2,
+        3
+      ]
+    },
+    {
+      "risk": "Gallstones (1% versus 0.7% on placebo) and gallbladder inflammation (0.4% versus 0.3%)",
+      "how_common": "uncommon",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Acute pancreatitis (0.14 versus 0.04 cases per 100 patient-years) and acute kidney injury (0.2% versus 0.05%); breathing stomach contents into the lungs under anesthesia or deep sedation is also a labeled warning",
+      "how_common": "rare",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Boxed warning: thyroid C-cell tumors seen in rodents with GLP-1 drugs; orforglipron is not active in rats or mice and caused no tumors there, so its human relevance is undetermined",
+      "how_common": "theoretical",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Personal or family history of medullary thyroid cancer or MEN 2",
+    "Past serious allergic reaction to orforglipron",
+    "Pregnancy (the label says to stop when pregnancy is recognized) or breastfeeding (not recommended)",
+    "Severe gastroparesis (not recommended)",
+    "Type 2 diabetes with diabetic retinopathy (needs closer eye monitoring)"
+  ],
+  "interactions": [
+    "Birth control pills: may work less well after starting and after each dose increase; the label advises a non-oral method or an added barrier method for a time",
+    "Strong CYP3A4 inhibitors (such as ritonavir) or strong CYP3A4 inducers: can change orforglipron levels; the label limits or avoids some combinations",
+    "Simvastatin: orforglipron roughly doubles exposure to its active form, so the label caps the statin dose",
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Other GLP-1 drugs: using them together is not recommended"
+  ],
+  "labs": {
+    "before": [
+      "HbA1c or fasting glucose",
+      "Kidney function (creatinine, eGFR)",
+      "Resting heart rate",
+      "Eye exam if you have diabetic retinopathy"
+    ],
+    "during": [
+      "Blood glucose if you have diabetes, especially with insulin or a sulfonylurea",
+      "Kidney function if vomiting or diarrhea is severe",
+      "Resting heart rate at regular visits",
+      "Eye checks if you have diabetic retinopathy"
+    ],
+    "why": "The label calls for monitoring blood sugar in people with diabetes, kidney function when digestive side effects could cause dehydration, and diabetic eye disease; it reports heart-rate rises without a specific monitoring rule and says routine calcitonin or thyroid ultrasound checks are of uncertain value."
+  },
+  "studies": [
+    {
+      "title": "FOUNDAYO (orforglipron) tablets, for oral use: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "3,127 adults with obesity or overweight, without diabetes (72-week placebo-controlled trial)",
+      "finding": "Average weight change was -7.4% to -11.1% across three doses versus -2.1% with placebo; 59.6% to 71.5% lost at least 5% of body weight versus 26.8%.",
+      "source": 2
+    },
+    {
+      "title": "FOUNDAYO (orforglipron) tablets, for oral use: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "1,613 adults with type 2 diabetes and obesity or overweight (72-week placebo-controlled trial)",
+      "finding": "Average weight change was -5.1% to -9.6% versus -2.5% with placebo; 47.4% to 67% lost at least 5% of body weight versus 26.8%.",
+      "source": 2
+    },
+    {
+      "title": "Lilly's oral GLP-1 Foundayo (orforglipron) delivered superior A1C control and weight loss in three pivotal type 2 diabetes trials",
+      "year": 2026,
+      "type": "RCT",
+      "people": "Adults with type 2 diabetes in the ACHIEVE-2, ACHIEVE-3 and ACHIEVE-5 trials",
+      "finding": "A1C fell up to 2.2 points versus 1.4 with oral semaglutide (52 weeks) and up to 1.7 versus 0.8 with dapagliflozin (40 weeks). In those two head-to-head trials, 8.7% to 12.4% stopped because of side effects versus 1.2% to 4.9% on the comparators. Company-reported.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I need to change my birth control when starting or increasing orforglipron?",
+    "Do any of my other medicines, such as statins or HIV drugs, interact with it?",
+    "Which side effects, such as severe stomach pain or a racing heart, mean I should call you?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FDA Approves First New Molecular Entity Under National Priority Voucher Program",
+      "publisher": "FDA (press announcement)",
+      "year": 2026,
+      "url": "https://www.fda.gov/news-events/press-announcements/fda-approves-first-new-molecular-entity-under-national-priority-voucher-program"
+    },
+    {
+      "n": 2,
+      "title": "FOUNDAYO (orforglipron) tablets, for oral use: Prescribing Information (revised 07/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/220934s003lbl.pdf"
+    },
+    {
+      "n": 3,
+      "title": "FDA Approves Lilly's Oral GLP-1 Orforglipron for Obesity",
+      "publisher": "AJMC (The American Journal of Managed Care)",
+      "year": 2026,
+      "url": "https://www.ajmc.com/view/fda-approves-lilly-s-oral-glp-1-orforglipron-for-obesity"
+    },
+    {
+      "n": 4,
+      "title": "Lilly's oral GLP-1 Foundayo (orforglipron) delivered superior A1C control and weight loss in three pivotal type 2 diabetes trials",
+      "publisher": "Eli Lilly and Company (press release)",
+      "year": 2026,
+      "url": "https://investor.lilly.com/node/54406/pdf"
+    }
+  ],
+  "notes_for_editor": "Weight results are the label's (all randomized participants); Lilly's often-quoted 12.4% figure is for the top dose among participants who stayed on treatment (AJMC). Whether the type 2 diabetes application was filed, and its status after June 2026, were not confirmed; the July 2026 label lists weight management only, and a Drugs.com approval history (last entry June 8, 2026) showed no diabetes decision. 'Small molecule' comes from AJMC; the label gives only the chemical name. The ATTAIN and ACHIEVE papers were not opened; per Lilly, two of the three diabetes trials it reported were open-label. Prices and direct-to-consumer sales were left out on purpose.",
+  "checked": "2026-10-28"
+}

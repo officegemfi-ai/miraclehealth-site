@@ -1,0 +1,186 @@
+{
+  "id": "minoxidil",
+  "name": "Minoxidil",
+  "summary": "Minoxidil is an over-the-counter scalp treatment for hereditary hair loss and a prescription tablet for severe high blood pressure; low-dose tablets are used off-label for hair.",
+  "what_it_is": "Minoxidil comes in two forms. As a scalp product (Rogaine) it is sold over the counter to regrow hair on the top of the scalp in men and women with hereditary hair loss. As a tablet (Loniten) it is a powerful prescription blood pressure drug reserved for severe high blood pressure that other drugs have not controlled, and it often causes extra hair growth on the body. Low-dose tablets are now prescribed off-label for hair loss.",
+  "evidence": {
+    "grade": "strong",
+    "why": "The scalp product is FDA-approved for hereditary hair loss; for low-dose tablets, one randomized trial in 90 men found them no better than the scalp form, and safety data come mainly from a large study without a comparison group."
+  },
+  "status_us": {
+    "key": "otc",
+    "label": "Topical OTC for hair loss; tablets Rx for blood pressure",
+    "note": "Minoxidil scalp products are sold over the counter for hereditary hair loss on the top of the scalp, with separate products labeled for men and for women. Minoxidil tablets are prescription-only and approved only for severe, hard-to-control high blood pressure, with a boxed warning; using them for hair loss is off-label.",
+    "sources": [
+      1,
+      2,
+      3
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 1,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Regrows hair on the top of the scalp in men and women with hereditary hair loss (approved over-the-counter use); results take months, and hair loss resumes when use stops",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Lowers blood pressure in severe high blood pressure not controlled by a diuretic plus two other drugs (approved use of the tablets)",
+      "evidence": "strong",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Low-dose tablets were not better than topical minoxidil for hair density over 24 weeks in a trial of 90 men with male-pattern hair loss; photos favored the tablets at the crown",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Extra hair growth on the face and body: about 80% of people taking the tablets for blood pressure, 49% of men on low-dose tablets in the hair trial, and 15% in a large study of low-dose tablets for hair loss",
+      "how_common": "common",
+      "sources": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "risk": "Boxed warning for the tablets: fluid around the heart (pericardial effusion) in about 3% of treated patients not on dialysis, sometimes progressing to tamponade, and new or worse chest pain (angina)",
+      "how_common": "uncommon",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Salt and water retention with swelling: 7% of patients on the tablets for blood pressure and about 1% of people on low-dose tablets for hair loss",
+      "how_common": "uncommon",
+      "sources": [
+        3,
+        5
+      ]
+    },
+    {
+      "risk": "Faster heart rate and lightheadedness; with low-dose tablets for hair loss, lightheadedness affected 1.7% and a fast heartbeat 0.9%",
+      "how_common": "uncommon",
+      "sources": [
+        5,
+        3
+      ]
+    },
+    {
+      "risk": "Scalp products: scalp irritation and unwanted facial hair; their labels list chest pain, rapid heartbeat, faintness, dizziness, sudden weight gain and swollen hands or feet as warning signs that need a doctor",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (scalp products may be harmful, and hair growth in newborns has been reported after exposure to the tablets in pregnancy)",
+    "Heart disease, including angina or a recent heart attack (needs a clinician first)",
+    "Pheochromocytoma, a hormone-releasing tumor (the tablets are contraindicated)",
+    "Under 18 (scalp products are not for children)",
+    "Hair loss that is sudden, patchy, linked to childbirth or of unknown cause (needs a diagnosis first)"
+  ],
+  "interactions": [
+    "Guanethidine: starting minoxidil tablets can cause severe drops in blood pressure on standing",
+    "Other medicines used on the scalp: the scalp product labels say not to combine them"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine blood tests are tied to minoxidil in the sources reviewed; for the tablets, the label's concerns are heart rate, fluid retention and fluid around the heart rather than blood markers."
+  },
+  "studies": [
+    {
+      "title": "Oral Minoxidil vs Topical Minoxidil for Male Androgenetic Alopecia: A Randomized Clinical Trial",
+      "year": 2024,
+      "type": "RCT",
+      "people": "90 men with male-pattern hair loss in Brazil (68 completed; 24 weeks)",
+      "finding": "Oral minoxidil was not superior to topical minoxidil for terminal hair density at the front or crown; photos favored oral at the crown. Extra body hair affected 49% and headache 14% of the oral group.",
+      "source": 4
+    },
+    {
+      "title": "Safety of low-dose oral minoxidil for hair loss: A multicenter study of 1404 patients",
+      "year": 2021,
+      "type": "Cohort",
+      "people": "1,404 people with hair loss (67% women), retrospective, no comparison group",
+      "finding": "Extra hair growth was the most common effect (15%); lightheadedness (1.7%), fluid retention (1.3%) and fast heartbeat (0.9%) were uncommon, and no life-threatening effects were seen.",
+      "source": 5
+    },
+    {
+      "title": "LONITEN (minoxidil tablets): prescribing information",
+      "year": 2015,
+      "type": "Label",
+      "people": "People with severe high blood pressure",
+      "finding": "Boxed warning: fluid around the heart, sometimes progressing to tamponade, and worsening angina; reserved for blood pressure not controlled by a diuretic plus two other drugs, and usually given with a beta-blocker and a diuretic.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my hair loss hereditary, or could another cause need treatment first?",
+    "Would tablets or a scalp product suit me better, given my heart health and blood pressure?",
+    "Which side effects, such as swelling or a racing heart, should make me call you?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Men's ROGAINE (minoxidil) topical: Drug Facts label",
+      "publisher": "Drugs.com (FDA OTC labeling)",
+      "year": 2024,
+      "url": "https://www.drugs.com/pro/rogaine-mens.html"
+    },
+    {
+      "n": 2,
+      "title": "Women's ROGAINE (minoxidil) topical: Drug Facts label",
+      "publisher": "Drugs.com (FDA OTC labeling)",
+      "year": 2024,
+      "url": "https://www.drugs.com/pro/rogaine-women-s.html"
+    },
+    {
+      "n": 3,
+      "title": "LONITEN (minoxidil tablets): prescribing information (revised January 2015)",
+      "publisher": "RxList (FDA-approved labeling)",
+      "year": 2015,
+      "url": "https://www.rxlist.com/loniten-drug.htm"
+    },
+    {
+      "n": 4,
+      "title": "Oral Minoxidil vs Topical Minoxidil for Male Androgenetic Alopecia: A Randomized Clinical Trial",
+      "publisher": "JAMA Dermatology (Read by QxMD abstract)",
+      "year": 2024,
+      "url": "https://read.qxmd.com/read/38598226/oral-minoxidil-vs-topical-minoxidil-for-male-androgenetic-alopecia-a-randomized-clinical-trial"
+    },
+    {
+      "n": 5,
+      "title": "Safety of low-dose oral minoxidil for hair loss: A multicenter study of 1404 patients",
+      "publisher": "Journal of the American Academy of Dermatology (Jio Institute library record of the MEDLINE abstract)",
+      "year": 2021,
+      "url": "https://searchworks.jioinstitute.edu.in/articles/cmedm__33639244"
+    }
+  ],
+  "notes_for_editor": "Status key is 'otc' because the hair-loss product people buy is the OTC scalp form; the tablets are prescription-only (approved for severe hypertension) and their hair-loss use is off-label. The tablet label opened is RxList's copy of the Pfizer Loniten label (revised January 2015); a newer generic label may exist (a Pfizer South African document dated February 2026 was also seen but is not US labeling). Rogaine labels were read from Drugs.com (updated November 2024); FDA's own 2026 Rogaine label PDF failed to load. Product strengths were deliberately left out. The Penha trial abstract was read via QxMD only. The 1,404-patient safety study is retrospective with no control group; its abstract gives conflicting discontinuation figures (1.2% versus 1.7%), so none are quoted. Low-dose oral minoxidil for women was not covered by a trial opened this round.",
+  "checked": "2026-10-28"
+}
