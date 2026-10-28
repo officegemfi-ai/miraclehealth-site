@@ -1,0 +1,148 @@
+{
+  "id": "humanin",
+  "name": "Humanin",
+  "summary": "A small peptide encoded in mitochondrial DNA that protects cells in lab and animal studies; levels fall with age, but it is untested as a treatment in people.",
+  "what_it_is": "Humanin is a peptide of 21 or 24 amino acids encoded by a short stretch of DNA inside mitochondria, the cell's energy-producing structures. It was discovered in 2001 in a part of the brain spared by Alzheimer's disease, and in lab and animal studies it protects cells against several kinds of stress. Blood levels fall with age in people and mice. A more potent lab-made analog, HNG, is used in animal research.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "All treatment data come from cells, worms and rodents; the human data are only blood-level measurements."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; not nominated for compounding",
+    "note": "No humanin product is approved, and humanin is not on FDA's May 2026 list of substances nominated for pharmacy compounding or on its list of substances with significant safety risks.",
+    "sources": [1, 2]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.5,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Protected nerve cells from damage by amyloid-beta, the protein that builds up in Alzheimer's disease, in cell studies",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "Improved insulin action in rats, and reduced heart damage after an induced heart attack and artery plaque in mice",
+      "evidence": "preclinical",
+      "sources": [3]
+    },
+    {
+      "claim": "About 7% longer average lifespan in worms engineered to make more humanin; in middle-aged mice, the analog HNG lowered visceral fat and raised lean mass but did not extend lifespan",
+      "evidence": "preclinical",
+      "sources": [4]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Never tested as a treatment in people, so human side effects and safety are unknown",
+      "how_common": "unknown",
+      "sources": [3, 4]
+    },
+    {
+      "risk": "Unclear effects on cancer: studies of humanin, tumor growth and spread are inconclusive",
+      "how_common": "theoretical",
+      "sources": [3]
+    },
+    {
+      "risk": "Smaller body size and fewer offspring in worms and mice with more humanin",
+      "how_common": "unknown",
+      "sources": [4]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant, breastfeeding or trying to conceive (fewer offspring in animals; no human data)",
+    "Current or past cancer (effects on tumors are unclear)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists because humanin has not been tested as a treatment in people."
+  },
+  "studies": [
+    {
+      "title": "The mitochondrial derived peptide humanin is a regulator of lifespan and healthspan",
+      "year": 2020,
+      "type": "Animal",
+      "people": "Worms and middle-aged mice, plus blood levels in 18 children of centenarians and 19 controls",
+      "finding": "Extra humanin modestly extended worm lifespan; the analog HNG improved body composition in mice without extending lifespan; children of centenarians had higher blood humanin than controls.",
+      "source": 4
+    },
+    {
+      "title": "Humanin and Age-Related Diseases: A New Link?",
+      "year": 2014,
+      "type": "Review",
+      "people": "Cell, rodent and human observational studies",
+      "finding": "Humanin protected cells and improved insulin action, heart injury and plaque in rodents, and circulating levels fall with age; its pharmacokinetics and long-term safety still need study.",
+      "source": 3
+    },
+    {
+      "title": "Mitochondrial-derived peptides in aging and age-related diseases",
+      "year": 2021,
+      "type": "Review",
+      "people": "Studies of humanin, MOTS-c and related peptides",
+      "finding": "The authors propose that falling levels of these peptides contribute to aging and that raising them might have broad benefits.",
+      "source": 5
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there any human evidence that taking humanin is safe or helpful?",
+    "Which proven steps for healthy aging should I focus on instead?",
+    "Given my cancer history and fertility plans, should I avoid experimental peptides?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Humanin and Age-Related Diseases: A New Link?",
+      "publisher": "Frontiers in Endocrinology",
+      "year": 2014,
+      "url": "https://www.frontiersin.org/articles/10.3389/fendo.2014.00210/full"
+    },
+    {
+      "n": 4,
+      "title": "The mitochondrial derived peptide humanin is a regulator of lifespan and healthspan",
+      "publisher": "Aging (Albany NY)",
+      "year": 2020,
+      "url": "https://static-site-aging-prod2.impactaging.com/article/103534/text"
+    },
+    {
+      "n": 5,
+      "title": "Mitochondrial-derived peptides in aging and age-related diseases",
+      "publisher": "GeroScience (Springer)",
+      "year": 2021,
+      "url": "https://link.springer.com/article/10.1007/s11357-020-00262-5"
+    }
+  ],
+  "notes_for_editor": "Evidence is entirely preclinical plus observational blood levels. Authors of two key papers disclose commercial interests (humanin patents; consulting for and owning stock in a company developing mitochondrial peptides). The 2021 GeroScience review was read only as an abstract. Products sold to the public, and whether they contain humanin or an analog such as HNG, were not examined. 'No humanin product is approved' rests on the reviews finding no human treatment trials.",
+  "checked": "2026-10-28"
+}

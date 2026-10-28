@@ -1,0 +1,176 @@
+{
+  "id": "ashwagandha",
+  "name": "Ashwagandha",
+  "summary": "An Ayurvedic herb (Withania somnifera) whose root extracts are taken mainly to ease stress and anxiety and to improve sleep.",
+  "what_it_is": "Ashwagandha (Withania somnifera) is an evergreen shrub long used in Ayurvedic and Unani medicine, where it is classed as an adaptogen. Most supplements contain root extracts; KSM-66 is a root-only extract and Sensoril uses root and leaf. Its effects are thought to come mainly from steroidal lactones called withanolides, with alkaloids and other components possibly contributing.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Several small, short placebo-controlled trials, mostly in India, report less stress, anxiety and sleeplessness, but results vary widely and a 2026 meta-analysis rated the certainty very low."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement (banned in Denmark)",
+    "note": "Sold as a dietary supplement in the US. Denmark banned ashwagandha in 2023 after a 2020 risk assessment, and in 2024 France's food safety agency advised groups including pregnant and breastfeeding women and people with endocrine disorders not to use it.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0.25,
+    "sleep": 0.75,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.5
+  },
+  "benefits": [
+    {
+      "claim": "Lower stress and anxiety scores, less sleeplessness and lower cortisol than placebo in a review of 7 trials (491 adults in India, 6 to 8 weeks); a 2026 analysis of 22 trials agreed but rated the certainty very low",
+      "evidence": "moderate",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Small improvement in sleep, larger in people with insomnia and with 8 or more weeks of use (5 trials in India)",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "May raise testosterone, and in a small trial of people with subclinical hypothyroidism it lowered TSH and raised thyroid hormone levels",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Mild stomach upset, loose stools, nausea and drowsiness",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Liver injury with jaundice and itching, starting 2 to 12 weeks after use began; in a series of 5 cases none had liver failure, and liver tests normalized within 1 to 5 months in the 4 followed up",
+      "how_common": "rare",
+      "sources": [
+        4,
+        1
+      ]
+    },
+    {
+      "risk": "Overactive thyroid (thyrotoxicosis) in case reports, which resolved after stopping",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Some experts advise against use in pregnancy because of reports of possible miscarriage, though the American Herbal Pharmacopoeia says there is no evidence it causes abortion",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Long-term safety is unknown; it appears well tolerated for up to about 3 months",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding",
+    "Liver disease or past liver injury from a supplement",
+    "Thyroid disease or taking thyroid hormone (clinician first)",
+    "Hormone-sensitive prostate cancer",
+    "Taking sedatives, immunosuppressants, or diabetes or blood pressure medicines (clinician first)"
+  ],
+  "interactions": [
+    "Thyroid hormone medicines: may interact, and ashwagandha may itself change thyroid hormone levels",
+    "Sedatives: may interact",
+    "Immunosuppressants: may interact",
+    "Diabetes and blood pressure medicines: may interact"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed, but yellow skin or eyes, itching, nausea or unusual tiredness should prompt liver tests, and people with thyroid conditions may need their thyroid levels rechecked."
+  },
+  "studies": [
+    {
+      "title": "Effects of ashwagandha (Withania somnifera) on mental health in adults: A systematic review and dose–response meta-analysis of randomized controlled trials",
+      "year": 2026,
+      "type": "Meta-analysis",
+      "people": "1,391 adults in 22 randomized trials (India, USA, Australia, Iran)",
+      "finding": "Ashwagandha lowered stress, anxiety and depression scores versus placebo, but results varied widely between trials, publication bias was detected and certainty was rated very low.",
+      "source": 2
+    },
+    {
+      "title": "Effect of Ashwagandha (Withania somnifera) extract on sleep: A systematic review and meta-analysis",
+      "year": 2021,
+      "type": "Meta-analysis",
+      "people": "About 400 adults in 5 randomized trials in India",
+      "finding": "A small but significant improvement in overall sleep, larger in people with insomnia and with 8 or more weeks of use; no serious side effects were reported.",
+      "source": 3
+    },
+    {
+      "title": "Ashwagandha-induced liver injury: A case series from Iceland and the US Drug-Induced Liver Injury Network",
+      "year": 2020,
+      "type": "Case series",
+      "people": "5 people with liver injury in Iceland and the US",
+      "finding": "Jaundice and itching began 2 to 12 weeks after starting ashwagandha; no one had liver failure, and liver tests returned to normal within 1 to 5 months in the 4 people followed up.",
+      "source": 4
+    }
+  ],
+  "ask_your_clinician": [
+    "Could ashwagandha affect my thyroid or interact with my thyroid, diabetes, blood pressure or sleep medicines?",
+    "Which liver symptoms should make me stop it and call you?",
+    "Is my stress or sleep problem one that needs a different treatment?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Ashwagandha: Is it helpful for stress, anxiety, or sleep? - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2025,
+      "url": "https://ods.od.nih.gov/factsheets/Ashwagandha-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Effects of ashwagandha (Withania somnifera) on mental health in adults: A systematic review and dose–response meta-analysis of randomized controlled trials",
+      "publisher": "Complementary Therapies in Medicine (ScienceDirect)",
+      "year": 2026,
+      "url": "https://www.sciencedirect.com/science/article/pii/S0965229926000087"
+    },
+    {
+      "n": 3,
+      "title": "Effect of Ashwagandha (Withania somnifera) extract on sleep: A systematic review and meta-analysis",
+      "publisher": "PLOS ONE",
+      "year": 2021,
+      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0257843"
+    },
+    {
+      "n": 4,
+      "title": "Ashwagandha-induced liver injury: A case series from Iceland and the US Drug-Induced Liver Injury Network",
+      "publisher": "Liver International (IRIS research repository, Iceland)",
+      "year": 2020,
+      "url": "https://iris.landsbokasafn.is/en/publications/ashwagandha-induced-liver-injury-a-case-series-from-iceland-and-t-2/"
+    }
+  ],
+  "notes_for_editor": "Most trials are small, short and run in India. The 2026 meta-analysis reports unusually large pooled effect sizes, very high heterogeneity and some internal inconsistencies, so it is cited only for direction and certainty. Participant counts for the sleep meta-analysis differ (ODS says 372; the paper's abstract says 400). LiverTox's ashwagandha chapter could not be opened (bot check); the liver risk is sourced to a published case series and ODS. Denmark's ban and France's advice are sourced through ODS, not the agencies themselves.",
+  "checked": "2026-10-28"
+}

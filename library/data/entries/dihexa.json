@@ -1,0 +1,122 @@
+{
+  "id": "dihexa",
+  "name": "Dihexa",
+  "summary": "A lab-made compound based on the peptide angiotensin IV, used to try to boost memory; it improved learning in rodents, and FDA found no human data on it.",
+  "what_it_is": "Dihexa (PNB-0408) is a small, lab-made molecule derived from angiotensin IV, a peptide fragment that has shown memory effects in animal research. In animal studies it works when taken by mouth and crosses into the brain. It binds hepatocyte growth factor (HGF) and strengthens signaling through HGF's receptor, c-Met, which in lab studies led to new connections (synapses) between nerve cells.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "Its memory effects come from rodent and lab studies by the group that developed it; FDA found no human exposure data."
+  },
+  "status_us": {
+    "key": "under_review",
+    "label": "Not approved; compounding review pending",
+    "note": "As of April 2026 FDA lists dihexa acetate as 'nominated but withdrawn' rather than in Category 2, noting it found no human exposure data; it is not in Category 1, so pharmacies may not compound it. FDA's compounding advisory committee is expected to review it before the end of February 2027, with no date set.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Better spatial learning in a water-maze memory test in rodents, an effect blocked by a drug that blocks HGF",
+      "evidence": "preclinical",
+      "sources": [5]
+    },
+    {
+      "claim": "Growth of new dendritic spines and synapses in hippocampal nerve cells in lab studies",
+      "evidence": "preclinical",
+      "sources": [5]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human safety data: FDA found no human exposure data and lacks information on whether it would cause harm in people",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "It strengthens the HGF/c-Met growth-factor system; the effects of long-term stimulation in people are unknown",
+      "how_common": "theoretical",
+      "sources": [5, 1]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding",
+    "Current or past cancer, until more is known (it stimulates a growth-factor pathway)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists because dihexa has not been studied in people."
+  },
+  "studies": [
+    {
+      "title": "The Procognitive and Synaptogenic Effects of Angiotensin IV-Derived Peptides Are Dependent on Activation of the Hepatocyte Growth Factor/c-Met System",
+      "year": 2014,
+      "type": "Animal",
+      "people": "Rodents and nerve-cell cultures",
+      "finding": "Dihexa bound HGF, boosted c-Met signaling, increased new synapses in hippocampal neurons and improved spatial learning; blocking HGF or c-Met removed these effects. Several authors co-founded a company developing HGF mimetics.",
+      "source": 5
+    }
+  ],
+  "ask_your_clinician": [
+    "Are there approved or well-studied options for my memory or focus concerns?",
+    "Could a compound that boosts a growth-factor pathway be risky given my personal or family cancer history?",
+    "How could we track any changes in my thinking or mood objectively?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "FDA's Pep(tide) Rally! What Compounders and Industry Need to Know (Post 1 of 2)",
+      "publisher": "FDA Law Blog (Hyman, Phelps & McNamara)",
+      "year": 2026,
+      "url": "https://thefdalawblog.com/2026/04/fdas-peptide-rally-what-compounders-and-industry-need-to-know-post-1-of-2"
+    },
+    {
+      "n": 3,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 4,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 5,
+      "title": "The Procognitive and Synaptogenic Effects of Angiotensin IV-Derived Peptides Are Dependent on Activation of the Hepatocyte Growth Factor/c-Met System",
+      "publisher": "Journal of Pharmacology and Experimental Therapeutics",
+      "year": 2014,
+      "url": "https://jpet.aspetjournals.org/content/jpet/351/2/390.full.pdf"
+    }
+  ],
+  "notes_for_editor": "Evidence comes only from the lab that developed dihexa, whose authors co-founded a company developing HGF mimetics; the abstract opened does not name the species (the water-maze test is a rodent method). A cancer concern from activating c-Met is plausible, but no authoritative source discussing it for dihexa was found, so the risk is framed only as unknown long-term effects and the cancer item in avoid_if is an inference. A related 2013 paper on stabilized angiotensin IV analogs was not opened. Re-check status after the expected advisory committee meeting and the pending HHS interim peptide policy.",
+  "checked": "2026-10-28"
+}

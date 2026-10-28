@@ -1,0 +1,140 @@
+{
+  "id": "ltheanine",
+  "name": "L-theanine",
+  "summary": "An amino acid from tea leaves, taken to feel calm without drowsiness, ease stress, and improve sleep quality and focus.",
+  "what_it_is": "L-theanine is an amino acid that is not used to build proteins, found in the tea plant (Camellia sinensis) and some mushrooms, and it adds to tea's savory taste. It resembles glutamate and glutamine, can cross into the brain, and is reported to affect GABA, dopamine, serotonin and glutamate and to increase alpha brain waves linked to a relaxed but alert state. How it works is not fully established.",
+  "evidence": {
+    "grade": "limited",
+    "why": "Small, short randomized trials suggest modest effects on acute stress, sleep quality and attention, often studied together with caffeine; larger independent trials are lacking."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement; GRAS food ingredient",
+    "note": "Sold as a dietary supplement. FDA had no questions about three notices (closed in 2007, 2010 and 2014) concluding that L-theanine is generally recognized as safe for use in foods; a fourth notice was pending.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.75,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "May reduce stress and anxiety during acute stress, based on a review of 9 randomized trials with 270 people",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Better self-rated sleep quality and faster sleep onset in pooled trials, without longer total sleep",
+      "evidence": "limited",
+      "sources": [
+        3,
+        4
+      ]
+    },
+    {
+      "claim": "Small improvements in attention and reaction time in healthy adults, stronger when combined with caffeine",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Few, mild side effects reported, at rates similar to placebo in trials",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Long-term safety is unknown because trials have been short",
+      "how_common": "unknown",
+      "sources": [
+        3,
+        4
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anxiety, depression or another mental health condition (clinician first; evidence in these groups is limited)",
+    "Ongoing insomnia (evidence in clinical insomnia is limited, so seek an evaluation)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed; none are linked to its use."
+  },
+  "studies": [
+    {
+      "title": "Effects of L-Theanine Administration on Stress-Related Symptoms and Cognitive Functions in Healthy Adults: A Randomized Controlled Trial",
+      "year": 2019,
+      "type": "RCT",
+      "people": "30 healthy adults aged 20 to 69 (crossover)",
+      "finding": "Over 4 weeks, time to fall asleep, sleep disturbance and sleep-medication use improved more than with placebo, but overall stress, sleep and thinking scores did not differ significantly; the study was funded by the supplement's supplier.",
+      "source": 4
+    },
+    {
+      "title": "Effects of L-theanine on cognition, mood and sleep: evidence from human trials",
+      "year": 2026,
+      "type": "Review",
+      "people": "Review of randomized trials in healthy adults and patient groups",
+      "finding": "Found modest support for acute stress relief, sleep quality and attention, no sedation, and a need for larger and longer trials; the authors work for a company that sells L-theanine products.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Could L-theanine help my sleep or stress, or should we look for an underlying cause?",
+    "Is it safe with my other medicines or supplements, including caffeine products?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "GRAS Notice (GRN) No. 209: L-theanine",
+      "publisher": "U.S. Food and Drug Administration (GRAS Notices inventory)",
+      "year": 2007,
+      "url": "https://hfpappexternal.fda.gov/scripts/fdcc/index.cfm?id=209&set=GRASNotices"
+    },
+    {
+      "n": 2,
+      "title": "GRAS Notices: search results for L-theanine",
+      "publisher": "U.S. Food and Drug Administration (GRAS Notices inventory)",
+      "year": 2026,
+      "url": "https://hfpappexternal.fda.gov/scripts/fdcc/index.cfm?order=DESC&set=GRASNotices&search=l-theanine&cat=&sort=GRN_No&startrow=1&type=basic"
+    },
+    {
+      "n": 3,
+      "title": "Effects of L-theanine on cognition, mood and sleep: evidence from human trials",
+      "publisher": "Frontiers in Nutrition",
+      "year": 2026,
+      "url": "https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2026.1922819/full"
+    },
+    {
+      "n": 4,
+      "title": "Effects of L-Theanine Administration on Stress-Related Symptoms and Cognitive Functions in Healthy Adults: A Randomized Controlled Trial",
+      "publisher": "Nutrients (MDPI)",
+      "year": 2019,
+      "url": "https://www.mdpi.com/2072-6643/11/10/2362"
+    }
+  ],
+  "notes_for_editor": "Evidence is thin: small, short trials, often of products combined with caffeine. The main review opened (Frontiers in Nutrition, 2026) was written by employees of a British American Tobacco subsidiary that sells L-theanine products, and the trial opened was funded by an L-theanine supplier. A 2026 Molecular Psychiatry meta-analysis of 31 randomized trials and a 2025 review titled Examining the effect of L-theanine on sleep could not be opened and should be checked. GRAS status covers use in foods, not supplement claims.",
+  "checked": "2026-10-28"
+}

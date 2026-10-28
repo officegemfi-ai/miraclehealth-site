@@ -1,0 +1,168 @@
+{
+  "id": "glutathione",
+  "name": "Glutathione",
+  "summary": "An antioxidant the body makes, taken by mouth or IV for liver health, detox and skin lightening; human studies are small and IV use has caused serious reactions.",
+  "what_it_is": "Glutathione is a small peptide the body makes and keeps in blood and tissues, where it acts as an antioxidant that helps limit oxidative stress. It is sold as an oral supplement, including liposomal forms, and some clinics give it by IV infusion or injection. In a 6-month trial, taking it by mouth raised the body's glutathione stores, but whether this improves health has not been shown.",
+  "evidence": {
+    "grade": "limited",
+    "why": "One good randomized trial showed oral glutathione raises the body's stores; evidence for liver disease and skin lightening comes from small or uncontrolled studies."
+  },
+  "status_us": {
+    "key": "compounded",
+    "label": "Compoundable while FDA evaluates; also a supplement",
+    "note": "FDA lists glutathione in Category 1 (under evaluation), so pharmacies may compound it, including injections, while FDA decides; oral products are sold as supplements. In August 2026 FDA warned compounders not to make injections from supplement-grade glutathione after at least 30 patients had reactions.",
+    "sources": [1, 2, 3]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0.75,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 1,
+    "immune": 0.5,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Raised glutathione in red cells, plasma and immune cells (lymphocytes) by about 30% to 35% over 6 months in the higher-dose group of a placebo-controlled trial of 54 healthy adults taking it by mouth; levels returned to baseline a month after stopping",
+      "evidence": "moderate",
+      "sources": [4]
+    },
+    {
+      "claim": "Higher natural killer (immune) cell activity at 3 months in the same trial's higher-dose group",
+      "evidence": "limited",
+      "sources": [4]
+    },
+    {
+      "claim": "Lower ALT (a liver enzyme), triglycerides and ferritin after 4 months in an uncontrolled study of 29 people with fatty liver disease",
+      "evidence": "limited",
+      "sources": [5]
+    },
+    {
+      "claim": "Some skin lightening from oral and topical forms in small trials, with inconsistent results; effects of IV use appeared to fade over about 6 months",
+      "evidence": "limited",
+      "sources": [6]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Contaminated injections: by August 2026 FDA knew of at least 30 people with fever, chills, dizziness and shock- or sepsis-like reactions after IV glutathione made from supplement-grade ingredient, some needing hospital care",
+      "how_common": "unknown",
+      "sources": [3]
+    },
+    {
+      "risk": "Liver injury and severe allergic reactions, including anaphylaxis, reported with IV use for skin lightening",
+      "how_common": "unknown",
+      "sources": [6]
+    },
+    {
+      "risk": "Mild, short-lived stomach upset such as gas or loose stools with oral forms",
+      "how_common": "rare",
+      "sources": [6]
+    },
+    {
+      "risk": "In the fatty liver study, liver enzymes rose in people who did not respond and HbA1c (a blood sugar marker) rose overall; three people dropped out with fatigue, high blood pressure or rash (cause unclear)",
+      "how_common": "unknown",
+      "sources": [5]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding (not studied)",
+    "Liver disease, unless supervised by a clinician (liver injury has been reported with IV use)",
+    "People considering IV use outside a closely supervised clinical setting"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Liver enzymes (ALT, AST) if used for liver disease"
+    ],
+    "during": [
+      "Liver enzymes (ALT, AST) if used for liver disease"
+    ],
+    "why": "No routine monitoring is needed for oral supplements; the fatty liver study tracked ALT and AST, which rose in some patients."
+  },
+  "studies": [
+    {
+      "title": "Randomized controlled trial of oral glutathione supplementation on body stores of glutathione",
+      "year": 2015,
+      "type": "RCT",
+      "people": "54 healthy non-smoking adults (6 months)",
+      "finding": "Oral glutathione raised glutathione in blood, red cells, plasma, immune cells and cheek cells, depending on dose and time, and lowered a marker of oxidative stress; levels returned to baseline after a month off.",
+      "source": 4
+    },
+    {
+      "title": "Efficacy of glutathione for the treatment of nonalcoholic fatty liver disease: an open-label, single-arm, multicenter, pilot study",
+      "year": 2017,
+      "type": "Trial",
+      "people": "29 people with fatty liver disease (34 enrolled), no control group",
+      "finding": "After 4 months of oral glutathione following lifestyle advice, ALT, triglycerides and ferritin fell, and liver fat fell in responders only; the authors call the results preliminary.",
+      "source": 5
+    },
+    {
+      "title": "Exploring the Safety and Efficacy of Glutathione Supplementation for Skin Lightening: A Narrative Review",
+      "year": 2025,
+      "type": "Review",
+      "people": "Studies of oral, topical and IV glutathione",
+      "finding": "Oral and topical glutathione may lighten skin, with inconsistent results and mild side effects; IV use raises serious safety concerns and its effect appears short-lived.",
+      "source": 6
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there a specific reason, such as a liver condition, that glutathione might help me?",
+    "If IV glutathione is offered, where does the ingredient come from and is it suitable for injection?",
+    "Should my liver enzymes be checked before and during use?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/174456/download"
+    },
+    {
+      "n": 3,
+      "title": "FDA reminds compounders not to use dietary supplement grade glutathione for injectables",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/fda-reminds-compounders-not-use-dietary-supplement-grade-glutathione-injectables"
+    },
+    {
+      "n": 4,
+      "title": "Randomized controlled trial of oral glutathione supplementation on body stores of glutathione",
+      "publisher": "European Journal of Nutrition (Penn State research portal)",
+      "year": 2015,
+      "url": "https://pure.psu.edu/en/publications/randomized-controlled-trial-of-oral-glutathione-supplementation-o/"
+    },
+    {
+      "n": 5,
+      "title": "Efficacy of glutathione for the treatment of nonalcoholic fatty liver disease: an open-label, single-arm, multicenter, pilot study",
+      "publisher": "BMC Gastroenterology",
+      "year": 2017,
+      "url": "https://bmcgastroenterol.biomedcentral.com/track/pdf/10.1186/s12876-017-0652-3"
+    },
+    {
+      "n": 6,
+      "title": "Exploring the Safety and Efficacy of Glutathione Supplementation for Skin Lightening: A Narrative Review",
+      "publisher": "Cureus",
+      "year": 2025,
+      "url": "https://assets.cureus.com/uploads/review_article/pdf/334888/20250127-850722-ohpyph.pdf"
+    }
+  ],
+  "notes_for_editor": "Glutathione is in FDA's Category 1, yet FDA's August 2026 notice (and a 2019 warning it mentions) concerns supplement-grade ingredient used to make injections; the notice names a supplier lot and pharmacies, omitted here. The skin-lightening source is a narrative review in Cureus that does not count trials; it mentions a Philippine FDA warning against IV glutathione and cites a 'liver failure in almost a third of patients' figure from one account, which was not used because its basis was unclear. The IV skin-lightening trial it cites was not opened. The 'gut' goal is used as the closest match for liver and detox use.",
+  "checked": "2026-10-28"
+}

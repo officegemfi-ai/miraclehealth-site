@@ -1,0 +1,226 @@
+{
+  "id": "tirzepatide",
+  "name": "Tirzepatide",
+  "summary": "A prescription injection, sold as Mounjaro and Zepbound, that activates two hormone receptors (GIP and GLP-1) to lower blood sugar and body weight.",
+  "what_it_is": "Tirzepatide is a lab-made peptide that switches on the receptors for two hormones, GIP and GLP-1, which help regulate blood sugar and appetite. It reduces appetite and calorie intake and slows stomach emptying. It lasts about 5 to 6 days in the body and is given as an injection under the skin.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Large randomized trials such as SURMOUNT-1 (2,539 adults), plus FDA approval for type 2 diabetes, weight management and obstructive sleep apnea."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for type 2 diabetes, weight and sleep apnea",
+    "note": "Approved as Mounjaro (type 2 diabetes) and Zepbound (weight management, and moderate to severe obstructive sleep apnea in adults with obesity); in early 2026 FDA had the suicidal-thoughts warning removed from Zepbound's label after its review found no increased risk. FDA confirmed the shortage over in December 2024 and the grace periods for pharmacy copies ended in early 2025; in May 2026 FDA proposed keeping tirzepatide off the outsourcing-facility (503B) bulks list, and it warns about compounded, counterfeit and 'research' versions.",
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.5,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "About 15% to 21% average body-weight loss over 72 weeks, depending on dose, in adults with obesity or overweight without diabetes, versus about 3% with placebo",
+      "evidence": "strong",
+      "sources": [
+        7,
+        1
+      ]
+    },
+    {
+      "claim": "Approved as Mounjaro to improve blood sugar control in adults with type 2 diabetes; in adults with type 2 diabetes and excess weight, about 13% to 15% weight loss over 72 weeks versus about 3% with placebo",
+      "evidence": "strong",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "claim": "Fewer breathing pauses during sleep in adults with obesity and moderate to severe obstructive sleep apnea: the apnea-hypopnea index fell by about 51% to 59% over 52 weeks, versus about 3% with placebo",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Nausea, diarrhea, vomiting, constipation and stomach pain; nausea affected about 1 in 4 people versus 8% on placebo, and severe digestive reactions about 2% to 3% versus 1%",
+      "how_common": "common",
+      "sources": [
+        1,
+        7
+      ]
+    },
+    {
+      "risk": "Most lost weight tends to return after stopping: people switched to placebo after 36 weeks of treatment regained about 14% of body weight over the next year",
+      "how_common": "common",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "Gallbladder problems: gallstones (1.1% versus 1% on placebo) and gallbladder inflammation (0.7% versus 0.2%)",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Acute pancreatitis: a labeled warning, though rates matched placebo (0.2%) in the weight-loss trials",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Breathing stomach contents into the lungs under general anesthesia or deep sedation: rare reports; the label asks people to tell their care team before any planned procedure",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Boxed warning: thyroid C-cell tumors in rats; whether this happens in humans is unknown",
+      "how_common": "theoretical",
+      "sources": [
+        1,
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Personal or family history of medullary thyroid cancer or MEN 2",
+    "Past serious allergic reaction to tirzepatide",
+    "Pregnancy (the label says to stop when pregnancy is recognized)",
+    "Severe gastroparesis (very slow stomach emptying)",
+    "Type 2 diabetes with diabetic retinopathy (needs closer eye monitoring)"
+  ],
+  "interactions": [
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Birth control pills: can work less well after starting tirzepatide and after each dose increase; the label advises a non-oral method or adding a barrier method during those periods",
+    "Oral medicines with a narrow safety margin, such as warfarin: slower stomach emptying can change absorption, so levels need monitoring",
+    "Other tirzepatide products or any GLP-1 drug: using them together is not recommended"
+  ],
+  "labs": {
+    "before": [
+      "HbA1c or fasting glucose",
+      "Kidney function (creatinine, eGFR)",
+      "Eye exam if you have diabetic retinopathy"
+    ],
+    "during": [
+      "Kidney function if vomiting or diarrhea is severe",
+      "Blood glucose if also taking insulin or a sulfonylurea",
+      "Eye checks if you have diabetic retinopathy",
+      "INR or drug levels if taking warfarin or another narrow-margin drug"
+    ],
+    "why": "The label calls for watching kidney function when digestive side effects could cause dehydration (acute kidney injury has been reported), blood sugar with insulin or sulfonylureas, and diabetic eye disease; it says routine calcitonin or thyroid ultrasound checks are of uncertain value."
+  },
+  "studies": [
+    {
+      "title": "Tirzepatide Once Weekly for the Treatment of Obesity",
+      "year": 2022,
+      "type": "RCT",
+      "people": "2,539 adults with obesity or overweight, without diabetes",
+      "finding": "Average weight change at 72 weeks was -15.0% to -20.9% across three doses versus -3.1% with placebo. Stopping because of side effects was 4.3% to 7.1% versus 2.6% with placebo.",
+      "source": 7
+    },
+    {
+      "title": "Continued treatment with Tirzepatide for maintenance of weight reduction in adults with obesity: The SURMOUNT-4 randomized clinical trial",
+      "year": 2024,
+      "type": "RCT",
+      "people": "670 adults with obesity or overweight who had lost weight on tirzepatide",
+      "finding": "After 36 weeks of open-label tirzepatide (average loss 20.9%), those switched to placebo regained 14.0% of body weight over the next 52 weeks, while those who continued lost a further 5.5%.",
+      "source": 8
+    },
+    {
+      "title": "ZEPBOUND (tirzepatide) injection, for subcutaneous use: Prescribing Information",
+      "year": 2026,
+      "type": "Label",
+      "people": "Adults with obesity and moderate to severe obstructive sleep apnea (two 52-week trials)",
+      "finding": "The apnea-hypopnea index fell about 51% and 59% with tirzepatide versus about 3% with placebo.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "What is our plan if I stop, given that most of the weight tends to return?",
+    "Do I need to change my birth control while starting or increasing tirzepatide?",
+    "Should I tell my surgeon or anesthesia team before any procedure with sedation?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "ZEPBOUND (tirzepatide) injection, for subcutaneous use: Prescribing Information (revised 04/2026)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/217806Orig1s050lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "MOUNJARO (tirzepatide) injection, for subcutaneous use: Prescribing Information (version effective September 2023)",
+      "publisher": "FDA (Structured Product Labeling)",
+      "year": 2023,
+      "url": "https://www.accessdata.fda.gov/spl/data/b597917f-9673-4331-809d-79a538bb943c/b597917f-9673-4331-809d-79a538bb943c.xml"
+    },
+    {
+      "n": 3,
+      "title": "FDA clarifies policies for compounders as national GLP-1 supply begins to stabilize",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/drug-alerts-and-statements/fda-clarifies-policies-compounders-national-glp-1-supply-begins-stabilize"
+    },
+    {
+      "n": 4,
+      "title": "List of Bulk Drug Substances for Which There Is a Clinical Need Under Section 503B of the Federal Food, Drug, and Cosmetic Act (91 FR 23431)",
+      "publisher": "Federal Register (FDA)",
+      "year": 2026,
+      "url": "https://www.govinfo.gov/content/pkg/FR-2026-05-01/html/2026-08552.htm"
+    },
+    {
+      "n": 5,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 6,
+      "title": "FDA Requests Removal of Suicidal Behavior and Ideation Warning from Glucagon-Like Peptide-1 Receptor Agonist (GLP-1 RA) Medications",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-requests-removal-suicidal-behavior-and-ideation-warning-glucagon-peptide-1-receptor-agonist-glp"
+    },
+    {
+      "n": 7,
+      "title": "Tirzepatide Once Weekly for the Treatment of Obesity",
+      "publisher": "New England Journal of Medicine (Ovid)",
+      "year": 2022,
+      "url": "https://www.ovid.com/journals/nejm/fulltext/10.1056/nejmoa2206038~tirzepatide-once-weekly-for-the-treatment-of-obesity"
+    },
+    {
+      "n": 8,
+      "title": "Continued treatment with Tirzepatide for maintenance of weight reduction in adults with obesity: The SURMOUNT-4 randomized clinical trial",
+      "publisher": "JAMA (University of Glasgow Enlighten record)",
+      "year": 2024,
+      "url": "https://eprints.gla.ac.uk/315448"
+    }
+  ],
+  "notes_for_editor": "The Mounjaro (type 2 diabetes) indication was checked only against a September 2023 structured label; the current Mounjaro label could not be read in full, so any newer indication, such as cardiovascular results from the SURPASS-CVOT trial, was not checked. A DailyMed page fetched during this check showed a Zepbound revision dated August 2026 that changes the diabetic retinopathy section, newer than the April 2026 PDF cited here. FDA's April 2026 compounding update says it will not act against 503A pharmacies filling four or fewer 'essentially copy' prescriptions a month, so small-scale compounding continues in a gray zone. FDA's GLP-1 page counts more than 730 adverse event reports tied to compounded tirzepatide. No final decision was found on the May 2026 503B bulks proposal. SURMOUNT-4 was sponsored by Eli Lilly.",
+  "checked": "2026-10-28"
+}

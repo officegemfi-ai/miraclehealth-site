@@ -1,0 +1,185 @@
+{
+  "id": "pregnenolone",
+  "name": "Pregnenolone",
+  "summary": "A steroid the body turns into other hormones and brain-active neurosteroids, sold as a supplement and studied in small trials for pain, schizophrenia and bipolar depression.",
+  "what_it_is": "Pregnenolone is a neurosteroid, a steroid made in the body that is converted into other steroid hormones and into brain-active steroids such as allopregnanolone. In the US it is sold over the counter as a dietary supplement. Small trials have tested it as an add-on treatment for schizophrenia, bipolar depression and chronic low back pain.",
+  "evidence": {
+    "grade": "limited",
+    "why": "A handful of small randomized trials, each with about 100 people or fewer and lasting 4 to 12 weeks, show mixed benefits for back pain, schizophrenia symptoms and bipolar depression."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Supplement; FDA reviewing it for compounding",
+    "note": "Pregnenolone is sold over the counter as a dietary supplement, which FDA does not approve for safety or effectiveness before sale. FDA also lists it in Category 1 (under evaluation) for pharmacy compounding, so pharmacies may compound it while FDA decides.",
+    "sources": [1, 2, 3, 4]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0.25,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.75,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Less low back pain, and less pain interference with work and activity, than placebo over 4 weeks in a trial of 94 US veterans",
+      "evidence": "moderate",
+      "sources": [5]
+    },
+    {
+      "claim": "Fewer negative symptoms (blunted emotion, low motivation, loss of pleasure) when added to antipsychotics in an 8-week trial of 60 people with recent-onset schizophrenia",
+      "evidence": "limited",
+      "sources": [6]
+    },
+    {
+      "claim": "Better depression scores over time on a clinician-rated scale, and higher remission on a self-report scale (61% versus 37%), when added to usual treatment in 80 adults with bipolar depression; the two scales did not agree",
+      "evidence": "limited",
+      "sources": [7]
+    },
+    {
+      "claim": "Better attention, working memory or verbal memory in small pilot trials in schizophrenia",
+      "evidence": "limited",
+      "sources": [8]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Mild restlessness, cold hands and feet, muscle pain or stiffness and headache, reported more often than with placebo in earlier trials",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "Can raise levels of other steroids made from it, so trials excluded people with prostate, uterine or breast cancer",
+      "how_common": "theoretical",
+      "sources": [1, 7]
+    },
+    {
+      "risk": "One published report of palpitations",
+      "how_common": "rare",
+      "sources": [1]
+    },
+    {
+      "risk": "Long-term safety unknown: trials lasted 4 to 12 weeks",
+      "how_common": "unknown",
+      "sources": [5, 6, 7]
+    }
+  ],
+  "avoid_if": [
+    "Prostate, uterine or breast cancer (excluded from trials because downstream hormones could rise)",
+    "Pregnant or breastfeeding (excluded from trials)"
+  ],
+  "interactions": [
+    "Birth control pills and other hormone supplements: users were excluded from trials, so combined effects are unknown"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No evidence-based monitoring exists for supplement use; trials measured neurosteroid levels for research, and one planned a follow-up ECG because of a single palpitations report."
+  },
+  "studies": [
+    {
+      "title": "Effect of Pregnenolone vs Placebo on Self-reported Chronic Low Back Pain Among US Military Veterans: A Randomized Clinical Trial",
+      "year": 2020,
+      "type": "RCT",
+      "people": "94 US veterans with chronic low back pain (4 weeks)",
+      "finding": "Pregnenolone lowered daily pain ratings and pain interference with work and activity more than placebo and was well tolerated.",
+      "source": 5
+    },
+    {
+      "title": "Pregnenolone treatment reduces severity of negative symptoms in recent-onset schizophrenia: an 8-week, double-blind, randomized add-on two-center trial",
+      "year": 2014,
+      "type": "RCT",
+      "people": "60 people with recent-onset schizophrenia or schizoaffective disorder (8 weeks)",
+      "finding": "Added to antipsychotics, pregnenolone reduced negative symptoms versus placebo, mainly in people not taking mood stabilizers; other symptoms and functioning did not change.",
+      "source": 6
+    },
+    {
+      "title": "A Randomized, Double-Blind, Placebo-Controlled Trial of Pregnenolone for Bipolar Depression",
+      "year": 2014,
+      "type": "RCT",
+      "people": "80 adults with bipolar depression (12 weeks)",
+      "finding": "Clinician-rated depression improved more over time with pregnenolone and self-rated remission was higher, but the two depression scales gave different results; it was well tolerated.",
+      "source": 7
+    },
+    {
+      "title": "Pregnenolone as a novel therapeutic candidate in schizophrenia: emerging preclinical and clinical evidence",
+      "year": 2011,
+      "type": "Review",
+      "people": "Animal studies and pilot trials in schizophrenia",
+      "finding": "Early pilot trials suggested pregnenolone may reduce negative symptoms and improve some cognitive measures; the authors call for larger studies.",
+      "source": 8
+    }
+  ],
+  "ask_your_clinician": [
+    "Could pregnenolone raise my other hormone levels, given my health history?",
+    "Is there evidence for my specific condition, and how would we tell whether it is helping?",
+    "Does it interact with my birth control or other hormones?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Neurosteroids as Novel Therapeutic Agents for Chronic Pain in OEF/OIF Veterans: study protocol (NCT01898013)",
+      "publisher": "ClinicalTrials.gov",
+      "year": 2015,
+      "url": "https://cdn.clinicaltrials.gov/large-docs/13/NCT01898013/Prot_SAP_000.pdf"
+    },
+    {
+      "n": 2,
+      "title": "Information for Consumers on Using Dietary Supplements",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/food/dietarysupplements/usingdietarysupplements/"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 4,
+      "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/174456/download"
+    },
+    {
+      "n": 5,
+      "title": "Effect of Pregnenolone vs Placebo on Self-reported Chronic Low Back Pain Among US Military Veterans: A Randomized Clinical Trial",
+      "publisher": "JAMA Network Open (BVS/LILACS record)",
+      "year": 2020,
+      "url": "https://pesquisa.bvsalud.org/bvsms/resource/pt/mdl-32119096"
+    },
+    {
+      "n": 6,
+      "title": "Pregnenolone treatment reduces severity of negative symptoms in recent-onset schizophrenia: an 8-week, double-blind, randomized add-on two-center trial",
+      "publisher": "Psychiatry and Clinical Neurosciences (QxMD)",
+      "year": 2014,
+      "url": "https://read.qxmd.com/read/24548129/pregnenolone-treatment-reduces-severity-of-negative-symptoms-in-recent-onset-schizophrenia-an-8-week-double-blind-randomized-add-on-two-center-trial"
+    },
+    {
+      "n": 7,
+      "title": "A Randomized, Double-Blind, Placebo-Controlled Trial of Pregnenolone for Bipolar Depression",
+      "publisher": "Neuropsychopharmacology (Nature)",
+      "year": 2014,
+      "url": "https://www.nature.com/articles/npp2014138.pdf"
+    },
+    {
+      "n": 8,
+      "title": "Pregnenolone as a novel therapeutic candidate in schizophrenia: emerging preclinical and clinical evidence",
+      "publisher": "Neuroscience (Duke Scholars)",
+      "year": 2011,
+      "url": "https://scholars.duke.edu/individual/pub761783"
+    }
+  ],
+  "notes_for_editor": "US supplement status and the side-effect list come from a 2015 VA trial protocol, not from FDA or NIH pages; the side effects summarize earlier trials rather than the trial reports themselves. Several trials come from one VA research group. Most papers were read as abstracts; the low back pain abstract gives 94 participants but lists 48 and 52 per group. A 2010 trial of pregnenolone and DHEA in schizophrenia (Journal of Clinical Psychiatry) could not be opened.",
+  "checked": "2026-10-28"
+}

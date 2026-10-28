@@ -1,0 +1,174 @@
+{
+  "id": "omega3",
+  "name": "Omega-3 fish oil",
+  "summary": "Oils from fish, krill or algae that supply the omega-3 fats EPA and DHA, taken mainly for heart health and to lower triglycerides.",
+  "what_it_is": "Omega-3s are polyunsaturated fats. The plant form, ALA, comes from flaxseed, soybean and canola oils, chia seeds and walnuts, while the long-chain forms EPA and DHA come mainly from fish and are first made by microalgae. Supplements include fish oil, krill oil, cod liver oil and algal oil, and separate prescription products such as icosapent ethyl (Vascepa, a purified form of EPA) are FDA-approved drugs.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Large randomized trials show omega-3s lower triglycerides and that a prescription EPA drug cut heart events, but trials of standard fish oil gave mixed heart results and found no benefit for dry eye, memory in healthy older adults or macular degeneration."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Supplement; prescription forms FDA-approved",
+    "note": "Fish, krill and algal oils are sold as dietary supplements. Prescription icosapent ethyl (Vascepa) is FDA-approved to lower very high triglycerides and, added to a statin, to cut heart attack, stroke and related risks in adults with high triglycerides and heart disease, or diabetes plus other risk factors.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.75,
+    "muscle": 0,
+    "recovery": 0.5,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.5,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0.25,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lowers blood triglycerides by about 15%, according to a 2020 Cochrane review",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Prescription EPA (icosapent ethyl) cut major heart events by 25% in REDUCE-IT, a trial of 8,179 adults with high triglycerides taking statins",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Mixed heart results for lower-dose EPA plus DHA: no drop in major heart events in VITAL (25,871 adults) or ASCEND (15,480 adults with diabetes), but 28% fewer heart attacks in VITAL and 19% fewer cardiovascular deaths in ASCEND",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Taken in pregnancy, lowers the risk of preterm birth",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Atrial fibrillation: 25% higher risk across 7 trials of 81,210 people, and higher still in trials using higher doses; with prescription EPA, 3% versus 2% on placebo were hospitalized for it",
+      "how_common": "uncommon",
+      "sources": [
+        3,
+        2
+      ]
+    },
+    {
+      "risk": "Bleeding, especially with aspirin, clopidogrel or warfarin; with prescription EPA, 12% had bleeding events versus 10% on placebo",
+      "how_common": "uncommon",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "risk": "Commonly reported mild effects: unpleasant taste, bad breath, heartburn, nausea, stomach discomfort, diarrhea, headache and smelly sweat",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Unknown whether people with fish or shellfish allergy are at higher risk of allergic reactions",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "In one study (SELECT), men with the highest blood omega-3 levels had more high-grade prostate cancer; the finding is debated and overall evidence shows no consistent link",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Taking blood thinners or antiplatelet drugs such as warfarin, aspirin or clopidogrel (clinician first)",
+    "History of atrial fibrillation or atrial flutter",
+    "Fish or shellfish allergy (clinician first)"
+  ],
+  "interactions": [
+    "Warfarin and other anticoagulants: fish oil might prolong clotting time, and NIH advises periodic INR checks",
+    "Aspirin, clopidogrel and other antithrombotic drugs: bleeding risk was higher with prescription EPA"
+  ],
+  "labs": {
+    "before": [],
+    "during": [
+      "INR at intervals for people taking warfarin"
+    ],
+    "why": "No routine tests are needed for supplement use; NIH advises periodic INR checks for people on warfarin."
+  },
+  "studies": [
+    {
+      "title": "Effect of Long-Term Marine Omega-3 Fatty Acids Supplementation on the Risk of Atrial Fibrillation in Randomized Controlled Trials of Cardiovascular Outcomes: A Systematic Review and Meta-Analysis",
+      "year": 2021,
+      "type": "Meta-analysis",
+      "people": "81,210 people in 7 randomized cardiovascular outcome trials",
+      "finding": "Omega-3 supplements raised the risk of atrial fibrillation by 25% over about 5 years, with a larger increase in trials that used higher doses.",
+      "source": 3
+    },
+    {
+      "title": "VASCEPA (icosapent ethyl) capsules prescribing information",
+      "year": 2026,
+      "type": "Label",
+      "people": "Adults in the REDUCE-IT outcome trial and in trials of very high triglycerides",
+      "finding": "Approved as an add-on to statins to cut heart attack, stroke and related events in high-risk adults with high triglycerides, and to lower very high triglycerides; atrial fibrillation hospitalization (3% vs 2%) and bleeding (12% vs 10%) were more common than with placebo.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a prescription omega-3 suit my triglycerides or heart risk better than a supplement?",
+    "With my heart rhythm history and any blood thinners I take, is omega-3 safe for me?",
+    "Should I get omega-3s from eating fish instead of a supplement?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Omega-3 Fatty Acids - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2026,
+      "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "VASCEPA (icosapent ethyl) capsules prescribing information",
+      "publisher": "U.S. Food and Drug Administration (Drugs@FDA)",
+      "year": 2026,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202057oRIG1s058lbl.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Effect of Long-Term Marine Omega-3 Fatty Acids Supplementation on the Risk of Atrial Fibrillation in Randomized Controlled Trials of Cardiovascular Outcomes: A Systematic Review and Meta-Analysis",
+      "publisher": "Circulation (University of Bern repository)",
+      "year": 2021,
+      "url": "https://boris.unibe.ch/159997"
+    }
+  ],
+  "notes_for_editor": "Heart findings differ by product: prescription EPA (REDUCE-IT) cut events, while STRENGTH (13,078 people, a prescription EPA plus DHA product) stopped early without benefit and with more atrial fibrillation, and VITAL and ASCEND (lower-dose EPA plus DHA) did not cut major events. The SELECT prostate finding is observational and debated. The sources opened do not compare krill or algal oil with fish oil. The ODS page showed no visible update date, so its year is the last-modified year; the ODS page does not mention Lovaza, so that product's label was not checked.",
+  "checked": "2026-10-28"
+}

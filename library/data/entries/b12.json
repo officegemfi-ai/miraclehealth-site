@@ -1,0 +1,133 @@
+{
+  "id": "b12",
+  "name": "Vitamin B12",
+  "summary": "An essential vitamin for nerves, red blood cells and DNA, taken to prevent or treat deficiency, which is more likely with age, vegan diets and some medicines.",
+  "what_it_is": "Vitamin B12 (cobalamin) is required for healthy red blood cell formation, DNA synthesis, and the development, myelination and function of the central nervous system. Stomach acid and enzymes release it from food, after which it combines with intrinsic factor and is absorbed in the last part of the small intestine (the ileum). Cyanocobalamin is the most common supplement form, and no evidence shows that absorption differs between forms such as methylcobalamin.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Treating deficiency is standard care, and small trials show oral and injected B12 correct low levels similarly; trials in older adults show no improvement in thinking skills, and NIH finds no performance benefit without a deficiency."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Supplement; injections and nasal gel by prescription",
+    "note": "Sold as a dietary supplement. Vitamin B12 is also a prescription medicine, usually given by intramuscular injection, and is available as a prescription nasal gel spray.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 1,
+    "sleep": 0,
+    "cognition": 0.5,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Corrects vitamin B12 deficiency, which can cause fatigue, megaloblastic anemia and nerve damage that may appear even without anemia",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Oral B12 normalized blood levels about as well as injections in small trials, at lower cost",
+      "evidence": "moderate",
+      "sources": [
+        2,
+        3
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No upper limit has been set because B12 is considered safe even at high doses; studies linking high intake or blood levels to cancer are mixed and unsettled",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Side effects are poorly reported in trials (very low certainty evidence); in one trial 2 of 30 people stopped oral B12 early because of adverse events",
+      "how_common": "unknown",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Numbness, tingling, balance problems or memory changes: get tested before self-treating, since nerve damage can occur without anemia",
+    "Pernicious anemia, or past stomach or bowel surgery such as weight-loss surgery (needs medical care)",
+    "Regular use of metformin, proton pump inhibitors or H2 blockers (discuss B12 status with a clinician)"
+  ],
+  "interactions": [
+    "Metformin: may reduce B12 absorption and significantly lower blood B12 levels",
+    "Proton pump inhibitors and H2 blockers: can reduce absorption of B12 from food by slowing stomach acid release"
+  ],
+  "labs": {
+    "before": [
+      "Serum or plasma vitamin B12",
+      "Methylmalonic acid, which NIH describes as among the most sensitive markers of B12 status",
+      "Homocysteine, which rises with low B12 but is less specific"
+    ],
+    "during": [
+      "Serum B12 to confirm that levels have normalized"
+    ],
+    "why": "Serum B12 is the usual test and methylmalonic acid the most sensitive marker; older adults, vegans and people on metformin or long-term acid reducers are more likely to run low."
+  },
+  "studies": [
+    {
+      "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
+      "year": 2018,
+      "type": "Systematic review",
+      "people": "153 people with B12 deficiency in 3 randomized trials",
+      "finding": "Oral and intramuscular B12 normalized blood levels similarly over 3 to 4 months, and oral treatment cost less; the evidence was low certainty and no trial measured symptoms.",
+      "source": 2
+    },
+    {
+      "title": "Oral vs. Intramuscular Vitamin B12 for Treating Vitamin B12 Deficiency",
+      "year": 2022,
+      "type": "Review",
+      "people": "Trials in adults, including a noninferiority trial in adults over 65",
+      "finding": "Concluded that oral and intramuscular B12 are equivalent for normalizing blood levels after 1 to 4 months.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Should my B12 be checked, given my diet, age or medicines like metformin or acid reducers?",
+    "Would pills work for me, or do I need injections?",
+    "If my B12 result is borderline, should we check methylmalonic acid?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Vitamin B12 - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2025,
+      "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Oral vitamin B12 versus intramuscular vitamin B12 for vitamin B12 deficiency",
+      "publisher": "Cochrane Database of Systematic Reviews",
+      "year": 2018,
+      "url": "https://cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004655.pub3/pdf/CDSR/CD004655/CD004655_abstract.pdf"
+    },
+    {
+      "n": 3,
+      "title": "Oral vs. Intramuscular Vitamin B12 for Treating Vitamin B12 Deficiency",
+      "publisher": "American Family Physician",
+      "year": 2022,
+      "url": "https://www.aafp.org/pubs/afp/issues/2022/0600/p663.pdf"
+    }
+  ],
+  "notes_for_editor": "Evidence comparing oral and injected B12 comes from a few small trials (low certainty), and none measured symptoms or nerve outcomes. The ODS page does not discuss folic acid masking B12 deficiency, so that point is not included. B12 shots for energy in people without deficiency are not supported by the sources opened. ODS gives no monitoring schedule for metformin users; it advises them to discuss B12 status with a clinician.",
+  "checked": "2026-10-28"
+}

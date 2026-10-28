@@ -1,0 +1,140 @@
+{
+  "id": "pda",
+  "name": "Pentadeca Arginate",
+  "summary": "A peptide described as an arginine salt of the experimental peptide BPC-157, used for injury healing; it has not been tested in published studies and is not FDA-approved.",
+  "what_it_is": "Pentadeca arginate (PDA) is the name used for a form of BPC-157 combined with the amino acid arginine. BPC-157 is a lab-made peptide of 15 amino acids (a 'pentadecapeptide') taken from a protein first isolated from human gastric juice. No peer-reviewed study or FDA document about PDA itself was found, so its exact make-up, and whether it acts like other forms of BPC-157, cannot be confirmed; FDA notes that several salts and derivatives are sold under the BPC-157 name.",
+  "evidence": {
+    "grade": "preclinical",
+    "why": "No studies of PDA itself were found; claims rest on animal research on BPC-157, whose few small human studies FDA judged insufficient."
+  },
+  "status_us": {
+    "key": "not_approved",
+    "label": "Not approved; not on any FDA compounding list",
+    "note": "No PDA product is approved, and 'pentadeca arginate' is not on FDA's May 2026 compounding nominations list or its Category 2 page; FDA's July 2026 BPC-157 review covered only the free base and acetate forms, so this salt's status is unclear. BPC-157 itself awaits FDA action after an 8-6 advisory vote in favor in July 2026, and WADA bans non-approved substances such as BPC-157 in sport.",
+    "sources": [1, 2, 3, 4, 5, 6]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 1,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0.5,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Faster tendon healing and protection of the stomach, intestines and liver in rodent studies of BPC-157, the parent peptide; PDA itself has not been tested",
+      "evidence": "preclinical",
+      "sources": [2]
+    },
+    {
+      "claim": "Colon fistulas about 40% smaller than in untreated rats, and closed by day 28, with BPC-157",
+      "evidence": "preclinical",
+      "sources": [2]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "No human safety data for PDA, and too little for BPC-157 to describe its side effects",
+      "how_common": "unknown",
+      "sources": [2]
+    },
+    {
+      "risk": "Immune reactions, which FDA called a possibly significant risk for BPC-157 that clumping or impurities could make worse",
+      "how_common": "theoretical",
+      "sources": [2]
+    },
+    {
+      "risk": "Unknown cancer risk: no studies of BPC-157's cancer-causing potential exist",
+      "how_common": "theoretical",
+      "sources": [2]
+    },
+    {
+      "risk": "Uncertain identity: FDA says several salts and derivatives are sold under the BPC-157 name, so a patient may get a different substance than the one prescribed",
+      "how_common": "unknown",
+      "sources": [2]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding",
+    "Current or past cancer (cancer risk has not been studied)",
+    "Competitive athletes (WADA bans non-approved substances such as BPC-157)"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "General health check"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for PDA or BPC-157."
+  },
+  "studies": [
+    {
+      "title": "FDA Briefing Document for BPC-157-Related Bulk Drug Substances (BPC-157 (free base) and BPC-157 acetate)",
+      "year": 2026,
+      "type": "Review",
+      "people": "Published BPC-157 studies, including 5 small human studies; none of PDA",
+      "finding": "FDA found too little clinical safety information to characterize BPC-157's safety, flagged possible immune reactions and impurities, and said the animal healing results had significant limitations.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "What exactly is in this product, and how do I know it matches what was prescribed?",
+    "What proven treatments exist for my injury, and how do they compare?",
+    "Which symptoms after an injection should make me seek care?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "FDA Briefing Document for BPC-157-Related Bulk Drug Substances (BPC-157 (free base) and BPC-157 acetate), Pharmacy Compounding Advisory Committee, July 23-24, 2026",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193343/download"
+    },
+    {
+      "n": 3,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 4,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott (law firm)",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    },
+    {
+      "n": 5,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight (law firm)",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 6,
+      "title": "The Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "Status unclear. No peer-reviewed, FDA or other authoritative source describing pentadeca arginate was found; search results were vendor pages, which were not cited. The identity used here (an arginine salt of BPC-157) rests on the product name and the catalog's aliases. FDA's BPC-157 review covered only the free base and acetate and warns that other salts and derivatives are sold under the same name; whether pharmacies may lawfully compound PDA, and whether an FDA decision on BPC-157 would cover it, is unresolved. Re-check after FDA acts on BPC-157 and on the pending HHS interim peptide policy.",
+  "checked": "2026-10-28"
+}

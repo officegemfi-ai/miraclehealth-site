@@ -1,0 +1,160 @@
+{
+  "id": "retatrutide",
+  "name": "Retatrutide",
+  "summary": "An experimental Eli Lilly drug that activates three hormone receptors (GIP, GLP-1 and glucagon); it is in late-stage obesity trials and is not FDA-approved.",
+  "what_it_is": "Retatrutide (LY3437943) is a lab-made peptide that switches on the receptors for three hormones: GIP, GLP-1 and glucagon. Tirzepatide acts on the first two of these; retatrutide adds glucagon. It is being tested in phase 3 trials in people with obesity, including people with type 2 diabetes or heart disease, and it is not approved in the US.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "One published phase 2 randomized trial (338 adults) plus large phase 3 trials whose results so far come only from Lilly's press release; long-term safety is not yet known."
+  },
+  "status_us": {
+    "key": "investigational",
+    "label": "Investigational; not approved, not legal to compound",
+    "note": "Retatrutide is in phase 3 trials, and Lilly says it plans to submit it to FDA in the first quarter of 2027. FDA says it 'cannot be used in compounding under federal law' and has sent warning letters to telehealth companies, ingredient distributors and outsourcing facilities over retatrutide.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Average weight loss of 21.6% to 22.6% at 80 weeks versus 3.2% with placebo in 1,949 adults with severe obesity and heart disease (phase 3 results reported by Lilly, not yet peer-reviewed)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Average weight loss of up to 24.2% at 48 weeks versus 2.1% with placebo in a published phase 2 trial of 338 adults with obesity or overweight",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Lower blood sugar and weight in adults with type 2 diabetes and excess weight: A1C fell 1.4 to 1.6 points versus 0.2 with placebo, and weight fell up to 20.8% versus 4.0%, over 80 weeks (company-reported)",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Diarrhea, nausea, constipation, less appetite and vomiting, more often at higher doses; in one phase 3 trial diarrhea affected 27% to 34% versus 13% on placebo, and up to 13.5% stopped because of side effects versus about 5% on placebo",
+      "how_common": "common",
+      "sources": [
+        2,
+        3
+      ]
+    },
+    {
+      "risk": "Unpleasant or abnormal skin sensations (dysesthesia), mostly mild to moderate: 4.5% to 7.3% versus 0.7% on placebo",
+      "how_common": "uncommon",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "risk": "Faster resting heart rate, rising with dose and peaking around 24 weeks in the phase 2 trial before easing",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Long-term safety is not known; the drug is still in trials and not approved",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Retatrutide sold online is unapproved and unregulated; FDA has sent warning letters to sellers, so contents and purity cannot be verified",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anyone outside a clinical trial: it is not an approved medicine",
+    "Pregnant, breastfeeding or planning pregnancy"
+  ],
+  "interactions": [
+    "None well documented; it is still under study"
+  ],
+  "labs": {
+    "before": [
+      "General health check: weight, blood pressure, HbA1c or fasting glucose, kidney function"
+    ],
+    "during": [
+      "Same general checks at regular visits",
+      "Resting heart rate"
+    ],
+    "why": "No evidence-based monitoring exists outside clinical trials because the drug is not approved; these are general health checks, with heart rate added because it rose in trials."
+  },
+  "studies": [
+    {
+      "title": "Triple–Hormone-Receptor Agonist Retatrutide for Obesity — A Phase 2 Trial",
+      "year": 2023,
+      "type": "RCT",
+      "people": "338 adults with obesity or overweight",
+      "finding": "At 48 weeks average weight change ranged from -8.7% at the lowest dose to -24.2% at the highest, versus -2.1% with placebo. Digestive side effects were most common and rose with dose; heart rate rose and peaked at 24 weeks.",
+      "source": 3
+    },
+    {
+      "title": "Lilly's triple agonist, retatrutide, successful in two additional Phase 3 obesity trials, delivering significant improvements in weight and A1C",
+      "year": 2026,
+      "type": "RCT",
+      "people": "1,152 adults with type 2 diabetes and excess weight (TRIUMPH-2) and 1,949 adults with severe obesity and heart disease (TRIUMPH-3)",
+      "finding": "At 80 weeks average weight loss reached 20.8% and 22.6% versus 4.0% and 3.2% with placebo; heart events did not differ significantly from placebo. Results are company-reported.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there a clinical trial I could join instead of using an unapproved product?",
+    "How do approved options such as tirzepatide or semaglutide compare for me?",
+    "Which side effects would mean I should stop and get checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FDA's Concerns with Unapproved GLP-1 Drugs Used for Weight Loss",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"
+    },
+    {
+      "n": 2,
+      "title": "Lilly's triple agonist, retatrutide, successful in two additional Phase 3 obesity trials, delivering significant improvements in weight and A1C",
+      "publisher": "Eli Lilly and Company (press release)",
+      "year": 2026,
+      "url": "https://lilly.gcs-web.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-successful-two-additional"
+    },
+    {
+      "n": 3,
+      "title": "Triple–Hormone-Receptor Agonist Retatrutide for Obesity — A Phase 2 Trial",
+      "publisher": "New England Journal of Medicine (Ovid)",
+      "year": 2023,
+      "url": "https://www.ovid.com/journals/nejm/pdf/10.1056/nejmoa2301972~triple-hormone-receptor-agonist-retatrutide-for-obesity-a"
+    }
+  ],
+  "notes_for_editor": "Phase 3 results (TRIUMPH-2 and TRIUMPH-3) come only from Lilly's July 23, 2026 press release; no peer-reviewed phase 3 paper was found, and TRIUMPH-4 (knee osteoarthritis) results were not checked. In TRIUMPH-3, heart events were not significantly different from placebo (MACE-5 hazard ratio 0.82, 95% CI 0.55 to 1.22). The thyroid C-cell boxed warning carried by approved GLP-1 drugs has not been assessed for retatrutide in the sources used. US status rests on FDA's GLP-1 concerns page (content current as of October 1, 2026) and Lilly's stated filing plan; a news report (Epocrates, July 24, 2026) also describes a planned FDA submission in early 2027.",
+  "checked": "2026-10-28"
+}

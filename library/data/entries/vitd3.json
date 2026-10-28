@@ -1,0 +1,144 @@
+{
+  "id": "vitd3",
+  "name": "Vitamin D3",
+  "summary": "The form of vitamin D the skin makes in sunlight, taken to keep bones healthy and to correct or prevent low vitamin D levels.",
+  "what_it_is": "Vitamin D is a fat-soluble vitamin found naturally in few foods, added to others such as milk and breakfast cereals, and made in the skin when it is exposed to UVB sunlight. Vitamin D3 (cholecalciferol) is the form made in skin and found in animal foods, while D2 comes from mushrooms and yeast; D3 raises blood levels more, and keeps them up longer, than D2. The liver converts vitamin D to 25-hydroxyvitamin D, the form measured in blood tests, and the kidneys turn that into the active hormone, which helps the gut absorb calcium and supports bone growth, muscle and immune function.",
+  "evidence": {
+    "grade": "strong",
+    "why": "Large randomized trials, including VITAL with 25,871 adults, found that supplements given to people not selected for deficiency did not prevent fractures, falls, cancer, heart disease or depression, though pooled trials show fewer cancer deaths."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement and added to foods. The Endocrine Society's 2024 guideline suggests supplements for children and teens, adults 75 and older, pregnancy and high-risk prediabetes, and advises against routine blood testing in healthy people.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0.25,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 1,
+    "gut": 0,
+    "immune": 0.75,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Prevents rickets in children and the bone-softening disease osteomalacia in adults",
+      "evidence": "strong",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "Possibly lower risk of death in adults 75 and older, the reason the Endocrine Society suggests supplements for this age group",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Lower risk of progressing from prediabetes to type 2 diabetes in pooled trials of moderate to higher doses, although a trial of 2,423 adults with prediabetes did not show a significant effect",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "claim": "About 12% to 13% fewer cancer deaths in meta-analyses of trials, with no change in how many people develop cancer",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "May reduce respiratory infections in children and teens, and possibly preeclampsia, preterm birth and newborn deaths when taken in pregnancy",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Too much vitamin D, almost always from supplements rather than sun, raises blood calcium, which can cause nausea, vomiting, muscle weakness and kidney stones and, in extreme cases, kidney failure and irregular heartbeat",
+      "how_common": "rare",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Kidney stones were 17% more common over 7 years when vitamin D was combined with calcium in a trial of 36,282 postmenopausal women",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "History of kidney stones, especially if also taking calcium (ask a clinician first)",
+    "Taking orlistat, statins, steroids or thiazide diuretics (check with a clinician first)"
+  ],
+  "interactions": [
+    "Orlistat (weight-loss drug): can reduce absorption of vitamin D from food and supplements",
+    "Statins: large vitamin D intakes may weaken atorvastatin, lovastatin and simvastatin, and statins may lower the body's own vitamin D production",
+    "Steroids such as prednisone, and thiazide diuretics, are also listed by NIH as medicines that interact with vitamin D"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "The marker that matters is blood 25-hydroxyvitamin D [25(OH)D], the main measure of vitamin D status, but the Endocrine Society advises against routine testing in healthy people, including those with darker skin or obesity, because levels that improve outcomes have not been established in trials."
+  },
+  "studies": [
+    {
+      "title": "Vitamin D for the Prevention of Disease: An Endocrine Society Clinical Practice Guideline",
+      "year": 2024,
+      "type": "Guideline",
+      "people": "General population groups by age, pregnancy and prediabetes",
+      "finding": "Suggests supplements for ages 1 to 18, adults 75 and older, pregnancy and high-risk prediabetes; suggests against supplementing beyond usual intake in healthy adults under 75 and against routine 25(OH)D testing; sets no target blood level.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Am I in a group where vitamin D is suggested, such as being 75 or older, pregnant or having prediabetes?",
+    "Is a vitamin D blood test useful for me, or not needed?",
+    "Do my medicines or calcium supplements change whether vitamin D is right for me?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Vitamin D - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2026,
+      "url": "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Vitamin D for the Prevention of Disease: An Endocrine Society Clinical Practice Guideline",
+      "publisher": "Endocrine Society (published in the Journal of Clinical Endocrinology & Metabolism)",
+      "year": 2024,
+      "url": "https://www.endocrine.org/clinical-practice-guidelines/vitamin-d-for-prevention-of-disease"
+    },
+    {
+      "n": 3,
+      "title": "Diabetes and Dietary Supplements: What You Need To Know",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2023,
+      "url": "https://www.nccih.nih.gov/health/diabetes-and-dietary-supplements-what-you-need-to-know"
+    }
+  ],
+  "notes_for_editor": "The ODS page text was cut off by the fetcher before its steroid and thiazide interaction details, so those two are listed without explanation; the page showed no visible update date, so its year is the last-modified year. VITAL and the prediabetes trial are cited through the ODS and NCCIH summaries rather than opened directly. The cancer-death finding comes from meta-analyses summarized by ODS. The guideline's mortality and pregnancy benefits are worded as possible effects in the guideline itself.",
+  "checked": "2026-10-28"
+}

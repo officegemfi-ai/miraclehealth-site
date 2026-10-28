@@ -1,0 +1,142 @@
+{
+  "id": "oxytocin",
+  "name": "Oxytocin",
+  "summary": "A hormone that triggers uterine contractions, approved as an injection to start or strengthen labor; nasal sprays used for mood or social bonding have little supporting evidence.",
+  "what_it_is": "Oxytocin is a hormone that makes the muscle of the uterus contract, and it also has an antidiuretic effect that makes the body hold on to water. Pitocin is synthetic oxytocin given in hospitals by IV infusion or muscle injection to start or strengthen labor and to control bleeding after birth. Nasal oxytocin has been tested for anxiety, depression and autism, but trials have not shown clear benefits.",
+  "evidence": {
+    "grade": "limited",
+    "why": "It is FDA-approved for labor and delivery, but for mood, anxiety and social goals, trials of nasal oxytocin have been small or negative, including a 290-child autism trial that found no benefit."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved injection for labor and delivery",
+    "note": "Pitocin is approved for medically indicated induction or strengthening of labor and to control bleeding after delivery, given in a hospital with medical supervision; a boxed notice says it is not for elective induction. Mood, anxiety and social uses, including nasal sprays, are not among its approved uses.",
+    "sources": [1]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 1,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.25
+  },
+  "benefits": [
+    {
+      "claim": "Starts or strengthens labor contractions when there is a medical reason (approved use)",
+      "evidence": "strong",
+      "sources": [1]
+    },
+    {
+      "claim": "Helps control bleeding after delivery (approved use)",
+      "evidence": "strong",
+      "sources": [1]
+    },
+    {
+      "claim": "Reduced overactivity of the amygdala (a fear-processing brain area) in one small imaging study in anxiety, although 15 small trials showed no clear effect on core anxiety or depression symptoms",
+      "evidence": "limited",
+      "sources": [2]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Water intoxication from its antidiuretic effect, which in severe cases has caused seizures and coma",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "Overstimulation of the uterus, uterine rupture, and slow or irregular heartbeat or other harm in the baby",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "Dangerous spikes in blood pressure, bleeding in the brain, irregular heartbeat, nausea and vomiting; maternal deaths have been reported with drugs of this type",
+      "how_common": "unknown",
+      "sources": [1]
+    },
+    {
+      "risk": "Severe allergic (anaphylactic) reactions",
+      "how_common": "unknown",
+      "sources": [1]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy outside supervised obstetric care (it causes uterine contractions)",
+    "In labor: a major mismatch between the baby's head and the pelvis, fetal distress when delivery is not imminent, or an already overactive uterus",
+    "Allergy to oxytocin"
+  ],
+  "interactions": [
+    "Vasoconstrictor drugs given with caudal block anesthesia: severe high blood pressure has been reported",
+    "Cyclopropane anesthesia: can change its heart effects, causing low blood pressure and abnormal heart rhythms"
+  ],
+  "labs": {
+    "before": [],
+    "during": [
+      "Contractions and the baby's heart rate (in hospital)",
+      "Fluid balance and blood sodium during long infusions"
+    ],
+    "why": "During labor, staff watch contractions, the baby's heart rate and fluid status because of overstimulation and water-intoxication risks; no routine blood tests have been established for nasal use."
+  },
+  "studies": [
+    {
+      "title": "Intranasal oxytocin in children and adolescents with autism spectrum disorder",
+      "year": 2021,
+      "type": "RCT",
+      "people": "290 children and teens aged 3 to 17 with autism (24 weeks)",
+      "finding": "Nasal oxytocin did not improve social withdrawal scores or other social and cognitive measures more than placebo; side effects were similar in both groups.",
+      "source": 3
+    },
+    {
+      "title": "The role of intranasal oxytocin in anxiety and depressive disorders: A systematic review of randomized controlled trials",
+      "year": 2019,
+      "type": "Systematic review",
+      "people": "15 randomized trials in social anxiety, phobia, major depression and postnatal depression",
+      "finding": "Mostly single-dose nasal oxytocin had no significant effect on core symptoms; a few imaging studies showed changes in amygdala activity, and the evidence was judged inconclusive.",
+      "source": 2
+    },
+    {
+      "title": "Pitocin (oxytocin injection, USP) prescribing information",
+      "year": 2026,
+      "type": "Label",
+      "people": "Patients in labor and after delivery",
+      "finding": "Approved for medically indicated labor induction or augmentation and for bleeding after delivery; warns of water intoxication, uterine overstimulation and rupture, and states it is not for elective induction.",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Is there evidence that oxytocin would help my mood or relationship concerns, compared with standard treatments?",
+    "Could oxytocin affect a pregnancy, or any heart or blood pressure condition I have?",
+    "If a nasal spray is offered, who makes it and how is its quality checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Pitocin (oxytocin injection, USP) prescribing information",
+      "publisher": "Drugs.com (FDA-approved label, Par Health, revised March 2026)",
+      "year": 2026,
+      "url": "https://www.drugs.com/pro/pitocin.html"
+    },
+    {
+      "n": 2,
+      "title": "The role of intranasal oxytocin in anxiety and depressive disorders: A systematic review of randomized controlled trials",
+      "publisher": "Clinical Psychopharmacology and Neuroscience (KoreaMed KMbase)",
+      "year": 2019,
+      "url": "https://oldkmbase.medric.or.kr/KMID/1009020190170010001"
+    },
+    {
+      "n": 3,
+      "title": "Intranasal oxytocin in children and adolescents with autism spectrum disorder",
+      "publisher": "New England Journal of Medicine (RTI International)",
+      "year": 2021,
+      "url": "https://www.rti.org/publication/intranasal-oxytocin-children-and-adolescents-autism-spectrum-disorder"
+    }
+  ],
+  "notes_for_editor": "The Pitocin label was read on Drugs.com (Par Health label revised March 2026) because the FDA/DailyMed copy did not come up in search; its boxed text is an 'Important Notice' against elective induction. No source was opened on compounded or imported oxytocin nasal sprays, which members are likely to use; their US status should be confirmed. The anxiety and depression review is from 2019 and mostly covers single doses; newer trials were not searched. The label gives no frequencies for adverse reactions, so all are marked unknown. 'Fluid balance and blood sodium' monitoring is inferred from the water-intoxication warning.",
+  "checked": "2026-10-28"
+}

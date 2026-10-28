@@ -1,0 +1,150 @@
+{
+  "id": "coq10",
+  "name": "CoQ10",
+  "summary": "A substance the body makes that helps cells produce energy, taken for heart health, statin-related muscle aches, migraine and energy.",
+  "what_it_is": "Coenzyme Q10 (CoQ10) is a substance made naturally in the body, with the highest amounts in the heart, liver, kidneys and pancreas. It is an essential cofactor for energy production in cells and also acts as an antioxidant, and low levels in heart muscle are related to how severe heart failure is. It is sold in the United States as a dietary supplement.",
+  "evidence": {
+    "grade": "limited",
+    "why": "One 420-patient heart failure trial found fewer major heart events, but NIH calls the heart evidence inconclusive, pooled trials show no help for statin muscle pain, and migraine evidence is small."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold in the United States as a dietary supplement. NIH's complementary health center reports no serious side effects but notes possible interactions with warfarin, insulin and some cancer treatments.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 1,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0.75,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Fewer major heart events and deaths over 2 years when added to standard care in one trial of 420 people with moderate to severe heart failure",
+      "evidence": "limited",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "claim": "May reduce how often and how long migraines last, though not how severe they are; the amount of evidence and the effects are small",
+      "evidence": "limited",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "May reduce some complications of heart surgery and heart damage from one type of chemotherapy drug",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Mild insomnia or digestive upset",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "May interact with the blood thinner warfarin and with insulin",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "May not be compatible with some types of cancer treatment",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Taking warfarin (clinician first)",
+    "Taking insulin (clinician first)",
+    "Having cancer treatment (clinician first)"
+  ],
+  "interactions": [
+    "Warfarin: CoQ10 may interact with it",
+    "Insulin: CoQ10 may interact with it",
+    "Some cancer treatments: CoQ10 may not be compatible"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed; people on warfarin or insulin should ask whether extra INR or blood sugar checks make sense."
+  },
+  "studies": [
+    {
+      "title": "Effect of Coenzyme Q10 on statin-associated myalgia and adherence to statin therapy: A systematic review and meta-analysis",
+      "year": 2020,
+      "type": "Meta-analysis",
+      "people": "321 patients with statin-associated muscle pain in 7 randomized trials",
+      "finding": "CoQ10 did not reduce muscle pain or help people stay on statins; the trials were small and single-center, and the one clearly positive trial was industry-supported.",
+      "source": 4
+    },
+    {
+      "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial",
+      "year": 2014,
+      "type": "RCT",
+      "people": "420 adults with moderate to severe chronic heart failure",
+      "finding": "Over 2 years, major cardiovascular events occurred in 15% on CoQ10 versus 26% on placebo, with fewer deaths; symptom and heart measures at 16 weeks did not change.",
+      "source": 2
+    }
+  ],
+  "ask_your_clinician": [
+    "Is CoQ10 worth adding to my heart failure treatment, given the limited evidence?",
+    "If I get muscle aches on a statin, what should we try, since CoQ10 hasn't helped in pooled trials?",
+    "Do I need extra INR or blood sugar checks if I take it with warfarin or insulin?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Coenzyme Q10",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2019,
+      "url": "https://www.nccih.nih.gov/health/coenzyme-q10"
+    },
+    {
+      "n": 2,
+      "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial",
+      "publisher": "JACC: Heart Failure (Capital Region of Denmark research portal)",
+      "year": 2014,
+      "url": "https://research.regionh.dk/en/publications/the-effect-of-coenzyme-q10-on-morbidity-and-mortality-in-chronic-/"
+    },
+    {
+      "n": 3,
+      "title": "Headaches: What You Need To Know",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2021,
+      "url": "https://www.nccih.nih.gov/health/headaches-what-you-need-to-know"
+    },
+    {
+      "n": 4,
+      "title": "Effect of Coenzyme Q10 on statin-associated myalgia and adherence to statin therapy: A systematic review and meta-analysis",
+      "publisher": "Atherosclerosis (ScienceDirect)",
+      "year": 2020,
+      "url": "https://www.sciencedirect.com/science/article/pii/S0021915020301386"
+    }
+  ],
+  "notes_for_editor": "NCCIH's CoQ10 page dates from January 2019. The heart failure benefit rests on one trial whose 16-week endpoints were negative, and NCCIH calls the heart failure evidence inconclusive, so it is graded limited rather than moderate. A 2018 JAHA meta-analysis on statin myopathy (Qu et al.) could not be opened; trial results on this question disagree. The sources opened do not compare ubiquinone with ubiquinol, and NCCIH does not address pregnancy.",
+  "checked": "2026-10-28"
+}

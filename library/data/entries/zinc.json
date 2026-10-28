@@ -1,0 +1,157 @@
+{
+  "id": "zinc",
+  "name": "Zinc",
+  "summary": "An essential mineral needed for immune function, wound healing and hundreds of enzymes, taken mostly to shorten colds and support immunity.",
+  "what_it_is": "Zinc is an essential mineral required for the activity of hundreds of enzymes and involved in immune function, protein and DNA synthesis, wound healing and cell signaling. Deficiency can delay growth, impair taste and smell, slow wound healing, and cause hair loss and frequent infections. Besides supplements, zinc is found in cold lozenges, some nasal sprays and some denture adhesive creams.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Many trials suggest zinc may shorten colds by about 2 days, but a 2024 Cochrane review rated the evidence low to very low certainty; a large trial supports a zinc-containing formula for macular degeneration."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement and in cold lozenges. In 2009 FDA told consumers to stop using three Zicam nasal zinc products after more than 130 reports of lost sense of smell; the warning did not cover zinc tablets or lozenges taken by mouth.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0.25,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 1,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "May shorten colds by about 2 days in people who already have one, with little to no effect on preventing colds (34 trials, about 8,500 people)",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "Slows progression to advanced age-related macular degeneration in people at high risk when taken in a formula with copper and antioxidants (25% lower risk in the AREDS trial of 4,757 people)",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Shortens acute diarrhea in children in low-income countries; the effect may be marginal in well-nourished children",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Some trials show better blood sugar, cholesterol or insulin resistance, but results conflict and evidence is insufficient for diabetes prevention",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Altered taste and stomach upset with zinc lozenges, more often than with placebo",
+      "how_common": "unknown",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "risk": "Nausea, vomiting, loss of appetite, dizziness, headaches and stomach upset from excess zinc",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Copper deficiency with long-term high intake, which can cause anemia and nerve damage; overuse of zinc-containing denture creams has caused this",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Long-term high intake can also weaken immune function and lower HDL (good) cholesterol",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Loss of sense of smell, possibly permanent, reported with nasal zinc gels and swabs",
+      "how_common": "rare",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Anyone considering zinc nasal gels, swabs or sprays",
+    "Taking penicillamine, whose absorption and action zinc can reduce (clinician first)",
+    "Planning long-term use above NIH's upper limit, which applies to people not under medical treatment with zinc (clinician first)"
+  ],
+  "interactions": [
+    "Quinolone antibiotics such as ciprofloxacin (Cipro) and tetracycline antibiotics: zinc can reduce absorption of both",
+    "Penicillamine: zinc can reduce its absorption and action",
+    "Thiazide diuretics: increase zinc loss in urine",
+    "Iron supplements taken at the same time can reduce zinc absorption"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No routine tests are needed; blood zinc is the usual test, but it does not always match intake and shifts with infection, age, sex and time of day."
+  },
+  "studies": [
+    {
+      "title": "Zinc for prevention and treatment of the common cold",
+      "year": 2024,
+      "type": "Systematic review",
+      "people": "About 8,500 adults and children in 34 placebo-controlled studies, mostly in the US",
+      "finding": "Zinc might shorten colds by about 2 days but had little to no effect on preventing them; altered taste and stomach upset were more common with zinc, and many studies had unclear or high risk of bias.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Am I already getting enough zinc from food and other supplements, so I don't take too much?",
+    "How should I time zinc around my antibiotics or other medicines?",
+    "If I take zinc long term, should my copper level be checked?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Zinc - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2026,
+      "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "Warnings on Three Zicam Intranasal Zinc Products",
+      "publisher": "U.S. Food and Drug Administration (archived copy, UNT Libraries Web Archive)",
+      "year": 2009,
+      "url": "https://webarchive.library.unt.edu/web/20090807210616/http://www.fda.gov/ForConsumers/ConsumerUpdates/ucm166931.htm"
+    },
+    {
+      "n": 3,
+      "title": "Podcast: Zinc for the prevention and treatment of the common cold",
+      "publisher": "Cochrane",
+      "year": 2024,
+      "url": "https://www.cochrane.org/podcasts/10.1002/14651858.CD014914.pub2"
+    }
+  ],
+  "notes_for_editor": "The January 2026 ODS zinc page does not mention nasal zinc and smell loss; that comes from FDA's 2009 consumer update, read through a university web archive. The Cochrane review itself could not be opened beyond its record page, so its findings come from Cochrane's podcast summary and the ODS fact sheet (which reports 8,526 participants and low to very low certainty).",
+  "checked": "2026-10-28"
+}

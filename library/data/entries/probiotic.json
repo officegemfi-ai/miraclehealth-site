@@ -1,0 +1,164 @@
+{
+  "id": "probiotic",
+  "name": "Probiotics",
+  "summary": "Live microorganisms such as Lactobacillus, Bifidobacterium and Saccharomyces boulardii, taken mainly to prevent antibiotic-related diarrhea and ease gut symptoms.",
+  "what_it_is": "Probiotics are live microorganisms that, when given in adequate amounts, provide a health benefit. Common ones include Bifidobacterium, members of the Lactobacillaceae family such as Lactobacillus rhamnosus GG, and the yeast Saccharomyces boulardii. Effects are specific to the strain, and products are measured in colony-forming units (CFUs), though a higher count does not mean a product works better.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Cochrane reviews of dozens of randomized trials give moderate-certainty evidence that probiotics prevent antibiotic-associated and C. difficile diarrhea; evidence for IBS and other uses is weaker and depends on the strain."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as dietary supplements in capsules, powders, liquids and other forms. FDA says these products have not gone through its premarket review of safety and effectiveness for medical uses, and in 2023 it warned that giving probiotics to preterm infants may cause serious, potentially fatal infections.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 0.25,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0.25,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 1,
+    "immune": 0.5,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Fewer cases of C. difficile diarrhea in people taking antibiotics (1.5% vs 4.0%, about 1 case prevented per 65 people treated), mainly where baseline risk is above 5%",
+      "evidence": "moderate",
+      "sources": [
+        2
+      ]
+    },
+    {
+      "claim": "Fewer cases of antibiotic-associated diarrhea in children (8% vs 19% across 33 trials); L. rhamnosus and S. boulardii looked most promising",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "Saccharomyces boulardii reduced antibiotic-associated diarrhea in adults and children across 21 trials (4,780 people)",
+      "evidence": "moderate",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Might reduce some IBS symptoms, with modest benefits in pooled trials",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Might modestly reduce disease activity in mild to moderate ulcerative colitis",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Minor effects such as gas, bloating, nausea, constipation or rash; in children's trials, side effects were no more common than in control groups",
+      "how_common": "uncommon",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "risk": "Serious bloodstream infections (bacteremia or fungemia), mostly in people who are severely ill or immunocompromised or who have a central venous catheter",
+      "how_common": "rare",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Preterm infants: FDA reported one death and more than two dozen other adverse events and warns of invasive, potentially fatal disease",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Products may not contain the strains listed, and labels are only required to give the total weight of microorganisms, which says nothing about how many are alive",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Weakened immune system or serious illness (clinician first)",
+    "Central venous catheter",
+    "Critically ill patients in intensive care",
+    "Preterm infants"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [],
+    "during": [],
+    "why": "No blood tests are needed for probiotic use."
+  },
+  "studies": [
+    {
+      "title": "Probiotics for the prevention of Clostridioides difficile-associated diarrhea in adults and children",
+      "year": 2025,
+      "type": "Systematic review",
+      "people": "Adults and children taking antibiotics (31 trials and 8,672 people in the main C. difficile analysis)",
+      "finding": "Probiotics cut C. difficile diarrhea from 4.0% to 1.5% (moderate certainty), with the benefit concentrated in trials where baseline risk exceeded 5%; they were likely not harmful in people who were not immunocompromised.",
+      "source": 2
+    },
+    {
+      "title": "Probiotics for the prevention of antibiotic-associated diarrhea in children",
+      "year": 2019,
+      "type": "Systematic review",
+      "people": "6,352 children taking antibiotics in 33 trials",
+      "finding": "Antibiotic-associated diarrhea fell from 19% to 8%, and no serious adverse events were attributed to probiotics.",
+      "source": 3
+    }
+  ],
+  "ask_your_clinician": [
+    "Would a probiotic help prevent diarrhea with the antibiotic I'm starting, and which strain has evidence?",
+    "Does my health or immune status make probiotics unsafe for me?",
+    "For my IBS symptoms, is a probiotic worth trying, and how will we judge whether it works?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Probiotics - Health Professional Fact Sheet",
+      "publisher": "NIH Office of Dietary Supplements",
+      "year": 2025,
+      "url": "https://ods.od.nih.gov/factsheets/Probiotics-HealthProfessional/"
+    },
+    {
+      "n": 2,
+      "title": "What are the benefits and harms of probiotics for preventing Clostridioides difficile-associated diarrhea in adults and children receiving antibiotics for any reason?",
+      "publisher": "Cochrane",
+      "year": 2025,
+      "url": "https://www.cochrane.org/evidence/CD006095_what-are-benefits-and-harms-probiotics-preventing-clostridioides-difficile-associated-diarrhea"
+    },
+    {
+      "n": 3,
+      "title": "Probiotics for the prevention of antibiotic-associated diarrhea in children",
+      "publisher": "Cochrane",
+      "year": 2019,
+      "url": "https://www.cochrane.org/evidence/CD004827_probiotics-prevention-antibiotic-associated-diarrhea-children"
+    }
+  ],
+  "notes_for_editor": "Effects depend on the strain, and many products are multi-strain blends not tested in trials. The 2025 Cochrane C. difficile update's plain-language summary and abstract give different study counts (47 studies and 15,260 people vs 39 studies and 9,955 people). ODS does not cover C. difficile, and the 2023 FDA warning on preterm infants is cited through ODS rather than the FDA notice itself.",
+  "checked": "2026-10-28"
+}

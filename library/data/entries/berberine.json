@@ -1,0 +1,186 @@
+{
+  "id": "berberine",
+  "name": "Berberine",
+  "summary": "A plant compound from goldenseal, barberry and Oregon grape, taken mainly to lower blood sugar and for weight loss.",
+  "what_it_is": "Berberine is an isoquinoline alkaloid found in plants such as goldenseal, barberry and Oregon grape, which have a long history of use in Ayurvedic and Chinese medicine. It is sold as a supplement for blood sugar, cholesterol and weight. In healthy volunteers it slowed several liver enzymes that break down common medicines, which raises concern about drug interactions.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Dozens of randomized trials, almost all in China and many poorly reported, show modest blood-sugar lowering in type 2 diabetes; weight-loss studies are fewer and at high risk of bias."
+  },
+  "status_us": {
+    "key": "supplement",
+    "label": "Dietary supplement",
+    "note": "Sold as a dietary supplement. NIH's complementary health center says there isn't enough rigorous evidence to judge it for weight loss, and that it should not be used during pregnancy or breastfeeding or given to infants.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Lowers blood sugar in adults with type 2 diabetes: HbA1c fell about 0.6 percentage points versus control across 31 trials, often as an add-on to diabetes drugs",
+      "evidence": "moderate",
+      "sources": [
+        3,
+        4
+      ]
+    },
+    {
+      "claim": "Modest drops in weight and BMI in a review of 18 studies, mostly in people with diabetes or fatty liver; many studies had a high risk of bias",
+      "evidence": "limited",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "May lower cholesterol, and may add to blood pressure lowering when used with amlodipine",
+      "evidence": "limited",
+      "sources": [
+        2
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Digestive upset such as nausea, abdominal pain, bloating, constipation and diarrhea",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        2
+      ]
+    },
+    {
+      "risk": "Drug interactions: it slowed the enzymes CYP2D6, CYP2C9 and CYP3A4 in healthy men, which can raise levels of medicines they clear, and it interacts with the transplant drug cyclosporine",
+      "how_common": "unknown",
+      "sources": [
+        5,
+        1
+      ]
+    },
+    {
+      "risk": "Can cause or worsen jaundice in newborns and could lead to kernicterus, a life-threatening buildup of bilirubin that can damage the brain",
+      "how_common": "unknown",
+      "sources": [
+        2,
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnant or breastfeeding",
+    "Infants and newborns",
+    "Taking cyclosporine or other prescription medicines, including diabetes drugs (clinician first)"
+  ],
+  "interactions": [
+    "Cyclosporine (transplant drug): berberine has been shown to interact with it",
+    "Medicines cleared by CYP2D6, CYP2C9 or CYP3A4, such as dextromethorphan, losartan and midazolam: berberine slowed their breakdown in healthy men",
+    "Metformin: an extract of goldenseal, a berberine-containing herb, lowered metformin levels in healthy adults"
+  ],
+  "labs": {
+    "before": [
+      "Fasting glucose and HbA1c if you are using it for blood sugar"
+    ],
+    "during": [
+      "HbA1c or glucose checks to judge the effect, especially alongside diabetes medicines"
+    ],
+    "why": "Blood sugar measures show whether it is working; liver tests are not specifically needed, since LiverTox has found no published cases of liver injury from berberine."
+  },
+  "studies": [
+    {
+      "title": "Glucose-lowering effect of berberine on type 2 diabetes: A systematic review and meta-analysis",
+      "year": 2022,
+      "type": "Meta-analysis",
+      "people": "3,048 adults with type 2 diabetes in 37 randomized trials (36 in China)",
+      "finding": "Berberine lowered fasting glucose, post-meal glucose and HbA1c (by about 0.6 points) versus control without more side effects or low blood sugar; many trials reported randomization and blinding poorly.",
+      "source": 3
+    },
+    {
+      "title": "Repeated administration of berberine inhibits cytochromes P450 in humans",
+      "year": 2012,
+      "type": "Trial",
+      "people": "Healthy men (randomized crossover)",
+      "finding": "Two weeks of berberine slowed drug breakdown by CYP2D6, CYP2C9 and CYP3A4, raising midazolam exposure by about 40%; the authors say drug interactions should be considered.",
+      "source": 5
+    },
+    {
+      "title": "Berberine",
+      "year": 2020,
+      "type": "Review",
+      "people": "Published case reports and drug-induced liver injury registries",
+      "finding": "Found no published cases of clinically apparent liver injury and rated berberine an unlikely cause (likelihood score E); side effects were mostly mild, short-lived digestive symptoms.",
+      "source": 6
+    }
+  ],
+  "ask_your_clinician": [
+    "Could berberine interact with any of my medicines, especially ones broken down by the liver?",
+    "If I have diabetes, how should we monitor my blood sugar if I add berberine?",
+    "Is there an approved treatment with stronger evidence for my blood sugar or weight goals?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Berberine and Weight Loss: What You Need To Know",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2023,
+      "url": "https://www.nccih.nih.gov/health/berberine-and-weight-loss-what-you-need-to-know"
+    },
+    {
+      "n": 2,
+      "title": "In the News: Berberine",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2023,
+      "url": "https://www.nccih.nih.gov/health/in-the-news-berberine"
+    },
+    {
+      "n": 3,
+      "title": "Glucose-lowering effect of berberine on type 2 diabetes: A systematic review and meta-analysis",
+      "publisher": "Frontiers in Pharmacology",
+      "year": 2022,
+      "url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.1015045/full"
+    },
+    {
+      "n": 4,
+      "title": "Diabetes and Dietary Supplements: What You Need To Know",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2023,
+      "url": "https://www.nccih.nih.gov/health/diabetes-and-dietary-supplements-what-you-need-to-know"
+    },
+    {
+      "n": 5,
+      "title": "Repeated administration of berberine inhibits cytochromes P450 in humans",
+      "publisher": "European Journal of Clinical Pharmacology (Springer)",
+      "year": 2012,
+      "url": "https://link.springer.com/article/10.1007/s00228-011-1108-2?view=classic"
+    },
+    {
+      "n": 6,
+      "title": "Berberine",
+      "publisher": "LiverTox (NCBI Bookshelf, National Library of Medicine)",
+      "year": 2020,
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK564659/"
+    },
+    {
+      "n": 7,
+      "title": "Herb-Drug Interactions: What the Science Says",
+      "publisher": "NIH National Center for Complementary and Integrative Health",
+      "year": 2024,
+      "url": "https://www.nccih.nih.gov/health/providers/digest/herb-drug-interactions-science"
+    }
+  ],
+  "notes_for_editor": "Nearly all diabetes trials were done in China, often as an add-on to diabetes drugs, with poor reporting of allocation and blinding. Weight-loss evidence is weaker and mostly from people with diabetes or fatty liver. The metformin finding (source 7) is for goldenseal extract, not purified berberine, and NCCIH notes very little berberine may be absorbed from goldenseal. The size of the CYP study was not shown in the text read. No source opened addresses claims comparing berberine with GLP-1 drugs.",
+  "checked": "2026-10-28"
+}

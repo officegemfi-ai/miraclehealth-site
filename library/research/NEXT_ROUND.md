@@ -138,3 +138,22 @@ triptorelin
   https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/8c9607a2-5b57-4a59-b159-cf196deebdd9/spl-doc
 - Access: pubmed.gov redirect links are refused; PubMed/PMC bot checks come and go (a retry
   sometimes works); university repositories, Cochrane PDFs and MDPI open reliably.
+- FDA 503A categories list (May 14, 2026): Category 1 includes NAD, NADH, glutathione,
+  pregnenolone, melatonin and 7-keto-DHEA; a disodium salt of NAD is Category 3. Not listed:
+  DHEA, oxytocin, humanin, pentadeca arginate, dihexa, afamelanotide, sirolimus, collagen.
+- FDA interim policy (Jan 2025): no action against compounding with Category 1 substances that
+  have no USP monograph and aren't a component of an approved drug. https://www.fda.gov/media/174456/download
+- FDA, Aug 27, 2026: reactions in at least 30 patients to IV glutathione compounded from
+  supplement-grade ingredient. https://www.fda.gov/drugs/human-drug-compounding/fda-reminds-compounders-not-use-dietary-supplement-grade-glutathione-injectables
+- BPC-157 briefing: "multiple salts, and derivatives" are sold under the name; FDA plans
+  notice-and-comment rulemaking (McDermott, July 27, 2026), possibly 2027 or later.
+- WADA 2026: DHEA (prasterone) banned under S1.1; S0 names BPC-157. Not named: pregnenolone,
+  oxytocin, glutathione, NAD+, melatonin, dihexa, humanin.
+- Scenesse (afamelanotide): US approval for adults only; vitiligo phase 3 recruiting closed May
+  2025. Melanotan I = afamelanotide per the Norwegian Food Safety Authority risk profile (2013).
+- Labels: Rapamune (Oct 2024) https://labeling.pfizer.com/ShowLabeling.aspx?id=139 ;
+  Pitocin (March 2026, Drugs.com mirror) https://www.drugs.com/pro/pitocin.html ;
+  Intrarosa (2018) https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/208470s001lbl.pdf
+- Searches restricted to nccih.nih.gov or ods.od.nih.gov work well; ODS's sports-supplement
+  fact sheet covers DHEA and other performance supplements. Every new source costs a search
+  (WebFetch refuses URLs not seen in a result).
