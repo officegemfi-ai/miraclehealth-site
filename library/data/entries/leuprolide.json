@@ -2,7 +2,7 @@
   "id": "leuprolide",
   "name": "Leuprolide",
   "summary": "A prescription hormone-blocking injection that switches off the body's sex-hormone production, used for prostate cancer, endometriosis, fibroids and early puberty in children.",
-  "what_it_is": "Leuprolide is a lab-made drug that acts like gonadotropin-releasing hormone (GnRH), the signal that drives the pituitary gland's control of the testes and ovaries. Given continuously as a long-acting injection, it first causes a short rise in testosterone or estrogen, which can briefly worsen symptoms, and then shuts their production down to very low levels. The effect reverses after stopping, and pituitary and sex-gland function usually returns within about three months.",
+  "what_it_is": "Leuprolide is a lab-made drug that acts like gonadotropin-releasing hormone (GnRH), the signal that drives the pituitary gland's control of the testes and ovaries. Given continuously as a long-acting injection, it first causes a short rise in testosterone or estrogen, which can briefly worsen symptoms, and then shuts their production down to very low levels. The effect is meant to reverse after stopping; the label says normal function usually returns within three months.",
   "evidence": {
     "grade": "strong",
     "why": "It is FDA-approved for advanced prostate cancer, endometriosis, fibroid-related anemia before surgery and central precocious puberty, based on the clinical trials reviewed for its labels."
@@ -11,7 +11,12 @@
     "key": "approved",
     "label": "FDA-approved prescription drug",
     "note": "Approved as Lupron Depot and Eligard for advanced prostate cancer, as a separate Lupron Depot product for endometriosis and for fibroid-related anemia before surgery, and as Lupron Depot-PED and Fensolvi for central precocious puberty in children.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,59 +36,107 @@
     {
       "claim": "Lowers testosterone to castration levels, usually within four weeks, in men with advanced prostate cancer",
       "evidence": "strong",
-      "sources": [1, 3]
+      "sources": [
+        1,
+        3
+      ]
     },
     {
       "claim": "Hormone-lowering therapy for prostate cancer (not leuprolide alone) cut prostate-cancer deaths and deaths from any cause in a pooled analysis of 11 randomized trials",
       "evidence": "strong",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Relieves pain and shrinks lesions in women with endometriosis",
       "evidence": "strong",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "claim": "Improves anemia before surgery in women with fibroids, used together with iron",
       "evidence": "strong",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "claim": "Pauses early puberty in children aged 2 and older with central precocious puberty",
       "evidence": "strong",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Hot flashes and sweats, in about half or more of users in trials",
       "how_common": "common",
-      "sources": [1, 2, 3]
+      "sources": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "risk": "Tumor flare in men with prostate cancer: testosterone first rises about 50% in the first weeks, which can worsen bone pain, nerve symptoms, blood in the urine or bladder blockage; spinal cord compression with paralysis can occur",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Lower sex drive, erection problems and testicular shrinkage, expected while testosterone is suppressed (testicular shrinkage in about 20% at one strength in trials)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Bone loss: in women, spine bone density fell an average of about 6% after a year without add-back hormone, and some loss may not recover; bone loss is also reported in men",
       "how_common": "common",
-      "sources": [1, 2]
+      "sources": [
+        1,
+        2
+      ]
     },
     {
       "risk": "Depression or mood swings (about 1 in 5 women in endometriosis trials); crying, irritability and aggression are reported in children",
       "how_common": "common",
-      "sources": [2, 4]
+      "sources": [
+        2,
+        4
+      ]
     },
     {
       "risk": "Higher blood sugar, new or worse diabetes, and higher blood fats",
       "how_common": "unknown",
-      "sources": [1, 3, 6]
+      "sources": [
+        1,
+        3,
+        6
+      ]
     },
     {
       "risk": "Heart attack, sudden cardiac death, stroke and a longer QT interval (a heart-rhythm measure) have been linked to it in men; the label calls the risk low, and a pooled analysis of trials found no rise in heart deaths",
       "how_common": "unknown",
-      "sources": [1, 5, 6]
+      "sources": [
+        1,
+        5,
+        6
+      ]
     },
     {
       "risk": "Rare serious reports: seizures, pituitary apoplexy (sudden headache, vomiting, vision changes), severe skin reactions, and in children pseudotumor cerebri (raised pressure inside the skull)",
       "how_common": "rare",
-      "sources": [1, 2, 4, 7]
+      "sources": [
+        1,
+        2,
+        4,
+        7
+      ]
     }
   ],
   "avoid_if": [

@@ -80,6 +80,7 @@
     }
   ],
   "avoid_if": [
+    "Current or past cancer (growth factor with no safety data)",
     "Pregnant or breastfeeding (no human safety data)",
     "Athletes subject to anti-doping rules (mechano growth factors are banned by WADA)"
   ],

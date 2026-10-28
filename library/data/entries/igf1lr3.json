@@ -11,18 +11,79 @@
     "key": "not_approved",
     "label": "Not approved; not on FDA's compounding lists",
     "note": "IGF-1 LR3 is not an approved drug and does not appear on FDA's 503A or 503B lists of nominated bulk substances, so pharmacies have no recognized basis to compound it. WADA bans IGF-1 and its analogues in sport at all times.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "goals": { "weight": 0, "muscle": 1, "recovery": 0.25, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 0,
+    "muscle": 1,
+    "recovery": 0.25,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "Stronger IGF-1 activity than natural IGF-1 in lab studies, because it binds poorly to IGF-binding proteins", "evidence": "preclinical", "sources": [5] },
-    { "claim": "Taken by athletes for muscle growth, but a review found little information on whether IGF-1 improves performance in healthy people", "evidence": "anecdotal", "sources": [5] }
+    {
+      "claim": "Stronger IGF-1 activity than natural IGF-1 in lab studies, because it binds poorly to IGF-binding proteins",
+      "evidence": "preclinical",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Taken by athletes for muscle growth, but a review found little information on whether IGF-1 improves performance in healthy people",
+      "evidence": "anecdotal",
+      "sources": [
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Effects in people are unknown: no human studies of the analog were identified, and data on IGF-1 in healthy people are scarce", "how_common": "unknown", "sources": [5] },
-    { "risk": "Escapes the binding proteins that normally buffer IGF-1, which makes it more potent; the consequences in people are untested", "how_common": "theoretical", "sources": [5] },
-    { "risk": "Lab-only IGF-1 products have reached athletes and black-market supplements have contained IGF-1 analogs, so identity and purity are uncertain", "how_common": "unknown", "sources": [5] },
-    { "risk": "Approved drugs that raise IGF-1, such as tesamorelin, carry label warnings about tumor growth in people with cancer", "how_common": "theoretical", "sources": [6] }
+    {
+      "risk": "Low blood sugar: the approved IGF-1 drug (mecasermin) warns of severe low blood sugar, including seizures, and 42% of children in its trials had low blood sugar at least once; this form is built to be more potent",
+      "how_common": "theoretical",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "risk": "Effects in people are unknown: no human studies of the analog were identified, and data on IGF-1 in healthy people are scarce",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Escapes the binding proteins that normally buffer IGF-1, which makes it more potent; the consequences in people are untested",
+      "how_common": "theoretical",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Lab-only IGF-1 products have reached athletes and black-market supplements have contained IGF-1 analogs, so identity and purity are uncertain",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Approved drugs that raise IGF-1, such as tesamorelin, carry label warnings about tumor growth in people with cancer",
+      "how_common": "theoretical",
+      "sources": [
+        6
+      ]
+    }
   ],
   "avoid_if": [
     "Current or past cancer",
@@ -30,14 +91,25 @@
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "Insulin and other blood-sugar-lowering medicines: IGF-1 lowers blood sugar, so the effects could add up (the approved IGF-1 drug's patient information asks about insulin and anti-diabetes medicines)"
+  ],
   "labs": {
-    "before": [ "General health check with a clinician" ],
+    "before": [
+      "General health check with a clinician"
+    ],
     "during": [],
     "why": "No evidence-based monitoring exists for this research chemical, because it has not been studied in people."
   },
   "studies": [
-    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research", "finding": "Describes Long-R3-IGF-I as a more potent IGF-1 analog with low affinity for IGF-binding proteins, notes IGF-1 analogs have been found in black-market supplements, and finds little information on IGF-1's performance effects in healthy people.", "source": 5 }
+    {
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "year": 2012,
+      "type": "Review",
+      "people": "Review of published research",
+      "finding": "Describes Long-R3-IGF-I as a more potent IGF-1 analog with low affinity for IGF-binding proteins, notes IGF-1 analogs have been found in black-market supplements, and finds little information on IGF-1's performance effects in healthy people.",
+      "source": 5
+    }
   ],
   "ask_your_clinician": [
     "What lawful, studied options exist for my muscle or body-composition goal?",
@@ -45,13 +117,56 @@
     "If I compete in a tested sport, would this cause an anti-doping violation?"
   ],
   "sources": [
-    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
-    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
-    { "n": 5, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" },
-    { "n": 6, "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)", "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)", "year": 2025, "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf" }
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download?attachment"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/94164/download"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 5,
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)",
+      "year": 2012,
+      "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf"
+    },
+    {
+      "n": 6,
+      "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf"
+    },
+    {
+      "n": 7,
+      "title": "INCRELEX (mecasermin) injection, for subcutaneous use: prescribing information (revised 07/2025)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/021839s033lbl.pdf"
+    }
   ],
-  "notes_for_editor": "Very thin sourcing: the web-search budget ran out before the primary animal studies (e.g., Francis 1992; Tomas 1993 in rats) or the mecasermin (Increlex) label could be opened, so almost everything rests on the 2012 Endocrine Reviews article. Low blood sugar, the main labeled risk of mecasermin and the prototype's top risk (with an insulin/glucose-lowering-drug interaction), could not be confirmed from an opened source and is left out of risks and interactions; please add it from the Increlex label. The diabetes caution in avoid_if is kept as general prudence. 'No recognized basis to compound' is an inference from FDA's lists and 503A rules.",
+  "notes_for_editor": "Very thin sourcing: the web-search budget ran out before the primary animal studies (e.g., Francis 1992; Tomas 1993 in rats) or the mecasermin (Increlex) label could be opened, so almost everything rests on the 2012 Endocrine Reviews article. Low blood sugar added after review, sourced to the Increlex label (opened Oct 28, 2026). The diabetes caution in avoid_if is kept as general prudence. 'No recognized basis to compound' is an inference from FDA's lists and 503A rules.",
   "checked": "2026-10-28"
 }

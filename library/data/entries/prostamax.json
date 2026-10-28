@@ -11,32 +11,101 @@
     "key": "not_approved",
     "label": "Not FDA-approved; not on FDA compounding lists",
     "note": "Prostamax is not an FDA-approved drug and appears on none of FDA's compounding lists (nominated substances, updated May 2026; safety-risk and withdrawn nominations, April 2026). FDA allows pharmacy compounding only from ingredients that are in an approved drug, meet a USP standard, or are on or under review for its bulk list.",
-    "sources": [1, 2, 3]
+    "sources": [
+      1,
+      2,
+      3
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0.25, "longevity": 0.5, "gut": 0, "immune": 0, "hormonal": 1 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
   "benefits": [
-    { "claim": "Reactivated ribosomal genes and loosened tightly packed chromatin in white blood cells from people aged 75 to 88, in lab dishes", "evidence": "preclinical", "sources": [4] },
-    { "claim": "Loosened a tightly packed region near the center of chromosome 1 in the same cells", "evidence": "preclinical", "sources": [4] },
-    { "claim": "Changed the stability of DNA in test-tube experiments, which its developers propose explains its effects on genes", "evidence": "preclinical", "sources": [5] }
+    {
+      "claim": "Reactivated ribosomal genes and loosened tightly packed chromatin in white blood cells from people aged 75 to 88, in lab dishes",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Loosened a tightly packed region near the center of chromosome 1 in the same cells",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Changed the stability of DNA in test-tube experiments, which its developers propose explains its effects on genes",
+      "evidence": "preclinical",
+      "sources": [
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Promoted for the prostate, but no human safety or effectiveness data were found", "how_common": "unknown", "sources": [6, 4, 5] },
-    { "risk": "No FDA-approved or pharmacy-compounded version exists, so products may not contain the Lys-Glu-Asp-Pro peptide indexed under this name", "how_common": "unknown", "sources": [7, 1, 3] }
+    {
+      "risk": "Promoted for the prostate, but no human safety or effectiveness data were found",
+      "how_common": "unknown",
+      "sources": [
+        6,
+        4,
+        5
+      ]
+    },
+    {
+      "risk": "No FDA-approved or pharmacy-compounded version exists, so products may not contain the Lys-Glu-Asp-Pro peptide indexed under this name",
+      "how_common": "unknown",
+      "sources": [
+        7,
+        1,
+        3
+      ]
+    }
   ],
   "avoid_if": [
     "Prostate cancer, or a raised PSA that a clinician has not yet assessed",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "None well documented"
+  ],
   "labs": {
-    "before": [ "General health check with a clinician" ],
+    "before": [
+      "General health check with a clinician"
+    ],
     "during": [],
     "why": "No evidence-based monitoring exists for Prostamax; urinary or prostate symptoms deserve a standard medical evaluation in their own right."
   },
   "studies": [
-    { "title": "Effects of Short Peptides on Lymphocyte Chromatin in Senile Subjects", "year": 2004, "type": "Cell", "people": "White blood cells from people aged 75 to 88", "finding": "Prostamax and four other short peptides reactivated ribosomal genes and loosened densely packed chromatin; Prostamax also loosened structural chromatin near the center of chromosome 1.", "source": 4 },
-    { "title": "Peptide Regulation of Gene Expression: A Systematic Review", "year": 2021, "type": "Review", "people": "Cell cultures and DNA in test tubes", "finding": "A review by the developers of evidence that short peptides bind DNA and change gene activity; KEDP altered the melting temperature and stability of DNA.", "source": 5 }
+    {
+      "title": "Effects of Short Peptides on Lymphocyte Chromatin in Senile Subjects",
+      "year": 2004,
+      "type": "Cell",
+      "people": "White blood cells from people aged 75 to 88",
+      "finding": "Prostamax and four other short peptides reactivated ribosomal genes and loosened densely packed chromatin; Prostamax also loosened structural chromatin near the center of chromosome 1.",
+      "source": 4
+    },
+    {
+      "title": "Peptide Regulation of Gene Expression: A Systematic Review",
+      "year": 2021,
+      "type": "Review",
+      "people": "Cell cultures and DNA in test tubes",
+      "finding": "A review by the developers of evidence that short peptides bind DNA and change gene activity; KEDP altered the melting temperature and stability of DNA.",
+      "source": 5
+    }
   ],
   "ask_your_clinician": [
     "Do my urinary or prostate symptoms need a PSA test or prostate exam first?",
@@ -44,14 +113,56 @@
     "How can I know what is in a product with no FDA oversight?"
   ],
   "sources": [
-    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
-    { "n": 2, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "Effects of Short Peptides on Lymphocyte Chromatin in Senile Subjects", "publisher": "Bulletin of Experimental Biology and Medicine (Springer)", "year": 2004, "url": "https://link.springer.com/article/10.1023/B:BEBM.0000024393.40560.05" },
-    { "n": 5, "title": "Peptide Regulation of Gene Expression: A Systematic Review", "publisher": "Molecules (MDPI)", "year": 2021, "url": "https://www.mdpi.com/1420-3049/26/22/7053" },
-    { "n": 6, "title": "Prostamax (KEDP)", "publisher": "peptide-db.com (online peptide catalog, not peer reviewed)", "year": 2026, "url": "https://peptide-db.com/peptides/prostamax" },
-    { "n": 7, "title": "Prostamax (MeSH Supplementary Concept C500342)", "publisher": "US National Library of Medicine, MeSH", "year": 2005, "url": "https://meshb.nlm.nih.gov/record/ui?ui=C500342" }
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "Effects of Short Peptides on Lymphocyte Chromatin in Senile Subjects",
+      "publisher": "Bulletin of Experimental Biology and Medicine (Springer)",
+      "year": 2004,
+      "url": "https://link.springer.com/article/10.1023/B:BEBM.0000024393.40560.05"
+    },
+    {
+      "n": 5,
+      "title": "Peptide Regulation of Gene Expression: A Systematic Review",
+      "publisher": "Molecules (MDPI)",
+      "year": 2021,
+      "url": "https://www.mdpi.com/1420-3049/26/22/7053"
+    },
+    {
+      "n": 6,
+      "title": "Prostamax (KEDP)",
+      "publisher": "peptide-db.com (online peptide catalog, not peer reviewed)",
+      "year": 2026,
+      "url": "https://peptide-db.com/peptides/prostamax"
+    },
+    {
+      "n": 7,
+      "title": "Prostamax (MeSH Supplementary Concept C500342)",
+      "publisher": "US National Library of Medicine, MeSH",
+      "year": 2005,
+      "url": "https://meshb.nlm.nih.gov/record/ui?ui=C500342"
+    }
   ],
-  "notes_for_editor": "Identity is solid (NLM MeSH record C500342 maps Prostamax to H-Lys-Glu-Asp-Pro-OH). The only evidence opened is lab work on chromatin in white blood cells from elderly donors and DNA studies, all from the developer's group. Online catalogs cite a rat study of chronic aseptic prostatitis (reportedly Bulletin of Experimental Biology and Medicine, 2013) and a 2012 paper on Lys-Glu-Asp-Pro chromatin effects (PubMed 23221144); neither could be opened (PubMed pages failed to load and the shared web-search budget ran out), so no prostate benefit is claimed. Russian status not confirmed.",
+  "notes_for_editor": "Identity is solid (NLM MeSH record C500342 maps Prostamax to H-Lys-Glu-Asp-Pro-OH). The only evidence opened is lab work on chromatin in white blood cells from elderly donors and DNA studies, all from the developer's group. Online catalogs cite a rat study of chronic aseptic prostatitis (reportedly Bulletin of Experimental Biology and Medicine, 2013) and a 2012 paper on Lys-Glu-Asp-Pro chromatin effects (PubMed 23221144); neither could be opened (PubMed pages failed to load and the shared web-search budget ran out), so no prostate benefit is claimed. Russian status not confirmed. peptide-db.com was checked on Oct 28, 2026: no vendors, prices or buy links on its pages.",
   "checked": "2026-10-28"
 }

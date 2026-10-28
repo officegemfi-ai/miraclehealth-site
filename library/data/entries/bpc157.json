@@ -5,7 +5,7 @@
   "what_it_is": "BPC-157 is a 15-amino-acid peptide, a fragment of a protein called body protection compound that was first isolated from human gastric juice. In rodents it has helped injured tendons, gut lining and other tissues heal; researchers suspect it works partly by encouraging new blood vessels and nitric oxide signaling, but FDA says its mechanisms remain poorly understood. No country has approved a medicine containing it.",
   "evidence": {
     "grade": "limited",
-    "why": "Most data come from rodent studies; the handful of human studies are tiny, uncontrolled or published only as meeting abstracts, and FDA judged them insufficient to establish safety or effectiveness."
+    "why": "Most data come from rodent studies; the handful of human studies are tiny, uncontrolled or published only as meeting abstracts, and FDA judged them insufficient to establish safety or effectiveness. The tendon, muscle and other tissue benefits come only from animal studies."
   },
   "status_us": {
     "key": "under_review",
@@ -64,7 +64,7 @@
   ],
   "risks": [
     {
-      "risk": "Too little human safety information to describe its side effects; FDA noted no serious adverse events reported in the small human studies",
+      "risk": "Too little human safety information to describe its side effects: the human studies were too small to show them",
       "how_common": "unknown",
       "sources": [
         1

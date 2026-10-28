@@ -10,21 +10,89 @@
   "status_us": {
     "key": "not_approved",
     "label": "Not FDA-approved; advisers voted against compounding",
-    "note": "FDA dropped emideltide from its Category 2 safety-risk list in April 2026 after the nomination was withdrawn, which did not make it legal to compound. In July 2026 FDA's advisers voted 6-7 against adding it to the 503A compounding list, in line with FDA staff advice, and no peptide had been added to that list as of mid-October 2026.",
-    "sources": [1, 2, 3, 4, 5]
+    "note": "FDA dropped emideltide from its Category 2 safety-risk list in April 2026 after the original nomination was withdrawn, which did not make it legal to compound. FDA still reviewed it: in July 2026 its advisers voted 7 to 6 (1 abstention) against adding it to the 503A compounding list, in line with FDA staff advice, and no peptide had been added to that list as of mid-October 2026.",
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 1, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 1,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "Better sleep continuity reported in small early studies of adults with chronic insomnia, mostly from one research group", "evidence": "limited", "sources": [6] },
-    { "claim": "Fewer withdrawal signs reported in an uncontrolled study of inpatients withdrawing from alcohol or opioids", "evidence": "limited", "sources": [6] },
-    { "claim": "Fewer sleep attacks reported in a single case of narcolepsy", "evidence": "limited", "sources": [6] }
+    {
+      "claim": "Better sleep continuity reported in small early studies of adults with chronic insomnia, mostly from one research group; the placebo-controlled studies mostly found no clear benefit, and FDA called the evidence inconclusive",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Fewer withdrawal signs reported in an uncontrolled study of inpatients withdrawing from alcohol or opioids",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Fewer sleep attacks reported in a single case of narcolepsy",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Drop in blood pressure at the first injection, seen in 2 of 107 people in a 1984 withdrawal study", "how_common": "uncommon", "sources": [4] },
-    { "risk": "Minor effects such as sweating, headache, nausea and dizziness, in 9 of 107 people in the same study", "how_common": "uncommon", "sources": [4] },
-    { "risk": "Anxiety and marked insomnia returning after stopping, reported in withdrawal studies", "how_common": "unknown", "sources": [4, 6] },
-    { "risk": "Possible immune reactions to peptide clumps or impurities, which FDA says injection under the skin may increase", "how_common": "theoretical", "sources": [4] },
-    { "risk": "No toxicity or addiction-potential studies, and no safety data for injection under the skin", "how_common": "unknown", "sources": [4] }
+    {
+      "risk": "Drop in blood pressure at the first injection, seen in 2 of 107 people in a 1984 withdrawal study",
+      "how_common": "uncommon",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Minor effects such as sweating, headache, nausea and dizziness, in 9 of 107 people in the same study",
+      "how_common": "uncommon",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Anxiety and marked insomnia returning after stopping, reported in withdrawal studies",
+      "how_common": "unknown",
+      "sources": [
+        4,
+        6
+      ]
+    },
+    {
+      "risk": "Possible immune reactions to peptide clumps or impurities, which FDA says injection under the skin may increase",
+      "how_common": "theoretical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "No toxicity or addiction-potential studies, and no safety data for injection under the skin",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    }
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
@@ -32,15 +100,33 @@
     "Going through opioid or alcohol withdrawal (proven, supervised treatments exist)",
     "Insomnia or narcolepsy that a clinician has not yet evaluated (approved treatments exist)"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "None well documented"
+  ],
   "labs": {
-    "before": [ "General health check, including blood pressure" ],
+    "before": [
+      "General health check, including blood pressure"
+    ],
     "during": [],
     "why": "No evidence-based monitoring exists for DSIP; low blood pressure was reported in one older study."
   },
   "studies": [
-    { "title": "FDA Evaluation of Emideltide – Related Bulk Drug Substances", "year": 2026, "type": "Review", "people": "Published studies in adults with insomnia (6 to 18 people each), one narcolepsy case and two opioid-withdrawal studies", "finding": "FDA found the studies small and poorly controlled, with two small placebo-controlled insomnia trials showing little benefit, and identified no data supporting effectiveness for insomnia, narcolepsy or opioid withdrawal.", "source": 6 },
-    { "title": "Emideltide-related Bulk Drug Substances: Emideltide (Free Base) and Emideltide Acetate", "year": 2026, "type": "Review", "people": "107 people in a 1984 withdrawal study, plus FDA adverse event database search", "finding": "FDA judged human safety insufficiently characterized: a few people had low blood pressure or minor effects, the FDA database held no reports, and no toxicity studies exist.", "source": 4 }
+    {
+      "title": "FDA Evaluation of Emideltide – Related Bulk Drug Substances",
+      "year": 2026,
+      "type": "Review",
+      "people": "Published studies in adults with insomnia (6 to 18 people each), one narcolepsy case and two opioid-withdrawal studies",
+      "finding": "FDA found the studies small and poorly controlled, with two small placebo-controlled insomnia trials showing little benefit, and identified no data supporting effectiveness for insomnia, narcolepsy or opioid withdrawal.",
+      "source": 6
+    },
+    {
+      "title": "Emideltide-related Bulk Drug Substances: Emideltide (Free Base) and Emideltide Acetate",
+      "year": 2026,
+      "type": "Review",
+      "people": "107 people in a 1984 withdrawal study, plus FDA adverse event database search",
+      "finding": "FDA judged human safety insufficiently characterized: a few people had low blood pressure or minor effects, the FDA database held no reports, and no toxicity studies exist.",
+      "source": 4
+    }
   ],
   "ask_your_clinician": [
     "What might be causing my sleep problem, and should I be checked for conditions like sleep apnea?",
@@ -48,12 +134,48 @@
     "Is my blood pressure low enough that a further drop could be a problem?"
   ],
   "sources": [
-    { "n": 1, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 2, "title": "FDA to Remove 12 Popular Peptides from the Category 2 “Do Not Compound” List", "publisher": "Frier Levitt", "year": 2026, "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/" },
-    { "n": 3, "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting", "publisher": "McDermott Will & Schulte", "year": 2026, "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/" },
-    { "n": 4, "title": "Emideltide-related Bulk Drug Substances: Emideltide (Free Base) and Emideltide Acetate", "publisher": "FDA presentation, Pharmacy Compounding Advisory Committee, July 24, 2026", "year": 2026, "url": "https://www.fda.gov/media/193774/download" },
-    { "n": 5, "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions", "publisher": "Holland & Knight", "year": 2026, "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know" },
-    { "n": 6, "title": "FDA Evaluation of Emideltide – Related Bulk Drug Substances", "publisher": "FDA Briefing Document, Pharmacy Compounding Advisory Committee", "year": 2026, "url": "https://www.fda.gov/media/193344/download" }
+    {
+      "n": 1,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 2,
+      "title": "FDA to Remove 12 Popular Peptides from the Category 2 “Do Not Compound” List",
+      "publisher": "Frier Levitt",
+      "year": 2026,
+      "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/"
+    },
+    {
+      "n": 3,
+      "title": "Bulk-list bound? PCAC backs majority of peptides in two-day public meeting",
+      "publisher": "McDermott Will & Schulte",
+      "year": 2026,
+      "url": "https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+    },
+    {
+      "n": 4,
+      "title": "Emideltide-related Bulk Drug Substances: Emideltide (Free Base) and Emideltide Acetate",
+      "publisher": "FDA presentation, Pharmacy Compounding Advisory Committee, July 24, 2026",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193774/download"
+    },
+    {
+      "n": 5,
+      "title": "Peptides at a Crossroads: What Wellness Providers Need to Know About HHS and FDA Actions",
+      "publisher": "Holland & Knight",
+      "year": 2026,
+      "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
+    },
+    {
+      "n": 6,
+      "title": "FDA Evaluation of Emideltide – Related Bulk Drug Substances",
+      "publisher": "FDA Briefing Document, Pharmacy Compounding Advisory Committee",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/193344/download"
+    }
   ],
   "notes_for_editor": "The original 1980s and 1990s papers were not opened directly (PubMed was unreachable); study details come from FDA's 2026 briefing document and meeting slides, which reviewed them. The advisory vote was 6 yes to 7 no with 1 abstention, and FDA staff also recommended against. Status key is not_approved: emideltide is on no FDA compounding list and FDA found no country where it is registered. A pending HHS/FDA interim access policy for 'certain peptides' (under White House review since October 14, 2026) has not named the peptides it covers. The seed's 'stress-hormone modulation' claim and its 1983 'Effects of DSIP in man' citation were not verified and were dropped.",
   "checked": "2026-10-28"

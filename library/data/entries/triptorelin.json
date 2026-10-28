@@ -11,7 +11,11 @@
     "key": "approved",
     "label": "FDA-approved (Trelstar, Triptodur)",
     "note": "Trelstar (first approved in 2000) is approved for advanced prostate cancer, and Triptodur for central precocious puberty in children 2 and older. The 2026 WADA Prohibited List bans it at all times in male athletes.",
-    "sources": [1, 2, 3]
+    "sources": [
+      1,
+      2,
+      3
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,49 +35,74 @@
     {
       "claim": "Lowers testosterone to castrate levels in men with advanced prostate cancer (91% to 98% of men by day 29 across three trials)",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Halts early puberty in children 2 and older with central precocious puberty (LH suppressed in over 93% of 44 children)",
       "evidence": "strong",
-      "sources": [2, 4]
+      "sources": [
+        2,
+        4
+      ]
     },
     {
       "claim": "Treats endometriosis in women, an approved use in the UK but not in the US",
       "evidence": "strong",
-      "sources": [5, 1, 2]
+      "sources": [
+        5,
+        1,
+        2
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Hot flashes (in 59% to 73% of men in prostate cancer trials)",
       "how_common": "common",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
-      "risk": "Erectile dysfunction and testicular shrinkage while testosterone is suppressed (about 2% to 10% across trials)",
-      "how_common": "uncommon",
-      "sources": [1]
+      "risk": "Lower sex drive, erection problems and testicular shrinkage are expected while testosterone is suppressed; trials listed them as side effects in about 2% to 10% of men",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "The early hormone surge can briefly worsen symptoms: tumor flare in prostate cancer (including urinary blockage or spinal cord compression) and vaginal bleeding in children",
       "how_common": "uncommon",
-      "sources": [1, 2]
+      "sources": [
+        1,
+        2
+      ]
     },
     {
       "risk": "Higher risk of diabetes, heart attack, sudden cardiac death and stroke with long-term testosterone suppression; FDA describes the risk as low",
       "how_common": "unknown",
-      "sources": [6, 1]
+      "sources": [
+        6,
+        1
+      ]
     },
     {
       "risk": "Bone thinning with long-term use, which may raise fracture risk",
       "how_common": "unknown",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "risk": "Mood changes, depression and seizures; in children, raised pressure inside the skull (pseudotumor cerebri) has been reported",
       "how_common": "unknown",
-      "sources": [5, 1, 2]
+      "sources": [
+        5,
+        1,
+        2
+      ]
     }
   ],
   "avoid_if": [
@@ -96,7 +125,7 @@
     "during": [
       "Testosterone, to confirm it stays suppressed (men with prostate cancer)",
       "Blood glucose or HbA1c, lipids and blood pressure, periodically",
-      "In children: LH and sex-hormone levels, height every 3 to 6 months, and bone age"
+      "In children: LH and sex-hormone levels, height periodically, and bone age"
     ],
     "why": "The labels call for confirming hormone suppression and periodic checks of blood sugar and lipids; in children, growth and bone age are tracked."
   },
@@ -120,7 +149,7 @@
   ],
   "ask_your_clinician": [
     "Is triptorelin right for my situation, or is there a better-studied option for my goal?",
-    "If I have used anabolic steroids, is there any evidence for using triptorelin to restart my own testosterone, and what are the alternatives?",
+    "What should I expect when I stop, and how long until my own hormones recover?",
     "How will we watch my blood sugar, lipids, heart rhythm and bone health while I take it?"
   ],
   "sources": [
@@ -154,7 +183,7 @@
     },
     {
       "n": 5,
-      "title": "Decapeptyl SR 11.25mg Powder and solvent for suspension for injection: Summary of Product Characteristics (revised 1 June 2026)",
+      "title": "Decapeptyl SR: Summary of Product Characteristics (revised 1 June 2026)",
       "publisher": "electronic medicines compendium (emc), UK",
       "year": 2026,
       "url": "https://www.medicines.org.uk/emc/product/780/smpc"

@@ -11,18 +11,72 @@
     "key": "not_approved",
     "label": "Not approved; not on FDA's compounding lists",
     "note": "Hexarelin is not an approved drug and does not appear on FDA's 503A or 503B lists of nominated bulk substances, so pharmacies have no recognized basis to compound it. WADA bans it (as examorelin) in sport.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0.5, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 1 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.5,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
   "benefits": [
-    { "claim": "Faster growth (from 5.3 to 8.3 cm a year) and higher IGF-1 in 8 short children given a nasal form for up to 8 months", "evidence": "limited", "sources": [5] },
-    { "claim": "Higher growth hormone through the night in a small study of 7 healthy men", "evidence": "limited", "sources": [5] }
+    {
+      "claim": "Faster growth (from 5.3 to 8.3 cm a year) and higher IGF-1 in 8 short children given a nasal form for up to 8 months",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Higher growth hormone through the night in a small study of 7 healthy men",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Shorter deep (stage 4) sleep in the first half of the night, with higher prolactin, in 7 healthy men", "how_common": "unknown", "sources": [5] },
-    { "risk": "Higher cortisol and appetite, which a review calls built into how ghrelin-type drugs work", "how_common": "unknown", "sources": [6] },
-    { "risk": "Limited safety data, and no long-term, cancer or mortality data for growth hormone secretagogues", "how_common": "unknown", "sources": [5] },
-    { "risk": "Black-market supply: a review reports ghrelin mimetics are sold on the black market, so identity and purity are uncertain", "how_common": "unknown", "sources": [6] }
+    {
+      "risk": "Shorter deep (stage 4) sleep in the first half of the night, with higher prolactin, in 7 healthy men",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Higher cortisol and appetite, which a review calls built into how ghrelin-type drugs work",
+      "how_common": "unknown",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "risk": "Limited safety data, and no long-term, cancer or mortality data for growth hormone secretagogues",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "risk": "Black-market supply: a review reports ghrelin mimetics are sold on the black market, so identity and purity are uncertain",
+      "how_common": "unknown",
+      "sources": [
+        6
+      ]
+    }
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
@@ -30,29 +84,94 @@
     "Diabetes or prediabetes (clinician first: this drug class can raise blood sugar)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "None well documented"
+  ],
   "labs": {
-    "before": [ "General health check with a clinician", "Fasting glucose or HbA1c", "IGF-1" ],
-    "during": [ "Fasting glucose or HbA1c", "IGF-1" ],
+    "before": [
+      "General health check with a clinician",
+      "Fasting glucose or HbA1c",
+      "IGF-1"
+    ],
+    "during": [
+      "Fasting glucose or HbA1c",
+      "IGF-1"
+    ],
     "why": "No evidence-based monitoring exists for hexarelin; a review of growth hormone secretagogues advises tracking IGF-1 and blood sugar for the class."
   },
   "studies": [
-    { "title": "The Safety and Efficacy of Growth Hormone Secretagogues", "year": 2018, "type": "Review", "people": "Review including 8 short children and 7 healthy men given hexarelin", "finding": "In children, hexarelin raised IGF-1 and growth velocity over up to 8 months; in men, it raised growth hormone and prolactin overnight and shortened deep sleep. The review notes safety data are limited.", "source": 5 },
-    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research", "finding": "Groups hexarelin with GHRP-6 and GHRP-2 as non-natural, enkephalin-derived hexapeptides with moderate effects on growth hormone and IGF-1, plus higher cortisol and appetite.", "source": 6 }
+    {
+      "title": "The Safety and Efficacy of Growth Hormone Secretagogues",
+      "year": 2018,
+      "type": "Review",
+      "people": "Review including 8 short children and 7 healthy men given hexarelin",
+      "finding": "In children, hexarelin raised IGF-1 and growth velocity over up to 8 months; in men, it raised growth hormone and prolactin overnight and shortened deep sleep. The review notes safety data are limited.",
+      "source": 5
+    },
+    {
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "year": 2012,
+      "type": "Review",
+      "people": "Review of published research",
+      "finding": "Groups hexarelin with GHRP-6 and GHRP-2 as non-natural, enkephalin-derived hexapeptides with moderate effects on growth hormone and IGF-1, plus higher cortisol and appetite.",
+      "source": 6
+    }
   ],
   "ask_your_clinician": [
-    "Is there any lawful, quality-checked source for this, or is an approved option better for my goal?",
+    "Is there an approved option that fits my goal better?",
     "Could it affect my sleep, blood sugar or cortisol, and how would we check?",
     "If I compete in a tested sport, would this cause an anti-doping violation?"
   ],
   "sources": [
-    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download?attachment" },
-    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
-    { "n": 5, "title": "The Safety and Efficacy of Growth Hormone Secretagogues", "publisher": "Sexual Medicine Reviews (PMC)", "year": 2018, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5632578/" },
-    { "n": 6, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" },
-    { "n": 7, "title": "WADA Verbotsliste 2021: detailed list for section 2.3 (growth hormone, its fragments and releasing factors)", "publisher": "German Sport University Cologne, Institute of Biochemistry (in German)", "year": 2021, "url": "https://www.dshs-koeln.de/fileadmin/redaktion/Institute/Biochemie/PDF/Wachstumshormon_Verbotsliste_Detail_2021.pdf" }
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download?attachment"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/94164/download"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 5,
+      "title": "The Safety and Efficacy of Growth Hormone Secretagogues",
+      "publisher": "Sexual Medicine Reviews (PMC)",
+      "year": 2018,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5632578/"
+    },
+    {
+      "n": 6,
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)",
+      "year": 2012,
+      "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf"
+    },
+    {
+      "n": 7,
+      "title": "WADA Verbotsliste 2021: detailed list for section 2.3 (growth hormone, its fragments and releasing factors)",
+      "publisher": "German Sport University Cologne, Institute of Biochemistry (in German)",
+      "year": 2021,
+      "url": "https://www.dshs-koeln.de/fileadmin/redaktion/Institute/Biochemie/PDF/Wachstumshormon_Verbotsliste_Detail_2021.pdf"
+    }
   ],
   "notes_for_editor": "Thin evidence: the web-search budget ran out before hexarelin's primary studies (e.g., Ghigo 1994 on routes of activity, Laron 1995 in children, the heart studies) could be opened; findings come from the Sigalos review and Baumann 2012. The prototype's 'cardioprotection in animal models' and 'rapid desensitization' are left out because no opened source confirmed them; worth adding after checking. Seed correction: it was listed as 'investigational - in clinical trials', but no current trial could be checked (ClinicalTrials.gov pages did not load), so it is marked not approved. 'No recognized basis to compound' is an inference from its absence from FDA's lists plus the 503A rules (source 3). Structure (2-methyl-D-tryptophan in place of GHRP-6's D-tryptophan) is from source 7.",
   "checked": "2026-10-28"

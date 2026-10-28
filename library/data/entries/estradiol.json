@@ -11,7 +11,12 @@
     "key": "approved",
     "label": "FDA-approved prescription hormone",
     "note": "Approved for menopausal hot flashes, vaginal atrophy, low estrogen from hypogonadism or ovarian failure, osteoporosis prevention and some cancer palliation. In 2025-2026 FDA had makers remove the heart, breast-cancer and dementia statements from the boxed warning (estrogen-alone products keep an endometrial-cancer warning), and labels are being updated product by product.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,59 +36,89 @@
     {
       "claim": "Cuts hot flash frequency by about 75% versus placebo and eases night sweats in menopausal women",
       "evidence": "strong",
-      "sources": [5, 4]
+      "sources": [
+        5,
+        4
+      ]
     },
     {
       "claim": "Treats vaginal dryness and thinning (vulvar and vaginal atrophy) after menopause",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Approved to prevent postmenopausal osteoporosis in women at significant risk who cannot use non-estrogen drugs; in the WHI trials, hormone therapy (conjugated estrogens, not estradiol) cut hip fractures by a third",
       "evidence": "strong",
-      "sources": [1, 6]
+      "sources": [
+        1,
+        6
+      ]
     },
     {
       "claim": "Replaces estrogen in women with low estrogen from hypogonadism, removal of the ovaries or primary ovarian failure",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Slower thickening of the neck artery wall when oral estradiol was started within 6 years of menopause, but not when started 10 or more years after",
       "evidence": "moderate",
-      "sources": [7]
+      "sources": [
+        7
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Endometrial cancer if estrogen is taken without a progestogen by a woman with a uterus: risk reported 2 to 12 times higher than in non-users (boxed warning)",
-      "how_common": "unknown",
-      "sources": [4, 1]
+      "how_common": "uncommon",
+      "sources": [
+        4,
+        1
+      ]
     },
     {
       "risk": "Blood clots and stroke: about 9 extra strokes and 9 extra lung clots per 10,000 women per year on combined therapy in WHI; in a large UK study, tablets raised clot risk but patches and gels did not",
       "how_common": "rare",
-      "sources": [6, 8]
+      "sources": [
+        6,
+        8
+      ]
     },
     {
       "risk": "Breast cancer: risk rises with longer use and more with estrogen plus progestogen; about 1 extra case per 200 women using estrogen alone for 5 years from age 50, and 1 per 50 with a daily progestogen",
       "how_common": "uncommon",
-      "sources": [6, 9]
+      "sources": [
+        6,
+        9
+      ]
     },
     {
       "risk": "Breast tenderness, irregular bleeding or spotting, headache, bloating and nausea",
       "how_common": "common",
-      "sources": [1, 4]
+      "sources": [
+        1,
+        4
+      ]
     },
     {
       "risk": "Gallbladder disease needing surgery, reported 2 to 4 times more often in postmenopausal estrogen users",
       "how_common": "unknown",
-      "sources": [1, 6]
+      "sources": [
+        1,
+        6
+      ]
     },
     {
       "risk": "Probable dementia was about doubled when combined therapy was started at 65 or older in WHI; FDA removed this warning from labels in 2025-2026",
       "how_common": "unknown",
-      "sources": [6, 2]
+      "sources": [
+        6,
+        2
+      ]
     }
   ],
   "avoid_if": [

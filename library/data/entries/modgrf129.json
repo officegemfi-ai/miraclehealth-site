@@ -42,7 +42,7 @@
       ]
     },
     {
-      "claim": "GHRH-type peptides and growth hormone-releasing peptides (GHRPs) act together to release more growth hormone than either alone, the rationale for combining it with a GHRP such as ipamorelin; shown with related peptides, not this one",
+      "claim": "GHRH-type peptides and growth hormone-releasing peptides (GHRPs) together release more growth hormone than either alone; shown with related peptides, not this one",
       "evidence": "limited",
       "sources": [
         7
@@ -127,7 +127,7 @@
     }
   ],
   "ask_your_clinician": [
-    "Is there any lawful, quality-checked source for this, or would sermorelin or an approved option be more appropriate?",
+    "Is there an approved option for my goal?",
     "What would we measure to know whether my growth hormone axis actually needs support?",
     "If I compete in a tested sport, would this cause an anti-doping violation?"
   ],

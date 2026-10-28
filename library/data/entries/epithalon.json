@@ -10,7 +10,7 @@
   "status_us": {
     "key": "under_review",
     "label": "Not approved; compounding status under FDA review",
-    "note": "FDA dropped epitalon from its Category 2 safety-risk list in April 2026 after the nominator withdrew it, then recommended against adding it to the list of substances pharmacies may compound. Its advisory committee voted 7 to 4 for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
+    "note": "FDA dropped epitalon from its Category 2 safety-risk list in April 2026 after the nominator withdrew it. FDA still reviewed it: staff recommended against adding it to the list of substances pharmacies may compound. and its advisory committee voted 7 to 4 (1 abstention) for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
     "sources": [
       1,
       2,

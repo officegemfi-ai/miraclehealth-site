@@ -11,18 +11,74 @@
     "key": "compounded",
     "label": "Compounded by prescription; former approved drug",
     "note": "Approved as Geref in 1990 (pituitary test) and 1997 (children with growth hormone deficiency); FDA withdrew the approvals in 2009 after the maker stopped selling it, and later found this was not for safety or effectiveness reasons. FDA lists sermorelin acetate as a component of an approved drug, which allows pharmacy compounding by prescription; WADA bans it in sport.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0.5, "recovery": 0, "energy": 0, "sleep": 0.25, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.5, "gut": 0, "immune": 0, "hormonal": 1 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.5,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0.25,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
   "benefits": [
-    { "claim": "Triggers growth hormone release from the pituitary; FDA approved it as a test of the pituitary's ability to make growth hormone", "evidence": "strong", "sources": [1] },
-    { "claim": "Treated growth failure in children with idiopathic growth hormone deficiency (its approved use, 1997-2009), though a 2012 review called it largely ineffective as a growth promoter", "evidence": "moderate", "sources": [1, 5] },
-    { "claim": "Raised IGF-1 in 14 men on testosterone therapy who took it together with GHRP-2 and GHRP-6", "evidence": "limited", "sources": [6] }
+    {
+      "claim": "Triggers growth hormone release from the pituitary; FDA approved it as a test of the pituitary's ability to make growth hormone",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Treated growth failure in children with idiopathic growth hormone deficiency (its approved use, 1997-2009), though a 2012 review called it largely ineffective as a growth promoter",
+      "evidence": "moderate",
+      "sources": [
+        1,
+        5
+      ]
+    },
+    {
+      "claim": "Raised IGF-1 in 14 men on testosterone therapy who took it together with GHRP-2 and GHRP-6",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Compounded versions are not FDA-approved, and FDA does not check their safety, quality or strength before sale", "how_common": "unknown", "sources": [7] },
-    { "risk": "Fluid retention, joint pain, injection-site reactions and higher blood sugar are label warnings for tesamorelin, a drug that works the same way", "how_common": "theoretical", "sources": [8] },
-    { "risk": "Long-term safety, including any cancer risk from raising growth hormone and IGF-1, has not been studied", "how_common": "unknown", "sources": [6, 8] }
+    {
+      "risk": "Compounded versions are not FDA-approved, and FDA does not check their safety, quality or strength before sale",
+      "how_common": "unknown",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "risk": "Fluid retention, joint pain, injection-site reactions and higher blood sugar are label warnings for tesamorelin, a drug that works the same way",
+      "how_common": "theoretical",
+      "sources": [
+        8
+      ]
+    },
+    {
+      "risk": "Long-term safety, including any cancer risk from raising growth hormone and IGF-1, has not been studied",
+      "how_common": "unknown",
+      "sources": [
+        6,
+        8
+      ]
+    }
   ],
   "avoid_if": [
     "Active cancer",
@@ -35,29 +91,103 @@
     "Drugs cleared by liver CYP450 enzymes (e.g., anticonvulsants, cyclosporine, sex steroids): growth hormone can change their clearance, per the tesamorelin label"
   ],
   "labs": {
-    "before": [ "IGF-1", "Fasting glucose or HbA1c" ],
-    "during": [ "IGF-1", "Fasting glucose or HbA1c" ],
+    "before": [
+      "IGF-1",
+      "Fasting glucose or HbA1c"
+    ],
+    "during": [
+      "IGF-1",
+      "Fasting glucose or HbA1c"
+    ],
     "why": "No sermorelin-specific guideline exists; the tesamorelin label and a review of growth hormone secretagogues advise checking IGF-1 and blood sugar because these drugs raise IGF-1 and can raise glucose."
   },
   "studies": [
-    { "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels", "year": 2017, "type": "Case series", "people": "14 men on testosterone therapy (retrospective chart review)", "finding": "A combination of sermorelin, GHRP-2 and GHRP-6 raised average IGF-1 from about 160 to 239 ng/mL. Body composition could not be assessed and side effects were not systematically recorded.", "source": 6 },
-    { "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "year": 2012, "type": "Review", "people": "Review of published research", "finding": "Describes sermorelin as marketed for children with growth hormone deficiency and for pituitary testing, largely ineffective as a growth promoter, and no longer sold in the US.", "source": 5 }
+    {
+      "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels",
+      "year": 2017,
+      "type": "Case series",
+      "people": "14 men on testosterone therapy (retrospective chart review)",
+      "finding": "A combination of sermorelin, GHRP-2 and GHRP-6 raised average IGF-1 from about 160 to 239 ng/mL. Body composition could not be assessed and side effects were not systematically recorded.",
+      "source": 6
+    },
+    {
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "year": 2012,
+      "type": "Review",
+      "people": "Review of published research",
+      "finding": "Describes sermorelin as marketed for children with growth hormone deficiency and for pituitary testing, largely ineffective as a growth promoter, and no longer sold in the US.",
+      "source": 5
+    }
   ],
   "ask_your_clinician": [
     "Is my IGF-1 actually low, and what result would show this is working?",
-    "Which pharmacy would compound it, and how is its quality checked?",
+    "How is the quality of compounded versions checked?",
     "Given my blood sugar and cancer screening history, is a drug that raises growth hormone safe for me?"
   ],
   "sources": [
-    { "n": 1, "title": "Determination That GEREF (Sermorelin Acetate) Injection, 0.5 Milligrams Base/Vial and 1.0 Milligrams Base/Vial, and GEREF (Sermorelin Acetate) Injection, 0.05 Milligrams Base/Amp, Were Not Withdrawn From Sale for Reasons of Safety or Effectiveness", "publisher": "Federal Register (U.S. Food and Drug Administration)", "year": 2013, "url": "https://www.govinfo.gov/content/pkg/FR-2013-03-04/html/2013-04827.htm" },
-    { "n": 2, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)", "publisher": "U.S. Food and Drug Administration", "year": 2025, "url": "https://www.fda.gov/media/94164/download" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
-    { "n": 5, "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies", "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)", "year": 2012, "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf" },
-    { "n": 6, "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels", "publisher": "American Journal of Men's Health (PMC)", "year": 2017, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5675260/" },
-    { "n": 7, "title": "Understanding the Risks of Compounded Drugs", "publisher": "U.S. Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/understanding-risks-compounded-drugs" },
-    { "n": 8, "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)", "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)", "year": 2025, "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf" },
-    { "n": 9, "title": "The Safety and Efficacy of Growth Hormone Secretagogues", "publisher": "Sexual Medicine Reviews (PMC)", "year": 2018, "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5632578/" }
+    {
+      "n": 1,
+      "title": "Determination That GEREF (Sermorelin Acetate) Injection Products Were Not Withdrawn From Sale for Reasons of Safety or Effectiveness",
+      "publisher": "Federal Register (U.S. Food and Drug Administration)",
+      "year": 2013,
+      "url": "https://www.govinfo.gov/content/pkg/FR-2013-03-04/html/2013-04827.htm"
+    },
+    {
+      "n": 2,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503B of the Federal Food, Drug, and Cosmetic Act (updated March 21, 2025)",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/94164/download"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 5,
+      "title": "Growth Hormone Doping in Sports: A Critical Review of Use and Detection Strategies",
+      "publisher": "Endocrine Reviews (PDF hosted by the Dutch Doping Authority)",
+      "year": 2012,
+      "url": "https://www.doping.nl/media/kb/1168/Baumann%202012.pdf"
+    },
+    {
+      "n": 6,
+      "title": "Growth Hormone Secretagogue Treatment in Hypogonadal Men Raises Serum Insulin-Like Growth Factor-1 Levels",
+      "publisher": "American Journal of Men's Health (PMC)",
+      "year": 2017,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5675260/"
+    },
+    {
+      "n": 7,
+      "title": "Understanding the Risks of Compounded Drugs",
+      "publisher": "U.S. Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/understanding-risks-compounded-drugs"
+    },
+    {
+      "n": 8,
+      "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf"
+    },
+    {
+      "n": 9,
+      "title": "The Safety and Efficacy of Growth Hormone Secretagogues",
+      "publisher": "Sexual Medicine Reviews (PMC)",
+      "year": 2018,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5632578/"
+    }
   ],
   "notes_for_editor": "The web-search budget ran out before the older-adult trials could be opened (the prototype cited Corpas 1992 and Vittone 1997 on GH/IGF-1 and body composition in men over 60); add them only after checking. The Geref label was not found, so class risks and interactions are borrowed from the tesamorelin label and flagged as such. Conflict: FDA approved sermorelin for pediatric growth hormone deficiency, yet the 2012 Endocrine Reviews article calls it largely ineffective as a growth promoter; graded moderate. Compounding status is inferred from FDA's 503B list marking sermorelin acetate as a component of an approved drug plus the 503A rule allowing such components; no 2025-2026 FDA action on sermorelin could be checked. Source 9 (secretagogue review) supports the IGF-1/glucose monitoring advice in labs.",
   "checked": "2026-10-28"

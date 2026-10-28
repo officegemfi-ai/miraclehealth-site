@@ -11,20 +11,90 @@
     "key": "not_approved",
     "label": "Not FDA-approved; not on FDA compounding lists",
     "note": "Pancragen is not an FDA-approved drug and appears on none of FDA's compounding lists (nominated substances, updated May 2026; safety-risk and withdrawn nominations, April 2026). FDA allows pharmacy compounding only from ingredients that are in an approved drug, meet a USP standard, or are on or under review for its bulk list; Russia's drug register lists it as a dietary supplement.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "goals": { "weight": 1, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.5, "gut": 0.25, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 0.25,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "Lower fasting blood sugar, insulin and insulin resistance in a small study of older adults with type 2 diabetes", "evidence": "limited", "sources": [5] },
-    { "claim": "More people could lower their insulin dose, and fewer needed to raise it, in a small study of 36 people with diabetes described in the developer's patent", "evidence": "limited", "sources": [6] },
-    { "claim": "Faster clearing of sugar from the blood and normal insulin responses in old rhesus monkeys", "evidence": "preclinical", "sources": [7] },
-    { "claim": "Lower blood sugar, more insulin and better survival in rats with chemically induced diabetes", "evidence": "preclinical", "sources": [6] },
-    { "claim": "Restored markers of mature pancreatic cells in aging cell cultures", "evidence": "preclinical", "sources": [8, 9] }
+    {
+      "claim": "Lower fasting blood sugar, insulin and insulin resistance in a small study of older adults with type 2 diabetes",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Needed less insulin (and fewer needed more) in a small study of 36 people with diabetes described in the developer's patent; see the low-blood-sugar risk below",
+      "evidence": "limited",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Faster clearing of sugar from the blood and normal insulin responses in old rhesus monkeys",
+      "evidence": "preclinical",
+      "sources": [
+        7
+      ]
+    },
+    {
+      "claim": "Lower blood sugar, more insulin and better survival in rats with chemically induced diabetes",
+      "evidence": "preclinical",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "claim": "Restored markers of mature pancreatic cells in aging cell cultures",
+      "evidence": "preclinical",
+      "sources": [
+        8,
+        9
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Low blood sugar is possible if combined with insulin or other diabetes medicines, given its reported glucose-lowering effect", "how_common": "theoretical", "sources": [6, 5] },
-    { "risk": "Human safety has only been reported by the developers; the patent calls it non-toxic without describing the tests", "how_common": "unknown", "sources": [6] },
-    { "risk": "No FDA-approved or pharmacy-compounded version exists, so products may not match the peptide that was studied", "how_common": "unknown", "sources": [10, 1, 3] }
+    {
+      "risk": "Low blood sugar is possible if combined with insulin or other diabetes medicines, given its reported glucose-lowering effect",
+      "how_common": "theoretical",
+      "sources": [
+        6,
+        5
+      ]
+    },
+    {
+      "risk": "Human safety has only been reported by the developers; the patent calls it non-toxic without describing the tests",
+      "how_common": "unknown",
+      "sources": [
+        6
+      ]
+    },
+    {
+      "risk": "No FDA-approved or pharmacy-compounded version exists, so products may not match the peptide that was studied",
+      "how_common": "unknown",
+      "sources": [
+        10,
+        1,
+        3
+      ]
+    }
   ],
   "avoid_if": [
     "Diabetes treated with insulin or other glucose-lowering medicines, unless your clinician is involved",
@@ -32,16 +102,44 @@
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
-  "interactions": [ "Insulin and other glucose-lowering medicines: possible added blood-sugar lowering (not formally studied)" ],
+  "interactions": [
+    "Insulin and other glucose-lowering medicines: possible added blood-sugar lowering (not formally studied)"
+  ],
   "labs": {
-    "before": [ "Fasting glucose and HbA1c", "General health check" ],
-    "during": [ "Blood sugar checks if you take diabetes medicines" ],
+    "before": [
+      "Fasting glucose and HbA1c",
+      "General health check"
+    ],
+    "during": [
+      "Blood sugar checks if you take diabetes medicines"
+    ],
     "why": "No evidence-based monitoring exists for Pancragen; blood sugar is the sensible marker because that is what the studies measured."
   },
   "studies": [
-    { "title": "Prospects of Using Pancragen for Correction of Metabolic Disorders in Elderly People", "year": 2011, "type": "Trial", "people": "63 older adults: 33 with type 2 diabetes and 30 healthy", "finding": "In people with diabetes who took pancragen, fasting glucose, glucose tolerance, insulin and insulin resistance improved, while those who did not take it showed no change. The abstract does not describe randomization.", "source": 5 },
-    { "title": "Impact of tetrapeptide pancragen on endocrine function of the pancreas in old monkeys", "year": 2014, "type": "Animal", "people": "Old and young female rhesus monkeys", "finding": "In old monkeys, pancragen sped up clearance of sugar after a glucose load and normalized insulin and C-peptide responses; part of the effect lasted three weeks after it was stopped.", "source": 7 },
-    { "title": "Effects of Pancragen on The Differentiation of Pancreatic Cells During Their Ageing", "year": 2013, "type": "Cell", "people": "Young and aged pancreatic cell cultures", "finding": "Aged cultures lost markers of mature pancreatic cells; pancragen raised markers such as Pdx1 and Ptf1a back toward, or above, young levels.", "source": 8 }
+    {
+      "title": "Prospects of Using Pancragen for Correction of Metabolic Disorders in Elderly People",
+      "year": 2011,
+      "type": "Trial",
+      "people": "63 older adults: 33 with type 2 diabetes and 30 healthy",
+      "finding": "In people with diabetes who took pancragen, fasting glucose, glucose tolerance, insulin and insulin resistance improved, while those who did not take it showed no change. The abstract does not describe randomization.",
+      "source": 5
+    },
+    {
+      "title": "Impact of tetrapeptide pancragen on endocrine function of the pancreas in old monkeys",
+      "year": 2014,
+      "type": "Animal",
+      "people": "Old and young female rhesus monkeys",
+      "finding": "In old monkeys, pancragen sped up clearance of sugar after a glucose load and normalized insulin and C-peptide responses; part of the effect lasted three weeks after it was stopped.",
+      "source": 7
+    },
+    {
+      "title": "Effects of Pancragen on The Differentiation of Pancreatic Cells During Their Ageing",
+      "year": 2013,
+      "type": "Cell",
+      "people": "Young and aged pancreatic cell cultures",
+      "finding": "Aged cultures lost markers of mature pancreatic cells; pancragen raised markers such as Pdx1 and Ptf1a back toward, or above, young levels.",
+      "source": 8
+    }
   ],
   "ask_your_clinician": [
     "Could this cause low blood sugar with my current diabetes medicines?",
@@ -49,16 +147,76 @@
     "Is there stronger evidence for other options to manage my blood sugar?"
   ],
   "sources": [
-    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
-    { "n": 2, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "БАДы: белки, аминокислоты и их производные (Dietary supplements: proteins, amino acids and their derivatives)", "publisher": "RLS Register of Medicines of Russia", "year": 2026, "url": "https://www.rlsnet.ru/pharm-groups/bady-belki-aminokisloty-i-ix-proizvodnye-1" },
-    { "n": 5, "title": "Prospects of Using Pancragen for Correction of Metabolic Disorders in Elderly People", "publisher": "Bulletin of Experimental Biology and Medicine (Springer)", "year": 2011, "url": "https://link.springer.com/doi/10.1007/s10517-011-1354-4" },
-    { "n": 6, "title": "Tetrapeptide regulating blood glucose level in diabetes mellitus (US7491703B2)", "publisher": "US Patent and Trademark Office (Google Patents)", "year": 2009, "url": "https://patents.google.com/patent/US7491703" },
-    { "n": 7, "title": "Impact of tetrapeptide pancragen on endocrine function of the pancreas in old monkeys", "publisher": "Advances in Gerontology (Uspekhi Gerontologii), PMID 25946840; library catalog record", "year": 2014, "url": "https://opact.sdu.edu.tr/vufind/SummonRecord/FETCH-LOGICAL-p560-90b3560ecaf046b9463e5338a1ae805efa878bbe0a6e73e9478d94e2c7441b602/Details" },
-    { "n": 8, "title": "Effects of Pancragen on The Differentiation of Pancreatic Cells During Their Ageing", "publisher": "Bulletin of Experimental Biology and Medicine (Springer)", "year": 2013, "url": "https://link.springer.com/article/10.1007/s10517-013-1987-6" },
-    { "n": 9, "title": "Peptide Regulation of Cell Differentiation", "publisher": "Stem Cell Reviews and Reports (PubMed)", "year": 2020, "url": "https://pubmed.ncbi.nlm.nih.gov/31808038/" },
-    { "n": 10, "title": "lysyl-glutamyl-aspartyl-tryptophanamide (MeSH Supplementary Concept C531938; entry term: pancragen)", "publisher": "US National Library of Medicine, MeSH", "year": 2008, "url": "https://meshb.nlm.nih.gov/record/ui?ui=C531938" }
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "БАДы: белки, аминокислоты и их производные (Dietary supplements: proteins, amino acids and their derivatives)",
+      "publisher": "RLS Register of Medicines of Russia",
+      "year": 2026,
+      "url": "https://www.rlsnet.ru/pharm-groups/bady-belki-aminokisloty-i-ix-proizvodnye-1"
+    },
+    {
+      "n": 5,
+      "title": "Prospects of Using Pancragen for Correction of Metabolic Disorders in Elderly People",
+      "publisher": "Bulletin of Experimental Biology and Medicine (Springer)",
+      "year": 2011,
+      "url": "https://link.springer.com/doi/10.1007/s10517-011-1354-4"
+    },
+    {
+      "n": 6,
+      "title": "Tetrapeptide regulating blood glucose level in diabetes mellitus (US7491703B2)",
+      "publisher": "US Patent and Trademark Office (Google Patents)",
+      "year": 2009,
+      "url": "https://patents.google.com/patent/US7491703"
+    },
+    {
+      "n": 7,
+      "title": "Impact of tetrapeptide pancragen on endocrine function of the pancreas in old monkeys",
+      "publisher": "Advances in Gerontology (Uspekhi Gerontologii), PMID 25946840; library catalog record",
+      "year": 2014,
+      "url": "https://opact.sdu.edu.tr/vufind/SummonRecord/FETCH-LOGICAL-p560-90b3560ecaf046b9463e5338a1ae805efa878bbe0a6e73e9478d94e2c7441b602/Details"
+    },
+    {
+      "n": 8,
+      "title": "Effects of Pancragen on The Differentiation of Pancreatic Cells During Their Ageing",
+      "publisher": "Bulletin of Experimental Biology and Medicine (Springer)",
+      "year": 2013,
+      "url": "https://link.springer.com/article/10.1007/s10517-013-1987-6"
+    },
+    {
+      "n": 9,
+      "title": "Peptide Regulation of Cell Differentiation",
+      "publisher": "Stem Cell Reviews and Reports (PubMed)",
+      "year": 2020,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31808038/"
+    },
+    {
+      "n": 10,
+      "title": "lysyl-glutamyl-aspartyl-tryptophanamide (MeSH Supplementary Concept C531938; entry term: pancragen)",
+      "publisher": "US National Library of Medicine, MeSH",
+      "year": 2008,
+      "url": "https://meshb.nlm.nih.gov/record/ui?ui=C531938"
+    }
   ],
   "notes_for_editor": "The best-documented of the Khavinson bioregulators in this batch, but every study involves the developer (Khavinson) as an author or patent holder. Korkushko 2011 (63 older adults) does not describe randomization, dosing or duration in the abstract; the patent's 36-patient study reports inconsistent group sizes and is not peer reviewed. The monkey study (PMID 25946840, in Russian) was read via a university library catalog record because PubMed would not load; animal numbers were not given. The 2013 cell study describes its cells as MIA PaCa-2 embryonic acinar cultures; worth checking that cell line's origin. Russian supplement status was seen on the RLS register's group listing only.",
   "checked": "2026-10-28"

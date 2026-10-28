@@ -11,22 +11,99 @@
     "key": "approved",
     "label": "FDA-approved (Egrifta) for HIV-related belly fat",
     "note": "Approved since 2010 to reduce excess abdominal fat in adults with HIV who have lipodystrophy; the label says it is not a weight-loss drug and its long-term heart safety is not established. WADA bans it in sport.",
-    "sources": [1, 2]
+    "sources": [
+      1,
+      2
+    ]
   },
-  "goals": { "weight": 1, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0.25, "skin": 0, "sexual": 0, "longevity": 0, "gut": 0, "immune": 0, "hormonal": 0.5 },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0.25,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0.5
+  },
   "benefits": [
-    { "claim": "Cut visceral (deep belly) fat by roughly 15% over 26 weeks versus placebo in adults with HIV and excess abdominal fat", "evidence": "strong", "sources": [1, 3] },
-    { "claim": "Lowered triglycerides and improved the cholesterol ratio in adults with HIV and excess abdominal fat", "evidence": "moderate", "sources": [3] },
-    { "claim": "Reduced liver fat over 12 months in 61 adults with HIV and fatty liver disease", "evidence": "moderate", "sources": [4] },
-    { "claim": "Improved executive function (planning and attention) over 20 weeks in 152 older adults with or without mild cognitive impairment", "evidence": "moderate", "sources": [5] }
+    {
+      "claim": "Cut visceral (deep belly) fat by roughly 15% over 26 weeks versus placebo in adults with HIV and excess abdominal fat; the fat came back in people who stopped",
+      "evidence": "strong",
+      "sources": [
+        1,
+        3
+      ]
+    },
+    {
+      "claim": "Lowered triglycerides and improved the cholesterol ratio in adults with HIV and excess abdominal fat",
+      "evidence": "moderate",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Reduced liver fat over 12 months in 61 adults with HIV and fatty liver disease",
+      "evidence": "moderate",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Improved executive function (planning and attention) over 20 weeks in 152 older adults with or without mild cognitive impairment",
+      "evidence": "moderate",
+      "sources": [
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "Injection-site reactions such as redness, itching or pain (17% vs 6% on placebo)", "how_common": "common", "sources": [1] },
-    { "risk": "Fluid-retention effects: joint pain, swelling of the limbs, tingling or numbness, and occasionally carpal tunnel syndrome", "how_common": "common", "sources": [1] },
-    { "risk": "Very high IGF-1: about a third had IGF-1 more than 3 standard deviations above normal at 26 weeks; long-term effects unknown", "how_common": "common", "sources": [1] },
-    { "risk": "Higher blood sugar: 5% vs 1% reached a diabetes-range HbA1c at 26 weeks", "how_common": "uncommon", "sources": [1] },
-    { "risk": "Allergic reactions such as itching, flushing, hives or rash (4% in trials)", "how_common": "uncommon", "sources": [1] },
-    { "risk": "Visceral fat came back in people who stopped and switched to placebo", "how_common": "common", "sources": [1] }
+    {
+      "risk": "Injection-site reactions such as redness, itching or pain (17% vs 6% on placebo)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Fluid-retention effects: joint pain, swelling of the limbs, tingling or numbness, and occasionally carpal tunnel syndrome",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Very high IGF-1: about a third had IGF-1 more than 3 standard deviations above normal at 26 weeks; long-term effects unknown",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Higher blood sugar: 5% vs 1% reached a diabetes-range HbA1c at 26 weeks",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Allergic reactions such as itching, flushing, hives or rash (4% in trials)",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "More deaths have been reported with growth hormone-type drugs during acute critical illness (after heart or abdominal surgery, major trauma, or acute respiratory failure); the label says to consider stopping it in critically ill patients",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    }
   ],
   "avoid_if": [
     "Pregnancy (contraindicated)",
@@ -40,15 +117,50 @@
     "Drugs cleared by liver CYP450 enzymes (e.g., corticosteroids, sex steroids, anticonvulsants, cyclosporine): the label advises monitoring when combined"
   ],
   "labs": {
-    "before": [ "Fasting glucose and HbA1c", "IGF-1" ],
-    "during": [ "IGF-1 (the label suggests considering stopping for persistent large elevations)", "Glucose or HbA1c periodically", "Eye exams for retinopathy in people with diabetes" ],
+    "before": [
+      "Fasting glucose and HbA1c",
+      "IGF-1"
+    ],
+    "during": [
+      "IGF-1 (the label suggests considering stopping for persistent large elevations)",
+      "Glucose or HbA1c periodically",
+      "Eye exams for retinopathy in people with diabetes"
+    ],
     "why": "The label calls for checking blood sugar before and during treatment and monitoring IGF-1, because tesamorelin raises IGF-1 and can cause glucose intolerance."
   },
   "studies": [
-    { "title": "Metabolic Effects of a Growth Hormone-Releasing Factor in Patients with HIV", "year": 2007, "type": "RCT", "people": "412 adults with HIV and excess abdominal fat", "finding": "Over 26 weeks, visceral fat fell 15.2% with tesamorelin and rose 5.0% with placebo, and triglycerides and cholesterol ratios improved, with no significant change in fasting glucose. About half of treated patients developed antibodies to the drug.", "source": 3 },
-    { "title": "Effects of tesamorelin on non-alcoholic fatty liver disease in HIV: a randomised, double-blind, multicentre trial", "year": 2019, "type": "RCT", "people": "61 adults with HIV and fatty liver", "finding": "Over 12 months, liver fat fell 37% from baseline relative to placebo, and 35% vs 4% reached normal liver fat; blood sugar did not differ between groups.", "source": 4 },
-    { "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults: results of a controlled trial", "year": 2012, "type": "RCT", "people": "152 adults aged 55 to 87, 66 with mild cognitive impairment", "finding": "After 20 weeks, tesamorelin improved executive function versus placebo in both groups and reduced body fat by 7.4%. Mild side effects were more common than on placebo (68% vs 36%).", "source": 5 },
-    { "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)", "year": 2025, "type": "Label", "people": "816 adults with HIV in two 26-week randomized trials, plus extensions", "finding": "Visceral fat fell 14-18% versus little change on placebo; people switched to placebo for another 26 weeks regained it.", "source": 1 }
+    {
+      "title": "Metabolic Effects of a Growth Hormone-Releasing Factor in Patients with HIV",
+      "year": 2007,
+      "type": "RCT",
+      "people": "412 adults with HIV and excess abdominal fat",
+      "finding": "Over 26 weeks, visceral fat fell 15.2% with tesamorelin and rose 5.0% with placebo, and triglycerides and cholesterol ratios improved, with no significant change in fasting glucose. About half of treated patients developed antibodies to the drug.",
+      "source": 3
+    },
+    {
+      "title": "Effects of tesamorelin on non-alcoholic fatty liver disease in HIV: a randomised, double-blind, multicentre trial",
+      "year": 2019,
+      "type": "RCT",
+      "people": "61 adults with HIV and fatty liver",
+      "finding": "Over 12 months, liver fat fell 37% from baseline relative to placebo, and 35% vs 4% reached normal liver fat; blood sugar did not differ between groups.",
+      "source": 4
+    },
+    {
+      "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults: results of a controlled trial",
+      "year": 2012,
+      "type": "RCT",
+      "people": "152 adults aged 55 to 87, 66 with mild cognitive impairment",
+      "finding": "After 20 weeks, tesamorelin improved executive function versus placebo in both groups and reduced body fat by 7.4%. Mild side effects were more common than on placebo (68% vs 36%).",
+      "source": 5
+    },
+    {
+      "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)",
+      "year": 2025,
+      "type": "Label",
+      "people": "816 adults with HIV in two 26-week randomized trials, plus extensions",
+      "finding": "Visceral fat fell 14-18% versus little change on placebo; people switched to placebo for another 26 weeks regained it.",
+      "source": 1
+    }
   ],
   "ask_your_clinician": [
     "Has a scan or waist measurement confirmed excess visceral fat, and what result would show it is working?",
@@ -56,11 +168,41 @@
     "What happens to the fat I lose if I stop treatment?"
   ],
   "sources": [
-    { "n": 1, "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)", "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)", "year": 2025, "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf" },
-    { "n": 2, "title": "The 2026 Prohibited List - World Anti-Doping Code", "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)", "year": 2026, "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html" },
-    { "n": 3, "title": "Metabolic Effects of a Growth Hormone-Releasing Factor in Patients with HIV", "publisher": "New England Journal of Medicine (PDF hosted by the Association of Nurses in AIDS Care)", "year": 2007, "url": "https://www.nursesinaidscare.org/files/VAT%20pages/Growth%20Hormone%20releasing%20factor.pdf" },
-    { "n": 4, "title": "Effects of tesamorelin on non-alcoholic fatty liver disease in HIV: a randomised, double-blind, multicentre trial", "publisher": "The Lancet HIV (PubMed)", "year": 2019, "url": "https://pubmed.ncbi.nlm.nih.gov/31611038/" },
-    { "n": 5, "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults: results of a controlled trial", "publisher": "Archives of Neurology (abstract via QxMD)", "year": 2012, "url": "https://www.qxmd.com/r/22869065" }
+    {
+      "n": 1,
+      "title": "EGRIFTA WR (tesamorelin) for injection: prescribing information (revised March 2025)",
+      "publisher": "U.S. Food and Drug Administration (accessdata.fda.gov)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "The 2026 Prohibited List - World Anti-Doping Code",
+      "publisher": "World Anti-Doping Agency (published in the Dutch Treaty Series, Tractatenblad)",
+      "year": 2026,
+      "url": "https://zoek.officielebekendmakingen.nl/trb-2026-25.html"
+    },
+    {
+      "n": 3,
+      "title": "Metabolic Effects of a Growth Hormone-Releasing Factor in Patients with HIV",
+      "publisher": "New England Journal of Medicine (PDF hosted by the Association of Nurses in AIDS Care)",
+      "year": 2007,
+      "url": "https://www.nursesinaidscare.org/files/VAT%20pages/Growth%20Hormone%20releasing%20factor.pdf"
+    },
+    {
+      "n": 4,
+      "title": "Effects of tesamorelin on non-alcoholic fatty liver disease in HIV: a randomised, double-blind, multicentre trial",
+      "publisher": "The Lancet HIV (PubMed)",
+      "year": 2019,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31611038/"
+    },
+    {
+      "n": 5,
+      "title": "Effects of growth hormone-releasing hormone on cognitive function in adults with mild cognitive impairment and healthy older adults: results of a controlled trial",
+      "publisher": "Archives of Neurology (abstract via QxMD)",
+      "year": 2012,
+      "url": "https://www.qxmd.com/r/22869065"
+    }
   ],
   "notes_for_editor": "Seed claims checked against the March 2025 label: contraindications, IGF-1/glucose monitoring and loss of effect after stopping are confirmed. The label also warns of increased mortality in acute critical illness after open-heart surgery (consider stopping in critically ill patients), left out above for space. The cognition trial abstract was read on QxMD because PubMed/PMC pages were blocked by a browser check. The label gives no DEA schedule. EU and Canada status were not rechecked.",
   "checked": "2026-10-28"

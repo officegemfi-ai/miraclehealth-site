@@ -10,7 +10,7 @@
   "status_us": {
     "key": "under_review",
     "label": "Not approved; compounding status under FDA review",
-    "note": "FDA dropped MOTS-c from its Category 2 safety-risk list in April 2026 after the nominator withdrew it, then proposed not adding it to the list of substances pharmacies may compound. Its advisory committee voted 7 to 5 for adding it in July 2026, but as of mid-October 2026 no rule or interim policy allowing compounding had been published.",
+    "note": "FDA dropped MOTS-c from its Category 2 safety-risk list in April 2026 after the nominator withdrew it. FDA still reviewed it: staff proposed not adding it to the list of substances pharmacies may compound, and its advisory committee voted 7 to 5 (2 abstentions) for adding it in July 2026. As of mid-October 2026 no rule or interim policy allowing compounding had been published.",
     "sources": [
       1,
       2,
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "claim": "Better physical capacity, and longer lifespan, in aged mice",
+      "claim": "Better physical capacity and healthspan in aged mice",
       "evidence": "preclinical",
       "sources": [
         3
@@ -171,6 +171,6 @@
       "url": "https://www.hklaw.com/en/insights/publications/2026/10/peptides-at-a-crossroads-what-wellness-providers-need-to-know"
     }
   ],
-  "notes_for_editor": "Seed record was partly right: MOTS-c was removed from Category 2 in April 2026 (nominator withdrawal) and went to the July 2026 advisory committee, which voted 7-5 in favor (count from a law-firm summary; FDA has not posted minutes). FDA staff had recommended against listing it. An HHS/FDA 'Interim Access Policy' for compounding certain peptides went to White House review on Oct 14, 2026 and was still unpublished in late October; recheck before publishing. The seed's claims that MOTS-c rises with exercise in humans and that an analog (CB4211) finished phase 1 could not be verified: FDA's document mentions neither, and the shared web-search budget ran out before the papers could be opened, so both are left out. Study findings are taken from FDA's briefing document, not the original papers. FAERS searches through March 2025 found no reports, but FDA notes 503A compounders generally do not report adverse events, so this is not reassurance.",
+  "notes_for_editor": "Seed record was partly right: MOTS-c was removed from Category 2 in April 2026 (nominator withdrawal) and went to the July 2026 advisory committee, which voted 7-5 in favor (count from a law-firm summary; FDA has not posted minutes). FDA staff had recommended against listing it. An HHS/FDA 'Interim Access Policy' for compounding certain peptides went to White House review on Oct 14, 2026 and was still unpublished in late October; recheck before publishing. The seed's claims that MOTS-c rises with exercise in humans and that an analog (CB4211) finished phase 1 could not be verified: FDA's document mentions neither, and the shared web-search budget ran out before the papers could be opened, so both are left out. Study findings are taken from FDA's briefing document, not the original papers. FAERS searches through March 2025 found no reports, but FDA notes 503A compounders generally do not report adverse events, so this is not reassurance. After review: lifespan claim changed to healthspan, matching the abstract of the 2021 Nature Communications study (Reynolds et al.).",
   "checked": "2026-10-28"
 }

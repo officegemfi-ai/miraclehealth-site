@@ -11,33 +11,101 @@
     "key": "not_approved",
     "label": "Not FDA-approved; not on FDA compounding lists",
     "note": "Testagen is not an FDA-approved drug and appears on none of FDA's compounding lists (nominated substances, updated May 2026; safety-risk and withdrawn nominations, April 2026). FDA allows pharmacy compounding only from ingredients that are in an approved drug, meet a USP standard, or are on or under review for its bulk list; in Russia it is listed as a dietary supplement.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0.75, "longevity": 0.25, "gut": 0, "immune": 0, "hormonal": 1 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.75,
+    "longevity": 0.25,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
   "benefits": [
-    { "claim": "Higher blood testosterone and better sperm count, movement and shape in a small randomized study of 48 men aged 54 to 68 with age-related symptoms", "evidence": "limited", "sources": [5] },
-    { "claim": "Better well-being and sexual activity reported by men in the same study", "evidence": "limited", "sources": [5] },
-    { "claim": "Less radiation damage to sperm production and fertility in male rats", "evidence": "preclinical", "sources": [5] },
-    { "claim": "Stimulated growth of testicular tissue from young and old rats in lab culture, with no clear effect on brain, heart, liver, kidney or prostate tissue", "evidence": "preclinical", "sources": [5] }
+    {
+      "claim": "Higher blood testosterone and better sperm count, movement and shape in a small study of 48 men aged 54 to 68 with age-related symptoms, described as randomized but with few details on methods",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Better well-being and sexual activity reported by men in the same study",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Less radiation damage to sperm production and fertility in male rats",
+      "evidence": "preclinical",
+      "sources": [
+        5
+      ]
+    },
+    {
+      "claim": "Stimulated growth of testicular tissue from young and old rats in lab culture, with no clear effect on brain, heart, liver, kidney or prostate tissue",
+      "evidence": "preclinical",
+      "sources": [
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "The developers report no side effects, but no independent human safety data exist", "how_common": "unknown", "sources": [5, 4] },
-    { "risk": "No FDA-approved or pharmacy-compounded version exists, so the identity and purity of products are unverified", "how_common": "unknown", "sources": [1, 3] }
+    {
+      "risk": "The developers report no side effects, but no independent human safety data exist",
+      "how_common": "unknown",
+      "sources": [
+        5,
+        4
+      ]
+    },
+    {
+      "risk": "No FDA-approved or pharmacy-compounded version exists, so the identity and purity of products are unverified",
+      "how_common": "unknown",
+      "sources": [
+        1,
+        3
+      ]
+    }
   ],
   "avoid_if": [
-    "Prostate or breast cancer, or another hormone-sensitive condition, unless a clinician is involved",
+    "Prostate or breast cancer, or another hormone-sensitive condition",
     "Known fertility problems, unless a fertility specialist is involved",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "None well documented"
+  ],
   "labs": {
-    "before": [ "Morning total testosterone, with LH and FSH, if low testosterone is the concern", "Semen analysis if fertility is the concern" ],
-    "during": [ "Repeat the same tests to see whether anything changed" ],
-    "why": "No evidence-based monitoring exists for Testagen; these are the measures the developers' study tracked."
+    "before": [
+      "Morning total testosterone, with LH and FSH, if low testosterone is the concern",
+      "Semen analysis if fertility is the concern"
+    ],
+    "during": [],
+    "why": "No evidence-based monitoring exists for Testagen; the developers' study tracked testosterone, LH, FSH and semen quality."
   },
   "studies": [
-    { "title": "Клинико-экспериментальное изучение пептидного биорегулятора Тестагена (Clinical and experimental study of the peptide bioregulator Testagen)", "year": 2021, "type": "Trial", "people": "48 men aged 54 to 68 with age-related (climacteric) symptoms: 27 given Testagen plus standard care, 21 standard care alone", "finding": "The Testagen group had a significant rise in testosterone and better semen measures, and no side effects were reported. The developers' report gives few details on how the study was run.", "source": 5 }
+    {
+      "title": "Клинико-экспериментальное изучение пептидного биорегулятора Тестагена (Clinical and experimental study of the peptide bioregulator Testagen)",
+      "year": 2021,
+      "type": "Trial",
+      "people": "48 men aged 54 to 68 with age-related (climacteric) symptoms: 27 given Testagen plus standard care, 21 standard care alone",
+      "finding": "The Testagen group had a significant rise in testosterone and better semen measures, and no side effects were reported. The developers' report gives few details on how the study was run.",
+      "source": 5
+    }
   ],
   "ask_your_clinician": [
     "Has my testosterone been confirmed low with proper morning tests, and what is causing it?",
@@ -45,11 +113,41 @@
     "Could this affect my fertility tests or any treatment I am on?"
   ],
   "sources": [
-    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
-    { "n": 2, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "Тестаген® (Testagen): dietary supplement listing", "publisher": "RLS Register of Medicines of Russia", "year": 2012, "url": "https://www.rlsnet.ru/baa/testagen-34853" },
-    { "n": 5, "title": "Клинико-экспериментальное изучение пептидного биорегулятора Тестагена (Clinical and experimental study of the peptide bioregulator Testagen)", "publisher": "RLS Register of Medicines of Russia, Doctor Urology (in Russian)", "year": 2021, "url": "https://www.rlsnet.ru/library/articles/urologiya/kliniko-eksperimentalnoe-izucenie-peptidnogo-bioregulyatora-testagena-96" }
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "Тестаген® (Testagen): dietary supplement listing",
+      "publisher": "RLS Register of Medicines of Russia",
+      "year": 2012,
+      "url": "https://www.rlsnet.ru/baa/testagen-34853"
+    },
+    {
+      "n": 5,
+      "title": "Клинико-экспериментальное изучение пептидного биорегулятора Тестагена (Clinical and experimental study of the peptide bioregulator Testagen)",
+      "publisher": "RLS Register of Medicines of Russia, Doctor Urology (in Russian)",
+      "year": 2021,
+      "url": "https://www.rlsnet.ru/library/articles/urologiya/kliniko-eksperimentalnoe-izucenie-peptidnogo-bioregulyatora-testagena-96"
+    }
   ],
   "notes_for_editor": "All human and rat data come from one article by the developers (Khavinson and Ryzhak) in the RLS drug-reference handbook, not a peer-reviewed journal; methods are thin and no independent study was found. The Russian listing names the amino acids (lysine, glutamic acid, aspartic acid, glycine) but not their order; online catalogs call it KEDG (Lys-Glu-Asp-Gly), which has an NLM MeSH record (C560777), but no opened source ties that record to the name Testagen. The RLS article's disclaimer calls it a medicinal product while the RLS register lists it as a dietary supplement; we went with the supplement listing.",
   "checked": "2026-10-28"

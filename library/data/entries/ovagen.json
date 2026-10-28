@@ -4,41 +4,120 @@
   "summary": "A short synthetic peptide from Russian 'bioregulator' research, promoted for the liver and digestive tract; its exact identity and any benefit in people are poorly documented.",
   "what_it_is": "Ovagen is one of the short 'bioregulator' peptides associated with Vladimir Khavinson's research group in Russia. An online peptide catalog lists it as a chain of three amino acids, glutamic acid, aspartic acid and leucine (Glu-Asp-Leu, or EDL), but we found no journal article or official register that uses the name Ovagen. A patent from Khavinson's group claims the Glu-Asp-Leu peptide helps the liver regenerate, and the group's lab work suggests short peptides like this act by changing which genes are switched on.",
   "evidence": {
-    "grade": "limited",
-    "why": "Rat, tissue-culture and cell studies of the Glu-Asp-Leu peptide, plus one small study in people with chronic hepatitis described only in the developer's patent; none of these sources uses the name Ovagen."
+    "grade": "preclinical",
+    "why": "Rat, tissue-culture and cell studies of the Glu-Asp-Leu peptide; the only data in people are one small study described in the developer's patent, and none of these sources uses the name Ovagen."
   },
   "status_us": {
     "key": "not_approved",
     "label": "Not FDA-approved; not on FDA compounding lists",
     "note": "Ovagen is not an FDA-approved drug and appears on none of FDA's compounding lists (nominated substances, updated May 2026; safety-risk and withdrawn nominations, April 2026). FDA allows pharmacy compounding only from ingredients that are in an approved drug, meet a USP standard, or are on or under review for its bulk list.",
-    "sources": [1, 2, 3]
+    "sources": [
+      1,
+      2,
+      3
+    ]
   },
-  "goals": { "weight": 0, "muscle": 0, "recovery": 0, "energy": 0, "sleep": 0, "cognition": 0, "skin": 0, "sexual": 0, "longevity": 0.5, "gut": 1, "immune": 0, "hormonal": 0 },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 1,
+    "immune": 0,
+    "hormonal": 0
+  },
   "benefits": [
-    { "claim": "About 75% more dividing liver cells after part of the liver was removed, in rats given the Glu-Asp-Leu peptide", "evidence": "preclinical", "sources": [4] },
-    { "claim": "Liver chemistry and stored liver sugar (glycogen) moved back toward normal in rats with chemically induced cirrhosis", "evidence": "preclinical", "sources": [4] },
-    { "claim": "Less weakness and pain reported in a small study of 34 people with chronic hepatitis, described only in a patent", "evidence": "limited", "sources": [4] },
-    { "claim": "Faster growth of rat liver tissue in lab culture", "evidence": "preclinical", "sources": [4] },
-    { "claim": "Changed activity of p53, a gene that controls cell death, in aging kidney cell cultures", "evidence": "preclinical", "sources": [5] }
+    {
+      "claim": "About 75% more dividing liver cells after part of the liver was removed, in rats given the Glu-Asp-Leu peptide",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Liver chemistry and stored liver sugar (glycogen) moved back toward normal in rats with chemically induced cirrhosis",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Less weakness and pain reported in a small study of 34 people with chronic hepatitis, described only in a patent",
+      "evidence": "limited",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Faster growth of rat liver tissue in lab culture",
+      "evidence": "preclinical",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "claim": "Changed activity of p53, a gene that controls cell death, in aging kidney cell cultures",
+      "evidence": "preclinical",
+      "sources": [
+        5
+      ]
+    }
   ],
   "risks": [
-    { "risk": "What products sold as Ovagen contain is unverified: the Glu-Asp-Leu identity comes from an online catalog, and no FDA-approved or compounded version exists", "how_common": "unknown", "sources": [6, 1, 3] },
-    { "risk": "Human safety has not been tested independently; the developers report no toxic effects in mice, rats and guinea pigs", "how_common": "unknown", "sources": [4] }
+    {
+      "risk": "What products sold as Ovagen contain is unverified: the Glu-Asp-Leu identity comes from an online catalog, and no FDA-approved or compounded version exists",
+      "how_common": "unknown",
+      "sources": [
+        6,
+        1,
+        3
+      ]
+    },
+    {
+      "risk": "Human safety has not been tested independently; the developers report no toxic effects in mice, rats and guinea pigs",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    }
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (never studied)",
     "Liver disease such as hepatitis or cirrhosis, unless a clinician is involved",
     "Under 18 (never studied)"
   ],
-  "interactions": [ "None well documented" ],
+  "interactions": [
+    "None well documented"
+  ],
   "labs": {
-    "before": [ "General health check, including a liver panel (ALT, AST, bilirubin)" ],
+    "before": [
+      "General health check, including a liver panel (ALT, AST, bilirubin)"
+    ],
     "during": [],
     "why": "No evidence-based monitoring exists for Ovagen; a liver panel is a sensible baseline because liver support is its claimed use."
   },
   "studies": [
-    { "title": "Peptide stimulating regeneration of lever tissue, pharmaceutical composition based thereon and use thereof", "year": 2008, "type": "Animal", "people": "Rats; the same patent also describes 34 people with chronic hepatitis", "finding": "In rats, the Glu-Asp-Leu peptide increased liver cell division after partial liver removal and moved liver markers toward normal in cirrhosis. In the human study, most treated patients reported less weakness; the methods are not fully described.", "source": 4 },
-    { "title": "Peptide Regulation of Gene Expression: A Systematic Review", "year": 2021, "type": "Review", "people": "Cell cultures and DNA in test tubes", "finding": "A review by the developers of evidence that short peptides bind DNA and change gene activity; the Glu-Asp-Leu peptide changed p53 activity in aging kidney cell cultures.", "source": 5 }
+    {
+      "title": "Peptide stimulating regeneration of lever [sic] tissue, pharmaceutical composition based thereon and use thereof",
+      "year": 2008,
+      "type": "Animal",
+      "people": "Rats; the same patent also describes 34 people with chronic hepatitis",
+      "finding": "In rats, the Glu-Asp-Leu peptide increased liver cell division after partial liver removal and moved liver markers toward normal in cirrhosis. In the human study, most treated patients reported less weakness; the methods are not fully described.",
+      "source": 4
+    },
+    {
+      "title": "Peptide Regulation of Gene Expression: A Systematic Review",
+      "year": 2021,
+      "type": "Review",
+      "people": "Cell cultures and DNA in test tubes",
+      "finding": "A review by the developers of evidence that short peptides bind DNA and change gene activity; the Glu-Asp-Leu peptide changed p53 activity in aging kidney cell cultures.",
+      "source": 5
+    }
   ],
   "ask_your_clinician": [
     "Is there reliable evidence this would help my liver compared with proven steps?",
@@ -46,13 +125,49 @@
     "How can I know what is in a product with no FDA oversight?"
   ],
   "sources": [
-    { "n": 1, "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/media/94155/download" },
-    { "n": 2, "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks" },
-    { "n": 3, "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act", "publisher": "US Food and Drug Administration", "year": 2026, "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act" },
-    { "n": 4, "title": "Peptide stimulating regeneration of lever tissue, pharmaceutical composition based thereon and use thereof (EA010156B1)", "publisher": "Eurasian Patent Office (Google Patents)", "year": 2008, "url": "https://patents.google.com/patent/EA010156B1/en" },
-    { "n": 5, "title": "Peptide Regulation of Gene Expression: A Systematic Review", "publisher": "Molecules (MDPI)", "year": 2021, "url": "https://www.mdpi.com/1420-3049/26/22/7053" },
-    { "n": 6, "title": "Ovagen (EDL)", "publisher": "peptide-db.com (online peptide catalog, not peer reviewed)", "year": 2026, "url": "https://peptide-db.com/peptides/ovagen" }
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+    },
+    {
+      "n": 3,
+      "title": "Bulk Drug Substances Used in Compounding Under Section 503A of the FD&C Act",
+      "publisher": "US Food and Drug Administration",
+      "year": 2026,
+      "url": "https://www.fda.gov/drugs/human-drug-compounding/bulk-drug-substances-used-compounding-under-section-503a-fdc-act"
+    },
+    {
+      "n": 4,
+      "title": "Peptide stimulating regeneration of lever tissue, pharmaceutical composition based thereon and use thereof (EA010156B1)",
+      "publisher": "Eurasian Patent Office (Google Patents)",
+      "year": 2008,
+      "url": "https://patents.google.com/patent/EA010156B1/en"
+    },
+    {
+      "n": 5,
+      "title": "Peptide Regulation of Gene Expression: A Systematic Review",
+      "publisher": "Molecules (MDPI)",
+      "year": 2021,
+      "url": "https://www.mdpi.com/1420-3049/26/22/7053"
+    },
+    {
+      "n": 6,
+      "title": "Ovagen (EDL)",
+      "publisher": "peptide-db.com (online peptide catalog, not peer reviewed)",
+      "year": 2026,
+      "url": "https://peptide-db.com/peptides/ovagen"
+    }
   ],
-  "notes_for_editor": "Identity is the main gap: only one online catalog (peptide-db.com, not peer reviewed, and its own references lack identifiers) ties the name Ovagen to Glu-Asp-Leu (EDL). No journal article, MeSH record or Russian register entry using the name Ovagen was found before the session's shared web-search budget ran out. All efficacy and safety data are for the Glu-Asp-Leu peptide, from the developer's Eurasian patent (the Google Patents text was truncated; 'lever' is the patent's own spelling of 'liver'; patent data are not peer reviewed) and a review by the same group, with no independent replication. US status is clear; Russian status of Ovagen was not confirmed.",
+  "notes_for_editor": "Identity is the main gap: only one online catalog (peptide-db.com, not peer reviewed, and its own references lack identifiers) ties the name Ovagen to Glu-Asp-Leu (EDL). No journal article, MeSH record or Russian register entry using the name Ovagen was found before the session's shared web-search budget ran out. All efficacy and safety data are for the Glu-Asp-Leu peptide, from the developer's Eurasian patent (the Google Patents text was truncated; 'lever' is the patent's own spelling of 'liver'; patent data are not peer reviewed) and a review by the same group, with no independent replication. US status is clear; Russian status of Ovagen was not confirmed. After review: grade set to preclinical (identity uncertain; human data only in a patent). peptide-db.com was checked on Oct 28, 2026: no vendors, prices or buy links on the page.",
   "checked": "2026-10-28"
 }
