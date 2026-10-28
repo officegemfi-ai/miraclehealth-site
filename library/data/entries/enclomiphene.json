@@ -1,0 +1,207 @@
+{
+  "id": "enclomiphene",
+  "name": "Enclomiphene",
+  "summary": "One of the two forms in the fertility drug clomiphene, studied as a pill to raise men's own testosterone; it is not approved in the US or Europe.",
+  "what_it_is": "Enclomiphene is the trans isomer of clomiphene; clomiphene tablets are a mix of enclomiphene and zuclomiphene. It is a selective estrogen receptor modulator (SERM) that acts as an estrogen blocker, and in men it raises the pituitary hormones LH and FSH, which signal the testes to make testosterone and sperm. A drug company sought US approval to treat secondary hypogonadism (low testosterone because the pituitary sends too little LH), but FDA issued a complete response in 2015, and the European Medicines Agency refused approval in 2018.",
+  "evidence": {
+    "grade": "moderate",
+    "why": "Several randomized trials, the largest in 256 men, show it raises testosterone, LH and FSH, but FDA concluded the trials did not show a clinically meaningful improvement in symptoms or signs of low testosterone."
+  },
+  "status_us": {
+    "key": "compounded",
+    "label": "Not FDA-approved; compoundable while FDA decides",
+    "note": "No enclomiphene product is FDA-approved; FDA issued a complete response to the maker's application in 2015. FDA lists enclomiphene citrate in Category 1 (under evaluation), so under its interim policy pharmacies may compound it while FDA decides, although FDA proposed in 2022 not to add it to the list of allowed bulk substances and its advisory committee agreed 8 to 4.",
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0.25,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Raised testosterone, LH and FSH compared with placebo in randomized trials of men with secondary hypogonadism, but FDA found no clinically meaningful improvement in symptoms or signs",
+      "evidence": "moderate",
+      "sources": [
+        5,
+        4
+      ]
+    },
+    {
+      "claim": "Kept sperm concentration higher than testosterone gel did, at similar testosterone levels (trials pooled with clomiphene)",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Blood clots: Europe's regulator cited a risk of venous thromboembolism, and FDA listed pulmonary embolism, deep vein thrombosis and other heart and clotting events among serious adverse events in the trials",
+      "how_common": "unknown",
+      "sources": [
+        6,
+        4
+      ]
+    },
+    {
+      "risk": "Rises in estradiol, PSA and hematocrit (the share of red blood cells); a few trial participants stopped because of high PSA or hematocrit",
+      "how_common": "unknown",
+      "sources": [
+        4,
+        5
+      ]
+    },
+    {
+      "risk": "Long-term safety is unknown: FDA noted long-term data are lacking and that drug-level data in liver or kidney impairment are incomplete",
+      "how_common": "unknown",
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Possible eye effects: clomiphene, which contains enclomiphene, can cause visual symptoms, and cataracts were seen in animal studies of enclomiphene",
+      "how_common": "theoretical",
+      "sources": [
+        7,
+        4
+      ]
+    },
+    {
+      "risk": "Headache and other mostly mild side effects; in the largest trial, side effects were not more frequent with enclomiphene than with placebo",
+      "how_common": "unknown",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "avoid_if": [
+    "History of blood clots (deep vein thrombosis or pulmonary embolism)",
+    "Low testosterone caused by testicular failure (primary hypogonadism); it was studied only for secondary hypogonadism",
+    "Liver or kidney disease (not well studied)",
+    "Athletes tested under anti-doping rules: WADA bans SERMs such as clomifene, and its list is not exhaustive"
+  ],
+  "interactions": [
+    "None well documented"
+  ],
+  "labs": {
+    "before": [
+      "Morning total testosterone, LH and FSH",
+      "Estradiol",
+      "Hematocrit",
+      "PSA",
+      "Semen analysis if fertility is a goal"
+    ],
+    "during": [
+      "Testosterone and estradiol",
+      "Hematocrit",
+      "PSA"
+    ],
+    "why": "There is no approved label; these follow what the trials measured and the safety signals FDA flagged (rises in estradiol, PSA and hematocrit)."
+  },
+  "studies": [
+    {
+      "title": "Clomiphene or enclomiphene citrate for the treatment of male hypogonadism: a systematic review and meta-analysis of randomized controlled trials",
+      "year": 2025,
+      "type": "Meta-analysis",
+      "people": "819 men with hypogonadism in 10 randomized trials, 4 of them testing enclomiphene",
+      "finding": "Clomiphene or enclomiphene raised testosterone, LH and FSH versus placebo and reached testosterone levels similar to testosterone gel with higher sperm concentration; results were pooled, so enclomiphene alone was not estimated.",
+      "source": 5
+    },
+    {
+      "title": "Pharmacy Compounding Advisory Committee meeting, June 8, 2022: transcript",
+      "year": 2022,
+      "type": "Review",
+      "people": "FDA's review of enclomiphene trials in men with secondary hypogonadism",
+      "finding": "FDA said the trials raised hormone levels but did not show clinically meaningful improvement in symptoms or signs, flagged heart, clotting, estradiol, PSA and hematocrit concerns, and proposed not allowing compounding with it.",
+      "source": 4
+    },
+    {
+      "title": "EnCyzix (enclomifene): refusal of marketing authorisation",
+      "year": 2018,
+      "type": "Review",
+      "people": "Overweight men with hypogonadotropic hypogonadism (company application to the EU)",
+      "finding": "Testosterone rose, but the studies did not look at symptoms such as bone strength, weight gain, impotence and libido; with a risk of venous thromboembolism, the regulator judged that benefits did not outweigh risks.",
+      "source": 6
+    }
+  ],
+  "ask_your_clinician": [
+    "Is my low testosterone secondary (from low LH), and how does this unapproved option compare with approved treatments?",
+    "If I want to keep my fertility, which options best protect sperm production?",
+    "Which blood tests, such as estradiol, hematocrit and PSA, should we check, and how often?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Bulk Drug Substances Nominated for Use in Compounding Under Section 503A of the Federal Food, Drug, and Cosmetic Act (updated May 14, 2026)",
+      "publisher": "FDA",
+      "year": 2026,
+      "url": "https://www.fda.gov/media/94155/download"
+    },
+    {
+      "n": 2,
+      "title": "Interim Policy on Compounding Using Bulk Drug Substances Under Section 503A of the Federal Food, Drug, and Cosmetic Act: Guidance for Industry",
+      "publisher": "FDA",
+      "year": 2025,
+      "url": "https://www.fda.gov/media/174456/download"
+    },
+    {
+      "n": 3,
+      "title": "Final Summary Minutes of the Pharmacy Compounding Advisory Committee Meeting, June 8, 2022",
+      "publisher": "FDA",
+      "year": 2022,
+      "url": "https://www.fda.gov/media/161293/download"
+    },
+    {
+      "n": 4,
+      "title": "Pharmacy Compounding Advisory Committee meeting, June 8, 2022: transcript",
+      "publisher": "FDA",
+      "year": 2022,
+      "url": "https://www.fda.gov/media/161294/download"
+    },
+    {
+      "n": 5,
+      "title": "Clomiphene or enclomiphene citrate for the treatment of male hypogonadism: a systematic review and meta-analysis of randomized controlled trials",
+      "publisher": "Archives of Endocrinology and Metabolism (SciELO)",
+      "year": 2025,
+      "url": "https://new.scielo.br/j/aem/a/jyRkLt4MbHqk3tpgvsMfMmP/?lang=en"
+    },
+    {
+      "n": 6,
+      "title": "EnCyzix (enclomifene): refusal of marketing authorisation",
+      "publisher": "European Medicines Agency",
+      "year": 2018,
+      "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/encyzix"
+    },
+    {
+      "n": 7,
+      "title": "Clomiphene Citrate Tablets, USP: Prescribing Information (Cosette Pharmaceuticals, effective August 2025)",
+      "publisher": "FDA (FDALabel)",
+      "year": 2025,
+      "url": "https://nctr-crs.fda.gov/fdalabel/services/spl/set-ids/72719958-7454-4c54-9bb4-f3054d0c5d82/spl-doc"
+    },
+    {
+      "n": 8,
+      "title": "Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    }
+  ],
+  "notes_for_editor": "Enclomiphene has no approved label anywhere, so its risks come from FDA's June 2022 advisory-committee review (read in the meeting transcript; FDA's separate briefing document, fda.gov/media/158541, could not be opened), the 2018 EMA refusal and a 2025 meta-analysis that pools it with clomiphene. The meta-analysis reports 819 men, but its table sums to about 865; it lists the phase 3 trial as 256 men, while sponsor slides at the FDA meeting said 265. It remains in Category 1 on FDA's May 14, 2026 list, and no final FDA rule was found, so compounding rests only on FDA's interim policy. WADA's 2026 list names clomifene but not enclomiphene; the SERM class is open-ended. The eye risk is inferred from clomiphene's label and animal cataract findings; the transcript notes EMA listed blurred vision among reasons for stopping, but no human visual signal specific to enclomiphene was described. One stroke death and one discontinuation for high PSA occurred in the enclomiphene arm of the largest trial (the death was judged related to pre-existing risk factors).",
+  "checked": "2026-10-28"
+}

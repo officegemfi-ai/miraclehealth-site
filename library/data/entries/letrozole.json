@@ -1,0 +1,195 @@
+{
+  "id": "letrozole",
+  "name": "Letrozole",
+  "summary": "A prescription pill that blocks estrogen production, approved for hormone-sensitive breast cancer after menopause; it is also used off-label to trigger ovulation and in men with low testosterone.",
+  "what_it_is": "Letrozole is a nonsteroidal aromatase inhibitor: it blocks aromatase, the enzyme that makes estrogens. In postmenopausal women with advanced breast cancer it lowers estradiol, estrone and estrone sulfate by 75% to 95% within two to three days, without significantly affecting cortisol, aldosterone or thyroid hormones. Because high estradiol can suppress LH and FSH, it is used off-label to raise testosterone and sperm production in some infertile men.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA-approved for breast cancer after menopause; for ovulation induction in PCOS (off-label), a 2022 Cochrane review found high-certainty evidence of more live births than with clomiphene, while evidence in men comes from 8 studies whose reviewers called for proper randomized trials."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for breast cancer; other uses off-label",
+    "note": "Approved for postmenopausal women with hormone receptor-positive early breast cancer (including extended treatment after prior tamoxifen) and for advanced breast cancer. Use to induce ovulation or in men is off-label, and WADA bans aromatase inhibitors, including letrozole, in sport.",
+    "sources": [
+      1,
+      2
+    ]
+  },
+  "goals": {
+    "weight": 0,
+    "muscle": 0.25,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 1
+  },
+  "benefits": [
+    {
+      "claim": "Treats hormone receptor-positive breast cancer in postmenopausal women, both early (after surgery or after prior tamoxifen) and advanced",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Led to more live births than clomiphene in infertile women with PCOS: if 20% have a baby with clomiphene, 27% to 35% would with letrozole (11 trials, 2,060 women; off-label)",
+      "evidence": "strong",
+      "sources": [
+        3
+      ]
+    },
+    {
+      "claim": "Improved hormone levels and semen measures in infertile or low-testosterone men across 8 studies of aromatase inhibitors; the AUA/ASRM guideline says aromatase inhibitors may be considered for infertile men with low testosterone (off-label)",
+      "evidence": "limited",
+      "sources": [
+        4,
+        5
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "High cholesterol in 52.3% of women versus 28.6% with tamoxifen in the main adjuvant trial",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Bone loss and fractures: fractures in 14.7% versus 11.4% with tamoxifen, and osteoporosis in 5.1% versus 2.7%",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Hot flashes (33.5%) and joint pain or arthritis (25.4%)",
+      "how_common": "common",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Fatigue, dizziness and sleepiness, which can affect driving",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Harm to a fetus: miscarriages and birth defects have been reported; animal studies also suggest it may impair male fertility",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "In men, about 3% stopped aromatase inhibitors because of side effects in a review of 8 studies; pregnancy outcomes were not reported",
+      "how_common": "uncommon",
+      "sources": [
+        5
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Pregnancy or possible pregnancy",
+    "Breastfeeding",
+    "Osteoporosis or high fracture risk without a bone-protection plan",
+    "Cirrhosis or severe liver impairment (drug levels are about twice as high)",
+    "Past allergic reaction to letrozole"
+  ],
+  "interactions": [
+    "Tamoxifen: lowers letrozole levels by about 38% on average; using the two together is not recommended"
+  ],
+  "labs": {
+    "before": [
+      "Bone density (DEXA) scan",
+      "Cholesterol (lipid panel)",
+      "Pregnancy test if pregnancy is possible",
+      "Men (off-label): testosterone, estradiol, LH, FSH and semen analysis"
+    ],
+    "during": [
+      "Bone density at intervals",
+      "Cholesterol periodically",
+      "Men (off-label): testosterone, estradiol and semen analysis"
+    ],
+    "why": "The label advises considering bone density and cholesterol monitoring, and a pregnancy test before starting in women who could become pregnant; there is no label guidance for men, where studies tracked hormones and semen."
+  },
+  "studies": [
+    {
+      "title": "Aromatase inhibitors (letrozole) for ovulation induction in infertile women with polycystic ovary syndrome",
+      "year": 2022,
+      "type": "Meta-analysis",
+      "people": "6,522 infertile women with PCOS in 41 randomized trials",
+      "finding": "Compared with clomiphene, letrozole raised live birth and pregnancy rates (high-certainty evidence), with similar rates of ovarian hyperstimulation, miscarriage and multiple pregnancy.",
+      "source": 3
+    },
+    {
+      "title": "A systematic review and meta-analysis of clinical trials implementing aromatase inhibitors to treat male infertility",
+      "year": 2020,
+      "type": "Meta-analysis",
+      "people": "Infertile or low-testosterone men in 8 studies of testolactone, anastrozole or letrozole",
+      "finding": "Aromatase inhibitors improved all hormone and semen measures studied and were well tolerated; the authors called for randomized, placebo-controlled trials.",
+      "source": 4
+    },
+    {
+      "title": "FEMARA (letrozole) tablets: Prescribing Information",
+      "year": 2024,
+      "type": "Label",
+      "people": "Postmenopausal women with early breast cancer (BIG 1-98 trial, compared with tamoxifen)",
+      "finding": "Letrozole caused more high cholesterol, fractures and osteoporosis than tamoxifen, while blood clots were less common (3.2% versus 4.6%).",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Do I need a bone density scan and cholesterol test before starting, and how will we follow them?",
+    "For fertility treatment: what are the trade-offs of letrozole versus clomiphene for me?",
+    "For men: do my estradiol and testosterone levels justify treatment, and what are the risks of lowering estrogen?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "FEMARA (letrozole) tablets: Prescribing Information (revised 12/2024)",
+      "publisher": "Drugs.com (reprint of the FDA-approved label)",
+      "year": 2024,
+      "url": "https://www.drugs.com/pro/femara.html"
+    },
+    {
+      "n": 2,
+      "title": "Prohibited List (2026)",
+      "publisher": "World Anti-Doping Agency",
+      "year": 2026,
+      "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 3,
+      "title": "Aromatase inhibitors for infertility treatment in women with polycystic ovary syndrome",
+      "publisher": "Cochrane (summary of Cochrane Database of Systematic Reviews CD010287, 2022)",
+      "year": 2022,
+      "url": "https://www.cochrane.org/evidence/CD010287_aromatase-inhibitors-infertility-treatment-women-polycystic-ovary-syndrome"
+    },
+    {
+      "n": 4,
+      "title": "A systematic review and meta-analysis of clinical trials implementing aromatase inhibitors to treat male infertility",
+      "publisher": "Asian Journal of Andrology (DOAJ record)",
+      "year": 2020,
+      "url": "https://openaccess.library.uitm.edu.my/Record/doaj-fccee97f6bfa4d8ca19c5f6f1b943b82/Details"
+    },
+    {
+      "n": 5,
+      "title": "Can empiric medical treatments improve idiopathic male infertility? (Chapter 34)",
+      "publisher": "Handbook of Andrology, 3rd edition (American Society of Andrology)",
+      "year": 2023,
+      "url": "https://andrologysociety.org/wp-content/uploads/2023/04/Chapter-34-Bieniek-and-Lo.pdf"
+    }
+  ],
+  "notes_for_editor": "Label is the December 2024 Femara label as reprinted by Drugs.com. The Legro 2014 NEJM trial (750 women) could not be opened (PMC bot check), so the Cochrane review summary is used instead. Del Giudice 2020 was read only as an abstract record; the 3.2% discontinuation figure comes from the Handbook of Andrology chapter's summary of a 2019 meta-analysis of eight trials, likely the same review (published online 2019), but this was not confirmed. No letrozole-only trial in men was opened, and the AUA/ASRM statement is taken from the Handbook chapter, not the guideline text. The label notes animal data suggesting letrozole may impair male fertility, which sits awkwardly with its off-label use for male infertility. The 2019 European Academy of Andrology guideline says aromatase inhibitors are not justified for gynecomastia in general (see the tamoxifen entry).",
+  "checked": "2026-10-28"
+}
