@@ -141,21 +141,48 @@ ul,ol{list-style:none;margin:0;padding:0}
   radial-gradient(45% 55% at 92% 100%,rgba(155,227,90,.07),rgba(155,227,90,0) 60%)}
 .ink-band .sec-note{color:var(--on-ink-3)}
 .signal-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:64px;align-items:start;margin-top:60px}
-.ledger{display:grid;gap:18px;margin:24px 0 0}
-.ledger div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:start}
-.ledger dt{font-size:16px;font-weight:600;line-height:1.35}
-.ledger dt span{display:block;margin-top:3px;font-size:13.5px;font-weight:400;color:var(--on-ink-2)}
-.ledger dd{margin:0;font:600 16px/1.35 var(--mono);color:var(--lime)}
-.ledger div::after{content:'';grid-column:1/-1;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--lime) 0 var(--w),rgba(255,255,255,.12) var(--w) 100%)}
-.w65{--w:65%}.w15{--w:15%}.w10{--w:10%}
-.scale-row{display:flex;align-items:center;gap:12px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line-ink);font:500 11px/1 var(--mono);color:var(--on-ink-3)}
-.scale-row .bar{flex:1}
-.scale-row .bar span{width:100%}
 .facts li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 12px;padding:28px 0;border-top:1px solid var(--line-ink)}
 .facts li:last-child{border-bottom:1px solid var(--line-ink)}
 .facts .num{grid-row:span 2;padding-top:5px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;color:var(--lime)}
 .facts h3{font-size:23px;line-height:1.2;letter-spacing:-.02em}
 .facts p{font-size:15.5px;color:var(--on-ink-2)}
+
+/* The Signal, read: an example card, the takeover line and the levels */
+.use-card .ex-top{display:flex;align-items:flex-end;gap:8px;margin-top:18px}
+.use-card .ex-top b{font:600 64px/.9 var(--head);letter-spacing:-.05em}
+.use-card .ex-top .of{margin-bottom:6px;font:500 14px var(--mono);color:var(--on-ink-3)}
+.ex-scale{height:6px;margin-top:16px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
+.ex-scale span{display:block;width:78%;height:100%;border-radius:4px;background:var(--scale)}
+.ex-cap,.ex-kick{margin-top:12px;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-2)}
+.ex-kick{margin-top:26px;padding-top:18px;border-top:1px solid var(--line-ink)}
+.uses-ex{display:grid;gap:16px;margin:14px 0 0}
+.uses-ex div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;align-items:start}
+.uses-ex dt{font-size:16px;font-weight:600;line-height:1.35}
+.uses-ex dt span{display:block;margin-top:3px;font:500 10.5px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--on-ink-3)}
+.uses-ex dd{margin:0;font:600 16px/1.35 var(--mono);color:var(--lime)}
+.uses-ex .wait dd{color:var(--on-ink-3)}
+.uses-ex div::after{content:'';grid-column:1/-1;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--lime) 0 var(--w),rgba(255,255,255,.12) var(--w) 100%)}
+.uses-ex .wait::after{background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 5px,transparent 5px 10px)}
+.u82{--w:82%}.u76{--w:76%}.u61{--w:61%}
+.ex-note{margin-top:20px;font-size:13px;color:var(--on-ink-3)}
+.signal-grid .facts{align-self:start}
+.cert-panel{margin-top:16px}
+.cert-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 48px}
+.cert-head h3{margin-top:14px;max-width:18ch;font-size:clamp(26px,2.6vw,34px);line-height:1.1;letter-spacing:-.025em}
+.cert-head>p{max-width:46ch;font-size:15.5px;color:var(--on-ink-2)}
+.cert-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:28px}
+.takeover-box svg{display:block;width:100%;height:auto}
+.levels{display:grid;gap:14px}
+.levels li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:14px;align-items:center;font-size:14px;line-height:1.45;color:var(--on-ink-2)}
+.levels b{display:block;font:600 15.5px var(--head);color:var(--on-ink)}
+.cert-panel .btn{margin-top:30px}
+.viz-compact{display:none}
+.t-mono{font-family:var(--mono);font-weight:500}
+.t-head{font-family:var(--head);font-weight:600;letter-spacing:-.02em}
+.takeover .draw{animation:draw 1.8s cubic-bezier(.2,.7,.2,1) .2s both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.takeover .pulse{animation:dotpulse 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes dotpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2);opacity:0}}
 
 /* House rules: white cards on paper */
 .rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:60px}
@@ -271,13 +298,17 @@ ul,ol{list-style:none;margin:0;padding:0}
   .menu-close span::after{transform:rotate(-45deg)}
   .band{padding:80px 0}
   .sec-note{text-align:left;max-width:none}
-  .steps,.signal-grid,.join-cards{grid-template-columns:1fr}
+  .steps,.signal-grid,.join-cards,.cert-grid{grid-template-columns:1fr}
+  .cert-grid{gap:28px}
   .steps{margin-top:40px}
   .step{min-height:460px;padding:24px}
   .signal-grid{gap:40px;margin-top:40px}
   .rules{margin-top:40px}
   .join-in{padding-top:90px;padding-bottom:90px}
   .join-cards{margin-top:44px}
+}
+@media (max-width:640px){
+  .viz-wide{display:none}.viz-compact{display:block}
 }
 @media (max-width:600px){
   .lede{font-size:16.5px}

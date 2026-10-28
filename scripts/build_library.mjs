@@ -10,7 +10,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { roseSvg, flowSvg, sealSvg, LEVELS } from '../library/signalviz.js';
+import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signalviz.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -407,6 +407,18 @@ out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}
 </urlset>
 `);
+
+// The front page's Signal section draws the takeover line and the levels with the same code
+const frontFile = path.join(ROOT, 'index.html');
+const fill = (html, key, inner) => {
+  const re = new RegExp(`(<!-- signal-art:${key} -->)[\\s\\S]*?(<!-- /signal-art:${key} -->)`);
+  if (!re.test(html)) throw new Error(`index.html has no signal-art:${key} markers`);
+  return html.replace(re, (_, a, b) => `${a}${inner}${b}`);
+};
+let front = fs.readFileSync(frontFile, 'utf8');
+front = fill(front, 'takeover', `<div class="viz-wide">${takeoverSvg({ w: 50, max: 300 })}</div><div class="viz-compact">${takeoverSvg({ w: 50, max: 300 }, { compact: true })}</div>`);
+front = fill(front, 'levels', LEVELS.map((l) => `<li>${sealSvg(l.key, 30)}<span><b>${e(l.name)}</b>${e(l.rule)}</span></li>`).join(''));
+out.set(frontFile, front);
 
 let stale = 0;
 for (const [file, html] of out) {
