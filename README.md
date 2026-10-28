@@ -19,7 +19,7 @@ set to. On phones the links sit behind a Menu button, which works without script
 | `styles.css` | Its look (the page's security policy allows only its own files, so no inline styles) |
 | `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
 | `404.html` | Shown for any address that doesn't exist |
-| `img/` | The photos, as WebP in a few widths so phones get the small ones (`hero-*` at the top, `report-*` and `move-*` in How it works, `library-*` for the Library's banner) |
+| `img/` | The photos, as WebP in a few widths so phones get the small ones (`hero-*` at the top, `report-*` and `move-*` in How it works, `library-*` for the Library's banner, `join-*` behind the Join section) |
 | `og.jpg` | The picture shown when someone shares the link |
 | `CNAME` | Tells GitHub Pages this site is miraclehealth.us |
 | `.nojekyll` | Serves the files as they are, with no Jekyll build |

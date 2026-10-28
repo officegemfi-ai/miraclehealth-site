@@ -201,12 +201,15 @@ ul,ol{list-style:none;margin:0;padding:0}
 .lib-points h3+p{font-size:15px;color:var(--text-2)}
 .lib-band .btn{margin-top:32px}
 
-/* Join: the darkest band, a lime glow from the top, frosted cards */
+/* Join: the darkest band over a muted gym photo, a lime glow from the top, frosted cards.
+   The photo is toned down and cooled toward the brand's green-black, darkest behind the words,
+   and fades to solid at the top and bottom edges so it melts into the page */
 .join{position:relative;isolation:isolate;overflow:hidden;background:var(--darker);color:var(--on-ink);text-align:center;--focus:var(--lime)}
+.join-photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:58% 46%;filter:grayscale(.25) contrast(1.08)}
 .join::before{content:'';position:absolute;inset:0;z-index:-1;background:
-  radial-gradient(60% 34% at 50% 0%,rgba(216,255,61,.13) 0%,rgba(216,255,61,0) 62%),
-  radial-gradient(40% 40% at 15% 85%,rgba(176,69,61,.08),rgba(176,69,61,0) 70%),
-  radial-gradient(40% 40% at 85% 85%,rgba(212,167,44,.07),rgba(212,167,44,0) 70%)}
+  radial-gradient(60% 34% at 50% 0%,rgba(216,255,61,.14) 0%,rgba(216,255,61,0) 62%),
+  linear-gradient(180deg,var(--darker) 0,rgba(12,20,19,0) 24%,rgba(12,20,19,0) 70%,var(--darker) 100%),
+  radial-gradient(56% 50% at 50% 42%,rgba(12,20,19,.8) 0%,rgba(12,20,19,.62) 55%,rgba(12,20,19,.42) 100%)}
 .join-in{display:flex;flex-direction:column;align-items:center;padding-top:130px;padding-bottom:130px}
 .join h2{margin-top:20px;max-width:13ch;font-size:clamp(40px,5.6vw,72px);line-height:1;letter-spacing:-.04em}
 .join .lede{text-align:center}
@@ -306,6 +309,11 @@ ul,ol{list-style:none;margin:0;padding:0}
   .rules{margin-top:40px}
   .join-in{padding-top:90px;padding-bottom:90px}
   .join-cards{margin-top:44px}
+  /* On narrow screens the section is tall, so the photo sits behind the heading only and fades out */
+  .join-photo{bottom:auto;height:clamp(540px,125vw,900px);object-position:62% 50%;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent)}
+  .join::before{background:
+    radial-gradient(70% 22% at 50% 0%,rgba(216,255,61,.14) 0%,rgba(216,255,61,0) 62%),
+    linear-gradient(180deg,var(--darker) 0,rgba(12,20,19,.62) 90px,rgba(12,20,19,.76) 260px,rgba(12,20,19,.84) 440px,rgba(12,20,19,.6) clamp(540px,125vw,900px))}
 }
 @media (max-width:640px){
   .viz-wide{display:none}.viz-compact{display:block}
