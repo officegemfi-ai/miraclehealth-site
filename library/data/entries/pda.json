@@ -8,10 +8,17 @@
     "why": "No studies of PDA itself were found; claims rest on animal research on BPC-157, whose few small human studies FDA judged insufficient."
   },
   "status_us": {
-    "key": "not_approved",
+    "key": "unclear",
     "label": "Not approved; not on any FDA compounding list",
     "note": "No PDA product is approved, and 'pentadeca arginate' is not on FDA's May 2026 compounding nominations list or its Category 2 page; FDA's July 2026 BPC-157 review covered only the free base and acetate forms, so this salt's status is unclear. BPC-157 itself awaits FDA action after an 8-6 advisory vote in favor in July 2026, and WADA bans non-approved substances such as BPC-157 in sport.",
-    "sources": [1, 2, 3, 4, 5, 6]
+    "sources": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,34 +38,46 @@
     {
       "claim": "Faster tendon healing and protection of the stomach, intestines and liver in rodent studies of BPC-157, the parent peptide; PDA itself has not been tested",
       "evidence": "preclinical",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "claim": "Colon fistulas about 40% smaller than in untreated rats, and closed by day 28, with BPC-157",
       "evidence": "preclinical",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     }
   ],
   "risks": [
     {
       "risk": "No human safety data for PDA, and too little for BPC-157 to describe its side effects",
       "how_common": "unknown",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "risk": "Immune reactions, which FDA called a possibly significant risk for BPC-157 that clumping or impurities could make worse",
       "how_common": "theoretical",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "risk": "Unknown cancer risk: no studies of BPC-157's cancer-causing potential exist",
       "how_common": "theoretical",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "risk": "Uncertain identity: FDA says several salts and derivatives are sold under the BPC-157 name, so a patient may get a different substance than the one prescribed",
       "how_common": "unknown",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     }
   ],
   "avoid_if": [

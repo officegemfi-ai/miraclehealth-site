@@ -54,7 +54,7 @@
       ]
     },
     {
-      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent",
+      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent; any change to prescribed drugs is for the treating clinician",
       "evidence": "moderate",
       "sources": [
         1
@@ -109,7 +109,7 @@
   ],
   "avoid_if": [
     "Taking blood thinners or antiplatelet drugs such as warfarin, aspirin or clopidogrel (clinician first)",
-    "History of atrial fibrillation or atrial flutter",
+    "History of atrial fibrillation or atrial flutter (clinician first; don't stop a prescribed omega-3 on your own)",
     "Fish or shellfish allergy (clinician first)"
   ],
   "interactions": [
@@ -159,7 +159,7 @@
       "title": "VASCEPA (icosapent ethyl) capsules prescribing information",
       "publisher": "U.S. Food and Drug Administration (Drugs@FDA)",
       "year": 2026,
-      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202057oRIG1s058lbl.pdf"
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202057Orig1s058lbl.pdf"
     },
     {
       "n": 3,

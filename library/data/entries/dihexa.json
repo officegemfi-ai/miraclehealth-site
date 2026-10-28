@@ -2,7 +2,7 @@
   "id": "dihexa",
   "name": "Dihexa",
   "summary": "A lab-made compound based on the peptide angiotensin IV, used to try to boost memory; it improved learning in rodents, and FDA found no human data on it.",
-  "what_it_is": "Dihexa (PNB-0408) is a small, lab-made molecule derived from angiotensin IV, a peptide fragment that has shown memory effects in animal research. In animal studies it works when taken by mouth and crosses into the brain. It binds hepatocyte growth factor (HGF) and strengthens signaling through HGF's receptor, c-Met, which in lab studies led to new connections (synapses) between nerve cells.",
+  "what_it_is": "Dihexa (PNB-0408) is a small, lab-made molecule derived from angiotensin IV, a peptide fragment that has shown memory effects in animal research. In rats it was active when given by mouth and reached the brain. It binds hepatocyte growth factor (HGF) and strengthens signaling through HGF's receptor, c-Met, which in lab studies led to new connections (synapses) between nerve cells.",
   "evidence": {
     "grade": "preclinical",
     "why": "Its memory effects come from rodent and lab studies by the group that developed it; FDA found no human exposure data."
@@ -11,7 +11,12 @@
     "key": "under_review",
     "label": "Not approved; compounding review pending",
     "note": "As of April 2026 FDA lists dihexa acetate as 'nominated but withdrawn' rather than in Category 2, noting it found no human exposure data; it is not in Category 1, so pharmacies may not compound it. FDA's compounding advisory committee is expected to review it before the end of February 2027, with no date set.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,24 +36,40 @@
     {
       "claim": "Better spatial learning in a water-maze memory test in rodents, an effect blocked by a drug that blocks HGF",
       "evidence": "preclinical",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Growth of new dendritic spines and synapses in hippocampal nerve cells in lab studies",
       "evidence": "preclinical",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     }
   ],
   "risks": [
     {
       "risk": "No human safety data: FDA found no human exposure data and lacks information on whether it would cause harm in people",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "It strengthens the HGF/c-Met growth-factor system; the effects of long-term stimulation in people are unknown",
       "how_common": "theoretical",
-      "sources": [5, 1]
+      "sources": [
+        5,
+        1
+      ]
+    },
+    {
+      "risk": "Not an approved drug and not allowed in compounding, so products sold online have no checks on identity or purity",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
     }
   ],
   "avoid_if": [

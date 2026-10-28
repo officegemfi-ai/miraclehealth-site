@@ -39,7 +39,7 @@
     },
     {
       "claim": "Appears to reduce fatigue and improve exercise performance in menstruating women",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         2
       ]
@@ -133,7 +133,7 @@
   ],
   "ask_your_clinician": [
     "Do my ferritin and hemoglobin results show that I need iron, and what is causing my deficiency?",
-    "How should I time iron around my thyroid, Parkinson's or acid-reducing medicines?",
+    "Does iron interact with my thyroid, Parkinson's or acid-reducing medicines?",
     "If iron pills upset my stomach or don't work, is IV iron an option for me?"
   ],
   "sources": [

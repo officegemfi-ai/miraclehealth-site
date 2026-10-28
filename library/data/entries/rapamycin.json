@@ -11,7 +11,9 @@
     "key": "approved",
     "label": "FDA-approved transplant and LAM drug; not for aging",
     "note": "Rapamune is approved to prevent organ rejection in kidney transplant patients aged 13 and older and to treat LAM, with a boxed warning about immunosuppression, infections and cancer. It is not approved for aging, and the label says only physicians experienced in immunosuppressive therapy should prescribe it for transplant patients.",
-    "sources": [1]
+    "sources": [
+      1
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,59 +33,95 @@
     {
       "claim": "Prevents organ rejection in kidney transplant patients aged 13 and older (approved use)",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Treats lymphangioleiomyomatosis (LAM), a rare lung disease (approved use)",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Longer lifespan in genetically diverse mice, even when started late in life: 14% for females and 9% for males at the age when 90% had died, at three test sites",
       "evidence": "preclinical",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     },
     {
       "claim": "Improved some aging-related measures of the immune system, heart and blood vessels, and skin in a review of 19 human studies, but not muscle, hormone or nervous-system measures",
       "evidence": "limited",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "No change in visceral fat (the main outcome) in a 48-week trial of 114 healthy adults aged 50 to 85; women on the higher dose gained lean tissue and reported less pain",
       "evidence": "limited",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Boxed warning: a weakened immune system raises the risk of infections and of lymphoma and other cancers; not recommended after liver or lung transplant because of excess deaths, graft loss and other serious complications",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "High cholesterol and triglycerides, swelling (edema) and high blood pressure, each in 30% or more of kidney transplant patients",
       "how_common": "common",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Mouth sores, diarrhea, nausea, acne and headache, each in 20% or more of LAM patients",
       "how_common": "common",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Slow wound healing, lung inflammation (interstitial lung disease, sometimes fatal), protein in the urine and skin cancer",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Angioedema (swelling of the face, lips or throat), more likely when taken with other drugs that can cause it, such as ACE inhibitors",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "High blood sugar and new diabetes have been reported",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Harm to a developing baby, and low or absent sperm counts",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
-      "risk": "In healthy older adults on low intermittent doses, more stomach and gut complaints than placebo (about 1 in 5 versus 1 in 10), with similar rates of serious events",
+      "risk": "In healthy older adults on the regimen tested, more stomach and gut complaints than placebo (about 1 in 5 versus 1 in 10), with similar rates of serious events",
       "how_common": "common",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     }
   ],
   "avoid_if": [
@@ -94,11 +132,11 @@
     "Planning to get a live vaccine (live vaccines should be avoided during treatment)"
   ],
   "interactions": [
-    "Strong CYP3A4/P-gp inhibitors such as ketoconazole, voriconazole, itraconazole, erythromycin and clarithromycin: avoid, as they change sirolimus levels",
-    "Strong inducers such as rifampin and rifabutin: avoid, as they change sirolimus levels",
+    "Strong CYP3A4/P-gp inhibitors such as ketoconazole, voriconazole, itraconazole, erythromycin and clarithromycin: avoid, as they raise sirolimus levels",
+    "Strong CYP3A4/P-gp inducers such as rifampin and rifabutin: avoid, as they lower sirolimus levels",
+    "ACE inhibitors: raise the risk of angioedema",
     "Grapefruit juice: must not be taken with it",
-    "Cyclosporine: interacts with sirolimus, and the label sets timing rules for using them together",
-    "Cannabidiol (CBD) may raise sirolimus levels"
+    "Cyclosporine: interacts with sirolimus, and the label sets rules for using them together"
   ],
   "labs": {
     "before": [
@@ -109,7 +147,8 @@
     "during": [
       "Sirolimus blood (trough) levels",
       "Lipid panel",
-      "Kidney function and urine protein"
+      "Kidney function and urine protein",
+      "Blood glucose"
     ],
     "why": "The label recommends sirolimus level checks, lipid monitoring and periodic urine-protein and kidney tests; these were set for transplant and LAM care, and no monitoring plan has been established for use in aging."
   },
@@ -142,7 +181,7 @@
   "ask_your_clinician": [
     "Given my infection history, cholesterol and any planned surgery, what are the risks of rapamycin for me?",
     "Which of my medicines, supplements or foods could change rapamycin levels?",
-    "Is there a clinical trial I could join instead of taking it on my own?"
+    "Is there a clinical trial of rapamycin for aging that I could join?"
   ],
   "sources": [
     {

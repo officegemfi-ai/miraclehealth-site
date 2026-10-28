@@ -4,7 +4,7 @@
   "summary": "An essential mineral needed for immune function, wound healing and hundreds of enzymes, taken mostly to shorten colds and support immunity.",
   "what_it_is": "Zinc is an essential mineral required for the activity of hundreds of enzymes and involved in immune function, protein and DNA synthesis, wound healing and cell signaling. Deficiency can delay growth, impair taste and smell, slow wound healing, and cause hair loss and frequent infections. Besides supplements, zinc is found in cold lozenges, some nasal sprays and some denture adhesive creams.",
   "evidence": {
-    "grade": "moderate",
+    "grade": "limited",
     "why": "Many trials suggest zinc may shorten colds by about 2 days, but a 2024 Cochrane review rated the evidence low to very low certainty; a large trial supports a zinc-containing formula for macular degeneration."
   },
   "status_us": {
@@ -33,7 +33,7 @@
   "benefits": [
     {
       "claim": "May shorten colds by about 2 days in people who already have one, with little to no effect on preventing colds (34 trials, about 8,500 people)",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         3,
         1
@@ -126,7 +126,7 @@
   ],
   "ask_your_clinician": [
     "Am I already getting enough zinc from food and other supplements, so I don't take too much?",
-    "How should I time zinc around my antibiotics or other medicines?",
+    "Does zinc interact with my antibiotics or other medicines?",
     "If I take zinc long term, should my copper level be checked?"
   ],
   "sources": [

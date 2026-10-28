@@ -11,7 +11,10 @@
     "key": "not_approved",
     "label": "Not approved; not nominated for compounding",
     "note": "No humanin product is approved, and humanin is not on FDA's May 2026 list of substances nominated for pharmacy compounding or on its list of substances with significant safety risks.",
-    "sources": [1, 2]
+    "sources": [
+      1,
+      2
+    ]
   },
   "goals": {
     "weight": 0.25,
@@ -31,34 +34,54 @@
     {
       "claim": "Protected nerve cells from damage by amyloid-beta, the protein that builds up in Alzheimer's disease, in cell studies",
       "evidence": "preclinical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "Improved insulin action in rats, and reduced heart damage after an induced heart attack and artery plaque in mice",
       "evidence": "preclinical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "About 7% longer average lifespan in worms engineered to make more humanin; in middle-aged mice, the analog HNG lowered visceral fat and raised lean mass but did not extend lifespan",
       "evidence": "preclinical",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Never tested as a treatment in people, so human side effects and safety are unknown",
       "how_common": "unknown",
-      "sources": [3, 4]
+      "sources": [
+        3,
+        4
+      ]
     },
     {
       "risk": "Unclear effects on cancer: studies of humanin, tumor growth and spread are inconclusive",
       "how_common": "theoretical",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "risk": "Smaller body size and fewer offspring in worms and mice with more humanin",
       "how_common": "unknown",
-      "sources": [4]
+      "sources": [
+        4
+      ]
+    },
+    {
+      "risk": "Not an approved drug and on none of FDA's compounding lists, so products sold online have no checks on identity or purity",
+      "how_common": "unknown",
+      "sources": [
+        1
+      ]
     }
   ],
   "avoid_if": [

@@ -2,9 +2,9 @@
   "id": "ashwagandha",
   "name": "Ashwagandha",
   "summary": "An Ayurvedic herb (Withania somnifera) whose root extracts are taken mainly to ease stress and anxiety and to improve sleep.",
-  "what_it_is": "Ashwagandha (Withania somnifera) is an evergreen shrub long used in Ayurvedic and Unani medicine, where it is classed as an adaptogen. Most supplements contain root extracts; KSM-66 is a root-only extract and Sensoril uses root and leaf. Its effects are thought to come mainly from steroidal lactones called withanolides, with alkaloids and other components possibly contributing.",
+  "what_it_is": "Ashwagandha (Withania somnifera) is an evergreen shrub long used in Ayurvedic and Unani medicine, where it is classed as an adaptogen. Most supplements contain root extracts; some use the root only, others root and leaf. Its effects are thought to come mainly from steroidal lactones called withanolides, with alkaloids and other components possibly contributing.",
   "evidence": {
-    "grade": "moderate",
+    "grade": "limited",
     "why": "Several small, short placebo-controlled trials, mostly in India, report less stress, anxiety and sleeplessness, but results vary widely and a 2026 meta-analysis rated the certainty very low."
   },
   "status_us": {
@@ -32,7 +32,7 @@
   "benefits": [
     {
       "claim": "Lower stress and anxiety scores, less sleeplessness and lower cortisol than placebo in a review of 7 trials (491 adults in India, 6 to 8 weeks); a 2026 analysis of 22 trials agreed but rated the certainty very low",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         1,
         2
@@ -40,14 +40,14 @@
     },
     {
       "claim": "Small improvement in sleep, larger in people with insomnia and with 8 or more weeks of use (5 trials in India)",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         3,
         1
       ]
     },
     {
-      "claim": "May raise testosterone, and in a small trial of people with subclinical hypothyroidism it lowered TSH and raised thyroid hormone levels",
+      "claim": "May raise testosterone in men, in small trials",
       "evidence": "limited",
       "sources": [
         1
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "risk": "Liver injury with jaundice and itching, starting 2 to 12 weeks after use began; in a series of 5 cases none had liver failure, and liver tests normalized within 1 to 5 months in the 4 followed up",
+      "risk": "Liver injury with jaundice and itching, starting 2 to 12 weeks after use began, in case reports and case series; some people affected had existing liver disease, and the products weren't always tested for what was in them",
       "how_common": "rare",
       "sources": [
         4,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "risk": "Overactive thyroid (thyrotoxicosis) in case reports, which resolved after stopping",
+      "risk": "Changes thyroid hormone levels: in a small trial it lowered TSH and raised T3 and T4, and case reports describe an overactive thyroid (thyrotoxicosis) that resolved after stopping",
       "how_common": "rare",
       "sources": [
         1
@@ -100,10 +100,8 @@
     "Taking sedatives, immunosuppressants, or diabetes or blood pressure medicines (clinician first)"
   ],
   "interactions": [
-    "Thyroid hormone medicines: may interact, and ashwagandha may itself change thyroid hormone levels",
-    "Sedatives: may interact",
-    "Immunosuppressants: may interact",
-    "Diabetes and blood pressure medicines: may interact"
+    "Thyroid hormone medicines: it might interact with them, given its effects on thyroid levels",
+    "NIH lists possible interactions with diabetes medicines, blood pressure medicines, immunosuppressants and sedatives"
   ],
   "labs": {
     "before": [],
@@ -171,6 +169,6 @@
       "url": "https://iris.landsbokasafn.is/en/publications/ashwagandha-induced-liver-injury-a-case-series-from-iceland-and-t-2/"
     }
   ],
-  "notes_for_editor": "Most trials are small, short and run in India. The 2026 meta-analysis reports unusually large pooled effect sizes, very high heterogeneity and some internal inconsistencies, so it is cited only for direction and certainty. Participant counts for the sleep meta-analysis differ (ODS says 372; the paper's abstract says 400). LiverTox's ashwagandha chapter could not be opened (bot check); the liver risk is sourced to a published case series and ODS. Denmark's ban and France's advice are sourced through ODS, not the agencies themselves.",
+  "notes_for_editor": "Most trials are small, short and run in India. The 2026 meta-analysis reports unusually large pooled effect sizes, very high heterogeneity and some internal inconsistencies, so it is cited only for direction and certainty. Participant counts for the sleep meta-analysis differ (ODS says 372; the paper's abstract says 400). LiverTox's ashwagandha chapter could not be opened (bot check); the liver risk is sourced to a published case series and ODS. Denmark's ban and France's advice are sourced through ODS, not the agencies themselves. After review: grade set to limited (very low certainty per the 2026 meta-analysis); thyroid effects moved to risks; liver wording no longer reassures; brand names removed.",
   "checked": "2026-10-28"
 }

@@ -46,7 +46,7 @@
       ]
     },
     {
-      "claim": "May reduce some complications of heart surgery and heart damage from one type of chemotherapy drug",
+      "claim": "May reduce some complications of heart surgery, and heart damage from one type of chemotherapy drug; because it may not be compatible with some cancer treatments, this is a question for the cancer care team",
       "evidence": "limited",
       "sources": [
         1
@@ -83,7 +83,7 @@
     "Having cancer treatment (clinician first)"
   ],
   "interactions": [
-    "Warfarin: CoQ10 may interact with it",
+    "Warfarin (blood thinner): CoQ10 may interact with it, so warfarin users need a clinician's input first",
     "Insulin: CoQ10 may interact with it",
     "Some cancer treatments: CoQ10 may not be compatible"
   ],

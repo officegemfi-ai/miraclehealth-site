@@ -11,7 +11,11 @@
     "key": "compounded",
     "label": "Compoundable while FDA evaluates; also a supplement",
     "note": "FDA lists glutathione in Category 1 (under evaluation), so pharmacies may compound it, including injections, while FDA decides; oral products are sold as supplements. In August 2026 FDA warned compounders not to make injections from supplement-grade glutathione after at least 30 patients had reactions.",
-    "sources": [1, 2, 3]
+    "sources": [
+      1,
+      2,
+      3
+    ]
   },
   "goals": {
     "weight": 0.25,
@@ -31,44 +35,60 @@
     {
       "claim": "Raised glutathione in red cells, plasma and immune cells (lymphocytes) by about 30% to 35% over 6 months in the higher-dose group of a placebo-controlled trial of 54 healthy adults taking it by mouth; levels returned to baseline a month after stopping",
       "evidence": "moderate",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     },
     {
       "claim": "Higher natural killer (immune) cell activity at 3 months in the same trial's higher-dose group",
       "evidence": "limited",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     },
     {
       "claim": "Lower ALT (a liver enzyme), triglycerides and ferritin after 4 months in an uncontrolled study of 29 people with fatty liver disease",
       "evidence": "limited",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Some skin lightening from oral and topical forms in small trials, with inconsistent results; effects of IV use appeared to fade over about 6 months",
       "evidence": "limited",
-      "sources": [6]
+      "sources": [
+        6
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Contaminated injections: by August 2026 FDA knew of at least 30 people with fever, chills, dizziness and shock- or sepsis-like reactions after IV glutathione made from supplement-grade ingredient, some needing hospital care",
       "how_common": "unknown",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "risk": "Liver injury and severe allergic reactions, including anaphylaxis, reported with IV use for skin lightening",
       "how_common": "unknown",
-      "sources": [6]
+      "sources": [
+        6
+      ]
     },
     {
       "risk": "Mild, short-lived stomach upset such as gas or loose stools with oral forms",
-      "how_common": "rare",
-      "sources": [6]
+      "how_common": "unknown",
+      "sources": [
+        6
+      ]
     },
     {
       "risk": "In the fatty liver study, liver enzymes rose in people who did not respond and HbA1c (a blood sugar marker) rose overall; three people dropped out with fatigue, high blood pressure or rash (cause unclear)",
       "how_common": "unknown",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     }
   ],
   "avoid_if": [
@@ -116,7 +136,7 @@
   ],
   "ask_your_clinician": [
     "Is there a specific reason, such as a liver condition, that glutathione might help me?",
-    "If IV glutathione is offered, where does the ingredient come from and is it suitable for injection?",
+    "Is there an approved product, or evidence that IV glutathione is safe for my situation?",
     "Should my liver enzymes be checked before and during use?"
   ],
   "sources": [

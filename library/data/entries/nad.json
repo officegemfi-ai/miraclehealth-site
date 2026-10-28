@@ -1,7 +1,7 @@
 {
   "id": "nad",
   "name": "NAD+",
-  "summary": "A molecule cells use to make energy, given by IV drip or injection or taken by mouth hoping for more energy and slower aging; human evidence is minimal.",
+  "summary": "A molecule cells use to make energy, given by IV drip or injection or taken by mouth by people hoping for more energy and slower aging; human evidence is minimal.",
   "what_it_is": "NAD+ (nicotinamide adenine dinucleotide) is a molecule in the body's cells that takes part in energy metabolism. People try to raise their levels with NAD+ itself, given by IV infusion or injection, or with precursors taken by mouth such as nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN). In a small study, infused NAD+ was rapidly removed from the blood, probably broken down by enzymes such as CD38, with some passed in urine.",
   "evidence": {
     "grade": "limited",
@@ -10,8 +10,13 @@
   "status_us": {
     "key": "compounded",
     "label": "Not FDA-approved; pharmacies may compound it",
-    "note": "FDA lists NAD in Category 1 (under evaluation) of its interim policy for substances that are not part of an FDA-approved drug and have no applicable USP monograph, so state-licensed pharmacies may compound it while FDA decides. Oral NAD+-boosting compounds such as NR and NMN are used and studied as dietary supplements.",
-    "sources": [1, 2, 3]
+    "note": "FDA lists NAD in Category 1 (under evaluation) of its interim policy for substances that are not part of an FDA-approved drug and have no applicable USP monograph, so state-licensed pharmacies may compound it while FDA decides. Oral NAD+-boosting compounds such as NR and NMN are used and studied as dietary supplements. For NMN, FDA reversed its earlier position in letters dated September 29, 2025, saying NMN is not excluded from the definition of a dietary supplement (it remains a new dietary ingredient).",
+    "sources": [
+      1,
+      2,
+      3,
+      6
+    ]
   },
   "goals": {
     "weight": 0.25,
@@ -31,24 +36,34 @@
     {
       "claim": "Raised blood NAD+ during a 6-hour IV infusion in healthy men, but only after about 2 hours, because infused NAD+ was at first rapidly and completely removed from the blood (8 men on NAD+, 3 on saline)",
       "evidence": "limited",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     },
     {
       "claim": "Oral precursors such as NR and NMN can raise NAD+ in several human tissues and appear safe in trials so far, but whether this improves physical function is unclear",
       "evidence": "limited",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     }
   ],
   "risks": [
     {
-      "risk": "Discomfort during IV infusion: all 6 clinic clients given IV NAD+ in a small chart review had moderate to severe cramping, nausea, vomiting, diarrhea, fast heart rate or chest pressure, which stopped when the infusion ended and led them to slow it down; a 2019 pilot in 8 men reported no adverse events",
+      "risk": "Discomfort during IV infusion: all 6 clinic clients given IV NAD+ in a small chart review had moderate to severe cramping, nausea, vomiting, diarrhea, fast heart rate or chest pressure, which stopped when the infusion ended; a 2019 pilot in 8 men reported no adverse events",
       "how_common": "common",
-      "sources": [5, 4]
+      "sources": [
+        5,
+        4
+      ]
     },
     {
       "risk": "Little safety information beyond the short term: human studies are small and brief",
       "how_common": "unknown",
-      "sources": [3, 4]
+      "sources": [
+        3,
+        4
+      ]
     }
   ],
   "avoid_if": [
@@ -132,6 +147,13 @@
       "publisher": "Frontiers in Aging",
       "year": 2026,
       "url": "https://www.frontiersin.org/articles/10.3389/fragi.2026.1652582/full"
+    },
+    {
+      "n": 6,
+      "title": "FDA Declares Nicotinamide Mononucleotide Is a Dietary Supplement",
+      "publisher": "Venable LLP (law firm)",
+      "year": 2025,
+      "url": "https://www.venable.com/insights/publications/2025/10/fda-declares-nicotinamide-mononucleotide-is"
     }
   ],
   "notes_for_editor": "Both human NAD+ infusion studies have commercial ties: some 2019 pilot authors were linked to an IV NAD+ clinic, and the 2026 chart review was run and funded by a wellness-clinic company. They disagree on tolerability (no adverse events versus symptoms in all six NAD+ clients), possibly because of infusion speed, which was not compared directly. FDA's list also puts NADH in Category 1 and a disodium salt of NAD in Category 3 (nominated without adequate support). The NAD+-booster review was read only as an abstract, and no source on oral NAD+ itself (as opposed to its precursors) was opened.",

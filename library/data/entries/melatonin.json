@@ -11,7 +11,12 @@
     "key": "supplement",
     "label": "Dietary supplement in the US; prescription elsewhere",
     "note": "Sold in the US as a dietary supplement, which FDA does not approve for safety or effectiveness before sale; several other countries regulate it as a prescription drug. FDA also lists melatonin in Category 1 (under evaluation) for pharmacy compounding, which lets pharmacies compound it while FDA decides.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,54 +36,74 @@
     {
       "claim": "Fell asleep about 7 minutes sooner and slept about 8 minutes longer than with placebo, with slightly better sleep quality, in people with primary sleep disorders (19 trials, 1,683 people)",
       "evidence": "moderate",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Fell asleep about 34 minutes earlier, with better daytime functioning, in a 2018 trial of 307 people with delayed sleep-wake phase disorder",
       "evidence": "moderate",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "May ease jet lag, mainly after eastward flights, though the evidence is of low quality",
       "evidence": "limited",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Children with autism fell asleep 37 minutes earlier and slept 48 minutes longer, and children with ADHD 20 minutes earlier and 33 minutes longer, in reviews of small, short trials",
       "evidence": "limited",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Less anxiety before surgery than with placebo, according to a review of trials",
       "evidence": "moderate",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Mild side effects in short-term studies, such as headache, dizziness, nausea and sleepiness",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
-      "risk": "Labels are often wrong: in a 2023 study, 22 of 25 gummy products were mislabeled, holding 74% to 347% of the stated amount (one had none), and in a 2017 study of 31 supplements most did not match their labels and 26% contained serotonin",
+      "risk": "Labels are often wrong: in a 2023 study, 22 of 25 gummy products were mislabeled, holding 74% to 347% of the stated amount (another had none), and in a 2017 study of 31 supplements most did not match their labels and 26% contained serotonin",
       "how_common": "common",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
-      "risk": "Accidental swallowing by young children: about 11,000 emergency visits for children 5 and under in 2019 to 2022, and poison-center reports for ages 19 and under rose from 8,337 in 2012 to 52,563 in 2021, though most had no symptoms",
+      "risk": "Accidental swallowing by young children: about 11,000 emergency visits for children 5 and under in 2019 to 2022. Poison-center reports for ages 19 and under rose from 8,337 in 2012 to 52,563 in 2021; most had no symptoms, but 4,097 were hospitalized over the decade, 287 needed intensive care and two children under 2 died (the data don't show whether melatonin caused the deaths)",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Long-term safety is unknown; in children, possible effects on puberty and hormone development have been raised but not established",
       "how_common": "theoretical",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Next-day drowsiness, especially in older adults, in whom melatonin may stay active longer",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     }
   ],
   "avoid_if": [
@@ -88,7 +113,8 @@
     "Epilepsy, or use of blood thinners, without medical supervision"
   ],
   "interactions": [
-    "Blood thinners (anticoagulants): use only under medical supervision"
+    "Blood thinners (anticoagulants): use only under medical supervision",
+    "Epilepsy: people with epilepsy should take it only under medical supervision"
   ],
   "labs": {
     "before": [],

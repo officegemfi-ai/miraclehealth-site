@@ -32,7 +32,7 @@
   },
   "benefits": [
     {
-      "claim": "Lowers blood sugar in adults with type 2 diabetes: HbA1c fell about 0.6 percentage points versus control across 31 trials, often as an add-on to diabetes drugs",
+      "claim": "Lowers blood sugar in adults with type 2 diabetes: HbA1c fell about 0.6 percentage points versus control in the 31 of 37 trials that reported it, often as an add-on to diabetes drugs",
       "evidence": "moderate",
       "sources": [
         3,
@@ -67,8 +67,9 @@
       "risk": "Drug interactions: it slowed the enzymes CYP2D6, CYP2C9 and CYP3A4 in healthy men, which can raise levels of medicines they clear, and it interacts with the transplant drug cyclosporine",
       "how_common": "unknown",
       "sources": [
+        1,
         5,
-        1
+        7
       ]
     },
     {
@@ -86,6 +87,7 @@
     "Taking cyclosporine or other prescription medicines, including diabetes drugs (clinician first)"
   ],
   "interactions": [
+    "Diabetes medicines: NIH advises people who take diabetes drugs to tell their health care providers about herbal supplements, since combining them can cause unwanted effects",
     "Cyclosporine (transplant drug): berberine has been shown to interact with it",
     "Medicines cleared by CYP2D6, CYP2C9 or CYP3A4, such as dextromethorphan, losartan and midazolam: berberine slowed their breakdown in healthy men",
     "Metformin: an extract of goldenseal, a berberine-containing herb, lowered metformin levels in healthy adults"
@@ -105,7 +107,7 @@
       "year": 2022,
       "type": "Meta-analysis",
       "people": "3,048 adults with type 2 diabetes in 37 randomized trials (36 in China)",
-      "finding": "Berberine lowered fasting glucose, post-meal glucose and HbA1c (by about 0.6 points) versus control without more side effects or low blood sugar; many trials reported randomization and blinding poorly.",
+      "finding": "Berberine lowered fasting glucose, post-meal glucose and HbA1c (by about 0.6 points) versus control without more side effects or low blood sugar in those trials; many trials reported randomization and blinding poorly.",
       "source": 3
     },
     {

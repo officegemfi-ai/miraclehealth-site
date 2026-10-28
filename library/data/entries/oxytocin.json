@@ -11,7 +11,9 @@
     "key": "approved",
     "label": "FDA-approved injection for labor and delivery",
     "note": "Pitocin is approved for medically indicated induction or strengthening of labor and to control bleeding after delivery, given in a hospital with medical supervision; a boxed notice says it is not for elective induction. Mood, anxiety and social uses, including nasal sprays, are not among its approved uses.",
-    "sources": [1]
+    "sources": [
+      1
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,39 +33,53 @@
     {
       "claim": "Starts or strengthens labor contractions when there is a medical reason (approved use)",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "claim": "Helps control bleeding after delivery (approved use)",
       "evidence": "strong",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
-      "claim": "Reduced overactivity of the amygdala (a fear-processing brain area) in one small imaging study in anxiety, although 15 small trials showed no clear effect on core anxiety or depression symptoms",
+      "claim": "No clear effect on core anxiety or depression symptoms across 15 small trials; one small imaging study found reduced activity in the amygdala, a fear-processing brain area",
       "evidence": "limited",
-      "sources": [2]
+      "sources": [
+        2
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Water intoxication from its antidiuretic effect, which in severe cases has caused seizures and coma",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Overstimulation of the uterus, uterine rupture, and slow or irregular heartbeat or other harm in the baby",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Dangerous spikes in blood pressure, bleeding in the brain, irregular heartbeat, nausea and vomiting; maternal deaths have been reported with drugs of this type",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Severe allergic (anaphylactic) reactions",
       "how_common": "unknown",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     }
   ],
   "avoid_if": [
@@ -112,7 +128,7 @@
   "ask_your_clinician": [
     "Is there evidence that oxytocin would help my mood or relationship concerns, compared with standard treatments?",
     "Could oxytocin affect a pregnancy, or any heart or blood pressure condition I have?",
-    "If a nasal spray is offered, who makes it and how is its quality checked?"
+    "Is there an approved oxytocin product for what I'm hoping it will do?"
   ],
   "sources": [
     {

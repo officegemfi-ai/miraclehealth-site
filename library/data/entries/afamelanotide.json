@@ -5,13 +5,18 @@
   "what_it_is": "Afamelanotide, also known as Melanotan I, is a lab-made peptide of 13 amino acids modeled on alpha-melanocyte-stimulating hormone (alpha-MSH). It activates the melanocortin 1 receptor in the skin, which raises production of the dark pigment eumelanin regardless of sun or UV exposure. As the prescription implant Scenesse, it helps adults with erythropoietic protoporphyria (EPP), a rare disorder that causes painful reactions to light. Unlicensed products sold as Melanotan I for tanning are untested and unregulated.",
   "evidence": {
     "grade": "strong",
-    "why": "Two randomized placebo-controlled trials in 168 patients support its FDA-approved use in EPP; it is not approved for cosmetic tanning, and the unlicensed tanning products have only small early trials and case reports."
+    "why": "Strong only for its FDA-approved use (preventing light-triggered pain in adults with EPP), from two randomized placebo-controlled trials in 168 patients. It is not approved for cosmetic tanning, and unlicensed 'Melanotan I' tanning products have only small early trials and case reports."
   },
   "status_us": {
     "key": "approved",
     "label": "FDA-approved implant for a rare light disorder (EPP)",
     "note": "Scenesse was approved in October 2019 to increase pain-free light exposure in adults with EPP and must be implanted by a trained health care professional. It is not approved for tanning; products sold as Melanotan I for that purpose are unlicensed and untested, and afamelanotide is not on FDA's list of substances nominated for pharmacy compounding.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,44 +36,61 @@
     {
       "claim": "More pain-free time in direct sunlight for people with EPP: a median of 69.4 versus 40.8 hours over 6 months in a US trial of 94 patients, and 6.0 versus 0.8 hours over 9 months in a European trial of 74",
       "evidence": "strong",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Fewer painful light reactions than placebo (77 versus 146) in the European trial",
       "evidence": "moderate",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Better quality of life than placebo in both trials",
       "evidence": "moderate",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Implant-site reactions (21% versus 10% on placebo), most often discoloration, and nausea (19% versus 14%)",
       "how_common": "common",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Darker skin and darkening of existing moles and freckles; new moles were reported in 4% versus 2% on placebo, and the label advises full-body skin exams twice a year",
       "how_common": "uncommon",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "Sore throat, cough, fatigue and dizziness, each in 4% to 7%, slightly more often than with placebo",
       "how_common": "uncommon",
-      "sources": [1]
+      "sources": [
+        1
+      ]
     },
     {
       "risk": "With unlicensed Melanotan I and II used for tanning: flushing, nausea and tiredness in small trials, plus case reports of enlarging or darkening moles, new atypical moles and melanoma (cause not proven)",
       "how_common": "unknown",
-      "sources": [4, 6]
+      "sources": [
+        4,
+        6
+      ]
     },
     {
       "risk": "Unlicensed products have not been tested for quality, and regulators have raised concerns about contamination and infections from shared needles",
       "how_common": "unknown",
-      "sources": [4]
+      "sources": [
+        4
+      ]
     }
   ],
   "avoid_if": [

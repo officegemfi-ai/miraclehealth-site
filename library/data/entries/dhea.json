@@ -11,7 +11,12 @@
     "key": "supplement",
     "label": "Supplement; prescription vaginal form approved",
     "note": "Oral DHEA is sold as a dietary supplement, which FDA does not approve for safety or effectiveness before sale. Prasterone vaginal inserts (Intrarosa) are FDA-approved for moderate to severe painful sex due to menopause, and the World Anti-Doping Agency bans DHEA in sport at all times.",
-    "sources": [1, 2, 3, 4]
+    "sources": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
   "goals": {
     "weight": 0,
@@ -31,44 +36,68 @@
     {
       "claim": "Eases moderate to severe painful sex after menopause as a prescription vaginal insert (Intrarosa), in two 12-week placebo-controlled trials of 255 and 558 women",
       "evidence": "strong",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "claim": "Slightly better sexual function than placebo in peri- and postmenopausal women (5 trials, 261 women), without better quality of life",
       "evidence": "limited",
-      "sources": [5]
+      "sources": [
+        5
+      ]
     },
     {
       "claim": "Small improvements in quality of life and depression in people with adrenal insufficiency, in a 2009 meta-analysis of 10 studies, though the Endocrine Society still advises against routine use",
       "evidence": "limited",
-      "sources": [6]
+      "sources": [
+        6
+      ]
     }
   ],
   "risks": [
     {
       "risk": "Acne and other male-pattern (androgenic) side effects in about 15% of women on DHEA versus under 3% on placebo; longer use in women can also cause facial hair growth",
       "how_common": "common",
-      "sources": [5, 1]
+      "sources": [
+        5,
+        1
+      ]
     },
     {
       "risk": "Raises testosterone and estrogen levels; long-term effects on the breast and the lining of the uterus are unknown",
       "how_common": "unknown",
-      "sources": [6]
+      "sources": [
+        6
+      ]
     },
     {
       "risk": "Lower HDL (good) cholesterol with oral DHEA in postmenopausal women",
       "how_common": "unknown",
-      "sources": [6]
+      "sources": [
+        6
+      ]
     },
     {
       "risk": "With the vaginal insert: vaginal discharge (5.7% versus 3.7% on placebo) and abnormal Pap smears (2.1% over a year, without a placebo comparison)",
       "how_common": "uncommon",
-      "sources": [3]
+      "sources": [
+        3
+      ]
     },
     {
       "risk": "Long-term safety poorly studied: trials had a median follow-up of only about 3 months",
       "how_common": "unknown",
-      "sources": [6]
+      "sources": [
+        6
+      ]
+    },
+    {
+      "risk": "Some evidence suggests that even short-term use may cause harm, including liver damage; long-term safety is unknown",
+      "how_common": "unknown",
+      "sources": [
+        7
+      ]
     }
   ],
   "avoid_if": [
@@ -78,7 +107,7 @@
     "Competitive athletes (banned by WADA)"
   ],
   "interactions": [
-    "None well documented"
+    "Not well studied. The body converts DHEA into testosterone and estrogen, so anyone on hormone therapy or hormone-blocking treatment should check with a clinician first"
   ],
   "labs": {
     "before": [
@@ -164,6 +193,13 @@
       "publisher": "Journal of Clinical Endocrinology & Metabolism (copy hosted by the Alabama Board of Medical Examiners)",
       "year": 2014,
       "url": "https://www.albme.gov/uploads/pdfs/Androgen_Therapy_in_Women_A_Reappraisal_An_Endocrine_Society_Clinical_Practice_Guideline.pdf"
+    },
+    {
+      "n": 7,
+      "title": "Menopausal Symptoms: In Depth",
+      "publisher": "National Center for Complementary and Integrative Health (NIH)",
+      "year": 2024,
+      "url": "https://www.nccih.nih.gov/health/menopausal-symptoms-in-depth"
     }
   ],
   "notes_for_editor": "The Cochrane review (published 2015, search to June 2014) and the Endocrine Society guideline (2014) are the newest syntheses opened; later trials were not searched. Evidence is mostly in women; men are covered only by the NIH ODS summary of two small trials showing no strength or muscle benefit. The Intrarosa label opened is the February 2018 version. US supplement status rests on NIH ODS covering DHEA as a supplement ingredient; the federal anabolic-steroid law exemption and supplement product quality were not checked. DHEA is not on FDA's 503A compounding nominations list (only 7-keto-DHEA is, in Category 1).",

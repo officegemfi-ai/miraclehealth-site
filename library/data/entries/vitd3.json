@@ -5,7 +5,7 @@
   "what_it_is": "Vitamin D is a fat-soluble vitamin found naturally in few foods, added to others such as milk and breakfast cereals, and made in the skin when it is exposed to UVB sunlight. Vitamin D3 (cholecalciferol) is the form made in skin and found in animal foods, while D2 comes from mushrooms and yeast; D3 raises blood levels more, and keeps them up longer, than D2. The liver converts vitamin D to 25-hydroxyvitamin D, the form measured in blood tests, and the kidneys turn that into the active hormone, which helps the gut absorb calcium and supports bone growth, muscle and immune function.",
   "evidence": {
     "grade": "strong",
-    "why": "Large randomized trials, including VITAL with 25,871 adults, found that supplements given to people not selected for deficiency did not prevent fractures, falls, cancer, heart disease or depression, though pooled trials show fewer cancer deaths."
+    "why": "Strong for preventing and treating vitamin D deficiency. For other uses, large randomized trials, including VITAL with 25,871 adults, found that supplements given to people not selected for deficiency did not prevent fractures, falls, cancer, heart disease or depression, though pooled trials show fewer cancer deaths."
   },
   "status_us": {
     "key": "supplement",
@@ -93,7 +93,7 @@
   ],
   "interactions": [
     "Orlistat (weight-loss drug): can reduce absorption of vitamin D from food and supplements",
-    "Statins: large vitamin D intakes may weaken atorvastatin, lovastatin and simvastatin, and statins may lower the body's own vitamin D production",
+    "Statins: large vitamin D intakes may weaken atorvastatin, lovastatin and simvastatin, and statins may lower the body's own vitamin D production; evidence is limited, and statin doses are for the prescriber to change",
     "Steroids such as prednisone, and thiazide diuretics, are also listed by NIH as medicines that interact with vitamin D"
   ],
   "labs": {

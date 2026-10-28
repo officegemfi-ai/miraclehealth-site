@@ -39,7 +39,7 @@
     },
     {
       "claim": "Marginally lower blood pressure in clinical trials of magnesium supplements",
-      "evidence": "moderate",
+      "evidence": "limited",
       "sources": [
         1
       ]
@@ -88,7 +88,7 @@
   ],
   "avoid_if": [
     "Kidney disease or reduced kidney function",
-    "Using it to prevent migraines, which NIH advises should be done under a health care provider's supervision",
+    "Anyone hoping to prevent migraines with it (NIH advises doing so under a health care provider's supervision)",
     "Taking osteoporosis drugs (bisphosphonates), tetracycline or quinolone antibiotics, or diuretics (check with a clinician first)"
   ],
   "interactions": [
@@ -118,7 +118,7 @@
   ],
   "ask_your_clinician": [
     "Is my kidney function normal enough for a magnesium supplement?",
-    "Do any of my medicines, such as antibiotics, osteoporosis drugs, diuretics or acid reducers, interact with magnesium, and how should I time them?",
+    "Do any of my medicines, such as antibiotics, osteoporosis drugs, diuretics or acid reducers, interact with magnesium?",
     "Could something other than low magnesium be behind my sleep problems?"
   ],
   "sources": [

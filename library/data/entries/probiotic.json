@@ -31,7 +31,7 @@
   },
   "benefits": [
     {
-      "claim": "Fewer cases of C. difficile diarrhea in people taking antibiotics (1.5% vs 4.0%, about 1 case prevented per 65 people treated), mainly where baseline risk is above 5%",
+      "claim": "Fewer cases of C. difficile diarrhea in people taking antibiotics (1.5% vs 4.0%), mainly where baseline risk is above 5%",
       "evidence": "moderate",
       "sources": [
         2
@@ -118,7 +118,7 @@
       "title": "Probiotics for the prevention of Clostridioides difficile-associated diarrhea in adults and children",
       "year": 2025,
       "type": "Systematic review",
-      "people": "Adults and children taking antibiotics (31 trials and 8,672 people in the main C. difficile analysis)",
+      "people": "Adults and children taking antibiotics",
       "finding": "Probiotics cut C. difficile diarrhea from 4.0% to 1.5% (moderate certainty), with the benefit concentrated in trials where baseline risk exceeded 5%; they were likely not harmful in people who were not immunocompromised.",
       "source": 2
     },
