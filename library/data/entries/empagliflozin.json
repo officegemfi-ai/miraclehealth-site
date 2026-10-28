@@ -1,0 +1,191 @@
+{
+  "id": "empagliflozin",
+  "name": "Empagliflozin",
+  "summary": "A prescription pill, sold as Jardiance, that makes the kidneys pass extra sugar into the urine; it treats type 2 diabetes and lowers heart failure and kidney risks.",
+  "what_it_is": "Empagliflozin is an SGLT2 inhibitor. It blocks SGLT2, the main protein in the kidneys that takes filtered sugar back into the blood, so more sugar leaves in the urine and blood sugar falls. Beyond type 2 diabetes, it is approved to lower risks in heart failure and chronic kidney disease, and those uses do not require diabetes. Its half-life is about 12 hours.",
+  "evidence": {
+    "grade": "strong",
+    "why": "FDA approval for each main use, based on large randomized trials including EMPA-REG OUTCOME (7,020 adults), EMPEROR-Reduced and EMPEROR-Preserved (9,718 adults with heart failure) and EMPA-KIDNEY (6,609 adults with kidney disease)."
+  },
+  "status_us": {
+    "key": "approved",
+    "label": "FDA-approved for diabetes, heart failure and kidney disease",
+    "note": "Approved as Jardiance to lower cardiovascular death and heart failure hospitalization in adults with heart failure, to slow kidney decline and lower related risks in adults with chronic kidney disease at risk of progression, to lower cardiovascular death in adults with type 2 diabetes and heart disease, and to improve blood sugar in adults and children 10 and older with type 2 diabetes. It has no boxed warning, and it is not recommended for blood sugar control in type 1 diabetes because of ketoacidosis risk.",
+    "sources": [
+      1
+    ]
+  },
+  "goals": {
+    "weight": 1,
+    "muscle": 0,
+    "recovery": 0,
+    "energy": 0,
+    "sleep": 0,
+    "cognition": 0,
+    "skin": 0,
+    "sexual": 0,
+    "longevity": 0.5,
+    "gut": 0,
+    "immune": 0,
+    "hormonal": 0
+  },
+  "benefits": [
+    {
+      "claim": "Fewer cardiovascular deaths in adults with type 2 diabetes and heart disease: 3.7% versus 5.9% with placebo over a median of 3.1 years (hazard ratio 0.62)",
+      "evidence": "strong",
+      "sources": [
+        2,
+        1
+      ]
+    },
+    {
+      "claim": "Fewer cardiovascular deaths or heart failure hospitalizations in adults with heart failure: 19.4% versus 24.7% with placebo when the heart's pumping (ejection fraction) was reduced, and 13.8% versus 17.1% when it was above 40%",
+      "evidence": "strong",
+      "sources": [
+        3,
+        1
+      ]
+    },
+    {
+      "claim": "Lower risk of lasting kidney function decline, kidney failure, cardiovascular death and hospitalization in adults with chronic kidney disease at risk of progression (EMPA-KIDNEY, 6,609 adults)",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "claim": "Lower blood sugar in adults and children 10 and older with type 2 diabetes: A1C about 0.4 to 0.9 points lower than with placebo, with about 2% to 3% more weight loss",
+      "evidence": "strong",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Genital yeast infections: about 5% to 6% of women versus 1.5% on placebo, and 2% to 3% of men versus 0.4%",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Urinary tract infections (7.6% to 9.3% versus 7.6% on placebo), including serious kidney or blood infections that have needed hospital care",
+      "how_common": "uncommon",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Ketoacidosis, a dangerous buildup of blood acids that can occur even when blood sugar is not very high; risk is much higher in type 1 diabetes, and fatal cases have been reported in type 2 diabetes",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Dehydration and low blood pressure (0.3% to 0.5% versus 0.3% on placebo in pooled trials), more likely in older adults, people with kidney impairment or those taking loop diuretics",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Fournier's gangrene, a rare but serious infection of the tissue around the genitals and anus",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    },
+    {
+      "risk": "Lower-limb amputations: 5.0 versus 4.3 per 1,000 patient-years across four outcome trials, not a significant difference (hazard ratio 1.05); the label still advises watching for foot sores and infections",
+      "how_common": "rare",
+      "sources": [
+        1
+      ]
+    }
+  ],
+  "avoid_if": [
+    "Type 1 diabetes (not recommended for blood sugar control because of ketoacidosis risk)",
+    "Past serious allergic reaction to empagliflozin",
+    "Kidney function below an eGFR of 30 when the goal is blood sugar control (not recommended)",
+    "Polycystic kidney disease, or recent strong immune-suppressing treatment for kidney disease (not expected to help the kidneys)",
+    "Second or third trimester of pregnancy, or breastfeeding (not recommended)"
+  ],
+  "interactions": [
+    "Insulin or sulfonylureas: higher risk of low blood sugar",
+    "Diuretics, especially loop diuretics: more urine and a higher risk of dehydration",
+    "Lithium: levels can fall, so lithium needs closer monitoring",
+    "Urine glucose tests and the 1,5-AG blood test: give misleading results while taking it"
+  ],
+  "labs": {
+    "before": [
+      "Kidney function (creatinine, eGFR)",
+      "Blood pressure and fluid status, especially in older adults or with diuretics",
+      "HbA1c or fasting glucose if you have diabetes"
+    ],
+    "during": [
+      "Kidney function as needed (a small early dip in eGFR is expected and usually stabilizes)",
+      "Ketones if ketoacidosis is suspected, and considered in type 1 diabetes",
+      "Lithium levels if you take lithium",
+      "HbA1c to track blood sugar if you have diabetes"
+    ],
+    "why": "The label calls for checking kidney function and fluid status before starting and as needed afterward, and for considering ketone checks in people at risk of ketoacidosis; urine glucose and 1,5-AG tests are unreliable on this drug."
+  },
+  "studies": [
+    {
+      "title": "JARDIANCE (empagliflozin tablets), for oral use: Prescribing Information",
+      "year": 2017,
+      "type": "Label",
+      "people": "7,020 adults with type 2 diabetes and established cardiovascular disease (EMPA-REG OUTCOME)",
+      "finding": "Cardiovascular death occurred in 3.7% versus 5.9% with placebo over a median of 3.1 years (hazard ratio 0.62, 95% CI 0.49 to 0.77); heart attack, stroke or cardiovascular death occurred in 10.5% versus 12.1% (hazard ratio 0.86).",
+      "source": 2
+    },
+    {
+      "title": "JARDIANCE (empagliflozin tablets), for oral use: Prescribing Information",
+      "year": 2022,
+      "type": "Label",
+      "people": "9,718 adults with heart failure (EMPEROR-Reduced, 3,730; EMPEROR-Preserved, 5,988)",
+      "finding": "Cardiovascular death or heart failure hospitalization: 19.4% versus 24.7% (hazard ratio 0.75) with ejection fraction 40% or below over a median of 16 months, and 13.8% versus 17.1% (hazard ratio 0.79) with ejection fraction above 40% over a median of 26 months.",
+      "source": 3
+    },
+    {
+      "title": "JARDIANCE (empagliflozin tablets), for oral use: Prescribing Information",
+      "year": 2025,
+      "type": "Label",
+      "people": "Adults in four cardiovascular and kidney outcome trials",
+      "finding": "Lower-limb amputations occurred at 5.0 versus 4.3 per 1,000 patient-years with placebo (hazard ratio 1.05, 95% CI 0.81 to 1.36).",
+      "source": 1
+    }
+  ],
+  "ask_your_clinician": [
+    "Should I pause it before surgery or a procedure that requires fasting?",
+    "Which symptoms of ketoacidosis or a genital infection should make me call you right away?",
+    "Does my diuretic or lithium need extra monitoring while I take it?"
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "JARDIANCE (empagliflozin tablets), for oral use: Prescribing Information (revised 10/2025)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2025,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/204629s063lbl.pdf"
+    },
+    {
+      "n": 2,
+      "title": "JARDIANCE (empagliflozin tablets), for oral use: Prescribing Information (revised 12/2017)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2017,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/204629s016lbl.pdf"
+    },
+    {
+      "n": 3,
+      "title": "JARDIANCE (empagliflozin tablets), for oral use: Prescribing Information (revised 2/2022)",
+      "publisher": "FDA (Drugs@FDA)",
+      "year": 2022,
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/204629s033lbl.pdf"
+    }
+  ],
+  "notes_for_editor": "Outcome-trial numbers come from older Jardiance labels (December 2017 for EMPA-REG OUTCOME, February 2022 for EMPEROR) because the October 2025 label text available to the fetcher ended before its clinical studies section; EMPA-KIDNEY's results were not read, only its size and the approved claim. The October 2025 label lists a recent change to one warning (section 5.3) that was not examined. Ketoacidosis is graded rare because the label describes it through type 1 diabetes trials and postmarketing reports without a type 2 trial rate. Generic availability was not checked.",
+  "checked": "2026-10-28"
+}
