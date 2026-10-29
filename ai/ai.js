@@ -795,7 +795,7 @@ if (chat.length) {
   newBtn.hidden = !chat.length;
   for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
   const last = [...chat].reverse().find((m) => m.role === 'assistant');
-  if (last) { railReset(''); railDone(last); }
+  if (last) { railReset(''); (last.steps || []).forEach(railStep); railDone(last); }
   railNotes();
   save();
 }
