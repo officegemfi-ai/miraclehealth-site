@@ -85,6 +85,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 const V = {
   css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js'),
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
+  pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
 };
 
 // The library's banner photo, in three widths
@@ -92,7 +93,7 @@ const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 9
 
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
-  styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, connect = COMMUNITY,
+  styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = COMMUNITY, head = '',
 }) {
   const nav = [['/library/', 'Library', 'library'], ['/ai/', 'Miracle AI', 'ai'], ['/#signal', 'The Signal', 'signal'], ['/#how', 'How it works', 'how']];
   return `<!doctype html>
@@ -115,10 +116,10 @@ function page({
 <meta property="og:image" content="${SITE}/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
-<script type="module" src="${script}"></script>
+${scripts.map((src) => `<script type="module" src="${src}"></script>`).join('\n')}
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
@@ -457,8 +458,8 @@ const AGENTS = [
   ['safety', 'Safety agent', 'Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.'],
   ['recommender', 'Recommender', 'Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.'],
-  ['builder', 'Stack builder', 'Lays out a shortlist to discuss with a clinician. Never doses, never sellers.'],
-  ['clinician', 'Clinician review', 'Always pending. Nothing here is a plan until a licensed clinician who knows you has reviewed it.'],
+  ['builder', 'Stack builder', 'Lays out your stack, and options to discuss with a clinician. Never doses, never sellers.'],
+  ['clinician', 'Clinician review', 'Done by a licensed clinician who knows you: take them your review packet, then mark it reviewed. Until then, nothing here is a plan.'],
 ];
 const STARTERS = [
   ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, what does the evidence say, and what should I ask a clinician about?'],
@@ -477,7 +478,7 @@ const EXAMPLES = [
 
 function aiPage() {
   const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
-  const body = `<div class="ai-app" id="ai" data-endpoint="${e(ASK_URL)}">
+  const body = `<div class="ai-app" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <section class="ai-chat" aria-label="Conversation with Miracle AI">
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Five agents ready</span></span></div>
@@ -518,7 +519,7 @@ function aiPage() {
       <h2>In this conversation</h2>
       <div class="rail-chips" id="rail-chips"></div>
       <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
-      <button type="button" class="rail-copy" id="rail-copy">Copy notes for my clinician</button>
+      <button type="button" class="rail-copy" id="rail-copy">Prepare clinician packet</button>
     </div>
   </aside>
 </div>`;
@@ -526,8 +527,29 @@ function aiPage() {
     title: 'Miracle AI · talk through peptides and supplements with five agents',
     description: 'Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Five agents check every answer against the Miracle Health Library and the Community Signal. No doses, no sellers.',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`], script: `/ai/ai.js?v=${V.aiJs}`,
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/packet.css?v=${V.pkCss}`],
+    scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: new URL(ASK_URL).origin,
+  });
+}
+
+// The page a clinician opens from a shared packet: the packet travels in the link after "#", so
+// it never reaches this site's server; the page reads it in the browser
+function packetPage() {
+  const body = `<div class="packet-root" id="packet-root">
+  <section class="pk-welcome">
+    <h1>Clinician review packet</h1>
+    <p>This page shows a review packet that a patient made with Miracle AI and shared with you as a link or QR code. The packet travels inside the link itself, so Miracle Health never receives or keeps it.</p>
+    <p>If you were sent here without a packet, ask for the link or the code again. Patients can make one at <a href="/ai/">miraclehealth.us/ai</a>.</p>
+  </section>
+  <noscript><p class="pk-loading">Opening a packet needs JavaScript.</p></noscript>
+</div>`;
+  return page({
+    title: 'Clinician review packet · Miracle Health',
+    description: 'A clinician review packet a patient made with Miracle AI. The packet travels inside the shared link; Miracle Health never receives it.',
+    url: '/ai/packet/', body, current: 'ai', bodyClass: 'packet-page',
+    styles: [`/ai/packet.css?v=${V.pkCss}`], scripts: [`/ai/packet.js?v=${V.pkJs}`],
+    connect: '', head: '<meta name="robots" content="noindex">',
   });
 }
 
@@ -539,6 +561,7 @@ out.set(path.join(LIB, 'index.html'), indexPage());
 for (const c of catalog) out.set(path.join(LIB, c.id, 'index.html'), entryPage(c));
 out.set(path.join(DATA, 'index.json'), aiIndex());
 out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
+out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
 const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

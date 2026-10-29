@@ -21,8 +21,10 @@
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=70dcd0057b">
 <link rel="stylesheet" href="/library/library.css?v=b17699e8fc">
-<link rel="stylesheet" href="/ai/ai.css?v=61ae63e20e">
-<script type="module" src="/ai/ai.js?v=ea6fe64f35"></script>
+<link rel="stylesheet" href="/ai/ai.css?v=2f8a163436">
+<link rel="stylesheet" href="/ai/packet.css?v=931822f3c6">
+<script type="module" src="/ai/packet.js?v=a293c4c4b1"></script>
+<script type="module" src="/ai/ai.js?v=0828eb5819"></script>
 </head>
 <body class="ai">
 <a class="skip" href="#main">Skip to content</a>
@@ -52,7 +54,7 @@
 </nav>
 
 <main id="main">
-<div class="ai-app" id="ai" data-endpoint="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask">
+<div class="ai-app" id="ai" data-endpoint="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask" data-qr="/ai/vendor/qrcode.js?v=b9f6233feb">
   <section class="ai-chat" aria-label="Conversation with Miracle AI">
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Five agents ready</span></span></div>
@@ -79,7 +81,7 @@
         </div>
         <div class="ai-who">
           <h2>Who answers</h2>
-          <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out a shortlist to discuss with a clinician. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Clinician review</b><span class="agent-what">Always pending. Nothing here is a plan until a licensed clinician who knows you has reviewed it.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+          <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack, and options to discuss with a clinician. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Clinician review</b><span class="agent-what">Done by a licensed clinician who knows you: take them your review packet, then mark it reviewed. Until then, nothing here is a plan.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
         </div>
       </div>
     </div>
@@ -96,12 +98,12 @@
   </section>
   <aside class="ai-rail" aria-label="The agents">
     <div class="rail-head"><span class="rail-sig" data-sig="64" aria-hidden="true"></span><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
-    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out a shortlist to discuss with a clinician. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Clinician review</b><span class="agent-what">Always pending. Nothing here is a plan until a licensed clinician who knows you has reviewed it.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack, and options to discuss with a clinician. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Clinician review</b><span class="agent-what">Done by a licensed clinician who knows you: take them your review packet, then mark it reviewed. Until then, nothing here is a plan.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
     <div class="rail-notes" id="rail-notes" hidden>
       <h2>In this conversation</h2>
       <div class="rail-chips" id="rail-chips"></div>
       <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
-      <button type="button" class="rail-copy" id="rail-copy">Copy notes for my clinician</button>
+      <button type="button" class="rail-copy" id="rail-copy">Prepare clinician packet</button>
     </div>
   </aside>
 </div>

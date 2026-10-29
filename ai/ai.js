@@ -19,7 +19,9 @@ const newBtn = $('ai-new');
 const railSub = $('rail-sub');
 const LIMIT = 2000;
 const KEY = 'mh-ai-chat-v1';
+const META = 'mh-ai-meta-v1';      // this chat's clinician review mark, kept in the tab like the chat
 const ADULT = 'mh-ai-adult';
+const QR_SRC = app.dataset.qr;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
 
@@ -30,6 +32,7 @@ const AGENT_NAME = {
 const RAIL_KEY = { review: 'safety' };
 const GRADE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Limited evidence', preclinical: 'Animal and lab studies', anecdotal: 'Anecdotal' };
 const GRADE_N = { strong: 4, moderate: 3, limited: 2, preclinical: 1, anecdotal: 0 };
+const FOUND = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Small human studies', preclinical: 'Animal or lab studies', anecdotal: 'User reports' };
 const STATUS = {
   approved: 'FDA-approved', otc: 'Over the counter', supplement: 'Dietary supplement', compounded: 'Compounded by prescription',
   category2: 'FDA safety-risk list', investigational: 'In clinical trials', not_approved: 'Not approved', restricted: 'Restricted',
@@ -62,6 +65,12 @@ const ICON = {
   warn: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2 15 14H1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6.5v3.5M8 11.9v.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
   clock: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.6V8l2.4 1.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   copy: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 3.2V3a1.5 1.5 0 0 0-1.5-1.5H3.5A1.5 1.5 0 0 0 2 3v5.5A1.5 1.5 0 0 0 3.5 10h.3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
+  doc: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 1.8h5.2L12.2 5v9.2H4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6.2 8.2h3.8M6.2 10.8h3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
+  print: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M4.5 6V2h7v4M4.5 11.5H2.5v-5h11v5h-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.5 9.5h7V14h-7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+  qr: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5h1.6v1.6H9.5zM12.4 12.4H14V14h-1.6zM12.4 9.5H14v1.6h-1.6zM9.5 12.4h1.6V14H9.5z" fill="currentColor"/></svg>',
+  link: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M6.8 9.2a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8M9.2 6.8a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  close: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  info: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
 };
 const GOAL_ICON = {
   recovery: '<path d="M8 2.5v11M2.5 8h11"/>',
@@ -203,6 +212,8 @@ function settle(t) {
 let chat = store.get(KEY) || [];
 let busy = null;            // {controller, msg}
 let adult = store.get(ADULT, 'local') === true;
+let meta = store.get(META) || {};
+const saveMeta = () => store.set(META, meta);
 const save = () => store.set(KEY, chat.map((m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined })));
 
 // "The bottom" is where the conversation ends and the box to write in sits, not the page's
@@ -340,8 +351,11 @@ function cardNode(card, msg) {
 
 function shortlistNode(card) {
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
-  el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.' }))));
-  if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.warn), h('span', { text: card.note })));
+  const sub = card.kind === 'yours'
+    ? 'Laid out by the Stack builder: what you take or asked about, checked together. Go through it with a clinician who knows you.'
+    : 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.';
+  el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
+  if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
   for (const it of card.items || []) {
     const g = GRADE_N[it.grade] ?? -1;
     const meter = h('span', { class: `meter${g >= 1 ? ` g${g}` : ''}`, title: GRADE[it.grade] || 'No fact sheet yet', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'), h('i'));
@@ -356,14 +370,16 @@ function shortlistNode(card) {
       h('div', {},
         h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url, text: it.name }) : h('b', { text: it.name }), h('span', { class: 'pick-role', text: it.role })),
         it.why ? h('p', { class: 'pick-why', text: it.why }) : null,
+        it.benefits?.length ? h('ul', { class: 'pick-found', 'aria-label': `What studies found for ${it.name}` },
+          it.benefits.map((b) => h('li', {}, h('span', { text: b.claim }), h('span', { class: `found-ev found-${b.evidence}`, text: FOUND[b.evidence] || b.evidence })))) : null,
         pills,
-        it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.warn), h('span', { text: it.caution })) : null),
+        it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null),
       sig));
   }
   const audit = h('div', { class: 'audit' }, h('div', { class: 'audit-head busy', text: 'Synergy auditor: checking these together' }));
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
-  el.append(h('div', { class: 'review-line' }, svg(ICON.clock), h('span', { text: 'Clinician review: pending. Take this to a licensed clinician who knows your history.' })));
+  el.append(h('div', { class: `review-line${meta.reviewed ? ' done' : ''}` }, ...reviewLine()));
   return el;
 }
 function fillAudit(box, card) {
@@ -475,6 +491,116 @@ function closeIntakes() {
 }
 
 // ---------------------------------------------------------------------------
+// Clinician review: a packet the visitor takes to their own clinician (ai/packet.js makes it, in
+// this browser), and their own mark once a clinician has reviewed it
+// ---------------------------------------------------------------------------
+const reviewedOn = () => (meta.reviewed ? window.MHPacket?.dateLabel(meta.reviewed) || meta.reviewed : '');
+function packetButton(label) {
+  const b = h('button', { class: 'mini pk-open', type: 'button' }, svg(ICON.doc), h('span', { text: label }));
+  b.addEventListener('click', () => openPacket(b));
+  return b;
+}
+function reviewLine() {
+  return [svg(meta.reviewed ? ICON.check : ICON.clock),
+    h('span', { text: meta.reviewed ? `Clinician review: done. You marked it reviewed on ${reviewedOn()}.` : 'Clinician review: pending. Take this to a licensed clinician who knows your history.' }),
+    packetButton('Prepare packet')];
+}
+function refreshReview() {
+  document.querySelectorAll('.card .review-line').forEach((el) => { el.classList.toggle('done', !!meta.reviewed); el.replaceChildren(...reviewLine()); });
+  railFromChat();
+}
+const localDate = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+
+let dialog = null;
+function openPacket(opener) {
+  const P = window.MHPacket;
+  if (!P) return;
+  const packet = P.fromChat(chat);
+  if (dialog) dialog.close();
+  const close = h('button', { class: 'pk-close', type: 'button', 'aria-label': 'Close the packet' }, svg(ICON.close));
+  const body = h('div', { class: 'pk-scroll' });
+  if (P.isEmpty(packet)) {
+    body.append(h('div', { class: 'pk-empty' },
+      h('h2', { id: 'packet-h', text: 'Nothing to review yet' }),
+      h('p', { text: 'Ask Miracle AI about a goal or the stack you take. Once it has laid out your stack, options or questions for your clinician, they’re gathered here.' })));
+  } else body.append(P.render(packet, { level: 2 }), shareBox(packet), afterBox());
+  const dlg = h('dialog', { class: 'pk-dialog', 'aria-labelledby': 'packet-h' },
+    h('div', { class: 'pk-bar' }, h('span', { class: 'pk-bar-title', text: 'Your clinician review packet' }), close), body);
+  close.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => {
+    document.body.classList.remove('pk-on');
+    dlg.remove();
+    if (dialog === dlg) dialog = null;
+    if (opener?.isConnected) opener.focus();
+  });
+  dialog = dlg;
+  document.body.append(dlg);
+  document.body.classList.add('pk-on');
+  dlg.showModal();
+  close.focus();
+}
+function shareBox(packet) {
+  const P = window.MHPacket;
+  const qrBox = h('div', { class: 'pk-qr', hidden: true });
+  const status = h('p', { class: 'pk-status', role: 'status' });
+  const act = (label, icon, fn) => {
+    const b = h('button', { class: 'pk-act', type: 'button' }, svg(ICON[icon]), h('span', { text: label }));
+    b.addEventListener('click', () => fn(b));
+    return b;
+  };
+  const qrBtn = act('Show QR code', 'qr', async (b) => {
+    if (!qrBox.hidden) { qrBox.hidden = true; b.lastChild.textContent = 'Show QR code'; return; }
+    status.textContent = 'Making the code…';
+    try {
+      const { svg: code } = await P.qrSvg(await P.link(packet), QR_SRC);
+      qrBox.replaceChildren(code, h('p', { text: 'Your clinician scans this with their phone camera to open the packet. It’s carried inside the code itself, so Miracle Health never receives it. Anyone with the code can read it: show it only to your clinician.' }));
+      qrBox.hidden = false;
+      b.lastChild.textContent = 'Hide QR code';
+      status.textContent = '';
+    } catch {
+      status.textContent = 'The code couldn’t be made just now. Copy the link or print the packet instead.';
+    }
+  });
+  return h('section', { class: 'pk-share', 'aria-labelledby': 'pk-share-h' },
+    h('h3', { id: 'pk-share-h', text: 'Take it to your clinician' }),
+    h('p', { text: 'Print it, save it as a PDF, or let them scan the code. It’s made in your browser; Miracle Health doesn’t receive or keep it.' }),
+    h('div', { class: 'pk-actions' },
+      act('Print or save as PDF', 'print', () => window.print()),
+      qrBtn,
+      act('Copy link', 'link', async (b) => copy(await P.link(packet), b)),
+      act('Copy as text', 'copy', (b) => copy(P.text(packet), b))),
+    status, qrBox);
+}
+function afterBox() {
+  const mark = h('button', { class: 'pk-reviewed', type: 'button' });
+  const sync = () => {
+    mark.setAttribute('aria-pressed', String(!!meta.reviewed));
+    mark.replaceChildren(svg(ICON.check), h('span', { text: meta.reviewed ? `Reviewed on ${reviewedOn()}` : 'My clinician reviewed this' }));
+  };
+  mark.addEventListener('click', () => {
+    meta.reviewed = meta.reviewed ? null : localDate();
+    saveMeta();
+    sync();
+    refreshReview();
+  });
+  sync();
+  const tell = h('button', { class: 'pk-tell', type: 'button', text: 'Tell Miracle AI what they said' });
+  tell.addEventListener('click', () => {
+    dialog?.close();
+    input.value = 'My clinician reviewed my plan. They said: ';
+    grow();
+    updateSend();
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  });
+  return h('section', { class: 'pk-after', 'aria-labelledby': 'pk-after-h' },
+    h('h3', { id: 'pk-after-h', text: 'After your visit' }),
+    h('p', { text: 'When a licensed clinician has gone through it with you, mark it reviewed. Then tell Miracle AI what they said, and it can help with the next step.' }),
+    h('div', { class: 'pk-after-actions' }, mark, tell));
+}
+
+// ---------------------------------------------------------------------------
 // Copying, for the visitor to take to a clinician
 // ---------------------------------------------------------------------------
 async function copy(text, btn) {
@@ -496,39 +622,6 @@ async function copy(text, btn) {
     setTimeout(() => { if (label) label.textContent = was; else btn.textContent = was; btn.classList.remove('done'); }, 1800);
   }
 }
-function notes() {
-  const lines = [`Notes from Miracle AI to discuss with a clinician (${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })})`,
-    'Education from the Miracle Health Library and Community Signal, not medical advice. Clinician review pending.', ''];
-  // What the visitor told Miracle AI when it asked, as a clinician would want it up front
-  const about = [];
-  for (const m of chat) {
-    for (const p of m.parts || []) {
-      if (p.t !== 'card' || p.card.type !== 'intake' || !p.card.answered) continue;
-      p.card.questions.forEach((q, i) => { const a = answerOf(p.card, i); if (a) about.push(`- ${q.q} ${a}`); });
-    }
-  }
-  if (about.length) lines.push('About me (what I told Miracle AI):', ...about, '');
-  const qs = [];
-  for (const m of chat) {
-    if (m.role !== 'assistant') continue;
-    for (const p of m.parts || []) {
-      if (p.t !== 'card') continue;
-      const c = p.card;
-      if (c.type === 'shortlist') {
-        lines.push(`${c.title}:`);
-        for (const it of c.items) lines.push(`- ${it.name} (${it.tag || STATUS[it.status?.key]}${it.grade ? `, ${GRADE[it.grade].toLowerCase()}` : ''}): ${it.role}.${it.why ? ` ${it.why}` : ''}${it.caution ? ` ${it.caution}` : ''}`);
-        const a = c.audit;
-        if (a?.findings?.length) for (const f of a.findings) lines.push(`  Checked together: ${(f.names || f.ids).join(' + ')}: ${f.note}`);
-        lines.push('');
-      }
-      if (c.type === 'questions') for (const q of c.items) if (!qs.includes(q)) qs.push(q);
-    }
-  }
-  if (qs.length) lines.push('Questions for my clinician:', ...qs.map((q) => `- ${q}`), '');
-  lines.push('From https://miraclehealth.us/ai');
-  return lines.join('\n');
-}
-
 // ---------------------------------------------------------------------------
 // The agents beside the chat
 // ---------------------------------------------------------------------------
@@ -549,6 +642,20 @@ function railStep(s) {
 function railDone(msg) {
   railAgents().forEach((a) => { if (!/\b(done|pending|flag|run)\b/.test(a.className)) a.classList.add('unused'); else a.classList.remove('run'); });
   if (railSub) railSub.textContent = msg.state === 'done' ? `Answered in ${(msg.ms / 1000).toFixed(1)} s` : msg.state === 'stopped' ? 'Stopped' : 'Something went wrong';
+  const doc = document.querySelector('.agent-rail .agent[data-agent="clinician"]');
+  if (doc && meta.reviewed) {
+    doc.className = 'agent done reviewed';
+    doc.querySelector('.agent-now').textContent = `Reviewed by your clinician: you marked it on ${reviewedOn()}`;
+  }
+}
+// The rail as the last answer left it (after a reload, or when the review mark changes)
+function railFromChat() {
+  if (busy) return;
+  const last = [...chat].reverse().find((m) => m.role === 'assistant' && m.state);
+  if (!last) return;
+  railReset('');
+  (last.steps || []).forEach(railStep);
+  railDone(last);
 }
 function railNotes() {
   const box = $('rail-notes');
@@ -787,7 +894,9 @@ function finish(am, live) {
       : am.review ? 'Every part checked by the Safety agent before you saw it' : 'Answered';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
-    view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })), h('span', { class: 'foot-actions' }, btn));
+    const forClinician = (am.parts || []).some((p) => p.t === 'card' && (p.card.type === 'shortlist' || p.card.type === 'questions'));
+    view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
+      h('span', { class: 'foot-actions' }, forClinician ? packetButton('Clinician packet') : null, btn));
     view.foot.hidden = false;
   }
   if (live && !am.helpShown) {
@@ -856,6 +965,8 @@ newBtn.addEventListener('click', () => {
   if (busy) busy.controller.abort();
   chat = [];
   store.del(KEY);
+  meta = {};
+  store.del(META);
   thread.querySelectorAll('.msg,.gate').forEach((n) => n.remove());
   empty.hidden = false;
   newBtn.hidden = true;
@@ -863,7 +974,7 @@ newBtn.addEventListener('click', () => {
   railNotes();
   input.focus();
 });
-$('rail-copy')?.addEventListener('click', (e) => copy(notes(), e.currentTarget));
+$('rail-copy')?.addEventListener('click', (e) => openPacket(e.currentTarget));
 
 // Sig everywhere, and the agents waking up once on arrival
 document.querySelectorAll('[data-sig]').forEach((el) => setSig(el, 'idle'));
@@ -886,7 +997,7 @@ if (chat.length) {
   newBtn.hidden = !chat.length;
   for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
   const last = [...chat].reverse().find((m) => m.role === 'assistant');
-  if (last) { railReset(''); (last.steps || []).forEach(railStep); railDone(last); }
+  if (last) railFromChat();
   railNotes();
   save();
 }

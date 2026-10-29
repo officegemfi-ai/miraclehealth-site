@@ -17,7 +17,7 @@ set to. On phones the links sit behind a Menu button, which works without script
 | File | What it is |
 | --- | --- |
 | `index.html` | The front page |
-| `ai/` | Miracle AI, the chat at /ai: `index.html` (written by the library build), `ai.css` and `ai.js`. People talk with five agents about improving with peptides, supplements and hormones; the answers come from the community's `ask` function (miracle-health-community, `supabase/functions/ask`), streamed with each agent's steps. The conversation stays in the visitor's browser tab |
+| `ai/` | Miracle AI, the chat at /ai: `index.html` (written by the library build), `ai.css` and `ai.js`. People talk with five agents about improving with peptides, supplements and hormones; the answers come from the community's `ask` function (miracle-health-community, `supabase/functions/ask`), streamed with each agent's steps. The conversation stays in the visitor's browser tab. `packet.js` and `packet.css` make the clinician review packet in the browser (print or PDF, or a link and QR code that carry it after "#" to `ai/packet/`, which a clinician opens; no server ever receives it); `vendor/qrcode.js` is qrcode-generator 2.0.4 (MIT), loaded only when someone asks for a code |
 | `styles.css` | Its look (the page's security policy allows only its own files, so no inline styles) |
 | `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
 | `404.html` | Shown for any address that doesn't exist |
@@ -43,7 +43,7 @@ line. No doses, no sellers.
 | `library/data/entries/<id>.json` | The fact sheets: every claim checked against a source we opened, with its link. Each page says "Fact-checked … · clinician review pending" until a clinician has read it |
 | `library/data/uses.json` | The twelve goals and the uses members report on (a copy of the community's `shared/uses.json`) |
 | `library/data/index.json` | What Miracle AI reads to find and rank compounds: every compound with its family and aliases, plus the status, evidence grade and goals of those with a fact sheet (written by the build) |
-| `scripts/build_library.mjs` | Writes `library/index.html`, `library/<id>/index.html`, `library/data/index.json`, the Miracle AI page (`ai/index.html`) and `sitemap.xml` from the data. Run `node scripts/build_library.mjs` after changing the data, and commit what it writes (`--check` says whether the pages are up to date) |
+| `scripts/build_library.mjs` | Writes `library/index.html`, `library/<id>/index.html`, `library/data/index.json`, the Miracle AI page (`ai/index.html`), the packet page (`ai/packet/index.html`) and `sitemap.xml` from the data. Run `node scripts/build_library.mjs` after changing the data, and commit what it writes (`--check` says whether the pages are up to date) |
 | `library/library.css`, `library/library.js` | The library's look, and its script: search and filters, and the live numbers |
 | `library/signalviz.js` | The drawings (the rose, the Signal's flow, the takeover line, the seals), copied from the community's `web/lib/signalviz.js` |
 | `library/research/` | How the fact sheets are researched: `BRIEF.md` (the rules every entry follows), `NEXT_ROUND.md` (what's already confirmed, and where to pick up), `batches/` (the 300 entries in groups of 12; the ones without a file in `data/entries/` are still to do) and `validate.py` (checks every entry) |

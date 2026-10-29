@@ -165,8 +165,8 @@
 /* shortlist: built by the Stack builder, checked by the Synergy auditor */
 .card.short{border:1px solid var(--line);background:var(--white)}
 .card.short .card-head{background:#F4F6F1}
-.short-note{display:flex;gap:8px;padding:10px 16px;border-top:1px solid var(--line);background:#FFF8EC;font-size:13.5px;line-height:1.45;color:#6E4600}
-.short-note svg{flex:none;margin-top:2px;color:#C98500}
+.short-note{display:flex;gap:7px;padding:9px 16px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.45;color:var(--muted)}
+.short-note svg{flex:none;margin-top:2px}
 .pick{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;padding:14px 16px;border-top:1px solid var(--line)}
 .meter{display:grid;grid-template-rows:repeat(4,1fr);gap:3px;width:8px;height:46px;margin:3px auto 0}
 .meter i{border-radius:2px;background:#E4E8E3}
@@ -179,8 +179,13 @@
 .pick-why{margin-top:5px;font-size:14.5px;line-height:1.5;color:var(--text-2)}
 .pick-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .pick-pills .ev,.pick-pills .st{font-size:9.5px;padding:4px 8px}
-.pick-warn{display:flex;gap:7px;margin-top:9px;font-size:13px;line-height:1.45;color:#6E4600}
-.pick-warn svg{flex:none;margin-top:2px;color:#C98500}
+.pick-found{display:grid;gap:5px;margin:9px 0 0;padding:0;list-style:none}
+.pick-found li{position:relative;padding-left:16px;font-size:14px;line-height:1.45;color:var(--text)}
+.pick-found li::before{content:'';position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;background:#8DB51A}
+.found-ev{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:40px;background:#F1F4EC;font:500 10.5px/1.6 var(--body);color:var(--muted);white-space:nowrap}
+.found-strong,.found-moderate{background:#E9F3D2;color:#3F5200}
+.pick-warn{display:flex;gap:6px;margin-top:8px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.pick-warn svg{flex:none;margin-top:2px}
 .pick-sig{min-width:66px;text-align:right}
 .pick-sig small{display:block;font:500 9.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .pick-sig b{display:block;margin-top:2px;font:600 24px/1 var(--head);letter-spacing:-.03em;color:var(--ink)}

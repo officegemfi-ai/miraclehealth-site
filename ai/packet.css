@@ -1,0 +1,116 @@
+/* The clinician review packet (ai/packet.js): in a dialog over the chat, on its own page when a
+   clinician opens a shared link, and on paper. A plain clinical document: white page, ink type,
+   one green rule for the note to the clinician, and a dashed box the clinician fills in. */
+
+/* ---------------------------------------------------------------- the dialog */
+.pk-dialog{width:min(820px,calc(100vw - 32px));max-width:none;max-height:calc(100svh - 32px);padding:0;border:0;border-radius:18px;background:#EEF1EB;color:var(--text);box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;--focus:var(--ink)}
+.pk-dialog[open]{display:flex;flex-direction:column}
+.pk-dialog::backdrop{background:rgba(6,10,9,.74)}
+.pk-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 22px;border-bottom:1px solid var(--line);background:var(--white)}
+.pk-bar-title{font:600 14.5px/1.3 var(--head);color:var(--ink)}
+.pk-close{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--ink);cursor:pointer}
+.pk-close:hover{border-color:var(--ink)}
+.pk-scroll{overflow:auto;padding:22px 24px 26px;overscroll-behavior:contain}
+.pk-empty{max-width:520px;margin:18px auto;text-align:center}
+.pk-empty h2{font:600 20px/1.3 var(--head);color:var(--ink)}
+.pk-empty p{margin-top:8px;font-size:15px;line-height:1.55;color:var(--text-2)}
+
+/* ---------------------------------------------------------------- the document */
+.packet{max-width:720px;margin:0 auto;padding:30px 32px 26px;border-radius:4px;background:#FFFFFF;color:#121E1D;font-size:14.5px;line-height:1.55;box-shadow:0 1px 2px rgba(18,30,29,.08),0 8px 24px rgba(18,30,29,.06)}
+.pk-head{padding-bottom:14px;border-bottom:2px solid #121E1D}
+.pk-brand{font:600 12.5px/1.3 var(--head);color:#121E1D}
+.pk-brand span{font-weight:500;color:#5D6966}
+.packet #packet-h{margin-top:10px;font:600 26px/1.15 var(--head);letter-spacing:-.02em;color:#121E1D}
+.pk-date{margin-top:5px;font-size:13px;color:#5D6966}
+.pk-note{margin-top:16px;padding:11px 14px;border-left:3px solid #8DB51A;background:#F5F8EF}
+.packet :is(h2,h3):not(#packet-h){font:600 15px/1.3 var(--head);letter-spacing:-.005em;color:#121E1D}
+.packet .pk-note :is(h2,h3){font-size:13.5px}
+.pk-note p{margin-top:3px;font-size:13.5px;line-height:1.5;color:#3A4644}
+.pk-sec{margin-top:22px}
+.pk-about{margin-top:6px}
+.pk-about div{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2px 18px;padding:7px 0;border-bottom:1px solid #E7EAE4}
+.pk-about dt{color:#3A4644}
+.pk-about dd{margin:0;font-weight:600;color:#121E1D}
+.pk-items{display:grid;gap:10px;margin:8px 0 0;padding:0;list-style:none}
+.pk-item{padding:11px 13px;border:1px solid #E1E5DE;border-radius:8px;break-inside:avoid}
+.pk-item-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.pk-item-head a,.pk-item-head b{font:600 15.5px/1.3 var(--head);color:#121E1D;text-decoration:none}
+.pk-item-head a:hover{text-decoration:underline;text-decoration-color:#8DB51A;text-decoration-thickness:2px}
+.pk-role{font-size:12.5px;color:#5D6966}
+.pk-facts{margin-top:3px;font-size:13px;color:#3A4644}
+.pk-found{display:grid;gap:3px;margin:6px 0 0;padding:0;list-style:none}
+.pk-found li{position:relative;padding-left:15px;font-size:13.5px;line-height:1.45}
+.pk-found li::before{content:'';position:absolute;left:1px;top:.55em;width:6px;height:6px;border-radius:50%;background:#8DB51A}
+.pk-found small{color:#5D6966;font-size:12px}
+.pk-why{margin-top:5px;font-size:13.5px}
+.pk-warn{margin-top:5px;font-size:12.5px;color:#5D6966}
+.pk-findings{display:grid;gap:7px;margin:8px 0 0;padding:0;list-style:none}
+.pk-findings li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:9px;align-items:start;font-size:13.5px;line-height:1.5}
+.pk-lvl{padding:1px 8px;border-radius:40px;font:600 11px/1.6 var(--body);white-space:nowrap}
+.pk-lvl-avoid{background:#F9DEDA;color:#8E2F28}
+.pk-lvl-caution{background:#FFF1D9;color:#6E4600}
+.pk-lvl-info{background:#EEEFEE;color:#4A5251}
+.pk-qs{margin:8px 0 0;padding-left:22px;list-style:decimal}
+.pk-qs li{margin-top:4px}
+.pk-review{margin-top:24px;padding:14px 16px 16px;border:1.5px dashed #9AA39F;border-radius:8px;break-inside:avoid}
+.pk-fill{font-size:12.5px;color:#5D6966}
+.pk-lines{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 18px;margin-top:10px}
+.pk-line{display:flex;align-items:flex-end;min-height:46px;border-bottom:1px solid #9AA39F}
+.pk-line span{padding-bottom:3px;font-size:11.5px;color:#5D6966}
+.pk-line-wide{grid-column:1/-1;min-height:92px}
+.pk-foot{margin-top:16px;font-size:11.5px;line-height:1.5;color:#5D6966}
+
+/* ---------------------------------------------------------------- taking it to the clinician */
+.pk-share,.pk-after{max-width:720px;margin:16px auto 0;padding:16px 18px 18px;border-radius:12px;border:1px solid var(--line);background:var(--white)}
+.pk-share h3,.pk-after h3{font:600 15.5px/1.3 var(--head);color:var(--ink)}
+.pk-share > p,.pk-after > p{margin-top:4px;font-size:14px;line-height:1.5;color:var(--text-2)}
+.pk-actions,.pk-after-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pk-act{display:inline-flex;align-items:center;gap:7px;min-height:42px;padding:0 16px;border-radius:40px;border:1px solid var(--line);background:var(--white);color:var(--ink);font:500 14.5px/1 var(--body);cursor:pointer}
+.pk-act:first-child{border-color:var(--ink);background:var(--ink);color:var(--on-ink)}
+.pk-act.done{border-color:#5E9A0E;color:#2F4A00}
+.pk-status{margin-top:8px;font-size:13px;color:var(--muted)}
+.pk-status:empty{display:none}
+.pk-qr{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:18px;align-items:center;margin-top:14px}
+.pk-qr svg{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+.pk-qr p{font-size:13.5px;line-height:1.5;color:var(--text-2)}
+.pk-reviewed{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:40px;border:1.5px solid var(--ink);background:var(--white);color:var(--ink);font:600 15px/1 var(--body);cursor:pointer}
+.pk-reviewed svg{opacity:.35}
+.pk-reviewed[aria-pressed="true"]{border-color:#5E9A0E;background:#E9F3D2;color:#2F4A00}
+.pk-reviewed[aria-pressed="true"] svg{opacity:1}
+.pk-tell{min-height:44px;padding:0 18px;border-radius:40px;border:1px solid var(--line);background:transparent;color:var(--text-2);font:500 14.5px/1 var(--body);cursor:pointer}
+.pk-tell:hover,.pk-act:not(:first-child):hover{border-color:var(--ink);color:var(--ink)}
+body.pk-on{overflow:hidden}
+
+/* ---------------------------------------------------------------- the page a clinician opens */
+.packet-page main{padding:calc(var(--top-h) + 28px) 16px 56px;background:#EEF1EB}
+.pk-carried{max-width:720px;margin:0 auto 14px;font-size:13.5px;line-height:1.5;color:#3A4644}
+.pk-page-actions{max-width:720px;margin:16px auto 0}
+.pk-btn{min-height:44px;padding:0 20px;border-radius:40px;border:0;background:var(--ink);color:var(--on-ink);font:600 15px/1 var(--body);cursor:pointer}
+.pk-welcome{max-width:640px;margin:0 auto;padding:28px 30px;border-radius:12px;background:#fff}
+.pk-welcome h1{font:600 26px/1.2 var(--head);letter-spacing:-.02em;color:var(--ink)}
+.pk-welcome p{margin-top:10px;font-size:15.5px;line-height:1.6;color:var(--text-2)}
+.pk-loading{max-width:720px;margin:0 auto;color:#3A4644}
+
+@media (max-width:700px){
+  .pk-dialog{width:100vw;height:100svh;max-height:100svh;border-radius:0}
+  .pk-scroll{padding:12px 10px 28px}
+  .packet{padding:20px 16px 18px}
+  .packet #packet-h{font-size:22px}
+  .pk-about div{grid-template-columns:minmax(0,1fr)}
+  .pk-lines{grid-template-columns:minmax(0,1fr)}
+  .pk-qr{grid-template-columns:minmax(0,1fr)}
+  .pk-act{flex:1 1 calc(50% - 8px);justify-content:center}
+  .pk-reviewed,.pk-tell{flex:1 1 100%;justify-content:center}
+}
+
+/* ---------------------------------------------------------------- on paper: the packet only */
+@media print{
+  body.pk-on > :not(.pk-dialog){display:none!important}
+  body.pk-on .pk-dialog{position:static;display:block;width:auto;max-height:none;margin:0;border-radius:0;background:#fff;box-shadow:none;overflow:visible}
+  body.pk-on .pk-dialog::backdrop{display:none}
+  .pk-bar,.pk-share,.pk-after,.pk-page-actions,.pk-carried,.packet-page .top,.packet-page .menu-panel,.packet-page .foot,.packet-page .skip{display:none!important}
+  .pk-scroll{padding:0;overflow:visible}
+  .packet-page main{padding:0;background:#fff}
+  .packet{max-width:none;padding:0;box-shadow:none}
+  .pk-item-head a::after{content:" · " attr(data-short);font:400 11px/1.3 var(--body);color:#5D6966}
+}
