@@ -1,20 +1,23 @@
 // Miracle AI's clinician review packet. It is made in the visitor's browser from their own chat:
-// what they told Miracle AI, the stack and options discussed, what the Synergy auditor flagged
-// and their questions, with room for the clinician's review. It can be printed or saved as a PDF,
-// or carried to a clinician inside a link or QR code: the packet travels in the part of the link
-// after "#", which browsers never send to a server, so Miracle Health never receives or keeps it.
+// why they're going, what they told Miracle AI, the stack and options discussed (with the evidence
+// for their goal, what studies found and where, and the lab tests the Library lists), what the
+// Synergy auditor flagged and their questions, with lines they fill in by hand on paper and room
+// for the clinician's notes. It can be printed or saved as a PDF, or carried to a clinician inside a
+// link or QR code: the packet travels in the part of the link after "#", which browsers never send
+// to a server, so Miracle Health never receives or keeps it.
 // Used by the chat (/ai/) and by the page a clinician opens (/ai/packet/).
 
 const SITE = 'https://miraclehealth.us';
-const GRADE = { strong: 'Strong', moderate: 'Moderate', limited: 'Limited', preclinical: 'Animal and lab studies only', anecdotal: 'Anecdotal' };
 const LEVEL = { avoid: 'Avoid', caution: 'Caution', info: 'Good to know' };
 const FOUND = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'small human studies', preclinical: 'animal or lab studies', anecdotal: 'user reports' };
+// Evidence for the use asked about, as the chat's cards say it
+const USE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Early human studies', preclinical: 'Animal or lab studies only', anecdotal: 'User reports only', none: 'none in the Library yet' };
 const RANK = { strong: 0, moderate: 1, limited: 2, preclinical: 3, anecdotal: 4 };
-// The same words the chat uses to put the findings about someone's goal first
+// The same words the chat uses to tell which findings are about someone's goal
 const GOAL_WORDS = {
   weight: /weight|fat\b|obes|\bbmi\b|waist|appetite|metabolic|insulin|blood sugar|glucose|diabet/i,
   muscle: /muscle|strength|lean mass|power|sprint|weightlift|body composition|sarcopen/i,
-  recovery: /tendon|ligament|joint|osteoarth|arthrit|injur|heal|recover|sore|pain|cartilage|bone|fractur|stiff/i,
+  recovery: /tendon|ligament|joint|osteoarth|arthrit|injur|wound|recover|soreness|muscle damage|cartilage|bone|fractur|stiff|knee|shoulder|back pain|musculoskeletal/i,
   energy: /fatigue|energy|tired|vitality|endurance|exhaust/i,
   sleep: /sleep|insomnia|jet lag|circadian/i,
   cognition: /memory|attention|focus|cognit|mood|anxiety|stress|depress|learning|brain|bdnf|mental/i,
@@ -42,6 +45,7 @@ function h(tag, attrs, ...kids) {
 }
 const clip = (s, n) => { const t = String(s ?? '').replace(/\s+/g, ' ').trim(); return t.length > n ? `${t.slice(0, n - 1)}…` : t; };
 const isId = (id) => typeof id === 'string' && /^[a-z0-9-]{1,40}$/.test(id);
+const isHttps = (u) => typeof u === 'string' && /^https:\/\/[^\s"'<>]+$/.test(u);
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 export function dateLabel(iso) {
   const d = new Date(`${iso}T12:00:00`);
@@ -59,11 +63,33 @@ function cautionFrom(it) {
   return '';
 }
 
+// From a fact sheet: evidence for the goal, the findings about it first (each with its source),
+// and the labs it lists. The chat's cards carry these already; the clinician's page reads them here.
+function fromSheet(sheet, goal) {
+  const fits = GOAL_WORDS[goal];
+  const ranked = (sheet.benefits || []).map((b, i) => ({ b, i, off: fits && !fits.test(b.claim) ? 1 : 0 }))
+    .sort((x, y) => x.off - y.off || (RANK[x.b.evidence] ?? 5) - (RANK[y.b.evidence] ?? 5) || x.i - y.i);
+  // Findings about the goal only, when there are any; otherwise what it has been studied for
+  const about = ranked.filter((x) => !x.off);
+  const benefits = (about.length ? about : ranked).slice(0, 2).map(({ b }) => {
+    const src = (sheet.sources || []).find((x) => x.n === b.sources?.[0]);
+    return { claim: clip(b.claim, 220), evidence: String(b.evidence || ''), ...(src && isHttps(src.url) ? { source: { title: clip(src.title, 160), year: String(src.year || ''), url: src.url } } : {}) };
+  });
+  let use = { grade: sheet.evidence?.grade || null, fits: true };
+  if (fits) {
+    const ranks = (sheet.benefits || []).filter((b) => fits.test(b.claim)).map((b) => RANK[b.evidence] ?? 5);
+    if (ranks.length) use = { grade: Object.keys(RANK).find((k) => RANK[k] === Math.min(...ranks)) || null, fits: true };
+    else if (!(Number(sheet.goals?.[goal] || 0) >= 0.75)) use = { grade: 'none', fits: false };
+  }
+  const labs = [...(sheet.labs?.before || []), ...(sheet.labs?.during || [])].map((l) => clip(l, 160)).filter(Boolean).slice(0, 4);
+  return { benefits, use, labs };
+}
+
 // ---------------------------------------------------------------------------
 // The packet, from the chat
 // ---------------------------------------------------------------------------
-// {date, about:[[q,a]], stack:[item], options:[item], findings:[{level,names,note}], questions:[q]}
-// item: {id, name, family, role, why, grade, status:{key,label}|null, tag, signal, caution}
+// {date, goal, reason, about:[[q,a]], stack:[item], options:[item], findings:[{level,names,note}], questions:[q]}
+// item: {id, name, family, role, why, grade, use, status:{key,label}|null, tag, signal, caution, benefits, labs}
 export function fromChat(chat) {
   const about = [];
   const stack = new Map();
@@ -102,7 +128,7 @@ export function fromChat(chat) {
   }
   // An option that's already in their stack is listed once, with their stack
   for (const id of stack.keys()) options.delete(id);
-  return { date: today(), goal, about, stack: [...stack.values()], options: [...options.values()], findings: [...findings.values()], questions };
+  return { date: today(), goal, reason: '', about, stack: [...stack.values()], options: [...options.values()], findings: [...findings.values()], questions };
 }
 export const isEmpty = (p) => !p.about.length && !p.stack.length && !p.options.length && !p.findings.length && !p.questions.length;
 
@@ -111,7 +137,7 @@ export const isEmpty = (p) => !p.about.length && !p.stack.length && !p.options.l
 // ---------------------------------------------------------------------------
 function compact(p) {
   return {
-    v: 1, t: p.date, g: p.goal || '',
+    v: 1, t: p.date, g: p.goal || '', r: clip(p.reason, 200),
     a: p.about.slice(0, 8).map(([q, a]) => [clip(q, 160), clip(a, 220)]),
     y: p.stack.slice(0, 8).map((i) => [i.id, clip(i.role, 40)]),
     o: p.options.slice(0, 8).map((i) => [i.id, clip(i.role, 40), clip(i.why, 110)]),
@@ -144,6 +170,7 @@ export async function decode(s) {
   return {
     t: /^\d{4}-\d{2}-\d{2}$/.test(c.t) ? c.t : '',
     g: GOAL_WORDS[c.g] ? c.g : '',
+    r: clip(c.r, 200),
     a: arr(c.a, 8).filter(Array.isArray).map(([q, a]) => [clip(q, 160), clip(a, 220)]).filter(([q, a]) => q && a),
     y: arr(c.y, 8).filter((x) => Array.isArray(x) && isId(x[0])).map(([id, role]) => [id, clip(role, 40)]),
     o: arr(c.o, 8).filter((x) => Array.isArray(x) && isId(x[0])).map(([id, role, why]) => [id, clip(role, 40), clip(why, 110)]),
@@ -158,13 +185,14 @@ export function expand(c, index) {
     const it = byId.get(id);
     const out = {
       id, name: it?.name || id, family: it?.family || '', role: role || '', why: why || '',
-      grade: it?.grade || null, status: it?.status ? { key: it.status, label: it.status_label || '' } : null, tag: '', signal: null, caution: '',
+      grade: it?.grade || null, use: null, status: it?.status ? { key: it.status, label: it.status_label || '' } : null,
+      tag: '', signal: null, caution: '', benefits: [], labs: [],
     };
     out.caution = cautionFrom(out);
     return out;
   };
   return {
-    date: c.t, goal: c.g, about: c.a, stack: c.y.map(item), options: c.o.map(item),
+    date: c.t, goal: c.g, reason: c.r, about: c.a, stack: c.y.map(item), options: c.o.map(item),
     findings: c.f.map(([l, n, note]) => ({ level: CODE_LEVEL[l], names: n.split(' + '), note })), questions: c.q,
   };
 }
@@ -173,13 +201,30 @@ export async function link(p) { return `${location.origin}/ai/packet/#${await en
 // ---------------------------------------------------------------------------
 // On paper and on screen
 // ---------------------------------------------------------------------------
+const useLabel = (it) => {
+  const g = it.use ? it.use.grade : it.grade;
+  return g ? USE[g] || g : 'No Library fact sheet yet';
+};
 const facts = (it) => [
-  it.grade ? `Evidence: ${GRADE[it.grade] || it.grade}` : 'No Library fact sheet yet',
+  `Evidence for this use: ${useLabel(it)}`,
   it.status?.label ? `US status: ${it.status.label}` : it.tag ? `US status: ${it.tag}` : '',
-  it.signal && Number.isFinite(Number(it.signal.score)) ? `Community Signal ${Number(it.signal.score).toFixed(0)} (${it.signal.level || 'forum data'}, self-reported)` : '',
+  it.signal && Number.isFinite(Number(it.signal.score)) ? `Community Signal ${Number(it.signal.score).toFixed(0)} (${String(it.signal.level || 'forum data').toLowerCase()}, self-reported)` : '',
 ].filter(Boolean).join(' · ');
 
-function itemNode(it, withWhy) {
+// Every study finding's source, numbered once for the whole packet
+function referencesOf(p) {
+  const refs = [];
+  for (const it of [...p.stack, ...p.options]) {
+    for (const b of it.benefits || []) {
+      if (!b.source?.url) continue;
+      if (!refs.some((r) => r.url === b.source.url)) refs.push(b.source);
+    }
+  }
+  return refs;
+}
+const refNo = (refs, b) => (b.source?.url ? refs.findIndex((r) => r.url === b.source.url) + 1 : 0);
+
+function itemNode(it, withWhy, refs) {
   const url = `${SITE}/library/${it.id}/`;
   return h('li', { class: 'pk-item' },
     h('div', { class: 'pk-item-head' },
@@ -188,25 +233,41 @@ function itemNode(it, withWhy) {
     h('p', { class: 'pk-facts', text: facts(it) }),
     withWhy && it.why ? h('p', { class: 'pk-why', text: `Why it’s listed: ${it.why}` }) : null,
     it.benefits?.length ? h('ul', { class: 'pk-found', 'aria-label': 'What studies found' },
-      it.benefits.map((b) => h('li', {}, `${b.claim} `, h('small', { text: `(${FOUND[b.evidence] || b.evidence})` })))) : null,
-    it.caution ? h('p', { class: 'pk-warn', text: it.caution }) : null);
+      it.use && !it.use.fits ? h('li', { class: 'pk-nouse', text: 'The Library has no studies of it for this use yet. What it has been studied for:' }) : null,
+      it.benefits.map((b) => {
+        const n = refNo(refs, b);
+        return h('li', {}, `${b.claim} `, h('small', { text: `(${FOUND[b.evidence] || b.evidence}${n ? `; ref ${n}` : ''})` }));
+      })) : null,
+    it.labs?.length ? h('p', { class: 'pk-labs', text: `Labs the Library lists: ${it.labs.join('; ')}` }) : null,
+    it.caution ? h('p', { class: 'pk-warn', text: it.caution }) : null,
+    h('p', { class: 'pk-fillin' },
+      h('span', { text: '☐ Taking now   ☐ Considering' }),
+      h('span', { text: 'How I take it ____________' }),
+      h('span', { text: 'Since ________' }),
+      h('span', { text: 'From ☐ prescription ☐ pharmacy ☐ other ________' })));
 }
 
 export function render(p, { level = 2 } = {}) {
   const H = `h${level}`;
   const S = `h${level + 1}`;
+  const refs = referencesOf(p);
   const sec = (title, ...kids) => h('section', { class: 'pk-sec' }, h(S, { text: title }), ...kids);
   const art = h('article', { class: 'packet', 'aria-labelledby': 'packet-h' },
     h('header', { class: 'pk-head' },
       h('p', { class: 'pk-brand' }, 'Miracle Health', h('span', { text: ' · Miracle AI' })),
       h(H, { id: 'packet-h', text: 'Clinician review packet' }),
-      p.date ? h('p', { class: 'pk-date', text: `Prepared ${dateLabel(p.date)} by the patient, with Miracle AI` }) : null),
+      p.date ? h('p', { class: 'pk-date', text: `Prepared ${dateLabel(p.date)} by the patient, with Miracle AI` }) : null,
+      h('p', { class: 'pk-print-only pk-who' }, h('span', { text: 'Patient name ______________________' }), h('span', { text: 'Date of birth ____________' }))),
+    h('p', { class: 'pk-reason' }, h('b', { text: 'Reason for visit: ' }), h('span', { class: 'pk-reason-text', text: p.reason || '' }), p.reason ? null : h('span', { class: 'pk-blank', 'aria-hidden': 'true' })),
     h('section', { class: 'pk-note' },
       h(S, { text: 'For the reviewing clinician' }),
-      h('p', { text: 'Your patient explored the options below with Miracle AI, an education tool built on the Miracle Health Library (fact sheets checked against primary sources) and the Community Signal (outcomes people report, not proof). It gives no doses and makes no diagnosis. Nothing here is a plan until you have reviewed it against their history.' })));
+      h('p', { text: 'Your patient explored the options below with Miracle AI, an education tool. It draws on the Miracle Health Library (fact sheets checked against primary sources; clinician review of the Library is still pending) and the Community Signal (outcomes people report, not proof). It gives no doses and makes no diagnosis. Nothing here is a plan until you have reviewed it against their history.' })));
   if (p.about.length) art.append(sec('About me, in my words', h('dl', { class: 'pk-about' }, p.about.map(([q, a]) => h('div', {}, h('dt', { text: q }), h('dd', { text: a }))))));
-  if (p.stack.length) art.append(sec('What I take now, or am weighing up', h('ul', { class: 'pk-items' }, p.stack.map((it) => itemNode(it, false)))));
-  if (p.options.length) art.append(sec('Options I’d like to discuss', h('ul', { class: 'pk-items' }, p.options.map((it) => itemNode(it, true)))));
+  if (p.stack.length || p.options.length) {
+    art.append(h('p', { class: 'pk-screen-only pk-hint', text: 'On paper, each item has lines for you to fill in by hand: whether you take it now, how, since when and where it’s from. Miracle AI never sees them.' }));
+  }
+  if (p.stack.length) art.append(sec('What I take now, or am weighing up', h('ul', { class: 'pk-items' }, p.stack.map((it) => itemNode(it, false, refs)))));
+  if (p.options.length) art.append(sec('Options I’d like to discuss', h('ul', { class: 'pk-items' }, p.options.map((it) => itemNode(it, true, refs)))));
   if (p.findings.length) {
     art.append(sec('Checked together by the Synergy auditor', h('ul', { class: 'pk-findings' }, p.findings.map((f) => h('li', {},
       h('span', { class: `pk-lvl pk-lvl-${f.level}`, text: LEVEL[f.level] || 'Note' }),
@@ -214,25 +275,32 @@ export function render(p, { level = 2 } = {}) {
   }
   if (p.questions.length) art.append(sec('My questions for you', h('ol', { class: 'pk-qs' }, p.questions.map((q) => h('li', { text: q })))));
   art.append(h('section', { class: 'pk-review' },
-    h(S, { text: 'Clinician review' }),
-    h('p', { class: 'pk-fill', text: 'For the clinician to complete.' }),
+    h(S, { text: 'Clinician notes (not an endorsement)' }),
     h('div', { class: 'pk-lines' }, ['Reviewed by', 'Credentials', 'Date'].map((t) => h('div', { class: 'pk-line' }, h('span', { text: t }))),
-      h('div', { class: 'pk-line pk-line-wide' }, h('span', { text: 'Decision and notes' })))),
-    h('footer', { class: 'pk-foot', text: 'Made in my own browser with Miracle AI (miraclehealth.us/ai). Education from the Miracle Health Library and Community Signal; no doses or diagnoses. Miracle Health doesn’t receive or keep this packet.' }));
+      h('div', { class: 'pk-line pk-line-wide' }, h('span', { text: 'Notes' })))));
+  if (refs.length) {
+    art.append(sec('References', h('ol', { class: 'pk-refs' }, refs.map((r) => h('li', {},
+      `${r.title}${r.year ? ` (${r.year})` : ''}. `, h('a', { href: r.url, target: '_blank', rel: 'noopener noreferrer', text: r.url }))))));
+  }
+  art.append(h('footer', { class: 'pk-foot', text: 'Made in my own browser with Miracle AI (miraclehealth.us/ai). Education from the Miracle Health Library and Community Signal; no doses or diagnoses. Miracle Health doesn’t receive or keep this packet.' }));
   return art;
 }
 
 export function text(p) {
-  const out = ['CLINICIAN REVIEW PACKET (Miracle Health · Miracle AI)', p.date ? `Prepared ${dateLabel(p.date)} by the patient, with Miracle AI` : '', '',
-    'For the reviewing clinician: education from the Miracle Health Library and Community Signal; no doses or diagnoses. Nothing here is a plan until you have reviewed it.', ''];
+  const refs = referencesOf(p);
+  const out = ['CLINICIAN REVIEW PACKET (Miracle Health · Miracle AI)', p.date ? `Prepared ${dateLabel(p.date)} by the patient, with Miracle AI` : '',
+    `Reason for visit: ${p.reason || '____'}`, '',
+    'For the reviewing clinician: education from the Miracle Health Library (fact sheets checked against primary sources; clinician review of the Library is still pending) and the Community Signal (self-reported); no doses or diagnoses. Nothing here is a plan until you have reviewed it.', ''];
   const items = (title, list, withWhy) => {
     if (!list.length) return;
     out.push(title);
     for (const it of list) {
       out.push(`- ${it.name}${it.role ? ` (${it.role})` : ''}: ${facts(it)}. ${SITE}/library/${it.id}/`);
       if (withWhy && it.why) out.push(`  Why it’s listed: ${it.why}`);
-      for (const b of it.benefits || []) out.push(`  Found: ${b.claim} (${FOUND[b.evidence] || b.evidence})`);
+      for (const b of it.benefits || []) { const n = refNo(refs, b); out.push(`  Found: ${b.claim} (${FOUND[b.evidence] || b.evidence}${n ? `; ref ${n}` : ''})`); }
+      if (it.labs?.length) out.push(`  Labs the Library lists: ${it.labs.join('; ')}`);
       if (it.caution) out.push(`  ${it.caution}`);
+      out.push('  Taking now or considering: ____  How I take it: ____  Since: ____  From: ____');
     }
     out.push('');
   };
@@ -241,7 +309,9 @@ export function text(p) {
   items('Options I’d like to discuss:', p.options, true);
   if (p.findings.length) out.push('Checked together by the Synergy auditor:', ...p.findings.map((f) => `- [${LEVEL[f.level]}] ${f.names.join(' + ')}: ${f.note}`), '');
   if (p.questions.length) out.push('My questions for you:', ...p.questions.map((q, i) => `${i + 1}. ${q}`), '');
-  out.push('Clinician review: reviewed by ____  credentials ____  date ____', 'Decision and notes:', '', 'Made in my own browser with Miracle AI (miraclehealth.us/ai). Miracle Health doesn’t receive or keep this packet.');
+  out.push('Clinician notes (not an endorsement): reviewed by ____  credentials ____  date ____', 'Notes:', '');
+  if (refs.length) out.push('References:', ...refs.map((r, i) => `${i + 1}. ${r.title}${r.year ? ` (${r.year})` : ''}. ${r.url}`), '');
+  out.push('Made in my own browser with Miracle AI (miraclehealth.us/ai). Miracle Health doesn’t receive or keep this packet.');
   return out.filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
 }
 
@@ -303,22 +373,18 @@ if (root) {
       let index = null;
       try { index = await (await fetch('/library/data/index.json')).json(); } catch { /* names fall back to ids */ }
       const p = expand(c, index);
+      // What studies found, the evidence for the goal and the labs come from the Library's own sheets
       await Promise.all([...p.stack, ...p.options].slice(0, 16).map(async (it) => {
         try {
-          const sheet = await (await fetch(`/library/data/entries/${it.id}.json`)).json();
-          const fits = GOAL_WORDS[p.goal];
-          const off = (b) => (fits && !fits.test(b.claim) ? 1 : 0);
-          it.benefits = (sheet.benefits || []).map((b, i) => ({ b, i }))
-            .sort((x, y) => off(x.b) - off(y.b) || (RANK[x.b.evidence] ?? 5) - (RANK[y.b.evidence] ?? 5) || x.i - y.i)
-            .slice(0, 2).map(({ b }) => ({ claim: clip(b.claim, 220), evidence: String(b.evidence || '') }));
+          Object.assign(it, fromSheet(await (await fetch(`/library/data/entries/${it.id}.json`)).json(), p.goal));
         } catch { /* no fact sheet yet */ }
       }));
       const print = h('button', { class: 'pk-btn', type: 'button', text: 'Print or save as PDF' });
       print.addEventListener('click', () => window.print());
       root.replaceChildren(
         h('p', { class: 'pk-carried', text: 'This packet was made in a patient’s own browser and is carried inside the link you opened. Miracle Health doesn’t receive or keep it.' }),
-        render(p, { level: 1 }),
-        h('div', { class: 'pk-page-actions' }, print));
+        h('div', { class: 'pk-page-actions' }, print),
+        render(p, { level: 1 }));
     } catch {
       root.replaceChildren(h('h1', { text: 'This packet couldn’t be opened' }), h('p', { text: 'The link may have been cut short when it was copied. Ask for the QR code or the link again.' }));
     }

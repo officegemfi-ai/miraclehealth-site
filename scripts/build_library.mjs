@@ -452,14 +452,14 @@ function aiIndex() {
 }
 
 // ---------------------------------------------------------------------------
-// Miracle AI (miraclehealth.us/ai): the chat with the five agents
+// Miracle AI (miraclehealth.us/ai): the chat with four agents, and the member's own clinician last
 // ---------------------------------------------------------------------------
 const AGENTS = [
   ['safety', 'Safety agent', 'Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.'],
   ['recommender', 'Recommender', 'Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.'],
-  ['builder', 'Stack builder', 'Lays out your stack, and options to discuss with a clinician. Never doses, never sellers.'],
-  ['clinician', 'Clinician review', 'Done by a licensed clinician who knows you: take them your review packet, then mark it reviewed. Until then, nothing here is a plan.'],
+  ['builder', 'Stack builder', 'Lays out your stack, and options to discuss with your clinician. Never doses, never sellers.'],
+  ['clinician', 'Your clinician', 'Your own licensed clinician, outside Miracle Health. Take them your review packet; until they’ve reviewed it, nothing here is a plan.'],
 ];
 const STARTERS = [
   ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, what does the evidence say, and what should I ask a clinician about?'],
@@ -481,14 +481,14 @@ function aiPage() {
   const body = `<div class="ai-app" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <section class="ai-chat" aria-label="Conversation with Miracle AI">
     <div class="ai-bar">
-      <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Five agents ready</span></span></div>
+      <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
         <span class="ai-hello" data-sig="112" aria-hidden="true"></span>
         <h2 class="ai-title">Talk it through with Miracle AI.</h2>
-        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Like a good clinician, Miracle AI asks a few questions so the answer fits you, and five agents check every answer against the Library’s fact sheets and the Community Signal.</p>
+        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Like a good clinician, Miracle AI asks a few questions so the answer fits you. Four AI agents check every answer against the Library’s fact sheets and the Community Signal, and your own clinician has the final say.</p>
         <div class="ai-starts" role="group" aria-label="Start with a goal">
           ${STARTERS.map(([goal, label, text]) => `<button type="button" class="ai-start" data-ask="${e(text)}" data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n          ')}
         </div>
@@ -496,7 +496,7 @@ function aiPage() {
           ${EXAMPLES.map((q) => `<button type="button" class="ai-example" data-ask="${e(q)}">${e(q)}</button>`).join('\n          ')}
         </div>
         <div class="ai-who">
-          <h2>Who answers</h2>
+          <h2>Who answers, and who decides</h2>
           ${agentList('agent-list')}
         </div>
       </div>
@@ -524,8 +524,8 @@ function aiPage() {
   </aside>
 </div>`;
   return page({
-    title: 'Miracle AI · talk through peptides and supplements with five agents',
-    description: 'Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Five agents check every answer against the Miracle Health Library and the Community Signal. No doses, no sellers.',
+    title: 'Miracle AI · talk through peptides and supplements with four AI agents',
+    description: 'Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Four AI agents check every answer against the Miracle Health Library and the Community Signal, and you take a review packet to your own clinician. No doses, no sellers.',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
     styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/packet.css?v=${V.pkCss}`],
     scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/ai.js?v=${V.aiJs}`],

@@ -27,12 +27,19 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 
 const AGENT_NAME = {
   safety: 'Safety agent', recommender: 'Recommender', synergy: 'Synergy auditor', builder: 'Stack builder',
-  review: 'Safety agent', clinician: 'Clinician review',
+  review: 'Safety agent', clinician: 'Your clinician',
 };
 const RAIL_KEY = { review: 'safety' };
+// Words that may mean someone is in crisis: if an answer can't come through, help still does
+const CRISIS_WORDS = /\b(?:kill(?:ing)?\s+my\s?self|kms|suicid\w*|end(?:ing)?\s+my\s+(?:own\s+)?life|end(?:ing)?\s+it\s+all|want(?:ing)?\s+to\s+die|better\s+off\s+dead|no\s+reason\s+to\s+live|don'?t\s+want\s+to\s+(?:live|be\s+alive|wake\s+up)|self[- ]?harm\w*|cut(?:ting)?\s+myself|overdos(?:e|ing))\b/i;
 const GRADE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Limited evidence', preclinical: 'Animal and lab studies', anecdotal: 'Anecdotal' };
 const GRADE_N = { strong: 4, moderate: 3, limited: 2, preclinical: 1, anecdotal: 0 };
 const FOUND = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Small human studies', preclinical: 'Animal or lab studies', anecdotal: 'User reports' };
+// The headline on each option: how strong the evidence is for what the visitor asked about
+const USE = {
+  strong: ['Strong evidence', 4], moderate: ['Moderate evidence', 3], limited: ['Early human studies', 2],
+  preclinical: ['Animal or lab only', 1], anecdotal: ['User reports only', 0], none: ['No evidence for this use', 0],
+};
 const STATUS = {
   approved: 'FDA-approved', otc: 'Over the counter', supplement: 'Dietary supplement', compounded: 'Compounded by prescription',
   category2: 'FDA safety-risk list', investigational: 'In clinical trials', not_approved: 'Not approved', restricted: 'Restricted',
@@ -356,31 +363,41 @@ function shortlistNode(card) {
     : 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.';
   el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
-  for (const it of card.items || []) {
-    const g = GRADE_N[it.grade] ?? -1;
-    const meter = h('span', { class: `meter${g >= 1 ? ` g${g}` : ''}`, title: GRADE[it.grade] || 'No fact sheet yet', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'), h('i'));
-    const pills = h('div', { class: 'pick-pills' },
-      it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag }),
-      it.grade ? h('span', { class: `ev ev-${it.grade}`, text: GRADE[it.grade] || it.grade }) : null);
-    const sig = it.signal
-      ? h('div', { class: 'pick-sig' }, h('small', { text: 'Signal' }), h('b', { text: Number(it.signal.score).toFixed(0) }), h('span', { text: it.signal.level }))
-      : h('div', { class: 'pick-sig' }, h('small', { text: 'Signal' }), h('b', { text: '–' }), h('span', { text: 'Not rated yet' }));
-    el.append(h('div', { class: 'pick' },
-      meter,
-      h('div', {},
-        h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url, text: it.name }) : h('b', { text: it.name }), h('span', { class: 'pick-role', text: it.role })),
-        it.why ? h('p', { class: 'pick-why', text: it.why }) : null,
-        it.benefits?.length ? h('ul', { class: 'pick-found', 'aria-label': `What studies found for ${it.name}` },
-          it.benefits.map((b) => h('li', {}, h('span', { text: b.claim }), h('span', { class: `found-ev found-${b.evidence}`, text: FOUND[b.evidence] || b.evidence })))) : null,
-        pills,
-        it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null),
-      sig));
-  }
+  for (const it of card.items || []) el.append(pickNode(it));
   const audit = h('div', { class: 'audit' }, h('div', { class: 'audit-head busy', text: 'Synergy auditor: checking these together' }));
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
   el.append(h('div', { class: `review-line${meta.reviewed ? ' done' : ''}` }, ...reviewLine()));
   return el;
+}
+// One option: the evidence for what was asked is the headline; what studies found (each with its
+// source) comes next; the Community Signal is a detail, never the biggest number
+function pickNode(it) {
+  const grade = it.use ? it.use.grade : it.grade;
+  const [label, bars] = USE[grade] || (it.grade ? USE[it.grade] : null) || ['No fact sheet yet', 0];
+  const meter = h('span', { class: `meter m${bars}`, 'aria-hidden': 'true' }, h('i'), h('i'), h('i'), h('i'));
+  const ev = h('div', { class: `pick-ev ev-${grade || 'pending'}` }, h('span', { class: 'pick-ev-label', text: label }), meter,
+    h('span', { class: 'sr', text: '. Evidence for what you asked about.' }));
+  const found = it.benefits?.length
+    ? [it.use && !it.use.fits ? h('p', { class: 'pick-other', text: 'The Library has no studies of it for this use yet. What it has been studied for:' }) : null,
+      h('ul', { class: 'pick-found', 'aria-label': `What studies found for ${it.name}` }, it.benefits.map((b) => h('li', {},
+        h('span', { text: b.claim }), ' ',
+        h('span', { class: `found-ev found-${b.evidence}`, text: FOUND[b.evidence] || b.evidence }),
+        b.source?.url ? h('a', { class: 'found-src', href: b.source.url, target: '_blank', rel: 'noopener noreferrer', title: `${b.source.title}${b.source.year ? ` (${b.source.year})` : ''}`, text: 'Source' }) : null)))]
+    : [];
+  const sig = it.signal ? [
+    `Community Signal ${Number(it.signal.score).toFixed(0)} (${it.signal.level.toLowerCase()})`,
+    it.signal.reports ? `${it.signal.reports} first-hand report${it.signal.reports === 1 ? '' : 's'}` : '',
+    it.signal.effects?.length ? `most mentioned: ${it.signal.effects.join(', ').toLowerCase()}` : '',
+  ].filter(Boolean).join(' · ') : '';
+  return h('div', { class: 'pick' },
+    h('div', { class: 'pick-main' },
+      h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url, text: it.name }) : h('b', { text: it.name }), h('span', { class: 'pick-role', text: it.role }), ev),
+      it.why ? h('p', { class: 'pick-why', text: it.why }) : null,
+      ...found,
+      h('div', { class: 'pick-pills' }, it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
+      sig ? h('p', { class: 'pick-signal', text: sig }) : null,
+      it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null));
 }
 function fillAudit(box, card) {
   if (card.skipped) {
@@ -502,7 +519,7 @@ function packetButton(label) {
 }
 function reviewLine() {
   return [svg(meta.reviewed ? ICON.check : ICON.clock),
-    h('span', { text: meta.reviewed ? `Clinician review: done. You marked it reviewed on ${reviewedOn()}.` : 'Clinician review: pending. Take this to a licensed clinician who knows your history.' }),
+    h('span', { text: meta.reviewed ? `Your clinician: reviewed (you marked it on ${reviewedOn()}).` : 'Your clinician: not yet. Take your packet to a licensed clinician who knows your history.' }),
     packetButton('Prepare packet')];
 }
 function refreshReview() {
@@ -516,6 +533,7 @@ function openPacket(opener) {
   const P = window.MHPacket;
   if (!P) return;
   const packet = P.fromChat(chat);
+  packet.reason = meta.reason || '';
   if (dialog) dialog.close();
   const close = h('button', { class: 'pk-close', type: 'button', 'aria-label': 'Close the packet' }, svg(ICON.close));
   const body = h('div', { class: 'pk-scroll' });
@@ -523,9 +541,17 @@ function openPacket(opener) {
     body.append(h('div', { class: 'pk-empty' },
       h('h2', { id: 'packet-h', text: 'Nothing to review yet' }),
       h('p', { text: 'Ask Miracle AI about a goal or the stack you take. Once it has laid out your stack, options or questions for your clinician, they’re gathered here.' })));
-  } else body.append(P.render(packet, { level: 2 }), shareBox(packet), afterBox());
+  }
+  // The buttons stay at the top, outside what scrolls
+  let actions = null;
+  if (!P.isEmpty(packet)) {
+    const doc = P.render(packet, { level: 2 });
+    const share = shareBox(packet);
+    actions = share.bar;
+    body.append(share.panel, reasonBox(packet, doc), doc, afterBox());
+  }
   const dlg = h('dialog', { class: 'pk-dialog', 'aria-labelledby': 'packet-h' },
-    h('div', { class: 'pk-bar' }, h('span', { class: 'pk-bar-title', text: 'Your clinician review packet' }), close), body);
+    h('div', { class: 'pk-bar' }, h('span', { class: 'pk-bar-title', text: 'Your clinician review packet' }), close), actions, body);
   close.addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener('close', () => {
@@ -558,19 +584,34 @@ function shareBox(packet) {
       qrBox.hidden = false;
       b.lastChild.textContent = 'Hide QR code';
       status.textContent = '';
+      qrBox.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     } catch {
       status.textContent = 'The code couldn’t be made just now. Copy the link or print the packet instead.';
     }
   });
-  return h('section', { class: 'pk-share', 'aria-labelledby': 'pk-share-h' },
-    h('h3', { id: 'pk-share-h', text: 'Take it to your clinician' }),
-    h('p', { text: 'Print it, save it as a PDF, or let them scan the code. It’s made in your browser; Miracle Health doesn’t receive or keep it.' }),
-    h('div', { class: 'pk-actions' },
+  return {
+    bar: h('div', { class: 'pk-actions', role: 'group', 'aria-label': 'Take it to your clinician' },
       act('Print or save as PDF', 'print', () => window.print()),
       qrBtn,
       act('Copy link', 'link', async (b) => copy(await P.link(packet), b)),
       act('Copy as text', 'copy', (b) => copy(P.text(packet), b))),
-    status, qrBox);
+    panel: h('div', { class: 'pk-share' },
+      h('p', { class: 'pk-share-note', text: 'Made in your browser. Miracle Health doesn’t receive or keep it.' }),
+      status, qrBox),
+  };
+}
+// Why they're going, in their words: it heads the packet (and stays in this tab only)
+function reasonBox(packet, doc) {
+  const field = h('input', { class: 'pk-reason-input', id: 'pk-reason', type: 'text', maxlength: '200', autocomplete: 'off', placeholder: 'For example: a shoulder injury that isn’t healing' });
+  field.value = packet.reason;
+  field.addEventListener('input', () => {
+    packet.reason = field.value.trim();
+    meta.reason = packet.reason;
+    saveMeta();
+    const line = doc.querySelector('.pk-reason');
+    if (line) line.replaceWith(window.MHPacket.render(packet, { level: 2 }).querySelector('.pk-reason'));
+  });
+  return h('div', { class: 'pk-reason-box' }, h('label', { for: 'pk-reason', text: 'Reason for your visit (optional; it heads the packet)' }), field);
 }
 function afterBox() {
   const mark = h('button', { class: 'pk-reviewed', type: 'button' });
@@ -645,7 +686,7 @@ function railDone(msg) {
   const doc = document.querySelector('.agent-rail .agent[data-agent="clinician"]');
   if (doc && meta.reviewed) {
     doc.className = 'agent done reviewed';
-    doc.querySelector('.agent-now').textContent = `Reviewed by your clinician: you marked it on ${reviewedOn()}`;
+    doc.querySelector('.agent-now').textContent = `Reviewed: you marked it on ${reviewedOn()}`;
   }
 }
 // The rail as the last answer left it (after a reload, or when the review mark changes)
@@ -682,7 +723,7 @@ function railNotes() {
 function setBusy(on) {
   sendBtn.classList.toggle('stop', on);
   sendBtn.setAttribute('aria-label', on ? 'Stop' : 'Send');
-  statusEl.textContent = on ? 'The agents are working' : 'Five agents ready';
+  statusEl.textContent = on ? 'The agents are working' : 'Ready';
   statusEl.classList.toggle('busy', on);
   sigs().forEach((el) => setSig(el, on ? 'think' : 'idle'));
   thread.setAttribute('aria-busy', String(on));
@@ -829,6 +870,7 @@ function onEvent(am, ev, d) {
       if (d.type === 'crisis' || d.type === 'urgent') {
         am.parts.unshift(part);
         am.showHelp = true;
+        if (d.type === 'crisis') setTimeout(helpPin, 0);
         if (Number.isFinite(view.revealIdx)) view.revealIdx += 1;
       } else am.parts.push(part);
       schedule(am);
@@ -876,7 +918,8 @@ function finish(am, live) {
     }
   }
   drawParts(am);
-  const ran = new Set(am.steps.map((s) => (s.agent === 'review' ? 'safety' : s.agent)));
+  // Agents that actually ran; the visitor's own clinician isn't one of them
+  const ran = new Set(am.steps.map((s) => (s.agent === 'review' ? 'safety' : s.agent)).filter((a) => a !== 'clinician'));
   view.trace.classList.add('done');
   view.sum.textContent = am.steps.length
     ? `${ran.size} agent${ran.size === 1 ? '' : 's'} worked on this${am.ms ? ` · ${(am.ms / 1000).toFixed(1)} s` : ''}`
@@ -899,10 +942,28 @@ function finish(am, live) {
       h('span', { class: 'foot-actions' }, forClinician ? packetButton('Clinician packet') : null, btn));
     view.foot.hidden = false;
   }
+  helpPin();
   if (live && !am.helpShown) {
     const stick = nearBottom();
     if (stick) toBottom();
   }
+}
+
+// After a sign of crisis, 988 stays in reach for the rest of the chat
+// Once someone has written about wanting to die or hurt themselves, 988 stays on screen for the
+// rest of the chat, even if the answer couldn't come
+function helpPin() {
+  const show = chat.some((m) => (m.role === 'user' && CRISIS_WORDS.test(m.text || ''))
+    || (m.role === 'assistant' && (m.flag === 'self_harm' || (m.parts || []).some((p) => p.t === 'card' && p.card.type === 'crisis'))));
+  const pin = $('ai-help-pin');
+  if (!show) { pin?.remove(); return; }
+  if (pin) return;
+  document.querySelector('.ai-bar')?.after(h('div', { class: 'help-pin', id: 'ai-help-pin', role: 'note' },
+    h('span', { text: 'You can call or text 988 any time, day or night.' }),
+    h('span', { class: 'help-pin-actions' },
+      h('a', { href: 'tel:988', text: 'Call 988' }),
+      h('a', { href: 'sms:988', text: 'Text 988' }),
+      h('a', { href: 'https://988lifeline.org/chat/', target: '_blank', rel: 'noopener', text: 'Chat' }))));
 }
 
 function errorNode(am) {
@@ -915,7 +976,11 @@ function errorNode(am) {
     save();
     run(am);
   });
-  return h('div', { class: 'oops', role: 'alert' }, h('span', { text: am.error }), retry);
+  const i = chat.indexOf(am);
+  const said = i > 0 && chat[i - 1].role === 'user' ? chat[i - 1].text : '';
+  const oops = h('div', { class: 'oops', role: 'alert' }, h('span', { text: am.error }), retry);
+  // A message that may come from someone in crisis gets help even when no answer can
+  return CRISIS_WORDS.test(said) ? h('div', {}, cardNode({ type: 'crisis' }), oops) : oops;
 }
 
 // ---------------------------------------------------------------------------
@@ -967,6 +1032,7 @@ newBtn.addEventListener('click', () => {
   store.del(KEY);
   meta = {};
   store.del(META);
+  helpPin();
   thread.querySelectorAll('.msg,.gate').forEach((n) => n.remove());
   empty.hidden = false;
   newBtn.hidden = true;

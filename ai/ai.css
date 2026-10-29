@@ -58,6 +58,7 @@
 .agent.flag .agent-node{border-color:#FFB547;background:#FFB547}
 .agent.flag .agent-now{color:#FFC977}
 .agent.pending .agent-node{border-style:dashed;border-color:var(--on-ink-2);background:transparent}
+.agent[data-agent="clinician"] .agent-node{border-radius:4px;border-style:solid}
 .agent.pending .agent-now{color:var(--on-ink-2)}
 .agent.wake .agent-node{animation:agent-wake .9s ease-out both;animation-delay:calc(var(--i,0) * 120ms)}
 @keyframes agent-pulse{0%{box-shadow:0 0 0 0 rgba(216,255,61,.6)}75%{box-shadow:0 0 0 9px rgba(216,255,61,0)}100%{box-shadow:0 0 0 0 rgba(216,255,61,0)}}
@@ -106,7 +107,7 @@
 .tstep.done .tstep-dot{background:#BFE843}
 .tstep.flag .tstep-dot{background:#F0A23B}
 .tstep.fixed .tstep-dot{background:#F0A23B}
-.tstep.pending .tstep-dot{background:transparent;border:2px dashed #8A9290}
+.tstep.pending .tstep-dot{background:transparent;border:2px solid #8A9290;border-radius:3px}
 .tstep-who{font:500 10.5px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:8px}
 .tstep-what{color:var(--text)}
 .tstep-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
@@ -167,29 +168,35 @@
 .card.short .card-head{background:#F4F6F1}
 .short-note{display:flex;gap:7px;padding:9px 16px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.45;color:var(--muted)}
 .short-note svg{flex:none;margin-top:2px}
-.pick{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:14px;padding:14px 16px;border-top:1px solid var(--line)}
-.meter{display:grid;grid-template-rows:repeat(4,1fr);gap:3px;width:8px;height:46px;margin:3px auto 0}
-.meter i{border-radius:2px;background:#E4E8E3}
-.meter.g4 i,.meter.g3 i:nth-child(n+2),.meter.g2 i:nth-child(n+3),.meter.g1 i:nth-child(4){background:#8DB51A}
-.meter.g4 i{background:#5E9A0E}
-.pick-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.pick{padding:14px 16px;border-top:1px solid var(--line)}
+.pick-name{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px}
 .pick-name a{font:600 16px/1.3 var(--head);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
 .pick-name a:hover{text-decoration:underline;text-decoration-color:#9CC21C;text-decoration-thickness:2px}
 .pick-role{font:500 10.5px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* the headline: how strong the evidence is for what was asked, in words and four bars */
+.pick-ev{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:4px 11px;border-radius:40px;background:#EEF0EC;color:#4A5251}
+.pick-ev-label{font:600 12.5px/1.3 var(--body);white-space:nowrap}
+.meter{display:inline-grid;grid-template-columns:repeat(4,9px);gap:2px}
+.meter i{height:6px;border-radius:2px;background:currentColor;opacity:.22}
+.meter.m1 i:nth-child(-n+1),.meter.m2 i:nth-child(-n+2),.meter.m3 i:nth-child(-n+3),.meter.m4 i{opacity:1}
+.pick-ev.ev-strong{background:#E3F0D0;color:#2C5E00}
+.pick-ev.ev-moderate{background:#E8F2D6;color:#3B6B00}
+.pick-ev.ev-limited{background:#EEF2DC;color:#5A6400}
+.pick-ev.ev-preclinical{background:#FAEFD9;color:#7A4F00}
 .pick-why{margin-top:5px;font-size:14.5px;line-height:1.5;color:var(--text-2)}
-.pick-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.pick-pills .ev,.pick-pills .st{font-size:9.5px;padding:4px 8px}
+.pick-other{margin-top:8px;font-size:13px;color:var(--muted)}
 .pick-found{display:grid;gap:5px;margin:9px 0 0;padding:0;list-style:none}
 .pick-found li{position:relative;padding-left:16px;font-size:14px;line-height:1.45;color:var(--text)}
 .pick-found li::before{content:'';position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;background:#8DB51A}
-.found-ev{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:40px;background:#F1F4EC;font:500 10.5px/1.6 var(--body);color:var(--muted);white-space:nowrap}
+.found-ev{display:inline-block;padding:1px 7px;border-radius:40px;background:#F1F4EC;font:500 10.5px/1.6 var(--body);color:var(--muted);white-space:nowrap}
 .found-strong,.found-moderate{background:#E9F3D2;color:#3F5200}
-.pick-warn{display:flex;gap:6px;margin-top:8px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.found-src{margin-left:6px;font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.found-src:hover{color:var(--ink)}
+.pick-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.pick-pills .ev,.pick-pills .st{font-size:9.5px;padding:4px 8px}
+.pick-signal{margin-top:7px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.pick-warn{display:flex;gap:6px;margin-top:6px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 .pick-warn svg{flex:none;margin-top:2px}
-.pick-sig{min-width:66px;text-align:right}
-.pick-sig small{display:block;font:500 9.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.pick-sig b{display:block;margin-top:2px;font:600 24px/1 var(--head);letter-spacing:-.03em;color:var(--ink)}
-.pick-sig span{display:block;margin-top:4px;font-size:11.5px;line-height:1.3;color:var(--muted)}
 .audit{padding:12px 16px 14px;border-top:1px solid var(--line);background:#FAFBF8}
 .audit-head{display:flex;align-items:center;gap:8px;font:600 13.5px/1.3 var(--head);color:var(--ink)}
 .audit-head.busy::before{content:'';width:10px;height:10px;border-radius:50%;border:2px solid #C7E85A;border-top-color:#121E1D;animation:spin .8s linear infinite}
@@ -238,6 +245,12 @@
 .card.intake.closed .iq-opt:not([aria-pressed="true"]){opacity:.5}
 .card.intake.closed .iq-text{border-style:dashed;background:transparent}
 .card.intake.closed .iq-text:placeholder-shown{display:none}
+
+/* after a sign of crisis: 988 stays in reach, pinned under the site's bar */
+.help-pin{position:sticky;top:calc(var(--top-h) + 8px);z-index:6;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px;padding:9px 10px 9px 16px;border-radius:14px;border:1px solid #E7B3AC;background:#FFF6F4;color:#5B1A15;font-size:14.5px;line-height:1.4;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.help-pin-actions{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.help-pin a{display:inline-flex;align-items:center;min-height:38px;padding:0 15px;border-radius:40px;background:#8E2F28;color:#FFFFFF;font:600 14px/1 var(--body);text-decoration:none}
+.help-pin a+a{border:1.5px solid #8E2F28;background:transparent;color:#8E2F28}
 
 /* crisis and emergencies: first, and plain */
 .card.help{padding:18px;border:2px solid #B0453D;background:#FFF6F4}
@@ -304,14 +317,12 @@
   .msg{gap:8px}
   .msg-sig{width:28px;height:28px}
   .sheet{padding:15px 15px 12px}
-  .pick{grid-template-columns:22px minmax(0,1fr);gap:10px;padding:13px 13px}
-  .pick-sig{grid-column:2;display:flex;align-items:baseline;gap:8px;text-align:left}
-  .pick-sig b{font-size:18px;margin-top:0}
-  .pick-sig span{margin-top:0}
   .card-head{padding:13px 13px 11px}
   .audit,.review-line{padding-left:13px;padding-right:13px}
   .audit li{grid-template-columns:minmax(0,1fr);gap:5px}
   .audit li .lvl{justify-self:start}
+  .pick{padding:13px 13px}
+  .pick-ev{margin-left:0}
   .iq,.intake-foot{padding-left:13px;padding-right:13px}
   .btn-answers{flex:1 1 100%}
   .ai-composer{padding-left:14px;border-radius:20px}
