@@ -282,6 +282,8 @@
   .pick-sig span{margin-top:0}
   .card-head{padding:13px 13px 11px}
   .audit,.review-line{padding-left:13px;padding-right:13px}
+  .audit li{grid-template-columns:minmax(0,1fr);gap:5px}
+  .audit li .lvl{justify-self:start}
   .ai-composer{padding-left:14px;border-radius:20px}
   .ai-dock{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
   .ai-fine{padding-bottom:18px}
