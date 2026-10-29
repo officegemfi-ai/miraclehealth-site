@@ -457,7 +457,7 @@ function railStep(s) {
   el.querySelector('.agent-now').textContent = s.title;
 }
 function railDone(msg) {
-  railAgents().forEach((a) => { if (!/\b(done|pending|flag|run)\b/.test(a.className)) a.classList.add('skip'); else a.classList.remove('run'); });
+  railAgents().forEach((a) => { if (!/\b(done|pending|flag|run)\b/.test(a.className)) a.classList.add('unused'); else a.classList.remove('run'); });
   if (railSub) railSub.textContent = msg.state === 'done' ? `Answered in ${(msg.ms / 1000).toFixed(1)} s` : msg.state === 'stopped' ? 'Stopped' : 'Something went wrong';
 }
 function railNotes() {
