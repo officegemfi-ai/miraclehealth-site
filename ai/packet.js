@@ -8,7 +8,7 @@
 // Used by the chat (/ai/) and by the page a clinician opens (/ai/packet/).
 
 const SITE = 'https://miraclehealth.us';
-const LEVEL = { avoid: 'Avoid', caution: 'Caution', info: 'Good to know' };
+const LEVEL = { avoid: 'Avoid', caution: 'Caution', unknown: 'Never studied together', info: 'Good to know' };
 const FOUND = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'small human studies', preclinical: 'animal or lab studies', anecdotal: 'user reports' };
 // Evidence for the use asked about, as the chat's cards say it
 const USE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Early human studies', preclinical: 'Animal or lab studies only', anecdotal: 'User reports only', none: 'none in the Library yet' };
@@ -28,8 +28,8 @@ const GOAL_WORDS = {
   immune: /immun|infection|\bcolds?\b|\bflu\b|respiratory/i,
   hormonal: /testosterone|estrogen|hormone|menopaus|thyroid|cortisol|pcos/i,
 };
-const LEVEL_CODE = { avoid: 'a', caution: 'c', info: 'i' };
-const CODE_LEVEL = { a: 'avoid', c: 'caution', i: 'info' };
+const LEVEL_CODE = { avoid: 'a', caution: 'c', unknown: 'u', info: 'i' };
+const CODE_LEVEL = { a: 'avoid', c: 'caution', u: 'unknown', i: 'info' };
 const UNAPPROVED = new Set(['not_approved', 'investigational', 'under_review', 'category2', 'restricted', 'unclear']);
 
 function h(tag, attrs, ...kids) {
@@ -88,7 +88,7 @@ function fromSheet(sheet, goal) {
 // ---------------------------------------------------------------------------
 // The packet, from the chat
 // ---------------------------------------------------------------------------
-// {date, goal, reason, about:[[q,a]], stack:[item], options:[item], findings:[{level,names,note}], questions:[q]}
+// {date, goal, reason, about:[[q,a]], meds:[name], stack:[item], options:[item], findings:[{level,names,note}], questions:[q]}
 // item: {id, name, family, role, why, grade, use, status:{key,label}|null, tag, signal, caution, benefits, labs}
 export function fromChat(chat) {
   const about = [];
@@ -96,6 +96,7 @@ export function fromChat(chat) {
   const options = new Map();
   const findings = new Map();
   const questions = [];
+  const meds = [];
   let goal = '';
   const addFindings = (list) => {
     for (const f of list || []) {
@@ -120,6 +121,7 @@ export function fromChat(chat) {
         if (c.goal && GOAL_WORDS[c.goal]) goal = c.goal;
         const into = c.kind === 'yours' ? stack : options;
         for (const it of c.items || []) into.set(it.id, it);
+        for (const m of c.meds || []) if (m && !meds.some((x) => x.toLowerCase() === String(m).toLowerCase())) meds.push(String(m));
         if (c.audit?.findings) addFindings(c.audit.findings);
       }
       if (c.type === 'audit') addFindings(c.findings);
@@ -128,9 +130,10 @@ export function fromChat(chat) {
   }
   // An option that's already in their stack is listed once, with their stack
   for (const id of stack.keys()) options.delete(id);
-  return { date: today(), goal, reason: '', about, stack: [...stack.values()], options: [...options.values()], findings: [...findings.values()], questions };
+  return { date: today(), goal, reason: '', about, meds, stack: [...stack.values()], options: [...options.values()], findings: [...findings.values()], questions };
 }
 export const isEmpty = (p) => !p.about.length && !p.stack.length && !p.options.length && !p.findings.length && !p.questions.length;
+const medsOf = (p) => (Array.isArray(p.meds) ? p.meds : []);
 
 // ---------------------------------------------------------------------------
 // In a link: short keys, Library details looked up again by id at the other end
@@ -139,6 +142,7 @@ function compact(p) {
   return {
     v: 1, t: p.date, g: p.goal || '', r: clip(p.reason, 200),
     a: p.about.slice(0, 8).map(([q, a]) => [clip(q, 160), clip(a, 220)]),
+    m: medsOf(p).slice(0, 6).map((m) => clip(m, 40)),
     y: p.stack.slice(0, 8).map((i) => [i.id, clip(i.role, 40)]),
     o: p.options.slice(0, 8).map((i) => [i.id, clip(i.role, 40), clip(i.why, 110)]),
     f: p.findings.slice(0, 10).map((f) => [LEVEL_CODE[f.level] || 'i', clip(f.names.join(' + '), 90), clip(f.note, 200)]),
@@ -172,6 +176,7 @@ export async function decode(s) {
     g: GOAL_WORDS[c.g] ? c.g : '',
     r: clip(c.r, 200),
     a: arr(c.a, 8).filter(Array.isArray).map(([q, a]) => [clip(q, 160), clip(a, 220)]).filter(([q, a]) => q && a),
+    m: arr(c.m, 6).map((m) => clip(m, 40)).filter(Boolean),
     y: arr(c.y, 8).filter((x) => Array.isArray(x) && isId(x[0])).map(([id, role]) => [id, clip(role, 40)]),
     o: arr(c.o, 8).filter((x) => Array.isArray(x) && isId(x[0])).map(([id, role, why]) => [id, clip(role, 40), clip(why, 110)]),
     f: arr(c.f, 10).filter(Array.isArray).map(([l, n, note]) => [CODE_LEVEL[l] ? l : 'i', clip(n, 90), clip(note, 200)]).filter((x) => x[2]),
@@ -192,7 +197,7 @@ export function expand(c, index) {
     return out;
   };
   return {
-    date: c.t, goal: c.g, reason: c.r, about: c.a, stack: c.y.map(item), options: c.o.map(item),
+    date: c.t, goal: c.g, reason: c.r, about: c.a, meds: c.m || [], stack: c.y.map(item), options: c.o.map(item),
     findings: c.f.map(([l, n, note]) => ({ level: CODE_LEVEL[l], names: n.split(' + '), note })), questions: c.q,
   };
 }
@@ -262,7 +267,8 @@ export function render(p, { level = 2 } = {}) {
     h('section', { class: 'pk-note' },
       h(S, { text: 'For the reviewing clinician' }),
       h('p', { text: 'Your patient explored the options below with Miracle AI, an education tool. It draws on the Miracle Health Library (fact sheets checked against primary sources; clinician review of the Library is still pending) and the Community Signal (outcomes people report, not proof). It gives no doses and makes no diagnosis. Nothing here is a plan until you have reviewed it against their history.' })));
-  if (p.about.length) art.append(sec('About me, in my words', h('dl', { class: 'pk-about' }, p.about.map(([q, a]) => h('div', {}, h('dt', { text: q }), h('dd', { text: a }))))));
+  const about = [...p.about, ...(medsOf(p).length ? [['Medicines I mentioned', medsOf(p).join(', ')]] : [])];
+  if (about.length) art.append(sec('About me, in my words', h('dl', { class: 'pk-about' }, about.map(([q, a]) => h('div', {}, h('dt', { text: q }), h('dd', { text: a }))))));
   if (p.stack.length || p.options.length) {
     art.append(h('p', { class: 'pk-screen-only pk-hint', text: 'On paper, each item has lines for you to fill in by hand: whether you take it now, how, since when and where it’s from. Miracle AI never sees them.' }));
   }
@@ -304,7 +310,7 @@ export function text(p) {
     }
     out.push('');
   };
-  if (p.about.length) out.push('About me:', ...p.about.map(([q, a]) => `- ${q} ${a}`), '');
+  if (p.about.length || medsOf(p).length) out.push('About me:', ...p.about.map(([q, a]) => `- ${q} ${a}`), ...(medsOf(p).length ? [`- Medicines I mentioned: ${medsOf(p).join(', ')}`] : []), '');
   items('What I take now, or am weighing up:', p.stack, false);
   items('Options I’d like to discuss:', p.options, true);
   if (p.findings.length) out.push('Checked together by the Synergy auditor:', ...p.findings.map((f) => `- [${LEVEL[f.level]}] ${f.names.join(' + ')}: ${f.note}`), '');

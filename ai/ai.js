@@ -10,6 +10,7 @@ const ENDPOINT = app.dataset.endpoint;
 const $ = (id) => document.getElementById(id);
 const thread = $('ai-thread');
 const empty = $('ai-empty');
+const begin = $('ai-begin');
 const form = $('ai-form');
 const input = $('ai-input');
 const sendBtn = $('ai-send');
@@ -21,6 +22,7 @@ const LIMIT = 2000;
 const KEY = 'mh-ai-chat-v1';
 const META = 'mh-ai-meta-v1';      // this chat's clinician review mark, kept in the tab like the chat
 const ADULT = 'mh-ai-adult';
+const STACK = 'mh-ai-stack-v1';    // their stack, kept on this device only if they ask
 const QR_SRC = app.dataset.qr;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
@@ -78,8 +80,10 @@ const ICON = {
   link: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M6.8 9.2a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8M9.2 6.8a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
   close: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   info: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  keep: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
 };
 const GOAL_ICON = {
+  stack: '<path d="M8 2 14 5 8 8 2 5z"/><path d="M2 8l6 3 6-3M2 11l6 3 6-3"/>',
   recovery: '<path d="M8 2.5v11M2.5 8h11"/>',
   muscle: '<path d="M2 8h12M4.2 5v6M11.8 5v6M1.2 6.6v2.8M14.8 6.6v2.8"/>',
   sleep: '<path d="M12.8 10.3A5.6 5.6 0 0 1 5.7 3.2a5.6 5.6 0 1 0 7.1 7.1z"/>',
@@ -149,7 +153,7 @@ function setSig(el, mood) {
   el.dataset.mood = mood;
   el.replaceChildren(svg(sigMarkup(Number(el.dataset.sig) || 36, mood)));
 }
-const sigs = () => document.querySelectorAll('.ai-sig,.rail-sig');
+const sigs = () => document.querySelectorAll('.ai-sig');
 
 // ---------------------------------------------------------------------------
 // The answer's words: paragraphs, ### headings, - lists, 1. lists, **bold**, *italic* and
@@ -158,6 +162,8 @@ const sigs = () => document.querySelectorAll('.ai-sig,.rail-sig');
 let LIB_IDS = null;
 fetch('/library/data/catalog.json').then((r) => (r.ok ? r.json() : [])).then((c) => { LIB_IDS = new Set(c.map((x) => x.id)); }).catch(() => {});
 const isLib = (id) => /^[a-z0-9]{1,40}$/.test(id) && (!LIB_IDS || LIB_IDS.has(id));
+// The Library's guides, which aren't compounds
+const GUIDES = { 'lab-reports': '/library/lab-reports/' };
 
 const INLINE = /\*\*([^*]+?)\*\*|\[([^\]]+)\]\(([^)\s]+)\)|`([^`]+)`|(?<![\w*])\*([^*\s][^*]*?)\*(?![\w*])/g;
 function inline(el, s) {
@@ -166,8 +172,9 @@ function inline(el, s) {
     if (m.index > last) el.append(s.slice(last, m.index));
     if (m[1] != null) { const b = h('strong'); inline(b, m[1]); el.append(b); }
     else if (m[2] != null) {
-      const id = /^lib:([a-z0-9]+)$/.exec(m[3])?.[1];
-      el.append(id && isLib(id) ? h('a', { href: `/library/${id}/`, text: m[2] }) : m[2]);
+      const id = /^lib:([a-z0-9-]+)$/.exec(m[3])?.[1];
+      el.append(id && GUIDES[id] ? h('a', { href: GUIDES[id], text: m[2] })
+        : id && isLib(id) ? h('a', { href: `/library/${id}/`, text: m[2] }) : m[2]);
     } else if (m[4] != null) el.append(m[4]);
     else if (m[5] != null) el.append(h('em', { text: m[5] }));
     last = m.index + m[0].length;
@@ -222,6 +229,14 @@ let adult = store.get(ADULT, 'local') === true;
 let meta = store.get(META) || {};
 const saveMeta = () => store.set(META, meta);
 const save = () => store.set(KEY, chat.map((m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined })));
+
+// The first screen (a greeting, the box, four ways in) or the conversation
+function setEmpty(on) {
+  empty.hidden = !on;
+  if (begin) begin.hidden = !on;
+  chatEl.classList.toggle('is-empty', on);
+  app.classList.toggle('is-empty', on);
+}
 
 // "The bottom" is where the conversation ends and the box to write in sits, not the page's
 // footer below it
@@ -338,6 +353,16 @@ function cardNode(card, msg) {
   if (card.type === 'questions') return questionsNode(card);
   if (card.type === 'intake') return intakeNode(card);
   if (card.type === 'audit') return auditNode(card);
+  if (card.type === 'warn') {
+    return h('div', { class: 'card warn', role: 'note', 'aria-labelledby': `${card.id || 'warn'}-h` },
+      h('h2', { id: `${card.id || 'warn'}-h`, text: 'When to get help' }), warnGroups(card.groups), h('p', { class: 'warn-note', text: card.note || '' }));
+  }
+  if (card.type === 'inject') {
+    return h('div', { class: 'card warn inject', role: 'note' },
+      h('h2', { text: card.title || 'If you inject: the safety basics' }),
+      h('ul', { class: 'inject-points' }, (card.points || []).map((t) => h('li', { text: t }))),
+      warnGroups(card.groups), h('p', { class: 'warn-note', text: card.note || '' }));
+  }
   if (card.type === 'crisis') {
     return h('div', { class: 'card help', role: 'note' },
       h('h2', { text: 'You don’t have to face this alone' }),
@@ -356,6 +381,15 @@ function cardNode(card, msg) {
   return h('div');
 }
 
+// Warning signs under fixed levels, most urgent first; 911 is a tap away
+const WARN_ICON = { now: ICON.warn, today: ICON.clock, week: ICON.doc };
+function warnGroups(groups) {
+  return h('div', { class: 'warn-groups' }, (groups || []).map((g) => h('section', { class: `warn-group lvl-${g.level}` },
+    h('h3', { class: 'warn-level' }, svg(WARN_ICON[g.level] || ICON.info), h('span', { text: g.label })),
+    h('ul', {}, (g.signs || []).map((t) => h('li', { text: t }))),
+    g.level === 'now' ? h('a', { class: 'warn-call', href: 'tel:911', text: 'Call 911' }) : null)));
+}
+
 function shortlistNode(card) {
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
   const sub = card.kind === 'yours'
@@ -363,10 +397,12 @@ function shortlistNode(card) {
     : 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.';
   el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
+  if (card.kind === 'yours' && card.meds?.length) el.append(h('p', { class: 'short-meds', text: `Checked with what you told me you take: ${card.meds.join(', ')}` }));
   for (const it of card.items || []) el.append(pickNode(it));
   const audit = h('div', { class: 'audit' }, h('div', { class: 'audit-head busy', text: 'Synergy auditor: checking these together' }));
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
+  if (card.kind === 'yours') el.append(stackSaveRow(card));
   el.append(h('div', { class: `review-line${meta.reviewed ? ' done' : ''}` }, ...reviewLine()));
   return el;
 }
@@ -399,6 +435,7 @@ function pickNode(it) {
       sig ? h('p', { class: 'pick-signal', text: sig }) : null,
       it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null));
 }
+const AUDIT_LEVEL = { avoid: 'Avoid', caution: 'Caution', unknown: 'Unknown', info: 'Good to know' };
 function fillAudit(box, card) {
   if (card.skipped) {
     box.replaceChildren(h('div', { class: 'audit-head', text: 'Synergy auditor: one option, nothing to check together' }));
@@ -411,7 +448,7 @@ function fillAudit(box, card) {
     return;
   }
   box.append(h('ul', {}, card.findings.map((f) => h('li', {},
-    h('span', { class: `lvl lvl-${f.level}`, text: f.level === 'avoid' ? 'Avoid' : f.level === 'caution' ? 'Caution' : 'Good to know' }),
+    h('span', { class: `lvl lvl-${f.level}`, text: AUDIT_LEVEL[f.level] || 'Good to know' }),
     h('span', {}, h('b', { text: (f.names || f.ids || []).join(' + ') }), `: ${f.note}`)))));
 }
 function auditNode(card) {
@@ -442,10 +479,15 @@ function intakeNode(card) {
   const list = h('ol', { class: 'intake-qs' });
   card.questions.forEach((q, i) => {
     const qid = `${card.id || 'intake'}-q${i}`;
-    const li = h('li', { class: 'iq' }, h('p', { class: 'iq-q', id: qid, text: q.q }));
+    const li = h('li', { class: 'iq' }, h('p', { class: 'iq-q', id: qid, text: q.q },
+      q.options?.length ? h('span', { class: 'iq-hint', text: q.multi ? ' Pick any that apply' : ' Pick one' }) : null));
+    // With several answers to tap, typing sits behind "Other…"; with one or two ("None"), the
+    // answer is usually typed, so the box shows
+    let other = null;
+    const tapFirst = (q.options?.length || 0) > 2;
     if (q.options?.length) {
       const group = h('div', { class: 'iq-opts', role: 'group', 'aria-labelledby': qid });
-      const sync = () => group.querySelectorAll('.iq-opt').forEach((b) => b.setAttribute('aria-pressed', String(state[i].picked.has(b.dataset.v))));
+      const sync = () => group.querySelectorAll('.iq-opt:not(.iq-other)').forEach((b) => b.setAttribute('aria-pressed', String(state[i].picked.has(b.dataset.v))));
       for (const o of q.options) {
         const b = h('button', { class: 'iq-opt', type: 'button', 'data-v': o, 'aria-pressed': 'false', text: o });
         b.disabled = closed;
@@ -463,12 +505,28 @@ function intakeNode(card) {
         });
         group.append(b);
       }
+      // Something else: a box to type in, opened on request
+      if (tapFirst) {
+        other = h('button', { class: 'iq-opt iq-other', type: 'button', 'aria-expanded': 'false', text: 'Other…' });
+        other.disabled = closed;
+        group.append(other);
+      }
       li.append(group);
       sync();
     }
-    const field = h('input', { class: 'iq-text', type: 'text', maxlength: '200', autocomplete: 'off', placeholder: q.options?.length ? 'Or type your own answer' : 'Type your answer', 'aria-labelledby': qid });
+    const field = h('input', { class: 'iq-text', type: 'text', maxlength: '200', autocomplete: 'off', placeholder: tapFirst ? 'Your own answer' : q.options?.length ? 'Or type your answer' : 'Type your answer', 'aria-labelledby': qid });
     field.value = state[i].text;
     field.disabled = closed;
+    if (other) {
+      field.hidden = !state[i].text;
+      other.setAttribute('aria-expanded', String(!field.hidden));
+      other.addEventListener('click', () => {
+        field.hidden = !field.hidden;
+        other.setAttribute('aria-expanded', String(!field.hidden));
+        if (!field.hidden) field.focus();
+        else { field.value = ''; state[i].text = ''; ready(); }
+      });
+    }
     field.addEventListener('input', () => { state[i].text = field.value; ready(); });
     field.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); send.click(); } });
     li.append(field);
@@ -642,6 +700,153 @@ function afterBox() {
 }
 
 // ---------------------------------------------------------------------------
+// Their stack, kept on this device only if they ask, so they can come back to it: the
+// compounds and the medicines they mentioned. It's never sent anywhere unless they ask Miracle
+// AI about it again; a link can carry it to their other devices (after "#", which browsers
+// never send to a server).
+// ---------------------------------------------------------------------------
+const cleanName = (x, n = 60) => String(x ?? '').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
+const libId = (id) => typeof id === 'string' && /^[a-z0-9]{1,40}$/.test(id);
+const dayLabel = (iso) => window.MHPacket?.dateLabel(iso) || iso;
+const GRADE_WORDS = { strong: 'strong', moderate: 'moderate', limited: 'limited', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
+const listOf = (xs) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
+let libIndexP = null;
+const libIndex = () => (libIndexP ||= fetch('/library/data/index.json').then((r) => (r.ok ? r.json() : null)).catch(() => null));
+
+function savedStack() {
+  const st = store.get(STACK, 'local');
+  if (!st || st.v !== 1 || !Array.isArray(st.items)) return null;
+  const items = st.items.filter((i) => i && libId(i.id)).slice(0, 8)
+    .map((i) => ({ id: i.id, name: cleanName(i.name) || i.id, status: cleanName(i.status, 80), grade: GRADE[i.grade] ? i.grade : '' }));
+  if (!items.length) return null;
+  return {
+    v: 1, saved: /^\d{4}-\d{2}-\d{2}$/.test(st.saved) ? st.saved : '', items,
+    meds: (Array.isArray(st.meds) ? st.meds : []).map((m) => cleanName(m, 40)).filter(Boolean).slice(0, 6),
+  };
+}
+const stackFrom = (card) => ({
+  v: 1, saved: localDate(),
+  items: (card.items || []).filter((it) => libId(it.id)).slice(0, 8).map((it) => ({ id: it.id, name: cleanName(it.name), status: cleanName(it.status?.label, 80), grade: it.grade || '' })),
+  meds: (card.meds || []).map((m) => cleanName(m, 40)).filter(Boolean).slice(0, 6),
+});
+const stackKey = (st) => `${st.items.map((i) => i.id).sort().join('+')}|${st.meds.map((m) => m.toLowerCase()).sort().join('+')}`;
+const stackQuestion = (st) => `I take ${listOf(st.items.map((i) => i.name))}.${st.meds.length ? ` My medicines: ${st.meds.join(', ')}.` : ''} Is that combination OK?`;
+const b64u = (text) => btoa(String.fromCharCode(...new TextEncoder().encode(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const unb64u = (text) => new TextDecoder().decode(Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0)));
+const stackLink = (st) => `${location.origin}/ai/#stack=${b64u(JSON.stringify({ v: 1, i: st.items.map((i) => i.id), m: st.meds }))}`;
+function saveStack(st) { store.set(STACK, st, 'local'); refreshStack(); }
+function forgetStack() { store.del(STACK, 'local'); refreshStack(); }
+
+// What's changed in the Library for their compounds since they saved them
+async function whatChanged(st) {
+  const index = await libIndex();
+  if (!index) return null;
+  const byId = new Map((index.items || []).map((it) => [it.id, it]));
+  // One file for everything (no request per compound, so nothing says which ones are theirs)
+  return st.items.flatMap((i) => {
+    const it = byId.get(i.id);
+    const out = [];
+    if (!it) return out;
+    if (it.status_label && i.status && it.status_label !== i.status) out.push(`${i.name}: US status is now “${it.status_label}” (was “${i.status}”).`);
+    if (it.grade && i.grade && it.grade !== i.grade) out.push(`${i.name}: the Library’s evidence grade is now ${GRADE_WORDS[it.grade] || it.grade} (was ${GRADE_WORDS[i.grade] || i.grade}).`);
+    if (it.sheet && !i.grade && !i.status) out.push(`${i.name}: now has a Library fact sheet.`);
+    else if (st.saved && /^\d{4}-\d{2}-\d{2}$/.test(it.checked || '') && it.checked > st.saved) out.push(`${i.name}: fact sheet checked again on ${dayLabel(it.checked)}.`);
+    return out;
+  });
+}
+
+// On their stack's card: keep it on this device, or forget it
+function stackSaveRow(card) {
+  const row = h('div', { class: 'stack-save' });
+  row.redraw = () => {
+    const saved = savedStack();
+    const mine = stackFrom(card);
+    if (!mine.items.length) { row.hidden = true; return; }
+    if (saved && stackKey(saved) === stackKey(mine)) {
+      const forget = h('button', { class: 'linkish', type: 'button', text: 'Forget it' });
+      forget.addEventListener('click', forgetStack);
+      row.replaceChildren(svg(ICON.check), h('span', { text: `Saved on this device${saved.saved ? ` on ${dayLabel(saved.saved)}` : ''}. ` }), forget);
+      return;
+    }
+    const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.keep), h('span', { text: saved ? 'Save this one instead' : 'Save on this device' }));
+    btn.addEventListener('click', () => {
+      saveStack(mine);
+      if (!savedStack()) row.replaceChildren(h('span', { text: 'This browser isn’t keeping anything for this site, so it couldn’t be saved.' }));
+    });
+    row.replaceChildren(h('span', { class: 'stack-save-why', text: 'Keep this stack for next time, on this device only. Miracle Health never receives it.' }), btn);
+  };
+  row.redraw();
+  return row;
+}
+
+// Their saved stack, on the first screen (and beside the chat on wide screens)
+function savedBox(where) {
+  const st = savedStack();
+  if (!st) return null;
+  const check = h('button', { class: 'saved-check', type: 'button', text: 'Check it again' });
+  check.addEventListener('click', () => ask(stackQuestion(st)));
+  const link = h('button', { class: 'linkish', type: 'button', text: 'Copy a link to it' });
+  link.addEventListener('click', () => copy(stackLink(st), link));
+  const forget = h('button', { class: 'linkish', type: 'button', text: 'Forget it' });
+  forget.addEventListener('click', forgetStack);
+  const changes = h('div', { class: 'saved-changes' });
+  whatChanged(st).then((lines) => {
+    if (lines == null) return;
+    changes.replaceChildren(lines.length
+      ? h('ul', { 'aria-label': 'What’s changed since you saved it' }, lines.map((t) => h('li', { text: t })))
+      : h('p', { text: 'Nothing has changed in the Library for these since you saved them.' }));
+  });
+  const hid = `saved-${where}-h`;
+  return h('section', { class: 'saved-box', 'aria-labelledby': hid },
+    h('h2', { id: hid, text: 'Your saved stack' }),
+    h('p', { class: 'saved-names' }, st.items.map((i, n) => [n ? ' · ' : '', isLib(i.id) ? h('a', { href: `/library/${i.id}/`, text: i.name }) : i.name])),
+    st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
+    changes,
+    h('div', { class: 'saved-actions' }, check, link, forget),
+    h('p', { class: 'saved-note', text: `Saved on this device${st.saved ? ` on ${dayLabel(st.saved)}` : ''}. Miracle Health never receives it.` }));
+}
+function refreshStack() {
+  for (const [id, where] of [['ai-saved', 'start'], ['rail-saved', 'rail']]) {
+    const host = $(id);
+    if (!host) continue;
+    const box = savedBox(where);
+    host.replaceChildren(...(box ? [box] : []));
+    host.hidden = !box;
+  }
+  document.querySelectorAll('.stack-save').forEach((row) => row.redraw?.());
+}
+
+// A stack from their own link (#stack=...): offered, never saved without asking
+async function stackFromLink() {
+  const m = /^#stack=([A-Za-z0-9_-]{4,3000})$/.exec(location.hash);
+  if (!m) return;
+  window.history.replaceState(null, '', location.pathname + location.search);
+  let raw = null;
+  try { raw = JSON.parse(unb64u(m[1])); } catch { return; }
+  if (!raw || raw.v !== 1 || !Array.isArray(raw.i)) return;
+  const index = await libIndex();
+  const byId = new Map((index?.items || []).map((it) => [it.id, it]));
+  const items = [...new Set(raw.i)].filter((id) => libId(id) && byId.has(id)).slice(0, 8)
+    .map((id) => ({ id, name: byId.get(id).name, status: byId.get(id).status_label || '', grade: byId.get(id).grade || '' }));
+  if (!items.length) return;
+  const st = { v: 1, saved: localDate(), items, meds: (Array.isArray(raw.m) ? raw.m : []).map((x) => cleanName(x, 40)).filter(Boolean).slice(0, 6) };
+  const save = h('button', { class: 'saved-check', type: 'button', text: 'Save it on this device' });
+  const now = h('button', { class: 'linkish', type: 'button', text: 'Just check it now' });
+  const no = h('button', { class: 'linkish', type: 'button', text: 'No thanks' });
+  save.addEventListener('click', () => saveStack(st));
+  now.addEventListener('click', () => { refreshStack(); ask(stackQuestion(st)); });
+  no.addEventListener('click', refreshStack);
+  const host = $(chat.length ? 'rail-saved' : 'ai-saved');
+  if (!host) return;
+  host.replaceChildren(h('section', { class: 'saved-box incoming', 'aria-labelledby': 'saved-in-h' },
+    h('h2', { id: 'saved-in-h', text: 'A stack from your link' }),
+    h('p', { class: 'saved-names', text: st.items.map((i) => i.name).join(' · ') }),
+    st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
+    h('div', { class: 'saved-actions' }, save, now, no)));
+  host.hidden = false;
+}
+
+// ---------------------------------------------------------------------------
 // Copying, for the visitor to take to a clinician
 // ---------------------------------------------------------------------------
 async function copy(text, btn) {
@@ -751,9 +956,10 @@ function ask(text) {
   if (!t || busy) return;
   if (!adult) { gate(t); return; }
   closeIntakes();
+  $('ai-gate')?.remove();
   input.value = '';
   grow();
-  empty.hidden = true;
+  setEmpty(false);
   newBtn.hidden = false;
   const um = { role: 'user', text: t };
   chat.push(um);
@@ -987,22 +1193,32 @@ function errorNode(am) {
 // Before the first message: adults only, and what Miracle AI is
 // ---------------------------------------------------------------------------
 function gate(pending) {
-  if (document.getElementById('ai-gate')) return;
-  const yes = h('button', { class: 'gate-yes', type: 'button', text: 'I’m 18 or older, continue' });
-  const no = h('button', { class: 'gate-no', type: 'button', text: 'Not now' });
-  const box = h('div', { class: 'gate', id: 'ai-gate', role: 'region', 'aria-labelledby': 'ai-gate-h' },
-    h('h2', { id: 'ai-gate-h', text: 'Before we start' }),
-    h('p', { text: 'Miracle AI is for adults 18 and over. It explains what studies and the community say about peptides, supplements and hormones. It doesn’t diagnose, give doses or name sellers, and it doesn’t replace a clinician who knows you.' }),
-    h('p', { text: 'Please leave out your name and contact details. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health.' }),
+  input.value = '';
+  grow();
+  updateSend();
+  const shown = $('ai-gate');
+  if (shown) {
+    // Asked again before answering the check: the newest question is the one that waits
+    shown.dataset.q = pending;
+    shown.querySelector('.gate-q span:last-child').textContent = pending;
+    shown.querySelector('.gate-yes').focus();
+    return;
+  }
+  const yes = h('button', { class: 'gate-yes', type: 'button', text: 'I’m 18 or older' });
+  const no = h('a', { class: 'gate-no', href: '/library/', text: 'Not now: open the Library' });
+  const box = h('div', { class: 'gate', id: 'ai-gate', role: 'region', 'aria-labelledby': 'ai-gate-h', 'data-q': pending },
+    h('p', { class: 'gate-q' }, h('span', { class: 'sr', text: 'Your question, waiting: ' }), h('span', { text: pending })),
+    h('h2', { id: 'ai-gate-h', text: 'One check before Miracle AI answers' }),
+    h('p', { text: 'Miracle AI is for adults 18 and over.' }),
     h('div', { class: 'gate-actions' }, yes, no));
   yes.addEventListener('click', () => {
     adult = true;
     store.set(ADULT, true, 'local');
+    const q = box.dataset.q || pending;
     box.remove();
-    ask(pending);
+    ask(q);
   });
-  no.addEventListener('click', () => { box.remove(); input.value = pending; grow(); updateSend(); input.focus(); });
-  empty.hidden = true;
+  setEmpty(false);
   thread.append(box);
   yes.focus();
   toBottom();
@@ -1025,6 +1241,13 @@ input.addEventListener('keydown', (e) => {
   }
 });
 document.querySelectorAll('[data-ask]').forEach((b) => b.addEventListener('click', () => ask(b.dataset.ask)));
+document.querySelectorAll('[data-prefill]').forEach((b) => b.addEventListener('click', () => {
+  input.value = b.dataset.prefill;
+  grow();
+  updateSend();
+  input.focus();
+  input.setSelectionRange(input.value.length, input.value.length);
+}));
 document.querySelectorAll('.ai-start').forEach((b) => b.querySelector('.start-ico')?.append(goalIcon(b.dataset.goal)));
 newBtn.addEventListener('click', () => {
   if (busy) busy.controller.abort();
@@ -1034,7 +1257,8 @@ newBtn.addEventListener('click', () => {
   store.del(META);
   helpPin();
   thread.querySelectorAll('.msg,.gate').forEach((n) => n.remove());
-  empty.hidden = false;
+  setEmpty(true);
+  refreshStack();
   newBtn.hidden = true;
   railReset('Waiting for your first message', false);
   railNotes();
@@ -1059,7 +1283,7 @@ if (chat.length) {
   // A turn that never finished (the tab closed mid-answer) is dropped
   while (chat.length && chat[chat.length - 1].role === 'assistant' && !chat[chat.length - 1].state) chat.pop();
   if (chat.length && chat[chat.length - 1].role === 'user') chat.pop();
-  empty.hidden = !!chat.length;
+  setEmpty(!chat.length);
   newBtn.hidden = !chat.length;
   for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
   const last = [...chat].reverse().find((m) => m.role === 'assistant');
@@ -1067,6 +1291,8 @@ if (chat.length) {
   railNotes();
   save();
 }
+refreshStack();
+stackFromLink();
 // A shorter prompt in the box on narrow screens
 const fitPlaceholder = () => { input.placeholder = innerWidth < 520 ? input.dataset.short : 'Ask about a goal, a compound or a combination'; };
 fitPlaceholder();

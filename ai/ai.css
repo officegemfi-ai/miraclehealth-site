@@ -1,4 +1,4 @@
-/* Miracle AI (miraclehealth.us/ai): the chat with the five agents.
+/* Miracle AI (miraclehealth.us/ai): the chat with four agents, and the member's own clinician.
    Builds on styles.css and the Library's pills (library.css). The whole page is the dark
    console; answers arrive on paper sheets, each with the agents' steps on top; on wide
    screens the agents sit beside the chat as one fibre that lights up as they work. */
@@ -21,21 +21,52 @@
 .ai-new{min-height:36px;padding:0 16px;border-radius:40px;border:1px solid rgba(255,255,255,.22);background:transparent;color:var(--on-ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,color .15s}
 .ai-new:hover{border-color:var(--lime);color:var(--lime)}
 
-/* ---------------------------------------------------------------- the empty state */
+/* ---------------------------------------------------------------- the first screen */
+/* One greeting, a line on what this is, the box to write in, and four ways in: centred
+   together until the conversation starts */
 .ai-thread{flex:1 0 auto;display:flex;flex-direction:column;gap:26px;padding:28px 0 30px}
-.ai-empty{display:flex;flex-direction:column;align-items:flex-start;margin:auto 0;padding:24px 0 8px}
-.ai-hello{display:block;width:112px;height:112px;margin-left:-8px}
-.ai-title{margin-top:18px;font-size:clamp(36px,4.2vw,56px);line-height:1.02;letter-spacing:-.04em;color:var(--on-ink)}
-.ai-lede{margin-top:16px;max-width:54ch;font-size:17.5px;line-height:1.6;color:var(--on-ink-2)}
-.ai-starts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;margin-top:32px}
+.ai-chat.is-empty .ai-thread{flex:0 0 auto;margin-top:auto;padding:0 0 20px}
+.ai-chat.is-empty .ai-dock{margin-top:0;position:static}
+.ai-chat.is-empty .ai-dock::before{display:none}
+.ai-chat.is-empty .ai-id .ai-sig{display:none}
+.ai-begin{margin-bottom:auto;padding:6px 0 28px}
+.ai-empty{display:flex;flex-direction:column;align-items:flex-start;padding:24px 0 0}
+.ai-hi{display:flex;align-items:center;gap:14px}
+.ai-hello{display:block;flex:none;width:56px;height:56px}
+.ai-title{font-size:36px;line-height:1.08;letter-spacing:-.03em;color:var(--on-ink)}
+.ai-lede{margin-top:12px;max-width:60ch;font-size:16.5px;line-height:1.55;color:var(--on-ink-2)}
+.ai-starts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;margin-top:14px}
 .ai-start{display:flex;align-items:center;gap:12px;min-height:56px;padding:12px 16px;border-radius:14px;border:1px solid var(--line-ink);background:rgba(255,255,255,.035);color:var(--on-ink);font:500 15px/1.3 var(--body);text-align:left;cursor:pointer;transition:border-color .15s,background-color .15s}
 .ai-start:hover{border-color:rgba(216,255,61,.55);background:rgba(216,255,61,.06)}
 .start-ico{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:9px;background:rgba(216,255,61,.12);color:var(--lime)}
-.ai-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.ai-example{min-height:38px;padding:8px 15px;border-radius:40px;border:1px solid rgba(255,255,255,.16);background:transparent;color:var(--on-ink-2);font:500 14px/1.3 var(--body);text-align:left;cursor:pointer;transition:border-color .15s,color .15s}
-.ai-example:hover{border-color:var(--lime);color:var(--on-ink)}
-.ai-who{display:none;width:100%;margin-top:40px;padding-top:26px;border-top:1px solid var(--line-ink)}
-.ai-who h2{font-size:18px;letter-spacing:-.01em}
+.ai-who{display:none;width:100%;margin-top:18px;border-top:1px solid var(--line-ink)}
+.ai-who summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:10px 0 4px;font:600 15px/1.3 var(--head);color:var(--on-ink);cursor:pointer;list-style:none}
+.ai-who summary::-webkit-details-marker{display:none}
+.ai-who summary::after{content:'';width:7px;height:7px;margin-left:4px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.ai-who[open] summary::after{transform:rotate(-135deg) translateY(-1px)}
+.ai-who .agent-list{margin-top:4px}
+
+/* their saved stack: on the first screen, and beside the chat on wide screens */
+.saved-box{margin-bottom:14px;padding:16px 18px;border-radius:16px;border:1px solid rgba(216,255,61,.35);background:linear-gradient(180deg,rgba(216,255,61,.07),rgba(216,255,61,.02));color:var(--on-ink)}
+.saved-box h2{font-size:16px;letter-spacing:-.01em}
+.saved-names{margin-top:6px;font:500 15.5px/1.5 var(--body);color:var(--on-ink)}
+.saved-names a{color:var(--on-ink);text-decoration:underline;text-decoration-color:rgba(216,255,61,.6);text-underline-offset:3px}
+.saved-meds{margin-top:3px;font-size:14px;color:var(--on-ink-2)}
+.saved-changes{margin-top:10px;font-size:13.5px;line-height:1.5;color:var(--on-ink-2)}
+.saved-changes:empty{display:none}
+.saved-changes ul{display:grid;gap:5px}
+.saved-changes li{position:relative;padding-left:15px}
+.saved-changes li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.saved-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:12px}
+.saved-check{min-height:40px;padding:0 18px;border-radius:40px;border:0;background:var(--lime);color:var(--ink);font:600 14.5px/1 var(--body);cursor:pointer}
+.saved-check:hover{background:var(--lime-2)}
+.saved-note{margin-top:10px;font-size:12.5px;color:var(--on-ink-3)}
+.linkish{min-height:32px;padding:0;border:0;background:none;color:inherit;font:500 13.5px/1.3 var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.saved-box .linkish{color:var(--on-ink-2)}
+.saved-box .linkish:hover{color:var(--lime)}
+.rail-saved{margin-top:14px;padding-top:16px;border-top:1px solid var(--line-ink)}
+.rail-saved .saved-box{margin:0;padding:14px}
+.ai-app.is-empty .rail-saved{display:none}
 
 /* The five agents, in the empty state on narrow screens and beside the chat on wide ones */
 .agent-list,.agent-rail{position:relative;display:grid;gap:0}
@@ -68,7 +99,6 @@
 /* ---------------------------------------------------------------- the rail */
 .ai-rail{position:sticky;top:calc(var(--top-h) + 20px);align-self:start;max-height:calc(100svh - var(--top-h) - 40px);overflow:auto;margin-top:6px;padding:22px 22px 24px;border-radius:20px;border:1px solid var(--line-ink);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));scrollbar-width:thin}
 .rail-head{display:flex;align-items:center;gap:14px;padding-bottom:16px;margin-bottom:6px;border-bottom:1px solid var(--line-ink)}
-.rail-sig{display:block;width:64px;height:64px;flex:none}
 .rail-head h2{font-size:18px;letter-spacing:-.01em}
 .rail-head p{margin-top:3px;font-size:13.5px;color:var(--on-ink-3)}
 .rail-notes{margin-top:14px;padding-top:18px;border-top:1px solid var(--line-ink)}
@@ -139,7 +169,7 @@
 .sig.think .sig-dots circle:nth-child(2){animation-delay:.2s}
 .sig.think .sig-dots circle:nth-child(3){animation-delay:.4s}
 .msg-sig .sig .sig-body,.msg-sig .sig .sig-shadow{animation:none}
-.ai-sig svg,.rail-sig svg,.ai-hello svg,.msg-sig svg{width:100%;height:100%}
+.ai-sig svg,.ai-hello svg,.msg-sig svg{width:100%;height:100%}
 
 /* the sheet's foot */
 .sheet-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
@@ -147,7 +177,7 @@
 .cleared svg{color:#5E9A0E}
 .cleared.edited svg{color:#B87300}
 .foot-actions{display:flex;gap:6px}
-.mini{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;border-radius:40px;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 13px/1 var(--body);cursor:pointer}
+.mini{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;white-space:nowrap;border-radius:40px;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 13px/1 var(--body);cursor:pointer}
 .mini:hover{border-color:var(--ink);color:var(--ink)}
 .mini.done{border-color:#9CC21C;color:#3F5200}
 
@@ -207,9 +237,37 @@
 .lvl-avoid{background:#F9DEDA;color:#8E2F28}
 .lvl-caution{background:#FFF4E5;color:#7A4B00}
 .lvl-info{background:#EEEFEE;color:#4A5251}
+.lvl-unknown{background:transparent;border:1px dashed #9AA39F;color:#4A5251}
+.short-meds{padding:9px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--text-2)}
+.stack-save{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:11px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--text-2)}
+.stack-save>svg{color:#5E9A0E}
+.stack-save-why{flex:1 1 240px}
+.stack-save .linkish{color:var(--text-2)}
+.stack-save .linkish:hover{color:var(--ink)}
 .audit-none{margin-top:6px;font-size:13.5px;color:var(--muted)}
 .review-line{display:flex;align-items:center;gap:8px;padding:11px 16px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted)}
 .review-line svg{flex:none}
+
+/* when to get help: fixed levels from Miracle Health's table, most urgent first */
+.card.warn{padding:16px 18px;border:1px solid #E8C9A8;background:#FFFBF5}
+.card.warn h2{font:600 16px/1.3 var(--head);letter-spacing:-.01em;color:var(--ink)}
+.inject-points{display:grid;gap:7px;margin-top:10px}
+.inject-points li{position:relative;padding-left:18px;font-size:15px;line-height:1.5;color:var(--text)}
+.inject-points li::before{content:'';position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--ink)}
+.warn-groups{display:grid;gap:10px;margin-top:12px}
+.warn-group{padding:10px 12px 11px;border-left:4px solid #8A9290;border-radius:4px 10px 10px 4px;background:#FFFFFF}
+.warn-level{display:flex;align-items:center;gap:7px;font:600 14px/1.3 var(--head);color:var(--ink)}
+.warn-group ul{display:grid;gap:5px;margin-top:7px}
+.warn-group li{position:relative;padding-left:15px;font-size:14.5px;line-height:1.45;color:var(--text)}
+.warn-group li::before{content:'';position:absolute;left:1px;top:.58em;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+.warn-group.lvl-now{border-left-color:#B0453D;background:#FFF4F2}
+.warn-group.lvl-now .warn-level{color:#8E2F28}
+.warn-group.lvl-today{border-left-color:#C77800;background:#FFF7EA}
+.warn-group.lvl-today .warn-level{color:#6E4600}
+.warn-group.lvl-week .warn-level{color:#3A4644}
+.warn-call{display:inline-flex;align-items:center;min-height:40px;margin-top:9px;padding:0 16px;border-radius:40px;background:#8E2F28;color:#FFFFFF;font:600 14.5px/1 var(--body);text-decoration:none}
+.warn-call:hover{background:#6F211C}
+.warn-note{margin-top:10px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 
 /* questions for a clinician */
 .card.qs{padding:16px 18px;background:var(--ink);color:var(--on-ink);--focus:var(--lime)}
@@ -230,6 +288,9 @@
 .intake-qs{display:grid;margin:0;padding:0;list-style:none}
 .iq{padding:13px 16px 15px;border-top:1px solid var(--line)}
 .iq-q{font:600 15px/1.4 var(--head);letter-spacing:-.01em;color:var(--ink)}
+.iq-hint{margin-left:6px;font:500 12.5px/1.4 var(--body);letter-spacing:0;color:var(--muted)}
+.iq-other{border-style:dashed}
+.iq-other[aria-expanded="true"]{border-style:solid;border-color:var(--ink);color:var(--ink)}
 .iq-opts{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
 .iq-opt{min-height:38px;padding:0 15px;border-radius:40px;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,background-color .15s,color .15s}
 @media (hover:hover){.iq-opt:not(:disabled):hover{border-color:var(--ink);color:var(--ink)}}
@@ -261,15 +322,17 @@
 .help-actions a.line{background:transparent;border:1.5px solid #8E2F28;color:#8E2F28}
 .help-actions a:hover{background:#6F211C;color:#FFFFFF}
 
-/* the 18+ check before the first message */
+/* the 18+ check before the first message: the question waits above it */
 .gate{padding:20px 22px;border-radius:18px;border:1px solid rgba(216,255,61,.35);background:linear-gradient(180deg,rgba(216,255,61,.08),rgba(216,255,61,.02));color:var(--on-ink)}
+.gate-q{justify-self:end;max-width:100%;margin:0 0 16px auto;padding:10px 14px;border-radius:16px 16px 4px 16px;border:1px dashed rgba(216,255,61,.45);color:var(--on-ink-2);font-size:15px;line-height:1.5;width:fit-content;overflow-wrap:anywhere}
 .gate h2{font-size:19px;letter-spacing:-.01em}
 .gate p{margin-top:8px;max-width:62ch;font-size:15px;line-height:1.6;color:var(--on-ink-2)}
 .gate-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .gate-actions button{min-height:46px;padding:0 20px;border-radius:40px;font:600 15px/1 var(--body);cursor:pointer}
 .gate-yes{border:0;background:var(--lime);color:var(--ink)}
 .gate-yes:hover{background:var(--lime-2)}
-.gate-no{border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--on-ink)}
+.gate-no{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:40px;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--on-ink);font:600 15px/1 var(--body);text-decoration:none}
+.gate-no:hover{border-color:var(--lime);color:var(--lime)}
 
 /* ---------------------------------------------------------------- composing */
 /* The dock stays at the bottom of the screen while the conversation scrolls under it */
@@ -307,10 +370,10 @@
   .ai-app{padding:calc(var(--top-h) + 12px) 14px 0}
   .ai-chat{min-height:calc(100svh - var(--top-h) - 12px)}
   .ai-thread{gap:20px;padding-top:22px}
-  .ai-hello{width:88px;height:88px}
-  .ai-title{font-size:clamp(32px,9.4vw,42px)}
-  .ai-lede{font-size:16.5px}
-  .ai-starts{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:26px}
+  .ai-hello{width:44px;height:44px}
+  .ai-title{font-size:28px}
+  .ai-lede{font-size:15.5px}
+  .ai-starts{gap:8px;margin-top:12px}
   .ai-start{min-height:52px;padding:10px 12px;gap:10px;font-size:14.5px}
   .start-ico{width:26px;height:26px}
   .bubble{max-width:88%}
@@ -328,6 +391,23 @@
   .ai-composer{padding-left:14px;border-radius:20px}
   .ai-dock{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
   .ai-fine{padding-bottom:18px}
+}
+/* Phones: the answer gets the whole width. No avatar beside it, sheets edge to edge, cards
+   flush with the sheet, and each option's evidence beside its name */
+@media (max-width:600px){
+  .msg.ai .msg-sig{display:none}
+  .msg.ai .sheet{margin:0 -14px;padding:16px 16px 12px;border-radius:0}
+  .ai-dock{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}
+  .sheet-body>.card:not(.help){margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
+  .card.qs,.card.warn{padding-left:16px;padding-right:16px}
+  .card-head,.audit,.review-line,.short-meds,.stack-save,.short-note{padding-left:16px;padding-right:16px}
+  .pick{padding:13px 16px}
+  .pick-name{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 10px}
+  .pick-name>a,.pick-name>b{grid-column:1;grid-row:1}
+  .pick-role{grid-column:1/-1;grid-row:2}
+  .pick-ev{grid-column:2;grid-row:1;margin-left:0;padding:3px 9px}
+  .iq,.intake-foot{padding-left:16px;padding-right:16px}
+  .warn-group{padding:9px 10px 10px}
 }
 @media (max-width:380px){
   .ai-starts{grid-template-columns:1fr}

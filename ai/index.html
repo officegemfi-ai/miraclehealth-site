@@ -20,11 +20,11 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=70dcd0057b">
-<link rel="stylesheet" href="/library/library.css?v=b17699e8fc">
-<link rel="stylesheet" href="/ai/ai.css?v=618b21ec89">
-<link rel="stylesheet" href="/ai/packet.css?v=1e94540302">
-<script type="module" src="/ai/packet.js?v=2826c30b43"></script>
-<script type="module" src="/ai/ai.js?v=d1e3c5686e"></script>
+<link rel="stylesheet" href="/library/library.css?v=123661e1bd">
+<link rel="stylesheet" href="/ai/ai.css?v=7e976741ed">
+<link rel="stylesheet" href="/ai/packet.css?v=ad9e83aefa">
+<script type="module" src="/ai/packet.js?v=654832f6d7"></script>
+<script type="module" src="/ai/ai.js?v=f40b295ca8"></script>
 </head>
 <body class="ai">
 <a class="skip" href="#main">Skip to content</a>
@@ -54,35 +54,16 @@
 </nav>
 
 <main id="main">
-<div class="ai-app" id="ai" data-endpoint="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask" data-qr="/ai/vendor/qrcode.js?v=b9f6233feb">
-  <section class="ai-chat" aria-label="Conversation with Miracle AI">
+<div class="ai-app is-empty" id="ai" data-endpoint="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask" data-qr="/ai/vendor/qrcode.js?v=b9f6233feb">
+  <section class="ai-chat is-empty" aria-label="Conversation with Miracle AI">
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <span class="ai-hello" data-sig="112" aria-hidden="true"></span>
-        <h2 class="ai-title">Talk it through with Miracle AI.</h2>
-        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Like a good clinician, Miracle AI asks a few questions so the answer fits you. Four AI agents check every answer against the Library’s fact sheets and the Community Signal, and your own clinician has the final say.</p>
-        <div class="ai-starts" role="group" aria-label="Start with a goal">
-          <button type="button" class="ai-start" data-ask="I keep straining a tendon. What could help it heal, what does the evidence say, and what should I ask a clinician about?" data-goal="recovery"><span class="start-ico" aria-hidden="true"></span>Recover from an injury</button>
-          <button type="button" class="ai-start" data-ask="I want to build muscle. Which supplements and peptides have real evidence in people, and what should I know before trying any?" data-goal="muscle"><span class="start-ico" aria-hidden="true"></span>Build muscle</button>
-          <button type="button" class="ai-start" data-ask="I want to sleep better. What has good evidence, and what is mostly hype?" data-goal="sleep"><span class="start-ico" aria-hidden="true"></span>Sleep better</button>
-          <button type="button" class="ai-start" data-ask="I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence for each?" data-goal="weight"><span class="start-ico" aria-hidden="true"></span>Lose fat</button>
-          <button type="button" class="ai-start" data-ask="I want sharper focus and a steadier mood. What has evidence behind it?" data-goal="cognition"><span class="start-ico" aria-hidden="true"></span>Focus and mood</button>
-          <button type="button" class="ai-start" data-ask="I want to age well. What do peptides and supplements for healthy aging actually show in people?" data-goal="longevity"><span class="start-ico" aria-hidden="true"></span>Age well</button>
-        </div>
-        <div class="ai-examples" role="group" aria-label="Or ask something specific">
-          <button type="button" class="ai-example" data-ask="Is BPC-157 safe?">Is BPC-157 safe?</button>
-          <button type="button" class="ai-example" data-ask="What does the evidence say about creatine for strength?">What does the evidence say about creatine for strength?</button>
-          <button type="button" class="ai-example" data-ask="I take levothyroxine. Is ashwagandha OK for stress?">I take levothyroxine. Is ashwagandha OK for stress?</button>
-          <button type="button" class="ai-example" data-ask="Semaglutide or tirzepatide: how do they compare?">Semaglutide or tirzepatide: how do they compare?</button>
-        </div>
-        <div class="ai-who">
-          <h2>Who answers, and who decides</h2>
-          <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack, and options to discuss with your clinician. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own licensed clinician, outside Miracle Health. Take them your review packet; until they’ve reviewed it, nothing here is a plan.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
-        </div>
+        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with Miracle AI.</h2></div>
+        <p class="ai-lede">What the evidence says about peptides, supplements and hormones, checked by four AI agents. Your own clinician has the final say.</p>
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
@@ -93,18 +74,32 @@
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
       </div>
     </form>
+    <div class="ai-begin" id="ai-begin">
+      <div class="ai-saved" id="ai-saved" hidden></div>
+      <div class="ai-starts" role="group" aria-label="Start with">
+        <button type="button" class="ai-start" data-prefill="I take " data-goal="stack"><span class="start-ico" aria-hidden="true"></span>Check my stack</button>
+        <button type="button" class="ai-start" data-ask="I keep straining a tendon. What could help it heal, and what does the evidence say?" data-goal="recovery"><span class="start-ico" aria-hidden="true"></span>Recover from an injury</button>
+        <button type="button" class="ai-start" data-ask="I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence?" data-goal="weight"><span class="start-ico" aria-hidden="true"></span>Lose fat</button>
+        <button type="button" class="ai-start" data-ask="I want to sleep better. What has good evidence, and what is mostly hype?" data-goal="sleep"><span class="start-ico" aria-hidden="true"></span>Sleep better</button>
+      </div>
+      <details class="ai-who">
+        <summary>Who answers, and who decides</summary>
+        <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then finds options in the Library and the Signal.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own clinician, outside Miracle Health, has the final say.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+      </details>
+    </div>
     <p class="ai-fine">For adults 18 and over. Miracle AI explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Miracle AI needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <aside class="ai-rail" aria-label="The agents">
-    <div class="rail-head"><span class="rail-sig" data-sig="64" aria-hidden="true"></span><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
-    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack, and options to discuss with your clinician. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own licensed clinician, outside Miracle Health. Take them your review packet; until they’ve reviewed it, nothing here is a plan.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+    <div class="rail-head"><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
+    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then finds options in the Library and the Signal.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own clinician, outside Miracle Health, has the final say.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
     <div class="rail-notes" id="rail-notes" hidden>
       <h2>In this conversation</h2>
       <div class="rail-chips" id="rail-chips"></div>
       <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
       <button type="button" class="rail-copy" id="rail-copy">Prepare clinician packet</button>
     </div>
+    <div class="rail-saved" id="rail-saved" hidden></div>
   </aside>
 </div>
 </main>

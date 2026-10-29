@@ -200,6 +200,14 @@
 .claims p{font-size:15.5px;line-height:1.6}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .dots{display:grid;gap:8px;margin-top:12px}
+.nums{display:grid;gap:8px;margin-top:12px;padding-left:24px;list-style:decimal}
+.nums li{padding-left:4px;font-size:15.5px;line-height:1.55;color:var(--text-2)}
+.nums li::marker{font:600 14px var(--head);color:var(--ink)}
+.le-sec>.dots li,.le-sec>.nums li{font-size:16px}
+.guide-link{margin-top:14px;font-size:15px;line-height:1.6;color:var(--text-2)}
+.guide-link a,.lib-guide .le-sec p a:not(.ref){color:var(--ink);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
+.lib-guides{margin-top:14px;font-size:15px;color:var(--on-ink-2)}
+.lib-guides a{color:var(--on-ink);font-weight:600;text-decoration-color:var(--lime);text-decoration-thickness:2px;text-underline-offset:3px}
 .dots li,.asks li,.marks li{position:relative;padding-left:20px;font-size:15.5px;line-height:1.55;color:var(--text-2)}
 .dots li::before{content:'';position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--ink)}
 .labs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}

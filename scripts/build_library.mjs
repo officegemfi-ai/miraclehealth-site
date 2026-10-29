@@ -195,6 +195,7 @@ function indexPage() {
       <p class="kick lime live"><i aria-hidden="true"></i>The Library · live community data</p>
       <h1>Every compound,<br> checked.</h1>
       <p class="lede">What each peptide, hormone, supplement and medication is, what the studies actually show, the risks and the blood markers to watch, checked against FDA labels, NIH fact sheets and published trials. Next to it, the Community Signal: what people who took it report.</p>
+      <p class="lib-guides">Guide: <a href="/library/lab-reports/">How to read a lab report (certificate of analysis)</a></p>
     </div>
     <dl class="lib-stats">
       <div><dt>Compounds</dt><dd>${catalog.length}</dd></div>
@@ -327,6 +328,7 @@ function factSheet(c, f) {
     <section class="le-sec" id="status">
       <h2>Status in the US</h2>
       <p><span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span> <b>${e(f.status_us.label)}.</b> ${e(f.status_us.note)} ${refs(f.status_us.sources)}</p>
+      ${UNAPPROVED.has(f.status_us.key) ? '<p class="guide-link">Products sold outside approved medicines vary in what they contain. If you already have one, here’s <a href="/library/lab-reports/">how to read its lab report</a>, and what even a good one can’t tell you.</p>' : ''}
     </section>
 
     <section class="le-sec" id="sources">
@@ -445,60 +447,115 @@ function aiIndex() {
       return {
         id: c.id, name: c.name, family: c.family, category: c.category, aliases: c.aliases || [], kind: c.kind, parts: c.parts || [],
         sheet: !!f,
-        ...(f ? { status: f.status_us.key, status_label: f.status_us.label, grade: f.evidence.grade, goals: nonzero(f.goals), summary: f.summary } : {}),
+        ...(f ? { status: f.status_us.key, status_label: f.status_us.label, grade: f.evidence.grade, goals: nonzero(f.goals), summary: f.summary, checked: f.checked || '' } : {}),
       };
     }),
   }) + '\n';
 }
 
 // ---------------------------------------------------------------------------
+// The Library's guides (library/data/guides/<id>.md): written in a small Markdown of ## and ###
+// headings, - and 1. lists, **bold**, *italics* and [1] source numbers, ending in a numbered
+// Sources list. Rendered like a fact sheet.
+// ---------------------------------------------------------------------------
+const GUIDES = [{ id: 'lab-reports', kick: 'Guide', checked: '2026-10-29' }];
+function guideInline(t) {
+  return e(t)
+    .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
+    .replace(/(^|[^\w*])\*([^*\s][^*]*?)\*(?![\w*])/g, '$1<i>$2</i>')
+    .replace(/\s?\[(\d+(?:,\s*\d+)*)\]/g, (_, ns) => ` ${refs(ns.split(/,\s*/).map(Number))}`);
+}
+const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+function guidePage(g) {
+  const md = fs.readFileSync(path.join(DATA, 'guides', `${g.id}.md`), 'utf8').replace(/\r\n?/g, '\n');
+  const blocks = md.split(/\n{2,}/).map((b) => b.trim()).filter(Boolean);
+  const title = blocks.shift().replace(/^#\s+/, '');
+  const lede = /^\*[^*][\s\S]*\*$/.test(blocks[0] || '') ? blocks.shift().slice(1, -1) : '';
+  if (/^\*Checked/.test(blocks[0] || '')) blocks.shift();
+  const sections = [];
+  let sources = [];
+  for (const b of blocks) {
+    if (/^##\s/.test(b)) { sections.push({ title: b.replace(/^##\s+/, ''), parts: [] }); continue; }
+    const sec = sections[sections.length - 1];
+    if (!sec) continue;
+    if (/^sources$/i.test(sec.title)) {
+      sources = b.split('\n').map((l) => /^(\d+)\.\s+(.*?)\s+(https:\/\/\S+)$/.exec(l.trim())).filter(Boolean).map(([, n, text, url]) => ({ n: Number(n), text, url }));
+      continue;
+    }
+    if (/^###\s/.test(b)) sec.parts.push(`<h3>${guideInline(b.replace(/^###\s+/, ''))}</h3>`);
+    else if (/^-\s/.test(b)) sec.parts.push(`<ul class="dots">${b.split(/\n(?=-\s)/).map((l) => `<li>${guideInline(l.replace(/^-\s+/, '').replace(/\n/g, ' '))}</li>`).join('')}</ul>`);
+    else if (/^\d+\.\s/.test(b)) sec.parts.push(`<ol class="nums">${b.split(/\n(?=\d+\.\s)/).map((l) => `<li>${guideInline(l.replace(/^\d+\.\s+/, '').replace(/\n/g, ' '))}</li>`).join('')}</ol>`);
+    else sec.parts.push(`<p>${guideInline(b.replace(/\n/g, ' '))}</p>`);
+  }
+  const shown = sections.filter((x) => !/^sources$/i.test(x.title));
+  if (!shown.length || !sources.length) throw new Error(`guide ${g.id}: no sections or no sources`);
+  const body = `<div class="lib-entry lib-guide">
+<section class="le-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/library/">Library</a><span aria-hidden="true">/</span><span>Guides</span></nav>
+    <p class="kick lime">${e(g.kick)}</p>
+    <h1 class="long">${e(title)}</h1>
+    ${lede ? `<p class="lede">${guideInline(lede)}</p>` : ''}
+    <div class="le-badges"><span class="check">Checked ${date(g.checked)} against ${sources.length} sources · clinician review pending</span></div>
+  </div>
+</section>
+
+<div class="wrap le-body">
+  <article class="le-main">
+    ${shown.map((x) => `<section class="le-sec" id="${slug(x.title)}">
+      <h2>${guideInline(x.title)}</h2>
+      ${x.parts.join('\n      ')}
+    </section>`).join('\n\n    ')}
+
+    <section class="le-sec" id="sources">
+      <h2>Sources</h2>
+      <ol class="sources">${sources.map((x) => `<li id="src-${x.n}"><a href="${e(x.url)}" rel="noopener" target="_blank">${e(x.text)}</a></li>`).join('')}</ol>
+      <p class="checked">Checked against these sources on ${date(g.checked)}. Clinician review pending. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${title}`)}">Tell us</a>.</p>
+    </section>
+  </article>
+  <aside class="le-side">
+    <nav class="toc" aria-label="On this page"><p class="mono">On this page</p>${shown.map((x) => `<a href="#${slug(x.title)}">${e(x.title)}</a>`).join('')}<a href="#sources">Sources</a></nav>
+    <p class="side-note">Education, not medical advice. No doses, no sellers, no labs named. A good report doesn’t make a product safe.</p>
+  </aside>
+</div>
+</div>`;
+  return page({
+    title: `${title} · Miracle Health Library`,
+    description: 'What a lab report (certificate of analysis) for a peptide, hormone or supplement should show, how to spot a weak or fake one, and what even a good one can’t tell you. No sellers named.',
+    url: `/library/${g.id}/`, body, scripts: [], connect: '',
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Miracle AI (miraclehealth.us/ai): the chat with four agents, and the member's own clinician last
 // ---------------------------------------------------------------------------
 const AGENTS = [
-  ['safety', 'Safety agent', 'Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.'],
-  ['recommender', 'Recommender', 'Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.'],
-  ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.'],
-  ['builder', 'Stack builder', 'Lays out your stack, and options to discuss with your clinician. Never doses, never sellers.'],
-  ['clinician', 'Your clinician', 'Your own licensed clinician, outside Miracle Health. Take them your review packet; until they’ve reviewed it, nothing here is a plan.'],
+  ['safety', 'Safety agent', 'Screens your message first, and checks every reply before you see it.'],
+  ['recommender', 'Recommender', 'Asks what it needs to know, then finds options in the Library and the Signal.'],
+  ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
+  ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
+  ['clinician', 'Your clinician', 'Your own clinician, outside Miracle Health, has the final say.'],
 ];
+// The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
-  ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, what does the evidence say, and what should I ask a clinician about?'],
-  ['muscle', 'Build muscle', 'I want to build muscle. Which supplements and peptides have real evidence in people, and what should I know before trying any?'],
-  ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?'],
-  ['weight', 'Lose fat', 'I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence for each?'],
-  ['cognition', 'Focus and mood', 'I want sharper focus and a steadier mood. What has evidence behind it?'],
-  ['longevity', 'Age well', 'I want to age well. What do peptides and supplements for healthy aging actually show in people?'],
-];
-const EXAMPLES = [
-  'Is BPC-157 safe?',
-  'What does the evidence say about creatine for strength?',
-  'I take levothyroxine. Is ashwagandha OK for stress?',
-  'Semaglutide or tirzepatide: how do they compare?',
+  ['stack', 'Check my stack', '', 'I take '],
+  ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, and what does the evidence say?', ''],
+  ['weight', 'Lose fat', 'I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence?', ''],
+  ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?', ''],
 ];
 
 function aiPage() {
   const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
-  const body = `<div class="ai-app" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
-  <section class="ai-chat" aria-label="Conversation with Miracle AI">
+  const body = `<div class="ai-app is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
+  <section class="ai-chat is-empty" aria-label="Conversation with Miracle AI">
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <span class="ai-hello" data-sig="112" aria-hidden="true"></span>
-        <h2 class="ai-title">Talk it through with Miracle AI.</h2>
-        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Like a good clinician, Miracle AI asks a few questions so the answer fits you. Four AI agents check every answer against the Library’s fact sheets and the Community Signal, and your own clinician has the final say.</p>
-        <div class="ai-starts" role="group" aria-label="Start with a goal">
-          ${STARTERS.map(([goal, label, text]) => `<button type="button" class="ai-start" data-ask="${e(text)}" data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n          ')}
-        </div>
-        <div class="ai-examples" role="group" aria-label="Or ask something specific">
-          ${EXAMPLES.map((q) => `<button type="button" class="ai-example" data-ask="${e(q)}">${e(q)}</button>`).join('\n          ')}
-        </div>
-        <div class="ai-who">
-          <h2>Who answers, and who decides</h2>
-          ${agentList('agent-list')}
-        </div>
+        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with Miracle AI.</h2></div>
+        <p class="ai-lede">What the evidence says about peptides, supplements and hormones, checked by four AI agents. Your own clinician has the final say.</p>
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
@@ -509,11 +566,21 @@ function aiPage() {
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
       </div>
     </form>
+    <div class="ai-begin" id="ai-begin">
+      <div class="ai-saved" id="ai-saved" hidden></div>
+      <div class="ai-starts" role="group" aria-label="Start with">
+        ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
+      </div>
+      <details class="ai-who">
+        <summary>Who answers, and who decides</summary>
+        ${agentList('agent-list')}
+      </details>
+    </div>
     <p class="ai-fine">For adults 18 and over. Miracle AI explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Miracle AI needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <aside class="ai-rail" aria-label="The agents">
-    <div class="rail-head"><span class="rail-sig" data-sig="64" aria-hidden="true"></span><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
+    <div class="rail-head"><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
     ${agentList('agent-rail')}
     <div class="rail-notes" id="rail-notes" hidden>
       <h2>In this conversation</h2>
@@ -521,6 +588,7 @@ function aiPage() {
       <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
       <button type="button" class="rail-copy" id="rail-copy">Prepare clinician packet</button>
     </div>
+    <div class="rail-saved" id="rail-saved" hidden></div>
   </aside>
 </div>`;
   return page({
@@ -560,9 +628,10 @@ const out = new Map();
 out.set(path.join(LIB, 'index.html'), indexPage());
 for (const c of catalog) out.set(path.join(LIB, c.id, 'index.html'), entryPage(c));
 out.set(path.join(DATA, 'index.json'), aiIndex());
+for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g));
 out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
-const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), '/privacy', '/terms'];
+const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}
@@ -598,7 +667,7 @@ for (const [file, html] of out) {
   }
 }
 // Pages for compounds no longer in the catalog go
-const known = new Set(catalog.map((c) => c.id));
+const known = new Set([...catalog.map((c) => c.id), ...GUIDES.map((g) => g.id)]);
 for (const d of fs.readdirSync(LIB, { withFileTypes: true })) {
   if (d.isDirectory() && !['data', 'research'].includes(d.name) && !known.has(d.name)) {
     if (CHECK) { console.error(`left over: library/${d.name}`); stale += 1; } else fs.rmSync(path.join(LIB, d.name), { recursive: true });

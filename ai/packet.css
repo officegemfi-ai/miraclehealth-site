@@ -56,6 +56,7 @@
 .pk-lvl-avoid{background:#F9DEDA;color:#8E2F28}
 .pk-lvl-caution{background:#FFF1D9;color:#6E4600}
 .pk-lvl-info{background:#EEEFEE;color:#4A5251}
+.pk-lvl-unknown{border:1px dashed #9AA39F;color:#4A5251}
 .pk-qs{margin:8px 0 0;padding-left:22px;list-style:decimal}
 .pk-qs li{margin-top:4px}
 .pk-review{margin-top:24px;padding:14px 16px 16px;border:1.5px dashed #9AA39F;border-radius:8px;break-inside:avoid}
