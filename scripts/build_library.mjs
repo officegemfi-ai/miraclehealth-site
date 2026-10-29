@@ -455,7 +455,7 @@ function aiIndex() {
 // ---------------------------------------------------------------------------
 const AGENTS = [
   ['safety', 'Safety agent', 'Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.'],
-  ['recommender', 'Recommender', 'Finds options in the Library’s fact sheets and the Community Signal, and explains what the evidence shows.'],
+  ['recommender', 'Recommender', 'Asks what it needs to know, like a clinician taking a history, then finds options in the Library’s fact sheets and the Community Signal and explains the evidence.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.'],
   ['builder', 'Stack builder', 'Lays out a shortlist to discuss with a clinician. Never doses, never sellers.'],
   ['clinician', 'Clinician review', 'Always pending. Nothing here is a plan until a licensed clinician who knows you has reviewed it.'],
@@ -487,7 +487,7 @@ function aiPage() {
       <div class="ai-empty" id="ai-empty">
         <span class="ai-hello" data-sig="112" aria-hidden="true"></span>
         <h2 class="ai-title">Talk it through with Miracle AI.</h2>
-        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Five agents check every answer against the Library’s fact sheets and the Community Signal.</p>
+        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Like a good clinician, Miracle AI asks a few questions so the answer fits you, and five agents check every answer against the Library’s fact sheets and the Community Signal.</p>
         <div class="ai-starts" role="group" aria-label="Start with a goal">
           ${STARTERS.map(([goal, label, text]) => `<button type="button" class="ai-start" data-ask="${e(text)}" data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n          ')}
         </div>

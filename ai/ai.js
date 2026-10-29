@@ -318,10 +318,11 @@ function schedule(msg) {
 function cardNode(card, msg) {
   if (card.type === 'shortlist') return shortlistNode(card);
   if (card.type === 'questions') return questionsNode(card);
+  if (card.type === 'intake') return intakeNode(card);
   if (card.type === 'audit') return auditNode(card);
   if (card.type === 'crisis') {
     return h('div', { class: 'card help', role: 'note' },
-      h('h3', { text: 'You don’t have to face this alone' }),
+      h('h2', { text: 'You don’t have to face this alone' }),
       h('p', { text: 'If you’re thinking about hurting yourself or ending your life, please reach out now. The 988 Suicide & Crisis Lifeline is free, confidential and open all day, every day. If you’re in danger right now, call 911.' }),
       h('div', { class: 'help-actions' },
         h('a', { href: 'tel:988', text: 'Call 988' }),
@@ -330,7 +331,7 @@ function cardNode(card, msg) {
   }
   if (card.type === 'urgent') {
     return h('div', { class: 'card help', role: 'note' },
-      h('h3', { text: 'If this is happening now, get help first' }),
+      h('h2', { text: 'If this is happening now, get help first' }),
       h('p', { text: 'Call 911 or go to the nearest emergency room. If you took too much of something, Poison Control is at 1-800-222-1222.' }),
       h('div', { class: 'help-actions' }, h('a', { href: 'tel:911', text: 'Call 911' }), h('a', { href: 'tel:18002221222', class: 'line', text: 'Call Poison Control' })));
   }
@@ -339,7 +340,7 @@ function cardNode(card, msg) {
 
 function shortlistNode(card) {
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
-  el.append(h('div', { class: 'card-head' }, h('div', {}, h('h3', { text: card.title }), h('p', { text: 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.' }))));
+  el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.' }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.warn), h('span', { text: card.note })));
   for (const it of card.items || []) {
     const g = GRADE_N[it.grade] ?? -1;
@@ -389,8 +390,88 @@ function questionsNode(card) {
   const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
   btn.addEventListener('click', () => copy(['Questions for my clinician:', ...card.items.map((q) => `- ${q}`)].join('\n'), btn));
   return h('div', { class: 'card qs' },
-    h('div', { class: 'card-head' }, h('div', {}, h('h3', { text: 'Questions for your clinician' }), h('p', { class: 'sub', text: 'Bring these to your next visit.' })), btn),
+    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'Questions for your clinician' }), h('p', { class: 'sub', text: 'Bring these to your next visit.' })), btn),
     h('ul', {}, card.items.map((q) => h('li', { text: q }))));
+}
+
+// Questions for the visitor, the way a clinician takes a history: tap an answer, type one, or
+// both. The answers go back as the visitor's next message; nothing is kept anywhere else.
+const NONE_LIKE = /^(?:none|no|not sure|neither|nothing|prefer not to say)\b/i;
+const answerOf = (card, i) => {
+  const a = card.answered?.[i];
+  return a ? [...(a.picked || []), a.text || ''].filter(Boolean).join(', ') : '';
+};
+function intakeNode(card) {
+  const closed = !!(card.answered || card.closed);
+  const state = card.questions.map((_, i) => ({ picked: new Set(card.answered?.[i]?.picked || []), text: card.answered?.[i]?.text || '' }));
+  const send = h('button', { class: 'btn-answers', type: 'button', text: card.answered ? 'Answers sent' : 'Send my answers' });
+  const ready = () => { send.disabled = closed || !state.some((s) => s.picked.size || s.text.trim()); };
+  const list = h('ol', { class: 'intake-qs' });
+  card.questions.forEach((q, i) => {
+    const qid = `${card.id || 'intake'}-q${i}`;
+    const li = h('li', { class: 'iq' }, h('p', { class: 'iq-q', id: qid, text: q.q }));
+    if (q.options?.length) {
+      const group = h('div', { class: 'iq-opts', role: 'group', 'aria-labelledby': qid });
+      const sync = () => group.querySelectorAll('.iq-opt').forEach((b) => b.setAttribute('aria-pressed', String(state[i].picked.has(b.dataset.v))));
+      for (const o of q.options) {
+        const b = h('button', { class: 'iq-opt', type: 'button', 'data-v': o, 'aria-pressed': 'false', text: o });
+        b.disabled = closed;
+        b.addEventListener('click', () => {
+          const s = state[i].picked;
+          if (s.has(o)) s.delete(o);
+          else {
+            // One answer, unless several can apply; "None" stands alone either way
+            if (!q.multi || NONE_LIKE.test(o)) s.clear();
+            else for (const x of [...s]) if (NONE_LIKE.test(x)) s.delete(x);
+            s.add(o);
+          }
+          sync();
+          ready();
+        });
+        group.append(b);
+      }
+      li.append(group);
+      sync();
+    }
+    const field = h('input', { class: 'iq-text', type: 'text', maxlength: '200', autocomplete: 'off', placeholder: q.options?.length ? 'Or type your own answer' : 'Type your answer', 'aria-labelledby': qid });
+    field.value = state[i].text;
+    field.disabled = closed;
+    field.addEventListener('input', () => { state[i].text = field.value; ready(); });
+    field.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.isComposing) { e.preventDefault(); send.click(); } });
+    li.append(field);
+    list.append(li);
+  });
+  send.addEventListener('click', () => {
+    if (send.disabled || busy) return;
+    const lines = card.questions.map((q, i) => {
+      const a = [...state[i].picked, state[i].text.trim()].filter(Boolean).join(', ');
+      return a ? `${q.q} ${a}` : '';
+    }).filter(Boolean);
+    const extra = input.value.trim();
+    if (extra) lines.push(extra);
+    if (!lines.length) return;
+    card.answered = state.map((s) => ({ picked: [...s.picked], text: s.text.trim() }));
+    ask(lines.join('\n').slice(0, LIMIT));
+  });
+  ready();
+  const foot = h('div', { class: 'intake-foot' }, send, h('span', { class: 'intake-or', text: card.answered ? 'Sent as your next message.' : 'Or answer in your own words below.' }));
+  if (closed && !card.answered) foot.hidden = true;
+  return h('div', { class: `card intake${closed ? ' closed' : ''}`, role: 'group', 'aria-label': 'Questions for you' },
+    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'A few questions for you' }), h('p', { class: 'sub', text: 'So the answer fits you. Share only what you’re comfortable with.' }))),
+    list, foot);
+}
+// Once the visitor writes again, earlier questions are settled: answered, or passed over
+function closeIntakes() {
+  for (const m of chat) {
+    let changed = false;
+    for (const p of m.parts || []) {
+      if (p.t !== 'card' || p.card.type !== 'intake' || p.card.closed) continue;
+      p.card.closed = true;
+      m.view?.cardEls.delete(p);
+      changed = true;
+    }
+    if (changed && m.view) drawParts(m);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -418,6 +499,15 @@ async function copy(text, btn) {
 function notes() {
   const lines = [`Notes from Miracle AI to discuss with a clinician (${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })})`,
     'Education from the Miracle Health Library and Community Signal, not medical advice. Clinician review pending.', ''];
+  // What the visitor told Miracle AI when it asked, as a clinician would want it up front
+  const about = [];
+  for (const m of chat) {
+    for (const p of m.parts || []) {
+      if (p.t !== 'card' || p.card.type !== 'intake' || !p.card.answered) continue;
+      p.card.questions.forEach((q, i) => { const a = answerOf(p.card, i); if (a) about.push(`- ${q.q} ${a}`); });
+    }
+  }
+  if (about.length) lines.push('About me (what I told Miracle AI):', ...about, '');
   const qs = [];
   for (const m of chat) {
     if (m.role !== 'assistant') continue;
@@ -512,6 +602,7 @@ function ask(text) {
   const t = text.trim();
   if (!t || busy) return;
   if (!adult) { gate(t); return; }
+  closeIntakes();
   input.value = '';
   grow();
   empty.hidden = true;
