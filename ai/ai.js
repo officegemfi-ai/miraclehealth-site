@@ -393,12 +393,19 @@ function warnGroups(groups) {
 function shortlistNode(card) {
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
   const sub = card.kind === 'yours'
-    ? 'Laid out by the Stack builder: what you take or asked about, checked together. Go through it with a clinician who knows you.'
-    : 'Laid out by the Stack builder. Options to raise with a clinician, not a plan to start on your own.';
+    ? 'What you take or asked about, checked together by the Synergy auditor.'
+    : 'Laid out by the Stack builder: options to talk through with your clinician.';
   el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
   if (card.kind === 'yours' && card.meds?.length) el.append(h('p', { class: 'short-meds', text: `Checked with what you told me you take: ${card.meds.join(', ')}` }));
-  for (const it of card.items || []) el.append(pickNode(it));
+  // A caution that several options share is said once, under them
+  const items = card.items || [];
+  const shared = [...new Set(items.map((it) => it.caution).filter((c) => c && !c.includes(':') && items.filter((x) => x.caution === c).length > 1))];
+  for (const it of items) el.append(pickNode(shared.includes(it.caution) ? { ...it, caution: '' } : it));
+  for (const c of shared) {
+    const names = items.filter((x) => x.caution === c).map((x) => x.name);
+    el.append(h('p', { class: 'short-note shared' }, svg(ICON.info), h('span', { text: `${listOf(names)}: ${c[0].toLowerCase()}${c.slice(1)}` })));
+  }
   const audit = h('div', { class: 'audit' }, h('div', { class: 'audit-head busy', text: 'Synergy auditor: checking these together' }));
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
@@ -577,7 +584,7 @@ function packetButton(label) {
 }
 function reviewLine() {
   return [svg(meta.reviewed ? ICON.check : ICON.clock),
-    h('span', { text: meta.reviewed ? `Your clinician: reviewed (you marked it on ${reviewedOn()}).` : 'Your clinician: not yet. Take your packet to a licensed clinician who knows your history.' }),
+    h('span', { text: meta.reviewed ? `Your clinician: reviewed (you marked it on ${reviewedOn()}).` : 'Your clinician hasn’t seen this yet.' }),
     packetButton('Prepare packet')];
 }
 function refreshReview() {
