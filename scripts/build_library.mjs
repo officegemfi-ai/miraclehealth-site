@@ -3,9 +3,10 @@
 //   catalog.json       every compound and blend in the community's library (from its database)
 //   entries/<id>.json  the fact sheets, each claim checked against a source we opened
 //   uses.json          the twelve goals and the uses members report on (the community's list)
-// Writes library/index.html, library/<id>/index.html (one per compound) and sitemap.xml.
-// The pages are static; library/library.js adds search and filters, and fills in the live
-// Community Signal from community.miraclehealth.us/snapshot.json.
+// Writes library/index.html, library/<id>/index.html (one per compound), library/data/index.json
+// (what Miracle AI reads to find and rank compounds), the Miracle AI page (ai/index.html) and
+// sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
+// the live Community Signal from community.miraclehealth.us/snapshot.json; ai/ai.js is the chat.
 // Run: node scripts/build_library.mjs   (--check fails if the committed pages are out of date)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,6 +19,9 @@ const LIB = path.join(ROOT, 'library');
 const DATA = path.join(LIB, 'data');
 const SITE = 'https://miraclehealth.us';
 const COMMUNITY = 'https://community.miraclehealth.us';
+// Miracle AI's chat: the ask function in the community's live Supabase project
+// (miracle-health-community, supabase/functions/ask). The address isn't secret.
+const ASK_URL = 'https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask';
 const CHECK = process.argv.includes('--check');
 
 const catalog = JSON.parse(fs.readFileSync(path.join(DATA, 'catalog.json'), 'utf8'));
@@ -78,13 +82,19 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 // browser or GitHub's cache never pairs a new page with an old stylesheet (GitHub Pages caches
 // files for 10 minutes)
 const version = (...files) => createHash('sha256').update(files.map((f) => fs.readFileSync(path.join(ROOT, f))).join('\n')).digest('hex').slice(0, 10);
-const V = { css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js') };
+const V = {
+  css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js'),
+  aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
+};
 
 // The library's banner photo, in three widths
 const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 960w, /img/library-1600.webp 1600w, /img/library-2560.webp 2560w' };
 
-function page({ title, description, url, body, current = 'library', preload = '' }) {
-  const nav = [['/library/', 'Library', 'library'], ['/#signal', 'The Signal', 'signal'], ['/#how', 'How it works', 'how']];
+function page({
+  title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
+  styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, connect = COMMUNITY,
+}) {
+  const nav = [['/library/', 'Library', 'library'], ['/ai/', 'Miracle AI', 'ai'], ['/#signal', 'The Signal', 'signal'], ['/#how', 'How it works', 'how']];
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -94,7 +104,7 @@ function page({ title, description, url, body, current = 'library', preload = ''
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${COMMUNITY}; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect}; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
 <meta property="og:type" content="website">
@@ -107,10 +117,10 @@ function page({ title, description, url, body, current = 'library', preload = ''
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
-<link rel="stylesheet" href="/library/library.css?v=${V.lib}">
-<script type="module" src="/library/library.js?v=${V.js}"></script>
+${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
+<script type="module" src="${script}"></script>
 </head>
-<body class="lib">
+<body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
@@ -139,7 +149,7 @@ ${body}
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
@@ -420,12 +430,116 @@ function entryPage(c) {
 }
 
 // ---------------------------------------------------------------------------
+// What Miracle AI reads: every compound with what it needs to find and rank it
+// ---------------------------------------------------------------------------
+function aiIndex() {
+  const nonzero = (g) => Object.fromEntries(Object.entries(g || {}).filter(([, v]) => Number(v) > 0));
+  const checked = [...entries.values()].map((f) => f.checked || '').sort().pop() || '';
+  return JSON.stringify({
+    note: 'Every compound and blend in the Library, with the status, evidence grade and goals of the ones that have a fact sheet. Written by scripts/build_library.mjs for Miracle AI (miraclehealth.us/ai).',
+    checked,
+    goals: uses.goals,
+    items: catalog.map((c) => {
+      const f = entries.get(c.id);
+      return {
+        id: c.id, name: c.name, family: c.family, category: c.category, aliases: c.aliases || [], kind: c.kind, parts: c.parts || [],
+        sheet: !!f,
+        ...(f ? { status: f.status_us.key, status_label: f.status_us.label, grade: f.evidence.grade, goals: nonzero(f.goals), summary: f.summary } : {}),
+      };
+    }),
+  }) + '\n';
+}
+
+// ---------------------------------------------------------------------------
+// Miracle AI (miraclehealth.us/ai): the chat with the five agents
+// ---------------------------------------------------------------------------
+const AGENTS = [
+  ['safety', 'Safety agent', 'Screens every message for emergencies, signs of crisis, medicines and conditions, and reads every reply again before it stands.'],
+  ['recommender', 'Recommender', 'Finds options in the Library’s fact sheets and the Community Signal, and explains what the evidence shows.'],
+  ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions: overlaps, risks that add up, interactions.'],
+  ['builder', 'Stack builder', 'Lays out a shortlist to discuss with a clinician. Never doses, never sellers.'],
+  ['clinician', 'Clinician review', 'Always pending. Nothing here is a plan until a licensed clinician who knows you has reviewed it.'],
+];
+const STARTERS = [
+  ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, what does the evidence say, and what should I ask a clinician about?'],
+  ['muscle', 'Build muscle', 'I want to build muscle. Which supplements and peptides have real evidence in people, and what should I know before trying any?'],
+  ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?'],
+  ['weight', 'Lose fat', 'I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence for each?'],
+  ['cognition', 'Focus and mood', 'I want sharper focus and a steadier mood. What has evidence behind it?'],
+  ['longevity', 'Age well', 'I want to age well. What do peptides and supplements for healthy aging actually show in people?'],
+];
+const EXAMPLES = [
+  'Is BPC-157 safe?',
+  'What does the evidence say about creatine for strength?',
+  'I take levothyroxine. Is ashwagandha OK for stress?',
+  'Semaglutide or tirzepatide: how do they compare?',
+];
+
+function aiPage() {
+  const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
+  const body = `<div class="ai-app" id="ai" data-endpoint="${e(ASK_URL)}">
+  <section class="ai-chat" aria-label="Conversation with Miracle AI">
+    <div class="ai-bar">
+      <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Five agents ready</span></span></div>
+      <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
+    </div>
+    <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
+      <div class="ai-empty" id="ai-empty">
+        <span class="ai-hello" data-sig="112" aria-hidden="true"></span>
+        <h2 class="ai-title">Talk it through with Miracle AI.</h2>
+        <p class="ai-lede">Ask what the evidence says about a peptide or supplement, or how to work toward a goal. Five agents check every answer against the Library’s fact sheets and the Community Signal.</p>
+        <div class="ai-starts" role="group" aria-label="Start with a goal">
+          ${STARTERS.map(([goal, label, text]) => `<button type="button" class="ai-start" data-ask="${e(text)}" data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n          ')}
+        </div>
+        <div class="ai-examples" role="group" aria-label="Or ask something specific">
+          ${EXAMPLES.map((q) => `<button type="button" class="ai-example" data-ask="${e(q)}">${e(q)}</button>`).join('\n          ')}
+        </div>
+        <div class="ai-who">
+          <h2>Who answers</h2>
+          ${agentList('agent-list')}
+        </div>
+      </div>
+    </div>
+    <form class="ai-dock" id="ai-form" novalidate>
+      <div class="ai-composer">
+        <label class="sr" for="ai-input">Message Miracle AI</label>
+        <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, a compound or a combination" data-short="Ask about a goal or a compound"></textarea>
+        <span class="ai-count" id="ai-count" aria-live="polite"></span>
+        <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
+      </div>
+    </form>
+    <p class="ai-fine">For adults 18 and over. Miracle AI explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
+    <noscript><p class="ai-nojs">Miracle AI needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
+  </section>
+  <aside class="ai-rail" aria-label="The agents">
+    <div class="rail-head"><span class="rail-sig" data-sig="64" aria-hidden="true"></span><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
+    ${agentList('agent-rail')}
+    <div class="rail-notes" id="rail-notes" hidden>
+      <h2>In this conversation</h2>
+      <div class="rail-chips" id="rail-chips"></div>
+      <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
+      <button type="button" class="rail-copy" id="rail-copy">Copy notes for my clinician</button>
+    </div>
+  </aside>
+</div>`;
+  return page({
+    title: 'Miracle AI · talk through peptides and supplements with five agents',
+    description: 'Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Five agents check every answer against the Miracle Health Library and the Community Signal. No doses, no sellers.',
+    url: '/ai/', body, current: 'ai', bodyClass: 'ai',
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`], script: `/ai/ai.js?v=${V.aiJs}`,
+    connect: new URL(ASK_URL).origin,
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Write it all
 // ---------------------------------------------------------------------------
 const out = new Map();
 out.set(path.join(LIB, 'index.html'), indexPage());
 for (const c of catalog) out.set(path.join(LIB, c.id, 'index.html'), entryPage(c));
-const urls = ['/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), '/privacy', '/terms'];
+out.set(path.join(DATA, 'index.json'), aiIndex());
+out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
+const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}
