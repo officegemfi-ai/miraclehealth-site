@@ -63,9 +63,11 @@ export function node(card, opts = {}) {
   el.append(h('header', { class: 'plan-head' },
     h('p', { class: 'plan-kick', text: opts.kick || 'Your Miracle Plan' }),
     h('h2', { class: 'plan-title', text: card.title || 'Your Miracle Plan' }),
-    h('p', { class: 'plan-sub', text: focus.length
-      ? `Built from the ground up, around ${focus.join(' and ')}: that’s where the biggest win is.`
-      : 'Built from the ground up: the three pillars hold up everything above them.' })));
+    h('p', { class: 'plan-sub', text: focus.length === 3
+      ? 'Built from the ground up. All three pillars are your focus: start with the one that’s easiest this week.'
+      : focus.length
+        ? `Built from the ground up, around ${focus.join(' and ')}: that’s where the biggest win is.`
+        : 'Built from the ground up: the three pillars hold up everything above them.' })));
 
   // In reading order the foundations come first, as the plan is built; on screen they're the base
   const base = h('ul', { class: 'plan-base', 'aria-label': 'Foundations' }, fs.map((f) => h('li', { class: `pillar is-${f.state}` },
