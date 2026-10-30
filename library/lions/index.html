@@ -19,9 +19,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=70dcd0057b">
-<link rel="stylesheet" href="/library/library.css?v=123661e1bd">
-<script type="module" src="/library/library.js?v=df4d30df58"></script>
+<link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
+<link rel="stylesheet" href="/styles.css?v=9ea0d497c6">
+<link rel="stylesheet" href="/library/library.css?v=7e9878c27b">
+<script type="module" src="/library/library.js?v=ddad2886dc"></script>
 </head>
 <body class="lib">
 <a class="skip" href="#main">Skip to content</a>
@@ -29,12 +30,7 @@
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    <nav class="top-nav" aria-label="Main">
-      <a href="/library/" aria-current="page">Library</a>
-      <a href="/ai/">Miracle AI</a>
-      <a href="/#signal">The Signal</a>
-      <a href="/#how">How it works</a>
-    </nav>
+    <nav class="mh-bar top-nav" aria-label="Main"><a href="/library/" data-place="library" aria-current="page">Library</a><a href="/ai/" data-place="ai">Miracle AI</a><a href="https://community.miraclehealth.us/" data-place="community">Community</a><a href="/my/" data-place="my">My Miracle</a></nav>
     <a class="top-link" href="https://community.miraclehealth.us/">Sign in</a>
     <a class="btn lime sm" href="https://community.miraclehealth.us/">Join</a>
     <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
@@ -42,11 +38,13 @@
 </header>
 <nav class="menu-panel" id="menu" aria-label="Menu">
   <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
-  <a href="/library/">Library</a>
+  <a href="/library/" aria-current="page">Library</a>
   <a href="/ai/">Miracle AI</a>
-  <a href="/#signal">The Signal</a>
-  <a href="/#how">How it works</a>
-  <a href="https://community.miraclehealth.us/">Sign in</a>
+  <a href="https://community.miraclehealth.us/">Community</a>
+  <a href="/my/">My Miracle</a>
+  <a class="menu-more" href="/#signal">The Signal</a>
+  <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
 
@@ -61,8 +59,13 @@
     <p class="lede">An edible mushroom (Hericium erinaceus) taken for memory, focus and mood; small human trials show mixed results, and most evidence comes from lab and animal studies.</p>
     <div class="le-badges">
       <span class="st st-supplement">Dietary supplement</span>
-      <span class="ev ev-limited">Limited evidence</span>
+      <span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span>
       <span class="check">Fact-checked Oct 28, 2026 · clinician review pending</span>
+    </div>
+    <div class="le-actions">
+      <a class="btn lime sm" href="/ai/#ask=V2hhdCBtYXkgTGlvbuKAmXMgbWFuZSBkbyBmb3IgbWU_IFdoYXQgZG9lcyB0aGUgZXZpZGVuY2Ugc2F5LCBhbmQgd2hhdCBkbyBtZW1iZXJzIHJlcG9ydD8">Ask Miracle AI about Lion’s mane</a>
+      <a class="btn line sm" href="/ai/" data-with-stack="lions" hidden>Check it with my saved stack</a>
+      <a class="btn line sm" href="https://community.miraclehealth.us/#/s/lions">See what members report</a>
     </div>
   </div>
 </section>
@@ -75,7 +78,7 @@
         <div class="radar-box" data-live="radar" data-studied="{&quot;weight&quot;:0,&quot;muscle&quot;:0,&quot;recovery&quot;:0,&quot;energy&quot;:0,&quot;sleep&quot;:0.25,&quot;cognition&quot;:1,&quot;skin&quot;:0,&quot;sexual&quot;:0,&quot;longevity&quot;:0.25,&quot;gut&quot;:0.25,&quot;immune&quot;:0.25,&quot;hormonal&quot;:0}"><svg class="radar rose" viewBox="0 0 410 350" role="img" aria-label="What Lion’s mane is used and studied for"><circle cx="205" cy="175" r="45.9" fill="none" stroke="currentColor" stroke-opacity="0.1"/><circle cx="205" cy="175" r="71.9" fill="none" stroke="currentColor" stroke-opacity="0.1"/><circle cx="205" cy="175" r="98.0" fill="none" stroke="currentColor" stroke-opacity="0.1"/><circle cx="205" cy="175" r="124.0" fill="none" stroke="currentColor" stroke-opacity="0.26"/><circle cx="205" cy="175" r="19.8" fill="none" stroke="currentColor" stroke-opacity=".18"/><line x1="210.1" y1="155.8" x2="237.1" y2="55.2" stroke="currentColor" stroke-opacity=".08"/><line x1="219.0" y1="161.0" x2="292.7" y2="87.3" stroke="currentColor" stroke-opacity=".08"/><line x1="224.2" y1="169.9" x2="324.8" y2="142.9" stroke="currentColor" stroke-opacity=".08"/><line x1="224.2" y1="180.1" x2="324.8" y2="207.1" stroke="currentColor" stroke-opacity=".08"/><line x1="219.0" y1="189.0" x2="292.7" y2="262.7" stroke="currentColor" stroke-opacity=".08"/><line x1="210.1" y1="194.2" x2="237.1" y2="294.8" stroke="currentColor" stroke-opacity=".08"/><line x1="199.9" y1="194.2" x2="172.9" y2="294.8" stroke="currentColor" stroke-opacity=".08"/><line x1="191.0" y1="189.0" x2="117.3" y2="262.7" stroke="currentColor" stroke-opacity=".08"/><line x1="185.8" y1="180.1" x2="85.2" y2="207.1" stroke="currentColor" stroke-opacity=".08"/><line x1="185.8" y1="169.9" x2="85.2" y2="142.9" stroke="currentColor" stroke-opacity=".08"/><line x1="191.0" y1="161.0" x2="117.3" y2="87.3" stroke="currentColor" stroke-opacity=".08"/><line x1="199.9" y1="155.8" x2="172.9" y2="55.2" stroke="currentColor" stroke-opacity=".08"/><g class="rd-layer rd-studied" transform-origin="205 175"><path d="M224.0 180.6 L249.0 188.0 A45.9 45.9 0 0 1 246.4 194.8 L222.9 183.5 A19.8 19.8 0 0 0 224.0 180.6 Z"/><path d="M218.7 189.4 L290.4 264.9 A124.0 124.0 0 0 1 275.2 277.2 L216.2 191.4 A19.8 19.8 0 0 0 218.7 189.4 Z"/><path d="M190.6 188.7 L171.7 206.6 A45.9 45.9 0 0 1 167.2 201.0 L188.6 186.2 A19.8 19.8 0 0 0 190.6 188.7 Z"/><path d="M185.7 179.6 L160.4 185.7 A45.9 45.9 0 0 1 159.3 178.6 L185.2 176.6 A19.8 19.8 0 0 0 185.7 179.6 Z"/><path d="M186.0 169.4 L161.0 162.0 A45.9 45.9 0 0 1 163.6 155.2 L187.1 166.5 A19.8 19.8 0 0 0 186.0 169.4 Z"/></g><text x="205.0" y="33.0" text-anchor="middle" class="rd-label">Weight</text><text x="275.0" y="51.8" text-anchor="start" class="rd-label">Muscle</text><text x="326.2" y="109.0" text-anchor="start" class="rd-label">Recovery</text><text x="345.0" y="179.0" text-anchor="start" class="rd-label">Energy</text><text x="326.2" y="249.0" text-anchor="start" class="rd-label">Sleep</text><text x="275.0" y="306.2" text-anchor="start" class="rd-label">Focus &amp; mood</text><text x="205.0" y="325.0" text-anchor="middle" class="rd-label">Skin &amp; hair</text><text x="135.0" y="306.2" text-anchor="end" class="rd-label">Sexual health</text><text x="83.8" y="249.0" text-anchor="end" class="rd-label">Aging</text><text x="65.0" y="179.0" text-anchor="end" class="rd-label">Gut</text><text x="83.8" y="109.0" text-anchor="end" class="rd-label">Immune</text><text x="135.0" y="51.8" text-anchor="end" class="rd-label">Hormones</text></svg></div>
         <p class="legend"><span class="lg"><span class="k studied"></span>What studies look at</span><span class="lg"><span class="k forums"></span>What forums talk about</span><span class="lg"><span class="k members"></span>What members report on</span></p>
       </div>
-      <dl class="glass deep le-facts"><div><dt>US status</dt><dd><span class="st st-supplement">Dietary supplement</span> Dietary supplement; also eaten as food</dd></div><div><dt>Evidence</dt><dd><span class="ev ev-limited">Limited evidence</span></dd></div><div><dt>Mostly used for</dt><dd>Focus, mood &amp; cognition</dd></div><div><dt>Blood markers</dt><dd>None routinely needed</dd></div><div><dt>Checked</dt><dd>Oct 28, 2026 against <a href="#sources">3 sources</a></dd></div></dl>
+      <dl class="glass deep le-facts"><div><dt>US status</dt><dd><span class="st st-supplement">Dietary supplement</span> Dietary supplement; also eaten as food</dd></div><div><dt>Evidence</dt><dd><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span></dd></div><div><dt>Mostly used for</dt><dd>Focus, mood &amp; cognition</dd></div><div><dt>Blood markers</dt><dd>None routinely needed</dd></div><div><dt>Checked</dt><dd>Oct 28, 2026 against <a href="#sources">3 sources</a></dd></div></dl>
     </div>
     <div class="glass deep le-signal" data-live="signal" aria-live="polite">
       <div class="gc-head"><span>Community Signal</span><span class="live lime"><i aria-hidden="true"></i>Live</span></div>
@@ -91,12 +94,12 @@
     <section class="le-sec" id="what">
       <h2>What it is</h2>
       <p class="big">Lion's mane (Hericium erinaceus) is an edible mushroom native to North America, Europe and Asia, with deep roots in traditional Chinese medicine. It contains compounds called hericenones and, in its mycelium (the root-like threads), erinacines, which stimulated nerve growth factor in lab studies. It is eaten as food and taken in supplements; trials have used capsules, powders and baked goods containing it.</p>
-      <div class="ev-box"><span class="ev ev-limited">Limited evidence</span><p>A 2025 systematic review found 9 small human studies (about 325 people) with mixed effects on memory and some improvement in mood scores; most support for brain benefits comes from lab and animal work.</p></div>
+      <div class="ev-box"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><p>A 2025 systematic review found 9 small human studies (about 325 people) with mixed effects on memory and some improvement in mood scores; most support for brain benefits comes from lab and animal work.</p></div>
     </section>
 
     <section class="le-sec" id="benefits">
       <h2>What it may do</h2>
-      <ul class="claims"><li><span class="ev ev-limited">Limited evidence</span><p>Mixed effects on memory and thinking: a small randomized trial in older adults with mild cognitive impairment (30 people) and a year-long pilot trial in mild Alzheimer's disease (41 people) reported better cognitive screening scores, but trials in healthy adults found no lasting gains <a class="ref" href="#src-1" aria-label="Source 1">1</a><a class="ref" href="#src-2" aria-label="Source 2">2</a></p></li><li><span class="ev ev-limited">Limited evidence</span><p>Lower depression and anxiety scores in two small randomized trials <a class="ref" href="#src-1" aria-label="Source 1">1</a></p></li><li><span class="ev ev-limited">Limited evidence</span><p>Faster on one attention task an hour after a single dose, and lower self-rated stress after 28 days, in 41 young adults; other measures, including a standard stress questionnaire, did not improve and one memory measure favored placebo <a class="ref" href="#src-2" aria-label="Source 2">2</a></p></li><li><span class="ev ev-preclinical">Animal and lab studies</span><p>Compounds from the mushroom stimulated nerve growth factor in lab studies, with signs of nerve protection in animals <a class="ref" href="#src-1" aria-label="Source 1">1</a></p></li></ul>
+      <ul class="claims"><li><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><p>Mixed effects on memory and thinking: a small randomized trial in older adults with mild cognitive impairment (30 people) and a year-long pilot trial in mild Alzheimer's disease (41 people) reported better cognitive screening scores, but trials in healthy adults found no lasting gains <a class="ref" href="#src-1" aria-label="Source 1">1</a><a class="ref" href="#src-2" aria-label="Source 2">2</a></p></li><li><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><p>Lower depression and anxiety scores in two small randomized trials <a class="ref" href="#src-1" aria-label="Source 1">1</a></p></li><li><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><p>Faster on one attention task an hour after a single dose, and lower self-rated stress after 28 days, in 41 young adults; other measures, including a standard stress questionnaire, did not improve and one memory measure favored placebo <a class="ref" href="#src-2" aria-label="Source 2">2</a></p></li><li><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><p>Compounds from the mushroom stimulated nerve growth factor in lab studies, with signs of nerve protection in animals <a class="ref" href="#src-1" aria-label="Source 1">1</a></p></li></ul>
     </section>
 
     <section class="le-sec" id="risks">
@@ -170,7 +173,7 @@
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>

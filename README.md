@@ -4,8 +4,8 @@ The front page of Miracle Health, at https://miraclehealth.us. The community its
 lives at https://community.miraclehealth.us (the `miracle-health-community` repository).
 
 Static pages with no tracking and no cookies, served by GitHub Pages from the `main`
-branch: the front page (no scripts), the Library at /library, and Miracle AI, the chat with
-five agents, at /ai. The look: a full-width photo (shown exactly as supplied, with
+branch: the front page (no scripts), the Library at /library, Miracle AI, the chat with
+five agents, at /ai, and My Miracle, what a member keeps on their device, at /my. The look: a full-width photo (shown exactly as supplied, with
 the headline on its sky) under a dark see-through header,
 paper-white sections between deep green-black bands, lime accents, frosted "glass"
 cards, Inter headlines, Plus Jakarta Sans text, IBM Plex Mono labels, and Sig, the
@@ -19,6 +19,8 @@ set to. On phones the links sit behind a Menu button, which works without script
 | `index.html` | The front page |
 | `ai/` | Miracle AI, the chat at /ai: `index.html` (written by the library build), `ai.css` and `ai.js`. People talk with five agents about improving with peptides, supplements and hormones; the answers come from the community's `ask` function (miracle-health-community, `supabase/functions/ask`), streamed with each agent's steps. The conversation stays in the visitor's browser tab. `packet.js` and `packet.css` make the clinician review packet in the browser (print or PDF, or a link and QR code that carry it after "#" to `ai/packet/`, which a clinician opens; no server ever receives it); `vendor/qrcode.js` is qrcode-generator 2.0.4 (MIT), loaded only when someone asks for a code |
 | `styles.css` | Its look (the page's security policy allows only its own files, so no inline styles) |
+| `kit/` | Miracle Health's design kit, shared with the community app so the two look like one product: `kit.css` (the palette and type, Sig's moves) and `kit.js` (the bar of the four places on every page, Library · Miracle AI · Community · My Miracle; the evidence meter; the Community Signal number; compound tiles and chips; Sig; and the links one place opens in another, like a question typed into Miracle AI or a check-in drafted as a community post). Copied from the community's `shared/kit` by its `scripts/sync_kit.sh`; the community's checks fail if the copies here differ. Don't edit them here. The library build writes the bar, menu and footer into every page, the hand-written ones too, and the kit's version into every script that imports it |
+| `my/` | My Miracle, at /my (written by the library build, with `my.css` and `my.js`): what a member keeps on a device, together. Their Miracle Plan and its ticks, how it's going (one-tap check-ins, which can become a community post they edit and post there), their saved stack with each compound's evidence and Signal, their spaces in the community, a link and QR code that move it all to another device after "#", and a way to forget it. All of it lives in the browser's own storage |
 | `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
 | `404.html` | Shown for any address that doesn't exist |
 | `img/` | The photos, as WebP in a few widths so phones get the small ones (`hero-*` at the top, `report-*` and `move-*` in How it works, `library-*` for the Library's banner, `join-*` behind the Join section) |
@@ -45,7 +47,7 @@ line. No doses, no sellers.
 | `library/data/index.json` | What Miracle AI reads to find and rank compounds: every compound with its family and aliases, plus the status, evidence grade and goals of those with a fact sheet (written by the build) |
 | `scripts/build_library.mjs` | Writes `library/index.html`, `library/<id>/index.html`, `library/data/index.json`, the Miracle AI page (`ai/index.html`), the packet page (`ai/packet/index.html`) and `sitemap.xml` from the data. Run `node scripts/build_library.mjs` after changing the data, and commit what it writes (`--check` says whether the pages are up to date) |
 | `library/library.css`, `library/library.js` | The library's look, and its script: search and filters, and the live numbers |
-| `library/signalviz.js` | The drawings (the rose, the Signal's flow, the takeover line, the seals), copied from the community's `web/lib/signalviz.js` |
+| `library/signalviz.js` | The drawings (the rose, the Signal's flow, the takeover line, the seals), part of the design kit: copied from the community's `shared/kit/signalviz.js` |
 | `library/research/` | How the fact sheets are researched: `BRIEF.md` (the rules every entry follows), `NEXT_ROUND.md` (what's already confirmed, and where to pick up), `batches/` (the 300 entries in groups of 12; the ones without a file in `data/entries/` are still to do) and `validate.py` (checks every entry) |
 
 The live numbers come from https://community.miraclehealth.us/snapshot.json, which the

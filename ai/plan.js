@@ -9,8 +9,11 @@
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
+import { GRADES, meterHtml, node as fromKit, draftLink } from '/kit/kit.js?v=aea73e9434';
+
 const COMMUNITY = 'https://community.miraclehealth.us';
 const KEPT = 'mh-ai-plan-v1';
+const CHECKINS = 'mh-my-checkins-v1';
 const PILLARS = ['nutrition', 'sleep', 'exercise'];
 const PILLAR = { nutrition: 'Nutrition', sleep: 'Sleep', exercise: 'Exercise' };
 const STATE = { start: 'Start here', next: 'Next', strong: 'Strong', unknown: 'Not sure yet' };
@@ -20,8 +23,8 @@ const ASK = {
   sleep: { q: 'How’s your sleep most nights?', options: ['7+ hours, solid', 'Short or broken'] },
   exercise: { q: 'Do you strength train?', options: ['3+ times a week', '1 to 2 times a week', 'Not yet'] },
 };
-const EVIDENCE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Early human studies', preclinical: 'Animal or lab studies only', anecdotal: 'User reports only' };
-const BARS = { strong: 4, moderate: 3, limited: 2, preclinical: 1, anecdotal: 0 };
+// How strong the evidence is: the design kit's grades (the Library's), as four bars
+const BARS = Object.fromEntries(Object.entries(GRADES).map(([k, [n]]) => [k, n]));
 const TONES = { ok: 'o', warn: 'w', none: 'n' };
 const TONE_OF = { o: 'ok', w: 'warn', n: 'none' };
 const STATE_CODE = { start: 'a', next: 'n', strong: 's', unknown: 'u' };
@@ -110,12 +113,7 @@ const todo = (card) => steps(card).filter((s) => s.state !== 'strong' && s.state
 // On screen
 // ---------------------------------------------------------------------------
 const evidenceOf = (it) => (it.use && it.use.fits && it.use.grade) || it.grade || '';
-function meter(grade) {
-  if (!(grade in BARS)) return null;
-  return h('span', { class: `pmeter m${BARS[grade]}`, title: EVIDENCE[grade] },
-    h('i', { 'aria-hidden': 'true' }), h('i', { 'aria-hidden': 'true' }), h('i', { 'aria-hidden': 'true' }), h('i', { 'aria-hidden': 'true' }),
-    h('span', { class: 'sr', text: EVIDENCE[grade] }));
-}
+const meter = (grade) => (grade in BARS ? fromKit(meterHtml(grade)) : null);
 function chip(it) {
   const name = isId(it.id) ? h('a', { class: 'pchip-name', href: `/library/${it.id}/`, text: it.name }) : h('b', { class: 'pchip-name', text: it.name });
   return h('li', { class: `pchip tone-${it.tone || 'none'}` },
@@ -140,7 +138,7 @@ export function node(raw, opts = {}) {
   const ticked = (key, on) => {
     if (on) done.add(key); else done.delete(key);
     raw.done = [...done];
-    if (keptPlan()?.key === keyOf(card)) { const k = keptPlan(); k.done = [...done]; local.set(k); }
+    if (keptPlan()?.key === keyOf(card)) { const k = keptPlan(); k.done = [...done]; saveKept(k); }
     opts.onChange?.();
     el.querySelectorAll(`[data-step="${key}"]`).forEach((x) => { x.classList.toggle('is-done', on); const b = x.querySelector('input'); if (b) b.checked = on; });
     hero?.classList.toggle('is-done', done.has('first'));
@@ -199,7 +197,7 @@ export function node(raw, opts = {}) {
       h('ol', { class: `psteps${card.first ? ' after-first' : ''}`, start: card.first ? 2 : 1 }, list.map((s) => stepItem(s)))));
   }
   const graded = [...card.supplements, ...(card.hidden ? [] : card.peptides)].some((it) => evidenceOf(it) in BARS);
-  if (graded) el.append(h('p', { class: 'plan-legend' }, h('span', { class: 'pmeter m3', 'aria-hidden': 'true' }, h('i'), h('i'), h('i'), h('i')), h('span', { text: 'How strong the evidence is, from the Library' })));
+  if (graded) el.append(h('p', { class: 'plan-legend' }, fromKit(meterHtml('moderate', { bare: true })), h('span', { text: 'How strong the evidence is, from the Library' })));
   el.append(h('div', { class: 'audit', hidden: true }));
   if (opts.share || opts.save) {
     const f = foot(raw, card, opts);
@@ -407,12 +405,84 @@ export function keptPlan() {
       done: (Array.isArray(k.done) ? k.done : []).filter((x) => x === 'first' || PILLARS.includes(x)) };
   } catch { return null; }
 }
+const saveKept = (k) => local.set({ v: 1, key: k.key, saved: k.saved, plan: k.plan, done: k.done || [] });
+// A plan Miracle AI updated (after a check-in, or an answer on the plan) keeps the day they
+// started: it's the same journey while it's about the same compounds or goal
 export function keepPlan(card) {
   const c = compact({ ...card, hidden: false });
   delete c.x;
-  return local.set({ v: 1, key: keyOf(card), saved: today(), plan: c, done: Array.isArray(card.done) ? card.done : [] });
+  const prev = keptPlan();
+  const ids = (x) => [...x.peptides, ...x.supplements].map((i) => i.id);
+  const was = prev ? normalize(prev.card) : null;
+  const now = normalize(card);
+  const same = !!was && (was.title === now.title || ids(was).some((id) => ids(now).includes(id)));
+  return saveKept({ key: keyOf(card), saved: same && prev.saved ? prev.saved : today(), plan: c, done: Array.isArray(card.done) ? card.done : [] });
+}
+// From another device (My Miracle's "move to your phone" link): kept as it was there
+export function restorePlan({ saved, plan, done }) {
+  const card = expand(plan);
+  const c = compact({ ...card, hidden: false });
+  delete c.x;
+  return saveKept({ key: keyOf(card), saved: /^\d{4}-\d{2}-\d{2}$/.test(saved) ? saved : today(), plan: c,
+    done: (Array.isArray(done) ? done : []).filter((x) => x === 'first' || PILLARS.includes(x)) });
 }
 export function forgetPlan() { local.del(); }
+
+// ---------------------------------------------------------------------------
+// Check-ins: how it's going, compared with before they started, kept on this device. They reach
+// the community only as a post the member edits and sends there themselves.
+// ---------------------------------------------------------------------------
+export const HOW = { better: 'Better', same: 'About the same', worse: 'Worse' };
+export function checkIns() {
+  let list = null;
+  try { list = JSON.parse(localStorage.getItem(CHECKINS) || 'null'); } catch { list = null; }
+  return (Array.isArray(list) ? list : []).filter((c) => c && /^\d{4}-\d{2}-\d{2}$/.test(c.d) && HOW[c.how]).slice(-24)
+    .map((c) => ({ d: c.d, how: c.how, note: clip(c.note, 600), ids: (Array.isArray(c.ids) ? c.ids : []).filter(isId).slice(0, 8), plan: clip(c.plan, 60) }));
+}
+const saveCheckIns = (list) => { try { localStorage.setItem(CHECKINS, JSON.stringify(list.slice(-24))); return true; } catch { return false; } };
+export function addCheckIn({ how, note = '', ids = [], plan = '' }) {
+  if (!HOW[how]) return null;
+  const c = { d: today(), how, note: clip(note, 600), ids: ids.filter(isId).slice(0, 8), plan: clip(plan, 60) };
+  // One a day: a second one the same day replaces the first
+  return saveCheckIns([...checkIns().filter((x) => x.d !== c.d), c]) ? c : null;
+}
+export function updateCheckIn(c) { return saveCheckIns(checkIns().map((x) => (x.d === c.d ? { ...x, ...c } : x))); }
+export function mergeCheckIns(list) {
+  const mine = checkIns();
+  const have = new Set(mine.map((x) => x.d));
+  return saveCheckIns([...mine, ...(Array.isArray(list) ? list : []).filter((x) => x && /^\d{4}-\d{2}-\d{2}$/.test(x.d) && HOW[x.how] && !have.has(x.d))]
+    .sort((a, b) => a.d.localeCompare(b.d)));
+}
+export function forgetCheckIns() { try { localStorage.removeItem(CHECKINS); } catch { /* blocked */ } }
+const daysBetween = (a, b) => Math.round((Date.parse(`${b}T12:00:00`) - Date.parse(`${a}T12:00:00`)) / 864e5);
+// Two weeks since they kept the plan, or since their last check-in: time to say how it's going
+export function checkInDue(k = keptPlan()) {
+  if (!k?.saved) return 0;
+  const last = checkIns().map((c) => c.d).sort().pop();
+  const n = daysBetween(last && last > k.saved ? last : k.saved, today());
+  return n >= 14 ? n : 0;
+}
+export const howLong = (days) => (days < 14 ? `${Math.max(1, days)} day${days > 1 ? 's' : ''}` : days < 60 ? `${Math.round(days / 7)} weeks` : `${Math.round(days / 30)} months`);
+// The report a check-in drafts for the community: what for, what they take, how long, how it's
+// going, with the habits they changed. They edit it there; nothing is posted until they press Post.
+export function reportDraft(k, c) {
+  const card = normalize(k.card);
+  const took = [...card.peptides, ...card.supplements].filter((i) => c.ids.includes(i.id));
+  const long = howLong(Math.max(1, daysBetween(k.saved || c.d, c.d)));
+  const names = took.map((i) => i.name);
+  const habits = [...new Set(steps(card).filter((s) => k.done.includes(s.key)).map((s) => PILLAR[s.pillar].toLowerCase()))];
+  const how = { better: 'Better than before I started', same: 'About the same as before I started', worse: 'Worse than before I started' }[c.how];
+  const title = `${long} on ${names.length ? names.join(' + ') : 'my Miracle Plan'}: ${HOW[c.how].toLowerCase()}`;
+  const body = [
+    `What for: ${card.title} (my Miracle Plan).`,
+    names.length ? `What I take: ${names.join(', ')}.` : '',
+    `How long: about ${long}.`,
+    `How it’s going: ${how}.`,
+    habits.length ? `What I changed too: ${habits.length > 1 ? `${habits.slice(0, -1).join(', ')} and ${habits[habits.length - 1]}` : habits[0]}.` : '',
+    c.note ? `\n${c.note}` : '',
+  ].filter(Boolean).join('\n');
+  return { ids: took.map((i) => i.id), title, body, link: draftLink(took.map((i) => i.id), { title, body }) };
+}
 // How far along they are, for the first screen
 export function progress(card, done) {
   const list = todo(card);
@@ -697,7 +767,8 @@ export async function image(card, { shape = 'post' } = {}) {
   return new Promise((resolve, reject) => canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('no image'))), 'image/png'));
 }
 
-window.MHPlan = { node, normalize, steps, encode, decode, link, image, keyOf, keptPlan, keepPlan, forgetPlan, progress, checkIn };
+window.MHPlan = { node, normalize, steps, encode, decode, link, image, keyOf, keptPlan, keepPlan, restorePlan, forgetPlan, progress, checkIn,
+  HOW, checkIns, addCheckIn, updateCheckIn, mergeCheckIns, forgetCheckIns, checkInDue, howLong, reportDraft, dayLabel, today };
 
 // ---------------------------------------------------------------------------
 // The page a shared plan opens (or their own kept plan, to tick off)
@@ -715,7 +786,11 @@ if (root) {
       if (theirs) document.title = 'Your Miracle Plan · Miracle Health';
       if (intro && theirs) {
         intro.querySelector('h1').textContent = 'Your Miracle Plan';
-        intro.querySelector('p').textContent = `Kept on this device${kept.saved ? ` since ${dayLabel(kept.saved)}` : ''}. Tick off steps as you go; they stay in this browser. To change the plan, check in with Miracle AI.`;
+        intro.querySelector('p').textContent = `Kept on this device${kept.saved ? ` since ${dayLabel(kept.saved)}` : ''}. Tick off steps as you go; they stay in this browser. How it’s going, your stack and your check-ins are together in My Miracle.`;
+        const due = checkInDue(kept);
+        intro.append(h('p', { class: 'plan-my' }, h('a', { class: 'btn lime sm', href: '/my/#checkin', text: due ? 'How’s it going? Check in' : 'Open My Miracle' })));
+        // Their own plan: no "build your own" pitch
+        document.querySelector('.plan-cta')?.setAttribute('hidden', '');
       }
       const el = node(theirs ? { ...card, done: kept.done } : card, { kick: theirs ? 'Your Miracle Plan' : 'A Miracle Plan', save: true, live: true });
       root.replaceChildren(...(intro ? [intro] : []), el);

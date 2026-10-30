@@ -2,6 +2,7 @@
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from './signalviz.js';
+import { askLink } from '/kit/kit.js?v=aea73e9434';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const SNAPSHOT = `${COMMUNITY}/snapshot.json`;
@@ -265,7 +266,27 @@ function entryPage(root) {
   });
 }
 
+// Someone with a stack saved on this device (from Miracle AI): check this compound with it, in
+// Miracle AI, the question typed in for them. The stack never leaves the browser until they send it.
+function stackCheck(root) {
+  const a = document.querySelector('[data-with-stack]');
+  if (!a) return;
+  let st = null;
+  try { st = JSON.parse(localStorage.getItem('mh-ai-stack-v1') || 'null'); } catch { st = null; }
+  if (!st || st.v !== 1 || !Array.isArray(st.items) || !st.items.length) return;
+  const clean = (x, n) => String(x ?? '').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
+  const names = st.items.map((i) => clean(i.name || i.id, 60)).filter(Boolean).slice(0, 8);
+  const meds = (Array.isArray(st.meds) ? st.meds : []).map((m) => clean(m, 40)).filter(Boolean).slice(0, 6);
+  if (!names.length) return;
+  const list = names.length < 2 ? names[0] : `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+  const mine = `I take ${list}.${meds.length ? ` My medicines: ${meds.join(', ')}.` : ''}`;
+  const has = st.items.some((i) => i.id === a.dataset.withStack);
+  a.href = askLink(has ? `${mine} Is that combination OK?` : `${mine} Would adding ${root.dataset.name} fit with them?`, { site: '' });
+  a.textContent = has ? 'Check my saved stack again' : 'Check it with my saved stack';
+  a.hidden = false;
+}
+
 const grid = document.getElementById('grid');
 if (grid) frontPage(grid);
 const entry = document.querySelector('.lib-entry');
-if (entry) entryPage(entry);
+if (entry) { entryPage(entry); stackCheck(entry); }

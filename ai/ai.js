@@ -4,6 +4,7 @@
 // check as server-sent events. Nothing here uses innerHTML for anything the AI or the
 // visitor wrote: text is placed with textContent, and the small amount of formatting the
 // AI uses (bold, lists, Library links) is built node by node.
+import { sigSvg, askFrom, meterHtml, node as fromKit } from '/kit/kit.js?v=aea73e9434';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -102,52 +103,10 @@ const store = {
 };
 
 // ---------------------------------------------------------------------------
-// Sig, the Community Signal in person: a lime muscle fibre (the same drawing as the app's)
+// Sig, the Community Signal in person: the design kit's drawing (the community's Sig), on the
+// chat's dark page
 // ---------------------------------------------------------------------------
-const DROP = 'M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z';
-const INK = '#121E1D';
-const FACES = {
-  idle: `<g><ellipse cx="25" cy="38" rx="2.8" ry="3.6" fill="${INK}"/><ellipse cx="39" cy="38" rx="2.8" ry="3.6" fill="${INK}"/><circle cx="26" cy="36.6" r="1" fill="#fff"/><circle cx="40" cy="36.6" r="1" fill="#fff"/></g><path d="M27 46 Q32 50 37 46" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round"/>`,
-  happy: `<path d="M21.8 39 Q25 34.4 28.2 39 M35.8 39 Q39 34.4 42.2 39" fill="none" stroke="${INK}" stroke-width="2.3" stroke-linecap="round"/><path d="M25.5 44.5 Q32 52.5 38.5 44.5 Z" fill="${INK}"/><path d="M28.6 47.4 Q32 49.6 35.4 47.4" fill="none" stroke="#FF8FA3" stroke-width="1.6" stroke-linecap="round"/>`,
-  think: `<g><ellipse cx="25" cy="37.5" rx="2.8" ry="3.6" fill="${INK}"/><ellipse cx="39" cy="37.5" rx="2.8" ry="3.6" fill="${INK}"/><circle cx="26.4" cy="35.6" r="1.1" fill="#fff"/><circle cx="40.4" cy="35.6" r="1.1" fill="#fff"/></g><circle cx="33" cy="47" r="2.2" fill="none" stroke="${INK}" stroke-width="1.9"/><g class="sig-dots" fill="${INK}"><circle cx="49" cy="20" r="1.6"/><circle cx="54" cy="15.5" r="2"/><circle cx="59.5" cy="10" r="2.5"/></g>`,
-  concerned: `<path d="M21.5 33.5 L28 35.5 M42.5 33.5 L36 35.5" stroke="${INK}" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="25" cy="39" rx="2.6" ry="3.2" fill="${INK}"/><ellipse cx="39" cy="39" rx="2.6" ry="3.2" fill="${INK}"/><path d="M27 48 Q29.5 45.8 32 48 Q34.5 50.2 37 48" fill="none" stroke="${INK}" stroke-width="1.9" stroke-linecap="round"/>`,
-};
-const f2 = (n) => Number(n).toFixed(2);
-function fibre(xb, top = 14, wob = 0) {
-  const k = xb - 32;
-  return `M${f2(32 + k * 0.06)} ${top} C${f2(32 + k * 0.35)} ${top + 8}, ${f2(32 + k * 1.02 + wob)} ${top + 16}, ${f2(xb)} ${top + 27} S${f2(xb + k * 0.02 - wob)} 56, ${f2(xb - k * 0.12)} 66`;
-}
-let sigN = 0;
-function sigMarkup(size, mood) {
-  const g = `aisg${++sigN}`;
-  const detail = size >= 36;
-  const n = detail ? 17 : 7;
-  const xs = Array.from({ length: n }, (_, i) => 12.6 + (i * 38.8) / (n - 1));
-  const dark = xs.filter((_, i) => i % 2 === 0).map((x, i) => fibre(x, 14, (i % 3) - 1)).join(' ');
-  const lite = xs.filter((_, i) => i % 2 === 1).map((x, i) => fibre(x, 16, 1 - (i % 3))).join(' ');
-  const grooves = [22.4, 32, 41.6].map((x) => fibre(x, 15)).join(' ');
-  return `<svg class="sig ${mood}" viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true">
-  <defs><linearGradient id="${g}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
-  <radialGradient id="${g}h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-  <clipPath id="${g}c"><path d="${DROP}"/></clipPath>
-  <linearGradient id="${g}t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F7EE" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
-  <radialGradient id="${g}v" cx=".44" cy=".4" r=".66"><stop offset=".5" stop-color="#5E9A0E" stop-opacity="0"/><stop offset="1" stop-color="#5E9A0E" stop-opacity=".42"/></radialGradient></defs>
-  <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity=".3"/>
-  <g class="sig-body"><path d="${DROP}" fill="url(#${g})"/>
-  <g clip-path="url(#${g}c)">
-    <path d="${dark}" fill="none" stroke="#5E9A0E" stroke-opacity="${detail ? 0.26 : 0.3}" stroke-width="${detail ? 0.9 : 1.3}" stroke-linecap="round"/>
-    <path d="${lite}" fill="none" stroke="#F6FFD2" stroke-opacity="${detail ? 0.55 : 0.45}" stroke-width="${detail ? 0.8 : 1.2}" stroke-linecap="round"/>
-    <path d="${grooves}" fill="none" stroke="#5E9A0E" stroke-opacity=".15" stroke-width="${detail ? 3.4 : 4}" stroke-linecap="round"/>
-    <path d="${grooves}" fill="none" stroke="#5E9A0E" stroke-opacity=".48" stroke-width="${detail ? 1 : 1.3}" stroke-linecap="round"/>
-    ${detail ? `<path d="${[17.6, 26.8].map((x) => fibre(x, 22)).join(' ')}" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2" stroke-linecap="round" stroke-dasharray="9 40"/>` : ''}
-    <rect width="64" height="64" fill="url(#${g}v)"/>
-    <path d="M32 6 C35 9.6 37.6 13 39.6 16.6 Q32 20.6 24.4 16.6 C26.4 13 29 9.6 32 6 Z" fill="url(#${g}t)"/>
-    <path d="${DROP}" fill="none" stroke="#F6FFD2" stroke-opacity=".55" stroke-width="2.4"/>
-  </g>
-  <path d="${DROP}" fill="url(#${g}h)"/><path d="${DROP}" fill="none" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
-  <circle cx="32" cy="9.2" r="3.1" fill="#fff"/><g>${FACES[mood] || FACES.idle}</g>
-  <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/></g></svg>`;
-}
+const sigMarkup = (size, mood) => sigSvg(size, mood, { dark: true });
 function setSig(el, mood) {
   if (!el || el.dataset.mood === mood) return;
   el.dataset.mood = mood;
@@ -438,9 +397,10 @@ function shortlistNode(card) {
 // source) comes next; the Community Signal is a detail, never the biggest number
 function pickNode(it) {
   const grade = it.use ? it.use.grade : it.grade;
-  const [label, bars] = USE[grade] || (it.grade ? USE[it.grade] : null) || ['No fact sheet yet', 0];
-  const meter = h('span', { class: `meter m${bars}`, 'aria-hidden': 'true' }, h('i'), h('i'), h('i'), h('i'));
-  const ev = h('div', { class: `pick-ev ev-${grade || 'pending'}` }, h('span', { class: 'pick-ev-label', text: label }), meter,
+  const shown = USE[grade] ? grade : it.grade && USE[it.grade] ? it.grade : '';
+  const [label] = USE[shown] || ['No fact sheet yet'];
+  const meter = fromKit(meterHtml(GRADE_N[shown] != null ? shown : 'anecdotal', { bare: true }));
+  const ev = h('div', { class: `pick-ev ev-${shown || 'pending'}` }, h('span', { class: 'pick-ev-label', text: label }), meter,
     h('span', { class: 'sr', text: '. Evidence for what you asked about.' }));
   const found = it.benefits?.length
     ? [it.use && !it.use.fits ? h('p', { class: 'pick-other', text: 'The Library has no studies of it for this use yet. What it has been studied for:' }) : null,
@@ -759,9 +719,7 @@ const stackFrom = (card) => ({
 });
 const stackKey = (st) => `${st.items.map((i) => i.id).sort().join('+')}|${st.meds.map((m) => m.toLowerCase()).sort().join('+')}`;
 const stackQuestion = (st) => `I take ${listOf(st.items.map((i) => i.name))}.${st.meds.length ? ` My medicines: ${st.meds.join(', ')}.` : ''} Is that combination OK?`;
-const b64u = (text) => btoa(String.fromCharCode(...new TextEncoder().encode(text))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const unb64u = (text) => new TextDecoder().decode(Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0)));
-const stackLink = (st) => `${location.origin}/ai/#stack=${b64u(JSON.stringify({ v: 1, i: st.items.map((i) => i.id), m: st.meds }))}`;
 function saveStack(st) { store.set(STACK, st, 'local'); refreshStack(); }
 function forgetStack() { store.del(STACK, 'local'); refreshStack(); }
 
@@ -807,58 +765,55 @@ function stackSaveRow(card) {
   return row;
 }
 
-// Their saved stack, on the first screen (and beside the chat on wide screens)
-function savedBox(where) {
-  const st = savedStack();
-  if (!st) return null;
-  const check = h('button', { class: 'saved-check', type: 'button', text: 'Check it again' });
-  check.addEventListener('click', () => ask(stackQuestion(st)));
-  const link = h('button', { class: 'linkish', type: 'button', text: 'Copy a link to it' });
-  link.addEventListener('click', () => copy(stackLink(st), link));
-  const forget = h('button', { class: 'linkish', type: 'button', text: 'Forget it' });
-  forget.addEventListener('click', forgetStack);
-  const changes = h('div', { class: 'saved-changes' });
-  whatChanged(st).then((lines) => {
-    if (lines == null) return;
-    changes.replaceChildren(lines.length
-      ? h('ul', { 'aria-label': 'What’s changed since you saved it' }, lines.map((t) => h('li', { text: t })))
-      : h('p', { text: 'Nothing has changed in the Library for these since you saved them.' }));
-  });
-  const hid = `saved-${where}-h`;
-  return h('section', { class: 'saved-box', 'aria-labelledby': hid },
-    h('h2', { id: hid, text: 'Your saved stack' }),
-    h('p', { class: 'saved-names' }, st.items.map((i, n) => [n ? ' · ' : '', isLib(i.id) ? h('a', { href: `/library/${i.id}/`, text: i.name }) : i.name])),
-    st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
-    changes,
-    h('div', { class: 'saved-actions' }, check, link, forget),
-    h('p', { class: 'saved-note', text: `Saved on this device${st.saved ? ` on ${dayLabel(st.saved)}` : ''}. Miracle Health never receives it.` }));
-}
-// Their kept plan: how far along they are, and a way to check in on it
-function planBox(where) {
+// What they keep on this device, together: My Miracle in short, on the first screen (and beside
+// the chat on wide screens). Their plan, stack and check-ins are in full at /my/.
+function myBox(where) {
   const P = window.MHPlan;
   const k = P?.keptPlan();
-  if (!k) return null;
-  const pr = P.progress(k.card, k.done);
-  const check = h('button', { class: 'saved-check', type: 'button', text: 'Check in with Miracle AI' });
-  check.addEventListener('click', () => { if (!busy) ask(P.checkIn(k.card, k.done)); });
-  const open = h('a', { class: 'linkish', href: '/plan/', text: 'Open my plan' });
-  P.link(k.card).then((u) => { open.href = u; }).catch(() => {});
-  const forget = h('button', { class: 'linkish', type: 'button', text: 'Forget it' });
-  forget.addEventListener('click', () => { P.forgetPlan(); refreshStack(); document.querySelectorAll('.card.plan').forEach((c) => c.dispatchEvent(new CustomEvent('plan:kept'))); });
-  const hid = `plan-${where}-h`;
-  return h('section', { class: 'saved-box plan-saved', 'aria-labelledby': hid },
-    h('h2', { id: hid, text: 'Your Miracle Plan' }),
-    h('p', { class: 'saved-names', text: k.card.title }),
-    k.card.first ? h('p', { class: 'saved-meds', text: `Start here: ${k.card.first.step}` }) : null,
-    pr.total ? h('p', { class: 'saved-progress' }, h('span', { class: 'saved-bar', 'aria-hidden': 'true' }, h('i', { class: `w${Math.round((pr.done / pr.total) * 4)}` })), h('span', { text: `${pr.done} of ${pr.total} steps done` })) : null,
-    h('div', { class: 'saved-actions' }, check, open, forget),
-    h('p', { class: 'saved-note', text: `Kept on this device${k.saved ? ` since ${dayLabel(k.saved)}` : ''}. Miracle Health never receives it.` }));
+  const st = savedStack();
+  if (!k && !st) return null;
+  const parts = [];
+  if (k) {
+    const pr = P.progress(k.card, k.done);
+    const check = h('button', { class: 'saved-check', type: 'button', text: 'Check in with Miracle AI' });
+    check.addEventListener('click', () => { if (!busy) ask(P.checkIn(k.card, k.done)); });
+    const due = P.checkInDue(k);
+    parts.push(h('div', { class: 'my-part' },
+      h('h3', { class: 'my-kind', text: 'Your plan' }),
+      h('p', { class: 'saved-names', text: k.card.title }),
+      k.card.first ? h('p', { class: 'saved-meds', text: `Start here: ${k.card.first.step}` }) : null,
+      pr.total ? h('p', { class: 'saved-progress' }, h('span', { class: 'saved-bar', 'aria-hidden': 'true' }, h('i', { class: `w${Math.round((pr.done / pr.total) * 4)}` })), h('span', { text: `${pr.done} of ${pr.total} steps done` })) : null,
+      due ? h('a', { class: 'my-due', href: '/my/#checkin' }, h('b', { text: 'How’s it going? ' }), h('span', { text: `It’s been ${P.howLong(due)}. Say so in one tap, and share it with the community if you like.` })) : null,
+      h('div', { class: 'saved-actions' }, check)));
+  }
+  if (st) {
+    const check = h('button', { class: 'saved-check', type: 'button', text: 'Check my stack again' });
+    check.addEventListener('click', () => ask(stackQuestion(st)));
+    const changes = h('div', { class: 'saved-changes' });
+    whatChanged(st).then((lines) => {
+      if (lines == null) return;
+      changes.replaceChildren(lines.length
+        ? h('ul', { 'aria-label': 'What’s changed since you saved it' }, lines.map((t) => h('li', { text: t })))
+        : h('p', { text: 'Nothing has changed in the Library for these since you saved them.' }));
+    });
+    parts.push(h('div', { class: 'my-part' },
+      h('h3', { class: 'my-kind', text: 'Your stack' }),
+      h('p', { class: 'saved-names' }, st.items.map((i, n) => [n ? ' · ' : '', isLib(i.id) ? h('a', { href: `/library/${i.id}/`, text: i.name }) : i.name])),
+      st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
+      changes,
+      h('div', { class: 'saved-actions' }, check)));
+  }
+  const hid = `my-${where}-h`;
+  return h('section', { class: 'saved-box my-box', 'aria-labelledby': hid },
+    h('div', { class: 'my-head' }, h('h2', { id: hid, text: 'My Miracle' }), h('a', { class: 'linkish', href: '/my/', text: 'Open My Miracle' })),
+    ...parts,
+    h('p', { class: 'saved-note', text: 'Kept on this device. Miracle Health never receives it.' }));
 }
 function refreshStack() {
   for (const [id, where] of [['ai-saved', 'start'], ['rail-saved', 'rail']]) {
     const host = $(id);
     if (!host) continue;
-    const boxes = [planBox(where), savedBox(where)].filter(Boolean);
+    const boxes = [myBox(where)].filter(Boolean);
     host.replaceChildren(...boxes);
     host.hidden = !boxes.length;
   }
@@ -1343,6 +1298,17 @@ if (chat.length) {
 }
 refreshStack();
 stackFromLink();
+// A question typed in for them elsewhere (a Library page, a community space, My Miracle):
+// ready to read, change and send; never sent by itself
+const asked = askFrom(location.hash);
+if (asked) {
+  window.history.replaceState(null, '', location.pathname + location.search);
+  input.value = asked.slice(0, LIMIT);
+  grow();
+  updateSend();
+  input.focus({ preventScroll: true });
+  input.setSelectionRange(input.value.length, input.value.length);
+}
 // A shorter prompt in the box on narrow screens
 const fitPlaceholder = () => { input.placeholder = innerWidth < 520 ? input.dataset.short : 'Ask about a goal, a compound or a combination'; };
 fitPlaceholder();

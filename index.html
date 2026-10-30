@@ -23,21 +23,16 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img/hero-1600.webp" imagesrcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w, img/hero-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="styles.css?v=70dcd0057b">
+<link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
+<link rel="stylesheet" href="styles.css?v=9ea0d497c6">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="logo" href="/"><img src="logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    <nav class="top-nav" aria-label="Main">
-      <a href="/library/">Library</a>
-      <a href="/ai/">Miracle AI</a>
-      <a href="#how">How it works</a>
-      <a href="#signal">The Signal</a>
-      <a href="#rules">House rules</a>
-    </nav>
+    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <nav class="mh-bar top-nav" aria-label="Main"><a href="/library/" data-place="library">Library</a><a href="/ai/" data-place="ai">Miracle AI</a><a href="https://community.miraclehealth.us/" data-place="community">Community</a><a href="/my/" data-place="my">My Miracle</a></nav>
     <a class="top-link" href="https://community.miraclehealth.us/">Sign in</a>
     <a class="btn lime sm" href="https://community.miraclehealth.us/">Join</a>
     <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
@@ -47,10 +42,12 @@
   <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
   <a href="/library/">Library</a>
   <a href="/ai/">Miracle AI</a>
-  <a href="#how">How it works</a>
-  <a href="#signal">The Signal</a>
-  <a href="#rules">House rules</a>
-  <a href="https://community.miraclehealth.us/">Sign in</a>
+  <a href="https://community.miraclehealth.us/">Community</a>
+  <a href="/my/">My Miracle</a>
+  <a class="menu-more" href="/#signal">The Signal</a>
+  <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="/#rules">House rules</a>
+  <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
 
@@ -72,36 +69,30 @@
       <div class="hc-head"><span class="live"><i aria-hidden="true"></i>Community Signal</span><span class="hc-range">0–100</span></div>
       <div class="hc-body">
         <span class="hc-sig">
-          <svg class="sig" viewBox="0 0 64 64" width="50" height="50" aria-hidden="true">
-            <defs>
-              <linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
-              <radialGradient id="sg1h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-              <clipPath id="sg1c"><path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z"/></clipPath>
-              <linearGradient id="sg1t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F7EE" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
-              <radialGradient id="sg1v" cx=".44" cy=".4" r=".66"><stop offset=".5" stop-color="#5E9A0E" stop-opacity="0"/><stop offset="1" stop-color="#5E9A0E" stop-opacity=".42"/></radialGradient>
-            </defs>
-            <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity=".35"/>
-            <g class="sig-body">
-              <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg1)"/>
-              <g clip-path="url(#sg1c)">
-              <path d="M30.84 14 C25.21 22, 11.21 30, 12.60 41 S13.21 56, 14.93 66 M31.13 14 C26.91 22, 17.16 30, 17.45 41 S17.16 56, 19.20 66 M31.42 14 C28.61 22, 23.11 30, 22.30 41 S21.11 56, 23.46 66 M31.71 14 C30.30 22, 26.05 30, 27.15 41 S28.05 56, 27.73 66 M32.00 14 C32.00 22, 32.00 30, 32.00 41 S32.00 56, 32.00 66 M32.29 14 C33.70 22, 37.95 30, 36.85 41 S35.95 56, 36.27 66 M32.58 14 C35.39 22, 40.89 30, 41.70 41 S42.89 56, 40.54 66 M32.87 14 C37.09 22, 46.84 30, 46.55 41 S46.84 56, 44.80 66 M33.16 14 C38.79 22, 52.79 30, 51.40 41 S50.79 56, 49.07 66" fill="none" stroke="#5E9A0E" stroke-opacity="0.26" stroke-width="0.9" stroke-linecap="round"/>
-              <path d="M30.98 16 C26.06 24, 15.69 32, 15.02 43 S13.69 56, 17.06 66 M31.27 16 C27.76 24, 19.63 32, 19.88 43 S19.63 56, 21.33 66 M31.56 16 C29.45 24, 23.58 32, 24.73 43 S25.58 56, 25.60 66 M31.85 16 C31.15 24, 30.53 32, 29.57 43 S28.53 56, 29.87 66 M32.15 16 C32.85 24, 34.47 32, 34.42 43 S34.47 56, 34.13 66 M32.44 16 C34.55 24, 38.42 32, 39.27 43 S40.42 56, 38.40 66 M32.73 16 C36.24 24, 45.37 32, 44.13 43 S43.37 56, 42.67 66 M33.02 16 C37.94 24, 49.31 32, 48.98 43 S49.31 56, 46.94 66" fill="none" stroke="#F6FFD2" stroke-opacity="0.55" stroke-width="0.8" stroke-linecap="round"/>
-              <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".15" stroke-width="3.4" stroke-linecap="round"/>
-              <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".48" stroke-width="1" stroke-linecap="round"/>
-              <path d="M31.14 22 C26.96 30, 17.31 38, 17.60 49 S17.31 56, 19.33 66 M31.69 22 C30.18 30, 26.70 38, 26.80 49 S26.70 56, 27.42 66" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2" stroke-linecap="round" stroke-dasharray="9 40"/>
-              <rect width="64" height="64" fill="url(#sg1v)"/>
-              <path d="M32 6 C35 9.6 37.6 13 39.6 16.6 Q32 20.6 24.4 16.6 C26.4 13 29 9.6 32 6 Z" fill="url(#sg1t)"/>
-              <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#F6FFD2" stroke-opacity=".55" stroke-width="2.4"/>
-              </g>
-              <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg1h)"/>
-              <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
-              <circle cx="32" cy="9.2" r="3.1" fill="#fff"/>
-              <path d="M21.8 39 Q25 34.4 28.2 39 M35.8 39 Q39 34.4 42.2 39" fill="none" stroke="#121E1D" stroke-width="2.3" stroke-linecap="round"/>
-              <path d="M25.5 44.5 Q32 52.5 38.5 44.5 Z" fill="#121E1D"/>
-              <path d="M28.6 47.4 Q32 49.6 35.4 47.4" fill="none" stroke="#FF8FA3" stroke-width="1.6" stroke-linecap="round"/>
-              <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
-            </g>
-          </svg>
+          <svg class="sig idle" viewBox="0 0 64 64" width="50" height="50" aria-hidden="true">
+    <defs><linearGradient id="hsig1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
+    <radialGradient id="hsig1h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><clipPath id="hsig1c"><path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z"/></clipPath>
+    <linearGradient id="hsig1t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F7EE" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+    <radialGradient id="hsig1v" cx=".44" cy=".4" r=".66"><stop offset=".5" stop-color="#5E9A0E" stop-opacity="0"/><stop offset="1" stop-color="#5E9A0E" stop-opacity=".42"/></radialGradient></defs>
+    <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity="0.3"/>
+    <g class="sig-body">
+      <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#hsig1)"/>
+      <g clip-path="url(#hsig1c)">
+        <path d="M30.84 14 C25.21 22, 11.21 30, 12.60 41 S13.21 56, 14.93 66 M31.13 14 C26.91 22, 17.16 30, 17.45 41 S17.16 56, 19.20 66 M31.42 14 C28.61 22, 23.11 30, 22.30 41 S21.11 56, 23.46 66 M31.71 14 C30.30 22, 26.05 30, 27.15 41 S28.05 56, 27.73 66 M32.00 14 C32.00 22, 32.00 30, 32.00 41 S32.00 56, 32.00 66 M32.29 14 C33.70 22, 37.95 30, 36.85 41 S35.95 56, 36.27 66 M32.58 14 C35.39 22, 40.89 30, 41.70 41 S42.89 56, 40.54 66 M32.87 14 C37.09 22, 46.84 30, 46.55 41 S46.84 56, 44.80 66 M33.16 14 C38.79 22, 52.79 30, 51.40 41 S50.79 56, 49.07 66" fill="none" stroke="#5E9A0E" stroke-opacity="0.26" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M30.98 16 C26.06 24, 15.69 32, 15.02 43 S13.69 56, 17.06 66 M31.27 16 C27.76 24, 19.63 32, 19.88 43 S19.63 56, 21.33 66 M31.56 16 C29.45 24, 23.58 32, 24.73 43 S25.58 56, 25.60 66 M31.85 16 C31.15 24, 30.53 32, 29.57 43 S28.53 56, 29.87 66 M32.15 16 C32.85 24, 34.47 32, 34.42 43 S34.47 56, 34.13 66 M32.44 16 C34.55 24, 38.42 32, 39.27 43 S40.42 56, 38.40 66 M32.73 16 C36.24 24, 45.37 32, 44.13 43 S43.37 56, 42.67 66 M33.02 16 C37.94 24, 49.31 32, 48.98 43 S49.31 56, 46.94 66" fill="none" stroke="#F6FFD2" stroke-opacity="0.55" stroke-width="0.8" stroke-linecap="round"/>
+        <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".15" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".48" stroke-width="1" stroke-linecap="round"/>
+        <path d="M31.14 22 C26.96 30, 17.31 38, 17.60 49 S17.31 56, 19.33 66 M31.69 22 C30.18 30, 26.70 38, 26.80 49 S26.70 56, 27.42 66" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2" stroke-linecap="round" stroke-dasharray="9 40"/>
+        <rect width="64" height="64" fill="url(#hsig1v)"/>
+        <path d="M32 6 C35 9.6 37.6 13 39.6 16.6 Q32 20.6 24.4 16.6 C26.4 13 29 9.6 32 6 Z" fill="url(#hsig1t)"/>
+        <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#F6FFD2" stroke-opacity=".55" stroke-width="2.4"/>
+      </g>
+      <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#hsig1h)"/>
+      <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
+      <circle class="sig-node" cx="32" cy="9.2" r="3.1" fill="#fff"/>
+      <g class="sig-face"><g class="sig-eyes"><ellipse cx="25" cy="38" rx="2.8" ry="3.6" fill="#121E1D"/><ellipse cx="39" cy="38" rx="2.8" ry="3.6" fill="#121E1D"/><circle cx="26" cy="36.6" r="1" fill="#fff"/><circle cx="40" cy="36.6" r="1" fill="#fff"/></g><path d="M27 46 Q32 50 37 46" fill="none" stroke="#121E1D" stroke-width="2" stroke-linecap="round"/></g>
+      <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
+    </g></svg>
         </span>
         <p><b>One number per compound,</b> built from what members report happened to them.</p>
       </div>
@@ -141,37 +132,30 @@
         </article>
         <article class="step ai">
           <div class="ai-visual" aria-hidden="true">
-            <svg class="sig watching" viewBox="0 0 64 64" width="104" height="104">
-              <defs>
-                <linearGradient id="sg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
-                <radialGradient id="sg2h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-                <clipPath id="sg2c"><path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z"/></clipPath>
-                <linearGradient id="sg2t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F7EE" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
-                <radialGradient id="sg2v" cx=".44" cy=".4" r=".66"><stop offset=".5" stop-color="#5E9A0E" stop-opacity="0"/><stop offset="1" stop-color="#5E9A0E" stop-opacity=".42"/></radialGradient>
-              </defs>
-              <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity=".35"/>
-              <g class="sig-body">
-                <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg2)"/>
-                <g clip-path="url(#sg2c)">
-                <path d="M30.84 14 C25.21 22, 11.21 30, 12.60 41 S13.21 56, 14.93 66 M31.13 14 C26.91 22, 17.16 30, 17.45 41 S17.16 56, 19.20 66 M31.42 14 C28.61 22, 23.11 30, 22.30 41 S21.11 56, 23.46 66 M31.71 14 C30.30 22, 26.05 30, 27.15 41 S28.05 56, 27.73 66 M32.00 14 C32.00 22, 32.00 30, 32.00 41 S32.00 56, 32.00 66 M32.29 14 C33.70 22, 37.95 30, 36.85 41 S35.95 56, 36.27 66 M32.58 14 C35.39 22, 40.89 30, 41.70 41 S42.89 56, 40.54 66 M32.87 14 C37.09 22, 46.84 30, 46.55 41 S46.84 56, 44.80 66 M33.16 14 C38.79 22, 52.79 30, 51.40 41 S50.79 56, 49.07 66" fill="none" stroke="#5E9A0E" stroke-opacity="0.26" stroke-width="0.9" stroke-linecap="round"/>
-                <path d="M30.98 16 C26.06 24, 15.69 32, 15.02 43 S13.69 56, 17.06 66 M31.27 16 C27.76 24, 19.63 32, 19.88 43 S19.63 56, 21.33 66 M31.56 16 C29.45 24, 23.58 32, 24.73 43 S25.58 56, 25.60 66 M31.85 16 C31.15 24, 30.53 32, 29.57 43 S28.53 56, 29.87 66 M32.15 16 C32.85 24, 34.47 32, 34.42 43 S34.47 56, 34.13 66 M32.44 16 C34.55 24, 38.42 32, 39.27 43 S40.42 56, 38.40 66 M32.73 16 C36.24 24, 45.37 32, 44.13 43 S43.37 56, 42.67 66 M33.02 16 C37.94 24, 49.31 32, 48.98 43 S49.31 56, 46.94 66" fill="none" stroke="#F6FFD2" stroke-opacity="0.55" stroke-width="0.8" stroke-linecap="round"/>
-                <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".15" stroke-width="3.4" stroke-linecap="round"/>
-                <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".48" stroke-width="1" stroke-linecap="round"/>
-                <path d="M31.14 22 C26.96 30, 17.31 38, 17.60 49 S17.31 56, 19.33 66 M31.69 22 C30.18 30, 26.70 38, 26.80 49 S26.70 56, 27.42 66" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2" stroke-linecap="round" stroke-dasharray="9 40"/>
-                <rect width="64" height="64" fill="url(#sg2v)"/>
-                <path d="M32 6 C35 9.6 37.6 13 39.6 16.6 Q32 20.6 24.4 16.6 C26.4 13 29 9.6 32 6 Z" fill="url(#sg2t)"/>
-                <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#F6FFD2" stroke-opacity=".55" stroke-width="2.4"/>
-                </g>
-                <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#sg2h)"/>
-                <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
-                <circle cx="32" cy="9.2" r="3.1" fill="#fff"/>
-                <circle cx="25" cy="38" r="4.6" fill="#fff"/><circle cx="39" cy="38" r="4.6" fill="#fff"/>
-                <circle class="sig-pupil" cx="26.2" cy="38.4" r="2.6" fill="#121E1D"/><circle class="sig-pupil" cx="40.2" cy="38.4" r="2.6" fill="#121E1D"/>
-                <path d="M28.5 47 Q32 49 35.5 47" fill="none" stroke="#121E1D" stroke-width="1.9" stroke-linecap="round"/>
-                <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
-              </g>
-              <g fill="none" stroke="#D8FF3D" stroke-width="1.6" stroke-linecap="round"><path d="M50 12a8 8 0 0 1 6 6"/><path d="M50 7a13 13 0 0 1 11 11"/></g>
-            </svg>
+            <svg class="sig watching" viewBox="0 0 64 64" width="104" height="104" aria-hidden="true">
+    <defs><linearGradient id="hsig2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FFB3"/><stop offset=".5" stop-color="#D8FF3D"/><stop offset="1" stop-color="#9BE35A"/></linearGradient>
+    <radialGradient id="hsig2h" cx=".35" cy=".28" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><clipPath id="hsig2c"><path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z"/></clipPath>
+    <linearGradient id="hsig2t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#F4F7EE" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+    <radialGradient id="hsig2v" cx=".44" cy=".4" r=".66"><stop offset=".5" stop-color="#5E9A0E" stop-opacity="0"/><stop offset="1" stop-color="#5E9A0E" stop-opacity=".42"/></radialGradient></defs>
+    <ellipse class="sig-shadow" cx="32" cy="61" rx="13" ry="2.2" fill="#000" opacity="0.3"/>
+    <g class="sig-body">
+      <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#hsig2)"/>
+      <g clip-path="url(#hsig2c)">
+        <path d="M30.84 14 C25.21 22, 11.21 30, 12.60 41 S13.21 56, 14.93 66 M31.13 14 C26.91 22, 17.16 30, 17.45 41 S17.16 56, 19.20 66 M31.42 14 C28.61 22, 23.11 30, 22.30 41 S21.11 56, 23.46 66 M31.71 14 C30.30 22, 26.05 30, 27.15 41 S28.05 56, 27.73 66 M32.00 14 C32.00 22, 32.00 30, 32.00 41 S32.00 56, 32.00 66 M32.29 14 C33.70 22, 37.95 30, 36.85 41 S35.95 56, 36.27 66 M32.58 14 C35.39 22, 40.89 30, 41.70 41 S42.89 56, 40.54 66 M32.87 14 C37.09 22, 46.84 30, 46.55 41 S46.84 56, 44.80 66 M33.16 14 C38.79 22, 52.79 30, 51.40 41 S50.79 56, 49.07 66" fill="none" stroke="#5E9A0E" stroke-opacity="0.26" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M30.98 16 C26.06 24, 15.69 32, 15.02 43 S13.69 56, 17.06 66 M31.27 16 C27.76 24, 19.63 32, 19.88 43 S19.63 56, 21.33 66 M31.56 16 C29.45 24, 23.58 32, 24.73 43 S25.58 56, 25.60 66 M31.85 16 C31.15 24, 30.53 32, 29.57 43 S28.53 56, 29.87 66 M32.15 16 C32.85 24, 34.47 32, 34.42 43 S34.47 56, 34.13 66 M32.44 16 C34.55 24, 38.42 32, 39.27 43 S40.42 56, 38.40 66 M32.73 16 C36.24 24, 45.37 32, 44.13 43 S43.37 56, 42.67 66 M33.02 16 C37.94 24, 49.31 32, 48.98 43 S49.31 56, 46.94 66" fill="none" stroke="#F6FFD2" stroke-opacity="0.55" stroke-width="0.8" stroke-linecap="round"/>
+        <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".15" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M31.42 15 C28.64 23, 22.21 31, 22.40 42 S22.21 56, 23.55 66 M32.00 15 C32.00 23, 32.00 31, 32.00 42 S32.00 56, 32.00 66 M32.58 15 C35.36 23, 41.79 31, 41.60 42 S41.79 56, 40.45 66" fill="none" stroke="#5E9A0E" stroke-opacity=".48" stroke-width="1" stroke-linecap="round"/>
+        <path d="M31.14 22 C26.96 30, 17.31 38, 17.60 49 S17.31 56, 19.33 66 M31.69 22 C30.18 30, 26.70 38, 26.80 49 S26.70 56, 27.42 66" fill="none" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="2" stroke-linecap="round" stroke-dasharray="9 40"/>
+        <rect width="64" height="64" fill="url(#hsig2v)"/>
+        <path d="M32 6 C35 9.6 37.6 13 39.6 16.6 Q32 20.6 24.4 16.6 C26.4 13 29 9.6 32 6 Z" fill="url(#hsig2t)"/>
+        <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#F6FFD2" stroke-opacity=".55" stroke-width="2.4"/>
+      </g>
+      <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="url(#hsig2h)"/>
+      <path d="M32 6 C40 16 52 26 52 39 A20 20 0 0 1 12 39 C12 26 24 16 32 6 Z" fill="none" stroke="#121E1D" stroke-opacity=".18" stroke-width="1"/>
+      <circle class="sig-node" cx="32" cy="9.2" r="3.1" fill="#fff"/>
+      <g class="sig-face"><circle cx="25" cy="38" r="4.6" fill="#fff"/><circle cx="39" cy="38" r="4.6" fill="#fff"/><circle class="sig-pupil" cx="26.2" cy="38.4" r="2.6" fill="#121E1D"/><circle class="sig-pupil" cx="40.2" cy="38.4" r="2.6" fill="#121E1D"/><path d="M28.5 47 Q32 49 35.5 47" fill="none" stroke="#121E1D" stroke-width="1.9" stroke-linecap="round"/></g>
+      <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
+    </g><g class="sig-waves" fill="none" stroke="#D8FF3D" stroke-width="1.6" stroke-linecap="round"><path d="M50 12a8 8 0 0 1 6 6"/><path d="M50 7a13 13 0 0 1 11 11"/></g></svg>
             <p class="read-label">Example read</p>
             <div class="chips"><span class="ok">First-hand ✓</span><span>For joint pain</span><span>Better</span><span>8 weeks</span><span>No side effects</span></div>
           </div>
@@ -365,7 +349,7 @@
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences, not medical advice. In a crisis, call or text 988 (US).</p>

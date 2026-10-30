@@ -1,0 +1,87 @@
+/* My Miracle (miraclehealth.us/my): what a member keeps on this device, together. On the same dark
+   page as Miracle AI and the plan; the plan card itself comes from ai/plan.css. */
+.my-page{background:var(--darker);color:var(--on-ink);--focus:var(--lime)}
+.my-page [hidden]{display:none!important}
+.my-page .foot{margin-top:24px;border-top:1px solid var(--line-ink)}
+.my-wrap{width:100%;max-width:880px;margin:0 auto;padding:calc(var(--top-h) + 32px) 24px 48px}
+.my-intro{display:flex;align-items:center;gap:18px}
+.my-intro .sig{flex:none;width:64px;height:64px}
+.my-intro h1{font:600 36px/1.1 var(--head);letter-spacing:-.03em;color:var(--on-ink)}
+.my-intro p{margin-top:8px;max-width:60ch;font-size:16px;line-height:1.6;color:var(--on-ink-2)}
+.my-loading{margin-top:24px;color:var(--on-ink-3)}
+
+.my-sec{margin-top:22px;padding:22px 24px;border-radius:18px;background:var(--card);border:1px solid var(--line-ink)}
+.my-sec>h2{font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.my-lede{margin-top:8px;max-width:62ch;font-size:15.5px;line-height:1.6;color:var(--on-ink-2)}
+.my-fine{margin-top:12px;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
+.my-meds{margin-top:10px;font-size:14px;color:var(--on-ink-2)}
+.my-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:16px}
+.my-page .btn.line{background:transparent;border-color:rgba(255,255,255,.3);color:var(--on-ink);cursor:pointer}
+.my-page .btn.line:hover{background:transparent;border-color:var(--lime);color:var(--lime)}
+.linkish{min-height:32px;padding:0;border:0;background:none;color:var(--on-ink-2);font:500 14px/1.3 var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.linkish:hover{color:var(--lime)}
+.linkish.danger:hover{color:#FF9A8E}
+.my-warn{flex-basis:100%;font-size:14.5px;line-height:1.5;color:var(--on-ink-2)}
+
+/* Compounds: the design kit's chips, on the dark page */
+.my-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.my-chips .mh-chip{--mh-chip-bg:rgba(255,255,255,.07);--mh-meter:var(--lime);color:var(--on-ink)}
+.my-chips a.mh-chip:hover{background:rgba(255,255,255,.11)}
+.my-chips .mh-signal{color:var(--lime)}
+.my-chips .mh-chip-r{color:var(--on-ink-2);opacity:1}
+
+/* How it's going */
+.my-checkin{border-color:rgba(216,255,61,.35);background:linear-gradient(180deg,rgba(216,255,61,.08),rgba(216,255,61,.02))}
+.ci-why{margin-top:8px;max-width:62ch;font-size:15.5px;line-height:1.6;color:var(--on-ink-2)}
+.ci-how{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.ci-how-b{min-height:52px;padding:0 24px;border-radius:40px;border:1px solid rgba(255,255,255,.24);background:transparent;color:var(--on-ink);font:600 16px/1 var(--body);cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+.ci-how-b:hover{border-color:var(--lime)}
+.ci-how-b[aria-pressed="true"]{background:var(--lime);border-color:var(--lime);color:var(--ink)}
+.ci-after:empty{display:none}
+.ci-saved{display:flex;align-items:center;gap:10px;margin-top:18px;font-weight:600;color:var(--on-ink)}
+.ci-saved .sig{flex:none;width:28px;height:28px}
+.ci-label{display:block;margin-top:16px;font:500 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-3)}
+.ci-took{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.ci-took-b{min-height:40px;padding:0 14px;border-radius:40px;border:1px dashed rgba(255,255,255,.3);background:transparent;color:var(--on-ink-2);font:500 14px/1 var(--body);cursor:pointer}
+.ci-took-b[aria-pressed="true"]{border-style:solid;border-color:rgba(216,255,61,.7);background:rgba(216,255,61,.12);color:var(--on-ink)}
+.ci-took-b[aria-pressed="true"]::before{content:'✓';margin-right:7px;color:var(--lime)}
+.ci-note{display:block;width:100%;margin-top:8px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:var(--on-ink);font:15px/1.5 var(--body);resize:vertical}
+.ci-note::placeholder{color:var(--on-ink-3)}
+.ci-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ci-fine{margin-top:12px;max-width:64ch;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
+
+/* Their check-ins */
+.ci-list{display:grid;gap:12px;margin-top:14px}
+.ci-item{display:grid;grid-template-columns:12px minmax(0,1fr);column-gap:12px;align-items:baseline}
+.ci-dot{width:10px;height:10px;border-radius:50%;background:var(--lime)}
+.ci-item.how-same .ci-dot{background:#D4A72C}
+.ci-item.how-worse .ci-dot{background:#E07A6F}
+.ci-what{font-size:15px;color:var(--on-ink-3)}
+.ci-what b{color:var(--on-ink)}
+.ci-note-text,.ci-post{grid-column:2}
+.ci-note-text{margin-top:4px;font-size:14.5px;line-height:1.5;color:var(--on-ink-2)}
+.ci-post{justify-self:start;margin-top:4px;font-size:13.5px;color:var(--on-ink-2)}
+.ci-post:hover{color:var(--lime)}
+
+/* Moving it to a phone */
+.my-qr{margin-top:16px}
+.my-qr-code{width:min(240px,100%);padding:10px;border-radius:14px;background:#fff}
+.my-qr-code svg{display:block;width:100%;height:auto}
+.my-qr p{margin-top:10px;font-size:14px;color:var(--on-ink-2)}
+
+/* The plan card is its own frame: no second box around it */
+.my-sec.my-plan{padding:0;background:none;border:0}
+.my-plan>h2{margin:30px 0 12px}
+.my-plan .card.plan{margin:0}
+.my-forget{background:none;border-style:dashed}
+.my-forget .my-actions{margin-top:0}
+.my-incoming{border-color:rgba(216,255,61,.5)}
+
+@media (max-width:760px){
+  .my-wrap{padding:calc(var(--top-h) + 22px) 16px 36px}
+  .my-intro{align-items:flex-start}
+  .my-intro .sig{width:48px;height:48px}
+  .my-intro h1{font-size:30px}
+  .my-sec{padding:18px 16px}
+  .ci-how-b{flex:1 1 auto;padding:0 16px}
+}

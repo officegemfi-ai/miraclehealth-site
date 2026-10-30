@@ -127,6 +127,11 @@
 .aka{margin-top:14px;font:500 12px/1.6 var(--mono);letter-spacing:.06em;color:var(--on-ink-3)}
 .le-hero .lede{max-width:62ch;margin-top:20px}
 .le-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+/* Where a fact sheet leads: Miracle AI with a question about it, their saved stack, its space */
+.le-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.le-hero .btn.line{border-color:rgba(255,255,255,.3);color:var(--on-ink)}
+.le-hero .btn.line:hover{background:transparent;border-color:var(--lime);color:var(--lime)}
+.le-actions [hidden]{display:none}
 
 .le-glance{background:var(--ink);color:var(--on-ink);padding:0 0 64px;--focus:var(--lime)}
 .le-glance-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}

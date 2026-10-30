@@ -12,21 +12,16 @@
 <link rel="canonical" href="https://miraclehealth.us/privacy">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=70dcd0057b">
+<link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
+<link rel="stylesheet" href="styles.css?v=9ea0d497c6">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="logo" href="/"><img src="logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    <nav class="top-nav" aria-label="Main">
-      <a href="/library/">Library</a>
-      <a href="/ai/">Miracle AI</a>
-      <a href="/#how">How it works</a>
-      <a href="/#signal">The Signal</a>
-      <a href="/#rules">House rules</a>
-    </nav>
+    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <nav class="mh-bar top-nav" aria-label="Main"><a href="/library/" data-place="library">Library</a><a href="/ai/" data-place="ai">Miracle AI</a><a href="https://community.miraclehealth.us/" data-place="community">Community</a><a href="/my/" data-place="my">My Miracle</a></nav>
     <a class="top-link" href="https://community.miraclehealth.us/">Sign in</a>
     <a class="btn lime sm" href="https://community.miraclehealth.us/">Join</a>
     <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
@@ -36,10 +31,11 @@
   <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
   <a href="/library/">Library</a>
   <a href="/ai/">Miracle AI</a>
-  <a href="/#how">How it works</a>
-  <a href="/#signal">The Signal</a>
-  <a href="/#rules">House rules</a>
-  <a href="https://community.miraclehealth.us/">Sign in</a>
+  <a href="https://community.miraclehealth.us/">Community</a>
+  <a href="/my/">My Miracle</a>
+  <a class="menu-more" href="/#signal">The Signal</a>
+  <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
 
@@ -48,7 +44,7 @@
     <div class="wrap">
       <p class="kick">// Privacy</p>
       <h1>Privacy notice</h1>
-      <p>Effective October 29, 2026</p>
+      <p>Effective October 30, 2026</p>
     </div>
   </div>
 
@@ -71,7 +67,7 @@
     <p><b>What you share.</b> Posts, comments, votes, “same for me” taps, stickers, the spaces you join, and the reports you file about posts that may break the rules. Posts are about your own experience with peptides, so they can include health information: what you took, why, for how long, what changed and any side effects.</p>
     <p><b>Miracle AI’s read of your posts.</b> For each post: whether it’s a first-hand report; whether things got better, stayed the same or got worse; for how long; any side effects; and whether it may break a rule. You can confirm or correct the read on your post.</p>
     <p><b>Your activity in the community.</b> Points, emblems, badges and notifications, and moderation records (what was reviewed, held or removed, and why).</p>
-    <p><b>Technical information.</b> Like most online services, the companies that host the community keep short-lived logs of requests, including IP addresses and browser details, for security and to keep the service running. The app keeps your sign-in session in your browser’s storage. We don’t use advertising or analytics cookies.</p>
+    <p><b>Technical information.</b> Like most online services, the companies that host the community keep short-lived logs of requests, including IP addresses and browser details, for security and to keep the service running. The app keeps your sign-in session in your browser’s storage. To show how strong the evidence is in each space, the app downloads the Library’s public index from miraclehealth.us, the same file for everyone. We don’t use advertising or analytics cookies.</p>
 
     <h2>How we use it</h2>
     <ul>
@@ -109,6 +105,7 @@
       <li><b>Your clinician packet.</b> Miracle AI can put together a review packet for you to take to your clinician. It’s made in your browser from your chat. If you share it as a link or QR code, the packet travels inside the link itself (the part after “#”, which browsers don’t send to any server), so we never receive it. Anyone who has the link can read the packet, so share it only with your clinician. Marking it reviewed is kept in your browser tab, like the chat.</li>
       <li><b>Your saved stack.</b> If you choose “Save on this device”, the compounds in your stack and the medicines you mentioned are kept in your browser’s local storage on that device, so they’re there next time. Nothing is sent to us. When you come back, your browser compares them with the public Library to show what has changed. Choose “Forget it” to delete them. A link to your saved stack works like the packet link: the stack travels inside the link, so we never receive it, and anyone with the link can read it.</li>
       <li><b>Your Miracle Plan.</b> Miracle AI can lay out your plan as a picture: your foundations, what you take and the supplements and habits it suggests. If you share it, the plan travels inside the link itself, like the packet, so we never receive it, and anyone with the link can see it. You can leave your peptides and medicines out before you share. “Save image” draws the picture in your browser; nothing is sent to us. If you choose “Keep on this device”, the plan and the steps you tick off are kept in your browser’s local storage on that device, so you can check in on it later; nothing is sent to us, and “Forget it” deletes it. Answering a question on the plan sends your answer to Miracle AI as your next message, like typing it.</li>
+      <li><b>My Miracle and your check-ins.</b> My Miracle (miraclehealth.us/my) shows what you keep on a device together: your plan, your saved stack and your check-ins. When you say how it’s going (better, about the same or worse, what you’re taking now and anything you add), the check-in is kept in your browser’s local storage on that device; nothing is sent to us. To show your compounds’ evidence and Community Signal, your browser downloads the same public files for everyone (the Library’s index and the community’s snapshot), so nothing tells us which compounds are yours. “Post it in the community” opens the community’s new-post form with a draft of your check-in in the link after “#”, which isn’t sent to any server; it’s only posted if you sign in and press Post there, and then it’s handled like any community post. “Ask Miracle AI what’s next” opens Miracle AI with the question typed in; it’s only sent if you send it. “Move it to your phone” makes a link and QR code that carry your plan, stack and check-ins after “#”, so we never receive them, and anyone with the link can read them. “Forget everything on this device” deletes all three.</li>
       <li><b>Keep it general.</b> Please don’t include your name, contact details or anything else that identifies you. You don’t need them to get a useful answer.</li>
     </ul>
 
@@ -144,7 +141,7 @@
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences, not medical advice. In a crisis, call or text 988 (US).</p>

@@ -19,9 +19,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/styles.css?v=70dcd0057b">
-<link rel="stylesheet" href="/library/library.css?v=123661e1bd">
-<script type="module" src="/library/library.js?v=df4d30df58"></script>
+<link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
+<link rel="stylesheet" href="/styles.css?v=9ea0d497c6">
+<link rel="stylesheet" href="/library/library.css?v=7e9878c27b">
+<script type="module" src="/library/library.js?v=ddad2886dc"></script>
 </head>
 <body class="lib">
 <a class="skip" href="#main">Skip to content</a>
@@ -29,12 +30,7 @@
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    <nav class="top-nav" aria-label="Main">
-      <a href="/library/" aria-current="page">Library</a>
-      <a href="/ai/">Miracle AI</a>
-      <a href="/#signal">The Signal</a>
-      <a href="/#how">How it works</a>
-    </nav>
+    <nav class="mh-bar top-nav" aria-label="Main"><a href="/library/" data-place="library" aria-current="page">Library</a><a href="/ai/" data-place="ai">Miracle AI</a><a href="https://community.miraclehealth.us/" data-place="community">Community</a><a href="/my/" data-place="my">My Miracle</a></nav>
     <a class="top-link" href="https://community.miraclehealth.us/">Sign in</a>
     <a class="btn lime sm" href="https://community.miraclehealth.us/">Join</a>
     <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
@@ -42,11 +38,13 @@
 </header>
 <nav class="menu-panel" id="menu" aria-label="Menu">
   <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
-  <a href="/library/">Library</a>
+  <a href="/library/" aria-current="page">Library</a>
   <a href="/ai/">Miracle AI</a>
-  <a href="/#signal">The Signal</a>
-  <a href="/#how">How it works</a>
-  <a href="https://community.miraclehealth.us/">Sign in</a>
+  <a href="https://community.miraclehealth.us/">Community</a>
+  <a href="/my/">My Miracle</a>
+  <a class="menu-more" href="/#signal">The Signal</a>
+  <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
 
@@ -61,6 +59,11 @@
     
     <div class="le-badges">
       <span class="ev ev-pending">Fact sheet in progress</span>
+    </div>
+    <div class="le-actions">
+      <a class="btn lime sm" href="/ai/#ask=V2hhdCBtYXkgTWlsayB0aGlzdGxlIGRvIGZvciBtZT8gV2hhdCBkb2VzIHRoZSBldmlkZW5jZSBzYXksIGFuZCB3aGF0IGRvIG1lbWJlcnMgcmVwb3J0Pw">Ask Miracle AI about Milk thistle</a>
+      <a class="btn line sm" href="/ai/" data-with-stack="milkthistle" hidden>Check it with my saved stack</a>
+      <a class="btn line sm" href="https://community.miraclehealth.us/#/s/milkthistle">See what members report</a>
     </div>
   </div>
 </section>
@@ -109,7 +112,7 @@
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>

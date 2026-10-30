@@ -70,6 +70,16 @@
 .saved-box .linkish:hover{color:var(--lime)}
 .rail-saved{margin-top:14px;padding-top:16px;border-top:1px solid var(--line-ink)}
 .rail-saved .saved-box{margin:0;padding:14px}
+/* My Miracle in short: their plan and stack, and a nudge to check in */
+.my-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.my-head .linkish{min-height:0}
+.my-part{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
+.my-part:first-of-type{margin-top:8px;padding-top:0;border-top:0}
+.my-kind{font:600 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.my-part .saved-names{margin-top:4px}
+.my-due{display:block;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(216,255,61,.12);color:var(--on-ink);font-size:14px;line-height:1.45;text-decoration:none}
+.my-due b{color:var(--lime)}
+.my-due:hover{background:rgba(216,255,61,.18)}
 .ai-app.is-empty .rail-saved{display:none}
 
 /* The five agents, in the empty state on narrow screens and beside the chat on wide ones */
@@ -168,10 +178,6 @@
 .waiting{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14.5px}
 .waiting i{width:6px;height:6px;border-radius:50%;background:#9CC21C;animation:sig-dot 1.2s ease-in-out infinite}
 .waiting i:nth-child(2){animation-delay:.2s}.waiting i:nth-child(3){animation-delay:.4s}
-@keyframes sig-dot{0%,100%{opacity:.25}50%{opacity:1}}
-.sig.think .sig-dots circle{animation:sig-dot 1.2s ease-in-out infinite}
-.sig.think .sig-dots circle:nth-child(2){animation-delay:.2s}
-.sig.think .sig-dots circle:nth-child(3){animation-delay:.4s}
 .msg-sig .sig .sig-body,.msg-sig .sig .sig-shadow{animation:none}
 .ai-sig svg,.ai-hello svg,.msg-sig svg{width:100%;height:100%}
 
@@ -210,9 +216,6 @@
 /* the headline: how strong the evidence is for what was asked, in words and four bars */
 .pick-ev{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:4px 11px;border-radius:40px;background:#EEF0EC;color:#4A5251}
 .pick-ev-label{font:600 12.5px/1.3 var(--body);white-space:nowrap}
-.meter{display:inline-grid;grid-template-columns:repeat(4,9px);gap:2px}
-.meter i{height:6px;border-radius:2px;background:currentColor;opacity:.22}
-.meter.m1 i:nth-child(-n+1),.meter.m2 i:nth-child(-n+2),.meter.m3 i:nth-child(-n+3),.meter.m4 i{opacity:1}
 .pick-ev.ev-strong{background:#E3F0D0;color:#2C5E00}
 .pick-ev.ev-moderate{background:#E8F2D6;color:#3B6B00}
 .pick-ev.ev-limited{background:#EEF2DC;color:#5A6400}

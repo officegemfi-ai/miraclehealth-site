@@ -13,6 +13,9 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signalviz.js';
+// Miracle Health's design kit, shared with the community app (copied from the community's
+// shared/kit by its scripts/sync_kit.sh): the bar of the four places, the evidence meter, Sig
+import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompound } from '../kit/kit.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -47,6 +50,9 @@ const GRADE = {
   preclinical: ['Animal and lab studies', 'Studied in animals or cells, not in people'],
   anecdotal: ['Anecdotal', 'User reports only'],
 };
+// An evidence pill: the four bars of the design kit's meter (the same one Miracle AI and the
+// community show) and the grade's name
+const evPill = (grade, label = GRADE[grade]?.[0] || grade) => `<span class="ev ev-${e(grade)}">${meterHtml(grade, { bare: true })}${e(label)}</span>`;
 const GRADE_ORDER = { strong: 0, moderate: 1, limited: 2, preclinical: 3, anecdotal: 4 };
 const STATUS = {
   approved: 'FDA-approved', otc: 'Over the counter', supplement: 'Dietary supplement', compounded: 'Compounded by prescription',
@@ -82,22 +88,70 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 // browser or GitHub's cache never pairs a new page with an old stylesheet (GitHub Pages caches
 // files for 10 minutes)
 const version = (...files) => createHash('sha256').update(files.map((f) => fs.readFileSync(path.join(ROOT, f))).join('\n')).digest('hex').slice(0, 10);
+// Scripts import the kit by its version too: the build writes it into their import lines, so a
+// new script never runs with an old copy of the kit
+const KIT_JS = version('kit/kit.js');
+for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js']) {
+  const file = path.join(ROOT, f);
+  if (!fs.existsSync(file)) continue;
+  const was = fs.readFileSync(file, 'utf8');
+  const now = was.replace(/(from '\/kit\/kit\.js)(?:\?v=[0-9a-f]+)?'/g, `$1?v=${KIT_JS}'`);
+  if (now === was) continue;
+  if (CHECK) { console.error(`out of date: ${f} imports an older kit (run node scripts/build_library.mjs)`); process.exit(1); }
+  fs.writeFileSync(file, now);
+}
 const V = {
+  kitCss: version('kit/kit.css'),
   css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js'),
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
+  myCss: version('my/my.css'), myJs: version('my/my.js'),
 };
 
 // The library's banner photo, in three widths
 const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 960w, /img/library-1600.webp 1600w, /img/library-2560.webp 2560w' };
+
+// The top of every page: the logo, the four places (the design kit's bar, the same one the
+// community shows), and joining the community; on phones, a menu with the same places. home: the
+// front page, whose own sections the menu lists too.
+function shellTop(current = '', home = false) {
+  const more = [['/#signal', 'The Signal'], ['/#how', 'How it works'], ...(home ? [['/#rules', 'House rules']] : [])];
+  return `<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    ${barHtml(current, { site: '', cls: 'top-nav', label: 'Main' })}
+    <a class="top-link" href="${COMMUNITY}/">Sign in</a>
+    <a class="btn lime sm" href="${COMMUNITY}/">Join</a>
+    <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
+  </div>
+</header>
+<nav class="menu-panel" id="menu" aria-label="Menu">
+  <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
+  ${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n  ')}
+  ${more.map(([href, label]) => `<a class="menu-more" href="${href}">${label}</a>`).join('\n  ')}
+  <a class="menu-more" href="${COMMUNITY}/">Sign in</a>
+  <a class="btn lime" href="${COMMUNITY}/">Join the community</a>
+</nav>`;
+}
+const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
+// The hand-written pages (the front page, privacy, terms, 404) get the same top, menu, footer
+// links and kit as every built page
+function stampShell(html, file, { current = '', home = false } = {}) {
+  const top = /<header class="top">[\s\S]*?<\/header>\s*<nav class="menu-panel"[\s\S]*?<\/nav>/;
+  const foot = /<nav class="foot-links" aria-label="Site">[\s\S]*?<\/nav>/;
+  if (!top.test(html) || !foot.test(html)) throw new Error(`${file} has no top bar, menu or footer links to update`);
+  if (!/href="\/?styles\.css(\?v=[0-9a-f]+)?"/.test(html)) throw new Error(`${file} has no styles.css link`);
+  return html.replace(top, shellTop(current, home)).replace(foot, footLinks())
+    .replace(/<link rel="stylesheet" href="\/?kit\/kit\.css(?:\?v=[0-9a-f]+)?">\n/, '')
+    .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`);
+}
 
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
   styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = COMMUNITY, head = '',
   ogImage = '/og.jpg',
 }) {
-  const nav = [['/library/', 'Library', 'library'], ['/ai/', 'Miracle AI', 'ai'], ['/#signal', 'The Signal', 'signal'], ['/#how', 'How it works', 'how']];
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -119,6 +173,7 @@ function page({
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
+<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
 ${scripts.map((src) => `<script type="module" src="${src}"></script>`).join('\n')}
@@ -126,23 +181,7 @@ ${scripts.map((src) => `<script type="module" src="${src}"></script>`).join('\n'
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="top">
-  <div class="wrap top-in">
-    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    <nav class="top-nav" aria-label="Main">
-      ${nav.map(([href, label, key]) => `<a href="${href}"${key === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n      ')}
-    </nav>
-    <a class="top-link" href="${COMMUNITY}/">Sign in</a>
-    <a class="btn lime sm" href="${COMMUNITY}/">Join</a>
-    <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
-  </div>
-</header>
-<nav class="menu-panel" id="menu" aria-label="Menu">
-  <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
-  ${nav.map(([href, label]) => `<a href="${href}">${label}</a>`).join('\n  ')}
-  <a href="${COMMUNITY}/">Sign in</a>
-  <a class="btn lime" href="${COMMUNITY}/">Join the community</a>
-</nav>
+${shellTop(current)}
 
 <main id="main">
 ${body}
@@ -152,7 +191,7 @@ ${body}
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      ${footLinks()}
     </div>
     <div class="foot-row">
       <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
@@ -180,7 +219,7 @@ function card(c) {
     <span class="lc-top"><span class="lc-fam">${e(familyLine(c))}</span><span class="lc-sig" data-sig="${c.id}" hidden></span></span>
     <span class="lc-name">${e(c.name)}</span>
     <span class="lc-sum">${e(sum)}</span>
-    <span class="lc-badges">${f ? `<span class="ev ev-${grade}">${e(GRADE[grade]?.[0] || grade)}</span><span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.label)}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Being checked</span>'}</span>
+    <span class="lc-badges">${f ? `${evPill(grade)}<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.label)}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Being checked</span>'}</span>
   </a>`;
 }
 
@@ -244,7 +283,7 @@ function indexPage() {
         <p class="mono lime">// The fact sheet</p>
         <h3>Checked against the sources</h3>
         <p>Every claim links to the FDA label, NIH fact sheet, trial or review it came from. Each benefit says what kind of evidence backs it, from randomized trials in people to studies in rats. No doses, no sellers.</p>
-        <ul class="grade-key">${Object.entries(GRADE).filter(([k]) => k !== 'anecdotal').map(([k, [l, d]]) => `<li><span class="ev ev-${k}">${e(l)}</span><span>${e(d)}</span></li>`).join('')}</ul>
+        <ul class="grade-key">${Object.entries(GRADE).filter(([k]) => k !== 'anecdotal').map(([k, [l, d]]) => `<li>${evPill(k, l)}<span>${e(d)}</span></li>`).join('')}</ul>
       </div>
       <div class="glass deep">
         <p class="mono lime">// The Community Signal</p>
@@ -290,12 +329,12 @@ function factSheet(c, f) {
   return `<section class="le-sec" id="what">
       <h2>What it is</h2>
       <p class="big">${e(f.what_it_is)}</p>
-      <div class="ev-box"><span class="ev ev-${f.evidence.grade}">${e(g[0])}</span><p>${e(f.evidence.why)}</p></div>
+      <div class="ev-box">${evPill(f.evidence.grade, g[0])}<p>${e(f.evidence.why)}</p></div>
     </section>
 
     <section class="le-sec" id="benefits">
       <h2>What it may do</h2>
-      <ul class="claims">${(f.benefits || []).map((b) => `<li><span class="ev ev-${b.evidence}">${e(GRADE[b.evidence]?.[0] || b.evidence)}</span><p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
+      <ul class="claims">${(f.benefits || []).map((b) => `<li>${evPill(b.evidence)}<p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
     </section>
 
     <section class="le-sec" id="risks">
@@ -348,7 +387,7 @@ function pendingSheet(c) {
       <p class="big">${e(c.name)} is a pre-mixed blend of ${parts.map((p) => e(p.name)).join(' and ')}. Each part has its own fact sheet, and the blend has its own Community Signal, from reports of the blend itself.</p>
       <div class="parts">${parts.map((p) => {
         const pf = entries.get(p.id);
-        return `<a class="part" href="/library/${p.id}/"><span class="lc-fam">${e(familyLine(p))}</span><b>${e(p.name)}</b>${pf ? `<span>${e(pf.summary)}</span><span class="lc-badges"><span class="ev ev-${pf.evidence.grade}">${e(GRADE[pf.evidence.grade]?.[0])}</span><span class="st st-${pf.status_us.key}">${e(STATUS[pf.status_us.key])}</span></span>` : '<span class="muted">Fact sheet in progress.</span>'}</a>`;
+        return `<a class="part" href="/library/${p.id}/"><span class="lc-fam">${e(familyLine(p))}</span><b>${e(p.name)}</b>${pf ? `<span>${e(pf.summary)}</span><span class="lc-badges">${evPill(pf.evidence.grade)}<span class="st st-${pf.status_us.key}">${e(STATUS[pf.status_us.key])}</span></span>` : '<span class="muted">Fact sheet in progress.</span>'}</a>`;
       }).join('')}</div>
     </section>`;
   }
@@ -371,7 +410,7 @@ function entryPage(c) {
   const mainGoals = studied ? Object.entries(studied).filter(([, v]) => v >= 0.75).sort((a, b) => b[1] - a[1]).map(([k]) => uses.goals.find((g) => g.id === k)?.label || k) : [];
   const facts = f ? [
     ['US status', `<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span> ${e(f.status_us.label)}`],
-    ['Evidence', `<span class="ev ev-${f.evidence.grade}">${e(GRADE[f.evidence.grade]?.[0])}</span>`],
+    ['Evidence', evPill(f.evidence.grade)],
     mainGoals.length ? ['Mostly used for', e(mainGoals.join(', '))] : null,
     ['Blood markers', (f.labs?.before || []).length || (f.labs?.during || []).length
       ? `<a href="#labs">${[(f.labs.before || []).length ? `${f.labs.before.length} before starting` : null, (f.labs.during || []).length ? `${f.labs.during.length} while taking it` : null].filter(Boolean).join(' · ')}</a>`
@@ -390,8 +429,13 @@ function entryPage(c) {
     ${f ? `<p class="lede">${e(f.summary)}</p>` : ''}
     <div class="le-badges">
       ${f ? `<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span>
-      <span class="ev ev-${f.evidence.grade}">${e(GRADE[f.evidence.grade]?.[0])}</span>
+      ${evPill(f.evidence.grade)}
       <span class="check">Fact-checked ${date(f.checked)} · clinician review pending</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
+    </div>
+    <div class="le-actions">
+      <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Miracle AI about ${e(c.name)}</a>
+      <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it with my saved stack</a>
+      <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
     </div>
   </div>
 </section>
@@ -650,6 +694,31 @@ function planPage() {
   });
 }
 
+// My Miracle: what a member keeps on this device (their plan and its ticks, their check-ins, their
+// saved stack), together, with their places in the community. The page reads it from the
+// browser's own storage; nothing of it reaches this site's server.
+function myPage() {
+  const body = `<div class="my-wrap" id="my-root" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
+  <section class="my-intro">
+    ${sigSvg(64, 'happy', { dark: true, id: 'mysig' })}
+    <div>
+      <h1>My Miracle</h1>
+      <p>Your plan, how it’s going, your stack and your places in the community, together. They’re kept on this device; Miracle Health never receives them.</p>
+    </div>
+  </section>
+  <div id="my-app"><p class="my-loading">Opening what you keep on this device…</p></div>
+  <noscript><p class="my-loading">My Miracle needs JavaScript: it reads what you keep in this browser.</p></noscript>
+</div>`;
+  return page({
+    title: 'My Miracle · Miracle Health',
+    description: 'Your Miracle Plan, how it’s going, your saved stack and your places in the community, together. Kept on your device; Miracle Health never receives them.',
+    url: '/my/', body, current: 'my', bodyClass: 'my-page',
+    styles: [`/ai/plan.css?v=${V.plCss}`, `/my/my.css?v=${V.myCss}`],
+    scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/my/my.js?v=${V.myJs}`],
+    connect: COMMUNITY, head: '<meta name="robots" content="noindex">',
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Write it all
 // ---------------------------------------------------------------------------
@@ -661,6 +730,7 @@ for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g)
 out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
 out.set(path.join(ROOT, 'plan', 'index.html'), planPage());
+out.set(path.join(ROOT, 'my', 'index.html'), myPage());
 const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -678,13 +748,20 @@ const fill = (html, key, inner) => {
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'takeover', `<div class="viz-wide">${takeoverSvg({ w: 50, max: 300 })}</div><div class="viz-compact">${takeoverSvg({ w: 50, max: 300 }, { compact: true })}</div>`);
 front = fill(front, 'levels', LEVELS.map((l) => `<li>${sealSvg(l.key, 30)}<span><b>${e(l.name)}</b>${e(l.rule)}</span></li>`).join(''));
-out.set(frontFile, front.replace(/href="(\/?)styles\.css(\?v=[0-9a-f]+)?"/, `href="$1styles.css?v=${V.css}"`));
-// The other hand-written pages share the site stylesheet
+// Its Sigs are the kit's, drawn on the dark hero and the "Miracle AI reads it" step
+const SIGS = [[50, 'idle', 'hsig1'], [104, 'watching', 'hsig2']];
+let sigN = 0;
+front = front.replace(/<svg class="sig[ a-z]*"[\s\S]*?<\/svg>/g, (m) => {
+  const spec = SIGS[sigN++];
+  if (!spec) throw new Error('index.html has more Sigs than the build draws');
+  return sigSvg(spec[0], spec[1], { dark: true, id: spec[2] });
+});
+if (sigN !== SIGS.length) throw new Error(`index.html has ${sigN} Sigs; the build draws ${SIGS.length}`);
+out.set(frontFile, stampShell(front, 'index.html', { home: true }));
+// The other hand-written pages: the same top, menu, footer and stylesheets
 for (const f of ['privacy.html', 'terms.html', '404.html']) {
   const file = path.join(ROOT, f);
-  const html = fs.readFileSync(file, 'utf8');
-  if (!/href="\/?styles\.css(\?v=[0-9a-f]+)?"/.test(html)) throw new Error(`${f} has no styles.css link`);
-  out.set(file, html.replace(/href="(\/?)styles\.css(\?v=[0-9a-f]+)?"/, `href="$1styles.css?v=${V.css}"`));
+  out.set(file, stampShell(fs.readFileSync(file, 'utf8'), f));
 }
 
 let stale = 0;

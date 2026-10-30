@@ -40,9 +40,8 @@
 a.pchip-name:hover{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
 .pchip-role{font-size:12.5px;line-height:1.4;color:var(--on-ink-2)}
 .pchip-status{font:600 12px/1.3 var(--body);color:#F2C46B}
-.pmeter{display:inline-grid;grid-template-columns:repeat(4,8px);gap:2px;flex:none;color:var(--lime)}
-.pmeter i{height:6px;border-radius:1.5px;background:currentColor;opacity:.22}
-.pmeter.m1 i:nth-child(-n+1),.pmeter.m2 i:nth-child(-n+2),.pmeter.m3 i:nth-child(-n+3),.pmeter.m4 i{opacity:1}
+/* The evidence meter is the design kit's (kit/kit.css), in lime on the plan */
+.plan{--mh-meter:var(--lime)}
 .pwell{display:grid;gap:5px;margin:0;padding:0;list-style:none}
 .pwell li{position:relative;padding-left:16px;font-size:14px;line-height:1.45;color:var(--on-ink)}
 .pwell li::before{content:'';position:absolute;left:1px;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--lime)}

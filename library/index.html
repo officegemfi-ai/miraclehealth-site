@@ -20,9 +20,10 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/img/library-1600.webp" imagesrcset="/img/library-960.webp 960w, /img/library-1600.webp 1600w, /img/library-2560.webp 2560w" imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="/styles.css?v=70dcd0057b">
-<link rel="stylesheet" href="/library/library.css?v=123661e1bd">
-<script type="module" src="/library/library.js?v=df4d30df58"></script>
+<link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
+<link rel="stylesheet" href="/styles.css?v=9ea0d497c6">
+<link rel="stylesheet" href="/library/library.css?v=7e9878c27b">
+<script type="module" src="/library/library.js?v=ddad2886dc"></script>
 </head>
 <body class="lib">
 <a class="skip" href="#main">Skip to content</a>
@@ -30,12 +31,7 @@
 <header class="top">
   <div class="wrap top-in">
     <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    <nav class="top-nav" aria-label="Main">
-      <a href="/library/" aria-current="page">Library</a>
-      <a href="/ai/">Miracle AI</a>
-      <a href="/#signal">The Signal</a>
-      <a href="/#how">How it works</a>
-    </nav>
+    <nav class="mh-bar top-nav" aria-label="Main"><a href="/library/" data-place="library" aria-current="page">Library</a><a href="/ai/" data-place="ai">Miracle AI</a><a href="https://community.miraclehealth.us/" data-place="community">Community</a><a href="/my/" data-place="my">My Miracle</a></nav>
     <a class="top-link" href="https://community.miraclehealth.us/">Sign in</a>
     <a class="btn lime sm" href="https://community.miraclehealth.us/">Join</a>
     <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
@@ -43,11 +39,13 @@
 </header>
 <nav class="menu-panel" id="menu" aria-label="Menu">
   <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
-  <a href="/library/">Library</a>
+  <a href="/library/" aria-current="page">Library</a>
   <a href="/ai/">Miracle AI</a>
-  <a href="/#signal">The Signal</a>
-  <a href="/#how">How it works</a>
-  <a href="https://community.miraclehealth.us/">Sign in</a>
+  <a href="https://community.miraclehealth.us/">Community</a>
+  <a href="/my/">My Miracle</a>
+  <a class="menu-more" href="/#signal">The Signal</a>
+  <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
 
@@ -96,733 +94,733 @@
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="anastrozole" hidden></span></span>
     <span class="lc-name">Anastrozole</span>
     <span class="lc-sum">A prescription pill that blocks estrogen production, approved to treat hormone-sensitive breast cancer after menopause; it has also been studied off-label in men with low testosterone.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/aod9604/" data-id="aod9604" data-family="Peptides" data-goals="weight" data-ev="limited" data-checked="1" data-text="aod-9604 aod advanced obesity drug metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="aod9604" hidden></span></span>
     <span class="lc-name">AOD-9604</span>
     <span class="lc-sum">A lab-made fragment of human growth hormone taken for fat loss; it was developed as an obesity drug, but its main weight-loss trial failed and it is not approved.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/armodafinil/" data-id="armodafinil" data-family="Medications" data-goals="cognition" data-ev="limited" data-checked="1" data-text="armodafinil nuvigil cognition &amp; focus medications">
     <span class="lc-top"><span class="lc-fam">Medication · Cognition &amp; focus</span><span class="lc-sig" data-sig="armodafinil" hidden></span></span>
     <span class="lc-name">Armodafinil</span>
     <span class="lc-sum">The R-form of modafinil: a prescription wakefulness drug for sleep disorders, used off-label for focus with little direct evidence in healthy people.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/ashwagandha/" data-id="ashwagandha" data-family="Supplements" data-goals="sleep cognition" data-ev="limited" data-checked="1" data-text="ashwagandha ksm-66 sensoril withania somnifera mood &amp; stress supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Mood &amp; stress</span><span class="lc-sig" data-sig="ashwagandha" hidden></span></span>
     <span class="lc-name">Ashwagandha</span>
     <span class="lc-sum">An Ayurvedic herb (Withania somnifera) whose root extracts are taken mainly to ease stress and anxiety and to improve sleep.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/berberine/" data-id="berberine" data-family="Supplements" data-goals="weight" data-ev="moderate" data-checked="1" data-text="berberine dihydroberberine glucovantage metabolic &amp; weight supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Metabolic &amp; weight</span><span class="lc-sig" data-sig="berberine" hidden></span></span>
     <span class="lc-name">Berberine</span>
     <span class="lc-sum">A plant compound from goldenseal, barberry and Oregon grape, taken mainly to lower blood sugar and for weight loss.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/bpc157/" data-id="bpc157" data-family="Peptides" data-goals="recovery gut" data-ev="limited" data-checked="1" data-text="bpc-157 body protection compound pl 14736 bpc bepecin healing &amp; recovery peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Healing &amp; recovery</span><span class="lc-sig" data-sig="bpc157" hidden></span></span>
     <span class="lc-name">BPC-157</span>
     <span class="lc-sum">A 15-amino-acid fragment of a protein first found in human stomach juice, taken for tendon, muscle and gut healing based mostly on rodent studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/bronchogen/" data-id="bronchogen" data-family="Peptides" data-goals="immune" data-ev="preclinical" data-checked="1" data-text="bronchogen khavinson bioregulator immune &amp; inflammation peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Immune &amp; inflammation</span><span class="lc-sig" data-sig="bronchogen" hidden></span></span>
     <span class="lc-name">Bronchogen</span>
     <span class="lc-sum">A four-amino-acid peptide from Russian 'bioregulator' research, promoted for the lungs and airways; evidence so far is limited to cell and rat studies.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/cabergoline/" data-id="cabergoline" data-family="Medications" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="cabergoline dostinex caber hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="cabergoline" hidden></span></span>
     <span class="lc-name">Cabergoline</span>
     <span class="lc-sum">A prescription pill that lowers high prolactin by acting like dopamine on the pituitary; approved for hyperprolactinemia, including prolactin-making pituitary tumors.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/cagrilintide/" data-id="cagrilintide" data-family="Peptides" data-goals="weight" data-ev="moderate" data-checked="1" data-text="cagrilintide cagri amylin analog metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="cagrilintide" hidden></span></span>
     <span class="lc-name">Cagrilintide</span>
     <span class="lc-sum">An experimental long-acting version of the hormone amylin, tested for weight loss alone and with semaglutide (as CagriSema); it is not FDA-approved.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
   </a>
   <a class="lib-card" href="/library/canagliflozin/" data-id="canagliflozin" data-family="Medications" data-goals="weight" data-ev="strong" data-checked="1" data-text="canagliflozin invokana sglt2 inhibitor longevity medications">
     <span class="lc-top"><span class="lc-fam">Medication · Longevity</span><span class="lc-sig" data-sig="canagliflozin" hidden></span></span>
     <span class="lc-name">Canagliflozin</span>
     <span class="lc-sum">A prescription pill, sold as Invokana, that lowers blood sugar and heart and kidney risks in type 2 diabetes; anti-aging interest rests on a mouse study.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/cerebrolysin/" data-id="cerebrolysin" data-family="Peptides" data-goals="cognition" data-ev="limited" data-checked="1" data-text="cerebrolysin fpf-1070 cognition &amp; focus peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Cognition &amp; focus</span><span class="lc-sig" data-sig="cerebrolysin" hidden></span></span>
     <span class="lc-name">Cerebrolysin</span>
     <span class="lc-sum">A mixture of small peptides from pig brain, prescribed abroad for stroke and dementia and taken for focus and memory; not approved in the US, with weak supporting evidence.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/modgrf129/" data-id="modgrf129" data-family="Peptides" data-goals="hormonal" data-ev="anecdotal" data-checked="1" data-text="cjc-1295 no dac (mod grf 1-29) mod grf 1-29 modified grf 1-29 cjc no dac cjc-1295 without dac growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="modgrf129" hidden></span></span>
     <span class="lc-name">CJC-1295 no DAC (Mod GRF 1-29)</span>
     <span class="lc-sum">A modified copy of the hormone that triggers growth hormone release, sold as a research chemical to raise growth hormone; evidence comes only from related peptides.</span>
-    <span class="lc-badges"><span class="ev ev-anecdotal">Anecdotal</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-anecdotal"><span class="mh-meter m0" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Anecdotal</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/cjc1295/" data-id="cjc1295" data-family="Peptides" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="cjc-1295 with dac cjc-1295 dac cjc dac dac:grf cjc-1295 growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="cjc1295" hidden></span></span>
     <span class="lc-name">CJC-1295 with DAC</span>
     <span class="lc-sum">A long-acting, lab-made version of the hormone that triggers growth hormone release, taken to raise growth hormone and IGF-1; human data come from short studies in healthy adults.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/clomiphene/" data-id="clomiphene" data-family="Medications" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="clomiphene clomid clomiphene citrate hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="clomiphene" hidden></span></span>
     <span class="lc-name">Clomiphene</span>
     <span class="lc-sum">A prescription fertility pill that triggers ovulation in women who don't ovulate regularly; it is also used off-label in men to raise their own testosterone.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/collagen/" data-id="collagen" data-family="Supplements" data-goals="skin" data-ev="limited" data-checked="1" data-text="collagen peptides collagen hydrolyzed collagen skin &amp; hair supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Skin &amp; hair</span><span class="lc-sig" data-sig="collagen" hidden></span></span>
     <span class="lc-name">Collagen peptides</span>
     <span class="lc-sum">Collagen broken down into small protein fragments, taken by mouth mainly to improve skin hydration, elasticity and wrinkles, and sometimes for joint symptoms.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/coq10/" data-id="coq10" data-family="Supplements" data-goals="energy longevity" data-ev="limited" data-checked="1" data-text="coq10 coenzyme q10 ubiquinone ubiquinol energy &amp; mitochondria supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Energy &amp; mitochondria</span><span class="lc-sig" data-sig="coq10" hidden></span></span>
     <span class="lc-name">CoQ10</span>
     <span class="lc-sum">A substance the body makes that helps cells produce energy, taken for heart health, statin-related muscle aches, migraine and energy.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/creatine/" data-id="creatine" data-family="Supplements" data-goals="muscle" data-ev="strong" data-checked="1" data-text="creatine monohydrate creatine creatine hcl muscle &amp; performance supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Muscle &amp; performance</span><span class="lc-sig" data-sig="creatine" hidden></span></span>
     <span class="lc-name">Creatine monohydrate</span>
     <span class="lc-sum">A compound the body makes and gets from animal foods, taken as a supplement to add strength and power for short, intense exercise.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/crystagen/" data-id="crystagen" data-family="Peptides" data-goals="immune" data-ev="limited" data-checked="1" data-text="crystagen khavinson bioregulator immune &amp; inflammation peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Immune &amp; inflammation</span><span class="lc-sig" data-sig="crystagen" hidden></span></span>
     <span class="lc-name">Crystagen</span>
     <span class="lc-sum">A three-amino-acid peptide (Glu-Asp-Pro) from Russian 'bioregulator' research, promoted to support immunity in older people; evidence is mainly the developers' own small studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/curcumin/" data-id="curcumin" data-family="Supplements" data-goals="recovery gut" data-ev="limited" data-checked="1" data-text="curcumin turmeric meriva longvida bcm-95 immune &amp; inflammation supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Immune &amp; inflammation</span><span class="lc-sig" data-sig="curcumin" hidden></span></span>
     <span class="lc-name">Curcumin</span>
     <span class="lc-sum">The main yellow compound in turmeric, taken mostly for joint pain and inflammation; evidence is preliminary, and turmeric supplements have been linked to rare liver injury.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/dapagliflozin/" data-id="dapagliflozin" data-family="Medications" data-goals="weight" data-ev="strong" data-checked="1" data-text="dapagliflozin farxiga sglt2 inhibitor metabolic &amp; weight medications">
     <span class="lc-top"><span class="lc-fam">Medication · Metabolic &amp; weight</span><span class="lc-sig" data-sig="dapagliflozin" hidden></span></span>
     <span class="lc-name">Dapagliflozin</span>
     <span class="lc-sum">A prescription pill, sold as Farxiga, that makes the kidneys pass extra sugar into the urine; it treats type 2 diabetes and lowers kidney and heart failure risks.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/dhea/" data-id="dhea" data-family="Hormones" data-goals="sexual hormonal" data-ev="limited" data-checked="1" data-text="dhea dehydroepiandrosterone prasterone hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="dhea" hidden></span></span>
     <span class="lc-name">DHEA</span>
     <span class="lc-sum">A hormone made by the adrenal glands that the body converts to testosterone and estrogen; sold as a supplement for libido, well-being and aging, with weak evidence.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/dihexa/" data-id="dihexa" data-family="Peptides" data-goals="cognition" data-ev="preclinical" data-checked="1" data-text="dihexa pnb-0408 cognition &amp; focus peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Cognition &amp; focus</span><span class="lc-sig" data-sig="dihexa" hidden></span></span>
     <span class="lc-name">Dihexa</span>
     <span class="lc-sum">A lab-made compound based on the peptide angiotensin IV, used to try to boost memory; it improved learning in rodents, and FDA found no human data on it.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/dsip/" data-id="dsip" data-family="Peptides" data-goals="sleep" data-ev="limited" data-checked="1" data-text="dsip delta sleep-inducing peptide sleep peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Sleep</span><span class="lc-sig" data-sig="dsip" hidden></span></span>
     <span class="lc-name">DSIP</span>
     <span class="lc-sum">A nine-amino-acid peptide, also called emideltide, first found in rabbit brain blood and taken in hopes of better sleep; evidence that it works is weak.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/dulaglutide/" data-id="dulaglutide" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="dulaglutide trulicity metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="dulaglutide" hidden></span></span>
     <span class="lc-name">Dulaglutide</span>
     <span class="lc-sum">A prescription injection, sold as Trulicity, that activates GLP-1 receptors to lower blood sugar in type 2 diabetes and reduce the risk of heart attack and stroke.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/dutasteride/" data-id="dutasteride" data-family="Medications" data-goals="skin" data-ev="strong" data-checked="1" data-text="dutasteride avodart skin &amp; hair medications">
     <span class="lc-top"><span class="lc-fam">Medication · Skin &amp; hair</span><span class="lc-sig" data-sig="dutasteride" hidden></span></span>
     <span class="lc-name">Dutasteride</span>
     <span class="lc-sum">A prescription capsule that blocks DHT production, approved in the US for an enlarged prostate; it is used off-label for male pattern hair loss.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/empagliflozin/" data-id="empagliflozin" data-family="Medications" data-goals="weight" data-ev="strong" data-checked="1" data-text="empagliflozin jardiance sglt2 inhibitor metabolic &amp; weight medications">
     <span class="lc-top"><span class="lc-fam">Medication · Metabolic &amp; weight</span><span class="lc-sig" data-sig="empagliflozin" hidden></span></span>
     <span class="lc-name">Empagliflozin</span>
     <span class="lc-sum">A prescription pill, sold as Jardiance, that makes the kidneys pass extra sugar into the urine; it treats type 2 diabetes and lowers heart failure and kidney risks.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/enclomiphene/" data-id="enclomiphene" data-family="Medications" data-goals="hormonal" data-ev="moderate" data-checked="1" data-text="enclomiphene androxal enclomiphene citrate hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="enclomiphene" hidden></span></span>
     <span class="lc-name">Enclomiphene</span>
     <span class="lc-sum">One of the two forms in the fertility drug clomiphene, studied as a pill to raise men's own testosterone; it is not approved in the US or Europe.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
   </a>
   <a class="lib-card" href="/library/epithalon/" data-id="epithalon" data-family="Peptides" data-goals="longevity" data-ev="preclinical" data-checked="1" data-text="epitalon epithalon epithalone aedg longevity peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Longevity</span><span class="lc-sig" data-sig="epithalon" hidden></span></span>
     <span class="lc-name">Epitalon</span>
     <span class="lc-sum">A lab-made four-amino-acid peptide from Russian aging research, taken in hopes of slowing aging and restoring melatonin rhythms; human evidence is very thin.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/estradiol/" data-id="estradiol" data-family="Hormones" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="estradiol e2 estrace vivelle-dot climara divigel estrogel evamist estradiol patch estradiol valerate delestrogen estradiol cypionate hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="estradiol" hidden></span></span>
     <span class="lc-name">Estradiol</span>
     <span class="lc-sum">The body's most potent estrogen, prescribed mainly to relieve menopausal hot flashes and vaginal symptoms and to prevent bone loss after menopause.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/exemestane/" data-id="exemestane" data-family="Medications" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="exemestane aromasin hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="exemestane" hidden></span></span>
     <span class="lc-name">Exemestane</span>
     <span class="lc-sum">A prescription pill that irreversibly blocks aromatase, the enzyme that makes estrogen, approved for hormone-sensitive breast cancer after menopause; studies in men are few and brief.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/exenatide/" data-id="exenatide" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="exenatide byetta bydureon metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="exenatide" hidden></span></span>
     <span class="lc-name">Exenatide</span>
     <span class="lc-sum">A prescription GLP-1 medicine, first approved as Byetta in 2005, that lowers blood sugar in type 2 diabetes; the brand-name versions were discontinued in the US in 2024.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/finasteride/" data-id="finasteride" data-family="Medications" data-goals="skin" data-ev="strong" data-checked="1" data-text="finasteride propecia proscar skin &amp; hair medications">
     <span class="lc-top"><span class="lc-fam">Medication · Skin &amp; hair</span><span class="lc-sig" data-sig="finasteride" hidden></span></span>
     <span class="lc-name">Finasteride</span>
     <span class="lc-sum">A prescription pill that blocks the conversion of testosterone to DHT, approved for male pattern hair loss and enlarged prostate; sexual and mood side effects are a known concern.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/follistatin/" data-id="follistatin" data-family="Peptides" data-goals="muscle" data-ev="preclinical" data-checked="1" data-text="follistatin 344 fst-344 follistatin muscle &amp; performance peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Muscle &amp; performance</span><span class="lc-sig" data-sig="follistatin" hidden></span></span>
     <span class="lc-name">Follistatin 344</span>
     <span class="lc-sum">A natural protein that blocks myostatin, a brake on muscle growth; taken to build muscle, it has been tested in people as a gene therapy for muscle diseases.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/fsh/" data-id="fsh" data-family="Hormones" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="fsh follicle-stimulating hormone follitropin gonal-f follistim hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="fsh" hidden></span></span>
     <span class="lc-name">FSH</span>
     <span class="lc-sum">A prescription fertility hormone injection, made by recombinant DNA technology, approved for ovulation induction and IVF in women and, with hCG, to start sperm production in men.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/ghkcu/" data-id="ghkcu" data-family="Peptides" data-goals="recovery skin" data-ev="limited" data-checked="1" data-text="ghk-cu copper peptide ghk copper copper tripeptide-1 healing &amp; recovery peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Healing &amp; recovery</span><span class="lc-sig" data-sig="ghkcu" hidden></span></span>
     <span class="lc-name">GHK-Cu</span>
     <span class="lc-sum">A small copper-binding peptide found naturally in human blood, used in skin creams and injected for skin, hair and healing, based mostly on small cosmetic and animal studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/ghrp2/" data-id="ghrp2" data-family="Peptides" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="ghrp-2 pralmorelin growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="ghrp2" hidden></span></span>
     <span class="lc-name">GHRP-2</span>
     <span class="lc-sum">A lab-made peptide that releases growth hormone and increases appetite; used in Japan as a diagnostic test and sold elsewhere as a research chemical.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
   </a>
   <a class="lib-card" href="/library/ghrp6/" data-id="ghrp6" data-family="Peptides" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="ghrp-6 growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="ghrp6" hidden></span></span>
     <span class="lc-name">GHRP-6</span>
     <span class="lc-sum">An early lab-made peptide that releases growth hormone through the ghrelin receptor, sold as a research chemical to raise growth hormone; human studies are small and short.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
   </a>
   <a class="lib-card" href="/library/glutathione/" data-id="glutathione" data-family="Peptides" data-goals="skin gut" data-ev="limited" data-checked="1" data-text="glutathione gsh l-glutathione reduced glutathione liposomal glutathione liver &amp; detox peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Liver &amp; detox</span><span class="lc-sig" data-sig="glutathione" hidden></span></span>
     <span class="lc-name">Glutathione</span>
     <span class="lc-sum">An antioxidant the body makes, taken by mouth or IV for liver health, detox and skin lightening; human studies are small and IV use has caused serious reactions.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
   </a>
   <a class="lib-card" href="/library/glycine/" data-id="glycine" data-family="Supplements" data-goals="sleep" data-ev="limited" data-checked="1" data-text="glycine sleep supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Sleep</span><span class="lc-sig" data-sig="glycine" hidden></span></span>
     <span class="lc-name">Glycine</span>
     <span class="lc-sum">An amino acid taken mainly to improve sleep; the evidence is three small, very short trials in healthy adults.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/gonadorelin/" data-id="gonadorelin" data-family="Hormones" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="gonadorelin gnrh lhrh factrel hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="gonadorelin" hidden></span></span>
     <span class="lc-name">Gonadorelin</span>
     <span class="lc-sum">A lab-made copy of the brain hormone GnRH, which tells the pituitary to release LH and FSH; men take it to support testicular function, with little evidence.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
   </a>
   <a class="lib-card" href="/library/hcg/" data-id="hcg" data-family="Hormones" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="hcg human chorionic gonadotropin pregnyl novarel ovidrel hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="hcg" hidden></span></span>
     <span class="lc-name">hCG</span>
     <span class="lc-sum">A pregnancy hormone that acts like LH, prescribed to stimulate the testes in men with pituitary-related hypogonadism, to treat undescended testes in boys and to trigger ovulation.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/hexarelin/" data-id="hexarelin" data-family="Peptides" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="hexarelin examorelin growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="hexarelin" hidden></span></span>
     <span class="lc-name">Hexarelin</span>
     <span class="lc-sum">A lab-made relative of GHRP-6 that releases growth hormone through the ghrelin receptor, sold as a research chemical; human data come from a few small studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/hghfrag/" data-id="hghfrag" data-family="Peptides" data-goals="weight" data-ev="preclinical" data-checked="1" data-text="hgh fragment 176-191 frag 176-191 hgh frag fragment 176-191 metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="hghfrag" hidden></span></span>
     <span class="lc-name">HGH Fragment 176-191</span>
     <span class="lc-sum">A lab-made piece of the tail end of human growth hormone, sold as a research chemical for fat loss; the evidence comes from animal studies of a related peptide.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/hmg/" data-id="hmg" data-family="Hormones" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="hmg human menopausal gonadotropin menopur hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="hmg" hidden></span></span>
     <span class="lc-name">hMG</span>
     <span class="lc-sum">A prescription fertility injection of FSH and LH activity purified from postmenopausal women's urine, approved for IVF; it is used off-label in men to start sperm production.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/humanin/" data-id="humanin" data-family="Peptides" data-goals="longevity" data-ev="preclinical" data-checked="1" data-text="humanin hng longevity peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Longevity</span><span class="lc-sig" data-sig="humanin" hidden></span></span>
     <span class="lc-name">Humanin</span>
     <span class="lc-sum">A small peptide encoded in mitochondrial DNA that protects cells in lab and animal studies; levels fall with age, but it is untested as a treatment in people.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/igf1des/" data-id="igf1des" data-family="Peptides" data-goals="muscle" data-ev="preclinical" data-checked="1" data-text="igf-1 des des(1-3) igf-1 igf des growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="igf1des" hidden></span></span>
     <span class="lc-name">IGF-1 DES</span>
     <span class="lc-sum">A shortened, more potent form of IGF-1 missing its first three amino acids, sold as a research chemical for muscle growth; evidence is limited to lab studies.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/igf1lr3/" data-id="igf1lr3" data-family="Peptides" data-goals="muscle" data-ev="preclinical" data-checked="1" data-text="igf-1 lr3 long r3 igf-1 igf lr3 igf-1 growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="igf1lr3" hidden></span></span>
     <span class="lc-name">IGF-1 LR3</span>
     <span class="lc-sum">A lab-made, more potent form of IGF-1 that escapes the body's IGF-1 binding proteins, sold as a research chemical for muscle growth; evidence is limited to lab studies.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/ipamorelin/" data-id="ipamorelin" data-family="Peptides" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="ipamorelin ipa ipam growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="ipamorelin" hidden></span></span>
     <span class="lc-name">Ipamorelin</span>
     <span class="lc-sum">A small lab-made peptide taken to raise growth hormone through the ghrelin receptor; its only treatment trial, for bowel recovery after surgery, missed its main goal.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
   </a>
   <a class="lib-card" href="/library/iron/" data-id="iron" data-family="Supplements" data-goals="energy" data-ev="strong" data-checked="1" data-text="iron iron bisglycinate ferrous bisglycinate ferrous sulfate vitamins &amp; minerals supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Vitamins &amp; minerals</span><span class="lc-sig" data-sig="iron" hidden></span></span>
     <span class="lc-name">Iron</span>
     <span class="lc-sum">An essential mineral needed to make hemoglobin, taken to prevent or treat iron deficiency and the anemia and fatigue it can cause.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/kisspeptin/" data-id="kisspeptin" data-family="Peptides" data-goals="sexual hormonal" data-ev="limited" data-checked="1" data-text="kisspeptin-10 kisspeptin kp-10 metastin 45-54 sexual health peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Sexual health</span><span class="lc-sig" data-sig="kisspeptin" hidden></span></span>
     <span class="lc-name">Kisspeptin-10</span>
     <span class="lc-sum">The smallest fully active fragment of kisspeptin, a natural hormone that switches on the reproductive hormone chain; taken to raise testosterone and for sexual health.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
   </a>
   <a class="lib-card" href="/library/kpv/" data-id="kpv" data-family="Peptides" data-goals="gut" data-ev="preclinical" data-checked="1" data-text="kpv lys-pro-val alpha-msh fragment gut &amp; digestion peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Gut &amp; digestion</span><span class="lc-sig" data-sig="kpv" hidden></span></span>
     <span class="lc-name">KPV</span>
     <span class="lc-sum">A three-amino-acid fragment of the hormone alpha-MSH, used for gut and skin inflammation on the strength of cell and animal studies; never tested in people.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/ltheanine/" data-id="ltheanine" data-family="Supplements" data-goals="sleep cognition" data-ev="limited" data-checked="1" data-text="l-theanine theanine suntheanine mood &amp; stress supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Mood &amp; stress</span><span class="lc-sig" data-sig="ltheanine" hidden></span></span>
     <span class="lc-name">L-theanine</span>
     <span class="lc-sum">An amino acid from tea leaves, taken to feel calm without drowsiness, ease stress, and improve sleep quality and focus.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/letrozole/" data-id="letrozole" data-family="Medications" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="letrozole femara hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="letrozole" hidden></span></span>
     <span class="lc-name">Letrozole</span>
     <span class="lc-sum">A prescription pill that blocks estrogen production, approved for hormone-sensitive breast cancer after menopause; it is also used off-label to trigger ovulation and in men with low testosterone.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/leuprolide/" data-id="leuprolide" data-family="Hormones" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="leuprolide lupron eligard leuprorelin hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="leuprolide" hidden></span></span>
     <span class="lc-name">Leuprolide</span>
     <span class="lc-sum">A prescription hormone-blocking injection that switches off the body's sex-hormone production, used for prostate cancer, endometriosis, fibroids and early puberty in children.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/lions/" data-id="lions" data-family="Supplements" data-goals="cognition" data-ev="limited" data-checked="1" data-text="lion’s mane lion's mane hericium erinaceus cognition &amp; focus supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Cognition &amp; focus</span><span class="lc-sig" data-sig="lions" hidden></span></span>
     <span class="lc-name">Lion’s mane</span>
     <span class="lc-sum">An edible mushroom (Hericium erinaceus) taken for memory, focus and mood; small human trials show mixed results, and most evidence comes from lab and animal studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/liraglutide/" data-id="liraglutide" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="liraglutide victoza saxenda lira metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="liraglutide" hidden></span></span>
     <span class="lc-name">Liraglutide</span>
     <span class="lc-sum">A prescription GLP-1 medicine, sold as Victoza for type 2 diabetes and Saxenda for weight management, that lowers blood sugar and appetite.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/ll37/" data-id="ll37" data-family="Peptides" data-goals="immune" data-ev="limited" data-checked="1" data-text="ll-37 cathelicidin cap-18 immune &amp; inflammation peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Immune &amp; inflammation</span><span class="lc-sig" data-sig="ll37" hidden></span></span>
     <span class="lc-name">LL-37</span>
     <span class="lc-sum">The body's own germ-fighting and inflammation-steering peptide, made by immune and skin cells, taken for immune support and wound healing; human evidence is limited to leg-ulcer trials.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/ldn/" data-id="ldn" data-family="Medications" data-goals="immune" data-ev="limited" data-checked="1" data-text="low-dose naltrexone (ldn) ldn naltrexone immune &amp; inflammation medications">
     <span class="lc-top"><span class="lc-fam">Medication · Immune &amp; inflammation</span><span class="lc-sig" data-sig="ldn" hidden></span></span>
     <span class="lc-name">Low-dose naltrexone (LDN)</span>
     <span class="lc-sum">Naltrexone, an opioid-blocking addiction drug, taken off-label at much lower doses for chronic pain and inflammatory conditions; small trials have given mixed results.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
   </a>
   <a class="lib-card" href="/library/mag/" data-id="mag" data-family="Supplements" data-goals="sleep" data-ev="limited" data-checked="1" data-text="magnesium glycinate magnesium magnesium bisglycinate vitamins &amp; minerals supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Vitamins &amp; minerals</span><span class="lc-sig" data-sig="mag" hidden></span></span>
     <span class="lc-name">Magnesium glycinate</span>
     <span class="lc-sum">A form of the mineral magnesium bound to the amino acid glycine, taken mainly for sleep and relaxation and to top up magnesium intake.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/mazdutide/" data-id="mazdutide" data-family="Peptides" data-goals="weight" data-ev="moderate" data-checked="1" data-text="mazdutide ibi362 ly3305677 metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="mazdutide" hidden></span></span>
     <span class="lc-name">Mazdutide</span>
     <span class="lc-sum">A drug that activates GLP-1 and glucagon receptors, approved in China in 2025 for weight management and type 2 diabetes; it is not approved in the US.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
   </a>
   <a class="lib-card" href="/library/afamelanotide/" data-id="afamelanotide" data-family="Peptides" data-goals="skin" data-ev="strong" data-checked="1" data-text="melanotan i (afamelanotide) afamelanotide melanotan 1 mt1 mt-i scenesse skin &amp; hair peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Skin &amp; hair</span><span class="lc-sig" data-sig="afamelanotide" hidden></span></span>
     <span class="lc-name">Melanotan I (afamelanotide)</span>
     <span class="lc-sum">A lab-made analog of the skin-darkening hormone alpha-MSH, approved as an implant for a rare light-sensitivity disorder; unlicensed Melanotan I products are used for tanning.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/mt2/" data-id="mt2" data-family="Peptides" data-goals="skin" data-ev="limited" data-checked="1" data-text="melanotan ii mt2 mt-ii melanotan 2 skin &amp; hair peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Skin &amp; hair</span><span class="lc-sig" data-sig="mt2" hidden></span></span>
     <span class="lc-name">Melanotan II</span>
     <span class="lc-sum">An unapproved lab-made hormone analog injected for tanning and sometimes for sexual arousal, linked in case reports to mole changes and serious side effects.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/melatonin/" data-id="melatonin" data-family="Supplements" data-goals="sleep" data-ev="moderate" data-checked="1" data-text="melatonin sleep supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Sleep</span><span class="lc-sig" data-sig="melatonin" hidden></span></span>
     <span class="lc-name">Melatonin</span>
     <span class="lc-sum">A hormone the brain makes in the dark to time sleep, sold in the US as a supplement mainly to fall asleep faster or ease jet lag.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/metformin/" data-id="metformin" data-family="Medications" data-goals="weight longevity" data-ev="strong" data-checked="1" data-text="metformin glucophage glumetza fortamet longevity medications">
     <span class="lc-top"><span class="lc-fam">Medication · Longevity</span><span class="lc-sig" data-sig="metformin" hidden></span></span>
     <span class="lc-name">Metformin</span>
     <span class="lc-sum">A prescription pill that lowers blood sugar in type 2 diabetes; some people take it off-label hoping to slow aging, which is unproven.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/methyleneblue/" data-id="methyleneblue" data-family="Medications" data-goals="energy cognition" data-ev="limited" data-checked="1" data-text="methylene blue mb methylthioninium chloride provayblue energy &amp; mitochondria medications">
     <span class="lc-top"><span class="lc-fam">Medication · Energy &amp; mitochondria</span><span class="lc-sig" data-sig="methyleneblue" hidden></span></span>
     <span class="lc-name">Methylene blue</span>
     <span class="lc-sum">A blue dye and approved hospital drug for a rare blood disorder, now promoted for focus and energy; human evidence for those uses is thin.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/mgf/" data-id="mgf" data-family="Peptides" data-goals="muscle" data-ev="preclinical" data-checked="1" data-text="mgf mechano growth factor igf-1ec muscle &amp; performance peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Muscle &amp; performance</span><span class="lc-sig" data-sig="mgf" hidden></span></span>
     <span class="lc-name">MGF</span>
     <span class="lc-sum">A lab-made peptide based on a variant of the IGF-1 gene, used for muscle growth and banned in sport; its role in the body is disputed.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/minoxidil/" data-id="minoxidil" data-family="Medications" data-goals="skin" data-ev="strong" data-checked="1" data-text="minoxidil rogaine oral minoxidil loniten skin &amp; hair medications">
     <span class="lc-top"><span class="lc-fam">Medication · Skin &amp; hair</span><span class="lc-sig" data-sig="minoxidil" hidden></span></span>
     <span class="lc-name">Minoxidil</span>
     <span class="lc-sum">Minoxidil is an over-the-counter scalp treatment for hereditary hair loss and a prescription tablet for severe high blood pressure; low-dose tablets are used off-label for hair.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-otc">Over the counter</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-otc">Over the counter</span></span>
   </a>
   <a class="lib-card" href="/library/mk677/" data-id="mk677" data-family="Medications" data-goals="muscle hormonal" data-ev="moderate" data-checked="1" data-text="mk-677 ibutamoren mk677 nutrobal growth-hormone axis medications">
     <span class="lc-top"><span class="lc-fam">Medication · Growth-hormone axis</span><span class="lc-sig" data-sig="mk677" hidden></span></span>
     <span class="lc-name">MK-677</span>
     <span class="lc-sum">An experimental oral drug that mimics the hormone ghrelin to raise growth hormone and IGF-1, taken for muscle, sleep and recovery; FDA bars compounding over heart-failure risk.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-category2">FDA safety-risk list</span></span>
   </a>
   <a class="lib-card" href="/library/modafinil/" data-id="modafinil" data-family="Medications" data-goals="cognition" data-ev="moderate" data-checked="1" data-text="modafinil provigil cognition &amp; focus medications">
     <span class="lc-top"><span class="lc-fam">Medication · Cognition &amp; focus</span><span class="lc-sig" data-sig="modafinil" hidden></span></span>
     <span class="lc-name">Modafinil</span>
     <span class="lc-sum">A prescription wakefulness drug for narcolepsy, sleep apnea and shift work sleepiness, used off-label for focus; in rested healthy people its effects are small.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/motsc/" data-id="motsc" data-family="Peptides" data-goals="weight longevity" data-ev="preclinical" data-checked="1" data-text="mots-c motsc longevity peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Longevity</span><span class="lc-sig" data-sig="motsc" hidden></span></span>
     <span class="lc-name">MOTS-c</span>
     <span class="lc-sum">A small peptide encoded in mitochondrial DNA, taken in hopes of improving metabolism, exercise capacity and aging; its effects have only been tested in rodents and cells.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/nac/" data-id="nac" data-family="Supplements" data-goals="gut" data-ev="limited" data-checked="1" data-text="nac (n-acetylcysteine) n-acetyl cysteine n-acetyl-l-cysteine nac liver &amp; detox supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Liver &amp; detox</span><span class="lc-sig" data-sig="nac" hidden></span></span>
     <span class="lc-name">NAC (N-acetylcysteine)</span>
     <span class="lc-sum">A modified form of the amino acid cysteine, approved as an antidote for acetaminophen overdose and as a mucus thinner, and sold for decades as a dietary supplement.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-restricted">Restricted</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-restricted">Restricted</span></span>
   </a>
   <a class="lib-card" href="/library/nad/" data-id="nad" data-family="Supplements" data-goals="energy longevity" data-ev="limited" data-checked="1" data-text="nad+ nad nicotinamide adenine dinucleotide nad+ injections nad iv energy &amp; mitochondria supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Energy &amp; mitochondria</span><span class="lc-sig" data-sig="nad" hidden></span></span>
     <span class="lc-name">NAD+</span>
     <span class="lc-sum">A molecule cells use to make energy, given by IV drip or injection or taken by mouth by people hoping for more energy and slower aging; human evidence is minimal.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
   </a>
   <a class="lib-card" href="/library/nmn/" data-id="nmn" data-family="Supplements" data-goals="longevity" data-ev="limited" data-checked="1" data-text="nmn nicotinamide mononucleotide longevity supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Longevity</span><span class="lc-sig" data-sig="nmn" hidden></span></span>
     <span class="lc-name">NMN</span>
     <span class="lc-sum">Nicotinamide mononucleotide, a building block the body uses to make NAD+, taken in hopes of slowing aging and boosting metabolism; human benefits are unproven.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/nr/" data-id="nr" data-family="Supplements" data-goals="longevity" data-ev="limited" data-checked="1" data-text="nr (nicotinamide riboside) nicotinamide riboside niagen tru niagen longevity supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Longevity</span><span class="lc-sig" data-sig="nr" hidden></span></span>
     <span class="lc-name">NR (nicotinamide riboside)</span>
     <span class="lc-sum">A form of vitamin B3 that raises NAD+, a molecule cells use for energy, taken in hopes of healthier aging; trials show few clear health effects.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/omega3/" data-id="omega3" data-family="Supplements" data-goals="weight longevity" data-ev="strong" data-checked="1" data-text="omega-3 fish oil fish oil omega-3 epa dha krill oil algae oil heart &amp; circulation supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Heart &amp; circulation</span><span class="lc-sig" data-sig="omega3" hidden></span></span>
     <span class="lc-name">Omega-3 fish oil</span>
     <span class="lc-sum">Oils from fish, krill or algae that supply the omega-3 fats EPA and DHA, taken mainly for heart health and to lower triglycerides.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/orforglipron/" data-id="orforglipron" data-family="Medications" data-goals="weight" data-ev="strong" data-checked="1" data-text="orforglipron ly3502970 oral glp-1 metabolic &amp; weight medications">
     <span class="lc-top"><span class="lc-fam">Medication · Metabolic &amp; weight</span><span class="lc-sig" data-sig="orforglipron" hidden></span></span>
     <span class="lc-name">Orforglipron</span>
     <span class="lc-sum">A GLP-1 medicine taken as a pill, sold as Foundayo, approved in April 2026 for weight management in adults with obesity or overweight with a related health problem.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/ovagen/" data-id="ovagen" data-family="Peptides" data-goals="gut" data-ev="preclinical" data-checked="1" data-text="ovagen khavinson bioregulator liver &amp; detox peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Liver &amp; detox</span><span class="lc-sig" data-sig="ovagen" hidden></span></span>
     <span class="lc-name">Ovagen</span>
     <span class="lc-sum">A short synthetic peptide from Russian 'bioregulator' research, promoted for the liver and digestive tract; its exact identity and any benefit in people are poorly documented.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/oxytocin/" data-id="oxytocin" data-family="Hormones" data-goals="cognition" data-ev="limited" data-checked="1" data-text="oxytocin pitocin mood &amp; stress hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Mood &amp; stress</span><span class="lc-sig" data-sig="oxytocin" hidden></span></span>
     <span class="lc-name">Oxytocin</span>
     <span class="lc-sum">A hormone that triggers uterine contractions, approved as an injection to start or strengthen labor; nasal sprays used for mood or social bonding have little supporting evidence.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/pancragen/" data-id="pancragen" data-family="Peptides" data-goals="weight" data-ev="limited" data-checked="1" data-text="pancragen khavinson bioregulator metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="pancragen" hidden></span></span>
     <span class="lc-name">Pancragen</span>
     <span class="lc-sum">A four-amino-acid peptide (Lys-Glu-Asp-Trp) from Russian 'bioregulator' research, promoted for pancreas function and blood sugar; tested in cells, monkeys and small human studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/pegmgf/" data-id="pegmgf" data-family="Peptides" data-goals="muscle" data-ev="preclinical" data-checked="1" data-text="peg-mgf pegylated mgf pegylated mechano growth factor muscle &amp; performance peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Muscle &amp; performance</span><span class="lc-sig" data-sig="pegmgf" hidden></span></span>
     <span class="lc-name">PEG-MGF</span>
     <span class="lc-sum">A lab-made, pegylated version of a short peptide from the IGF-1 gene, promoted for muscle growth and repair but never studied in people.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/pemvidutide/" data-id="pemvidutide" data-family="Peptides" data-goals="weight" data-ev="limited" data-checked="1" data-text="pemvidutide alt-801 metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="pemvidutide" hidden></span></span>
     <span class="lc-name">Pemvidutide</span>
     <span class="lc-sum">An experimental drug that activates glucagon and GLP-1 receptors, tested for weight loss and now mainly for fatty-liver disease (MASH) and alcohol use disorder; not FDA-approved.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-investigational">In clinical trials</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-investigational">In clinical trials</span></span>
   </a>
   <a class="lib-card" href="/library/pda/" data-id="pda" data-family="Peptides" data-goals="recovery" data-ev="preclinical" data-checked="1" data-text="pentadeca arginate pda bpc-157 arginate pentadecapeptide arginate healing &amp; recovery peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Healing &amp; recovery</span><span class="lc-sig" data-sig="pda" hidden></span></span>
     <span class="lc-name">Pentadeca Arginate</span>
     <span class="lc-sum">A peptide described as an arginine salt of the experimental peptide BPC-157, used for injury healing; it has not been tested in published studies and is not FDA-approved.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-unclear">Status unclear</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-unclear">Status unclear</span></span>
   </a>
   <a class="lib-card" href="/library/phentermine/" data-id="phentermine" data-family="Medications" data-goals="weight" data-ev="strong" data-checked="1" data-text="phentermine adipex-p lomaira metabolic &amp; weight medications">
     <span class="lc-top"><span class="lc-fam">Medication · Metabolic &amp; weight</span><span class="lc-sig" data-sig="phentermine" hidden></span></span>
     <span class="lc-name">Phentermine</span>
     <span class="lc-sum">A prescription appetite suppressant related to amphetamine, approved for short-term use alongside a weight-loss program; a Schedule IV controlled substance.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/pramlintide/" data-id="pramlintide" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="pramlintide symlin metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="pramlintide" hidden></span></span>
     <span class="lc-name">Pramlintide</span>
     <span class="lc-sum">A lab-made form of the hormone amylin, approved as Symlin for adults with type 1 or type 2 diabetes who use mealtime insulin; reported discontinued in the US.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/pregnenolone/" data-id="pregnenolone" data-family="Hormones" data-goals="cognition hormonal" data-ev="limited" data-checked="1" data-text="pregnenolone hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="pregnenolone" hidden></span></span>
     <span class="lc-name">Pregnenolone</span>
     <span class="lc-sum">A steroid the body turns into other hormones and brain-active neurosteroids, sold as a supplement and studied in small trials for pain, schizophrenia and bipolar depression.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/probiotic/" data-id="probiotic" data-family="Supplements" data-goals="gut" data-ev="moderate" data-checked="1" data-text="probiotics probiotic lactobacillus bifidobacterium gut &amp; digestion supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Gut &amp; digestion</span><span class="lc-sig" data-sig="probiotic" hidden></span></span>
     <span class="lc-name">Probiotics</span>
     <span class="lc-sum">Live microorganisms such as Lactobacillus, Bifidobacterium and Saccharomyces boulardii, taken mainly to prevent antibiotic-related diarrhea and ease gut symptoms.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/progesterone/" data-id="progesterone" data-family="Hormones" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="progesterone (micronized) micronized progesterone prometrium p4 hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="progesterone" hidden></span></span>
     <span class="lc-name">Progesterone (micronized)</span>
     <span class="lc-sum">A prescription form of the natural hormone progesterone, used mainly to protect the uterine lining in postmenopausal women taking estrogen and to treat periods that have stopped.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/prostamax/" data-id="prostamax" data-family="Peptides" data-goals="hormonal" data-ev="preclinical" data-checked="1" data-text="prostamax khavinson bioregulator hormone balance peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Hormone balance</span><span class="lc-sig" data-sig="prostamax" hidden></span></span>
     <span class="lc-name">Prostamax</span>
     <span class="lc-sum">A short lab-made peptide (Lys-Glu-Asp-Pro) from Russian 'bioregulator' research, promoted for prostate health; published evidence is limited to lab studies on cells and DNA.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/pt141/" data-id="pt141" data-family="Peptides" data-goals="sexual" data-ev="strong" data-checked="1" data-text="pt-141 bremelanotide vyleesi sexual health peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Sexual health</span><span class="lc-sig" data-sig="pt141" hidden></span></span>
     <span class="lc-name">PT-141</span>
     <span class="lc-sum">A lab-made peptide that activates melanocortin receptors, FDA-approved as Vyleesi for low sexual desire in premenopausal women and also used off-label for libido and erections.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/raloxifene/" data-id="raloxifene" data-family="Medications" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="raloxifene evista hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="raloxifene" hidden></span></span>
     <span class="lc-name">Raloxifene</span>
     <span class="lc-sum">A prescription SERM pill that lowers the risk of spine fractures and of breast cancer in women after menopause; its label says it is not recommended for men.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/rapamycin/" data-id="rapamycin" data-family="Medications" data-goals="longevity" data-ev="limited" data-checked="1" data-text="rapamycin sirolimus rapamune rapa longevity medications">
     <span class="lc-top"><span class="lc-fam">Medication · Longevity</span><span class="lc-sig" data-sig="rapamycin" hidden></span></span>
     <span class="lc-name">Rapamycin</span>
     <span class="lc-sum">An immune-suppressing transplant drug (sirolimus) that extends lifespan in mice and is being studied in people as a possible way to slow aging.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/retatrutide/" data-id="retatrutide" data-family="Peptides" data-goals="weight" data-ev="moderate" data-checked="1" data-text="retatrutide reta ly3437943 triple agonist metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="retatrutide" hidden></span></span>
     <span class="lc-name">Retatrutide</span>
     <span class="lc-sum">An experimental Eli Lilly drug that activates three hormone receptors (GIP, GLP-1 and glucagon); it is in late-stage obesity trials and is not FDA-approved.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
   </a>
   <a class="lib-card" href="/library/rhodiola/" data-id="rhodiola" data-family="Supplements" data-goals="energy cognition" data-ev="limited" data-checked="1" data-text="rhodiola rosea rhodiola golden root mood &amp; stress supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Mood &amp; stress</span><span class="lc-sig" data-sig="rhodiola" hidden></span></span>
     <span class="lc-name">Rhodiola rosea</span>
     <span class="lc-sum">A cold-climate herb (golden root) taken to fight fatigue and stress and lift mood; trials are small and conflicting, and NIH says the evidence is insufficient.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/selank/" data-id="selank" data-family="Peptides" data-goals="cognition" data-ev="limited" data-checked="1" data-text="selank mood &amp; stress peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Mood &amp; stress</span><span class="lc-sig" data-sig="selank" hidden></span></span>
     <span class="lc-name">Selank</span>
     <span class="lc-sum">A lab-made seven-amino-acid peptide based on tuftsin, an immune protein fragment, taken for anxiety and focus; human evidence is one small Russian study.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/semaglutide/" data-id="semaglutide" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="semaglutide ozempic wegovy rybelsus sema glp-1 metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="semaglutide" hidden></span></span>
     <span class="lc-name">Semaglutide</span>
     <span class="lc-sum">A prescription GLP-1 medicine, sold as Ozempic, Rybelsus and Wegovy, used to lower blood sugar in type 2 diabetes and to lose weight.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/semax/" data-id="semax" data-family="Peptides" data-goals="cognition" data-ev="limited" data-checked="1" data-text="semax acth 4-10 analog cognition &amp; focus peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Cognition &amp; focus</span><span class="lc-sig" data-sig="semax" hidden></span></span>
     <span class="lc-name">Semax</span>
     <span class="lc-sum">A lab-made peptide based on a fragment of the hormone ACTH, registered in Russia as nasal drops and taken for focus, memory and stroke recovery.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/sermorelin/" data-id="sermorelin" data-family="Peptides" data-goals="hormonal" data-ev="limited" data-checked="1" data-text="sermorelin grf 1-29 geref growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="sermorelin" hidden></span></span>
     <span class="lc-name">Sermorelin</span>
     <span class="lc-sum">A shortened copy of the brain hormone that tells the pituitary to release growth hormone; once an approved drug, now compounded and used to raise growth hormone and IGF-1.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-compounded">Compounded by prescription</span></span>
   </a>
   <a class="lib-card" href="/library/sildenafil/" data-id="sildenafil" data-family="Medications" data-goals="sexual" data-ev="strong" data-checked="1" data-text="sildenafil viagra revatio sexual health medications">
     <span class="lc-top"><span class="lc-fam">Medication · Sexual health</span><span class="lc-sig" data-sig="sildenafil" hidden></span></span>
     <span class="lc-name">Sildenafil</span>
     <span class="lc-sum">A prescription PDE5-inhibitor pill for erectile dysfunction (Viagra); the same drug is also sold as Revatio for pulmonary arterial hypertension.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/slupp332/" data-id="slupp332" data-family="Medications" data-goals="weight energy" data-ev="preclinical" data-checked="1" data-text="slu-pp-332 slu pp 332 exercise mimetic metabolic &amp; weight medications">
     <span class="lc-top"><span class="lc-fam">Medication · Metabolic &amp; weight</span><span class="lc-sig" data-sig="slupp332" hidden></span></span>
     <span class="lc-name">SLU-PP-332</span>
     <span class="lc-sum">An experimental compound that switches on estrogen-related receptors (ERRs) and mimics some effects of exercise in mice; no human studies have been published.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/snap8/" data-id="snap8" data-family="Peptides" data-goals="skin" data-ev="limited" data-checked="1" data-text="snap-8 (acetyl octapeptide-3) acetyl octapeptide-3 skin &amp; hair peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Skin &amp; hair</span><span class="lc-sig" data-sig="snap8" hidden></span></span>
     <span class="lc-name">SNAP-8 (acetyl octapeptide-3)</span>
     <span class="lc-sum">A lab-made eight-amino-acid peptide used in anti-wrinkle skin products, marketed as a topical alternative to Botox for expression lines.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/somatropin/" data-id="somatropin" data-family="Hormones" data-goals="muscle hormonal" data-ev="strong" data-checked="1" data-text="somatropin (hgh) hgh gh growth hormone rhgh genotropin norditropin omnitrope humatrope saizen serostim zomacton growth-hormone axis hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Growth-hormone axis</span><span class="lc-sig" data-sig="somatropin" hidden></span></span>
     <span class="lc-name">Somatropin (HGH)</span>
     <span class="lc-sum">Lab-made human growth hormone, prescribed for growth hormone deficiency and certain growth disorders; distributing it for anti-aging or bodybuilding is a federal crime.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/spironolactone/" data-id="spironolactone" data-family="Medications" data-goals="skin" data-ev="moderate" data-checked="1" data-text="spironolactone aldactone spiro skin &amp; hair medications">
     <span class="lc-top"><span class="lc-fam">Medication · Skin &amp; hair</span><span class="lc-sig" data-sig="spironolactone" hidden></span></span>
     <span class="lc-name">Spironolactone</span>
     <span class="lc-sum">A prescription water pill for heart failure and high blood pressure that also blocks male hormones, so it is used off-label for acne and hair loss in women.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/ss31/" data-id="ss31" data-family="Peptides" data-goals="energy longevity" data-ev="limited" data-checked="1" data-text="ss-31 elamipretide bendavia mtp-131 ss31 longevity peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Longevity</span><span class="lc-sig" data-sig="ss31" hidden></span></span>
     <span class="lc-name">SS-31</span>
     <span class="lc-sum">A lab-made peptide that targets mitochondria, FDA-approved in 2025 as Forzinity for Barth syndrome and taken off-label for aging and energy based mostly on animal studies.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/survodutide/" data-id="survodutide" data-family="Peptides" data-goals="weight" data-ev="moderate" data-checked="1" data-text="survodutide bi 456906 metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="survodutide" hidden></span></span>
     <span class="lc-name">Survodutide</span>
     <span class="lc-sum">An experimental Boehringer Ingelheim drug that activates glucagon and GLP-1 receptors, in phase 3 trials for obesity and fatty-liver disease; it is not FDA-approved.</span>
-    <span class="lc-badges"><span class="ev ev-moderate">Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
+    <span class="lc-badges"><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span class="st st-investigational">In clinical trials</span></span>
   </a>
   <a class="lib-card" href="/library/tadalafil/" data-id="tadalafil" data-family="Medications" data-goals="sexual" data-ev="strong" data-checked="1" data-text="tadalafil cialis sexual health medications">
     <span class="lc-top"><span class="lc-fam">Medication · Sexual health</span><span class="lc-sig" data-sig="tadalafil" hidden></span></span>
     <span class="lc-name">Tadalafil</span>
     <span class="lc-sum">A prescription PDE5-inhibitor pill for erectile dysfunction and for urinary symptoms of an enlarged prostate; in trials, its effect on erections lasted up to 36 hours.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/tamoxifen/" data-id="tamoxifen" data-family="Medications" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="tamoxifen nolvadex nolva soltamox hormone balance medications">
     <span class="lc-top"><span class="lc-fam">Medication · Hormone balance</span><span class="lc-sig" data-sig="tamoxifen" hidden></span></span>
     <span class="lc-name">Tamoxifen</span>
     <span class="lc-sum">A prescription SERM that treats hormone-sensitive breast cancer, including in men, and lowers breast cancer risk in high-risk women; it is also used off-label for male breast enlargement and infertility.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/taurine/" data-id="taurine" data-family="Supplements" data-goals="energy longevity" data-ev="limited" data-checked="1" data-text="taurine longevity supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Longevity</span><span class="lc-sig" data-sig="taurine" hidden></span></span>
     <span class="lc-name">Taurine</span>
     <span class="lc-sum">An amino acid found in energy drinks and supplements, taken for energy and healthy aging; lifespan gains seen in animals haven't been shown in people.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/tb500/" data-id="tb500" data-family="Peptides" data-goals="recovery" data-ev="preclinical" data-checked="1" data-text="tb-500 thymosin beta-4 fragment tb4 fragment tb 500 healing &amp; recovery peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Healing &amp; recovery</span><span class="lc-sig" data-sig="tb500" hidden></span></span>
     <span class="lc-name">TB-500</span>
     <span class="lc-sum">A synthetic 7-amino-acid fragment of thymosin beta-4, promoted for injury and wound recovery; FDA found no studies of it in people.</span>
-    <span class="lc-badges"><span class="ev ev-preclinical">Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
+    <span class="lc-badges"><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span class="st st-under_review">Under FDA review</span></span>
   </a>
   <a class="lib-card" href="/library/telmisartan/" data-id="telmisartan" data-family="Medications" data-goals="longevity" data-ev="limited" data-checked="1" data-text="telmisartan micardis heart &amp; circulation medications">
     <span class="lc-top"><span class="lc-fam">Medication · Heart &amp; circulation</span><span class="lc-sig" data-sig="telmisartan" hidden></span></span>
     <span class="lc-name">Telmisartan</span>
     <span class="lc-sum">A prescription blood pressure and heart-protection drug; in lab studies it also partly activates a metabolic switch (PPAR-gamma), but benefits for healthy aging are unproven.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/tesamorelin/" data-id="tesamorelin" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="tesamorelin egrifta tesa growth-hormone axis peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Growth-hormone axis</span><span class="lc-sig" data-sig="tesamorelin" hidden></span></span>
     <span class="lc-name">Tesamorelin</span>
     <span class="lc-sum">An FDA-approved, lab-made version of the brain hormone that triggers growth hormone release, used to shrink excess deep belly fat in adults with HIV.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/testagen/" data-id="testagen" data-family="Peptides" data-goals="sexual hormonal" data-ev="limited" data-checked="1" data-text="testagen khavinson bioregulator hormone balance peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Hormone balance</span><span class="lc-sig" data-sig="testagen" hidden></span></span>
     <span class="lc-name">Testagen</span>
     <span class="lc-sum">A Russian dietary-supplement peptide from Khavinson's 'bioregulator' research, promoted for male reproductive health and testosterone; human evidence is one small study by its developers.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/testosterone/" data-id="testosterone" data-family="Hormones" data-goals="sexual hormonal" data-ev="strong" data-checked="1" data-text="testosterone trt test testosterone cypionate test cyp testosterone enanthate test e testosterone undecanoate testosterone gel testosterone cream depo-testosterone xyosted androgel testim jatenzo kyzatrex tlando aveed natesto hormone balance hormones">
     <span class="lc-top"><span class="lc-fam">Hormone · Hormone balance</span><span class="lc-sig" data-sig="testosterone" hidden></span></span>
     <span class="lc-name">Testosterone</span>
     <span class="lc-sum">A male sex hormone (androgen) prescribed to men with low testosterone from testicular, pituitary or hypothalamic problems; a Schedule III controlled substance in the US.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/ta1/" data-id="ta1" data-family="Peptides" data-goals="immune" data-ev="limited" data-checked="1" data-text="thymosin alpha-1 ta1 tα1 thymalfasin zadaxin immune &amp; inflammation peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Immune &amp; inflammation</span><span class="lc-sig" data-sig="ta1" hidden></span></span>
     <span class="lc-name">Thymosin alpha-1</span>
     <span class="lc-sum">A 28-amino-acid immune-signaling peptide, sold abroad as Zadaxin mainly for hepatitis B and taken for immune support; FDA found the evidence insufficient for every use it reviewed.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-not_approved">Not approved</span></span>
   </a>
   <a class="lib-card" href="/library/tb4/" data-id="tb4" data-family="Peptides" data-goals="recovery" data-ev="limited" data-checked="1" data-text="thymosin beta-4 tb4 tβ4 thymosin beta 4 healing &amp; recovery peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Healing &amp; recovery</span><span class="lc-sig" data-sig="tb4" hidden></span></span>
     <span class="lc-name">Thymosin beta-4</span>
     <span class="lc-sum">A natural 43-amino-acid protein promoted for injury recovery based on animal studies; tested in people as eye drops and a skin gel with mixed results, it is not approved and differs from TB-500.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-investigational">In clinical trials</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-investigational">In clinical trials</span></span>
   </a>
   <a class="lib-card" href="/library/tirzepatide/" data-id="tirzepatide" data-family="Peptides" data-goals="weight" data-ev="strong" data-checked="1" data-text="tirzepatide mounjaro zepbound tirz tirze glp-1/gip metabolic &amp; weight peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Metabolic &amp; weight</span><span class="lc-sig" data-sig="tirzepatide" hidden></span></span>
     <span class="lc-name">Tirzepatide</span>
     <span class="lc-sum">A prescription injection, sold as Mounjaro and Zepbound, that activates two hormone receptors (GIP and GLP-1) to lower blood sugar and body weight.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/tongkatali/" data-id="tongkatali" data-family="Supplements" data-goals="sexual hormonal" data-ev="limited" data-checked="1" data-text="tongkat ali longjack eurycoma longifolia lj100 hormone balance supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Hormone balance</span><span class="lc-sig" data-sig="tongkatali" hidden></span></span>
     <span class="lc-name">Tongkat ali</span>
     <span class="lc-sum">Root extract of the Southeast Asian shrubby tree Eurycoma longifolia, long used as an aphrodisiac and taken mainly to raise testosterone; evidence comes from a few small trials.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/tretinoin/" data-id="tretinoin" data-family="Medications" data-goals="skin" data-ev="strong" data-checked="1" data-text="tretinoin retin-a retinoic acid skin &amp; hair medications">
     <span class="lc-top"><span class="lc-fam">Medication · Skin &amp; hair</span><span class="lc-sig" data-sig="tretinoin" hidden></span></span>
     <span class="lc-name">Tretinoin</span>
     <span class="lc-sum">A prescription skin medicine for acne; one cream version is also approved to soften fine wrinkles, blotchy pigment and roughness of facial skin.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/triptorelin/" data-id="triptorelin" data-family="Peptides" data-goals="hormonal" data-ev="strong" data-checked="1" data-text="triptorelin trelstar decapeptyl triptodur hormone balance peptides">
     <span class="lc-top"><span class="lc-fam">Peptide · Hormone balance</span><span class="lc-sig" data-sig="triptorelin" hidden></span></span>
     <span class="lc-name">Triptorelin</span>
     <span class="lc-sum">A prescription hormone drug that, with continued use, shuts down testosterone and estrogen production; approved for advanced prostate cancer and for early puberty in children.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-approved">FDA-approved</span></span>
   </a>
   <a class="lib-card" href="/library/turkesterone/" data-id="turkesterone" data-family="Supplements" data-goals="muscle" data-ev="limited" data-checked="1" data-text="turkesterone ajuga turkestanica muscle &amp; performance supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Muscle &amp; performance</span><span class="lc-sig" data-sig="turkesterone" hidden></span></span>
     <span class="lc-name">Turkesterone</span>
     <span class="lc-sum">A plant steroid from Ajuga turkestanica, promoted for building muscle; the few small human studies found no effect, and products often contain less than labeled.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/b12/" data-id="b12" data-family="Supplements" data-goals="energy" data-ev="strong" data-checked="1" data-text="vitamin b12 methylcobalamin cyanocobalamin hydroxocobalamin b12 shots vitamins &amp; minerals supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Vitamins &amp; minerals</span><span class="lc-sig" data-sig="b12" hidden></span></span>
     <span class="lc-name">Vitamin B12</span>
     <span class="lc-sum">An essential vitamin for nerves, red blood cells and DNA, taken to prevent or treat deficiency, which is more likely with age, vegan diets and some medicines.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/vitd3/" data-id="vitd3" data-family="Supplements" data-goals="longevity immune" data-ev="strong" data-checked="1" data-text="vitamin d3 cholecalciferol vitamin d vitamins &amp; minerals supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Vitamins &amp; minerals</span><span class="lc-sig" data-sig="vitd3" hidden></span></span>
     <span class="lc-name">Vitamin D3</span>
     <span class="lc-sum">The form of vitamin D the skin makes in sunlight, taken to keep bones healthy and to correct or prevent low vitamin D levels.</span>
-    <span class="lc-badges"><span class="ev ev-strong">Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card" href="/library/zinc/" data-id="zinc" data-family="Supplements" data-goals="immune" data-ev="limited" data-checked="1" data-text="zinc zinc picolinate zinc bisglycinate zinc gluconate vitamins &amp; minerals supplements">
     <span class="lc-top"><span class="lc-fam">Supplement · Vitamins &amp; minerals</span><span class="lc-sig" data-sig="zinc" hidden></span></span>
     <span class="lc-name">Zinc</span>
     <span class="lc-sum">An essential mineral needed for immune function, wound healing and hundreds of enzymes, taken mostly to shorten colds and support immunity.</span>
-    <span class="lc-badges"><span class="ev ev-limited">Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
+    <span class="lc-badges"><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span class="st st-supplement">Dietary supplement</span></span>
   </a>
   <a class="lib-card pending" href="/library/amino1mq/" data-id="amino1mq" data-family="Medications" data-goals="" data-ev="" data-checked="0" data-text="5-amino-1mq 5-amino-1-methylquinolinium nnmt inhibitor metabolic &amp; weight medications">
     <span class="lc-top"><span class="lc-fam">Medication · Metabolic &amp; weight</span><span class="lc-sig" data-sig="amino1mq" hidden></span></span>
@@ -1909,7 +1907,7 @@
         <p class="mono lime">// The fact sheet</p>
         <h3>Checked against the sources</h3>
         <p>Every claim links to the FDA label, NIH fact sheet, trial or review it came from. Each benefit says what kind of evidence backs it, from randomized trials in people to studies in rats. No doses, no sellers.</p>
-        <ul class="grade-key"><li><span class="ev ev-strong">Strong evidence</span><span>Several randomized trials in people, or an approved drug for this use</span></li><li><span class="ev ev-moderate">Moderate evidence</span><span>At least one good randomized trial in people, or several smaller ones</span></li><li><span class="ev ev-limited">Limited evidence</span><span>Small, short or uncontrolled studies in people</span></li><li><span class="ev ev-preclinical">Animal and lab studies</span><span>Studied in animals or cells, not in people</span></li></ul>
+        <ul class="grade-key"><li><span class="ev ev-strong"><span class="mh-meter m4" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Strong evidence</span><span>Several randomized trials in people, or an approved drug for this use</span></li><li><span class="ev ev-moderate"><span class="mh-meter m3" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Moderate evidence</span><span>At least one good randomized trial in people, or several smaller ones</span></li><li><span class="ev ev-limited"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Limited evidence</span><span>Small, short or uncontrolled studies in people</span></li><li><span class="ev ev-preclinical"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal and lab studies</span><span>Studied in animals or cells, not in people</span></li></ul>
       </div>
       <div class="glass deep">
         <p class="mono lime">// The Community Signal</p>
@@ -2121,7 +2119,7 @@
   <div class="wrap foot-in">
     <div class="foot-row">
       <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
