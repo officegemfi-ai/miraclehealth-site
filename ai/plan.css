@@ -1,0 +1,109 @@
+/* The Miracle Plan (ai/plan.js): built from the ground up. Three pillars stand on a lime
+   ground line (nutrition, sleep, exercise); on them rest the member's peptides and medicines,
+   then supplements, with wellbeing and community as the canopy on top. The pillar that needs
+   work is the one loud thing: lime, hatched like work in progress, marked "Focus here".
+   Used by the chat (/ai/) and by the page a shared plan opens (/plan/). */
+
+.card.plan{position:relative;margin-top:16px;padding:20px 20px 18px;border-radius:16px;overflow:hidden;background:var(--ink);color:var(--on-ink);--focus:var(--lime)}
+.card.plan [hidden]{display:none!important}
+.card.plan .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.plan-kick{font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+.plan-title{margin-top:6px;font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.plan-sub{margin-top:6px;max-width:60ch;font-size:14px;line-height:1.5;color:var(--on-ink-2)}
+
+/* In reading order the foundations come first; on screen they're the base */
+.plan-build{display:grid;grid-template-areas:"top" "sup" "pep" "base" "plinth";gap:8px;margin-top:18px}
+
+/* the canopy and the floors */
+.tier{display:grid;grid-template-columns:136px minmax(0,1fr);gap:8px 16px;align-items:start;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035)}
+.tier-top{grid-area:top;border-color:rgba(216,255,61,.38);border-radius:20px 20px 12px 12px;background:linear-gradient(180deg,rgba(216,255,61,.11),rgba(216,255,61,.035))}
+.tier-sup{grid-area:sup}
+.tier-pep{grid-area:pep;border-bottom:3px solid rgba(255,255,255,.3);border-radius:12px 12px 6px 6px}
+.tier-name{padding-top:3px;font:500 10.5px/1.45 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-ink-3)}
+.tier-top .tier-name{color:var(--lime)}
+.tier-empty{font-size:14px;line-height:1.5;color:var(--on-ink-3)}
+.blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.block{display:flex;flex-direction:column;gap:3px;min-width:0;padding:10px 12px 11px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.045)}
+.block-name{font:600 15px/1.3 var(--head);letter-spacing:-.01em;color:var(--on-ink);text-decoration:none;overflow-wrap:anywhere}
+a.block-name:hover{color:var(--lime);text-decoration:underline;text-underline-offset:3px}
+.block-role{font-size:13.5px;line-height:1.4;color:var(--on-ink-2)}
+.block-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;margin-top:4px}
+.block-tag{font:500 10px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.block.tone-warn .block-tag{color:#F2C46B}
+.block.tone-none .block-tag{color:var(--on-ink-3)}
+.block-ev{font-size:12px;line-height:1.3;color:var(--on-ink-3)}
+.well{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.well li{position:relative;padding-left:17px;font-size:14.5px;line-height:1.45;color:var(--on-ink)}
+.well li::before{content:'';position:absolute;left:1px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--lime)}
+
+/* the pillars */
+.plan-base{grid-area:base;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:2px 8px 0;padding:0;list-style:none}
+.pillar{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0;min-height:172px;padding:20px 14px 16px;border-radius:12px 12px 3px 3px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.055);transform-origin:bottom}
+.pillar-cap{position:absolute;left:14px;right:14px;top:9px;height:4px;border-radius:2px}
+.pillar-name{font:600 16.5px/1.2 var(--head);letter-spacing:-.01em;color:var(--on-ink)}
+.pillar-state{padding:4px 9px;border-radius:40px;border:1px solid rgba(255,255,255,.32);font:500 10px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-2);white-space:nowrap}
+.pillar-step{font-size:13.5px;line-height:1.45;color:var(--on-ink-2);overflow-wrap:anywhere}
+.pillar.is-strong .pillar-cap{background:var(--lime)}
+.pillar.is-strong .pillar-state{border-color:rgba(216,255,61,.6);color:var(--lime)}
+.pillar.is-focus{border:2px solid var(--lime);background:repeating-linear-gradient(135deg,rgba(216,255,61,.11) 0 6px,rgba(216,255,61,.035) 6px 14px)}
+.pillar.is-focus .pillar-state{border-color:var(--lime);background:var(--lime);color:var(--ink)}
+.pillar.is-focus .pillar-step{color:var(--on-ink)}
+.pillar.is-unknown{border-style:dashed;border-color:rgba(255,255,255,.34);background:transparent}
+.plan-plinth{grid-area:plinth;display:grid;justify-items:center;gap:9px;margin:0 -6px}
+.plinth-bar{display:block;justify-self:stretch;height:10px;border-radius:5px;background:var(--lime)}
+.plan-plinth span{font:500 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--on-ink-3)}
+
+/* the Synergy auditor's check on what the plan adds */
+.card.plan .audit{margin-top:14px;padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(255,255,255,.03)}
+.card.plan .audit-head{color:var(--on-ink)}
+.card.plan .audit li{color:var(--on-ink-2)}
+.card.plan .audit li b{color:var(--on-ink)}
+.card.plan .audit-none{color:var(--on-ink-3)}
+
+/* keep it, share it */
+.plan-foot{display:grid;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.plan-incl{display:inline-flex;align-items:center;gap:9px;justify-self:start;min-height:32px;font-size:14px;color:var(--on-ink-2);cursor:pointer}
+.plan-incl input{width:18px;height:18px;margin:0;accent-color:var(--lime)}
+.plan-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.plan-btn{min-height:44px;padding:0 18px;border-radius:40px;border:1px solid rgba(255,255,255,.28);background:transparent;color:var(--on-ink);font:600 14.5px/1 var(--body);cursor:pointer;transition:border-color .15s,color .15s,background-color .15s}
+.plan-btn:hover{border-color:var(--lime);color:var(--lime)}
+.plan-btn.primary{border-color:var(--lime);background:var(--lime);color:var(--ink)}
+.plan-btn.primary:hover{background:var(--lime-2);color:var(--ink)}
+.plan-btn:disabled{opacity:.6;cursor:progress}
+.plan-status{font-size:13.5px;color:var(--lime)}
+.plan-note{font-size:12.5px;line-height:1.5;color:var(--on-ink-3)}
+
+@media (max-width:600px){
+  .card.plan{padding:16px 14px}
+  .plan-title{font-size:20px}
+  .tier{grid-template-columns:minmax(0,1fr);gap:8px;padding:12px}
+  .blocks{grid-template-columns:minmax(0,1fr)}
+  .plan-base{gap:6px;margin:2px 2px 0}
+  .pillar{min-height:150px;padding:18px 9px 12px;gap:6px}
+  .pillar-cap{left:9px;right:9px}
+  .pillar-name{font-size:14.5px}
+  .pillar-state{padding:3px 7px;font-size:9px;letter-spacing:.06em}
+  .pillar-step{font-size:12.5px;line-height:1.4}
+  .plan-btn{flex:1 1 auto}
+}
+
+/* the page a shared plan opens */
+.plan-page{background:var(--darker);color:var(--on-ink);--focus:var(--lime)}
+.plan-page [hidden]{display:none!important}
+.plan-wrap{width:100%;max-width:820px;margin:0 auto;padding:calc(var(--top-h) + 32px) 24px 48px}
+.plan-intro h1{font:600 34px/1.1 var(--head);letter-spacing:-.03em;color:var(--on-ink)}
+.plan-intro p{margin-top:10px;max-width:62ch;font-size:16px;line-height:1.6;color:var(--on-ink-2)}
+.plan-root .card.plan{margin-top:26px;border:1px solid rgba(255,255,255,.12)}
+.plan-oops{font:600 28px/1.15 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.plan-oops-p{margin-top:10px;max-width:60ch;color:var(--on-ink-2)}
+.plan-cta{margin-top:28px;padding:22px 24px;border-radius:18px;border:1px solid rgba(216,255,61,.35);background:linear-gradient(180deg,rgba(216,255,61,.08),rgba(216,255,61,.02))}
+.plan-cta h2{font-size:22px;letter-spacing:-.02em;color:var(--on-ink)}
+.plan-cta p{margin-top:8px;max-width:60ch;font-size:15.5px;line-height:1.6;color:var(--on-ink-2)}
+.plan-cta .btn{margin-top:16px}
+.plan-fine{margin-top:18px;font-size:13px;line-height:1.55;color:var(--on-ink-3)}
+.plan-page .foot{margin-top:24px;border-top:1px solid var(--line-ink)}
+@media (max-width:600px){
+  .plan-wrap{padding:calc(var(--top-h) + 22px) 16px 36px}
+  .plan-intro h1{font-size:28px}
+  .plan-root .card.plan{margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
+}

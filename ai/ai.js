@@ -350,6 +350,7 @@ function schedule(msg) {
 // ---------------------------------------------------------------------------
 function cardNode(card, msg) {
   if (card.type === 'shortlist') return shortlistNode(card);
+  if (card.type === 'plan') return planNode(card, msg);
   if (card.type === 'questions') return questionsNode(card);
   if (card.type === 'intake') return intakeNode(card);
   if (card.type === 'audit') return auditNode(card);
@@ -379,6 +380,20 @@ function cardNode(card, msg) {
       h('div', { class: 'help-actions' }, h('a', { href: 'tel:911', text: 'Call 911' }), h('a', { href: 'tel:18002221222', class: 'line', text: 'Call Poison Control' })));
   }
   return h('div');
+}
+
+// Their Miracle Plan (ai/plan.js draws it): the pillars, what rests on them, and the auditor's
+// check of what the plan adds, filled in when it arrives
+function planNode(card, msg) {
+  const P = window.MHPlan;
+  if (!P) return h('div');
+  const el = P.node(card, { share: true, live: !!msg && !msg.state });
+  if (card.audit) {
+    const box = el.querySelector('.audit');
+    fillAudit(box, card.audit);
+    box.hidden = false;
+  }
+  return el;
 }
 
 // Warning signs under fixed levels, most urgent first; 911 is a tap away
@@ -919,6 +934,7 @@ function railNotes() {
     if (m.role !== 'assistant') continue;
     for (const p of m.parts || []) {
       if (p.t === 'card' && p.card.type === 'shortlist') p.card.items.forEach((it) => chips.set(it.id, it.name));
+      if (p.t === 'card' && p.card.type === 'plan') [...(p.card.peptides || []), ...(p.card.supplements || [])].forEach((it) => chips.set(it.id, it.name));
       if (p.t === 'card' && p.card.type === 'questions') p.card.items.forEach((q) => { if (!qs.includes(q)) qs.push(q); });
     }
     for (const s of m.steps || []) for (const c of s.chips || []) if (s.agent === 'recommender' && /fact sheet/i.test(s.title)) chips.set(c.id, c.name);
@@ -1069,11 +1085,11 @@ function onEvent(am, ev, d) {
     }
     case 'card': {
       if (d.type === 'audit' && d.for) {
-        const host = am.parts.find((p) => p.t === 'card' && p.card.type === 'shortlist' && p.card.id === d.for);
+        const host = am.parts.find((p) => p.t === 'card' && (p.card.type === 'shortlist' || p.card.type === 'plan') && p.card.id === d.for);
         if (host) {
           host.card.audit = d;
           const box = view.cardEls.get(host)?.querySelector('.audit');
-          if (box) fillAudit(box, d);
+          if (box) { fillAudit(box, d); box.hidden = false; }
           break;
         }
       }
@@ -1150,7 +1166,7 @@ function finish(am, live) {
       : am.review ? 'Every part checked by the Safety agent before you saw it' : 'Answered';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
-    const forClinician = (am.parts || []).some((p) => p.t === 'card' && (p.card.type === 'shortlist' || p.card.type === 'questions'));
+    const forClinician = (am.parts || []).some((p) => p.t === 'card' && ['shortlist', 'questions', 'plan'].includes(p.card.type));
     view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
       h('span', { class: 'foot-actions' }, forClinician ? packetButton('Clinician packet') : null, btn));
     view.foot.hidden = false;

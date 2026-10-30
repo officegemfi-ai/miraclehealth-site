@@ -86,6 +86,7 @@ const V = {
   css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js'),
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
+  plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
 };
 
 // The library's banner photo, in three widths
@@ -595,8 +596,8 @@ function aiPage() {
     title: 'Miracle AI · talk through peptides and supplements with four AI agents',
     description: 'Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Four AI agents check every answer against the Miracle Health Library and the Community Signal, and you take a review packet to your own clinician. No doses, no sellers.',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/packet.css?v=${V.pkCss}`],
-    scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/ai.js?v=${V.aiJs}`],
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/packet.css?v=${V.pkCss}`, `/ai/plan.css?v=${V.plCss}`],
+    scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: new URL(ASK_URL).origin,
   });
 }
@@ -621,6 +622,33 @@ function packetPage() {
   });
 }
 
+// The page a shared Miracle Plan opens: the plan travels in the link after "#", so it never
+// reaches this site's server; the page draws it in the browser
+function planPage() {
+  const body = `<div class="plan-wrap">
+  <div class="plan-root" id="plan-root">
+    <section class="plan-intro">
+      <h1>A Miracle Plan, shared with you</h1>
+      <p>Someone built this plan with Miracle AI and wanted you to see it: the three foundations everything rests on, what they’ve built on top, and the pillar they’re working on. It travels inside the link you opened, so Miracle Health never receives it.</p>
+    </section>
+    <noscript><p class="plan-oops-p">Opening a plan needs JavaScript.</p></noscript>
+  </div>
+  <section class="plan-cta">
+    <h2>Build your own plan</h2>
+    <p>Tell Miracle AI your goal and what you take. It asks about your nutrition, sleep and training, finds the pillar that will make the biggest difference, and builds your plan around it.</p>
+    <a class="btn lime" href="/ai/">Start with Miracle AI</a>
+  </section>
+  <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own clinician.</p>
+</div>`;
+  return page({
+    title: 'A Miracle Plan · Miracle Health',
+    description: 'A plan someone built with Miracle AI and shared with you: nutrition, sleep and exercise as the foundations, and what rests on them. It travels inside the link; Miracle Health never receives it.',
+    url: '/plan/', body, current: 'ai', bodyClass: 'plan-page',
+    styles: [`/ai/plan.css?v=${V.plCss}`], scripts: [`/ai/plan.js?v=${V.plJs}`],
+    connect: '', head: '<meta name="robots" content="noindex">',
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Write it all
 // ---------------------------------------------------------------------------
@@ -631,6 +659,7 @@ out.set(path.join(DATA, 'index.json'), aiIndex());
 for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g));
 out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
+out.set(path.join(ROOT, 'plan', 'index.html'), planPage());
 const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
