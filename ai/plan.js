@@ -37,6 +37,11 @@ const isId = (s) => typeof s === 'string' && /^[a-z0-9]{1,40}$/.test(s);
 const clip = (s, n) => String(s ?? '').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
 const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+// "October 30, 2026" from "2026-10-30", read as a day where they are (not midnight UTC)
+const dayLabel = (iso) => {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : iso;
+};
 const local = {
   get() { try { return JSON.parse(localStorage.getItem(KEPT) || 'null'); } catch { return null; } },
   set(v) { try { localStorage.setItem(KEPT, JSON.stringify(v)); return true; } catch { return false; } },
@@ -710,7 +715,7 @@ if (root) {
       if (theirs) document.title = 'Your Miracle Plan · Miracle Health';
       if (intro && theirs) {
         intro.querySelector('h1').textContent = 'Your Miracle Plan';
-        intro.querySelector('p').textContent = `Kept on this device${kept.saved ? ` since ${kept.saved}` : ''}. Tick off steps as you go; they stay in this browser. To change the plan, check in with Miracle AI.`;
+        intro.querySelector('p').textContent = `Kept on this device${kept.saved ? ` since ${dayLabel(kept.saved)}` : ''}. Tick off steps as you go; they stay in this browser. To change the plan, check in with Miracle AI.`;
       }
       const el = node(theirs ? { ...card, done: kept.done } : card, { kick: theirs ? 'Your Miracle Plan' : 'A Miracle Plan', save: true, live: true });
       root.replaceChildren(...(intro ? [intro] : []), el);
