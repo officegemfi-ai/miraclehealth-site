@@ -61,6 +61,10 @@
 .saved-check{min-height:40px;padding:0 18px;border-radius:40px;border:0;background:var(--lime);color:var(--ink);font:600 14.5px/1 var(--body);cursor:pointer}
 .saved-check:hover{background:var(--lime-2)}
 .saved-note{margin-top:10px;font-size:12.5px;color:var(--on-ink-3)}
+.saved-progress{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13.5px;color:var(--on-ink-2)}
+.saved-bar{flex:none;width:120px;height:6px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
+.saved-bar i{display:block;width:0;height:100%;border-radius:3px;background:var(--lime)}
+.saved-bar i.w1{width:25%}.saved-bar i.w2{width:50%}.saved-bar i.w3{width:75%}.saved-bar i.w4{width:100%}
 .linkish{min-height:32px;padding:0;border:0;background:none;color:inherit;font:500 13.5px/1.3 var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .saved-box .linkish{color:var(--on-ink-2)}
 .saved-box .linkish:hover{color:var(--lime)}

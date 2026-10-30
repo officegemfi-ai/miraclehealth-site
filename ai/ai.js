@@ -382,12 +382,18 @@ function cardNode(card, msg) {
   return h('div');
 }
 
-// Their Miracle Plan (ai/plan.js draws it): the pillars, what rests on them, and the auditor's
-// check of what the plan adds, filled in when it arrives
+// Their Miracle Plan (ai/plan.js draws it): where to start, the pillars and what rests on them,
+// the steps to tick off, and the auditor's check of what the plan adds, filled in when it arrives.
+// Ticks are kept with the chat; a "not sure yet" pillar answered on the card is their next message.
 function planNode(card, msg) {
   const P = window.MHPlan;
   if (!P) return h('div');
-  const el = P.node(card, { share: true, live: !!msg && !msg.state });
+  const el = P.node(card, {
+    share: true, live: !!msg && !msg.state,
+    onAnswer: (text) => { if (!busy) ask(text.slice(0, LIMIT)); },
+    onChange: () => { save(); refreshStack(); },
+    onKeep: () => refreshStack(),
+  });
   if (card.audit) {
     const box = el.querySelector('.audit');
     fillAudit(box, card.audit);
@@ -827,13 +833,34 @@ function savedBox(where) {
     h('div', { class: 'saved-actions' }, check, link, forget),
     h('p', { class: 'saved-note', text: `Saved on this device${st.saved ? ` on ${dayLabel(st.saved)}` : ''}. Miracle Health never receives it.` }));
 }
+// Their kept plan: how far along they are, and a way to check in on it
+function planBox(where) {
+  const P = window.MHPlan;
+  const k = P?.keptPlan();
+  if (!k) return null;
+  const pr = P.progress(k.card, k.done);
+  const check = h('button', { class: 'saved-check', type: 'button', text: 'Check in with Miracle AI' });
+  check.addEventListener('click', () => { if (!busy) ask(P.checkIn(k.card, k.done)); });
+  const open = h('a', { class: 'linkish', href: '/plan/', text: 'Open my plan' });
+  P.link(k.card).then((u) => { open.href = u; }).catch(() => {});
+  const forget = h('button', { class: 'linkish', type: 'button', text: 'Forget it' });
+  forget.addEventListener('click', () => { P.forgetPlan(); refreshStack(); document.querySelectorAll('.card.plan').forEach((c) => c.dispatchEvent(new CustomEvent('plan:kept'))); });
+  const hid = `plan-${where}-h`;
+  return h('section', { class: 'saved-box plan-saved', 'aria-labelledby': hid },
+    h('h2', { id: hid, text: 'Your Miracle Plan' }),
+    h('p', { class: 'saved-names', text: k.card.title }),
+    k.card.first ? h('p', { class: 'saved-meds', text: `Start here: ${k.card.first.step}` }) : null,
+    pr.total ? h('p', { class: 'saved-progress' }, h('span', { class: 'saved-bar', 'aria-hidden': 'true' }, h('i', { class: `w${Math.round((pr.done / pr.total) * 4)}` })), h('span', { text: `${pr.done} of ${pr.total} steps done` })) : null,
+    h('div', { class: 'saved-actions' }, check, open, forget),
+    h('p', { class: 'saved-note', text: `Kept on this device${k.saved ? ` since ${dayLabel(k.saved)}` : ''}. Miracle Health never receives it.` }));
+}
 function refreshStack() {
   for (const [id, where] of [['ai-saved', 'start'], ['rail-saved', 'rail']]) {
     const host = $(id);
     if (!host) continue;
-    const box = savedBox(where);
-    host.replaceChildren(...(box ? [box] : []));
-    host.hidden = !box;
+    const boxes = [planBox(where), savedBox(where)].filter(Boolean);
+    host.replaceChildren(...boxes);
+    host.hidden = !boxes.length;
   }
   document.querySelectorAll('.stack-save').forEach((row) => row.redraw?.());
 }

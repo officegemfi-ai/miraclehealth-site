@@ -95,6 +95,7 @@ const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 9
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
   styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = COMMUNITY, head = '',
+  ogImage = '/og.jpg',
 }) {
   const nav = [['/library/', 'Library', 'library'], ['/ai/', 'Miracle AI', 'ai'], ['/#signal', 'The Signal', 'signal'], ['/#how', 'How it works', 'how']];
   return `<!doctype html>
@@ -114,7 +115,7 @@ function page({
 <meta property="og:url" content="${SITE}${url}">
 <meta property="og:title" content="${e(title)}">
 <meta property="og:description" content="${e(description)}">
-<meta property="og:image" content="${SITE}/og.jpg">
+<meta property="og:image" content="${SITE}${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
@@ -641,9 +642,9 @@ function planPage() {
   <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own clinician.</p>
 </div>`;
   return page({
-    title: 'A Miracle Plan · Miracle Health',
+    title: 'A Miracle Plan, shared with you · Miracle Health',
     description: 'A plan someone built with Miracle AI and shared with you: nutrition, sleep and exercise as the foundations, and what rests on them. It travels inside the link; Miracle Health never receives it.',
-    url: '/plan/', body, current: 'ai', bodyClass: 'plan-page',
+    url: '/plan/', body, current: 'ai', bodyClass: 'plan-page', ogImage: '/img/og-plan.jpg',
     styles: [`/ai/plan.css?v=${V.plCss}`], scripts: [`/ai/plan.js?v=${V.plJs}`],
     connect: '', head: '<meta name="robots" content="noindex">',
   });
