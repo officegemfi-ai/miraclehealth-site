@@ -589,9 +589,9 @@ const AGENTS = [
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
   ['stack', 'Check my stack', '', 'I take '],
-  ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal? What do studies show, and what do people in the community report?', ''],
+  ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, and what does the evidence say?', ''],
   ['weight', 'Lose fat', 'I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence?', ''],
-  ['sleep', 'Sleep better', 'I want to sleep better. What do studies show, and what does the community report works?', ''],
+  ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?', ''],
 ];
 
 function aiPage() {

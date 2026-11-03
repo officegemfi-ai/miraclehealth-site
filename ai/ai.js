@@ -507,12 +507,18 @@ function useLine(c) {
   const top = (c.uses || []).slice(0, 2).map((x) => low(x.label));
   return top.length ? `Most reported for ${top.join(' and ')}` : '';
 }
-function communitySide(c, lead, { effects = false } = {}) {
+// note: 'pregnancy' (what people report is left out) or 'down' (the numbers couldn't be read)
+const LEFT_OUT = {
+  pregnancy: ['Left out in pregnancy', 'Most of these haven’t been studied in pregnancy, so what people report isn’t shown. Your obstetric clinician is the one to ask.'],
+  down: ['Couldn’t load just now', 'The community’s numbers couldn’t be read just now. Ask again in a little while to see them.'],
+};
+function communitySide(c, lead, { effects = false, note = '' } = {}) {
   const head = sideHead('Community', lead ? 'community' : '');
   if (!c) {
+    const [main, sub] = LEFT_OUT[note] || ['No reports yet', 'No member reports or forum data on it yet.'];
     return h('div', { class: `vx-side vx-community none${lead ? ' lead' : ''}`, role: 'group', 'aria-label': 'What the community reports' },
-      head, h('div', { class: 'vx-main' }, h('span', { text: 'No reports yet' })),
-      h('p', { class: 'vx-sub', text: 'No member reports or forum data on it yet.' }));
+      head, h('div', { class: 'vx-main' }, h('span', { text: main })),
+      h('p', { class: 'vx-sub', text: sub }));
   }
   const lvl = levelOf(c.level);
   const o = c.outcomes;
@@ -533,7 +539,7 @@ function voiceStrip(it, { pick = false } = {}) {
   const st = it.studies === undefined ? studiesFromItem(it) : it.studies;
   const lead = pick ? 'none' : leadShown(it, st);
   const s = studiesSide(st, lead === 'studies');
-  const c = communitySide(it.community, lead === 'community', { effects: pick });
+  const c = communitySide(it.community, lead === 'community', { effects: pick, note: it.communityNote || '' });
   return h('div', { class: `vx lead-${lead}${pick ? ' in-pick' : ''}` }, lead === 'community' ? [c, s] : [s, c]);
 }
 // Card items carry the studies' side as their evidence for what was asked
@@ -620,13 +626,13 @@ function crowdNode(card) {
   // Proven options first (approved, over the counter, supplements), then the rest
   const grouped = items.some((r) => typeof r.proven === 'boolean');
   const groups = grouped
-    ? [['Approved, over the counter or supplements', items.filter((r) => r.proven)], ['Research stage, not approved or other status', items.filter((r) => !r.proven)]]
+    ? [['FDA-approved (for some use), over the counter or supplements', items.filter((r) => r.proven)], ['Research stage, not approved or other status', items.filter((r) => !r.proven)]]
     : [['', items]];
   for (const [name, rows] of groups) {
     if (!rows.length) continue;
     el.append(h('section', { class: 'crowd-group' }, name ? h('h3', { text: name }) : null, h('ul', { class: 'crowd-list' }, rows.map(crowdRow))));
   }
-  el.append(h('p', { class: 'vx-foot' }, 'Members’ ratings count once 10 or more reports from 5 or more members name a use; until then, how often the forums mention it. ',
+  el.append(h('p', { class: 'vx-foot' }, 'Members’ ratings count once 10 or more reports, from 5 or more people, name a use; until then, how often the forums mention it. ',
     h('a', { href: draftLink([], { title: `What I tried for ${use}`, body: '' }), text: 'Taken one of these? Add your report' })));
   return el;
 }
