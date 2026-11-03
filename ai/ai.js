@@ -1,10 +1,13 @@
 // Miracle AI (miraclehealth.us/ai): the chat. The conversation lives only in this browser
 // tab (sessionStorage). Each message goes to the ask function (the community's Supabase
-// project), which streams back each agent's steps, the answer, the cards and the final
-// check as server-sent events. Nothing here uses innerHTML for anything the AI or the
+// project), which streams back each agent's steps, the answer, the cards, where the answer came
+// from and the final check as server-sent events. Every answer speaks for two voices, drawn in
+// their own materials: the studies on paper, as in the Library, and the community in ink and
+// lime, as in the community itself. Nothing here uses innerHTML for anything the AI or the
 // visitor wrote: text is placed with textContent, and the small amount of formatting the
 // AI uses (bold, lists, Library links) is built node by node.
-import { sigSvg, askFrom, meterHtml, node as fromKit } from '/kit/kit.js?v=aea73e9434';
+import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=aea73e9434';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -29,7 +32,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
 
 const AGENT_NAME = {
-  safety: 'Safety agent', recommender: 'Recommender', synergy: 'Synergy auditor', builder: 'Stack builder',
+  safety: 'Safety agent', recommender: 'Recommender', community: 'The community', synergy: 'Synergy auditor', builder: 'Stack builder',
   review: 'Safety agent', clinician: 'Your clinician',
 };
 const RAIL_KEY = { review: 'safety' };
@@ -43,6 +46,13 @@ const USE = {
   strong: ['Strong evidence', 4], moderate: ['Moderate evidence', 3], limited: ['Early human studies', 2],
   preclinical: ['Animal or lab only', 1], anecdotal: ['User reports only', 0], none: ['No evidence for this use', 0],
 };
+// How often the public forums mention something for a use (the community's forum reading)
+const FORUM_N = { 'Very common': 4, Common: 3, Mixed: 2, Occasional: 1 };
+const FORUM_SAID = { 'Very common': 'Very common on the forums', Common: 'Common on the forums', Mixed: 'Mixed reports on the forums', Occasional: 'Now and then on the forums' };
+const forumSaid = (f) => FORUM_SAID[f] || 'On the forums';
+const fmt = (n) => Math.max(0, Math.round(Number(n) || 0)).toLocaleString('en-US');
+const plural = (n, one, many = `${one}s`) => `${fmt(n)} ${Number(n) === 1 ? one : many}`;
+const low = (s) => String(s || '').charAt(0).toLowerCase() + String(s || '').slice(1);
 const STATUS = {
   approved: 'FDA-approved', otc: 'Over the counter', supplement: 'Dietary supplement', compounded: 'Compounded by prescription',
   category2: 'FDA safety-risk list', investigational: 'In clinical trials', not_approved: 'Not approved', restricted: 'Restricted',
@@ -273,6 +283,7 @@ function drawParts(msg) {
     }
   });
   if (!msg.state && !hasText) view.body.append(h('p', { class: 'waiting' }, h('i'), h('i'), h('i'), h('span', { text: waitingText(msg) })));
+  if (msg.sources && hasText) { const src = sourcesNode(msg.sources); if (src) view.body.append(src); }
   if (msg.state === 'error' && msg.error) view.body.append(errorNode(msg));
 }
 const waitingText = (msg) => {
@@ -309,6 +320,8 @@ function schedule(msg) {
 // ---------------------------------------------------------------------------
 function cardNode(card, msg) {
   if (card.type === 'shortlist') return shortlistNode(card);
+  if (card.type === 'voices') return voicesNode(card);
+  if (card.type === 'community') return crowdNode(card);
   if (card.type === 'plan') return planNode(card, msg);
   if (card.type === 'questions') return questionsNode(card);
   if (card.type === 'intake') return intakeNode(card);
@@ -393,9 +406,11 @@ function shortlistNode(card) {
   el.append(h('div', { class: `review-line${meta.reviewed ? ' done' : ''}` }, ...reviewLine()));
   return el;
 }
-// One option: the evidence for what was asked is the headline; what studies found (each with its
-// source) comes next; the Community Signal is a detail, never the biggest number
+// One option: its two voices side by side (what the studies show for what was asked, what the
+// community reports), the one that leads first; then what studies found, each with its source.
+// Answers from before the community spoke (no "lead") keep the evidence as the headline.
 function pickNode(it) {
+  if ('lead' in it) return pickTwo(it);
   const grade = it.use ? it.use.grade : it.grade;
   const shown = USE[grade] ? grade : it.grade && USE[it.grade] ? it.grade : '';
   const [label] = USE[shown] || ['No fact sheet yet'];
@@ -423,6 +438,197 @@ function pickNode(it) {
       sig ? h('p', { class: 'pick-signal', text: sig }) : null,
       it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null));
 }
+function pickTwo(it) {
+  const found = it.benefits?.length
+    ? [it.use && !it.use.fits ? h('p', { class: 'pick-other', text: 'The Library has no studies of it for this use yet. What it has been studied for:' }) : null, foundList(it.benefits, it.name)]
+    : [];
+  return h('div', { class: 'pick' },
+    h('div', { class: 'pick-main' },
+      h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url, text: it.name }) : h('b', { text: it.name }), h('span', { class: 'pick-role', text: it.role })),
+      voiceStrip(it),
+      it.why ? h('p', { class: 'pick-why', text: it.why }) : null,
+      ...found,
+      h('div', { class: 'pick-pills' }, it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
+      it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null));
+}
+function foundList(benefits, name) {
+  return h('ul', { class: 'pick-found', 'aria-label': `What studies found for ${name}` }, benefits.map((b) => h('li', {},
+    h('span', { text: b.claim }), ' ',
+    h('span', { class: `found-ev found-${b.evidence}`, text: FOUND[b.evidence] || b.evidence }),
+    b.source?.url ? h('a', { class: 'found-src', href: b.source.url, target: '_blank', rel: 'noopener noreferrer', title: `${b.source.title}${b.source.year ? ` (${b.source.year})` : ''}`, text: 'Source' }) : null)));
+}
+
+// ---------------------------------------------------------------------------
+// The two voices: what the studies show (on paper, as in the Library) and what the community
+// reports (in ink and lime, as in the community), side by side. The one that leads for what was
+// asked comes first and says so: the studies when there are studies in people for it, the
+// community's reports when there aren't.
+// ---------------------------------------------------------------------------
+const LEAD_WHY = {
+  studies: 'Studies in people cover what you asked, so they lead.',
+  community: 'The studies don’t answer what you asked, so the community’s reports lead.',
+};
+// A voice is marked as leading only when it really covers what was asked: studies in people for
+// it, or community reports on it (with neither, nothing is marked)
+const HUMAN = new Set(['strong', 'moderate', 'limited']);
+const studiesCover = (st) => !!st && st.forUse && HUMAN.has(st.grade);
+const communityCovers = (c) => !!c && (!c.use || c.use.rating != null || !!c.use.forum);
+function leadShown(it, st = it.studies === undefined ? studiesFromItem(it) : it.studies) {
+  if (it.lead === 'community' && communityCovers(it.community)) return 'community';
+  if (it.lead === 'studies' && studiesCover(st)) return 'studies';
+  return 'none';
+}
+function sideHead(name, lead) {
+  return h('div', { class: 'vx-k' }, h('span', { text: name }),
+    lead ? h('span', { class: 'vx-lead', title: LEAD_WHY[lead] }, 'Leads', h('span', { class: 'sr', text: `: ${LEAD_WHY[lead]}` })) : null);
+}
+function studiesSide(st, lead) {
+  const g = !st ? '' : !st.forUse || st.grade === 'none' ? 'none' : st.grade;
+  const label = !st ? 'No fact sheet yet' : (USE[g] || USE.none)[0];
+  const sub = !st ? 'The Library is still researching it.'
+    : g === 'none' ? 'Its studies are about other uses.'
+    : KIT_GRADES[g]?.[2] || '';
+  return h('div', { class: `vx-side vx-studies${lead ? ' lead' : ''}`, role: 'group', 'aria-label': 'What the studies show' },
+    sideHead('Studies', lead ? 'studies' : ''),
+    h('div', { class: `vx-main vx-ev-${g || 'pending'}` }, fromKit(meterHtml(GRADE_N[g] != null ? g : 'anecdotal', { bare: true })), h('span', { text: label })),
+    sub ? h('p', { class: 'vx-sub', text: sub }) : null);
+}
+function useLine(c) {
+  const u = c.use;
+  if (u) {
+    const what = low(u.label);
+    if (u.rating != null) return `Members rate it ${u.rating} for ${what}, from ${plural(u.reports, 'report')}`;
+    if (u.forum) return `${forumSaid(u.forum)} for ${what}; not rated by members yet`;
+    return `No reports for ${what} yet`;
+  }
+  const top = (c.uses || []).slice(0, 2).map((x) => low(x.label));
+  return top.length ? `Most reported for ${top.join(' and ')}` : '';
+}
+function communitySide(c, lead) {
+  const head = sideHead('Community', lead ? 'community' : '');
+  if (!c) {
+    return h('div', { class: `vx-side vx-community none${lead ? ' lead' : ''}`, role: 'group', 'aria-label': 'What the community reports' },
+      head, h('div', { class: 'vx-main' }, h('span', { text: 'No reports yet' })),
+      h('p', { class: 'vx-sub', text: 'No member reports or forum data on it yet.' }));
+  }
+  const lvl = levelOf(c.level);
+  const o = c.outcomes;
+  const n = o ? o.better + o.same + o.worse : 0;
+  return h('div', { class: `vx-side vx-community${lead ? ' lead' : ''}`, role: 'group', 'aria-label': 'What the community reports' },
+    head,
+    h('div', { class: 'vx-main' }, svg(sealSvg(lvl.key, 18)), h('b', { class: 'vx-score', text: Number(c.score).toFixed(1) }),
+      h('span', { class: 'vx-level', text: c.firstHand ? `${lvl.name} · ${plural(c.firstHand, 'member report')}` : `${lvl.name}, no member reports yet` }),
+      h('span', { class: 'sr', text: ` Community Signal ${Number(c.score).toFixed(1)} of 100.` })),
+    useLine(c) ? h('p', { class: 'vx-sub', text: useLine(c) }) : null,
+    o && n ? h('div', { class: 'vx-split' }, splitBar(o), h('span', { text: `Overall, ${o.better} of ${n} said it helped` })) : null);
+}
+function voiceStrip(it) {
+  const st = it.studies === undefined ? studiesFromItem(it) : it.studies;
+  const lead = leadShown(it, st);
+  const s = studiesSide(st, lead === 'studies');
+  const c = communitySide(it.community, lead === 'community');
+  return h('div', { class: `vx lead-${lead}` }, lead === 'community' ? [c, s] : [s, c]);
+}
+// Card items carry the studies' side as their evidence for what was asked
+function studiesFromItem(it) {
+  if (!it.status && !it.grade) return null;
+  return { grade: it.use ? it.use.grade : it.grade, forUse: it.use ? !!it.use.fits : true };
+}
+// How first-hand reports went: better, about the same, worse
+function splitBar({ better = 0, same = 0, worse = 0 }) {
+  const n = better + same + worse;
+  const box = h('span', { class: 'split', role: 'img', 'aria-label': `${better} better, ${same} about the same, ${worse} worse` });
+  [['b', better], ['s', same], ['w', worse]].forEach(([c, k]) => {
+    const part = h('span', { class: c });
+    part.style.width = `${n ? (100 * k) / n : 0}%`;   // set through the DOM: the page allows no inline styles
+    box.append(part);
+  });
+  return box;
+}
+
+// What they named, the studies and the community side by side, when no stack card lays it out
+function voicesNode(card) {
+  const items = card.items || [];
+  const one = items.length === 1;
+  const el = h('div', { class: 'card voices', 'data-card': card.id || '' });
+  el.append(h('div', { class: 'card-head' }, h('div', {},
+    h('h2', { text: one ? `${items[0].name}: the studies and the community` : 'The studies and the community' }),
+    h('p', { text: card.use ? `For ${low(card.use.label)}` : 'What studies show, and what members and the forums report' }))));
+  const leads = items.map((i) => leadShown(i));
+  const note = leads.includes('community') ? 'Few or no studies in people answer this, so the community’s reports lead.'
+    : leads.length && leads.every((l) => l === 'none') ? 'Little is known yet, from studies in people or from members. A report from you would be among the first.' : '';
+  if (note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: note })));
+  for (const it of items) el.append(voiceItem(it, card.use));
+  el.append(h('p', { class: 'vx-foot' }, 'The community’s numbers are totals from members’ first-hand reports and public forum data: what people report, not proof. No posts or names. ',
+    h('a', { href: '/#signal', text: 'How the Signal works' })));
+  return el;
+}
+function voiceItem(it, use) {
+  const c = it.community;
+  const f = it.studies?.finding;
+  const said = [];
+  if (c?.themes?.length) said.push(h('p', { class: 'vx-said' }, h('b', { text: 'What people describe most: ' }), c.themes.map((t) => `${low(t.theme)} (${low(t.label)})`).join(', ')));
+  if (c?.sideEffects?.length) said.push(h('p', { class: 'vx-said' }, h('b', { text: 'Side effects members mention: ' }), c.sideEffects.map((e) => `${low(e.effect)} (${e.n})`).join(', ')));
+  const title = `How ${it.name} went for me${use ? `: ${low(use.label)}` : ''}`;
+  const body = [`What I took it for: ${use ? use.label : ''}`, 'How long: ', 'How it went (better, about the same or worse): ', 'Anything I noticed: '].join('\n');
+  return h('div', { class: 'pick vx-item' },
+    h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url || `/library/${it.id}/`, text: it.name }) : h('b', { text: it.name }),
+      it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
+    voiceStrip(it),
+    f ? [it.studies.forUse ? null : h('p', { class: 'pick-other', text: 'What it has been studied for:' }), foundList([f], it.name)] : null,
+    ...said,
+    h('div', { class: 'vx-acts' },
+      h('a', { class: 'vx-act', href: spaceLink(it.id), text: 'What members report' }),
+      h('a', { class: 'vx-act add', href: draftLink([it.id], { title, body }), text: 'Add how it went for you' })));
+}
+
+// What the community reports most for one use: members' ratings first, then the forums. A ranking
+// of what people report, with each one's US status; never a recommendation.
+function crowdNode(card) {
+  const use = low(card.use?.label || '');
+  const members = card.crowd?.members || 0;
+  const el = h('div', { class: 'card crowd', 'data-card': card.id || '' });
+  el.append(h('div', { class: 'card-head' }, h('div', {},
+    h('h2', { text: `What the community reports most for ${use}` }),
+    h('p', { text: `From ${members > 1 ? `${fmt(members)} members’` : 'members’'} first-hand reports and the public forums. What people report, not a recommendation.` }))));
+  el.append(h('ol', { class: 'crowd-list' }, (card.items || []).map((r) => {
+    const lvl = levelOf(r.level);
+    const rated = r.rating != null;
+    const bar = h('span', { class: `crowd-bar${rated ? '' : ' forum'}` }, h('i'));
+    bar.firstChild.style.width = `${rated ? Math.max(4, Math.min(100, r.rating)) : 25 * (FORUM_N[r.forum] || 1)}%`;
+    return h('li', { class: 'crowd-row' },
+      h('div', { class: 'crowd-who' },
+        isLib(r.id) ? h('a', { href: r.url || `/library/${r.id}/`, text: r.name }) : h('b', { text: r.name }),
+        h('span', { class: `crowd-st tone-${r.tone || 'none'}`, text: r.tag || '' }),
+        h('span', { class: 'crowd-sig' }, svg(sealSvg(lvl.key, 14)), `Signal ${Number(r.score).toFixed(1)}`)),
+      h('div', { class: 'crowd-val' },
+        rated ? h('b', { class: 'crowd-num', text: String(r.rating) }) : h('b', { class: 'crowd-num forum', text: r.forum || 'Forums' }),
+        bar,
+        h('span', { class: 'crowd-meta', text: rated ? `members’ rating · ${plural(r.reports, 'report')}` : 'on the forums · not rated yet' })));
+  })));
+  el.append(h('p', { class: 'vx-foot' }, 'Members’ ratings come first: a use is rated once three members report on it. ',
+    h('a', { href: draftLink([], { title: `What I tried for ${use}`, body: '' }), text: 'Add your report' })));
+  return el;
+}
+
+// Where an answer came from: the fact sheets (the studies) and the Signals (the community) it drew on
+function sourcesNode(src) {
+  const st = src.studies || {};
+  const co = src.community || {};
+  const names = (xs) => (xs || []).map((x) => x.name).join(', ');
+  const bits = [];
+  if (st.sheets) {
+    bits.push(h('span', { class: 'src-part', title: names(st.names) }, svg(ICON.doc),
+      h('span', { text: `Studies: ${plural(st.sheets, 'fact sheet')}${st.sources ? `, ${plural(st.sources, 'source')}` : ''}` })));
+  }
+  if (co.signals) {
+    const what = [co.reports ? plural(co.reports, 'member report') : '', co.forum ? 'public forum data' : ''].filter(Boolean).join(' and ');
+    bits.push(h('span', { class: 'src-part', title: names(co.names) }, svg(sealSvg(co.reports ? 'early' : 'forum', 15, true)),
+      h('span', { text: `Community: ${plural(co.signals, 'Signal')}${what ? `, from ${what}` : ''}` })));
+  }
+  return bits.length ? h('p', { class: 'answer-src' }, h('span', { class: 'src-k', text: 'Drawn from' }), ...bits) : null;
+}
+
 const AUDIT_LEVEL = { avoid: 'Avoid', caution: 'Caution', unknown: 'Unknown', info: 'Good to know' };
 function fillAudit(box, card) {
   if (card.skipped) {
@@ -915,7 +1121,7 @@ function railNotes() {
   for (const m of chat) {
     if (m.role !== 'assistant') continue;
     for (const p of m.parts || []) {
-      if (p.t === 'card' && p.card.type === 'shortlist') p.card.items.forEach((it) => chips.set(it.id, it.name));
+      if (p.t === 'card' && (p.card.type === 'shortlist' || p.card.type === 'voices')) p.card.items.forEach((it) => chips.set(it.id, it.name));
       if (p.t === 'card' && p.card.type === 'plan') [...(p.card.peptides || []), ...(p.card.supplements || [])].forEach((it) => chips.set(it.id, it.name));
       if (p.t === 'card' && p.card.type === 'questions') p.card.items.forEach((q) => { if (!qs.includes(q)) qs.push(q); });
     }
@@ -1087,6 +1293,10 @@ function onEvent(am, ev, d) {
       schedule(am);
       break;
     }
+    case 'sources':
+      am.sources = { studies: d.studies || {}, community: d.community || {} };
+      schedule(am);
+      break;
     case 'review':
       am.review = { ok: !!d.ok, edited: d.edited || 0, held: d.held || 0 };
       if (!d.ok && d.text) {
@@ -1129,11 +1339,13 @@ function finish(am, live) {
     }
   }
   drawParts(am);
-  // Agents that actually ran; the visitor's own clinician isn't one of them
-  const ran = new Set(am.steps.map((s) => (s.agent === 'review' ? 'safety' : s.agent)).filter((a) => a !== 'clinician'));
+  // Agents that actually ran; the visitor's own clinician isn't one of them, and the community is
+  // people, not an agent
+  const ran = new Set(am.steps.map((s) => (s.agent === 'review' ? 'safety' : s.agent)).filter((a) => a !== 'clinician' && a !== 'community'));
+  const heard = am.steps.some((s) => s.agent === 'community');
   view.trace.classList.add('done');
   view.sum.textContent = am.steps.length
-    ? `${ran.size} agent${ran.size === 1 ? '' : 's'} worked on this${am.ms ? ` · ${(am.ms / 1000).toFixed(1)} s` : ''}`
+    ? `${ran.size} agent${ran.size === 1 ? '' : 's'}${heard ? ' and the community' : ''} worked on this${am.ms ? ` · ${(am.ms / 1000).toFixed(1)} s` : ''}`
     : 'No steps recorded';
   view.trace.hidden = !am.steps.length;
   setSig(view.sigEl, moodOf(am));
@@ -1298,6 +1510,17 @@ if (chat.length) {
 }
 refreshStack();
 stackFromLink();
+// The community, live: how many members and first-hand reports Miracle AI speaks for (totals from
+// the community's public snapshot; the line stays hidden if it can't load)
+fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).then((snap) => {
+  const c = snap?.community;
+  const el = $('ai-crowd');
+  if (!el || !c || !(c.members > 0)) return;
+  el.replaceChildren(h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }),
+    h('span', {}, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
+      c.signals ? [h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`] : 'public forum data'));
+  el.hidden = false;
+}).catch(() => {});
 // A question typed in for them elsewhere (a Library page, a community space, My Miracle):
 // ready to read, change and send; never sent by itself
 const asked = askFrom(location.hash);

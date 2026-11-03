@@ -7,7 +7,7 @@
 // they open on their phone (it travels in the link after "#", which no server receives).
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
 import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=aea73e9434';
-import { sealSvg, levelOf } from '/library/signalviz.js';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 
 const P = window.MHPlan;
 const root = document.getElementById('my-root');

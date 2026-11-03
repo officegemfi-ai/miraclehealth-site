@@ -88,14 +88,16 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 // browser or GitHub's cache never pairs a new page with an old stylesheet (GitHub Pages caches
 // files for 10 minutes)
 const version = (...files) => createHash('sha256').update(files.map((f) => fs.readFileSync(path.join(ROOT, f))).join('\n')).digest('hex').slice(0, 10);
-// Scripts import the kit by its version too: the build writes it into their import lines, so a
-// new script never runs with an old copy of the kit
+// Scripts import the kit (and the Signal's drawings) by their version too: the build writes it
+// into their import lines, so a new script never runs with an old copy of either
 const KIT_JS = version('kit/kit.js');
+const VIZ_JS = version('library/signalviz.js');
 for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js']) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
   const was = fs.readFileSync(file, 'utf8');
-  const now = was.replace(/(from '\/kit\/kit\.js)(?:\?v=[0-9a-f]+)?'/g, `$1?v=${KIT_JS}'`);
+  const now = was.replace(/(from '\/kit\/kit\.js)(?:\?v=[0-9a-f]+)?'/g, `$1?v=${KIT_JS}'`)
+    .replace(/(from '\/library\/signalviz\.js)(?:\?v=[0-9a-f]+)?'/g, `$1?v=${VIZ_JS}'`);
   if (now === was) continue;
   if (CHECK) { console.error(`out of date: ${f} imports an older kit (run node scripts/build_library.mjs)`); process.exit(1); }
   fs.writeFileSync(file, now);
@@ -573,11 +575,13 @@ function guidePage(g) {
 }
 
 // ---------------------------------------------------------------------------
-// Miracle AI (miraclehealth.us/ai): the chat with four agents, and the member's own clinician last
+// Miracle AI (miraclehealth.us/ai): the chat with four agents and the community's numbers, and the
+// member's own clinician last
 // ---------------------------------------------------------------------------
 const AGENTS = [
   ['safety', 'Safety agent', 'Screens your message first, and checks every reply before you see it.'],
-  ['recommender', 'Recommender', 'Asks what it needs to know, then finds options in the Library and the Signal.'],
+  ['recommender', 'Recommender', 'Asks what it needs to know, then reads the studies: the Library’s fact sheets.'],
+  ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
   ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
   ['clinician', 'Your clinician', 'Your own clinician, outside Miracle Health, has the final say.'],
@@ -600,8 +604,9 @@ function aiPage() {
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with Miracle AI.</h2></div>
-        <p class="ai-lede">What the evidence says about peptides, supplements and hormones, checked by four AI agents. Your own clinician has the final say.</p>
+        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with the whole community.</h2></div>
+        <p class="ai-lede">Miracle AI answers with what studies show and what members and the public forums report, and says which is which. Where the studies run out, the community’s reports lead. Your own clinician has the final say.</p>
+        <p class="ai-crowd" id="ai-crowd" hidden></p>
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
@@ -625,8 +630,8 @@ function aiPage() {
     <p class="ai-fine">For adults 18 and over. Miracle AI explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Miracle AI needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <aside class="ai-rail" aria-label="The agents">
-    <div class="rail-head"><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
+  <aside class="ai-rail" aria-label="Who answers">
+    <div class="rail-head"><div><h2>Who answers</h2><p id="rail-sub">Waiting for your first message</p></div></div>
     ${agentList('agent-rail')}
     <div class="rail-notes" id="rail-notes" hidden>
       <h2>In this conversation</h2>
@@ -638,12 +643,12 @@ function aiPage() {
   </aside>
 </div>`;
   return page({
-    title: 'Miracle AI · talk through peptides and supplements with four AI agents',
-    description: 'Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Four AI agents check every answer against the Miracle Health Library and the Community Signal, and you take a review packet to your own clinician. No doses, no sellers.',
+    title: 'Miracle AI · the studies and the whole community, in one answer',
+    description: 'Talk through peptides, supplements and hormones with Miracle AI: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it, and you take a review packet to your own clinician. No doses, no sellers.',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
     styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/packet.css?v=${V.pkCss}`, `/ai/plan.css?v=${V.plCss}`],
     scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/ai/ai.js?v=${V.aiJs}`],
-    connect: new URL(ASK_URL).origin,
+    connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
   });
 }
 

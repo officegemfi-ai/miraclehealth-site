@@ -3,31 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Miracle AI · talk through peptides and supplements with four AI agents</title>
-<meta name="description" content="Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Four AI agents check every answer against the Miracle Health Library and the Community Signal, and you take a review packet to your own clinician. No doses, no sellers.">
+<title>Miracle AI · the studies and the whole community, in one answer</title>
+<meta name="description" content="Talk through peptides, supplements and hormones with Miracle AI: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it, and you take a review packet to your own clinician. No doses, no sellers.">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' https://nerfymdslkhopsomwriv.supabase.co; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' https://nerfymdslkhopsomwriv.supabase.co https://community.miraclehealth.us; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://miraclehealth.us/ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Miracle Health">
 <meta property="og:url" content="https://miraclehealth.us/ai/">
-<meta property="og:title" content="Miracle AI · talk through peptides and supplements with four AI agents">
-<meta property="og:description" content="Ask Miracle AI what the evidence says about peptides, supplements and hormones for your goals. Four AI agents check every answer against the Miracle Health Library and the Community Signal, and you take a review packet to your own clinician. No doses, no sellers.">
+<meta property="og:title" content="Miracle AI · the studies and the whole community, in one answer">
+<meta property="og:description" content="Talk through peptides, supplements and hormones with Miracle AI: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it, and you take a review packet to your own clinician. No doses, no sellers.">
 <meta property="og:image" content="https://miraclehealth.us/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
-<link rel="stylesheet" href="/styles.css?v=9ea0d497c6">
+<link rel="stylesheet" href="/styles.css?v=a0544d5a58">
 <link rel="stylesheet" href="/library/library.css?v=7e9878c27b">
-<link rel="stylesheet" href="/ai/ai.css?v=77b77d99b0">
+<link rel="stylesheet" href="/ai/ai.css?v=b1072c0959">
 <link rel="stylesheet" href="/ai/packet.css?v=ad9e83aefa">
 <link rel="stylesheet" href="/ai/plan.css?v=43d72f6261">
 <script type="module" src="/ai/packet.js?v=654832f6d7"></script>
 <script type="module" src="/ai/plan.js?v=9f7546f7ea"></script>
-<script type="module" src="/ai/ai.js?v=b3bd75fac5"></script>
+<script type="module" src="/ai/ai.js?v=96ef6bd0f2"></script>
 </head>
 <body class="ai">
 <a class="skip" href="#main">Skip to content</a>
@@ -62,8 +62,9 @@
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with Miracle AI.</h2></div>
-        <p class="ai-lede">What the evidence says about peptides, supplements and hormones, checked by four AI agents. Your own clinician has the final say.</p>
+        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with the whole community.</h2></div>
+        <p class="ai-lede">Miracle AI answers with what studies show and what members and the public forums report, and says which is which. Where the studies run out, the community’s reports lead. Your own clinician has the final say.</p>
+        <p class="ai-crowd" id="ai-crowd" hidden></p>
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
@@ -84,15 +85,15 @@
       </div>
       <details class="ai-who">
         <summary>Who answers, and who decides</summary>
-        <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then finds options in the Library and the Signal.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own clinician, outside Miracle Health, has the final say.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+        <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then reads the studies: the Library’s fact sheets.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="community"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>The community</b><span class="agent-what">What members report first-hand and the public forums say, in totals. It leads where the studies run out.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own clinician, outside Miracle Health, has the final say.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
       </details>
     </div>
     <p class="ai-fine">For adults 18 and over. Miracle AI explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Miracle AI needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <aside class="ai-rail" aria-label="The agents">
-    <div class="rail-head"><div><h2>The agents</h2><p id="rail-sub">Waiting for your first message</p></div></div>
-    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then finds options in the Library and the Signal.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own clinician, outside Miracle Health, has the final say.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+  <aside class="ai-rail" aria-label="Who answers">
+    <div class="rail-head"><div><h2>Who answers</h2><p id="rail-sub">Waiting for your first message</p></div></div>
+    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then reads the studies: the Library’s fact sheets.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="community"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>The community</b><span class="agent-what">What members report first-hand and the public forums say, in totals. It leads where the studies run out.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="clinician"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Your clinician</b><span class="agent-what">Your own clinician, outside Miracle Health, has the final say.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
     <div class="rail-notes" id="rail-notes" hidden>
       <h2>In this conversation</h2>
       <div class="rail-chips" id="rail-chips"></div>
