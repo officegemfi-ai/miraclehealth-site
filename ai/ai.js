@@ -472,7 +472,7 @@ const LEAD_WHY = {
 // it, or community reports on it (with neither, nothing is marked)
 const HUMAN = new Set(['strong', 'moderate', 'limited']);
 const studiesCover = (st) => !!st && st.forUse && HUMAN.has(st.grade);
-const communityCovers = (c) => !!c && (!c.use || c.use.rating != null || !!c.use.forum);
+const communityCovers = (c) => !!c && (!c.use || c.use.rating != null || !!c.use.forum || !!c.near);
 function leadShown(it, st = it.studies === undefined ? studiesFromItem(it) : it.studies) {
   if (it.lead === 'community' && communityCovers(it.community)) return 'community';
   if (it.lead === 'studies' && studiesCover(st)) return 'studies';
@@ -499,6 +499,9 @@ function useLine(c) {
     const what = low(u.label);
     if (u.rating != null) return `Members rate it ${u.rating} for ${what}, from ${plural(u.reports, 'report')}`;
     if (u.forum) return `${forumSaid(u.forum)} for ${what}; not rated by members yet`;
+    // Nothing on that use yet: the closest use reported, for the same goal
+    const n = c.near;
+    if (n) return `${n.rating != null ? `Members rate it ${n.rating} for ${low(n.label)}` : `${forumSaid(n.forum)} for ${low(n.label)}`}, the closest use; nothing on ${what} yet`;
     return `No reports for ${what} yet`;
   }
   const top = (c.uses || []).slice(0, 2).map((x) => low(x.label));
