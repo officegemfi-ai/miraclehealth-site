@@ -590,7 +590,9 @@ function crowdNode(card) {
   const el = h('div', { class: 'card crowd', 'data-card': card.id || '' });
   el.append(h('div', { class: 'card-head' }, h('div', {},
     h('h2', { text: `What the community reports most for ${use}` }),
-    h('p', { text: `From ${members > 1 ? `${fmt(members)} members’` : 'members’'} first-hand reports and the public forums. What people report, not a recommendation.` }))));
+    h('p', { text: card.crowd?.reports > 0
+      ? `From ${members > 1 ? `${fmt(members)} members’` : 'members’'} first-hand reports and the public forums. What people report, not a recommendation.`
+      : 'From public forum data so far: members’ ratings come first as their reports arrive. What people report, not a recommendation.' }))));
   el.append(h('ol', { class: 'crowd-list' }, (card.items || []).map((r) => {
     const lvl = levelOf(r.level);
     const rated = r.rating != null;
@@ -1512,13 +1514,21 @@ refreshStack();
 stackFromLink();
 // The community, live: how many members and first-hand reports Miracle AI speaks for (totals from
 // the community's public snapshot; the line stays hidden if it can't load)
+const FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': 'YouTube', 'Podcast / YouTube': 'podcasts' };
 fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).then((snap) => {
   const c = snap?.community;
   const el = $('ai-crowd');
-  if (!el || !c || !(c.members > 0)) return;
-  el.replaceChildren(h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }),
-    h('span', {}, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
-      c.signals ? [h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`] : 'public forum data'));
+  if (!el || !c || !(c.signals > 0)) return;
+  const dot = h('span', { class: 'crowd-dot', 'aria-hidden': 'true' });
+  if (c.reports > 0) {
+    el.replaceChildren(dot, h('span', {}, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
+      h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`));
+  } else {
+    // Before members' reports start, the Signals are what the public forums say: said plainly
+    const from = [...new Set(Object.values(snap.signals || {}).flatMap((x) => x?.source_families || []).map((f) => FAMILY[f]).filter(Boolean))];
+    el.replaceChildren(dot, h('span', {}, h('b', { text: fmt(c.signals) }), ` Community Signals so far, read from ${from.length ? listOf(from) : 'public forums'}. Members’ first-hand reports take over as they come in. `,
+      h('a', { href: `${COMMUNITY}/`, text: 'Add yours' })));
+  }
   el.hidden = false;
 }).catch(() => {});
 // A question typed in for them elsewhere (a Library page, a community space, My Miracle):

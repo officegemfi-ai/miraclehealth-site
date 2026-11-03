@@ -440,6 +440,7 @@
 .ai-crowd{display:flex;align-items:center;gap:11px;margin-top:14px;font-size:14px;line-height:1.45;color:var(--on-ink-2)}
 .ai-crowd b{font:600 14px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--on-ink)}
 .crowd-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(216,255,61,.14)}
+.ai-crowd a{color:var(--lime);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 /* the community in the rail: a node like the Signal's seal */
 .agent[data-agent="community"] .agent-node{background:radial-gradient(circle,rgba(216,255,61,.75) 0 2px,transparent 2.5px),var(--darker)}
 .agent[data-agent="community"].done .agent-node,.agent[data-agent="community"].run .agent-node{background:radial-gradient(circle,var(--ink) 0 2px,transparent 2.5px),var(--lime)}
