@@ -507,9 +507,10 @@ function useLine(c) {
   const top = (c.uses || []).slice(0, 2).map((x) => low(x.label));
   return top.length ? `Most reported for ${top.join(' and ')}` : '';
 }
-// note: 'pregnancy' (what people report is left out) or 'down' (the numbers couldn't be read)
+// note: 'pregnancy' or 'reaction' (what people report is left out) or 'down' (the numbers couldn't be read)
 const LEFT_OUT = {
   pregnancy: ['Left out in pregnancy', 'Most of these haven’t been studied in pregnancy, so what people report isn’t shown. Your obstetric clinician is the one to ask.'],
+  reaction: ['Left out for now', 'What’s happening now comes first. What people report can wait until that’s been seen to.'],
   down: ['Couldn’t load just now', 'The community’s numbers couldn’t be read just now. Ask again in a little while to see them.'],
 };
 function communitySide(c, lead, { effects = false, note = '' } = {}) {
