@@ -445,7 +445,7 @@ function pickTwo(it) {
   return h('div', { class: 'pick' },
     h('div', { class: 'pick-main' },
       h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url, text: it.name }) : h('b', { text: it.name }), h('span', { class: 'pick-role', text: it.role })),
-      voiceStrip(it),
+      voiceStrip(it, { pick: true }),
       it.why ? h('p', { class: 'pick-why', text: it.why }) : null,
       ...found,
       h('div', { class: 'pick-pills' }, it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
@@ -465,8 +465,8 @@ function foundList(benefits, name) {
 // community's reports when there aren't.
 // ---------------------------------------------------------------------------
 const LEAD_WHY = {
-  studies: 'Studies in people cover what you asked, so they lead.',
-  community: 'The studies don’t answer what you asked, so the community’s reports lead.',
+  studies: 'Studies in people cover what you asked, so they come first.',
+  community: 'No studies in people answer what you asked, so what people report comes first. It isn’t evidence.',
 };
 // A voice is marked as leading only when it really covers what was asked: studies in people for
 // it, or community reports on it (with neither, nothing is marked)
@@ -507,7 +507,7 @@ function useLine(c) {
   const top = (c.uses || []).slice(0, 2).map((x) => low(x.label));
   return top.length ? `Most reported for ${top.join(' and ')}` : '';
 }
-function communitySide(c, lead) {
+function communitySide(c, lead, { effects = false } = {}) {
   const head = sideHead('Community', lead ? 'community' : '');
   if (!c) {
     return h('div', { class: `vx-side vx-community none${lead ? ' lead' : ''}`, role: 'group', 'aria-label': 'What the community reports' },
@@ -523,14 +523,18 @@ function communitySide(c, lead) {
       h('span', { class: 'vx-level', text: c.firstHand ? `${lvl.name} · ${plural(c.firstHand, 'member report')}` : `${lvl.name}, no member reports yet` }),
       h('span', { class: 'sr', text: ` Community Signal ${Number(c.score).toFixed(1)} of 100.` })),
     useLine(c) ? h('p', { class: 'vx-sub', text: useLine(c) }) : null,
-    o && n ? h('div', { class: 'vx-split' }, splitBar(o), h('span', { text: `Overall, ${o.better} of ${n} said it helped` })) : null);
+    o && n ? h('div', { class: 'vx-split' }, splitBar(o), h('span', { text: `Overall, ${o.better} of ${n} reports said better` })) : null,
+    effects && c.sideEffects?.length ? h('p', { class: 'vx-sub vx-fx', text: `Side effects in members’ reports: ${c.sideEffects.map((e) => `${low(e.effect)} (${e.n})`).join(', ')}` }) : null);
 }
-function voiceStrip(it) {
+// pick: an option on a shortlist or in their stack, to discuss with a clinician. The studies come
+// first there whatever leads the words, and neither side is marked: options are never chosen by
+// what people report.
+function voiceStrip(it, { pick = false } = {}) {
   const st = it.studies === undefined ? studiesFromItem(it) : it.studies;
-  const lead = leadShown(it, st);
+  const lead = pick ? 'none' : leadShown(it, st);
   const s = studiesSide(st, lead === 'studies');
-  const c = communitySide(it.community, lead === 'community');
-  return h('div', { class: `vx lead-${lead}` }, lead === 'community' ? [c, s] : [s, c]);
+  const c = communitySide(it.community, lead === 'community', { effects: pick });
+  return h('div', { class: `vx lead-${lead}${pick ? ' in-pick' : ''}` }, lead === 'community' ? [c, s] : [s, c]);
 }
 // Card items carry the studies' side as their evidence for what was asked
 function studiesFromItem(it) {
@@ -558,8 +562,8 @@ function voicesNode(card) {
     h('h2', { text: one ? `${items[0].name}: the studies and the community` : 'The studies and the community' }),
     h('p', { text: card.use ? `For ${low(card.use.label)}` : 'What studies show, and what members and the forums report' }))));
   const leads = items.map((i) => leadShown(i));
-  const note = leads.includes('community') ? 'Few or no studies in people answer this, so the community’s reports lead.'
-    : leads.length && leads.every((l) => l === 'none') ? 'Little is known yet, from studies in people or from members. A report from you would be among the first.' : '';
+  const note = leads.includes('community') ? 'No studies in people answer this, so what people report comes first. What people report isn’t evidence.'
+    : leads.length && leads.every((l) => l === 'none') ? 'Little is known yet, from studies in people or from members.' : '';
   if (note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: note })));
   for (const it of items) el.append(voiceItem(it, card.use));
   el.append(h('p', { class: 'vx-foot' }, 'The community’s numbers are totals from members’ first-hand reports and public forum data: what people report, not proof. No posts or names. ',
@@ -582,37 +586,48 @@ function voiceItem(it, use) {
     ...said,
     h('div', { class: 'vx-acts' },
       h('a', { class: 'vx-act', href: spaceLink(it.id), text: 'What members report' }),
-      h('a', { class: 'vx-act add', href: draftLink([it.id], { title, body }), text: 'Add how it went for you' })));
+      h('a', { class: 'vx-act add', href: draftLink([it.id], { title, body }), text: 'Taken it? Add how it went' })));
 }
 
-// What the community reports most for one use: members' ratings first, then the forums. A ranking
-// of what people report, with each one's US status; never a recommendation.
+// What the community reports most for one use: members' ratings first (only with enough reports
+// from enough members), then how often the forums mention it. Grouped by US status, proven options
+// first, as a shortlist is: what people report, never a leaderboard or a recommendation.
+function crowdRow(r) {
+  const lvl = levelOf(r.level);
+  const rated = r.rating != null;
+  const bar = h('span', { class: `crowd-bar${rated ? '' : ' forum'}` }, h('i'));
+  bar.firstChild.style.width = `${rated ? Math.max(4, Math.min(100, r.rating)) : 25 * (FORUM_N[r.forum] || 1)}%`;
+  return h('li', { class: 'crowd-row' },
+    h('div', { class: 'crowd-who' },
+      isLib(r.id) ? h('a', { href: r.url || `/library/${r.id}/`, text: r.name }) : h('b', { text: r.name }),
+      h('span', { class: `crowd-st tone-${r.tone || 'none'}`, text: r.tag || '' }),
+      h('span', { class: 'crowd-sig' }, svg(sealSvg(lvl.key, 14)), `Overall Signal ${Number(r.score).toFixed(1)}`)),
+    h('div', { class: 'crowd-val' },
+      rated ? h('b', { class: 'crowd-num', text: String(r.rating) }) : h('b', { class: 'crowd-num forum', text: r.forum || 'Forums' }),
+      bar,
+      h('span', { class: 'crowd-meta', text: rated ? `members’ rating · ${plural(r.reports, 'report')}` : 'mentioned on the forums · not rated yet' })));
+}
 function crowdNode(card) {
   const use = low(card.use?.label || '');
   const members = card.crowd?.members || 0;
+  const items = card.items || [];
   const el = h('div', { class: 'card crowd', 'data-card': card.id || '' });
   el.append(h('div', { class: 'card-head' }, h('div', {},
     h('h2', { text: `What the community reports most for ${use}` }),
     h('p', { text: card.crowd?.reports > 0
       ? `From ${members > 1 ? `${fmt(members)} members’` : 'members’'} first-hand reports and the public forums. What people report, not a recommendation.`
       : 'From public forum data so far: members’ ratings come first as their reports arrive. What people report, not a recommendation.' }))));
-  el.append(h('ol', { class: 'crowd-list' }, (card.items || []).map((r) => {
-    const lvl = levelOf(r.level);
-    const rated = r.rating != null;
-    const bar = h('span', { class: `crowd-bar${rated ? '' : ' forum'}` }, h('i'));
-    bar.firstChild.style.width = `${rated ? Math.max(4, Math.min(100, r.rating)) : 25 * (FORUM_N[r.forum] || 1)}%`;
-    return h('li', { class: 'crowd-row' },
-      h('div', { class: 'crowd-who' },
-        isLib(r.id) ? h('a', { href: r.url || `/library/${r.id}/`, text: r.name }) : h('b', { text: r.name }),
-        h('span', { class: `crowd-st tone-${r.tone || 'none'}`, text: r.tag || '' }),
-        h('span', { class: 'crowd-sig' }, svg(sealSvg(lvl.key, 14)), `Signal ${Number(r.score).toFixed(1)}`)),
-      h('div', { class: 'crowd-val' },
-        rated ? h('b', { class: 'crowd-num', text: String(r.rating) }) : h('b', { class: 'crowd-num forum', text: r.forum || 'Forums' }),
-        bar,
-        h('span', { class: 'crowd-meta', text: rated ? `members’ rating · ${plural(r.reports, 'report')}` : 'on the forums · not rated yet' })));
-  })));
-  el.append(h('p', { class: 'vx-foot' }, 'Members’ ratings come first: a use is rated once three members report on it. ',
-    h('a', { href: draftLink([], { title: `What I tried for ${use}`, body: '' }), text: 'Add your report' })));
+  // Proven options first (approved, over the counter, supplements), then the rest
+  const grouped = items.some((r) => typeof r.proven === 'boolean');
+  const groups = grouped
+    ? [['Approved, over the counter or supplements', items.filter((r) => r.proven)], ['Research stage, not approved or other status', items.filter((r) => !r.proven)]]
+    : [['', items]];
+  for (const [name, rows] of groups) {
+    if (!rows.length) continue;
+    el.append(h('section', { class: 'crowd-group' }, name ? h('h3', { text: name }) : null, h('ul', { class: 'crowd-list' }, rows.map(crowdRow))));
+  }
+  el.append(h('p', { class: 'vx-foot' }, 'Members’ ratings count once 10 or more reports from 5 or more members name a use; until then, how often the forums mention it. ',
+    h('a', { href: draftLink([], { title: `What I tried for ${use}`, body: '' }), text: 'Taken one of these? Add your report' })));
   return el;
 }
 

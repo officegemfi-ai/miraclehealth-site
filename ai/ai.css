@@ -395,6 +395,8 @@
 .vx-community .vx-sub{color:var(--on-ink-2)}
 .vx-split{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.3;color:var(--on-ink-2)}
 .vx-split .split{flex:1 1 60px;max-width:120px;height:6px;border-radius:4px}
+.vx-fx{font-size:12px}
+.in-pick .vx-score{font-size:14px}
 /* the studies and the community on what they named */
 .card.voices{border:1px solid var(--line);background:var(--white)}
 .card.voices .card-head{background:#F4F6F1}
@@ -413,9 +415,11 @@
 .card.crowd{background:var(--ink);color:var(--on-ink);--focus:var(--lime)}
 .card.crowd .card-head h2{color:var(--on-ink)}
 .card.crowd .card-head p{color:var(--on-ink-3)}
-.crowd-list{display:grid;margin:0;padding:0 16px 2px;list-style:none;counter-reset:r}
-.crowd-row{display:grid;grid-template-columns:22px minmax(0,1fr) minmax(130px,200px);gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line-ink);counter-increment:r}
-.crowd-row::before{content:counter(r);align-self:start;padding-top:2px;font:600 13px/1.3 var(--mono);color:var(--on-ink-3)}
+.crowd-group{padding:0 16px 2px}
+.crowd-group h3{padding:12px 0 4px;border-top:1px solid var(--line-ink);font:500 10.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--on-ink-3)}
+.crowd-list{display:grid;margin:0;padding:0;list-style:none}
+.crowd-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(130px,200px);gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line-ink)}
+.crowd-group h3+.crowd-list .crowd-row:first-child{border-top:0}
 .crowd-who{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;min-width:0}
 .crowd-who a,.crowd-who b{font:600 15px/1.3 var(--head);color:var(--on-ink);text-decoration:none;letter-spacing:-.01em}
 .crowd-who a:hover{text-decoration:underline;text-decoration-color:var(--lime);text-underline-offset:3px}
@@ -493,12 +497,11 @@
   .pick-ev{grid-column:2;grid-row:1;margin-left:0;padding:3px 9px}
   .iq,.intake-foot{padding-left:16px;padding-right:16px}
   .warn-group{padding:9px 10px 10px}
-  .vx-foot,.crowd-list{padding-left:16px;padding-right:16px}
+  .vx-foot,.crowd-group{padding-left:16px;padding-right:16px}
 }
 @media (max-width:480px){
   .vx{grid-template-columns:minmax(0,1fr)}
-  .crowd-row{grid-template-columns:22px minmax(0,1fr);gap:8px 10px}
-  .crowd-val{grid-column:2}
+  .crowd-row{grid-template-columns:minmax(0,1fr);gap:8px}
 }
 @media (max-width:380px){
   .ai-starts{grid-template-columns:1fr}
