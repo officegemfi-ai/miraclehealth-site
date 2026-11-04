@@ -155,10 +155,14 @@ const BLOCK = /^\s*(#{1,6}\s|[-*•]\s|\d+[.)]\s)/;
 // tag says so, so each claim shows where it comes from.
 const SAID_STUDIES = /\b(?:stud(?:y|ies|ied)|trials?|evidence|research(?:ers)?|in people|rodents?|animals?|meta-analys[ie]s|fda|approved)\b/i;
 const SAID_COMMUNITY = /\b(?:members?|forums?|community|people (?:report|describe|say|mention)|reports?|reported|community signal)\b/i;
+// Words that don't make a paragraph draw on a voice: saying there are no studies, and reporting a
+// reaction to the FDA (MedWatch) or reading a lab report
+const NOT_STUDIES = /\b(?:no|without|lacks?|lacking|few|little)\s+(?:good\s+|real\s+|human\s+|clinical\s+|published\s+)?(?:stud(?:y|ies)|trials?|evidence|research)(?:\s+in\s+(?:people|humans))?\b|\b(?:not|never|hasn['’]?t\s+been|haven['’]?t\s+been|isn['’]?t|aren['’]?t)\s+(?:been\s+)?(?:studied|tested|(?:fda[- ])?approved)(?:\s+in\s+(?:people|humans))?\b|\bunapproved\b/gi;
+const SAFETY_REPORT = /\b(?:report(?:ed|ing|s)?|tell)\b[^.]{0,40}?\b(?:fda|medwatch)\b[^.]*|\bmedwatch\b|\blab reports?\b|\bcertificates? of analysis\b/gi;
 function saidTags(text) {
-  const t = String(text || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+  const t = String(text || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(SAFETY_REPORT, ' ');
   const tags = [];
-  if (SAID_STUDIES.test(t)) tags.push(['studies', 'Studies']);
+  if (SAID_STUDIES.test(t.replace(NOT_STUDIES, ' '))) tags.push(['studies', 'Studies']);
   if (SAID_COMMUNITY.test(t)) tags.push(['community', 'Community']);
   return tags.length ? h('span', { class: 'said-tags' }, tags.map(([k, l]) => h('span', { class: `said said-${k}`, title: k === 'studies' ? 'Draws on the studies (the Library’s fact sheets)' : 'Draws on what members and the forums report' }, l))) : null;
 }
@@ -276,6 +280,7 @@ function drawStep(view, s) {
 // written out on the page at reading pace rather than dropped in all at once
 // The line that starts what the page folds away ("More detail:"), and everything after it
 const MORE = /^\s*(?:\*\*)?more detail:?(?:\*\*)?:?\s*$/im;
+const CAUTION = /\b(?:911|988|emergency|emergency room|urgent care|get (?:medical )?help|seek (?:medical )?(?:care|help)|get (?:it )?(?:checked|seen)|stop taking|poison control|medwatch|warning signs?)\b|\bER\b/i;
 function moreFold(view) {
   if (!view.more) {
     const box = h('div', { class: 'prose' });
@@ -312,7 +317,10 @@ function drawParts(msg) {
         view.body.append(el);
       }
       if (m || fold) {
+        // A caution never hides: if one ends up after "More detail:", the fold stays open
+        if (CAUTION.test(after)) view.moreOpen = true;
         if (!fold) { fold = moreFold(view); view.body.append(fold.d); }
+        if (view.moreOpen) fold.d.open = true;
         fold.box.append(...prose(after));
       }
     } else if (p.t === 'card') {
