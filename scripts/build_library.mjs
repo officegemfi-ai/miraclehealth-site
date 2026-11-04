@@ -3,6 +3,8 @@
 //   catalog.json       every compound and blend in the community's library (from its database)
 //   entries/<id>.json  the fact sheets, each claim checked against a source we opened
 //   uses.json          the twelve goals and the uses members report on (the community's list)
+//   baselines.json     how many improve anyway (on a placebo, or with time) by use, with sources
+//                      (the community's shared/baselines.json; for the methodology page)
 // Writes library/index.html, library/<id>/index.html (one per compound), library/data/index.json
 // (what Miracle AI reads to find and rank compounds), the Miracle AI page (ai/index.html) and
 // sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
@@ -29,6 +31,7 @@ const CHECK = process.argv.includes('--check');
 
 const catalog = JSON.parse(fs.readFileSync(path.join(DATA, 'catalog.json'), 'utf8'));
 const uses = JSON.parse(fs.readFileSync(path.join(DATA, 'uses.json'), 'utf8'));
+const baselines = JSON.parse(fs.readFileSync(path.join(DATA, 'baselines.json'), 'utf8'));
 const entries = new Map();
 for (const f of fs.readdirSync(path.join(DATA, 'entries')).filter((x) => x.endsWith('.json')).sort()) {
   const e = JSON.parse(fs.readFileSync(path.join(DATA, 'entries', f), 'utf8'));
@@ -136,7 +139,7 @@ function shellTop(current = '', home = false) {
   <a class="btn lime" href="${COMMUNITY}/">Join the community</a>
 </nav>`;
 }
-const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
+const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/method/">How the numbers are made</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
 // The hand-written pages (the front page, privacy, terms, 404) get the same top, menu, footer
 // links and kit as every built page
 function stampShell(html, file, { current = '', home = false } = {}) {
@@ -247,6 +250,12 @@ function indexPage() {
       <div><dt>First-hand reports</dt><dd data-live="reports">–</dd></div>
     </dl>
   </div>
+</section>
+
+<section class="wrap lib-moves" data-live="moves" aria-label="What moved this week" hidden>
+  <p class="moves-k"><i aria-hidden="true"></i>What moved this week</p>
+  <div class="moves-track"></div>
+  <p class="moves-focus" hidden></p>
 </section>
 
 <section class="wrap lib-tools" aria-label="Find a compound">
@@ -377,9 +386,14 @@ function factSheet(c, f) {
     <section class="le-sec" id="sources">
       <h2>Sources</h2>
       <ol class="sources">${(f.sources || []).map((s) => `<li id="src-${s.n}"><a href="${e(s.url)}" rel="noopener" target="_blank">${e(s.title)}</a><span>${e(s.publisher)}${s.year ? `, ${e(s.year)}` : ''}</span></li>`).join('')}</ol>
-      <p class="checked">Fact-checked against these sources on ${date(f.checked)}. Clinician review pending. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
+      <p class="checked">Fact-checked against these sources on ${date(f.checked)}. ${ReviewWords(f)}. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
     </section>`;
 }
+
+// reviewed: { by, role, date } once a clinician or pharmacist has signed a fact sheet off
+const reviewedBy = (f) => (f?.reviewed?.by && f?.reviewed?.date ? `reviewed by ${e(f.reviewed.by)}${f.reviewed.role ? `, ${e(f.reviewed.role)}` : ''}, ${date(f.reviewed.date)}` : '');
+const reviewWords = (f) => reviewedBy(f) || 'clinician review pending';
+const ReviewWords = (f) => { const t = reviewWords(f); return t.charAt(0).toUpperCase() + t.slice(1); };
 
 function pendingSheet(c) {
   const parts = (c.parts || []).map((p) => byId.get(p)).filter(Boolean);
@@ -419,7 +433,7 @@ function entryPage(c) {
       : 'None routinely needed'],
     ['Checked', `${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a>`],
   ].filter(Boolean) : [];
-  const toc = f ? [['what', 'What it is'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
+  const toc = f ? [['voices', 'Studies & community'], ['what', 'What it is'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood markers to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero">
@@ -432,7 +446,7 @@ function entryPage(c) {
     <div class="le-badges">
       ${f ? `<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span>
       ${evPill(f.evidence.grade)}
-      <span class="check">Fact-checked ${date(f.checked)} · clinician review pending</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
+      <span class="check${reviewedBy(f) ? ' reviewed' : ''}">Fact-checked ${date(f.checked)} · ${reviewWords(f)}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
     </div>
     <div class="le-actions">
       <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Miracle AI about ${e(c.name)}</a>
@@ -463,6 +477,11 @@ function entryPage(c) {
 
 <div class="wrap le-body">
   <article class="le-main">
+    <section class="le-sec le-voices" id="voices" data-live="voices" hidden>
+      <h2>The studies and the community, use by use</h2>
+      <p class="voices-lede">For each thing it’s used for: what the studies show, what people report, and which to start with. The same reading Miracle AI gives, from the same numbers. <a href="/method/">How it’s made</a></p>
+      <div class="voices-rows"></div>
+    </section>
     ${f ? factSheet(c, f) : pendingSheet(c)}
     ${parentBlends.length ? `<section class="le-sec" id="blends"><h2>Also sold in blends</h2><div class="parts">${parentBlends.map((b) => `<a class="part" href="/library/${b.id}/"><span class="lc-fam">Blend</span><b>${e(b.name)}</b></a>`).join('')}</div></section>` : ''}
   </article>
@@ -725,6 +744,103 @@ function myPage() {
 }
 
 // ---------------------------------------------------------------------------
+// How the numbers are made: the methodology, in plain words, with the references for "how many
+// improve anyway" and their sources
+// ---------------------------------------------------------------------------
+function methodPage() {
+  const pct = (b) => `${b.placebo_pct}%${b.low != null && b.high != null && (b.low !== b.placebo_pct || b.high !== b.placebo_pct) ? ` <span class="rng">(${b.low}–${b.high}%)</span>` : ''}`;
+  const label = (id) => uses.uses.find((u) => u.id === id)?.label || id;
+  const rows = baselines.uses.map((b) => `<tr>
+        <th scope="row">${e(label(b.use))}</th>
+        <td class="num">${pct(b)}</td>
+        <td>${e(b.defined_as)}<span class="cell-sub">${e(b.population)} · ${e(b.pooled)}</span></td>
+        <td><span class="conf conf-${e(b.confidence)}">${e(b.confidence)}</span></td>
+        <td>${b.sources.map((x) => `<a href="${e(x.url)}" rel="noopener" target="_blank">${e(x.author)} ${e(x.year)}</a>`).join(', ')}</td>
+      </tr>`).join('');
+  const body = `<div class="doc-head">
+    <div class="wrap">
+      <p class="kick">// Method</p>
+      <h1>How the numbers are made</h1>
+      <p>Updated ${date(baselines.checked)}</p>
+    </div>
+  </div>
+
+  <article class="wrap doc method">
+    <p class="intro">Every answer on Miracle Health draws on two sources, kept apart and always named: <b>the studies</b>, in the Library’s fact sheets, and <b>the community</b>, in the Community Signal: what members report first-hand and what people say on public forums. This page explains how each number is made, what it can and can’t tell you, and what we never do.</p>
+
+    <section class="short" aria-labelledby="short-h">
+      <h2 id="short-h">The short version</h2>
+      <ul>
+        <li>Studies come first whenever there are studies in people for what you asked. Where there aren’t, what people report comes first, always said to be reports, not evidence.</li>
+        <li>Reports are weighted, never people: a report its author confirmed, a longer one and one followed up weeks later count more. Nobody gets a credibility score.</li>
+        <li>Ratings come with a likely range, and start from what members report for that use everywhere, so a handful of glowing reports can’t outrank many good ones.</li>
+        <li>Next to what people report, we show how many people improve anyway, on a placebo or with time, from published trials.</li>
+        <li>A side effect reported unusually often for one compound is flagged, and serious reactions point to medical help and the FDA’s MedWatch.</li>
+        <li>No doses, no sellers, no diagnosis. Miracle AI keeps nothing you write.</li>
+      </ul>
+    </section>
+
+    <h2 id="studies">The studies</h2>
+    <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. The evidence for each use is graded: <b>strong</b> (several good trials in people, or approved for that use), <b>moderate</b> (at least one good trial in people), <b>limited</b> (small or short studies in people), <b>animal and lab studies</b> only, or <b>anecdotal</b> (user reports only). Clinician and pharmacist review of the fact sheets and of Miracle AI’s safety rules is under way; a fact sheet says who reviewed it, and when, once that’s done.</p>
+
+    <h2 id="reports">How a report is read</h2>
+    <p>Members post in their own words. Miracle AI reads each post: is it about their own use; how it went compared with before (better, about the same or worse); for how long; what they took it for; any side effects, under one name each (so “nauseous” and “mild nausea” count together); and whether a reaction sounds serious. The author then sees that read in one line, <b>“Did we read you right?”</b>, and confirms it or fixes any part with a tap. If something important is missing, usually how long, it asks that one question. Their word always wins over the read.</p>
+    <p>Two, six and twelve weeks later, the author is asked <b>“How is it now?”</b>: better, about the same or worse; still taking it or not; and if not, why (it worked, it didn’t help, side effects, cost or hassle). The latest answer is the one that counts, and why people stop is counted too.</p>
+
+    <h2 id="weights">Reports are weighted, never people</h2>
+    <table class="mtable">
+      <thead><tr><th scope="col">What</th><th scope="col">Counts as</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">A first-hand report</th><td>1</td></tr>
+        <tr><th scope="row">…that its author confirmed or fixed</th><td>× 1.25</td></tr>
+        <tr><th scope="row">…by how long they took it</th><td>under a week × 0.6 · 1–4 weeks × 0.9 · 1–3 months × 1 · 3 months or more × 1.15 · not said × 0.85</td></tr>
+        <tr><th scope="row">…for each check-in, up to three</th><td>× 1.1</td></tr>
+        <tr><th scope="row">A “same for me” on someone’s report</th><td>half a report</td></tr>
+        <tr><th scope="row">From an account in its first days</th><td>half</td></tr>
+      </tbody>
+    </table>
+    <p>Each account counts once per compound: its latest report. A “same for me” from someone whose own report already counts adds nothing more. A post with the same words as an earlier one is held out. When five or more reports on one compound come from accounts less than a week old within 48 hours, each counts a quarter until a moderator has looked; a moderator can let one count in full.</p>
+
+    <h2 id="signal">The Community Signal</h2>
+    <p>One number from 0 to 100 per compound, blend and stack: 65% how reports went (better 1, about the same ½, worse 0), 15% how much they agree, 10% how many independent voices there are and 10% how much there is to go on. Every Signal starts from Miracle Health’s reading of public forums, which counts as 50 reports; every first-hand report here shifts the balance toward members’ own experience. Each Signal earns a level for how far along that line it is: Forum data, Early signal, Community-backed (25% from members, 10+ reports), Community-verified (50%, 25+ reports from 15+ members) and Signal Certified (75%, 50+ reports, 30+ members). Every change is kept as a new version.</p>
+
+    <h2 id="ranges">Ratings by use, with a likely range</h2>
+    <p>A compound gets its own rating for a use (sleep, joint pain, injury healing…) once three reports name that use. The rating starts from what members report for that use across every compound, worth eight reports, and moves toward the compound’s own reports as they come in: so three glowing reports pull a rating up only so far, and two hundred good ones carry it. Each rating shows its likely range (90%), and the share of its reports that went better, with a 95% interval. Miracle AI lists what the community reports most for a use only from ratings with 10 or more reports from 5 or more people, in order of the low end of their range, and never as a recommendation.</p>
+
+    <h2 id="anyway">Would it have happened anyway?</h2>
+    <p>Many people feel better with time, or on a placebo, whatever they take. Next to what members report for a use, we show how many people improved anyway in published trials. It’s context, not a direct comparison: in trials “improved” was measured on strict scales, while a member’s “better” is their own word.</p>
+    <div class="mtable-wrap"><table class="mtable baselines">
+      <thead><tr><th scope="col">Use</th><th scope="col">Improved anyway</th><th scope="col">How it was measured</th><th scope="col">Confidence</th><th scope="col">Sources</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <p class="cell-note">Not shown yet, for want of comparable trials: ${baselines.not_shown.map((x) => `${e(label(x.use).toLowerCase())} (${e(x.why.replace(/\.$/, ''))})`).join('; ')}.</p>
+
+    <h2 id="watch">The side-effect watch</h2>
+    <p>For each compound we compare how often each side effect is reported with how often it’s reported for every other compound. A side effect is flagged when at least three reports mention it, it’s reported at least twice as often (a proportional reporting ratio of 2 or more, with half a report added to each count), it’s unlikely to be chance (a Yates chi-square of 3.84 or more) and there are at least 20 reports on other compounds to compare with. A flag isn’t proof that the compound causes it; it’s a signal worth knowing. Reactions Miracle AI reads as serious are counted, and their authors are pointed to medical help and to <a href="https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program" rel="noopener" target="_blank">MedWatch</a>, where anyone in the US can report a serious reaction to the FDA.</p>
+
+    <h2 id="forums">What we read on the forums</h2>
+    <p>Each Signal starts from Miracle Health’s reading of public forums, podcasts and videos: what people describe most, and how often they mention each use. We show counted forum data (such as “412 posts read, 61% positive”) only from sources whose terms allow counting and showing it; Reddit, for one, doesn’t allow commercial use of its data without an agreement, so none is counted from there. We never quote or name anyone.</p>
+
+    <h2 id="ai">How Miracle AI uses all this</h2>
+    <p>For each compound and question, Miracle AI starts with the studies when there are studies in people for it, and with what people report when there aren’t, saying so in the same breath. Safety comes before either: for anything on FDA’s list of substances with significant safety risks, the status and the studies lead; in pregnancy, what people report is left out. The numbers it gives come from these same files: the fact sheets and the community’s hourly snapshot, worked into one reading per compound and use that the fact sheets show too. A check flags any number in an answer that isn’t in what Miracle AI was given, and every part of every answer is checked by a Safety agent before you see it. A test set of about two hundred questions, with what a good answer must and must not do, is graded automatically each time Miracle AI changes.</p>
+
+    <h2 id="never">What we never do</h2>
+    <ul>
+      <li>No doses, amounts, schedules or how to take or inject anything, for any compound.</li>
+      <li>No sellers, brands, prices, pharmacies or where to get something or have it tested.</li>
+      <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your clinician.</li>
+      <li>No health records: Miracle AI keeps nothing you write, and the community holds only what members choose to post.</li>
+    </ul>
+    <p>Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=Method">Tell us</a>.</p>
+  </article>`;
+  return page({
+    title: 'How the numbers are made · Miracle Health',
+    description: 'How the Library grades studies, how members’ reports are read, weighted and checked, how ratings get their ranges, how many improve anyway, and the side-effect watch.',
+    url: '/method/', body, current: '', bodyClass: 'doc-page', styles: [], scripts: [],
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Write it all
 // ---------------------------------------------------------------------------
 const out = new Map();
@@ -736,7 +852,8 @@ out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
 out.set(path.join(ROOT, 'plan', 'index.html'), planPage());
 out.set(path.join(ROOT, 'my', 'index.html'), myPage());
-const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/privacy', '/terms'];
+out.set(path.join(ROOT, 'method', 'index.html'), methodPage());
+const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/', '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}

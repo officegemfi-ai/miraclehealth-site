@@ -518,3 +518,34 @@
   .sheet{padding:0}
   .trace{display:none}
 }
+/* Which voice a paragraph draws on: the studies (paper) or the community (ink and lime) */
+.said-tags{display:inline-flex;gap:4px;vertical-align:1px;margin-left:2px;white-space:nowrap}
+.said{display:inline-block;padding:1px 6px 2px;border-radius:5px;font:600 9.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.said-studies{border:1px solid var(--line);background:#F4F6F1;color:var(--text-2)}
+.said-community{background:var(--ink);color:var(--lime)}
+/* What the answer folds away: more on how it works, how the pieces fit */
+details.more{margin:6px 0 10px;border-top:1px dashed var(--line)}
+details.more>summary{display:flex;align-items:center;gap:8px;min-height:40px;cursor:pointer;list-style:none;font:600 13px/1 var(--head);color:var(--text-2)}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:'';width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .2s}
+details.more[open]>summary::before{transform:rotate(45deg)}
+details.more>summary:hover{color:var(--ink)}
+/* Beside what people report: how many improve anyway, the side-effect watch */
+.vx-base{padding:8px 10px;border-radius:9px;background:#F4F6F1}
+.vx-dim{color:var(--muted)}
+.vx-watch{padding:8px 10px;border-radius:9px;background:#FBECEA;color:#5C2420}
+.vx-watch b{color:#7A2A24}
+.vx-watch a,.warn-note a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+/* Compounds side by side */
+.card.compare{border:1px solid var(--line);background:var(--white)}
+.card.compare .card-head{background:#F4F6F1}
+.cmp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line)}
+.cmp-col{display:flex;flex-direction:column;gap:8px;min-width:0;padding:14px 16px;background:var(--white)}
+.cmp-col .vx{grid-template-columns:1fr}
+.cmp-col .pick-name{flex-wrap:wrap}
+/* The pairs the community fills first, on the first screen */
+.ai-focus{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:10px 0 0;font-size:13px;line-height:1.4;color:var(--on-ink-2)}
+.ai-focus .kick-sm{font:600 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
+.ai-focus a{display:inline-flex;align-items:baseline;gap:2px;padding:5px 10px;border-radius:20px;border:1px solid var(--line-ink);color:var(--on-ink);text-decoration:none}
+.ai-focus a:hover{border-color:var(--lime);color:var(--lime)}
+.ai-focus .n{font:500 11px/1 var(--mono);color:var(--lime)}

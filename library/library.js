@@ -2,10 +2,15 @@
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from './signalviz.js';
-import { askLink } from '/kit/kit.js?v=aea73e9434';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=aea73e9434';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const SNAPSHOT = `${COMMUNITY}/snapshot.json`;
+// Both voices for each compound and use, worked out with Miracle AI's own code from the same
+// snapshot (the community's scripts/build_evidence.ts)
+const EVIDENCE = `${COMMUNITY}/evidence`;
+const MEDWATCH = 'https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program';
+const STOPPED = { done: 'it worked, done', no_effect: 'it didn’t help', side_effects: 'side effects', cost: 'cost or hassle', other: 'something else' };
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const GOAL_SHORT = {
   weight: 'Weight', muscle: 'Muscle', recovery: 'Recovery', energy: 'Energy', sleep: 'Sleep', cognition: 'Focus & mood',
@@ -70,11 +75,23 @@ async function getJson(url) {
   } catch { return null; }
 }
 async function load() {
-  const [snap, usesFile] = await Promise.all([getJson(SNAPSHOT), getJson('/library/data/uses.json')]);
+  const [snap, usesFile, base] = await Promise.all([getJson(SNAPSHOT), getJson('/library/data/uses.json'), getJson('/library/data/baselines.json')]);
   const uses = {};
   (usesFile?.uses || []).forEach((u) => { uses[u.id] = [u.label, u.goal]; });
   Object.assign(uses, snap?.uses || {});
-  return { snap: snap && snap.signals ? snap : null, uses, goals: usesFile?.goals || [] };
+  const baselines = new Map((base?.uses || []).filter((b) => b.placebo_pct != null).map((b) => [b.use, b]));
+  return { snap: snap && snap.signals ? snap : null, uses, goals: usesFile?.goals || [], baselines };
+}
+// A rating with its likely range: the band from low to high, the bar up to the rating
+function rangeBar(rating, lo, hi) {
+  const b = bar(rating, 'bar rbar');
+  if (lo != null && hi != null) {
+    const band = h('i', { class: 'band', 'aria-hidden': 'true' });
+    band.style.left = `${Math.max(0, lo)}%`;
+    band.style.width = `${Math.max(1, Math.min(100, hi) - Math.max(0, lo))}%`;
+    b.append(band);
+  }
+  return b;
 }
 
 // ---------------------------------------------------------------------------
@@ -165,6 +182,26 @@ function frontPage(grid) {
       panel.querySelector('.viz-wide')?.replaceChildren(svg(flowSvg(data)));
       panel.querySelector('.viz-compact')?.replaceChildren(svg(flowSvg(data, { compact: true })));
     }
+    // What moved this week, and the pairs the community is filling first
+    const moves = document.querySelector('[data-live="moves"]');
+    const list = (Array.isArray(snap.moves) ? snap.moves : []).filter((m) => m && m.id && Number.isFinite(Number(m.from)) && Number.isFinite(Number(m.to)));
+    const focus = (Array.isArray(snap.focus) ? snap.focus : []).filter((f) => f && f.id && Number(f.reports) < Number(f.goal)).slice(0, 5);
+    if (moves && (list.length || focus.length)) {
+      moves.querySelector('.moves-track').replaceChildren(...list.slice(0, 8).map((m) => {
+        const d = Math.round((Number(m.to) - Number(m.from)) * 10) / 10;
+        return h('a', { class: 'move', href: `/library/${encodeURIComponent(m.id)}/` },
+          h('span', { class: 'mv-name' }, String(m.name || m.id).slice(0, 40)), h('b', {}, Number(m.to).toFixed(1)),
+          h('span', { class: d > 0 ? 'up' : d < 0 ? 'dn' : 'eq', 'aria-label': d > 0 ? `up ${d}` : d < 0 ? `down ${Math.abs(d)}` : 'no change' }, d > 0 ? `▲ ${d.toFixed(1)}` : d < 0 ? `▼ ${Math.abs(d).toFixed(1)}` : '–'));
+      }));
+      if (!list.length) moves.querySelector('.moves-track').append(h('span', { class: 'move quiet' }, 'Nothing moved yet this week.'));
+      if (focus.length) {
+        const fp = moves.querySelector('.moves-focus');
+        fp.replaceChildren(h('span', { class: 'kick-sm' }, 'Filling first'), ...focus.map((f) => h('a', { href: `${COMMUNITY}/#/new?c=${encodeURIComponent(f.id)}` },
+          `${String(f.name).slice(0, 40)} for ${String(f.label || '').toLowerCase().slice(0, 40)}`, h('span', { class: 'n' }, ` ${fmt(f.reports)} of ${fmt(f.goal)}`))));
+        fp.hidden = false;
+      }
+      moves.hidden = false;
+    }
     if (sort.value === 'signal') apply();
   });
 }
@@ -172,7 +209,7 @@ function frontPage(grid) {
 // ---------------------------------------------------------------------------
 // One compound: the Community Signal panel and the radar's live layers
 // ---------------------------------------------------------------------------
-function signalPanel(box, id, name, x, space, uses, snap) {
+function signalPanel(box, id, name, x, space, uses, snap, baselines = new Map()) {
   const kids = [box.querySelector('.gc-head')];
   const cta = box.querySelector('.sig-cta');
   if (!x || x.score == null) {
@@ -199,12 +236,18 @@ function signalPanel(box, id, name, x, space, uses, snap) {
     const rated = list.filter((u) => u.rating != null);
     kids.push(h('div', { class: 'sig-sec' },
       h('div', { class: 'row' }, h('span', { class: 'kick-sm' }, 'Rated by use'), h('span', { class: 'kick-sm' }, rated.length ? 'From first-hand reports' : 'Each use is rated after 3 reports')),
-      h('div', { class: 'uses' }, list.slice(0, 6).map((u) => h('div', { class: `use ${u.rating != null ? 'rated' : 'waiting'}` },
-        h('span', { class: 'use-n' }, uses[u.use]?.[0] || String(u.use).replace(/_/g, ' ')),
-        h('b', { class: 'num' }, u.rating != null ? String(u.rating) : '—'),
-        u.rating != null ? bar(u.rating) : h('div', { class: 'bar wait' }),
-        h('span', { class: 'use-meta' }, [u.reports ? `${fmt(u.reports)} reports` : null, u.forum ? `forums: ${FORUM_WORD[u.forum] || u.forum}` : null,
-          u.rating == null ? 'rated after 3 reports' : null].filter(Boolean).join(' · ')))))));
+      h('div', { class: 'uses' }, list.slice(0, 6).map((u) => {
+        const b = u.rating != null && u.better_pct != null ? baselines.get(u.use) : null;
+        return h('div', { class: `use ${u.rating != null ? 'rated' : 'waiting'}` },
+          h('span', { class: 'use-n' }, uses[u.use]?.[0] || String(u.use).replace(/_/g, ' ')),
+          h('b', { class: 'num', title: u.low != null ? `Likely between ${u.low} and ${u.high}` : null }, u.rating != null ? String(u.rating) : '—',
+            u.low != null ? h('span', { class: 'rng' }, ` ${u.low}–${u.high}`) : null),
+          u.rating != null ? rangeBar(u.rating, u.low, u.high) : h('div', { class: 'bar wait' }),
+          h('span', { class: 'use-meta' }, [u.reports ? `${fmt(u.reports)} reports` : null, u.better_pct != null ? `${u.better_pct}% said better` : null,
+            b ? `in trials: ${b.short}` : null, u.forum ? `forums: ${FORUM_WORD[u.forum] || u.forum}` : null,
+            u.rating == null ? 'rated after 3 reports' : null].filter(Boolean).join(' · ')));
+      })),
+      rated.length ? h('p', { class: 'sig-cap' }, 'Each rating starts from what members report for that use everywhere and moves toward this compound’s own reports, so a handful of glowing reports can’t outrank many good ones. The band is the likely range.') : null));
   }
   const o = x.outcomes;
   if (o) {
@@ -220,6 +263,26 @@ function signalPanel(box, id, name, x, space, uses, snap) {
   if ((x.side_effects || []).length) {
     kids.push(h('div', { class: 'sig-sec' }, h('span', { class: 'kick-sm' }, 'Side effects members mention'),
       h('div', { class: 'fx' }, x.side_effects.map((s) => h('span', {}, `${s.effect} · ${s.n}`)))));
+  }
+  // The side-effect watch: reported unusually often with this compound compared with every other
+  if ((x.watch || []).length || x.serious) {
+    kids.push(h('div', { class: 'sig-sec watch' }, h('span', { class: 'kick-sm' }, 'Side-effect watch'),
+      (x.watch || []).length ? h('div', { class: 'fx warn' }, x.watch.map((w) => h('span', { title: `Reported ${w.ratio}× as often as for other compounds` }, `${w.effect} · ${w.n} of ${w.of} reports (${w.pct}%) · ${w.others_pct}% for others`))) : null,
+      h('p', { class: 'sig-cap' }, (x.watch || []).length ? 'Reported unusually often with it, compared with every other compound here. A flag, not proof it causes it. ' : '',
+        x.serious ? `${fmt(x.serious)} reports describe a reaction that sounded serious. ` : '',
+        'A serious reaction needs medical help; anyone can report one to the FDA through ', h('a', { href: MEDWATCH, target: '_blank', rel: 'noopener' }, 'MedWatch'), '.')));
+  }
+  // What check-ins 2 to 12 weeks after a report say
+  const k = x.checkins;
+  if (k && k.reports) {
+    const why = Object.entries(k.reasons || {}).sort((a, b) => b[1] - a[1]).map(([r, n]) => `${STOPPED[r] || r} ${n}`);
+    kids.push(h('div', { class: 'sig-sec' }, h('span', { class: 'kick-sm' }, 'Weeks later'),
+      h('p', { class: 'sig-cap' }, `${fmt(k.reports)} reports checked in 2 to 12 weeks on: ${fmt(k.still)} still taking it, ${fmt(k.stopped)} stopped${why.length ? ` (${why.join(', ')})` : ''}.${k.at12 ? ` At 12 weeks, ${fmt(k.still12)} of ${fmt(k.at12)} were still taking it.` : ''}`)));
+  }
+  // Counted forum data, only from sources whose terms allow it
+  for (const f of x.forum_counts || []) {
+    kids.push(h('div', { class: 'sig-sec' }, h('span', { class: 'kick-sm' }, `Counted on ${f.source}`),
+      h('p', { class: 'sig-cap' }, `${fmt(f.posts)} posts read${f.positive_pct != null ? `: ${f.positive_pct}% positive, ${f.mixed_pct ?? 0}% mixed, ${f.negative_pct ?? 0}% negative` : ''}.`)));
   }
   const w = snap.community?.external_weight || 50;
   kids.push(h('div', { class: 'sig-sec' }, h('span', { class: 'kick-sm' }, 'On the takeover line: from forum data to members’ own'),
@@ -250,17 +313,50 @@ function radarLayers(box, x, uses) {
     { title: 'What it is used for: what studies look at, what forums talk about and what members report on' })));   // (the "charted as reports come in" note goes too)
 }
 
+// For each use it's known for: what the studies show, what people report, which to start with,
+// and how many improve anyway. The same reading Miracle AI gives, from the same numbers.
+const GRADE_USE = {
+  strong: 'Strong evidence in people', moderate: 'Moderate evidence in people', limited: 'Early studies in people',
+  preclinical: 'Animal or lab studies only', anecdotal: 'User reports only', none: 'Not studied for this',
+};
+const LEAD_WORD = { studies: 'Start with the studies', community: 'Start with what people report', none: 'Little known yet' };
+function voicesRows(sec, ev) {
+  const rows = (ev?.uses || []).filter((u) => u && u.use).slice(0, 6);
+  if (!rows.length) return;
+  const list = sec.querySelector('.voices-rows');
+  list.replaceChildren(...rows.map((u) => {
+    const st = u.studies;
+    const g = !st ? '' : !st.forUse || st.grade === 'none' ? 'none' : st.grade;
+    const c = u.community;
+    const cu = c?.use;
+    const said = !c ? 'No reports yet'
+      : cu?.rating != null ? `Members rate it ${cu.rating}${cu.low != null ? ` (likely ${cu.low}–${cu.high})` : ''}, from ${fmt(cu.reports)} reports`
+      : cu?.forum ? `${FORUM_WORD[cu.forum] ? `${FORUM_WORD[cu.forum].charAt(0).toUpperCase()}${FORUM_WORD[cu.forum].slice(1)}` : cu.forum} on the forums; no member ratings yet`
+      : c.near ? `Closest use reported: ${String(c.near.label).toLowerCase()}` : 'Nothing reported on this yet';
+    const lead = ev.blocked ? 'studies' : u.lead;
+    return h('div', { class: `vrow lead-${lead}` },
+      h('div', { class: 'vrow-use' }, h('b', {}, u.label), h('span', { class: `vrow-lead lead-${lead}` }, ev.blocked ? 'Safety first: on FDA’s safety-risk list' : LEAD_WORD[lead] || '')),
+      h('div', { class: 'vrow-side studies' }, h('span', { class: 'kick-sm' }, 'Studies'),
+        h('span', { class: 'vrow-v' }, st && g && g !== 'none' ? fromKit(meterHtml(g, { bare: true })) : null, st ? GRADE_USE[g] || g : 'No fact sheet yet')),
+      h('div', { class: 'vrow-side community' }, h('span', { class: 'kick-sm' }, 'Community'), h('span', { class: 'vrow-v' }, said)),
+      c?.baseline ? h('p', { class: 'vrow-base' }, h('b', {}, 'For context: '), c.baseline.says) : null);
+  }));
+  sec.hidden = false;
+}
+
 function entryPage(root) {
   const id = root.dataset.id;
   const name = root.dataset.name;
   const box = document.querySelector('[data-live="signal"]');
-  load().then(({ snap, uses }) => {
+  const vsec = document.querySelector('[data-live="voices"]');
+  if (vsec) getJson(`${EVIDENCE}/${encodeURIComponent(id)}.json`).then((ev) => { if (ev && ev.id === id) voicesRows(vsec, ev); });
+  load().then(({ snap, uses, baselines }) => {
     if (!snap) {
       box.querySelector('.sig-wait').textContent = 'The live numbers couldn’t load just now. You can see them in the community.';
       return;
     }
     const x = snap.signals[id];
-    signalPanel(box, id, name, x, snap.spaces?.[id], uses, snap);
+    signalPanel(box, id, name, x, snap.spaces?.[id], uses, snap, baselines);
     const radarBox = document.querySelector('[data-live="radar"]');
     if (radarBox && x) radarLayers(radarBox, x, uses);
   });

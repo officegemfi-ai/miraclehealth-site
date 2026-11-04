@@ -151,6 +151,17 @@ function inline(el, s) {
   if (last < s.length) el.append(s.slice(last));
 }
 const BLOCK = /^\s*(#{1,6}\s|[-*•]\s|\d+[.)]\s)/;
+// Which voice a paragraph draws on, from its words: the studies, the community, or both. A small
+// tag says so, so each claim shows where it comes from.
+const SAID_STUDIES = /\b(?:stud(?:y|ies|ied)|trials?|evidence|research(?:ers)?|in people|rodents?|animals?|meta-analys[ie]s|fda|approved)\b/i;
+const SAID_COMMUNITY = /\b(?:members?|forums?|community|people (?:report|describe|say|mention)|reports?|reported|community signal)\b/i;
+function saidTags(text) {
+  const t = String(text || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');
+  const tags = [];
+  if (SAID_STUDIES.test(t)) tags.push(['studies', 'Studies']);
+  if (SAID_COMMUNITY.test(t)) tags.push(['community', 'Community']);
+  return tags.length ? h('span', { class: 'said-tags' }, tags.map(([k, l]) => h('span', { class: `said said-${k}`, title: k === 'studies' ? 'Draws on the studies (the Library’s fact sheets)' : 'Draws on what members and the forums report' }, l))) : null;
+}
 function prose(text) {
   const out = [];
   const lines = String(text || '').replace(/\r/g, '').split('\n');
@@ -175,6 +186,8 @@ function prose(text) {
     while (i < lines.length && lines[i].trim() && !BLOCK.test(lines[i])) buf.push(lines[i++]);
     const p = h('p');
     buf.forEach((b, j) => { if (j) p.append(h('br')); inline(p, b); });
+    const tags = saidTags(buf.join(' '));
+    if (tags) p.append(' ', tags);
     out.push(p);
   }
   return out;
@@ -261,21 +274,47 @@ function drawStep(view, s) {
 
 // The words arrive a paragraph at a time, once the Safety agent has cleared each one; they're
 // written out on the page at reading pace rather than dropped in all at once
+// The line that starts what the page folds away ("More detail:"), and everything after it
+const MORE = /^\s*(?:\*\*)?more detail:?(?:\*\*)?:?\s*$/im;
+function moreFold(view) {
+  if (!view.more) {
+    const box = h('div', { class: 'prose' });
+    const d = h('details', { class: 'more' }, h('summary', {}, h('span', { text: 'More detail' })), box);
+    d.addEventListener('toggle', () => { view.moreOpen = d.open; });
+    view.more = { d, box };
+  }
+  view.more.d.open = !!view.moreOpen;
+  view.more.box.replaceChildren();
+  return view.more;
+}
 function drawParts(msg) {
   const view = msg.view;
   const parts = msg.parts || [];
   // Rebuild the body only where it changed: text parts re-render, cards are made once
   view.body.replaceChildren();
   let hasText = false;
+  let fold = null;
   parts.forEach((p, i) => {
     if (p.t === 'text') {
       hasText = hasText || !!p.s.trim();
       const revealing = i === view.revealIdx && view.revealShown < p.s.length;
       const live = (!msg.state && i === parts.length - 1) || revealing;
       const shown = revealing ? p.s.slice(0, view.revealShown) : p.s;
-      const el = h('div', { class: `prose${live ? ' streaming' : ''}` });
-      el.append(...prose(live ? settle(shown) : shown));
-      view.body.append(el);
+      // Words after "More detail:" go into the fold (and so does any text after it)
+      let before = live ? settle(shown) : shown;
+      let after = '';
+      const m = fold ? null : MORE.exec(before);
+      if (fold) { after = before; before = ''; }
+      else if (m) { after = before.slice(m.index + m[0].length); before = before.slice(0, m.index); }
+      if (before.trim()) {
+        const el = h('div', { class: `prose${live && !m ? ' streaming' : ''}` });
+        el.append(...prose(before));
+        view.body.append(el);
+      }
+      if (m || fold) {
+        if (!fold) { fold = moreFold(view); view.body.append(fold.d); }
+        fold.box.append(...prose(after));
+      }
     } else if (p.t === 'card') {
       let el = view.cardEls.get(p);
       if (!el) { el = cardNode(p.card, msg); view.cardEls.set(p, el); }
@@ -322,13 +361,15 @@ function cardNode(card, msg) {
   if (card.type === 'shortlist') return shortlistNode(card);
   if (card.type === 'voices') return voicesNode(card);
   if (card.type === 'community') return crowdNode(card);
+  if (card.type === 'compare') return compareNode(card);
   if (card.type === 'plan') return planNode(card, msg);
   if (card.type === 'questions') return questionsNode(card);
   if (card.type === 'intake') return intakeNode(card);
   if (card.type === 'audit') return auditNode(card);
   if (card.type === 'warn') {
     return h('div', { class: 'card warn', role: 'note', 'aria-labelledby': `${card.id || 'warn'}-h` },
-      h('h2', { id: `${card.id || 'warn'}-h`, text: 'When to get help' }), warnGroups(card.groups), h('p', { class: 'warn-note', text: card.note || '' }));
+      h('h2', { id: `${card.id || 'warn'}-h`, text: 'When to get help' }), warnGroups(card.groups), h('p', { class: 'warn-note', text: card.note || '' }),
+      h('p', { class: 'warn-note' }, 'After a serious reaction to a medicine, supplement or other product, you or your clinician can report it to the FDA through ', h('a', { href: MEDWATCH, target: '_blank', rel: 'noopener', text: 'MedWatch' }), '.'));
   }
   if (card.type === 'inject') {
     return h('div', { class: 'card warn inject', role: 'note' },
@@ -497,7 +538,7 @@ function useLine(c) {
   const u = c.use;
   if (u) {
     const what = low(u.label);
-    if (u.rating != null) return `Members rate it ${u.rating} for ${what}, from ${plural(u.reports, 'report')}`;
+    if (u.rating != null) return `Members rate it ${u.rating}${u.low != null && u.high != null ? ` (likely ${u.low}–${u.high})` : ''} for ${what}, from ${plural(u.reports, 'report')}${u.betterPct != null ? `; ${u.betterPct}% said better` : ''}`;
     if (u.forum) return `${forumSaid(u.forum)} for ${what}; not rated by members yet`;
     // Nothing on that use yet: the closest use reported, for the same goal
     const n = c.near;
@@ -583,6 +624,7 @@ function voiceItem(it, use) {
   const said = [];
   if (c?.themes?.length) said.push(h('p', { class: 'vx-said' }, h('b', { text: 'What people describe most: ' }), c.themes.map((t) => `${low(t.theme)} (${low(t.label)})`).join(', ')));
   if (c?.sideEffects?.length) said.push(h('p', { class: 'vx-said' }, h('b', { text: 'Side effects members mention: ' }), c.sideEffects.map((e) => `${low(e.effect)} (${e.n})`).join(', ')));
+  said.push(...contextLines(c));
   const title = `How ${it.name} went for me${use ? `: ${low(use.label)}` : ''}`;
   const body = [`What I took it for: ${use ? use.label : ''}`, 'How long: ', 'How it went (better, about the same or worse): ', 'Anything I noticed: '].join('\n');
   return h('div', { class: 'pick vx-item' },
@@ -594,6 +636,51 @@ function voiceItem(it, use) {
     h('div', { class: 'vx-acts' },
       h('a', { class: 'vx-act', href: spaceLink(it.id), text: 'What members report' }),
       h('a', { class: 'vx-act add', href: draftLink([it.id], { title, body }), text: 'Taken it? Add how it went' })));
+}
+
+// What sits beside what people report: how many improve anyway (on a placebo, or with time), the
+// side-effect watch and serious reactions (with the FDA's MedWatch), what check-ins weeks later
+// say, and counted forum data from sources whose terms allow it
+const MEDWATCH = 'https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program';
+const STOPPED = { done: 'it worked, done', no_effect: 'it didn’t help', side_effects: 'side effects', cost: 'cost or hassle', other: 'something else' };
+function contextLines(c) {
+  if (!c) return [];
+  const out = [];
+  if (c.baseline && c.use) out.push(h('p', { class: 'vx-said vx-base' }, h('b', { text: 'For context: ' }), c.baseline.says, ' ',
+    h('span', { class: 'vx-dim', text: 'A member’s “better” is self-reported, so this is context, not a comparison.' })));
+  if (c.watch?.length || c.serious) {
+    out.push(h('p', { class: 'vx-said vx-watch' }, h('b', { text: 'Side-effect watch: ' }),
+      c.watch?.length ? `${c.watch.map((w) => `${low(w.effect)} in ${w.n} of ${w.of} reports (${w.pct}%), against ${w.othersPct}% for other compounds`).join('; ')}. ` : '',
+      c.serious ? `${plural(c.serious, 'report')} describe${c.serious === 1 ? 's' : ''} a reaction that sounded serious. ` : '',
+      'A serious reaction needs medical help, and anyone can report one to the FDA through ', h('a', { href: MEDWATCH, target: '_blank', rel: 'noopener', text: 'MedWatch' }), '.'));
+  }
+  const k = c.checkins;
+  if (k?.reports) out.push(h('p', { class: 'vx-said' }, h('b', { text: 'Weeks later: ' }),
+    `${plural(k.reports, 'report')} checked in; ${fmt(k.still)} still taking it, ${fmt(k.stopped)} stopped${k.reasons?.length ? ` (${k.reasons.map((r) => `${STOPPED[r.reason] || r.reason} ${r.n}`).join(', ')})` : ''}.`));
+  for (const f of c.forumCounts || []) out.push(h('p', { class: 'vx-said' }, h('b', { text: 'Counted on the forums: ' }),
+    `${f.source}, ${plural(f.posts, 'post')} read${f.positive != null ? `: ${f.positive}% positive, ${f.mixed ?? 0}% mixed, ${f.negative ?? 0}% negative` : ''}.`));
+  return out;
+}
+
+// Two to four compounds side by side for what they asked: each with the studies and the
+// community, its US status and the one caution. Proven options first, never ranked by what people
+// report, and no winner.
+function compareNode(card) {
+  const items = card.items || [];
+  const el = h('div', { class: 'card compare', 'data-card': card.id || '' });
+  el.append(h('div', { class: 'card-head' }, h('div', {},
+    h('h2', { text: `Side by side: ${listOf(items.map((i) => i.name))}` }),
+    h('p', { text: card.use ? `For ${low(card.use.label)}. Not a ranking: they differ in evidence, status and what people report.` : 'Not a ranking: they differ in evidence, status and what people report.' }))));
+  el.append(h('div', { class: 'cmp-grid' }, items.map((it) => h('section', { class: 'cmp-col', 'aria-label': it.name },
+    h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url || `/library/${it.id}/`, text: it.name }) : h('b', { text: it.name }),
+      it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
+    voiceStrip(it, { pick: true }),
+    it.studies?.finding ? foundList([it.studies.finding], it.name) : null,
+    ...contextLines(it.community).slice(0, 2),
+    it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null))));
+  el.append(h('p', { class: 'vx-foot' }, 'Proven options first (approved, over the counter or supplements), then the rest. What people report isn’t evidence. ',
+    h('a', { href: '/method/', text: 'How the numbers are made' })));
+  return el;
 }
 
 // What the community reports most for one use: members' ratings first (only with enough reports
@@ -612,7 +699,7 @@ function crowdRow(r) {
     h('div', { class: 'crowd-val' },
       rated ? h('b', { class: 'crowd-num', text: String(r.rating) }) : h('b', { class: 'crowd-num forum', text: r.forum || 'Forums' }),
       bar,
-      h('span', { class: 'crowd-meta', text: rated ? `members’ rating · ${plural(r.reports, 'report')}` : 'mentioned on the forums · not rated yet' })));
+      h('span', { class: 'crowd-meta', text: rated ? `members’ rating${r.low != null && r.high != null ? ` · likely ${r.low}–${r.high}` : ''} · ${plural(r.reports, 'report')}` : 'mentioned on the forums · not rated yet' })));
 }
 function crowdNode(card) {
   const use = low(card.use?.label || '');
@@ -650,7 +737,8 @@ function sourcesNode(src) {
   }
   if (co.signals) {
     const what = [co.reports ? plural(co.reports, 'member report') : '', co.forum ? 'public forum data' : ''].filter(Boolean).join(' and ');
-    bits.push(h('span', { class: 'src-part', title: names(co.names) }, svg(sealSvg(co.reports ? 'early' : 'forum', 15, true)),
+    const when = src.version && !Number.isNaN(Date.parse(src.version)) ? ` · numbers of ${new Date(src.version).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}` : '';
+    bits.push(h('span', { class: 'src-part', title: `${names(co.names)}${when}` }, svg(sealSvg(co.reports ? 'early' : 'forum', 15, true)),
       h('span', { text: `Community: ${plural(co.signals, 'Signal')}${what ? `, from ${what}` : ''}` })));
   }
   return bits.length ? h('p', { class: 'answer-src' }, h('span', { class: 'src-k', text: 'Drawn from' }), ...bits) : null;
@@ -1321,7 +1409,7 @@ function onEvent(am, ev, d) {
       break;
     }
     case 'sources':
-      am.sources = { studies: d.studies || {}, community: d.community || {} };
+      am.sources = { studies: d.studies || {}, community: d.community || {}, version: typeof d.version === 'string' ? d.version.slice(0, 40) : '' };
       schedule(am);
       break;
     case 'review':
@@ -1555,6 +1643,13 @@ fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).then((
       h('a', { href: `${COMMUNITY}/`, text: 'Add yours' })));
   }
   el.hidden = false;
+  // The pairs the community is filling first, until each has its ten reports
+  const open = (Array.isArray(snap.focus) ? snap.focus : []).filter((f) => f && f.id && f.label && Number(f.reports) < Number(f.goal)).slice(0, 5);
+  if (open.length) {
+    el.after(h('p', { class: 'ai-focus' }, h('span', { class: 'kick-sm', text: 'Filling first' }),
+      ...open.map((f) => h('a', { href: draftLink([f.id], { title: `How ${cleanName(f.name, 40)} went for me: ${low(cleanName(f.label, 40))}`, body: '' }) },
+        `${cleanName(f.name, 40)} for ${low(cleanName(f.label, 40))}`, h('span', { class: 'n', text: ` ${fmt(f.reports)} of ${fmt(f.goal)}` })))));
+  }
 }).catch(() => {});
 // A question typed in for them elsewhere (a Library page, a community space, My Miracle):
 // ready to read, change and send; never sent by itself
