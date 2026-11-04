@@ -339,7 +339,7 @@ function voicesRows(sec, ev) {
       h('div', { class: 'vrow-side studies' }, h('span', { class: 'kick-sm' }, 'Studies'),
         h('span', { class: 'vrow-v' }, st && g && g !== 'none' ? fromKit(meterHtml(g, { bare: true })) : null, st ? GRADE_USE[g] || g : 'No fact sheet yet')),
       h('div', { class: 'vrow-side community' }, h('span', { class: 'kick-sm' }, 'Community'), h('span', { class: 'vrow-v' }, said)),
-      c?.baseline ? h('p', { class: 'vrow-base' }, h('b', {}, 'For context: '), c.baseline.says) : null);
+      c?.baseline ? h('p', { class: 'vrow-base' }, h('b', {}, c.baseline.use !== u.use ? `For context, on ${String(c.near?.label || c.baseline.use).toLowerCase()}: ` : 'For context: '), c.baseline.says) : null);
   }));
   sec.hidden = false;
 }

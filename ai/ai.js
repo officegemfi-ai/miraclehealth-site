@@ -654,7 +654,7 @@ const STOPPED = { done: 'it worked, done', no_effect: 'it didn’t help', side_e
 function contextLines(c) {
   if (!c) return [];
   const out = [];
-  if (c.baseline && c.use) out.push(h('p', { class: 'vx-said vx-base' }, h('b', { text: 'For context: ' }), c.baseline.says, ' ',
+  if (c.baseline && c.use) out.push(h('p', { class: 'vx-said vx-base' }, h('b', { text: c.baseline.use !== c.use.id ? `For context, on ${String(c.near?.label || c.baseline.use).toLowerCase()}: ` : 'For context: ' }), c.baseline.says, ' ',
     h('span', { class: 'vx-dim', text: 'A member’s “better” is self-reported, so this is context, not a comparison.' })));
   if (c.watch?.length || c.serious) {
     out.push(h('p', { class: 'vx-said vx-watch' }, h('b', { text: 'Side-effect watch: ' }),
