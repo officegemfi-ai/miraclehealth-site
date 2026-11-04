@@ -1343,7 +1343,7 @@ async function run(am) {
       }
     }
     if (!am.state) {
-      if (!am.memo) throw Object.assign(new Error('cut off'), { friendly: 'The answer was cut off. Please try again.' });
+      if (!am.memo) throw Object.assign(new Error('cut off'), { friendly: `The answer was cut off. Please try again.${HELP_LINE}` });
     }
   } catch (e) {
     if (controller.signal.aborted) {
@@ -1351,7 +1351,7 @@ async function run(am) {
       am.memo = textOf(am) ? `${textOf(am)}\n\n[Stopped by the member before the end]` : '';
     } else {
       am.state = 'error';
-      am.error = e.friendly || 'Couldn’t reach Miracle AI. Check your connection and try again.';
+      am.error = e.friendly || `Couldn’t reach Miracle AI. Check your connection and try again.${HELP_LINE}`;
     }
   }
   am.ms = am.ms || Math.round(performance.now() - t0);
@@ -1365,10 +1365,12 @@ async function run(am) {
   save();
   if (!coarse) input.focus();
 }
-const errorText = (status) => (status === 429 ? 'Too many messages for now. Please try again later.'
+// Whatever stops an answer, the way to help is still on the page
+const HELP_LINE = ' If you’re thinking about hurting yourself, call or text 988 any time; in an emergency, call 911.';
+const errorText = (status) => (status === 429 ? `Too many messages for now. Please try again later.${HELP_LINE}`
   : status === 413 ? 'That message is too long. Keep it under 2,000 characters.'
   : status === 403 ? 'Miracle AI only answers on miraclehealth.us.'
-  : 'Miracle AI is resting for a moment. Please try again shortly.');
+  : `Miracle AI is resting for a moment. Please try again shortly.${HELP_LINE}`);
 const textOf = (m) => (m.parts || []).filter((p) => p.t === 'text').map((p) => p.s).join('\n\n').trim();
 
 function onEvent(am, ev, d) {
