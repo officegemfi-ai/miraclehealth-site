@@ -3,28 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Miracle Health · The Community Signal</title>
-<meta name="description" content="Real experiences with peptides, from the adults who took them. Miracle Health turns first-hand reports into the Community Signal: one live number per compound.">
+<title>Miracle Health · Peptides, without the sales pitch</title>
+<meta name="description" content="What the studies show and what people who took it report, side by side, for 300 peptides, hormones, supplements and medications. Independent and free: nobody here sells anything.">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' https://community.miraclehealth.us; base-uri 'none'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://miraclehealth.us/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Miracle Health">
 <meta property="og:url" content="https://miraclehealth.us/">
-<meta property="og:title" content="Miracle Health · Built by the people who take it">
-<meta property="og:description" content="Real experiences with peptides, from the adults who took them, read into one live number per compound: the Community Signal.">
-<meta property="og:image" content="https://miraclehealth.us/og.jpg">
+<meta property="og:title" content="Miracle Health · Peptides, without the sales pitch">
+<meta property="og:description" content="What the studies show and what people who took it report, side by side, for 300 peptides, hormones, supplements and medications. Nobody here sells anything.">
+<meta property="og:image" content="https://miraclehealth.us/og.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Miracle Health: Built by the people who take it.">
+<meta property="og:image:alt" content="Miracle Health: Peptides, without the sales pitch.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img/hero-1600.webp" imagesrcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w, img/hero-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
-<link rel="stylesheet" href="styles.css?v=d60f450da6">
+<link rel="stylesheet" href="styles.css?v=0a1d3f82db">
+<script type="module" src="/home.js?v=170a41117a"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -56,16 +57,19 @@
     <img class="hero-photo" src="img/hero-1600.webp" srcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w, img/hero-2400.webp 2400w" sizes="100vw" alt="" width="2400" height="1601" fetchpriority="high">
     <div class="wrap hero-in">
       <div class="hero-copy">
-        <p class="kick lime live"><i aria-hidden="true"></i>Now open · The Community Signal</p>
-        <h1 id="hero-h">Built by the people<br> who take it.</h1>
-        <p class="lede">Real experiences with peptides, from the adults who took them, read into one live number per compound.</p>
-        <div class="cta">
-          <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
-          <a class="btn line" href="#how">How it works</a>
-        </div>
+        <p class="kick">Independent and free, for adults 18+</p>
+        <h1 id="hero-h">Peptides, without<br> the sales pitch.</h1>
+        <p class="lede">What the studies show and what people who took it report, side by side, for <!-- count:compounds -->300<!-- /count:compounds --> peptides, hormones, supplements and medications. Nobody here sells anything.</p>
+        <form class="hero-search" action="/library/" method="get" role="search">
+          <label class="mh-sr" for="hero-q">Search the Library</label>
+          <input id="hero-q" name="q" type="search" placeholder="Try BPC-157 or TB-500" autocomplete="off" enterkeyhint="search">
+          <button class="btn lime" type="submit">Search</button>
+        </form>
+        <nav class="hero-try" aria-label="Jump to a compound"><span>Jump to</span><a href="/library/bpc157/">BPC-157</a><a href="/library/semaglutide/">Semaglutide</a><a href="/library/tirzepatide/">Tirzepatide</a><a href="/library/tb500/">TB-500</a><a href="/library/ghkcu/">GHK-Cu</a></nav>
+        <p class="hero-ask">Have a question instead? <a href="/ai/">Ask Miracle AI</a></p>
       </div>
     </div>
-    <aside class="hero-card" aria-label="The Community Signal">
+    <div class="hero-card">
       <div class="hc-head"><span class="live"><i aria-hidden="true"></i>Community Signal</span><span class="hc-range">0–100</span></div>
       <div class="hc-body">
         <span class="hc-sig">
@@ -94,23 +98,23 @@
       <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
     </g></svg>
         </span>
-        <p><b>One number per compound,</b> built from what members report happened to them.</p>
+        <p><b>One number per compound</b> for how it went, from what people who took it report.</p>
       </div>
       <div class="hc-scale" aria-hidden="true">
         <div class="hc-track"><i class="t25"></i><i class="t50"></i><i class="t75"></i><span class="hc-knob"></span></div>
         <div class="hc-labels"><span>0</span><span>50</span><span>100</span></div>
       </div>
-      <p class="hc-foot"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.6 8.2A5.6 5.6 0 1 1 11.9 4M12.4 1.6v2.9H9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Moves with every first-hand report</p>
-    </aside>
+      <p class="hc-foot"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.6 8.2A5.6 5.6 0 1 1 11.9 4M12.4 1.6v2.9H9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Moves as new reports come in</p>
+    </div>
   </section>
 
-  <div class="strip" aria-label="What Miracle Health is">
+  <div class="strip" aria-label="Miracle Health in short">
     <div class="wrap strip-in">
-      <span>First-hand reports</span>
-      <span>Read by Miracle AI</span>
-      <span>One number per compound</span>
-      <span>No sellers</span>
-      <span>Adults 18+</span>
+      <span><!-- count:compounds -->300<!-- /count:compounds --> compounds</span>
+      <span><!-- count:sheets -->122<!-- /count:sheets --> sourced fact sheets</span>
+      <span>Studies and reports kept apart</span>
+      <span>No sellers, ads or affiliate links</span>
+      <span>Never a dose</span>
     </div>
   </div>
 
@@ -119,16 +123,17 @@
       <div class="sec-head">
         <div>
           <p class="kick">// How it works</p>
-          <h2 id="how-h">From one report to everyone’s number.</h2>
+          <h2 id="how-h">What’s known, what’s reported, and what to ask.</h2>
         </div>
-        <p class="sec-note">Three steps. No forms, no polls: just what happened.</p>
+        <p class="sec-note">Free to read and ask. No account needed.</p>
       </div>
       <div class="steps">
         <article class="step">
           <img src="img/report-760.webp" srcset="img/report-480.webp 480w, img/report-760.webp 760w" sizes="(max-width: 900px) 100vw, 400px" alt="" width="760" height="975" loading="lazy">
-          <p class="step-n">// 01 · Share</p>
-          <h3>Share how it went</h3>
-          <p>What you took it for, how long, and whether things got better, stayed the same or got worse. Reports that say it did nothing count too.</p>
+          <p class="step-n">The Library</p>
+          <h3>What the studies show</h3>
+          <p><!-- count:compounds -->300<!-- /count:compounds --> compounds, with full fact sheets for <!-- count:sheets -->122<!-- /count:sheets --> so far. Each claim links to its FDA label, NIH page or trial, and says how strong the evidence is, from animal studies to trials in people.</p>
+          <a class="step-link" href="/library/">Open the Library</a>
         </article>
         <article class="step ai">
           <div class="ai-visual" aria-hidden="true">
@@ -156,18 +161,20 @@
       <g class="sig-face"><circle cx="25" cy="38" r="4.6" fill="#fff"/><circle cx="39" cy="38" r="4.6" fill="#fff"/><circle class="sig-pupil" cx="26.2" cy="38.4" r="2.6" fill="#121E1D"/><circle class="sig-pupil" cx="40.2" cy="38.4" r="2.6" fill="#121E1D"/><path d="M28.5 47 Q32 49 35.5 47" fill="none" stroke="#121E1D" stroke-width="1.9" stroke-linecap="round"/></g>
       <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
     </g><g class="sig-waves" fill="none" stroke="#D8FF3D" stroke-width="1.6" stroke-linecap="round"><path d="M50 12a8 8 0 0 1 6 6"/><path d="M50 7a13 13 0 0 1 11 11"/></g></svg>
-            <p class="read-label">Example read</p>
+            <p class="read-label">How one report is read</p>
             <div class="chips"><span class="ok">First-hand ✓</span><span>For joint pain</span><span>Better</span><span>8 weeks</span><span>No side effects</span></div>
           </div>
-          <p class="step-n">// 02 · Read</p>
-          <h3>Miracle AI reads it</h3>
-          <p>First-hand or not, what it was for, how it went, for how long, any side effects. You can confirm or correct the read, and your word wins.</p>
+          <p class="step-n">The Community Signal</p>
+          <h3>What people report</h3>
+          <p>How it went for the people who took it, rated use by use, and the reports that say it did nothing count too. It starts from public forums and shifts to members’ own reports as they add up.</p>
+          <a class="step-link" href="/method/">How the numbers are made</a>
         </article>
         <article class="step">
           <img src="img/move-760.webp" srcset="img/move-480.webp 480w, img/move-760.webp 760w" sizes="(max-width: 900px) 100vw, 400px" alt="" width="760" height="975" loading="lazy">
-          <p class="step-n">// 03 · Move</p>
-          <h3>The Signal moves</h3>
-          <p>The compound’s overall number and its rating for each use are recalculated as reports come in, and every change is kept as a new version.</p>
+          <p class="step-n">Miracle AI</p>
+          <h3>Ask about both at once</h3>
+          <p>Ask about a goal, a compound or a combination. Answers keep the studies and the reports apart, list what to check with your clinician, and are checked for safety before you see them.</p>
+          <a class="step-link" href="/ai/">Ask Miracle AI</a>
         </article>
       </div>
     </div>
@@ -177,139 +184,53 @@
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="kick lime">// The Community Signal</p>
-          <h2 id="signal-h">One number per compound. Rated by use. Hard to game.</h2>
+          <p class="kick lime">// The Signal</p>
+          <h2 id="signal-h">Popular isn’t the same as proven.</h2>
         </div>
-        <p class="sec-note">It starts from public forums and moves toward this community’s own first-hand reports as they add up.</p>
+        <p class="sec-note">One of the most talked-about peptides, as it stands in the Library.</p>
       </div>
-      <div class="signal-grid">
-        <div class="glass deep use-card">
-          <div class="gc-head"><span>Example · how a Signal reads</span><span class="dim">0 – 100</span></div>
-          <div class="ex-top"><b>78</b><span class="of">/100</span></div>
-          <div class="ex-scale" aria-hidden="true"><span></span></div>
-          <p class="ex-cap">Overall rating · Mostly positive · High confidence</p>
-          <p class="ex-kick">Rated by use</p>
-          <dl class="uses-ex">
-            <div class="u82"><dt>Joint pain<span>34 first-hand reports · forums: very common</span></dt><dd>82</dd></div>
-            <div class="u76"><dt>Injury healing<span>21 reports · forums: very common</span></dt><dd>76</dd></div>
-            <div class="u61"><dt>Gut health<span>9 reports · forums: common</span></dt><dd>61</dd></div>
-            <div class="wait"><dt>Sleep<span>2 reports · rated after 3</span></dt><dd>–</dd></div>
-          </dl>
-          <p class="ex-note">An illustration of the layout, not any compound’s real numbers.</p>
-        </div>
-        <ol class="facts">
-          <li><span class="num">01</span><h3>Rated by use</h3><p>People take the same thing for different reasons. Each use, from joint pain to sleep, gets its own rating from first-hand reports once three people name it.</p></li>
-          <li><span class="num">02</span><h3>One overall rating</h3><p>65% is what people report happened, 15% how much the reports agree, 10% how many independent voices there are and 10% how much there is to go on.</p></li>
-          <li><span class="num">03</span><h3>Hard to game</h3><p>New accounts count half, and points go to taking part, never to results: a report that says it didn’t work earns exactly what one that says it did.</p></li>
-          <li><span class="num">04</span><h3>Private where it matters</h3><p>Your phone number is never shown. Nobody sees who voted, who said “same for me”, or who reported whom.</p></li>
-        </ol>
-      </div>
-      <div class="glass deep cert-panel">
-        <div class="cert-head">
-          <div>
-            <p class="mono lime">// Certification</p>
-            <h3>From forum chatter to certified human data.</h3>
+      <article class="vs" data-live="example" data-id="bpc157" aria-labelledby="vs-name">
+        <header class="vs-head">
+          <div class="vs-id">
+            <h3 id="vs-name">BPC-157</h3>
+            <p class="vs-status" data-v="status">Not approved; compounding not yet allowed</p>
           </div>
-          <p>Public forums count as 50 reports for each compound. As members’ first-hand reports take over, the line climbs and each Signal earns its level.</p>
+          <div class="vs-sig">
+            <p class="vs-k">Community Signal, from what people report</p>
+            <p class="vs-score"><b data-v="score" aria-hidden="true">91.9</b><span class="of" aria-hidden="true">/100</span><span class="mh-sr" data-v="score-sr">91.9 out of 100.</span><span class="vs-lvl" data-v="level"><!-- signal-art:seal --><svg class="seal seal-forum" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><circle cx="16" cy="16" r="12.5" fill="none" stroke="#9FB3C8" stroke-opacity=".75" stroke-width="2"/><text x="16" y="20" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="10.5" fill="#9FB3C8">F</text></svg><!-- /signal-art:seal --><span>Forum data</span></span></p>
+            <svg class="vs-bar sig-bar" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true" data-v="bar"><defs><linearGradient id="vs-scale" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0"><stop offset="0" stop-color="#B0453D"/><stop offset=".5" stop-color="#D4A72C"/><stop offset="1" stop-color="#D8FF3D"/></linearGradient></defs><rect class="tr" width="100" height="6"/><rect class="fi" width="91.9" height="6" fill="url(#vs-scale)"/></svg>
+            <p class="vs-cap" data-v="cap">Mostly positive · High confidence · From public forums so far</p>
+          </div>
+        </header>
+        <div class="vs-cols" aria-hidden="true"><span>Use</span><span>What the studies show</span><span class="c-rep">What people report</span><span>Got better on a placebo</span></div>
+        <div class="vs-rows" data-v="rows">
+          <div class="vs-row" data-use="injury">
+            <h4 class="vs-use">Injury healing</h4>
+            <div class="vs-cell st"><p class="vs-lbl">What the studies show</p><p class="vs-v"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal or lab studies only</p><p class="vs-sub">Faster healing of cut tendons in rodents. <a href="https://www.fda.gov/media/193343/download" aria-label="Source: FDA briefing document, 2026">FDA, 2026</a></p></div>
+            <div class="vs-cell rep"><p class="vs-lbl">What people report</p><p class="vs-v">Very common on the forums</p><p class="vs-sub">No member ratings yet</p></div>
+            <div class="vs-cell pl"><p class="vs-lbl">Got better on a placebo</p><p class="vs-v"><b>84%</b></p><svg class="vs-bar pl-bar" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true"><rect class="tr" width="100" height="6"/><rect class="fi" width="84" height="6"/></svg><p class="vs-sub">Most acute injuries settle on their own: in a large trial of acute low back pain, 84% of people on a placebo had recovered within 12 weeks.</p></div>
+          </div>
+          <div class="vs-row" data-use="joints">
+            <h4 class="vs-use">Joint pain</h4>
+            <div class="vs-cell st"><p class="vs-lbl">What the studies show</p><p class="vs-v"><span class="mh-meter m1" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Animal or lab studies only</p><p class="vs-sub">The same studies as for injury healing.</p></div>
+            <div class="vs-cell rep"><p class="vs-lbl">What people report</p><p class="vs-v">Very common on the forums</p><p class="vs-sub">No member ratings yet</p></div>
+            <div class="vs-cell pl"><p class="vs-lbl">Got better on a placebo</p><p class="vs-v"><b>35%</b></p><svg class="vs-bar pl-bar" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true"><rect class="tr" width="100" height="6"/><rect class="fi" width="35" height="6"/></svg><p class="vs-sub">In osteoarthritis trials, about 35% of people on placebo pills had at least 30% less joint pain after 12 weeks.</p></div>
+          </div>
+          <div class="vs-row" data-use="gut">
+            <h4 class="vs-use">Gut health</h4>
+            <div class="vs-cell st"><p class="vs-lbl">What the studies show</p><p class="vs-v"><span class="mh-meter m2" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Early studies in people</p><p class="vs-sub">In one placebo-controlled trial in 53 people with mild to moderate ulcerative colitis, BPC-157 enemas lowered a disease activity score more than placebo; it was reported only as a meeting abstract, and FDA judged the data inadequate. <a href="https://www.fda.gov/media/193343/download" aria-label="Source: FDA briefing document, 2026">FDA, 2026</a></p></div>
+            <div class="vs-cell rep"><p class="vs-lbl">What people report</p><p class="vs-v">Common on the forums</p><p class="vs-sub">No member ratings yet</p></div>
+            <div class="vs-cell pl"><p class="vs-lbl">Got better on a placebo</p><p class="vs-v"><b>38%</b></p><svg class="vs-bar pl-bar" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true"><rect class="tr" width="100" height="6"/><rect class="fi" width="38" height="6"/></svg><p class="vs-sub">In irritable bowel trials, about 38% of people on a placebo said their symptoms improved.</p></div>
+          </div>
         </div>
-        <div class="cert-grid">
-          <div class="takeover-box"><!-- signal-art:takeover --><div class="viz-wide"><svg class="takeover" viewBox="0 0 720 250" role="img" aria-label="The takeover line: the forums count as 50 reports, so a Signal is 50% members' data after 50 first-hand reports and 75% after 150.">
-    <defs>
-      <linearGradient id="tk3-a" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#D8FF3D" stop-opacity=".32"/><stop offset="1" stop-color="#D8FF3D" stop-opacity=".02"/></linearGradient>
-      <pattern id="tk3-h" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#9FB3C8" stroke-opacity=".16" stroke-width="2"/></pattern>
-    </defs>
-    <path d="M54.0 206.0 L59.4 197.0 L64.7 188.9 L70.0 181.5 L75.4 174.7 L80.8 168.4 L86.1 162.6 L91.5 157.3 L96.8 152.3 L102.2 147.7 L107.5 143.3 L112.8 139.3 L118.2 135.5 L123.5 131.9 L128.9 128.6 L134.3 125.4 L139.6 122.4 L144.9 119.6 L150.3 116.9 L155.6 114.4 L161.0 112.0 L166.3 109.7 L171.7 107.5 L177.1 105.4 L182.4 103.5 L187.8 101.6 L193.1 99.7 L198.5 98.0 L203.8 96.3 L209.2 94.7 L214.5 93.2 L219.9 91.7 L225.2 90.3 L230.6 88.9 L235.9 87.6 L241.3 86.4 L246.6 85.1 L252.0 84.0 L257.3 82.8 L262.6 81.7 L268.0 80.7 L273.4 79.6 L278.7 78.6 L284.1 77.7 L289.4 76.8 L294.8 75.8 L300.1 75.0 L305.4 74.1 L310.8 73.3 L316.1 72.5 L321.5 71.7 L326.8 71.0 L332.2 70.2 L337.6 69.5 L342.9 68.8 L348.3 68.1 L353.6 67.5 L358.9 66.8 L364.3 66.2 L369.6 65.6 L375.0 65.0 L380.3 64.4 L385.7 63.9 L391.1 63.3 L396.4 62.8 L401.8 62.2 L407.1 61.7 L412.4 61.2 L417.8 60.7 L423.1 60.2 L428.5 59.8 L433.9 59.3 L439.2 58.9 L444.5 58.4 L449.9 58.0 L455.3 57.6 L460.6 57.2 L466.0 56.8 L471.3 56.4 L476.6 56.0 L482.0 55.6 L487.4 55.2 L492.7 54.9 L498.1 54.5 L503.4 54.2 L508.8 53.8 L514.1 53.5 L519.5 53.1 L524.8 52.8 L530.2 52.5 L535.5 52.2 L540.8 51.9 L546.2 51.6 L551.5 51.3 L556.9 51.0 L562.3 50.7 L567.6 50.4 L573.0 50.1 L578.3 49.9 L583.6 49.6 L589.0 49.3 L594.4 49.1 L599.7 48.8 L605.0 48.6 L610.4 48.3 L615.8 48.1 L621.1 47.8 L626.5 47.6 L631.8 47.4 L637.1 47.1 L642.5 46.9 L647.9 46.7 L653.2 46.5 L658.5 46.3 L663.9 46.1 L669.3 45.9 L674.6 45.6 L679.9 45.4 L685.3 45.2 L690.6 45.1 L696.0 44.9 L696.0 18 L54 18 Z" fill="url(#tk3-h)"/>
-    <path d="M54.0 206.0 L59.4 197.0 L64.7 188.9 L70.0 181.5 L75.4 174.7 L80.8 168.4 L86.1 162.6 L91.5 157.3 L96.8 152.3 L102.2 147.7 L107.5 143.3 L112.8 139.3 L118.2 135.5 L123.5 131.9 L128.9 128.6 L134.3 125.4 L139.6 122.4 L144.9 119.6 L150.3 116.9 L155.6 114.4 L161.0 112.0 L166.3 109.7 L171.7 107.5 L177.1 105.4 L182.4 103.5 L187.8 101.6 L193.1 99.7 L198.5 98.0 L203.8 96.3 L209.2 94.7 L214.5 93.2 L219.9 91.7 L225.2 90.3 L230.6 88.9 L235.9 87.6 L241.3 86.4 L246.6 85.1 L252.0 84.0 L257.3 82.8 L262.6 81.7 L268.0 80.7 L273.4 79.6 L278.7 78.6 L284.1 77.7 L289.4 76.8 L294.8 75.8 L300.1 75.0 L305.4 74.1 L310.8 73.3 L316.1 72.5 L321.5 71.7 L326.8 71.0 L332.2 70.2 L337.6 69.5 L342.9 68.8 L348.3 68.1 L353.6 67.5 L358.9 66.8 L364.3 66.2 L369.6 65.6 L375.0 65.0 L380.3 64.4 L385.7 63.9 L391.1 63.3 L396.4 62.8 L401.8 62.2 L407.1 61.7 L412.4 61.2 L417.8 60.7 L423.1 60.2 L428.5 59.8 L433.9 59.3 L439.2 58.9 L444.5 58.4 L449.9 58.0 L455.3 57.6 L460.6 57.2 L466.0 56.8 L471.3 56.4 L476.6 56.0 L482.0 55.6 L487.4 55.2 L492.7 54.9 L498.1 54.5 L503.4 54.2 L508.8 53.8 L514.1 53.5 L519.5 53.1 L524.8 52.8 L530.2 52.5 L535.5 52.2 L540.8 51.9 L546.2 51.6 L551.5 51.3 L556.9 51.0 L562.3 50.7 L567.6 50.4 L573.0 50.1 L578.3 49.9 L583.6 49.6 L589.0 49.3 L594.4 49.1 L599.7 48.8 L605.0 48.6 L610.4 48.3 L615.8 48.1 L621.1 47.8 L626.5 47.6 L631.8 47.4 L637.1 47.1 L642.5 46.9 L647.9 46.7 L653.2 46.5 L658.5 46.3 L663.9 46.1 L669.3 45.9 L674.6 45.6 L679.9 45.4 L685.3 45.2 L690.6 45.1 L696.0 44.9 L696.0 206 L54 206 Z" fill="url(#tk3-a)"/>
-    <text x="46" y="209" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".5">0%</text><text x="46" y="162" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".5">25%</text><text x="46" y="115" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".5">50%</text><text x="46" y="68" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".5">75%</text><text x="46" y="21" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".5">100%</text>
-    <line x1="54" x2="696" y1="159" y2="159" stroke="#FCFCFC" stroke-opacity=".14" stroke-dasharray="3 5"/>
-      <line x1="89.66666666666667" x2="89.66666666666667" y1="159" y2="206" stroke="#D8FF3D" stroke-opacity=".28" stroke-dasharray="2 4"/>
-      <circle cx="89.66666666666667" cy="159" r="3.4" fill="#D8FF3D"/>
-      <text x="692" y="154" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".72">25% · COMMUNITY-BACKED</text>
-      <text x="89.66666666666667" y="220" text-anchor="middle" class="t-mono" font-size="9" fill="#D8FF3D" fill-opacity=".85">17</text><line x1="54" x2="696" y1="112" y2="112" stroke="#FCFCFC" stroke-opacity=".14" stroke-dasharray="3 5"/>
-      <line x1="161" x2="161" y1="112" y2="206" stroke="#D8FF3D" stroke-opacity=".28" stroke-dasharray="2 4"/>
-      <circle cx="161" cy="112" r="3.4" fill="#D8FF3D"/>
-      <text x="692" y="107" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".72">50% · COMMUNITY-VERIFIED</text>
-      <text x="161" y="220" text-anchor="middle" class="t-mono" font-size="9" fill="#D8FF3D" fill-opacity=".85">50</text><line x1="54" x2="696" y1="65" y2="65" stroke="#FCFCFC" stroke-opacity=".14" stroke-dasharray="3 5"/>
-      <line x1="375" x2="375" y1="65" y2="206" stroke="#D8FF3D" stroke-opacity=".28" stroke-dasharray="2 4"/>
-      <circle cx="375" cy="65" r="3.4" fill="#D8FF3D"/>
-      <text x="692" y="60" text-anchor="end" class="t-mono" font-size="9" fill="#FCFCFC" fill-opacity=".72">75% · SIGNAL CERTIFIED</text>
-      <text x="375" y="220" text-anchor="middle" class="t-mono" font-size="9" fill="#D8FF3D" fill-opacity=".85">150</text>
-    <path class="draw" d="M54.0 206.0 L59.4 197.0 L64.7 188.9 L70.0 181.5 L75.4 174.7 L80.8 168.4 L86.1 162.6 L91.5 157.3 L96.8 152.3 L102.2 147.7 L107.5 143.3 L112.8 139.3 L118.2 135.5 L123.5 131.9 L128.9 128.6 L134.3 125.4 L139.6 122.4 L144.9 119.6 L150.3 116.9 L155.6 114.4 L161.0 112.0 L166.3 109.7 L171.7 107.5 L177.1 105.4 L182.4 103.5 L187.8 101.6 L193.1 99.7 L198.5 98.0 L203.8 96.3 L209.2 94.7 L214.5 93.2 L219.9 91.7 L225.2 90.3 L230.6 88.9 L235.9 87.6 L241.3 86.4 L246.6 85.1 L252.0 84.0 L257.3 82.8 L262.6 81.7 L268.0 80.7 L273.4 79.6 L278.7 78.6 L284.1 77.7 L289.4 76.8 L294.8 75.8 L300.1 75.0 L305.4 74.1 L310.8 73.3 L316.1 72.5 L321.5 71.7 L326.8 71.0 L332.2 70.2 L337.6 69.5 L342.9 68.8 L348.3 68.1 L353.6 67.5 L358.9 66.8 L364.3 66.2 L369.6 65.6 L375.0 65.0 L380.3 64.4 L385.7 63.9 L391.1 63.3 L396.4 62.8 L401.8 62.2 L407.1 61.7 L412.4 61.2 L417.8 60.7 L423.1 60.2 L428.5 59.8 L433.9 59.3 L439.2 58.9 L444.5 58.4 L449.9 58.0 L455.3 57.6 L460.6 57.2 L466.0 56.8 L471.3 56.4 L476.6 56.0 L482.0 55.6 L487.4 55.2 L492.7 54.9 L498.1 54.5 L503.4 54.2 L508.8 53.8 L514.1 53.5 L519.5 53.1 L524.8 52.8 L530.2 52.5 L535.5 52.2 L540.8 51.9 L546.2 51.6 L551.5 51.3 L556.9 51.0 L562.3 50.7 L567.6 50.4 L573.0 50.1 L578.3 49.9 L583.6 49.6 L589.0 49.3 L594.4 49.1 L599.7 48.8 L605.0 48.6 L610.4 48.3 L615.8 48.1 L621.1 47.8 L626.5 47.6 L631.8 47.4 L637.1 47.1 L642.5 46.9 L647.9 46.7 L653.2 46.5 L658.5 46.3 L663.9 46.1 L669.3 45.9 L674.6 45.6 L679.9 45.4 L685.3 45.2 L690.6 45.1 L696.0 44.9" fill="none" stroke="#D8FF3D" stroke-width="2.8" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
-    <line x1="54" x2="696" y1="206" y2="206" stroke="#FCFCFC" stroke-opacity=".3"/>
-    <text x="452.04" y="31.159999999999997" class="t-mono" font-size="9.5" fill="#9FB3C8" fill-opacity=".9">FORUM DATA</text>
-    <text x="452.04" y="189.08" class="t-mono" font-size="9.5" fill="#D8FF3D">MEMBERS’ DATA</text>
-    
-    <text x="375" y="242" text-anchor="middle" class="t-mono" font-size="9.5" fill="#FCFCFC" fill-opacity=".62">FIRST-HAND REPORTS FOR ONE COMPOUND →</text>
-  </svg></div><div class="viz-compact"><svg class="takeover" viewBox="0 0 360 230" role="img" aria-label="The takeover line: the forums count as 50 reports, so a Signal is 50% members' data after 50 first-hand reports and 75% after 150.">
-    <defs>
-      <linearGradient id="tk4-a" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#D8FF3D" stop-opacity=".32"/><stop offset="1" stop-color="#D8FF3D" stop-opacity=".02"/></linearGradient>
-      <pattern id="tk4-h" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="#9FB3C8" stroke-opacity=".16" stroke-width="2"/></pattern>
-    </defs>
-    <path d="M34.0 190.0 L36.6 181.8 L39.2 174.4 L41.8 167.6 L44.4 161.3 L47.0 155.6 L49.6 150.3 L52.2 145.4 L54.8 140.9 L57.4 136.6 L60.0 132.7 L62.6 129.0 L65.2 125.5 L67.8 122.2 L70.4 119.2 L73.0 116.3 L75.6 113.6 L78.2 111.0 L80.8 108.5 L83.4 106.2 L86.0 104.0 L88.6 101.9 L91.2 99.9 L93.8 98.0 L96.4 96.2 L99.0 94.4 L101.6 92.8 L104.2 91.2 L106.8 89.7 L109.4 88.2 L112.0 86.8 L114.6 85.5 L117.2 84.2 L119.8 82.9 L122.4 81.7 L125.0 80.5 L127.6 79.4 L130.2 78.4 L132.8 77.3 L135.4 76.3 L138.0 75.3 L140.6 74.4 L143.2 73.5 L145.8 72.6 L148.4 71.8 L151.0 70.9 L153.6 70.1 L156.2 69.3 L158.8 68.6 L161.4 67.9 L164.0 67.1 L166.6 66.5 L169.2 65.8 L171.8 65.1 L174.4 64.5 L177.0 63.9 L179.6 63.3 L182.2 62.7 L184.8 62.1 L187.4 61.5 L190.0 61.0 L192.6 60.5 L195.2 60.0 L197.8 59.4 L200.4 59.0 L203.0 58.5 L205.6 58.0 L208.2 57.5 L210.8 57.1 L213.4 56.7 L216.0 56.2 L218.6 55.8 L221.2 55.4 L223.8 55.0 L226.4 54.6 L229.0 54.2 L231.6 53.8 L234.2 53.5 L236.8 53.1 L239.4 52.7 L242.0 52.4 L244.6 52.1 L247.2 51.7 L249.8 51.4 L252.4 51.1 L255.0 50.8 L257.6 50.5 L260.2 50.1 L262.8 49.9 L265.4 49.6 L268.0 49.3 L270.6 49.0 L273.2 48.7 L275.8 48.4 L278.4 48.2 L281.0 47.9 L283.6 47.7 L286.2 47.4 L288.8 47.2 L291.4 46.9 L294.0 46.7 L296.6 46.4 L299.2 46.2 L301.8 46.0 L304.4 45.7 L307.0 45.5 L309.6 45.3 L312.2 45.1 L314.8 44.9 L317.4 44.7 L320.0 44.5 L322.6 44.3 L325.2 44.1 L327.8 43.9 L330.4 43.7 L333.0 43.5 L335.6 43.3 L338.2 43.1 L340.8 42.9 L343.4 42.7 L346.0 42.6 L346.0 18 L34 18 Z" fill="url(#tk4-h)"/>
-    <path d="M34.0 190.0 L36.6 181.8 L39.2 174.4 L41.8 167.6 L44.4 161.3 L47.0 155.6 L49.6 150.3 L52.2 145.4 L54.8 140.9 L57.4 136.6 L60.0 132.7 L62.6 129.0 L65.2 125.5 L67.8 122.2 L70.4 119.2 L73.0 116.3 L75.6 113.6 L78.2 111.0 L80.8 108.5 L83.4 106.2 L86.0 104.0 L88.6 101.9 L91.2 99.9 L93.8 98.0 L96.4 96.2 L99.0 94.4 L101.6 92.8 L104.2 91.2 L106.8 89.7 L109.4 88.2 L112.0 86.8 L114.6 85.5 L117.2 84.2 L119.8 82.9 L122.4 81.7 L125.0 80.5 L127.6 79.4 L130.2 78.4 L132.8 77.3 L135.4 76.3 L138.0 75.3 L140.6 74.4 L143.2 73.5 L145.8 72.6 L148.4 71.8 L151.0 70.9 L153.6 70.1 L156.2 69.3 L158.8 68.6 L161.4 67.9 L164.0 67.1 L166.6 66.5 L169.2 65.8 L171.8 65.1 L174.4 64.5 L177.0 63.9 L179.6 63.3 L182.2 62.7 L184.8 62.1 L187.4 61.5 L190.0 61.0 L192.6 60.5 L195.2 60.0 L197.8 59.4 L200.4 59.0 L203.0 58.5 L205.6 58.0 L208.2 57.5 L210.8 57.1 L213.4 56.7 L216.0 56.2 L218.6 55.8 L221.2 55.4 L223.8 55.0 L226.4 54.6 L229.0 54.2 L231.6 53.8 L234.2 53.5 L236.8 53.1 L239.4 52.7 L242.0 52.4 L244.6 52.1 L247.2 51.7 L249.8 51.4 L252.4 51.1 L255.0 50.8 L257.6 50.5 L260.2 50.1 L262.8 49.9 L265.4 49.6 L268.0 49.3 L270.6 49.0 L273.2 48.7 L275.8 48.4 L278.4 48.2 L281.0 47.9 L283.6 47.7 L286.2 47.4 L288.8 47.2 L291.4 46.9 L294.0 46.7 L296.6 46.4 L299.2 46.2 L301.8 46.0 L304.4 45.7 L307.0 45.5 L309.6 45.3 L312.2 45.1 L314.8 44.9 L317.4 44.7 L320.0 44.5 L322.6 44.3 L325.2 44.1 L327.8 43.9 L330.4 43.7 L333.0 43.5 L335.6 43.3 L338.2 43.1 L340.8 42.9 L343.4 42.7 L346.0 42.6 L346.0 190 L34 190 Z" fill="url(#tk4-a)"/>
-    <text x="26" y="193" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".5">0%</text><text x="26" y="150" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".5">25%</text><text x="26" y="107" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".5">50%</text><text x="26" y="64" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".5">75%</text><text x="26" y="21" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".5">100%</text>
-    <line x1="34" x2="346" y1="147" y2="147" stroke="#FCFCFC" stroke-opacity=".14" stroke-dasharray="3 5"/>
-      <line x1="51.333333333333336" x2="51.333333333333336" y1="147" y2="190" stroke="#D8FF3D" stroke-opacity=".28" stroke-dasharray="2 4"/>
-      <circle cx="51.333333333333336" cy="147" r="3.4" fill="#D8FF3D"/>
-      <text x="342" y="142" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".72">25% · BACKED</text>
-      <text x="51.333333333333336" y="204" text-anchor="middle" class="t-mono" font-size="8" fill="#D8FF3D" fill-opacity=".85">17</text><line x1="34" x2="346" y1="104" y2="104" stroke="#FCFCFC" stroke-opacity=".14" stroke-dasharray="3 5"/>
-      <line x1="86" x2="86" y1="104" y2="190" stroke="#D8FF3D" stroke-opacity=".28" stroke-dasharray="2 4"/>
-      <circle cx="86" cy="104" r="3.4" fill="#D8FF3D"/>
-      <text x="342" y="99" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".72">50% · VERIFIED</text>
-      <text x="86" y="204" text-anchor="middle" class="t-mono" font-size="8" fill="#D8FF3D" fill-opacity=".85">50</text><line x1="34" x2="346" y1="61" y2="61" stroke="#FCFCFC" stroke-opacity=".14" stroke-dasharray="3 5"/>
-      <line x1="190" x2="190" y1="61" y2="190" stroke="#D8FF3D" stroke-opacity=".28" stroke-dasharray="2 4"/>
-      <circle cx="190" cy="61" r="3.4" fill="#D8FF3D"/>
-      <text x="342" y="56" text-anchor="end" class="t-mono" font-size="8" fill="#FCFCFC" fill-opacity=".72">75% · CERTIFIED</text>
-      <text x="190" y="204" text-anchor="middle" class="t-mono" font-size="8" fill="#D8FF3D" fill-opacity=".85">150</text>
-    <path class="draw" d="M34.0 190.0 L36.6 181.8 L39.2 174.4 L41.8 167.6 L44.4 161.3 L47.0 155.6 L49.6 150.3 L52.2 145.4 L54.8 140.9 L57.4 136.6 L60.0 132.7 L62.6 129.0 L65.2 125.5 L67.8 122.2 L70.4 119.2 L73.0 116.3 L75.6 113.6 L78.2 111.0 L80.8 108.5 L83.4 106.2 L86.0 104.0 L88.6 101.9 L91.2 99.9 L93.8 98.0 L96.4 96.2 L99.0 94.4 L101.6 92.8 L104.2 91.2 L106.8 89.7 L109.4 88.2 L112.0 86.8 L114.6 85.5 L117.2 84.2 L119.8 82.9 L122.4 81.7 L125.0 80.5 L127.6 79.4 L130.2 78.4 L132.8 77.3 L135.4 76.3 L138.0 75.3 L140.6 74.4 L143.2 73.5 L145.8 72.6 L148.4 71.8 L151.0 70.9 L153.6 70.1 L156.2 69.3 L158.8 68.6 L161.4 67.9 L164.0 67.1 L166.6 66.5 L169.2 65.8 L171.8 65.1 L174.4 64.5 L177.0 63.9 L179.6 63.3 L182.2 62.7 L184.8 62.1 L187.4 61.5 L190.0 61.0 L192.6 60.5 L195.2 60.0 L197.8 59.4 L200.4 59.0 L203.0 58.5 L205.6 58.0 L208.2 57.5 L210.8 57.1 L213.4 56.7 L216.0 56.2 L218.6 55.8 L221.2 55.4 L223.8 55.0 L226.4 54.6 L229.0 54.2 L231.6 53.8 L234.2 53.5 L236.8 53.1 L239.4 52.7 L242.0 52.4 L244.6 52.1 L247.2 51.7 L249.8 51.4 L252.4 51.1 L255.0 50.8 L257.6 50.5 L260.2 50.1 L262.8 49.9 L265.4 49.6 L268.0 49.3 L270.6 49.0 L273.2 48.7 L275.8 48.4 L278.4 48.2 L281.0 47.9 L283.6 47.7 L286.2 47.4 L288.8 47.2 L291.4 46.9 L294.0 46.7 L296.6 46.4 L299.2 46.2 L301.8 46.0 L304.4 45.7 L307.0 45.5 L309.6 45.3 L312.2 45.1 L314.8 44.9 L317.4 44.7 L320.0 44.5 L322.6 44.3 L325.2 44.1 L327.8 43.9 L330.4 43.7 L333.0 43.5 L335.6 43.3 L338.2 43.1 L340.8 42.9 L343.4 42.7 L346.0 42.6" fill="none" stroke="#D8FF3D" stroke-width="2.8" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
-    <line x1="34" x2="346" y1="190" y2="190" stroke="#FCFCFC" stroke-opacity=".3"/>
-    <text x="208.72000000000003" y="30.039999999999992" class="t-mono" font-size="9.5" fill="#9FB3C8" fill-opacity=".9">FORUM DATA</text>
-    <text x="208.72000000000003" y="174.52" class="t-mono" font-size="9.5" fill="#D8FF3D">MEMBERS’ DATA</text>
-    
-    <text x="190" y="222" text-anchor="middle" class="t-mono" font-size="8.5" fill="#FCFCFC" fill-opacity=".62">FIRST-HAND REPORTS FOR ONE COMPOUND →</text>
-  </svg></div><!-- /signal-art:takeover --></div>
-          <ol class="levels"><!-- signal-art:levels --><li><svg class="seal seal-forum" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="Forum data"><circle cx="16" cy="16" r="12.5" fill="none" stroke="#9FB3C8" stroke-opacity=".75" stroke-width="2"/><text x="16" y="20" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="10.5" fill="#9FB3C8">F</text></svg><span><b>Forum data</b>Mostly public forums so far</span></li><li><svg class="seal seal-early" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="Early signal"><circle cx="16" cy="16" r="12.5" fill="none" stroke="#D8FF3D" stroke-width="2" stroke-dasharray="3 3.5"/><circle cx="16" cy="16" r="3.2" fill="#D8FF3D"/></svg><span><b>Early signal</b>Members’ reports only, still few of them</span></li><li><svg class="seal seal-backed" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="Community-backed"><circle cx="16" cy="16" r="12.5" fill="none" stroke="#D8FF3D" stroke-opacity=".35" stroke-width="2"/><path d="M16 3.5a12.5 12.5 0 0 1 0 25" fill="none" stroke="#D8FF3D" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="4" fill="#D8FF3D"/></svg><span><b>Community-backed</b>25% from members, 10+ first-hand reports</span></li><li><svg class="seal seal-verified" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="Community-verified"><circle cx="16" cy="16" r="12.5" fill="none" stroke="#D8FF3D" stroke-width="2.4"/><path d="m11 16.4 3.3 3.3 6.7-7.4" fill="none" stroke="#D8FF3D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Community-verified</b>50% from members, 25+ reports from 15+ people</span></li><li><svg class="seal seal-certified" viewBox="0 0 32 32" width="30" height="30" role="img" aria-label="Signal Certified"><path d="M16 2.5l3.1 2.4 3.9-.5 1.5 3.6 3.6 1.5-.5 3.9 2.4 3.1-2.4 3.1.5 3.9-3.6 1.5-1.5 3.6-3.9-.5L16 29.5l-3.1-2.4-3.9.5-1.5-3.6-3.6-1.5.5-3.9L2.5 16l2.4-3.1-.5-3.9 3.6-1.5 1.5-3.6 3.9.5z" fill="#D8FF3D"/><path d="m11 16.4 3.3 3.3 6.7-7.4" fill="none" stroke="#121E1D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Signal Certified</b>75% from members, 50+ reports from 30+ people, confidence 60+</span></li><!-- /signal-art:levels --></ol>
-        </div>
-        <a class="btn lime" href="/library/">See every compound’s Signal</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="band lib-band" id="library" aria-labelledby="library-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <div>
-          <p class="kick">// The Library</p>
-          <h2 id="library-h">Every compound, checked.</h2>
-        </div>
-        <p class="sec-note">300 peptides, hormones, supplements and medications.</p>
-      </div>
-      <ul class="lib-points">
-        <li><p class="mono">01</p><h3>Checked against the sources</h3><p>Every claim links to the FDA label, NIH fact sheet or trial it came from, with the kind of evidence behind it.</p></li>
-        <li><p class="mono">02</p><h3>Risks and blood markers</h3><p>The side effects that matter, who should talk to a clinician first, and the labs to know about.</p></li>
-        <li><p class="mono">03</p><h3>Rated by use</h3><p>Joint pain, sleep, fat loss: how each one went for members, use by use, from first-hand reports.</p></li>
-        <li><p class="mono">04</p><h3>The live Signal</h3><p>What people who took it report, next to what the studies show. Never mixed together.</p></li>
-      </ul>
-      <a class="btn ink" href="/library/">Open the library</a>
-    </div>
-  </section>
-
-  <section class="band ink-band ai-band" id="ai" aria-labelledby="ai-h">
-    <div class="wrap ai-band-in">
-      <div>
-        <p class="kick lime">// Miracle AI</p>
-        <h2 id="ai-h">Talk it through with the whole community.</h2>
-        <p class="ai-band-lede">Ask about a goal, a compound or a combination. Miracle AI answers with what the studies show and what members and the public forums report, and says which is which: where the studies run out, the community’s reports lead. Every answer is checked before it reaches you. No doses, no sellers, no account needed.</p>
-        <a class="btn lime" href="/ai/">Ask Miracle AI</a>
-      </div>
-      <ol class="ai-band-agents" aria-label="How each answer is made, and who decides">
-        <li><b>Safety agent</b><span>Reads your message first: emergencies, medicines, conditions.</span></li>
-        <li><b>Recommender</b><span>Asks what it needs to know, then reads the studies in the Library’s fact sheets.</span></li>
-        <li class="is-community"><b>The community</b><span>What members report first-hand and the forums say, in totals. It leads where the studies run out.</span></li>
-        <li><b>Synergy auditor</b><span>Checks them together with what you already take.</span></li>
-        <li><b>Stack builder</b><span>Lays out a shortlist to discuss with your clinician.</span></li>
-        <li><b>Your clinician</b><span>Your own, outside Miracle Health: take them your review packet. They have the final word.</span></li>
-      </ol>
+        <footer class="vs-foot">
+          <p>Plenty of people say it helped. The studies are mostly in animals, and many of these problems ease on their own anyway. Every fact sheet in the Library lays it out the same way.</p>
+          <div class="vs-act">
+            <a class="btn lime" href="/library/bpc157/" data-v="link">See BPC-157 in the Library</a>
+            <p class="vs-when" data-v="when">As it stood in November 2026</p>
+          </div>
+        </footer>
+      </article>
     </div>
   </section>
 
@@ -318,30 +239,68 @@
       <div class="sec-head">
         <div>
           <p class="kick">// House rules</p>
-          <h2 id="rules-h">Experiences, not medical advice.</h2>
+          <h2 id="rules-h">What we won’t do.</h2>
         </div>
-        <p class="sec-note">Miracle AI reads every new post against the rules. Moderators read every report.</p>
+        <p class="sec-note">Our rules, and Miracle AI’s.</p>
       </div>
       <ul class="rules">
-        <li><p class="mono">01</p><h3>No sourcing, no selling</h3><p>Nobody asks or tells where to buy, names sellers, or offers anything.</p></li>
-        <li><p class="mono">02</p><h3>What you did, not what others should do</h3><p>Share your own experience. Nobody here is anyone’s doctor.</p></li>
-        <li><p class="mono">03</p><h3>Be honest</h3><p>Including when something did nothing. One person, one account.</p></li>
-        <li><p class="mono">04</p><h3>Adults only</h3><p>Members are 18 or older.</p></li>
+        <li><h3>Sell you anything</h3><p>No shop, no sellers, no ads and no affiliate links. Nobody here says where to buy, and posts that try are taken down.</p></li>
+        <li><h3>Tell you a dose</h3><p>Not for any compound. The right dose depends on you and what else you take, so it’s a conversation for your prescriber.</p></li>
+        <li><h3>Hide the sources</h3><p>Every claim links to where it came from, and <a href="/method/">how every Signal is made</a> is public.</p></li>
+        <li><h3>Let the numbers be gamed</h3><p>Copies, repeat posts and sudden bursts of reports are held out. Points go to taking part, never to results.</p></li>
       </ul>
+      <p class="rules-members"><b>In the community, members agree to:</b> no sourcing or selling; share what you did, not what others should do; be honest, even when something did nothing; adults 18 and over, one account each.</p>
+    </div>
+  </section>
+
+  <section class="band faq" id="faq" aria-labelledby="faq-h">
+    <div class="wrap faq-in">
+      <div class="faq-head">
+        <p class="kick">// Questions</p>
+        <h2 id="faq-h">Straight answers.</h2>
+        <p class="faq-more">Something else? Write to <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Is this medical advice?</summary>
+          <p>No. It’s published research and people’s experiences, always labeled as which is which. Talk to a clinician before you start, stop or change anything.</p>
+        </details>
+        <details>
+          <summary>Do you sell anything?</summary>
+          <p>No. There’s nothing to buy here: no shop, no ads and no affiliate links. Posts that name sellers or say where to buy are taken down.</p>
+        </details>
+        <details>
+          <summary>Where do the numbers come from?</summary>
+          <p>The studies come from FDA documents, NIH fact sheets and published trials, and each claim links to its source. The Community Signal is read from public forums for now, and shifts to members’ own first-hand reports as they add up. <a href="/method/">How the numbers are made</a> walks through every step.</p>
+        </details>
+        <details>
+          <summary>Why won’t you tell me a dose?</summary>
+          <p>The right dose depends on you, your health and what else you take, and for many of these compounds there’s no tested dose in people at all. That’s a conversation for your prescriber. Miracle AI can help you get ready for it with a list of questions to bring.</p>
+        </details>
+        <details>
+          <summary>What happens to what I share?</summary>
+          <p>In the community you sign in with your phone number, and nobody else ever sees it. Posts are visible only to signed-in members, and you can delete your account and everything you wrote at any time. Miracle AI’s chat needs no account, and we don’t store what you write there. We don’t sell your information, show ads or use tracking cookies. <a href="/privacy">Read the privacy notice</a>.</p>
+        </details>
+        <details>
+          <summary>Is it free?</summary>
+          <p>Yes. Reading the Library, asking Miracle AI and joining the community are all free. The community is for adults 18 and over.</p>
+        </details>
+      </div>
     </div>
   </section>
 
   <section class="join" aria-labelledby="join-h">
     <img class="join-photo" src="img/join-1600.webp" srcset="img/join-960.webp 960w, img/join-1600.webp 1600w, img/join-2400.webp 2400w" sizes="100vw" alt="" width="2400" height="1600" loading="lazy" decoding="async">
     <div class="wrap join-in">
-      <h2 id="join-h">Your report moves the number.</h2>
-      <p class="lede">Free to join, for adults 18 and over. Sign in with your phone number.</p>
-      <div class="join-cards">
-        <div class="glass deep"><p class="mono">// Free</p><h3>No fees, no ads, no sellers</h3><p>Nobody here sells anything or says where to buy it.</p></div>
-        <div class="glass deep"><p class="mono">// 18+</p><h3>Adults, one account each</h3><p>Sign in with your phone number. It’s never shown to anyone.</p></div>
-        <div class="glass deep"><p class="mono">// Live</p><h3>Watch the number move</h3><p>Every first-hand report recalculates the compound’s Signal.</p></div>
-      </div>
+      <h2 id="join-h">Took something? Say how it went.</h2>
+      <p class="lede">Your report moves the number for the next person, even if it did nothing. Free, for adults 18 and over.</p>
+      <ol class="join-steps">
+        <li class="glass deep"><p class="mono">01</p><h3>Share how it went</h3><p>What you took it for, for how long, and whether things got better, stayed the same or got worse.</p></li>
+        <li class="glass deep"><p class="mono">02</p><h3>Check the read</h3><p>Miracle AI shows you what it understood from your report. Fix anything it got wrong: your word wins.</p></li>
+        <li class="glass deep"><p class="mono">03</p><h3>See it count</h3><p>The rating for that use updates, and you’re asked how it’s going at 2, 6 and 12 weeks.</p></li>
+      </ol>
       <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
+      <p class="join-note">Sign in with your phone number. It’s never shown to anyone.</p>
     </div>
   </section>
 </main>
@@ -353,7 +312,7 @@
       <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/method/">How the numbers are made</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
-      <p>Experiences, not medical advice. In a crisis, call or text 988 (US).</p>
+      <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
       <p class="copy">© 2026 Miracle Health</p>
     </div>
   </div>

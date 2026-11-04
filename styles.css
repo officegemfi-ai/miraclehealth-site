@@ -1,8 +1,9 @@
 /* Miracle Health (miraclehealth.us)
    AlgoRx's look: deep green-black and near-white paper, one lime accent, photography,
    frosted glass cards, Inter headlines, Plus Jakarta Sans text and IBM Plex Mono labels.
-   The photo at the top is shown exactly as supplied. No scripts on these pages; the library
-   (library/) adds its own styles and a small script for search and live numbers. */
+   The photo at the top is shown exactly as supplied. The front page's one script (home.js)
+   brings its real example up to date; the library (library/) adds its own styles and a small
+   script for search and live numbers. */
 
 @font-face{font-family:'Inter';src:url('fonts/inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:'Plus Jakarta Sans';src:url('fonts/jakarta.woff2') format('woff2');font-weight:200 800;font-display:swap}
@@ -89,6 +90,20 @@ ul,ol{list-style:none;margin:0;padding:0}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .btn.line{border-color:rgba(18,30,29,.5);color:var(--ink)}
 .btn.line:hover{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+/* The hero's search goes straight to the Library (it reads ?q=), with a few compounds to jump to */
+.hero h1{max-width:11.5em}
+.hero-search{display:flex;align-items:center;gap:8px;width:min(540px,100%);margin-top:30px;padding:6px;border-radius:40px;background:var(--white);box-shadow:0 0 0 1px rgba(18,30,29,.14),0 24px 48px -28px rgba(12,20,19,.55)}
+.hero-search:focus-within{box-shadow:0 0 0 2px var(--ink),0 24px 48px -28px rgba(12,20,19,.55)}
+.hero-search input{flex:1;min-width:0;height:48px;padding:0 8px 0 18px;border:0;border-radius:40px;background:transparent;font:500 16px/1 var(--body);color:var(--ink);-webkit-appearance:none;appearance:none}
+.hero-search input::placeholder{color:#737977;opacity:1}
+.hero-search input:focus{outline:none}
+.hero-search .btn{min-height:48px;padding:0 26px}
+.hero-try{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:560px;margin-top:16px}
+.hero-try span{margin-right:4px;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#3F4A48}
+.hero-try a{padding:8px 12px;border-radius:40px;border:1px solid rgba(18,30,29,.3);background:rgba(255,255,255,.4);font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:background-color .15s,border-color .15s,color .15s}
+.hero-try a:hover{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.hero-ask{margin-top:18px;font-size:15px;color:#2B3534}
+.hero-ask a{font-weight:600;color:var(--ink);text-decoration-thickness:1.5px}
 /* The hero card: a small instrument. Deep glass, a live dot, Sig, and the 0-100 scale with a
    marker that drifts the way a Signal moves as reports come in */
 .hero-card{position:absolute;right:max(40px,4vw);top:calc(var(--top-h) + 32px);width:340px;padding:22px 22px 18px;border-radius:20px;color:var(--on-ink);
@@ -141,7 +156,13 @@ ul,ol{list-style:none;margin:0;padding:0}
 .step h3{margin-top:12px;font-size:28px;line-height:1.1;letter-spacing:-.025em}
 .step h3+p{margin-top:12px;font-size:15px;line-height:1.6;color:var(--on-ink-2)}
 .step.ai::after{background:radial-gradient(75% 45% at 50% 26%,rgba(216,255,61,.13),rgba(216,255,61,0) 70%),linear-gradient(180deg,rgba(8,12,11,0) 45%,rgba(8,12,11,.6) 100%)}
-.ai-visual{position:absolute;top:44px;left:24px;right:24px;display:flex;flex-direction:column;align-items:center}
+/* Each card's link covers the whole card */
+.step-link{align-self:flex-start;margin-top:20px;padding-bottom:4px;border-bottom:1px solid var(--lime);font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink);text-decoration:none;transition:color .15s}
+.step-link::after{content:'';position:absolute;inset:0;border-radius:inherit}
+.step:hover .step-link{color:var(--lime)}
+/* Sig and its example read sit at the top of the card, in the flow, so a longer text below
+   pushes the card taller instead of running into them */
+.ai-visual{display:flex;flex-direction:column;align-items:center;margin:14px 0 auto;padding-bottom:28px}
 .read-label{margin-top:22px;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}
 .chips span{padding:8px 12px;border-radius:40px;border:1px solid rgba(255,255,255,.22);background:rgba(16,24,22,.34);font:500 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink)}
@@ -153,42 +174,45 @@ ul,ol{list-style:none;margin:0;padding:0}
   radial-gradient(55% 45% at 18% 0%,rgba(216,255,61,.1),rgba(216,255,61,0) 62%),
   radial-gradient(45% 55% at 92% 100%,rgba(155,227,90,.07),rgba(155,227,90,0) 60%)}
 .ink-band .sec-note{color:var(--on-ink-3)}
-.signal-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:64px;align-items:start;margin-top:60px}
-.facts li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:6px 12px;padding:28px 0;border-top:1px solid var(--line-ink)}
-.facts li:last-child{border-bottom:1px solid var(--line-ink)}
-.facts .num{grid-row:span 2;padding-top:5px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;color:var(--lime)}
-.facts h3{font-size:23px;line-height:1.2;letter-spacing:-.02em}
-.facts p{font-size:15.5px;color:var(--on-ink-2)}
 
-/* The Signal, read: an example card, the takeover line and the levels */
-.use-card .ex-top{display:flex;align-items:flex-end;gap:8px;margin-top:18px}
-.use-card .ex-top b{font:600 64px/.9 var(--head);letter-spacing:-.05em}
-.use-card .ex-top .of{margin-bottom:6px;font:500 14px var(--mono);color:var(--on-ink-3)}
-.ex-scale{height:6px;margin-top:16px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}
-.ex-scale span{display:block;width:78%;height:100%;border-radius:4px;background:var(--scale)}
-.ex-cap,.ex-kick{margin-top:12px;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-2)}
-.ex-kick{margin-top:26px;padding-top:18px;border-top:1px solid var(--line-ink)}
-.uses-ex{display:grid;gap:16px;margin:14px 0 0}
-.uses-ex div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 16px;align-items:start}
-.uses-ex dt{font-size:16px;font-weight:600;line-height:1.35}
-.uses-ex dt span{display:block;margin-top:3px;font:500 10.5px/1.5 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--on-ink-3)}
-.uses-ex dd{margin:0;font:600 16px/1.35 var(--mono);color:var(--lime)}
-.uses-ex .wait dd{color:var(--on-ink-3)}
-.uses-ex div::after{content:'';grid-column:1/-1;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--lime) 0 var(--w),rgba(255,255,255,.12) var(--w) 100%)}
-.uses-ex .wait::after{background:repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 5px,transparent 5px 10px)}
-.u82{--w:82%}.u76{--w:76%}.u61{--w:61%}
-.ex-note{margin-top:20px;font-size:13px;color:var(--on-ink-3)}
-.signal-grid .facts{align-self:start}
-.cert-panel{margin-top:16px}
-.cert-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 48px}
-.cert-head h3{margin-top:14px;max-width:18ch;font-size:clamp(26px,2.6vw,34px);line-height:1.1;letter-spacing:-.025em}
-.cert-head>p{max-width:46ch;font-size:15.5px;color:var(--on-ink-2)}
-.cert-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:28px}
-.takeover-box svg{display:block;width:100%;height:auto}
-.levels{display:grid;gap:14px}
-.levels li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:14px;align-items:center;font-size:14px;line-height:1.45;color:var(--on-ink-2)}
-.levels b{display:block;font:600 15.5px var(--head);color:var(--on-ink)}
-.cert-panel .btn{margin-top:30px}
+/* "Popular isn't the same as proven": one real compound from the Library, the studies and the
+   reports side by side, and how many get better on a placebo. The page is published with the
+   numbers as they stood; home.js brings them up to date and draws the bars in once, as the card
+   comes into view */
+.vs{margin-top:60px;border-radius:22px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(30,42,40,.62),rgba(10,16,15,.72));box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 40px 80px -48px rgba(0,0,0,.7)}
+.vs-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px 56px;padding:36px 40px 32px}
+.vs-id h3{font-size:clamp(40px,4.4vw,60px);line-height:.95;letter-spacing:-.045em}
+.vs-status{display:inline-block;margin-top:16px;padding:7px 13px;border-radius:40px;border:1px solid rgba(255,255,255,.2);font:500 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--on-ink-2)}
+.vs-sig{flex:0 1 400px;min-width:min(100%,280px)}
+.vs-k,.vs-cap,.vs-when{font:500 10.5px/1.5 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--on-ink-3)}
+.vs-score{display:flex;align-items:flex-end;gap:8px;margin-top:8px}
+.vs-score b{font:600 60px/.9 var(--head);letter-spacing:-.05em;color:var(--lime)}
+.vs-score .of{margin-bottom:5px;font:500 14px var(--mono);color:var(--on-ink-3)}
+.vs-lvl{display:inline-flex;align-items:center;gap:8px;margin:0 0 4px auto;font:500 10.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-2)}
+.vs .sig-bar{margin-top:16px}
+.vs-cap{margin-top:10px;color:var(--on-ink-2)}
+.vs-cols,.vs-row{display:grid;grid-template-columns:minmax(130px,.6fr) minmax(0,1.3fr) minmax(0,.9fr) minmax(0,1.15fr);gap:0 36px;padding:0 40px}
+.vs-cols{padding-top:14px;padding-bottom:14px;border-top:1px solid var(--line-ink);font:500 10.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
+.vs-cols .c-rep{color:var(--lime)}
+.vs-row{padding-top:26px;padding-bottom:28px;border-top:1px solid var(--line-ink)}
+.vs-use{margin:0;font:600 19px/1.25 var(--head);letter-spacing:-.015em}
+.vs-lbl{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vs-v{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:600 15.5px/1.35 var(--head);color:var(--on-ink)}
+.vs-cell.rep .vs-v{color:var(--lime)}
+.vs-cell.pl .vs-v b{font:600 34px/1 var(--head);letter-spacing:-.03em}
+.vs-cell.pl .vs-bar{margin-top:12px}
+.vs-sub{margin-top:8px;font-size:14px;line-height:1.55;color:var(--on-ink-2)}
+.vs-sub a{color:var(--on-ink);font-weight:600;text-decoration-color:rgba(216,255,61,.7)}
+.vs-sub a:hover{color:var(--lime)}
+.vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;padding:28px 40px 34px;border-top:1px solid var(--line-ink)}
+.vs-foot>p{max-width:58ch;font-size:16px;line-height:1.6;color:var(--on-ink-2)}
+.vs-act{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.vs-bar{display:block;width:100%;height:6px;border-radius:3px;overflow:hidden}
+.vs-bar .tr{fill:rgba(255,255,255,.13)}
+.pl-bar .fi{fill:rgba(252,252,252,.6)}
+.vs.js-anim .fi{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.vs.js-anim.on .fi{transform:scaleX(1)}
+.vs-row:nth-child(1) .fi{transition-delay:.25s}.vs-row:nth-child(2) .fi{transition-delay:.4s}.vs-row:nth-child(3) .fi{transition-delay:.55s}.vs-row:nth-child(n+4) .fi{transition-delay:.7s}
 .viz-compact{display:none}
 .t-mono{font-family:var(--mono);font-weight:500}
 .t-head{font-family:var(--head);font-weight:600;letter-spacing:-.02em}
@@ -197,22 +221,33 @@ ul,ol{list-style:none;margin:0;padding:0}
 .takeover .pulse{animation:dotpulse 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes dotpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2);opacity:0}}
 
-/* House rules: white cards on paper */
+/* House rules, as what we won't do: white cards on paper, each with a crossed-out mark */
 .rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:60px}
-.rules li{display:flex;flex-direction:column;gap:12px;min-height:220px;padding:28px;border-radius:14px;border:1px solid var(--line);background:var(--white);transition:border-color .2s,transform .2s}
-.rules li:hover{border-color:rgba(18,30,29,.3);transform:translateY(-2px)}
-.rules .mono{color:var(--muted)}
-.rules h3{margin-top:26px;font-size:21px;line-height:1.2;letter-spacing:-.02em}
+.rules li{display:flex;flex-direction:column;gap:12px;min-height:220px;padding:28px;border-radius:14px;border:1px solid var(--line);background:var(--white)}
+.rules h3{position:relative;padding-top:58px;font-size:21px;line-height:1.2;letter-spacing:-.02em}
+.rules h3::before,.rules h3::after{content:'';position:absolute;box-sizing:border-box}
+.rules h3::before{top:0;left:0;width:34px;height:34px;border-radius:50%;border:2.5px solid var(--ink);background:var(--lime)}
+.rules h3::after{top:16px;left:5px;width:24px;height:2.5px;border-radius:2px;background:var(--ink);transform:rotate(45deg)}
 .rules h3+p{font-size:15px;color:var(--text-2)}
+.rules a,.rules-members a{color:var(--ink);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
+.rules-members{max-width:86ch;margin-top:28px;font-size:15.5px;line-height:1.6;color:var(--text-2)}
+.rules-members b{font-weight:600;color:var(--text)}
 
-/* The Library: white cards on paper, like the rules */
-.lib-band{padding-bottom:40px;border-top:1px solid var(--line)}
-.lib-points{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:60px}
-.lib-points li{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:14px;border:1px solid var(--line);background:var(--white)}
-.lib-points .mono{color:var(--muted)}
-.lib-points h3{margin-top:22px;font-size:21px;line-height:1.2;letter-spacing:-.02em}
-.lib-points h3+p{font-size:15px;color:var(--text-2)}
-.lib-band .btn{margin-top:32px}
+/* Questions: the heading stays in view beside the answers on wide screens */
+.faq{background:var(--white);border-top:1px solid var(--line)}
+.faq-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px 80px;align-items:start}
+.faq-head{position:sticky;top:calc(var(--top-h) + 40px)}
+.faq-head h2{margin-top:16px;font-size:clamp(36px,4.6vw,60px);line-height:1.02;letter-spacing:-.035em}
+.faq-more{margin-top:22px;font-size:15.5px;color:var(--text-2)}
+.faq-more a,.faq-list a{color:var(--ink);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line)}
+.faq-list summary{position:relative;display:block;padding:26px 52px 26px 0;font:600 20px/1.3 var(--head);letter-spacing:-.015em;cursor:pointer;list-style:none}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:'';position:absolute;top:50%;right:10px;width:10px;height:10px;margin-top:-8px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s,margin-top .2s}
+.faq-list details[open] summary::after{margin-top:-3px;transform:rotate(-135deg)}
+.faq-list summary:hover{color:#000}
+.faq-list details p{max-width:62ch;padding:0 52px 28px 0;font-size:16.5px;line-height:1.65;color:var(--text-2)}
 
 /* Join: the darkest band over a muted gym photo, a lime glow from the top, frosted cards.
    The photo is toned down and cooled toward the brand's green-black, darkest behind the words,
@@ -224,29 +259,14 @@ ul,ol{list-style:none;margin:0;padding:0}
   linear-gradient(180deg,var(--darker) 0,rgba(12,20,19,0) 24%,rgba(12,20,19,0) 70%,var(--darker) 100%),
   radial-gradient(56% 50% at 50% 42%,rgba(12,20,19,.8) 0%,rgba(12,20,19,.62) 55%,rgba(12,20,19,.42) 100%)}
 .join-in{display:flex;flex-direction:column;align-items:center;padding-top:130px;padding-bottom:130px}
-.join h2{margin-top:0;max-width:13ch;font-size:clamp(40px,5.6vw,72px);line-height:1;letter-spacing:-.04em}
+.join h2{margin-top:0;max-width:16ch;font-size:clamp(40px,5.6vw,72px);line-height:1;letter-spacing:-.04em}
 .join .lede{text-align:center}
-.join-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%;margin-top:64px;text-align:left}
-.join-cards .mono{color:var(--lime)}
-.join-cards h3{margin-top:16px;font-size:22px;line-height:1.2;letter-spacing:-.02em}
-.join-cards h3+p{margin-top:10px;font-size:15px;color:var(--on-ink-2)}
+.join-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;width:100%;margin-top:64px;text-align:left}
+.join-steps .mono{color:var(--lime)}
+.join-steps h3{margin-top:16px;font-size:22px;line-height:1.2;letter-spacing:-.02em}
+.join-steps h3+p{margin-top:10px;font-size:15px;color:var(--on-ink-2)}
 .join .btn{margin-top:52px}
-
-/* ---------------------------------------------------------------- Miracle AI, on the front page
-   The five agents as one fibre: each node lights the strand to the next; the clinician's
-   node stays open (always pending) */
-.ai-band-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px;align-items:center}
-.ai-band h2{margin-top:16px;max-width:14ch;font-size:clamp(36px,4.6vw,60px);line-height:1.02;letter-spacing:-.035em}
-.ai-band-lede{margin-top:22px;max-width:46ch;font-size:18px;line-height:1.6;color:var(--on-ink-2)}
-.ai-band .btn{margin-top:32px}
-.ai-band-agents{display:grid;gap:6px;padding:26px 28px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
-.ai-band-agents li{position:relative;display:grid;gap:3px;padding:10px 0 10px 42px}
-.ai-band-agents li::before{content:'';position:absolute;left:6px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 5px rgba(216,255,61,.12)}
-.ai-band-agents li:last-child::before{background:transparent;border:2px dashed var(--on-ink-2);box-shadow:none}
-.ai-band-agents li.is-community::before{background:radial-gradient(circle,var(--lime) 0 3px,transparent 3.5px),var(--ink);border:2px solid var(--lime);box-sizing:border-box}
-.ai-band-agents li:not(:last-child)::after{content:'';position:absolute;left:11px;top:30px;bottom:-12px;width:4px;background:linear-gradient(90deg,var(--lime) 0 1px,transparent 1px 3px,var(--lime) 3px 4px);opacity:.75}
-.ai-band-agents b{font:600 17px/1.3 var(--head);letter-spacing:-.01em;color:var(--on-ink)}
-.ai-band-agents span{font-size:14.5px;line-height:1.5;color:var(--on-ink-2)}
+.join-note{margin-top:16px;font-size:14px;color:var(--on-ink-3)}
 
 /* ---------------------------------------------------------------- privacy and terms */
 .doc-head{background:var(--darker);color:var(--on-ink);position:relative;isolation:isolate;overflow:hidden;--focus:var(--lime)}
@@ -292,7 +312,13 @@ ul,ol{list-style:none;margin:0;padding:0}
   .hero-card{display:none}
 }
 @media (max-width:1100px){
-  .rules,.lib-points{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* The example: no column heads; each use's name above its three answers, each labeled */
+  .vs-cols{display:none}
+  .vs-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 28px}
+  .vs-use{grid-column:1/-1}
+  .vs-lbl{position:static;width:auto;height:auto;margin:0 0 8px;overflow:visible;clip:auto;white-space:normal;font:500 10.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
+  .vs-cell.rep .vs-lbl{color:var(--lime)}
 }
 /* Phones and tall screens: the whole photo, then the words on the dark below it */
 @media (max-width:900px),(max-aspect-ratio:5/4){
@@ -306,6 +332,13 @@ ul,ol{list-style:none;margin:0;padding:0}
   .hero .btn.line{border-color:rgba(255,255,255,.3);color:var(--on-ink)}
   .hero .btn.line:hover{background:transparent;border-color:var(--lime);color:var(--lime)}
   .hero-card{display:none}
+  .hero-search,.hero-search:focus-within{box-shadow:none}
+  .hero-search:focus-within{outline:2px solid var(--lime);outline-offset:3px}
+  .hero-try span{color:var(--on-ink-3)}
+  .hero-try a{border-color:rgba(255,255,255,.26);background:transparent;color:var(--on-ink)}
+  .hero-try a:hover{border-color:var(--lime);background:transparent;color:var(--lime)}
+  .hero-ask{color:var(--on-ink-2)}
+  .hero-ask a{color:var(--on-ink);text-decoration-color:var(--lime)}
 }
 @media (max-width:900px){
   :root{--top-h:60px}
@@ -333,15 +366,18 @@ ul,ol{list-style:none;margin:0;padding:0}
   .menu-close span::after{transform:rotate(-45deg)}
   .band{padding:80px 0}
   .sec-note{text-align:left;max-width:none}
-  .steps,.signal-grid,.join-cards,.cert-grid{grid-template-columns:1fr}
-  .ai-band-in{grid-template-columns:1fr;gap:40px}
-  .cert-grid{gap:28px}
+  .steps,.join-steps{grid-template-columns:1fr}
   .steps{margin-top:40px}
   .step{min-height:460px;padding:24px}
-  .signal-grid{gap:40px;margin-top:40px}
+  .vs{margin-top:40px}
+  .vs-head{padding:28px 24px 24px}
+  .vs-row{padding:22px 24px 26px}
+  .vs-foot{padding:24px 24px 28px}
   .rules{margin-top:40px}
+  .faq-in{grid-template-columns:1fr;gap:28px}
+  .faq-head{position:static}
   .join-in{padding-top:90px;padding-bottom:90px}
-  .join-cards{margin-top:44px}
+  .join-steps{margin-top:44px}
   /* On narrow screens the section is tall, so the photo sits behind the heading only and fades out */
   .join-photo{bottom:auto;height:clamp(540px,125vw,900px);object-position:62% 50%;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);mask-image:linear-gradient(180deg,#000 62%,transparent)}
   .join::before{background:
@@ -350,13 +386,21 @@ ul,ol{list-style:none;margin:0;padding:0}
 }
 @media (max-width:640px){
   .viz-wide{display:none}.viz-compact{display:block}
+  .vs-row{grid-template-columns:1fr;gap:20px}
+  .vs-act{align-items:stretch;width:100%}
+  .vs-act .btn{width:100%}
+  .vs-when{text-align:center}
 }
 @media (max-width:600px){
   .lede{font-size:16.5px}
   .cta .btn{flex:1 1 auto}
-  .rules,.lib-points{grid-template-columns:1fr}
+  .hero h1 br{display:none}
+  .hero-search .btn{padding:0 20px}
+  .rules{grid-template-columns:1fr}
   .rules li{min-height:0}
-  .rules h3{margin-top:10px}
+  .faq-list summary{padding:22px 40px 22px 0;font-size:18px}
+  .faq-list summary::after{right:6px}
+  .faq-list details p{padding-right:0;font-size:16px}
   .strip-in{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;padding-top:20px;padding-bottom:20px;font-size:10.5px}
   .glass.deep{padding:24px 22px 26px}
   .join .btn{width:100%}

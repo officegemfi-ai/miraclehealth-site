@@ -95,7 +95,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // into their import lines, so a new script never runs with an old copy of either
 const KIT_JS = version('kit/kit.js');
 const VIZ_JS = version('library/signalviz.js');
-for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js']) {
+for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js']) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
   const was = fs.readFileSync(file, 'utf8');
@@ -112,6 +112,7 @@ const V = {
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
   myCss: version('my/my.css'), myJs: version('my/my.js'),
+  home: version('home.js'),
 };
 
 // The library's banner photo, in three widths
@@ -860,16 +861,20 @@ ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}
 </urlset>
 `);
 
-// The front page's Signal section draws the takeover line and the levels with the same code
+// The front page: wherever it marks them, the Library's own counts (so a number on the front page
+// is never older than the Library), and the Signal's drawings made with the same code as the
+// Library's. Each marker pair is filled in place and kept, so the next build fills it again.
 const frontFile = path.join(ROOT, 'index.html');
-const fill = (html, key, inner) => {
-  const re = new RegExp(`(<!-- signal-art:${key} -->)[\\s\\S]*?(<!-- /signal-art:${key} -->)`);
-  if (!re.test(html)) throw new Error(`index.html has no signal-art:${key} markers`);
-  return html.replace(re, (_, a, b) => `${a}${inner}${b}`);
-};
+const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\s\\S]*?(<!-- /${key} -->)`, 'g'), (_, a, b) => `${a}${inner}${b}`);
 let front = fs.readFileSync(frontFile, 'utf8');
-front = fill(front, 'takeover', `<div class="viz-wide">${takeoverSvg({ w: 50, max: 300 })}</div><div class="viz-compact">${takeoverSvg({ w: 50, max: 300 }, { compact: true })}</div>`);
-front = fill(front, 'levels', LEVELS.map((l) => `<li>${sealSvg(l.key, 30)}<span><b>${e(l.name)}</b>${e(l.rule)}</span></li>`).join(''));
+front = fill(front, 'count:compounds', String(catalog.length));
+front = fill(front, 'count:sheets', String(entries.size));
+front = fill(front, 'signal-art:takeover', `<div class="viz-wide">${takeoverSvg({ w: 50, max: 300 })}</div><div class="viz-compact">${takeoverSvg({ w: 50, max: 300 }, { compact: true })}</div>`);
+front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key, 30)}<span><b>${e(l.name)}</b>${e(l.rule)}</span></li>`).join(''));
+// The real example's level seal sits beside the level's name, so it's only a picture
+front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true"'));
+// Its one script, by its version
+front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
 // Its Sigs are the kit's, drawn on the dark hero and the "Miracle AI reads it" step
 const SIGS = [[50, 'idle', 'hsig1'], [104, 'watching', 'hsig2']];
 let sigN = 0;

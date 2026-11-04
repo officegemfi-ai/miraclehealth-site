@@ -16,7 +16,8 @@ set to. On phones the links sit behind a Menu button, which works without script
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The front page |
+| `index.html` | The front page: "Peptides, without the sales pitch." A search box straight into the Library, what the Library, the Community Signal and Miracle AI each do, one real compound (BPC-157) with the studies, what people report and the placebo figures side by side, what we won't do, questions and joining. The counts marked `<!-- count:… -->` are filled in by the library build, so they always match the Library |
+| `home.js` | The front page's one script: brings the real compound's Community Signal, what people report and the placebo figures up to date from the community's public files, and draws its bars in once. What the studies show is written into `index.html` from the fact sheet, caveats included; without the script the page keeps what it was published with |
 | `ai/` | Miracle AI, the chat at /ai: `index.html` (written by the library build), `ai.css` and `ai.js`. People talk about improving with peptides, supplements and hormones; the answers come from the community's `ask` function (miracle-health-community, `supabase/functions/ask`), streamed with each agent's steps. Every answer speaks for two voices and says which is which: what the studies show (the Library's fact sheets, drawn on paper) and what the community reports (the Community Signal's totals from members' first-hand reports and public forum data, drawn in ink and lime). Where the studies don't answer the question, the community's reports lead; each compound shows both side by side, a question about what the community rates highest gets its list (reports, not recommendations), and each answer ends with what it was drawn from. The first screen shows the live crowd from the community's public snapshot. The conversation stays in the visitor's browser tab. `packet.js` and `packet.css` make the clinician review packet in the browser (print or PDF, or a link and QR code that carry it after "#" to `ai/packet/`, which a clinician opens; no server ever receives it); `vendor/qrcode.js` is qrcode-generator 2.0.4 (MIT), loaded only when someone asks for a code |
 | `styles.css` | Its look (the page's security policy allows only its own files, so no inline styles) |
 | `kit/` | Miracle Health's design kit, shared with the community app so the two look like one product: `kit.css` (the palette and type, Sig's moves) and `kit.js` (the bar of the four places on every page, Library · Miracle AI · Community · My Miracle; the evidence meter; the Community Signal number; compound tiles and chips; Sig; and the links one place opens in another, like a question typed into Miracle AI or a check-in drafted as a community post). Copied from the community's `shared/kit` by its `scripts/sync_kit.sh`; the community's checks fail if the copies here differ. Don't edit them here. The library build writes the bar, menu and footer into every page, the hand-written ones too, and the kit's version into every script that imports it |
@@ -61,8 +62,10 @@ one address.
 Edit `index.html` on GitHub (the pencil icon) and commit. The site updates in a minute
 or two.
 
-The "Now open" line above the headline at the top and the dark band near the bottom
-say the community is open and free for adults; change them there if that changes.
+The line above the headline at the top, the questions near the bottom and the dark band
+under them say the site is independent and free for adults; change them there if that
+changes. The real compound's "What the studies show" column is copied from its fact sheet
+(`library/data/entries/bpc157.json`); update it there too when the fact sheet changes.
 
 To swap a photo, replace the files in `img/` with new ones of the same names and sizes
 (the top photo is 2400, 1600 and 960 pixels wide; the other two are 760 and 480 wide,
