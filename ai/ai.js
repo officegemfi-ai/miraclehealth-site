@@ -1,4 +1,4 @@
-// Miracle AI (miraclehealth.us/ai): the chat. The conversation lives only in this browser
+// Ask Sig (miraclehealth.us/ai): the chat with Sig, Miracle Health's AI. The conversation lives only in this browser
 // tab (sessionStorage). Each message goes to the ask function (the community's Supabase
 // project), which streams back each agent's steps, the answer, the cards, where the answer came
 // from and the final check as server-sent events. Every answer speaks for two voices, drawn in
@@ -6,7 +6,7 @@
 // lime, as in the community itself. Nothing here uses innerHTML for anything the AI or the
 // visitor wrote: text is placed with textContent, and the small amount of formatting the
 // AI uses (bold, lists, Library links) is built node by node.
-import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=aea73e9434';
+import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 
 const app = document.getElementById('ai');
@@ -24,7 +24,6 @@ const newBtn = $('ai-new');
 const railSub = $('rail-sub');
 const LIMIT = 2000;
 const KEY = 'mh-ai-chat-v1';
-const META = 'mh-ai-meta-v1';      // this chat's clinician review mark, kept in the tab like the chat
 const ADULT = 'mh-ai-adult';
 const STACK = 'mh-ai-stack-v1';    // their stack, kept on this device only if they ask
 const QR_SRC = app.dataset.qr;
@@ -33,7 +32,7 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 
 const AGENT_NAME = {
   safety: 'Safety agent', recommender: 'Recommender', community: 'The community', synergy: 'Synergy auditor', builder: 'Stack builder',
-  review: 'Safety agent', clinician: 'Your clinician',
+  review: 'Safety agent',
 };
 const RAIL_KEY = { review: 'safety' };
 // Words that may mean someone is in crisis: if an answer can't come through, help still does
@@ -209,11 +208,9 @@ function settle(t) {
 // ---------------------------------------------------------------------------
 // Each message: {role:'user', text} or {role:'assistant', parts:[{t:'text',s}|{t:'card',card}],
 // steps:[...], review, memo, ms, state:'done'|'stopped'|'error', error}
-let chat = store.get(KEY) || [];
+let chat = (store.get(KEY) || []).map((m) => (m.role === 'assistant' && Array.isArray(m.steps) ? { ...m, steps: m.steps.filter((s) => s.agent !== 'clinician') } : m));
 let busy = null;            // {controller, msg}
 let adult = store.get(ADULT, 'local') === true;
-let meta = store.get(META) || {};
-const saveMeta = () => store.set(META, meta);
 const save = () => store.set(KEY, chat.map((m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined })));
 
 // The first screen (a greeting, the box, four ways in) or the conversation
@@ -452,7 +449,6 @@ function shortlistNode(card) {
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
   if (card.kind === 'yours') el.append(stackSaveRow(card));
-  el.append(h('div', { class: `review-line${meta.reviewed ? ' done' : ''}` }, ...reviewLine()));
   return el;
 }
 // One option: its two voices side by side (what the studies show for what was asked, what the
@@ -882,139 +878,8 @@ function closeIntakes() {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Clinician review: a packet the visitor takes to their own clinician (ai/packet.js makes it, in
-// this browser), and their own mark once a clinician has reviewed it
-// ---------------------------------------------------------------------------
-const reviewedOn = () => (meta.reviewed ? window.MHPacket?.dateLabel(meta.reviewed) || meta.reviewed : '');
-function packetButton(label) {
-  const b = h('button', { class: 'mini pk-open', type: 'button' }, svg(ICON.doc), h('span', { text: label }));
-  b.addEventListener('click', () => openPacket(b));
-  return b;
-}
-function reviewLine() {
-  return [svg(meta.reviewed ? ICON.check : ICON.clock),
-    h('span', { text: meta.reviewed ? `Your clinician: reviewed (you marked it on ${reviewedOn()}).` : 'Your clinician hasn’t seen this yet.' }),
-    packetButton('Prepare packet')];
-}
-function refreshReview() {
-  document.querySelectorAll('.card .review-line').forEach((el) => { el.classList.toggle('done', !!meta.reviewed); el.replaceChildren(...reviewLine()); });
-  railFromChat();
-}
+// Today, as the date a saved stack carries
 const localDate = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
-
-let dialog = null;
-function openPacket(opener) {
-  const P = window.MHPacket;
-  if (!P) return;
-  const packet = P.fromChat(chat);
-  packet.reason = meta.reason || '';
-  if (dialog) dialog.close();
-  const close = h('button', { class: 'pk-close', type: 'button', 'aria-label': 'Close the packet' }, svg(ICON.close));
-  const body = h('div', { class: 'pk-scroll' });
-  if (P.isEmpty(packet)) {
-    body.append(h('div', { class: 'pk-empty' },
-      h('h2', { id: 'packet-h', text: 'Nothing to review yet' }),
-      h('p', { text: 'Ask Miracle AI about a goal or the stack you take. Once it has laid out your stack, options or questions for your clinician, they’re gathered here.' })));
-  }
-  // The buttons stay at the top, outside what scrolls
-  let actions = null;
-  if (!P.isEmpty(packet)) {
-    const doc = P.render(packet, { level: 2 });
-    const share = shareBox(packet);
-    actions = share.bar;
-    body.append(share.panel, reasonBox(packet, doc), doc, afterBox());
-  }
-  const dlg = h('dialog', { class: 'pk-dialog', 'aria-labelledby': 'packet-h' },
-    h('div', { class: 'pk-bar' }, h('span', { class: 'pk-bar-title', text: 'Your clinician review packet' }), close), actions, body);
-  close.addEventListener('click', () => dlg.close());
-  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
-  dlg.addEventListener('close', () => {
-    document.body.classList.remove('pk-on');
-    dlg.remove();
-    if (dialog === dlg) dialog = null;
-    if (opener?.isConnected) opener.focus();
-  });
-  dialog = dlg;
-  document.body.append(dlg);
-  document.body.classList.add('pk-on');
-  dlg.showModal();
-  close.focus();
-}
-function shareBox(packet) {
-  const P = window.MHPacket;
-  const qrBox = h('div', { class: 'pk-qr', hidden: true });
-  const status = h('p', { class: 'pk-status', role: 'status' });
-  const act = (label, icon, fn) => {
-    const b = h('button', { class: 'pk-act', type: 'button' }, svg(ICON[icon]), h('span', { text: label }));
-    b.addEventListener('click', () => fn(b));
-    return b;
-  };
-  const qrBtn = act('Show QR code', 'qr', async (b) => {
-    if (!qrBox.hidden) { qrBox.hidden = true; b.lastChild.textContent = 'Show QR code'; return; }
-    status.textContent = 'Making the code…';
-    try {
-      const { svg: code } = await P.qrSvg(await P.link(packet), QR_SRC);
-      qrBox.replaceChildren(code, h('p', { text: 'Your clinician scans this with their phone camera to open the packet. It’s carried inside the code itself, so Miracle Health never receives it. Anyone with the code can read it: show it only to your clinician.' }));
-      qrBox.hidden = false;
-      b.lastChild.textContent = 'Hide QR code';
-      status.textContent = '';
-      qrBox.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-    } catch {
-      status.textContent = 'The code couldn’t be made just now. Copy the link or print the packet instead.';
-    }
-  });
-  return {
-    bar: h('div', { class: 'pk-actions', role: 'group', 'aria-label': 'Take it to your clinician' },
-      act('Print or save as PDF', 'print', () => window.print()),
-      qrBtn,
-      act('Copy link', 'link', async (b) => copy(await P.link(packet), b)),
-      act('Copy as text', 'copy', (b) => copy(P.text(packet), b))),
-    panel: h('div', { class: 'pk-share' },
-      h('p', { class: 'pk-share-note', text: 'Made in your browser. Miracle Health doesn’t receive or keep it.' }),
-      status, qrBox),
-  };
-}
-// Why they're going, in their words: it heads the packet (and stays in this tab only)
-function reasonBox(packet, doc) {
-  const field = h('input', { class: 'pk-reason-input', id: 'pk-reason', type: 'text', maxlength: '200', autocomplete: 'off', placeholder: 'For example: a shoulder injury that isn’t healing' });
-  field.value = packet.reason;
-  field.addEventListener('input', () => {
-    packet.reason = field.value.trim();
-    meta.reason = packet.reason;
-    saveMeta();
-    const line = doc.querySelector('.pk-reason');
-    if (line) line.replaceWith(window.MHPacket.render(packet, { level: 2 }).querySelector('.pk-reason'));
-  });
-  return h('div', { class: 'pk-reason-box' }, h('label', { for: 'pk-reason', text: 'Reason for your visit (optional; it heads the packet)' }), field);
-}
-function afterBox() {
-  const mark = h('button', { class: 'pk-reviewed', type: 'button' });
-  const sync = () => {
-    mark.setAttribute('aria-pressed', String(!!meta.reviewed));
-    mark.replaceChildren(svg(ICON.check), h('span', { text: meta.reviewed ? `Reviewed on ${reviewedOn()}` : 'My clinician reviewed this' }));
-  };
-  mark.addEventListener('click', () => {
-    meta.reviewed = meta.reviewed ? null : localDate();
-    saveMeta();
-    sync();
-    refreshReview();
-  });
-  sync();
-  const tell = h('button', { class: 'pk-tell', type: 'button', text: 'Tell Miracle AI what they said' });
-  tell.addEventListener('click', () => {
-    dialog?.close();
-    input.value = 'My clinician reviewed my plan. They said: ';
-    grow();
-    updateSend();
-    input.focus();
-    input.setSelectionRange(input.value.length, input.value.length);
-  });
-  return h('section', { class: 'pk-after', 'aria-labelledby': 'pk-after-h' },
-    h('h3', { id: 'pk-after-h', text: 'After your visit' }),
-    h('p', { text: 'When a licensed clinician has gone through it with you, mark it reviewed. Then tell Miracle AI what they said, and it can help with the next step.' }),
-    h('div', { class: 'pk-after-actions' }, mark, tell));
-}
 
 // ---------------------------------------------------------------------------
 // Their stack, kept on this device only if they ask, so they can come back to it: the
@@ -1104,7 +969,7 @@ function myBox(where) {
   const parts = [];
   if (k) {
     const pr = P.progress(k.card, k.done);
-    const check = h('button', { class: 'saved-check', type: 'button', text: 'Check in with Miracle AI' });
+    const check = h('button', { class: 'saved-check', type: 'button', text: 'Check in with Sig' });
     check.addEventListener('click', () => { if (!busy) ask(P.checkIn(k.card, k.done)); });
     const due = P.checkInDue(k);
     parts.push(h('div', { class: 'my-part' },
@@ -1221,11 +1086,6 @@ function railStep(s) {
 function railDone(msg) {
   railAgents().forEach((a) => { if (!/\b(done|pending|flag|run)\b/.test(a.className)) a.classList.add('unused'); else a.classList.remove('run'); });
   if (railSub) railSub.textContent = msg.state === 'done' ? `Answered in ${(msg.ms / 1000).toFixed(1)} s` : msg.state === 'stopped' ? 'Stopped' : 'Something went wrong';
-  const doc = document.querySelector('.agent-rail .agent[data-agent="clinician"]');
-  if (doc && meta.reviewed) {
-    doc.className = 'agent done reviewed';
-    doc.querySelector('.agent-now').textContent = `Reviewed: you marked it on ${reviewedOn()}`;
-  }
 }
 // The rail as the last answer left it (after a reload, or when the review mark changes)
 function railFromChat() {
@@ -1236,6 +1096,7 @@ function railFromChat() {
   (last.steps || []).forEach(railStep);
   railDone(last);
 }
+let railQuestions = [];
 function railNotes() {
   const box = $('rail-notes');
   if (!box) return;
@@ -1252,6 +1113,7 @@ function railNotes() {
   }
   box.hidden = !chips.size && !qs.length;
   $('rail-chips').replaceChildren(...[...chips].slice(0, 16).map(([id, name]) => (isLib(id) ? h('a', { href: `/library/${id}/`, text: name }) : h('span', { text: name }))));
+  railQuestions = qs.slice(-8);
   $('rail-qs').hidden = !qs.length;
   $('rail-qlist').replaceChildren(...qs.slice(-8).map((q) => h('li', { text: q })));
 }
@@ -1280,7 +1142,7 @@ function grow() {
 }
 
 function history() {
-  // Miracle AI's replies go back with the signature the server gave them
+  // Sig's replies go back with the signature the server gave them
   return chat.filter((m) => m.role === 'user' || (m.memo || '').trim())
     .map((m) => (m.role === 'user' ? { role: 'user', content: m.text } : { role: 'assistant', content: m.memo, sig: m.sig || '' }));
 }
@@ -1351,7 +1213,7 @@ async function run(am) {
       am.memo = textOf(am) ? `${textOf(am)}\n\n[Stopped by the member before the end]` : '';
     } else {
       am.state = 'error';
-      am.error = e.friendly || `Couldn’t reach Miracle AI. Check your connection and try again.${HELP_LINE}`;
+      am.error = e.friendly || `Couldn’t reach Sig. Check your connection and try again.${HELP_LINE}`;
     }
   }
   am.ms = am.ms || Math.round(performance.now() - t0);
@@ -1369,14 +1231,16 @@ async function run(am) {
 const HELP_LINE = ' If you’re thinking about hurting yourself, call or text 988 any time; in an emergency, call 911.';
 const errorText = (status) => (status === 429 ? `Too many messages for now. Please try again later.${HELP_LINE}`
   : status === 413 ? 'That message is too long. Keep it under 2,000 characters.'
-  : status === 403 ? 'Miracle AI only answers on miraclehealth.us.'
-  : `Miracle AI is resting for a moment. Please try again shortly.${HELP_LINE}`);
+  : status === 403 ? 'Sig only answers on miraclehealth.us.'
+  : `Sig is resting for a moment. Please try again shortly.${HELP_LINE}`);
 const textOf = (m) => (m.parts || []).filter((p) => p.t === 'text').map((p) => p.s).join('\n\n').trim();
 
 function onEvent(am, ev, d) {
   const view = am.view;
   switch (ev) {
     case 'step': {
+      // The member's own clinician isn't a step in the chat (an older server still sends one)
+      if (d.agent === 'clinician') break;
       const i = am.steps.findIndex((s) => s.id === d.id);
       if (i >= 0) am.steps[i] = { ...am.steps[i], ...d }; else am.steps.push(d);
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
@@ -1485,9 +1349,8 @@ function finish(am, live) {
       : am.review ? 'Every part checked by the Safety agent before you saw it' : 'Answered';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
-    const forClinician = (am.parts || []).some((p) => p.t === 'card' && ['shortlist', 'questions', 'plan'].includes(p.card.type));
     view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
-      h('span', { class: 'foot-actions' }, forClinician ? packetButton('Clinician packet') : null, btn));
+      h('span', { class: 'foot-actions' }, btn));
     view.foot.hidden = false;
   }
   helpPin();
@@ -1532,7 +1395,7 @@ function errorNode(am) {
 }
 
 // ---------------------------------------------------------------------------
-// Before the first message: adults only, and what Miracle AI is
+// Before the first message: adults only, and what Sig is
 // ---------------------------------------------------------------------------
 function gate(pending) {
   input.value = '';
@@ -1550,8 +1413,8 @@ function gate(pending) {
   const no = h('a', { class: 'gate-no', href: '/library/', text: 'Not now: open the Library' });
   const box = h('div', { class: 'gate', id: 'ai-gate', role: 'region', 'aria-labelledby': 'ai-gate-h', 'data-q': pending },
     h('p', { class: 'gate-q' }, h('span', { class: 'sr', text: 'Your question, waiting: ' }), h('span', { text: pending })),
-    h('h2', { id: 'ai-gate-h', text: 'One check before Miracle AI answers' }),
-    h('p', { text: 'Miracle AI is for adults 18 and over.' }),
+    h('h2', { id: 'ai-gate-h', text: 'One check before Sig answers' }),
+    h('p', { text: 'Sig is Miracle Health’s AI, for adults 18 and over. It explains evidence and what people report; it isn’t a person or a clinician.' }),
     h('div', { class: 'gate-actions' }, yes, no));
   yes.addEventListener('click', () => {
     adult = true;
@@ -1595,8 +1458,6 @@ newBtn.addEventListener('click', () => {
   if (busy) busy.controller.abort();
   chat = [];
   store.del(KEY);
-  meta = {};
-  store.del(META);
   helpPin();
   thread.querySelectorAll('.msg,.gate').forEach((n) => n.remove());
   setEmpty(true);
@@ -1606,7 +1467,8 @@ newBtn.addEventListener('click', () => {
   railNotes();
   input.focus();
 });
-$('rail-copy')?.addEventListener('click', (e) => openPacket(e.currentTarget));
+// The questions from this conversation, to take to whoever they see
+$('rail-copy')?.addEventListener('click', (e) => copy(['Questions for my clinician:', ...railQuestions.map((q) => `- ${q}`)].join('\n'), e.currentTarget));
 
 // Sig everywhere, and the agents waking up once on arrival
 document.querySelectorAll('[data-sig]').forEach((el) => setSig(el, 'idle'));
@@ -1635,7 +1497,7 @@ if (chat.length) {
 }
 refreshStack();
 stackFromLink();
-// The community, live: how many members and first-hand reports Miracle AI speaks for (totals from
+// The community, live: how many members and first-hand reports Sig speaks for (totals from
 // the community's public snapshot; the line stays hidden if it can't load)
 const FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': 'YouTube', 'Podcast / YouTube': 'podcasts' };
 fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).then((snap) => {

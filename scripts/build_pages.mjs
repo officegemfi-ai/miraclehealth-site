@@ -86,28 +86,27 @@ export function buildPages(ctx) {
     const body = `${docHead('About', 'No miracles. Just what happened.', `Updated ${date(about.updated)}`)}
 
   <article class="wrap doc about">
-    <p class="intro">Miracle Health is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Miracle AI</a>, which answers from both.</p>
+    <p class="intro">Miracle Health is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Ask Sig</a>, where Sig, Miracle Health’s AI, answers from both.</p>
 
     <h2 id="who">Who runs it</h2>
     <p>Miracle Health is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>; a person reads every email.</p>
 
     <h2 id="money">How it’s paid for</h2>
-    <p>It’s free for everyone, and today it’s paid for by its founder. There are no ads, no sponsors and no affiliate links, and nobody can pay to be in the Library, in Miracle AI’s answers or in the Community Signal. We never sell what members share.</p>
-    <p>If Miracle Health ever sells anything of its own, it will be kept apart: never in the Library, never in Miracle AI’s answers, never counted in the Signal. And this page will say so before it happens.</p>
+    <p>It’s free for everyone, and today it’s paid for by its founder. There are no ads, no sponsors and no affiliate links, and nobody can pay to be in the Library, in Sig’s answers or in the Community Signal. We never sell what members share.</p>
+    <p>If Miracle Health ever sells anything of its own, it will be kept apart: never in the Library, never in Sig’s answers, never counted in the Signal. And this page will say so before it happens.</p>
 
     <h2 id="checked">How fact sheets are checked</h2>
     <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. Every benefit says what kind of evidence backs it, from randomized trials in people to studies in rats, and every claim links to its source. Each sheet shows the date it was checked; ${entries.size} of ${catalog.length} compounds have one so far, and the rest say they’re still being checked. <a href="/method/">How the numbers are made</a> explains the grades, how reports are read and weighted, and the side-effect watch.</p>
 
-    <h2 id="reviewers">Clinician and pharmacist review</h2>
-    ${reviewers.length ? `<ul>${reviewers.map((r) => `<li><b>${e(r.name)}</b>${r.role ? `, ${e(r.role)}` : ''}: ${e(r.reviewed || 'reviewed fact sheets')}${r.date ? `, ${date(r.date)}` : ''}</li>`).join('')}</ul>`
-    : '<p>We’re looking for a clinician and a pharmacist to review the fact sheets and Miracle AI’s safety rules. Until they have, every fact sheet says “clinician review pending”. When they have, their names, credentials and what they reviewed will be listed here, and on each sheet they checked. Are you a clinician or pharmacist who’d like to help? <a href="mailto:hello@miraclehealth.us?subject=Reviewing%20fact%20sheets">Write to us</a>.</p>'}
+    ${reviewers.length ? `<h2 id="reviewers">Clinician and pharmacist review</h2>
+    <ul>${reviewers.map((r) => `<li><b>${e(r.name)}</b>${r.role ? `, ${e(r.role)}` : ''}: ${e(r.reviewed || 'reviewed fact sheets')}${r.date ? `, ${date(r.date)}` : ''}</li>`).join('')}</ul>
 
-    <h2 id="never">What we never do</h2>
+    ` : ''}    <h2 id="never">What we never do</h2>
     <ul>
       <li>No doses, amounts, schedules or how to take or inject anything, for any compound.</li>
       <li>No sellers, brands, prices or where to get something.</li>
       <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your clinician.</li>
-      <li>No health records: Miracle AI keeps nothing you write, and the community holds only what members choose to post.</li>
+      <li>No health records: Sig keeps nothing you write, and the community holds only what members choose to post.</li>
     </ul>
 
     <h2 id="corrections">Corrections</h2>
@@ -119,7 +118,7 @@ export function buildPages(ctx) {
   </article>`;
     add('/about/', page({
       title: 'About · No miracles. Just what happened. · Miracle Health',
-      description: 'Who runs Miracle Health, how it’s paid for, how fact sheets are checked, clinician review and corrections.',
+      description: 'Who runs Miracle Health, how it’s paid for, how fact sheets are checked, and corrections.',
       url: '/about/', body, current: '', bodyClass: 'doc-page', styles: [`/pages/pages.css?v=${V.css}`], scripts: [], ogImage: og('about'),
     }));
   }
@@ -208,7 +207,7 @@ export function buildPages(ctx) {
   <div class="wrap pg-wrap">
     <p class="pg-intro">What the studies show for each compound people take for ${e(lower(g.label))}, strongest evidence first, next to its Community Signal: what people who took it report. It isn’t a ranking of what to take: the evidence grade is for the compound as a whole, and each fact sheet says what it was studied for.</p>
     <div class="pg-acts">
-      <a class="btn ink" href="${e(askLink(`What does the evidence say about compounds for ${lower(g.label)}?`, { site: '' }))}">Ask Miracle AI about it</a>
+      <a class="btn ink" href="${e(askLink(`What does the evidence say about compounds for ${lower(g.label)}?`, { site: '' }))}">Ask Sig about it</a>
       <a class="btn ghost-ink" href="/library/?goal=${e(g.id)}">Search the Library</a>
     </div>
 
@@ -298,7 +297,7 @@ export function buildPages(ctx) {
       ${rows.map(([k, fn]) => `<section class="cmp-row"><h2 class="cmp-k">${e(k)}</h2>${[a, b].map((f) => cell(f, fn(f))).join('')}</section>`).join('\n      ')}
     </div>
     <div class="pg-acts">
-      <a class="btn ink" href="${e(askLink(`How do ${a.name} and ${b.name} compare?`, { site: '' }))}">Ask Miracle AI to compare them</a>
+      <a class="btn ink" href="${e(askLink(`How do ${a.name} and ${b.name} compare?`, { site: '' }))}">Ask Sig to compare them</a>
       <a class="btn ghost-ink" href="/library/${e(a.id)}/">${e(a.name)}’s fact sheet</a>
       <a class="btn ghost-ink" href="/library/${e(b.id)}/">${e(b.name)}’s fact sheet</a>
     </div>
@@ -312,9 +311,9 @@ export function buildPages(ctx) {
     }
     const body = `${docHead('Side by side', 'Compare two compounds', `${pairs.length} comparisons · from the fact sheets`)}
   <div class="wrap pg-wrap">
-    <p class="pg-intro">Two compounds people often weigh against each other, side by side: status, evidence, risks and what people report. To compare any two others, ask Miracle AI.</p>
+    <p class="pg-intro">Two compounds people often weigh against each other, side by side: status, evidence, risks and what people report. To compare any two others, ask Sig.</p>
     <div class="pg-goal-grid">${pairs.map(({ a, b, slug }) => `<a class="pg-goal" href="/compare/${e(slug)}/"><b>${e(a.name)} vs ${e(b.name)}</b><span>${evPill(a.evidence.grade)} ${evPill(b.evidence.grade)}</span></a>`).join('')}</div>
-    <div class="pg-acts"><a class="btn ink" href="${e(askLink('Can you compare two compounds for me?', { site: '' }))}">Compare others with Miracle AI</a></div>
+    <div class="pg-acts"><a class="btn ink" href="${e(askLink('Can you compare two compounds for me?', { site: '' }))}">Compare others with Sig</a></div>
   </div>`;
     add('/compare/', page({
       title: 'Compare peptides and supplements side by side · Miracle Health',
@@ -445,7 +444,7 @@ ${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1
       <div class="fd-card"><h2>What a founding reporter gets</h2>
         <ul><li>The Founding reporter badge on your profile, for good.</li><li>Your report in the first community ratings: ten members’ reports unlock the community’s own rating for each compound and use.</li></ul></div>
       <div class="fd-card"><h2>What counts</h2>
-        <ul><li>Something you took yourself: what for, how long, and how it compares with before you started.</li><li>Better, about the same or worse all count the same. A report that says it didn’t work is just as useful.</li><li>Miracle AI reads it into the Signal, and you check its read with a tap. Questions don’t count.</li></ul></div>
+        <ul><li>Something you took yourself: what for, how long, and how it compares with before you started.</li><li>Better, about the same or worse all count the same. A report that says it didn’t work is just as useful.</li><li>Sig reads it into the Signal, and you check its read with a tap. Questions don’t count.</li></ul></div>
     </div>
 
     <section class="pg-sec" aria-labelledby="fd-first">
@@ -469,6 +468,30 @@ ${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1
       url: '/founders/', body, current: '', bodyClass: 'lib pg', styles: STYLES, scripts: SCRIPTS, ogImage: og('founders'),
     }));
   }
+
+  // -------------------------------------------------------------------------
+  // miraclehealth.us/sig: a short address for Ask Sig, to say out loud or print. It forwards to
+  // /ai/, keeping any question in the link, and isn't a page of its own for search engines.
+  // -------------------------------------------------------------------------
+  files.set(path.join(ROOT, 'sig', 'index.html'), `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Sig · Miracle Health</title>
+<meta name="description" content="Ask Sig, Miracle Health’s AI: the studies and the whole community, in one answer.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="${SITE}/ai/">
+<meta http-equiv="refresh" content="0; url=/ai/">
+<script src="/sig/go.js"></script>
+</head>
+<body>
+<p><a href="/ai/">Ask Sig</a></p>
+</body>
+</html>
+`);
+  files.set(path.join(ROOT, 'sig', 'go.js'), '// miraclehealth.us/sig: on to Ask Sig, keeping a question in the link\nlocation.replace(`/ai/${location.search}${location.hash}`);\n');
 
   return { files, urls, pairs, goals: goalStats, issues, V, og };
 }

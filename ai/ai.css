@@ -1,4 +1,4 @@
-/* Miracle AI (miraclehealth.us/ai): the chat with four agents and the community's voice, and the
+/* Sig (miraclehealth.us/ai): the chat with four agents and the community's voice, and the
    member's own clinician.
    Builds on styles.css and the Library's pills (library.css). The whole page is the dark
    console; answers arrive on paper sheets, each with the agents' steps on top; on wide
@@ -253,8 +253,6 @@
 .stack-save .linkish{color:var(--text-2)}
 .stack-save .linkish:hover{color:var(--ink)}
 .audit-none{margin-top:6px;font-size:13.5px;color:var(--muted)}
-.review-line{display:flex;align-items:center;gap:8px;padding:11px 16px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted)}
-.review-line svg{flex:none}
 
 /* when to get help: fixed levels from Miracle Health's table, most urgent first */
 .card.warn{padding:16px 18px;border:1px solid #E8C9A8;background:#FFFBF5}
@@ -470,7 +468,7 @@
   .msg-sig{width:28px;height:28px}
   .sheet{padding:15px 15px 12px}
   .card-head{padding:13px 13px 11px}
-  .audit,.review-line{padding-left:13px;padding-right:13px}
+  .audit{padding-left:13px;padding-right:13px}
   .audit li{grid-template-columns:minmax(0,1fr);gap:5px}
   .audit li .lvl{justify-self:start}
   .pick{padding:13px 13px}
@@ -489,7 +487,7 @@
   .ai-dock{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}
   .sheet-body>.card:not(.help){margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
   .card.qs,.card.warn{padding-left:16px;padding-right:16px}
-  .card-head,.audit,.review-line,.short-meds,.stack-save,.short-note{padding-left:16px;padding-right:16px}
+  .card-head,.audit,.short-meds,.stack-save,.short-note{padding-left:16px;padding-right:16px}
   .pick{padding:13px 16px}
   .pick-name{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 10px}
   .pick-name>a,.pick-name>b{grid-column:1;grid-row:1}

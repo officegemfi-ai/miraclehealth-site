@@ -5,7 +5,7 @@
 // each use and the placebo figures beside them. Then the bars are drawn in once, as the card comes
 // into view. If the files can't load, the page keeps what it was published with.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { node } from '/kit/kit.js?v=aea73e9434';
+import { node } from '/kit/kit.js?v=f08d778478';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const card = document.querySelector('[data-live="example"]');

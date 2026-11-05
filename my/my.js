@@ -3,10 +3,10 @@
 // a code to move it all to their phone, and a way to forget it.
 // It's all read from and written to this browser's storage. Nothing leaves it unless they choose:
 // a check-in they post in the community (it opens there as a draft they change and post), a
-// question they take to Miracle AI (typed in for them there, never sent by itself), or the code
+// question they take to Sig (typed in for them there, never sent by itself), or the code
 // they open on their phone (it travels in the link after "#", which no server receives).
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
-import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=aea73e9434';
+import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 
 const P = window.MHPlan;
@@ -43,7 +43,7 @@ const libIndex = fetch('/library/data/index.json').then((r) => (r.ok ? r.json() 
 const snapshot = fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
 
 // ---------------------------------------------------------------------------
-// Their saved stack (Miracle AI saves it, in the same place)
+// Their saved stack (Sig saves it, in the same place)
 // ---------------------------------------------------------------------------
 function savedStack() {
   const st = local.get(STACK);
@@ -111,7 +111,7 @@ async function copy(text, btn) {
 }
 
 // How it's going: one tap saves it here; then they can say more, post it in the community or ask
-// Miracle AI what's next
+// Sig what's next
 function checkInSection(k) {
   const card = P.normalize(k.card);
   const items = [...card.peptides, ...card.supplements];
@@ -137,7 +137,7 @@ function checkInSection(k) {
     const draft = () => P.reportDraft(k, current);
     const post = h('a', { class: 'btn lime', href: draft().link }, 'Post it in the community');
     const nextQ = () => `It’s been about ${P.howLong(Math.max(1, days))} on my plan, and it’s going ${{ better: 'better', same: 'about the same', worse: 'worse' }[current.how]} than before I started.${current.note ? ` ${current.note}` : ''} ${P.checkIn(k.card, k.done)}`;
-    const ask = h('a', { class: 'btn line', href: askLink(nextQ().slice(0, 1500), { site: '' }) }, 'Ask Miracle AI what’s next');
+    const ask = h('a', { class: 'btn line', href: askLink(nextQ().slice(0, 1500), { site: '' }) }, 'Ask Sig what’s next');
     const refresh = () => { P.updateCheckIn(current); post.href = draft().link; ask.href = askLink(nextQ().slice(0, 1500), { site: '' }); redrawHistory(); };
     const took = items.length ? h('div', { class: 'ci-took', role: 'group', 'aria-label': 'What you’re taking' }, items.map((i) => {
       const b = h('button', { type: 'button', class: 'ci-took-b', 'aria-pressed': String(current.ids.includes(i.id)) }, i.name);
@@ -191,7 +191,7 @@ function planSection(k) {
   const card = { ...k.card, done: k.done };
   const el = P.node(card, {
     kick: 'Your Miracle Plan', share: true,
-    // Answering a "not sure yet" pillar goes to Miracle AI, the answer typed in for them
+    // Answering a "not sure yet" pillar goes to Sig, the answer typed in for them
     onAnswer: (text) => { location.href = askLink(text, { site: '' }); },
     onKeep: () => draw(),
   });
@@ -216,7 +216,7 @@ function stackSection(st, index, snap) {
   forget.addEventListener('click', () => { local.del(STACK); draw(); });
   return sec('my-stack', 'stack', 'Your stack', chips,
     st.meds.length ? h('p', { class: 'my-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
-    h('div', { class: 'my-actions' }, h('a', { class: 'btn lime sm', href: askLink(stackQuestion(st), { site: '' }) }, 'Check it again with Miracle AI'), copyBtn, forget),
+    h('div', { class: 'my-actions' }, h('a', { class: 'btn lime sm', href: askLink(stackQuestion(st), { site: '' }) }, 'Check it again with Sig'), copyBtn, forget),
     h('p', { class: 'my-fine', text: `Saved on this device${st.saved ? ` on ${P.dayLabel(st.saved)}` : ''}. The evidence bars are the Library’s; the number is each one’s Community Signal.` }));
 }
 
@@ -275,9 +275,9 @@ function forgetSection() {
 function emptyState() {
   return h('section', { class: 'my-sec my-empty', 'aria-labelledby': 'empty-h' },
     h('h2', { id: 'empty-h', text: 'Nothing kept here yet' }),
-    h('p', { class: 'my-lede', text: 'When you keep a Miracle Plan or save your stack in Miracle AI, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.' }),
+    h('p', { class: 'my-lede', text: 'When you keep a Miracle Plan or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.' }),
     h('div', { class: 'my-actions' },
-      h('a', { class: 'btn lime', href: '/ai/' }, 'Build your plan with Miracle AI'),
+      h('a', { class: 'btn lime', href: '/ai/' }, 'Build your plan with Sig'),
       h('a', { class: 'btn line', href: '/library/' }, 'Explore the Library')));
 }
 

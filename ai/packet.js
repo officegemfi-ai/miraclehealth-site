@@ -1,5 +1,6 @@
-// Miracle AI's clinician review packet. It is made in the visitor's browser from their own chat:
-// why they're going, what they told Miracle AI, the stack and options discussed (with the evidence
+// The clinician review packet (no longer made: links made before November 5, 2026 still open at
+// /ai/packet/, and its QR code maker serves My Miracle). It was made in the visitor's browser from their own chat:
+// why they're going, what they told Sig, the stack and options discussed (with the evidence
 // for their goal, what studies found and where, and the lab tests the Library lists), what the
 // Synergy auditor flagged and their questions, with lines they fill in by hand on paper and room
 // for the clinician's notes. It can be printed or saved as a PDF, or carried to a clinician inside a
@@ -259,18 +260,18 @@ export function render(p, { level = 2 } = {}) {
   const sec = (title, ...kids) => h('section', { class: 'pk-sec' }, h(S, { text: title }), ...kids);
   const art = h('article', { class: 'packet', 'aria-labelledby': 'packet-h' },
     h('header', { class: 'pk-head' },
-      h('p', { class: 'pk-brand' }, 'Miracle Health', h('span', { text: ' · Miracle AI' })),
+      h('p', { class: 'pk-brand' }, 'Miracle Health', h('span', { text: ' · Sig' })),
       h(H, { id: 'packet-h', text: 'Clinician review packet' }),
-      p.date ? h('p', { class: 'pk-date', text: `Prepared ${dateLabel(p.date)} by the patient, with Miracle AI` }) : null,
+      p.date ? h('p', { class: 'pk-date', text: `Prepared ${dateLabel(p.date)} by the patient, with Sig` }) : null,
       h('p', { class: 'pk-print-only pk-who' }, h('span', { text: 'Patient name ______________________' }), h('span', { text: 'Date of birth ____________' }))),
     h('p', { class: 'pk-reason' }, h('b', { text: 'Reason for visit: ' }), h('span', { class: 'pk-reason-text', text: p.reason || '' }), p.reason ? null : h('span', { class: 'pk-blank', 'aria-hidden': 'true' })),
     h('section', { class: 'pk-note' },
       h(S, { text: 'For the reviewing clinician' }),
-      h('p', { text: 'Your patient explored the options below with Miracle AI, an education tool. It draws on the Miracle Health Library (fact sheets checked against primary sources; clinician review of the Library is still pending) and the Community Signal (outcomes people report, not proof). It gives no doses and makes no diagnosis. Nothing here is a plan until you have reviewed it against their history.' })));
+      h('p', { text: 'Your patient explored the options below with Sig, Miracle Health’s AI, an education tool. It draws on the Miracle Health Library (fact sheets checked against primary sources) and the Community Signal (outcomes people report, not proof). It gives no doses and makes no diagnosis. Nothing here is a plan until you have reviewed it against their history.' })));
   const about = [...p.about, ...(medsOf(p).length ? [['Medicines I mentioned', medsOf(p).join(', ')]] : [])];
   if (about.length) art.append(sec('About me, in my words', h('dl', { class: 'pk-about' }, about.map(([q, a]) => h('div', {}, h('dt', { text: q }), h('dd', { text: a }))))));
   if (p.stack.length || p.options.length) {
-    art.append(h('p', { class: 'pk-screen-only pk-hint', text: 'On paper, each item has lines for you to fill in by hand: whether you take it now, how, since when and where it’s from. Miracle AI never sees them.' }));
+    art.append(h('p', { class: 'pk-screen-only pk-hint', text: 'On paper, each item has lines for you to fill in by hand: whether you take it now, how, since when and where it’s from. Sig never sees them.' }));
   }
   if (p.stack.length) art.append(sec('What I take now, or am weighing up', h('ul', { class: 'pk-items' }, p.stack.map((it) => itemNode(it, false, refs)))));
   if (p.options.length) art.append(sec('Options I’d like to discuss', h('ul', { class: 'pk-items' }, p.options.map((it) => itemNode(it, true, refs)))));
@@ -288,15 +289,15 @@ export function render(p, { level = 2 } = {}) {
     art.append(sec('References', h('ol', { class: 'pk-refs' }, refs.map((r) => h('li', {},
       `${r.title}${r.year ? ` (${r.year})` : ''}. `, h('a', { href: r.url, target: '_blank', rel: 'noopener noreferrer', text: r.url }))))));
   }
-  art.append(h('footer', { class: 'pk-foot', text: 'Made in my own browser with Miracle AI (miraclehealth.us/ai). Education from the Miracle Health Library and Community Signal; no doses or diagnoses. Miracle Health doesn’t receive or keep this packet.' }));
+  art.append(h('footer', { class: 'pk-foot', text: 'Made in my own browser with Sig (miraclehealth.us/ai). Education from the Miracle Health Library and Community Signal; no doses or diagnoses. Miracle Health doesn’t receive or keep this packet.' }));
   return art;
 }
 
 export function text(p) {
   const refs = referencesOf(p);
-  const out = ['CLINICIAN REVIEW PACKET (Miracle Health · Miracle AI)', p.date ? `Prepared ${dateLabel(p.date)} by the patient, with Miracle AI` : '',
+  const out = ['CLINICIAN REVIEW PACKET (Miracle Health · Sig)', p.date ? `Prepared ${dateLabel(p.date)} by the patient, with Sig` : '',
     `Reason for visit: ${p.reason || '____'}`, '',
-    'For the reviewing clinician: education from the Miracle Health Library (fact sheets checked against primary sources; clinician review of the Library is still pending) and the Community Signal (self-reported); no doses or diagnoses. Nothing here is a plan until you have reviewed it.', ''];
+    'For the reviewing clinician: education from the Miracle Health Library (fact sheets checked against primary sources) and the Community Signal (self-reported); no doses or diagnoses. Nothing here is a plan until you have reviewed it.', ''];
   const items = (title, list, withWhy) => {
     if (!list.length) return;
     out.push(title);
@@ -317,7 +318,7 @@ export function text(p) {
   if (p.questions.length) out.push('My questions for you:', ...p.questions.map((q, i) => `${i + 1}. ${q}`), '');
   out.push('Clinician notes (not an endorsement): reviewed by ____  credentials ____  date ____', 'Notes:', '');
   if (refs.length) out.push('References:', ...refs.map((r, i) => `${i + 1}. ${r.title}${r.year ? ` (${r.year})` : ''}. ${r.url}`), '');
-  out.push('Made in my own browser with Miracle AI (miraclehealth.us/ai). Miracle Health doesn’t receive or keep this packet.');
+  out.push('Made in my own browser with Sig (miraclehealth.us/ai). Miracle Health doesn’t receive or keep this packet.');
   return out.filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
 }
 

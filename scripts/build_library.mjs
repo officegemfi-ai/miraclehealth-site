@@ -6,7 +6,7 @@
 //   baselines.json     how many improve anyway (on a placebo, or with time) by use, with sources
 //                      (the community's shared/baselines.json; for the methodology page)
 // Writes library/index.html, library/<id>/index.html (one per compound), library/data/index.json
-// (what Miracle AI reads to find and rank compounds), the Miracle AI page (ai/index.html), the
+// (what Sig reads to find and rank compounds), the Ask Sig page (ai/index.html), the
 // pages scripts/build_pages.mjs makes (about, status, goals, compare, weekly, founders) and
 // sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
 // the live Community Signal from community.miraclehealth.us/snapshot.json; ai/ai.js is the chat.
@@ -28,7 +28,7 @@ const LIB = path.join(ROOT, 'library');
 const DATA = path.join(LIB, 'data');
 const SITE = 'https://miraclehealth.us';
 const COMMUNITY = 'https://community.miraclehealth.us';
-// Miracle AI's chat: the ask function in the community's live Supabase project
+// Sig's chat: the ask function in the community's live Supabase project
 // (miracle-health-community, supabase/functions/ask). The address isn't secret.
 const ASK_URL = 'https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask';
 const CHECK = process.argv.includes('--check');
@@ -57,7 +57,7 @@ const GRADE = {
   preclinical: ['Animal and lab studies', 'Studied in animals or cells, not in people'],
   anecdotal: ['Anecdotal', 'User reports only'],
 };
-// An evidence pill: the four bars of the design kit's meter (the same one Miracle AI and the
+// An evidence pill: the four bars of the design kit's meter (the same one Sig and the
 // community show) and the grade's name
 const evPill = (grade, label = GRADE[grade]?.[0] || grade) => `<span class="ev ev-${e(grade)}">${meterHtml(grade, { bare: true })}${e(label)}</span>`;
 const GRADE_ORDER = { strong: 0, moderate: 1, limited: 2, preclinical: 3, anecdotal: 4 };
@@ -403,13 +403,14 @@ function factSheet(c, f) {
     <section class="le-sec" id="sources">
       <h2>Sources</h2>
       <ol class="sources">${(f.sources || []).map((s) => `<li id="src-${s.n}"><a href="${e(s.url)}" rel="noopener" target="_blank">${e(s.title)}</a><span>${e(s.publisher)}${s.year ? `, ${e(s.year)}` : ''}</span></li>`).join('')}</ol>
-      <p class="checked">Fact-checked against these sources on ${date(f.checked)}. ${ReviewWords(f)}. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
+      <p class="checked">Fact-checked against these sources on ${date(f.checked)}.${reviewedBy(f) ? ` ${ReviewWords(f)}.` : ''} Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
     </section>`;
 }
 
 // reviewed: { by, role, date } once a clinician or pharmacist has signed a fact sheet off
 const reviewedBy = (f) => (f?.reviewed?.by && f?.reviewed?.date ? `reviewed by ${e(f.reviewed.by)}${f.reviewed.role ? `, ${e(f.reviewed.role)}` : ''}, ${date(f.reviewed.date)}` : '');
-const reviewWords = (f) => reviewedBy(f) || 'clinician review pending';
+// No reviewer, nothing said: a sheet names a clinician only once one has reviewed it
+const reviewWords = (f) => reviewedBy(f);
 const ReviewWords = (f) => { const t = reviewWords(f); return t.charAt(0).toUpperCase() + t.slice(1); };
 
 function pendingSheet(c) {
@@ -494,10 +495,10 @@ function entryPage(c) {
     <div class="le-badges">
       ${f ? `<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span>
       ${evPill(f.evidence.grade)}
-      <span class="check${reviewedBy(f) ? ' reviewed' : ''}">Fact-checked ${date(f.checked)} · ${reviewWords(f)}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
+      <span class="check${reviewedBy(f) ? ' reviewed' : ''}">Fact-checked ${date(f.checked)}${reviewedBy(f) ? ` · ${reviewWords(f)}` : ''}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
     </div>
     <div class="le-actions">
-      <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Miracle AI about ${e(c.name)}</a>
+      <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
       <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it with my saved stack</a>
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
@@ -545,13 +546,13 @@ function entryPage(c) {
 }
 
 // ---------------------------------------------------------------------------
-// What Miracle AI reads: every compound with what it needs to find and rank it
+// What Sig reads: every compound with what it needs to find and rank it
 // ---------------------------------------------------------------------------
 function aiIndex() {
   const nonzero = (g) => Object.fromEntries(Object.entries(g || {}).filter(([, v]) => Number(v) > 0));
   const checked = [...entries.values()].map((f) => f.checked || '').sort().pop() || '';
   return JSON.stringify({
-    note: 'Every compound and blend in the Library, with the status, evidence grade and goals of the ones that have a fact sheet. Written by scripts/build_library.mjs for Miracle AI (miraclehealth.us/ai).',
+    note: 'Every compound and blend in the Library, with the status, evidence grade and goals of the ones that have a fact sheet. Written by scripts/build_library.mjs for Sig (miraclehealth.us/ai).',
     checked,
     goals: uses.goals,
     items: catalog.map((c) => {
@@ -608,7 +609,7 @@ function guidePage(g) {
     <p class="kick lime">${e(g.kick)}</p>
     <h1 class="long">${e(title)}</h1>
     ${lede ? `<p class="lede">${guideInline(lede)}</p>` : ''}
-    <div class="le-badges"><span class="check">Checked ${date(g.checked)} against ${sources.length} sources · clinician review pending</span></div>
+    <div class="le-badges"><span class="check">Checked ${date(g.checked)} against ${sources.length} sources</span></div>
   </div>
 </section>
 
@@ -622,7 +623,7 @@ function guidePage(g) {
     <section class="le-sec" id="sources">
       <h2>Sources</h2>
       <ol class="sources">${sources.map((x) => `<li id="src-${x.n}"><a href="${e(x.url)}" rel="noopener" target="_blank">${e(x.text)}</a></li>`).join('')}</ol>
-      <p class="checked">Checked against these sources on ${date(g.checked)}. Clinician review pending. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${title}`)}">Tell us</a>.</p>
+      <p class="checked">Checked against these sources on ${date(g.checked)}. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${title}`)}">Tell us</a>.</p>
     </section>
   </article>
   <aside class="le-side">
@@ -639,7 +640,7 @@ function guidePage(g) {
 }
 
 // ---------------------------------------------------------------------------
-// Miracle AI (miraclehealth.us/ai): the chat with four agents and the community's numbers, and the
+// Ask Sig (miraclehealth.us/ai): Sig, Miracle Health's AI, with its agents and the community's numbers, and the
 // member's own clinician last
 // ---------------------------------------------------------------------------
 const AGENTS = [
@@ -648,7 +649,6 @@ const AGENTS = [
   ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
   ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
-  ['clinician', 'Your clinician', 'Your own clinician, outside Miracle Health, has the final say.'],
 ];
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
@@ -661,21 +661,21 @@ const STARTERS = [
 function aiPage() {
   const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
-  <section class="ai-chat is-empty" aria-label="Conversation with Miracle AI">
+  <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
-      <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Miracle AI</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
+      <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Ask Sig</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
         <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with the whole community.</h2></div>
-        <p class="ai-lede">Miracle AI answers with what studies show and what members and the public forums report, and says which is which. Where the studies run out, the community’s reports lead. Your own clinician has the final say.</p>
+        <p class="ai-lede">I’m Sig, Miracle Health’s AI. I answer with what studies show and what members and the public forums report, and say which is which. Where the studies run out, the community’s reports lead. Your own clinician has the final say.</p>
         <p class="ai-crowd" id="ai-crowd" hidden></p>
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
       <div class="ai-composer">
-        <label class="sr" for="ai-input">Message Miracle AI</label>
+        <label class="sr" for="ai-input">Message Sig</label>
         <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, a compound or a combination" data-short="Ask about a goal or a compound"></textarea>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
@@ -687,12 +687,12 @@ function aiPage() {
         ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
       </div>
       <details class="ai-who">
-        <summary>Who answers, and who decides</summary>
+        <summary>Who answers</summary>
         ${agentList('agent-list')}
       </details>
     </div>
-    <p class="ai-fine">For adults 18 and over. Miracle AI explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
-    <noscript><p class="ai-nojs">Miracle AI needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
+    <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
+    <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <aside class="ai-rail" aria-label="Who answers">
     <div class="rail-head"><div><h2>Who answers</h2><p id="rail-sub">Waiting for your first message</p></div></div>
@@ -701,16 +701,17 @@ function aiPage() {
       <h2>In this conversation</h2>
       <div class="rail-chips" id="rail-chips"></div>
       <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
-      <button type="button" class="rail-copy" id="rail-copy">Prepare clinician packet</button>
+      <button type="button" class="rail-copy" id="rail-copy">Copy these questions</button>
     </div>
     <div class="rail-saved" id="rail-saved" hidden></div>
   </aside>
 </div>`;
   return page({
-    title: 'Miracle AI · the studies and the whole community, in one answer',
-    description: 'Talk through peptides, supplements and hormones with Miracle AI: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it, and you take a review packet to your own clinician. No doses, no sellers.',
+    title: 'Ask Sig · Miracle Health’s AI: the studies and the whole community, in one answer',
+    description: 'Ask Sig, Miracle Health’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
+    ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'ask-sig.jpg')) ? '/img/og/ask-sig.jpg' : '/og.jpg',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/packet.css?v=${V.pkCss}`, `/ai/plan.css?v=${V.plCss}`],
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`],
     scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
   });
@@ -722,14 +723,14 @@ function packetPage() {
   const body = `<div class="packet-root" id="packet-root">
   <section class="pk-welcome">
     <h1>Clinician review packet</h1>
-    <p>This page shows a review packet that a patient made with Miracle AI and shared with you as a link or QR code. The packet travels inside the link itself, so Miracle Health never receives or keeps it.</p>
+    <p>This page shows a review packet that a patient made with Sig and shared with you as a link or QR code. The packet travels inside the link itself, so Miracle Health never receives or keeps it.</p>
     <p>If you were sent here without a packet, ask for the link or the code again. Patients can make one at <a href="/ai/">miraclehealth.us/ai</a>.</p>
   </section>
   <noscript><p class="pk-loading">Opening a packet needs JavaScript.</p></noscript>
 </div>`;
   return page({
     title: 'Clinician review packet · Miracle Health',
-    description: 'A clinician review packet a patient made with Miracle AI. The packet travels inside the shared link; Miracle Health never receives it.',
+    description: 'A clinician review packet a patient made with Sig. The packet travels inside the shared link; Miracle Health never receives it.',
     url: '/ai/packet/', body, current: 'ai', bodyClass: 'packet-page',
     styles: [`/ai/packet.css?v=${V.pkCss}`], scripts: [`/ai/packet.js?v=${V.pkJs}`],
     connect: '', head: '<meta name="robots" content="noindex">',
@@ -743,20 +744,20 @@ function planPage() {
   <div class="plan-root" id="plan-root">
     <section class="plan-intro">
       <h1>A Miracle Plan, shared with you</h1>
-      <p>Someone built this plan with Miracle AI and wanted you to see it: the three foundations everything rests on, what they’ve built on top, and the pillar they’re working on. It travels inside the link you opened, so Miracle Health never receives it.</p>
+      <p>Someone built this plan with Sig and wanted you to see it: the three foundations everything rests on, what they’ve built on top, and the pillar they’re working on. It travels inside the link you opened, so Miracle Health never receives it.</p>
     </section>
     <noscript><p class="plan-oops-p">Opening a plan needs JavaScript.</p></noscript>
   </div>
   <section class="plan-cta">
     <h2>Build your own plan</h2>
-    <p>Tell Miracle AI your goal and what you take. It asks about your nutrition, sleep and training, finds the pillar that will make the biggest difference, and builds your plan around it.</p>
-    <a class="btn lime" href="/ai/">Start with Miracle AI</a>
+    <p>Tell Sig your goal and what you take. It asks about your nutrition, sleep and training, finds the pillar that will make the biggest difference, and builds your plan around it.</p>
+    <a class="btn lime" href="/ai/">Start with Sig</a>
   </section>
   <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own clinician.</p>
 </div>`;
   return page({
     title: 'A Miracle Plan, shared with you · Miracle Health',
-    description: 'A plan someone built with Miracle AI and shared with you: nutrition, sleep and exercise as the foundations, and what rests on them. It travels inside the link; Miracle Health never receives it.',
+    description: 'A plan someone built with Sig and shared with you: nutrition, sleep and exercise as the foundations, and what rests on them. It travels inside the link; Miracle Health never receives it.',
     url: '/plan/', body, current: 'ai', bodyClass: 'plan-page', ogImage: '/img/og-plan.jpg',
     styles: [`/ai/plan.css?v=${V.plCss}`], scripts: [`/ai/plan.js?v=${V.plJs}`],
     connect: '', head: '<meta name="robots" content="noindex">',
@@ -821,15 +822,15 @@ function methodPage() {
         <li>Ratings come with a likely range, and start from what members report for that use everywhere, so a handful of glowing reports can’t outrank many good ones.</li>
         <li>Next to what people report, we show how many people improve anyway, on a placebo or with time, from published trials.</li>
         <li>A side effect reported unusually often for one compound is flagged, and serious reactions point to medical help and the FDA’s MedWatch.</li>
-        <li>No doses, no sellers, no diagnosis. Miracle AI keeps nothing you write.</li>
+        <li>No doses, no sellers, no diagnosis. Sig keeps nothing you write.</li>
       </ul>
     </section>
 
     <h2 id="studies">The studies</h2>
-    <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. The evidence for each use is graded: <b>strong</b> (several good trials in people, or approved for that use), <b>moderate</b> (at least one good trial in people), <b>limited</b> (small or short studies in people), <b>animal and lab studies</b> only, or <b>anecdotal</b> (user reports only). We’re looking for a clinician and a pharmacist to review the fact sheets and Miracle AI’s safety rules; until they have, each sheet says “clinician review pending”, and once they have, it says who reviewed it and when (<a href="/about/#reviewers">more on this</a>).</p>
+    <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. The evidence for each use is graded: <b>strong</b> (several good trials in people, or approved for that use), <b>moderate</b> (at least one good trial in people), <b>limited</b> (small or short studies in people), <b>animal and lab studies</b> only, or <b>anecdotal</b> (user reports only). Each sheet shows the date it was checked.</p>
 
     <h2 id="reports">How a report is read</h2>
-    <p>Members post in their own words. Miracle AI reads each post: is it about their own use; how it went compared with before (better, about the same or worse); for how long; what they took it for; any side effects, under one name each (so “nauseous” and “mild nausea” count together); and whether a reaction sounds serious. The author then sees that read in one line, <b>“Did we read you right?”</b>, and confirms it or fixes any part with a tap. If something important is missing, usually how long, it asks that one question. Their word always wins over the read.</p>
+    <p>Members post in their own words. Sig reads each post: is it about their own use; how it went compared with before (better, about the same or worse); for how long; what they took it for; any side effects, under one name each (so “nauseous” and “mild nausea” count together); and whether a reaction sounds serious. The author then sees that read in one line, <b>“Did we read you right?”</b>, and confirms it or fixes any part with a tap. If something important is missing, usually how long, it asks that one question. Their word always wins over the read.</p>
     <p>Two, six and twelve weeks later, the author is asked <b>“How is it now?”</b>: better, about the same or worse; still taking it or not; and if not, why (it worked, it didn’t help, side effects, cost or hassle). The latest answer is the one that counts, and why people stop is counted too.</p>
 
     <h2 id="weights">Reports are weighted, never people</h2>
@@ -850,7 +851,7 @@ function methodPage() {
     <p>One number from 0 to 100 per compound, blend and stack: 65% how reports went (better 1, about the same ½, worse 0), 15% how much they agree, 10% how many independent voices there are and 10% how much there is to go on. Every Signal starts from Miracle Health’s reading of public forums, which counts as 50 reports; every first-hand report here shifts the balance toward members’ own experience. Each Signal earns a level for how far along that line it is: Forum data, Early signal, Community-backed (25% from members, 10+ reports), Community-verified (50%, 25+ reports from 15+ members) and Signal Certified (75%, 50+ reports, 30+ members). Every change is kept as a new version.</p>
 
     <h2 id="ranges">Ratings by use, with a likely range</h2>
-    <p>A compound gets its own rating for a use (sleep, joint pain, injury healing…) once three reports name that use. The rating starts from what members report for that use across every compound, worth eight reports, and moves toward the compound’s own reports as they come in: so three glowing reports pull a rating up only so far, and two hundred good ones carry it. Each rating shows its likely range (90%), worked out from the effective number of reports so that weights never make it look surer than the reports allow, and the share of its reports that went better, with a 95% interval. Miracle AI lists what the community reports most for a use only from ratings with 10 or more reports from 5 or more people, in order of the low end of their range, and never as a recommendation.</p>
+    <p>A compound gets its own rating for a use (sleep, joint pain, injury healing…) once three reports name that use. The rating starts from what members report for that use across every compound, worth eight reports, and moves toward the compound’s own reports as they come in: so three glowing reports pull a rating up only so far, and two hundred good ones carry it. Each rating shows its likely range (90%), worked out from the effective number of reports so that weights never make it look surer than the reports allow, and the share of its reports that went better, with a 95% interval. Sig lists what the community reports most for a use only from ratings with 10 or more reports from 5 or more people, in order of the low end of their range, and never as a recommendation.</p>
 
     <h2 id="anyway">Would it have happened anyway?</h2>
     <p>Many people feel better with time, or on a placebo, whatever they take. Next to what members report for a use, we show how many people improved anyway in published trials. It’s context, not a direct comparison: in trials “improved” was measured on strict scales, while a member’s “better” is their own word.</p>
@@ -867,20 +868,20 @@ function methodPage() {
     </div>
 
     <h2 id="watch">The side-effect watch</h2>
-    <p>For each compound we compare how often each side effect is reported with how often it’s reported for every other compound. A side effect is flagged when at least three reports mention it, it’s reported at least twice as often (a proportional reporting ratio of 2 or more, with half a report added to each count), it’s unlikely to be chance (a Yates chi-square of 3.84 or more) and there are at least 20 reports on other compounds to compare with. A flag isn’t proof that the compound causes it; it’s a signal worth knowing. Reactions Miracle AI reads as serious, in a report, a question or a comment, are counted, moderators see them all, and their writers are pointed to medical help and to <a href="https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program" rel="noopener" target="_blank">MedWatch</a>, where anyone in the US can report a serious reaction to the FDA.</p>
+    <p>For each compound we compare how often each side effect is reported with how often it’s reported for every other compound. A side effect is flagged when at least three reports mention it, it’s reported at least twice as often (a proportional reporting ratio of 2 or more, with half a report added to each count), it’s unlikely to be chance (a Yates chi-square of 3.84 or more) and there are at least 20 reports on other compounds to compare with. A flag isn’t proof that the compound causes it; it’s a signal worth knowing. Reactions Sig reads as serious, in a report, a question or a comment, are counted, moderators see them all, and their writers are pointed to medical help and to <a href="https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program" rel="noopener" target="_blank">MedWatch</a>, where anyone in the US can report a serious reaction to the FDA.</p>
 
     <h2 id="forums">What we read on the forums</h2>
     <p>Each Signal starts from Miracle Health’s reading of public forums, podcasts and videos: what people describe most, and how often they mention each use. We show counted forum data (such as “412 posts read, 61% positive”) only from sources whose terms allow counting and showing it; Reddit, for one, doesn’t allow commercial use of its data without an agreement, so none is counted from there. We never quote or name anyone.</p>
 
-    <h2 id="ai">How Miracle AI uses all this</h2>
-    <p>For each compound and question, Miracle AI starts with the studies when there are studies in people for it, and with what people report when there aren’t, saying so in the same breath. Safety comes before either: for anything on FDA’s list of substances with significant safety risks, the status and the studies lead; in pregnancy, what people report is left out. The numbers it gives come from these same files: the fact sheets and the community’s hourly snapshot, worked into one reading per compound and use that the fact sheets show too. A check flags any number in an answer that isn’t in what Miracle AI was given, and every part of every answer is checked by a Safety agent before you see it. A test set of about two hundred questions, with what a good answer must and must not do, is graded automatically each time Miracle AI changes.</p>
+    <h2 id="ai">How Sig uses all this</h2>
+    <p>For each compound and question, Sig starts with the studies when there are studies in people for it, and with what people report when there aren’t, saying so in the same breath. Safety comes before either: for anything on FDA’s list of substances with significant safety risks, the status and the studies lead; in pregnancy, what people report is left out. The numbers it gives come from these same files: the fact sheets and the community’s hourly snapshot, worked into one reading per compound and use that the fact sheets show too. A check flags any number in an answer that isn’t in what Sig was given, and every part of every answer is checked by a Safety agent before you see it. A test set of about two hundred questions, with what a good answer must and must not do, is graded automatically each time Sig changes.</p>
 
     <h2 id="never">What we never do</h2>
     <ul>
       <li>No doses, amounts, schedules or how to take or inject anything, for any compound.</li>
       <li>No sellers, brands, prices, pharmacies or where to get something or have it tested.</li>
       <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your clinician.</li>
-      <li>No health records: Miracle AI keeps nothing you write, and the community holds only what members choose to post.</li>
+      <li>No health records: Sig keeps nothing you write, and the community holds only what members choose to post.</li>
     </ul>
     <p>Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=Method">Tell us</a>.</p>
   </article>`;
@@ -931,7 +932,7 @@ front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key,
 front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true"'));
 // Its one script, by its version
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
-// Its Sigs are the kit's, drawn on the dark hero and the "Miracle AI reads it" step
+// Its Sigs are the kit's, drawn on the dark hero and the "Sig reads it" step
 const SIGS = [[50, 'idle', 'hsig1'], [104, 'watching', 'hsig2']];
 let sigN = 0;
 front = front.replace(/<svg class="sig[ a-z]*"[\s\S]*?<\/svg>/g, (m) => {

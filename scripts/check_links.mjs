@@ -27,7 +27,7 @@ function fileFor(urlPath) {
   if (fs.existsSync(path.join(p, 'index.html'))) return path.join(p, 'index.html');
   return p;
 }
-// A #part that carries a page's state (Miracle AI's #ask=..., a shared plan) isn't a place on it
+// A #part that carries a page's state (Sig's #ask=..., a shared plan) isn't a place on it
 const isState = (hash) => /[=/]/.test(hash);
 const idsCache = new Map();
 function idsOf(file) {

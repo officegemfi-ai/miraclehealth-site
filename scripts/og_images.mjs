@@ -9,6 +9,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PAIRS, slugOf } from './build_pages.mjs';
+import { sigSvg } from '../kit/kit.js';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
@@ -26,6 +27,7 @@ const GRADE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limite
 const BARS = { strong: 4, moderate: 3, limited: 2, preclinical: 1, anecdotal: 0 };
 
 const cards = [
+  { slug: 'ask-sig', kick: 'Ask Sig', title: 'The studies and the whole community, in one answer.', sub: 'Sig is Miracle Health’s AI. It says which is which, and never gives doses or names sellers.', art: sigSvg(300, 'happy', { dark: true, id: 'ogsig' }) },
   { slug: 'about', kick: 'About', title: 'No miracles.<br>Just what happened.', sub: 'Who runs Miracle Health, how it’s paid for, and how every fact sheet is checked.' },
   { slug: 'status', kick: 'FDA status tracker', title: 'Where each compound stands with the FDA', sub: `${entries.size} peptides, hormones, supplements and medications, each checked against FDA’s own documents.` },
   { slug: 'goals', kick: 'By goal', title: 'What people take, and what the studies show', sub: 'Weight, muscle, recovery, sleep, focus, skin, aging and more.' },
@@ -50,9 +52,11 @@ body::before{content:'';position:absolute;inset:0;background:radial-gradient(60%
 .in{position:relative;height:100%;padding:64px 72px;display:flex;flex-direction:column}
 .logo{height:40px;width:auto;align-self:flex-start}
 .kick{margin-top:auto;font:500 22px/1 Plex,monospace;letter-spacing:.14em;text-transform:uppercase;color:#D8FF3D}
-h1{margin-top:22px;font:600 ${c.pair ? 78 : 72}px/1.02 Inter,sans-serif;letter-spacing:-.035em;max-width:1000px}
+h1{margin-top:22px;font:600 ${c.pair ? 78 : 72}px/1.02 Inter,sans-serif;letter-spacing:-.035em;max-width:${c.art ? 720 : 1000}px}
+.art{position:absolute;right:56px;bottom:40px;width:340px;height:340px;display:grid;place-items:center}
+.art svg{width:300px;height:300px}
 .vs{color:#D8FF3D;font-weight:500}
-.sub{margin-top:24px;max-width:900px;font-size:28px;line-height:1.4;color:rgba(252,252,252,.72)}
+.sub{margin-top:24px;max-width:${c.art ? 700 : 900}px;font-size:28px;line-height:1.4;color:rgba(252,252,252,.72)}
 .pills{display:flex;gap:16px;margin-top:30px}
 .pill{display:inline-flex;align-items:center;gap:12px;padding:12px 18px;border-radius:40px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font:500 18px/1 Plex,monospace;letter-spacing:.08em;text-transform:uppercase}
 .pill b{font:600 20px/1 Inter,sans-serif;letter-spacing:0;text-transform:none}
@@ -66,6 +70,7 @@ h1{margin-top:22px;font:600 ${c.pair ? 78 : 72}px/1.02 Inter,sans-serif;letter-s
 <p class="kick">// ${e(c.kick)}</p>
 <h1>${c.title}</h1>
 ${c.sub ? `<p class="sub">${e(c.sub)}</p>` : ''}
+${c.art ? `<div class="art">${c.art}</div>` : ''}
 ${c.pair ? `<div class="pills">${c.pair.map((id) => { const f = entries.get(id); return `<span class="pill"><b>${e(f.name)}</b>${meter(f.evidence.grade)}${e(GRADE[f.evidence.grade])}</span>`; }).join('')}</div>` : ''}
 </div></body></html>`;
 

@@ -1,5 +1,5 @@
 {
-  "note": "The About page (miraclehealth.us/about/). founder: the name to show as who runs Miracle Health (empty: the page says it's founder-run, without a name). reviewers: [{name, role, reviewed, date}] once a clinician or pharmacist has reviewed fact sheets or Miracle AI's safety rules. corrections: [{date, page, url, what}] for significant corrections, newest first. mailing_address: the postal address printed at the foot of each weekly email (a PO box works); empty until you give one.",
+  "note": "The About page (miraclehealth.us/about/). founder: the name to show as who runs Miracle Health (empty: the page says it's founder-run, without a name). reviewers: [{name, role, reviewed, date}] once a clinician or pharmacist has reviewed fact sheets or Sig's safety rules. corrections: [{date, page, url, what}] for significant corrections, newest first. mailing_address: the postal address printed at the foot of each weekly email (a PO box works); empty until you give one.",
   "updated": "2026-11-05",
   "founder": "",
   "reviewers": [],

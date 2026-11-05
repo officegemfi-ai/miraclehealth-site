@@ -1,5 +1,5 @@
 /* My Miracle (miraclehealth.us/my): what a member keeps on this device, together. On the same dark
-   page as Miracle AI and the plan; the plan card itself comes from ai/plan.css. */
+   page as Sig and the plan; the plan card itself comes from ai/plan.css. */
 .my-page{background:var(--darker);color:var(--on-ink);--focus:var(--lime)}
 .my-page [hidden]{display:none!important}
 .my-page .foot{margin-top:24px;border-top:1px solid var(--line-ink)}

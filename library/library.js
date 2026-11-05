@@ -2,11 +2,11 @@
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from './signalviz.js';
-import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=aea73e9434';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f08d778478';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const SNAPSHOT = `${COMMUNITY}/snapshot.json`;
-// Both voices for each compound and use, worked out with Miracle AI's own code from the same
+// Both voices for each compound and use, worked out with Sig's own code from the same
 // snapshot (the community's scripts/build_evidence.ts)
 const EVIDENCE = `${COMMUNITY}/evidence`;
 const MEDWATCH = 'https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program';
@@ -314,7 +314,7 @@ function radarLayers(box, x, uses) {
 }
 
 // The bottom line, use by use: what the studies show, what people report, which to start with,
-// and how many get better on a placebo. The same reading Miracle AI gives, from the same numbers,
+// and how many get better on a placebo. The same reading Sig gives, from the same numbers,
 // drawn like the front page's real example. A finding's full words (caveats included) come from
 // the fact sheet on the page; the evidence file keeps only a long finding's first clause.
 const GRADE_USE = {
@@ -391,8 +391,8 @@ function entryPage(root) {
   });
 }
 
-// Someone with a stack saved on this device (from Miracle AI): check this compound with it, in
-// Miracle AI, the question typed in for them. The stack never leaves the browser until they send it.
+// Someone with a stack saved on this device (from Sig): check this compound with it, in
+// Sig, the question typed in for them. The stack never leaves the browser until they send it.
 function stackCheck(root) {
   const a = document.querySelector('[data-with-stack]');
   if (!a) return;

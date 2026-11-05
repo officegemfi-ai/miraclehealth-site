@@ -3,13 +3,13 @@
 //   The building: three pillars (nutrition, sleep, exercise), their peptides and medicines resting
 //   on them, the supplements that shore up the weak spot, and wellbeing and community on top.
 //   Then: the rest of the steps, numbered, to tick off. A pillar that's "not sure yet" can be
-//   answered in place, and Miracle AI updates the plan.
+//   answered in place, and Sig updates the plan.
 // Drawn in the chat (/ai/) and on the page a shared plan opens (/plan/). A shared plan travels in
 // the part of the link after "#", which browsers never send to a server, so Miracle Health never
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
-import { GRADES, meterHtml, node as fromKit, draftLink } from '/kit/kit.js?v=aea73e9434';
+import { GRADES, meterHtml, node as fromKit, draftLink } from '/kit/kit.js?v=f08d778478';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const KEPT = 'mh-ai-plan-v1';
@@ -17,7 +17,7 @@ const CHECKINS = 'mh-my-checkins-v1';
 const PILLARS = ['nutrition', 'sleep', 'exercise'];
 const PILLAR = { nutrition: 'Nutrition', sleep: 'Sleep', exercise: 'Exercise' };
 const STATE = { start: 'Start here', next: 'Next', strong: 'Strong', unknown: 'Not sure yet' };
-// Answering a pillar that's "not sure yet": the same questions Miracle AI asks
+// Answering a pillar that's "not sure yet": the same questions Sig asks
 const ASK = {
   nutrition: { q: 'Most days, do you get about 0.7 to 1 g of protein per pound of lean body mass?', options: ['Yes', 'Not quite', 'No'] },
   sleep: { q: 'How’s your sleep most nights?', options: ['7+ hours, solid', 'Short or broken'] },
@@ -263,7 +263,7 @@ function foot(raw, card, opts) {
       try {
         const url = await link(pick());
         if (navigator.share) {
-          try { await navigator.share({ title: 'My Miracle Plan', text: `${card.title}: my plan, built from the ground up with Miracle AI.`, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
+          try { await navigator.share({ title: 'My Miracle Plan', text: `${card.title}: my plan, built from the ground up with Sig, Miracle Health’s AI.`, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
         }
         await navigator.clipboard.writeText(url);
         say('Link copied. Paste it into a message.');
@@ -406,7 +406,7 @@ export function keptPlan() {
   } catch { return null; }
 }
 const saveKept = (k) => local.set({ v: 1, key: k.key, saved: k.saved, plan: k.plan, done: k.done || [] });
-// A plan Miracle AI updated (after a check-in, or an answer on the plan) keeps the day they
+// A plan Sig updated (after a check-in, or an answer on the plan) keeps the day they
 // started: it's the same journey while it's about the same compounds or goal
 export function keepPlan(card) {
   const c = compact({ ...card, hidden: false });
@@ -488,7 +488,7 @@ export function progress(card, done) {
   const list = todo(card);
   return { done: list.filter((s) => done.includes(s.key)).length, total: list.length };
 }
-// What to tell Miracle AI when they check in on their plan
+// What to tell Sig when they check in on their plan
 export function checkIn(card, done) {
   const c = normalize(card);
   const all = steps(c);
@@ -728,7 +728,7 @@ function paint(ctx, raw, W, top, draw) {
     y += 40;
   }
   y += 4;
-  y += para('Made with Miracle AI at miraclehealth.us/ai. Education, not medical advice: talk any change through with your clinician.', P, y, inner, F.small, C.text3, 30);
+  y += para('Made with Sig, Miracle Health’s AI, at miraclehealth.us/ai. Education, not medical advice: talk any change through with your clinician.', P, y, inner, F.small, C.text3, 30);
   return y + 48;
 }
 
@@ -796,7 +796,7 @@ if (root) {
       root.replaceChildren(...(intro ? [intro] : []), el);
     } catch {
       root.replaceChildren(h('h1', { class: 'plan-oops', text: 'This plan couldn’t be opened' }),
-        h('p', { class: 'plan-oops-p', text: 'The link may have been cut short when it was copied. Ask for it again, or build your own plan with Miracle AI.' }));
+        h('p', { class: 'plan-oops-p', text: 'The link may have been cut short when it was copied. Ask for it again, or build your own plan with Sig.' }));
     }
   };
   window.addEventListener('hashchange', show);

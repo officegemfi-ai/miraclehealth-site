@@ -1,5 +1,5 @@
 // qrcode-generator 2.0.4 (npm), by Kazuhiko Arase, MIT license; unchanged below. Loaded only when someone asks
-// Miracle AI for a QR code of their clinician review packet (ai/packet.js).
+// for a QR code (My Miracle's "Move it to your phone", through ai/packet.js).
 //---------------------------------------------------------------------
 //
 // QR Code Generator for JavaScript
