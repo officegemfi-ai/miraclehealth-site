@@ -1,0 +1,42 @@
+# Checks the site on every push and pull request, before or as GitHub Pages publishes main:
+#   - the built pages match their sources (scripts/build_library.mjs --check)
+#   - no link between the site's own pages is broken, nor any #part it points to
+#   - every page has its security policy, a title and a description, and every script parses
+# GitHub emails you when a run fails.
+name: Check the site
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: The built pages match their sources
+        run: node scripts/build_library.mjs --check
+      - name: No broken links between the site's pages
+        run: node scripts/check_links.mjs
+      - name: Every page has its security policy, a title and a description
+        run: |
+          bad=0
+          while IFS= read -r f; do
+            case "$f" in */email.html) continue ;; esac
+            grep -q 'http-equiv="Content-Security-Policy"' "$f" || { echo "::error file=$f::No content security policy"; bad=1; }
+            grep -q '<title>[^<]' "$f" || { echo "::error file=$f::No title"; bad=1; }
+            grep -q '<meta name="description" content="[^"]' "$f" || { echo "::error file=$f::No description"; bad=1; }
+          done < <(git ls-files '*.html')
+          exit "$bad"
+      - name: Every script parses
+        run: |
+          for f in $(git ls-files '*.js' '*.mjs' | grep -v '^ai/vendor/'); do
+            cp "$f" "$RUNNER_TEMP/check.mjs"
+            node --check "$RUNNER_TEMP/check.mjs" || { echo "::error file=$f::Doesn't parse"; exit 1; }
+          done

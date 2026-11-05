@@ -7,13 +7,13 @@
 <meta name="description" content="The agreement between you and Miracle Health for using the Miracle Health community.">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'self' https://nerfymdslkhopsomwriv.supabase.co">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://miraclehealth.us/terms">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
-<link rel="stylesheet" href="styles.css?v=0a1d3f82db">
+<link rel="stylesheet" href="styles.css?v=59ba7a39e8">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -35,6 +35,8 @@
   <a href="/my/">My Miracle</a>
   <a class="menu-more" href="/#signal">The Signal</a>
   <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="/weekly/">The weekly email</a>
+  <a class="menu-more" href="/about/">About</a>
   <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
@@ -44,7 +46,7 @@
     <div class="wrap">
       <p class="kick">// Terms</p>
       <h1>Terms of use</h1>
-      <p>Effective October 29, 2026</p>
+      <p>Effective November 5, 2026</p>
     </div>
   </div>
 
@@ -65,7 +67,7 @@
     <p>Miracle AI’s chat at miraclehealth.us/ai is for adults 18 and older. It’s an AI: it explains what published studies, the Library’s fact sheets and the Community Signal say, and it can be wrong or incomplete. It doesn’t diagnose, give doses, name sellers or replace a clinician who knows you, and a shortlist it shows is something to discuss with a clinician, not a plan to follow. Don’t use it in an emergency: call 911. Don’t try to make it break these rules, and don’t use it to harm anyone. We limit how many messages each visitor can send, and we may pause or change the chat at any time.</p>
 
     <h2>5. What you post</h2>
-    <p>You own what you post. You give Miracle Health a worldwide, non-exclusive, royalty-free license to host, show and process it to run the community: showing it to members, having Miracle AI read it, and counting it toward the Community Signal. When you delete a post or your account, we stop showing it; totals already calculated from many members’ reports may remain. Only post what you have the right to share.</p>
+    <p>You own what you post. You give Miracle Health a worldwide, non-exclusive, royalty-free license to host, show and process it to run the community: showing it to members, having Miracle AI read it, and counting it toward the Community Signal, and, for a report you choose to make public, showing it to anyone on its public page until you take it back. When you delete a post or your account, we stop showing it; totals already calculated from many members’ reports may remain. Only post what you have the right to share.</p>
 
     <h2>6. Moderation</h2>
     <p>We may review, hold, remove or restore posts and comments, and suspend or close accounts that break these terms or the rules. Miracle AI does a first read and moderators decide. Miracle AI can make mistakes: you can confirm or correct its read on your posts, and moderators look at what it holds back.</p>
@@ -92,9 +94,19 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
+    <div class="foot-news">
+      <p><b>The Signal, weekly.</b> What moved, new studies and FDA news, once a week.</p>
+      <form class="news-form " action="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/newsletter" method="post">
+    <label class="mh-sr" for="foot-email">Your email address</label>
+    <div class="nf-row"><input id="foot-email" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn lime" type="submit">Get it weekly</button></div>
+    <input type="hidden" name="source" value="footer">
+    <span class="nf-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
+    <p class="nf-note">Free, once a week. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
+  </form>
+    </div>
     <div class="foot-row">
       <img src="logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/method/">How the numbers are made</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences, not medical advice. In a crisis, call or text 988 (US).</p>

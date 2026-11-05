@@ -7,13 +7,13 @@
 <meta name="description" content="What Miracle Health collects, why, who helps run the community, and the choices you have.">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'self' https://nerfymdslkhopsomwriv.supabase.co">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://miraclehealth.us/privacy">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
-<link rel="stylesheet" href="styles.css?v=0a1d3f82db">
+<link rel="stylesheet" href="styles.css?v=59ba7a39e8">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -35,6 +35,8 @@
   <a href="/my/">My Miracle</a>
   <a class="menu-more" href="/#signal">The Signal</a>
   <a class="menu-more" href="/#how">How it works</a>
+  <a class="menu-more" href="/weekly/">The weekly email</a>
+  <a class="menu-more" href="/about/">About</a>
   <a class="menu-more" href="https://community.miraclehealth.us/">Sign in</a>
   <a class="btn lime" href="https://community.miraclehealth.us/">Join the community</a>
 </nav>
@@ -44,7 +46,7 @@
     <div class="wrap">
       <p class="kick">// Privacy</p>
       <h1>Privacy notice</h1>
-      <p>Effective October 30, 2026</p>
+      <p>Effective November 5, 2026</p>
     </div>
   </div>
 
@@ -55,10 +57,11 @@
       <h2 id="short-h">The short version</h2>
       <ul>
         <li>You sign in with your phone number. Nobody else ever sees it.</li>
-        <li>What you post about your health is stored, shown to other signed-in members under your handle, and read by Miracle AI to apply the rules and count toward the Community Signal.</li>
+        <li>What you post about your health is stored, shown to other signed-in members under your handle, and read by Miracle AI to apply the rules and count toward the Community Signal. A report goes on a public page only if you choose that for it.</li>
         <li>We don’t sell your information, show ads, or use tracking cookies.</li>
         <li>You can delete your account, and everything you wrote, at any time.</li>
         <li>Miracle AI’s chat on this website needs no account, and we don’t store what you write there.</li>
+        <li>Check-in texts and the weekly email come only if you ask for them, and stop when you say so.</li>
       </ul>
     </section>
 
@@ -67,6 +70,7 @@
     <p><b>What you share.</b> Posts, comments, votes, “same for me” taps, stickers, the spaces you join, and the reports you file about posts that may break the rules. Posts are about your own experience with peptides, so they can include health information: what you took, why, for how long, what changed and any side effects.</p>
     <p><b>Miracle AI’s read of your posts.</b> For each post: whether it’s a first-hand report; whether things got better, stayed the same or got worse; for how long; any side effects; and whether it may break a rule. You can confirm or correct the read on your post.</p>
     <p><b>Your activity in the community.</b> Points, emblems, badges and notifications, and moderation records (what was reviewed, held or removed, and why).</p>
+    <p><b>Your choices about reaching you.</b> If you turn on check-in texts: that you did, when, your time zone (so texts come at a sensible hour) and which texts we sent. If you sign up for the weekly email: your email address, where on the site you signed up, when you confirmed, which issues we sent you and, if you unsubscribe, when.</p>
     <p><b>Technical information.</b> Like most online services, the companies that host the community keep short-lived logs of requests, including IP addresses and browser details, for security and to keep the service running. The app keeps your sign-in session in your browser’s storage. To show how strong the evidence is in each space, the app downloads the Library’s public index from miraclehealth.us, the same file for everyone. We don’t use advertising or analytics cookies.</p>
 
     <h2>How we use it</h2>
@@ -81,6 +85,7 @@
     <h2>Who sees what</h2>
     <ul>
       <li><b>Other members</b> see your handle, posts, comments, emblem and badges. Posts and comments are visible only to signed-in members, not to the public.</li>
+      <li><b>Anyone</b> can read a report you choose to make public (“Let anyone read it”): its title, your words, your handle, what you took and how it went, on its own page at community.miraclehealth.us/r/, where search engines can find it. Comments on it stay members-only. Take it back any time and its page comes down within the hour; a report a moderator holds or removes, or that you delete, comes down the same way. Copies others made while it was public, or that search engines kept, are beyond our control.</li>
       <li><b>Nobody</b> sees your phone number, or who voted, who said “same for me”, who sent a sticker, who joined which space, or who reported whom.</li>
       <li><b>Moderators</b> see reports, posts held for review and Miracle AI’s reads, so they can enforce the rules.</li>
     </ul>
@@ -88,7 +93,8 @@
     <h2>Companies that process it for us</h2>
     <ul>
       <li><b>Supabase</b> hosts the community’s database and sign-in.</li>
-      <li><b>Twilio</b> sends your sign-in codes, so it receives your phone number.</li>
+      <li><b>Twilio</b> sends your sign-in codes, and check-in texts if you turn them on, so it receives your phone number and those texts.</li>
+      <li><b>Resend</b> sends the weekly email and its confirmation emails, so it receives your email address and those emails.</li>
       <li><b>Anthropic</b> runs Claude, the model behind Miracle AI. Each new post and comment is sent to it to check against the rules and to read the outcome, and so is each message in Miracle AI’s chat on this website, to write the answer. Anthropic’s commercial terms don’t allow it to train its models on this content.</li>
       <li><b>GitHub</b> hosts these web pages and the community’s app files.</li>
     </ul>
@@ -109,12 +115,20 @@
       <li><b>Keep it general.</b> Please don’t include your name, contact details or anything else that identifies you. You don’t need them to get a useful answer.</li>
     </ul>
 
+    <h2 id="texts">Check-in texts</h2>
+    <p>Off unless you turn them on (in the community, Account, then Check-in texts). Then, when one of your reports is due for a check-in (2, 6 and 12 weeks after you post it), we text the number you sign in with: at most one text a day, between 9am and 8pm your time. The text never says what you took. Message and data rates may apply. Reply STOP to stop them, or turn them off in Account; reply HELP for help. We never share your number for anyone’s marketing.</p>
+
+    <h2 id="weekly">The weekly email</h2>
+    <p>If you give us your email address for The Signal, we email you once to confirm it, and send nothing else until you do. If you don’t confirm within 30 days of that email, we delete your address. Once confirmed, you get one email a week, each with a one-click unsubscribe link. When you unsubscribe, we keep your address only to make sure it’s never emailed again; ask us and we’ll delete it entirely. To stop the sign-up form being misused, we count sign-ups from each connection in a day the same way as Miracle AI’s chat: under a code made from your IP address with a secret that changes daily, never the address itself. We never sell or share your email address.</p>
+
     <h2>How long we keep it</h2>
     <p>For as long as your account exists. When you delete your account, your profile, posts, comments and votes are deleted right away. Reports you filed about other members’ posts stay, without your name. Backups and the hosting companies’ logs expire on their own schedules.</p>
 
     <h2>Your choices</h2>
     <ul>
       <li><b>Correct the read.</b> Confirm or correct Miracle AI’s read on any of your posts.</li>
+      <li><b>Public or not.</b> Make a report public, or members-only again, on the report itself.</li>
+      <li><b>Texts and email.</b> Turn check-in texts off in Account or reply STOP; unsubscribe from the weekly email from any issue.</li>
       <li><b>Edit or delete</b> your posts and comments at any time.</li>
       <li><b>Delete your account</b> in the app (Account, then Delete my account). This removes everything you wrote.</li>
       <li><b>Ask us</b> at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a> for a copy of your information, to correct or delete it, or to withdraw your consent. Depending on where you live (for example California, Washington or Nevada), the law gives you specific rights over your personal and health information. We honor these requests for everyone.</li>
@@ -139,9 +153,19 @@
 
 <footer class="foot">
   <div class="wrap foot-in">
+    <div class="foot-news">
+      <p><b>The Signal, weekly.</b> What moved, new studies and FDA news, once a week.</p>
+      <form class="news-form " action="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/newsletter" method="post">
+    <label class="mh-sr" for="foot-email">Your email address</label>
+    <div class="nf-row"><input id="foot-email" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn lime" type="submit">Get it weekly</button></div>
+    <input type="hidden" name="source" value="footer">
+    <span class="nf-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
+    <p class="nf-note">Free, once a week. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
+  </form>
+    </div>
     <div class="foot-row">
       <img src="logo.webp" alt="Miracle Health" width="69" height="24">
-      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/method/">How the numbers are made</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
+      <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Miracle AI</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
       <p>Experiences, not medical advice. In a crisis, call or text 988 (US).</p>

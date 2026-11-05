@@ -6,7 +6,8 @@
 //   baselines.json     how many improve anyway (on a placebo, or with time) by use, with sources
 //                      (the community's shared/baselines.json; for the methodology page)
 // Writes library/index.html, library/<id>/index.html (one per compound), library/data/index.json
-// (what Miracle AI reads to find and rank compounds), the Miracle AI page (ai/index.html) and
+// (what Miracle AI reads to find and rank compounds), the Miracle AI page (ai/index.html), the
+// pages scripts/build_pages.mjs makes (about, status, goals, compare, weekly, founders) and
 // sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
 // the live Community Signal from community.miraclehealth.us/snapshot.json; ai/ai.js is the chat.
 // Run: node scripts/build_library.mjs   (--check fails if the committed pages are out of date)
@@ -18,6 +19,9 @@ import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signa
 // Miracle Health's design kit, shared with the community app (copied from the community's
 // shared/kit by its scripts/sync_kit.sh): the bar of the four places, the evidence meter, Sig
 import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompound } from '../kit/kit.js';
+// The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
+// and the founding reporters (scripts/build_pages.mjs)
+import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -95,7 +99,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // into their import lines, so a new script never runs with an old copy of either
 const KIT_JS = version('kit/kit.js');
 const VIZ_JS = version('library/signalviz.js');
-for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js']) {
+for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js']) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
   const was = fs.readFileSync(file, 'utf8');
@@ -113,6 +117,7 @@ const V = {
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
   myCss: version('my/my.css'), myJs: version('my/my.js'),
   home: version('home.js'),
+  pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
 };
 
 // The library's banner photo, in three widths
@@ -122,7 +127,7 @@ const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 9
 // community shows), and joining the community; on phones, a menu with the same places. home: the
 // front page, whose own sections the menu lists too.
 function shellTop(current = '', home = false) {
-  const more = [['/#signal', 'The Signal'], ['/#how', 'How it works'], ...(home ? [['/#rules', 'House rules']] : [])];
+  const more = [['/#signal', 'The Signal'], ['/#how', 'How it works'], ...(home ? [['/#rules', 'House rules']] : []), ['/weekly/', 'The weekly email'], ['/about/', 'About']];
   return `<header class="top">
   <div class="wrap top-in">
     <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
@@ -140,15 +145,25 @@ function shellTop(current = '', home = false) {
   <a class="btn lime" href="${COMMUNITY}/">Join the community</a>
 </nav>`;
 }
-const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/#how">How it works</a><a href="/method/">How the numbers are made</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
+const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
+// The weekly email's sign-up at the foot of every page but the weekly email's own
+const footNews = () => `<div class="foot-news">
+      <p><b>The Signal, weekly.</b> What moved, new studies and FDA news, once a week.</p>
+      ${signupForm(e, { source: 'footer', id: 'foot-email' })}
+    </div>`;
 // The hand-written pages (the front page, privacy, terms, 404) get the same top, menu, footer
-// links and kit as every built page
+// links, sign-up and kit as every built page, and their policy lets the sign-up form send (and
+// come back)
 function stampShell(html, file, { current = '', home = false } = {}) {
   const top = /<header class="top">[\s\S]*?<\/header>\s*<nav class="menu-panel"[\s\S]*?<\/nav>/;
   const foot = /<nav class="foot-links" aria-label="Site">[\s\S]*?<\/nav>/;
-  if (!top.test(html) || !foot.test(html)) throw new Error(`${file} has no top bar, menu or footer links to update`);
+  const news = /(<div class="wrap foot-in">)\s*(?:<div class="foot-news">[\s\S]*?<\/form>\s*<\/div>\s*)?/;
+  if (!top.test(html) || !foot.test(html) || !news.test(html)) throw new Error(`${file} has no top bar, menu or footer to update`);
   if (!/href="\/?styles\.css(\?v=[0-9a-f]+)?"/.test(html)) throw new Error(`${file} has no styles.css link`);
   return html.replace(top, shellTop(current, home)).replace(foot, footLinks())
+    .replace(news, `$1\n    ${footNews()}\n    `)
+    // The sign-up goes to the newsletter function, which sends the browser back here: both allowed
+    .replace(/form-action ([^;"]*)/, `form-action 'self' ${NEWSLETTER_ORIGIN}`)
     .replace(/<link rel="stylesheet" href="\/?kit\/kit\.css(?:\?v=[0-9a-f]+)?">\n/, '')
     .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`);
 }
@@ -167,7 +182,7 @@ function page({
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect}; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect}; base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
 <meta property="og:type" content="website">
@@ -195,6 +210,7 @@ ${body}
 
 <footer class="foot">
   <div class="wrap foot-in">
+    ${url.startsWith('/weekly/') ? '' : footNews()}
     <div class="foot-row">
       <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
       ${footLinks()}
@@ -414,6 +430,37 @@ function pendingSheet(c) {
     </section>`;
 }
 
+// Where "Share how it went" goes: the community's new-post page with the compound picked
+const shareLink = (id) => `${COMMUNITY}/#/new?c=${encodeURIComponent(id)}`;
+// The bottom line, as the front page's real example reads: the fact sheet's own verdict on the
+// evidence and the US status, then use by use what the studies show, what people report and how
+// many get better on a placebo (filled in by library.js from the community's evidence file). The
+// findings' full words, caveats included, travel with the page, because the evidence file keeps
+// only a long finding's first clause.
+function bottomLine(c, f) {
+  const claims = (f.benefits || []).map((b) => {
+    const s = (f.sources || []).find((x) => x.n === (b.sources || [])[0]);
+    return { c: b.claim, s: s ? { t: s.title, p: s.publisher, y: s.year, u: s.url } : null };
+  });
+  return `<div class="wrap le-bl-wrap">
+    <article class="vs le-bl" id="voices" data-live="voices" data-claims="${e(JSON.stringify(claims))}" aria-labelledby="bl-h">
+      <header class="bl-head">
+        <h2 class="bl-k" id="bl-h">Bottom line</h2>
+        <p class="bl-why">${e(f.evidence.why)}</p>
+        <p class="bl-tags">${evPill(f.evidence.grade)}<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span><span class="bl-status">${e(f.status_us.label)}</span></p>
+      </header>
+      <div class="bl-uses" hidden>
+        <div class="vs-cols" aria-hidden="true"><span>Use</span><span>What the studies show</span><span class="c-rep">What people report</span><span>Got better on a placebo</span></div>
+        <div class="vs-rows"></div>
+      </div>
+      <footer class="vs-foot">
+        <p>What people report isn’t proof, and many problems ease on their own. Use this to decide what to ask your clinician, not what to take.</p>
+        <div class="vs-act"><a class="btn lime" href="${shareLink(c.id)}">Share how it went</a><a class="bl-how" href="/method/">How these are made</a></div>
+      </footer>
+    </article>
+  </div>`;
+}
+
 function entryPage(c) {
   const f = entries.get(c.id);
   const parentBlends = blendsWith(c.id);
@@ -434,7 +481,7 @@ function entryPage(c) {
       : 'None routinely needed'],
     ['Checked', `${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a>`],
   ].filter(Boolean) : [];
-  const toc = f ? [['voices', 'Studies & community'], ['what', 'What it is'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
+  const toc = f ? [['voices', 'Bottom line'], ['what', 'What it is'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood markers to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero">
@@ -452,12 +499,14 @@ function entryPage(c) {
     <div class="le-actions">
       <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Miracle AI about ${e(c.name)}</a>
       <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it with my saved stack</a>
+      <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
     </div>
   </div>
 </section>
 
 <section class="le-glance" aria-label="At a glance">
+  ${f ? bottomLine(c, f) : ''}
   <div class="wrap le-glance-in">
     <div class="le-left">
       <div class="glass deep le-radar">
@@ -471,18 +520,13 @@ function entryPage(c) {
       <div class="gc-head"><span>Community Signal</span><span class="live lime"><i aria-hidden="true"></i>Live</span></div>
       <p class="sig-wait">Loading what members report…</p>
       <noscript><p>The Community Signal needs JavaScript. You can see it in the community.</p></noscript>
-      <a class="btn lime sm sig-cta" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">Share how it went</a>
+      <a class="btn lime sm sig-cta" href="${shareLink(c.id)}">Share how it went</a>
     </div>
   </div>
 </section>
 
 <div class="wrap le-body">
   <article class="le-main">
-    <section class="le-sec le-voices" id="voices" data-live="voices" hidden>
-      <h2>The studies and the community, use by use</h2>
-      <p class="voices-lede">For each thing it’s used for: what the studies show, what people report, and which to start with. The same reading Miracle AI gives, from the same numbers. <a href="/method/">How it’s made</a></p>
-      <div class="voices-rows"></div>
-    </section>
     ${f ? factSheet(c, f) : pendingSheet(c)}
     ${parentBlends.length ? `<section class="le-sec" id="blends"><h2>Also sold in blends</h2><div class="parts">${parentBlends.map((b) => `<a class="part" href="/library/${b.id}/"><span class="lc-fam">Blend</span><b>${e(b.name)}</b></a>`).join('')}</div></section>` : ''}
   </article>
@@ -491,7 +535,7 @@ function entryPage(c) {
     <div class="side-card">
       <p class="mono">Took it?</p>
       <p>Your first-hand report moves the ${e(c.name)} Signal, whether it worked or not.</p>
-      <a class="btn lime sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">Go to its space</a>
+      <a class="btn lime sm" href="${shareLink(c.id)}">Share how it went</a>
     </div>
     <p class="side-note">Experiences and published evidence, not medical advice. No doses, no sellers.</p>
   </aside>
@@ -782,7 +826,7 @@ function methodPage() {
     </section>
 
     <h2 id="studies">The studies</h2>
-    <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. The evidence for each use is graded: <b>strong</b> (several good trials in people, or approved for that use), <b>moderate</b> (at least one good trial in people), <b>limited</b> (small or short studies in people), <b>animal and lab studies</b> only, or <b>anecdotal</b> (user reports only). Clinician and pharmacist review of the fact sheets and of Miracle AI’s safety rules is under way; a fact sheet says who reviewed it, and when, once that’s done.</p>
+    <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. The evidence for each use is graded: <b>strong</b> (several good trials in people, or approved for that use), <b>moderate</b> (at least one good trial in people), <b>limited</b> (small or short studies in people), <b>animal and lab studies</b> only, or <b>anecdotal</b> (user reports only). We’re looking for a clinician and a pharmacist to review the fact sheets and Miracle AI’s safety rules; until they have, each sheet says “clinician review pending”, and once they have, it says who reviewed it and when (<a href="/about/#reviewers">more on this</a>).</p>
 
     <h2 id="reports">How a report is read</h2>
     <p>Members post in their own words. Miracle AI reads each post: is it about their own use; how it went compared with before (better, about the same or worse); for how long; what they took it for; any side effects, under one name each (so “nauseous” and “mild nausea” count together); and whether a reaction sounds serious. The author then sees that read in one line, <b>“Did we read you right?”</b>, and confirms it or fixes any part with a tap. If something important is missing, usually how long, it asks that one question. Their word always wins over the read.</p>
@@ -816,6 +860,12 @@ function methodPage() {
     </table></div>
     <p class="cell-note">Not shown yet, for want of comparable trials: ${baselines.not_shown.map((x) => `${e(label(x.use).toLowerCase())} (${e(x.why.replace(/\.$/, ''))})`).join('; ')}.</p>
 
+    <h2 id="calibration">Does the Signal agree with the studies?</h2>
+    <p>One check we run in the open. If the Signal measures something real, compounds with good trials in people should, on the whole, be reported as working more often than compounds studied only in animals. Below, from the live numbers: the share of members’ reports that went better, for every compound with a fact sheet and at least 10 reports, grouped by how strong its studies are. It’s a rough check, not proof: people take strongly studied medicines for what they were studied for, and other compounds for many things.</p>
+    <div class="calib" data-live="calibration">
+      <p class="calib-wait">This fills in by itself as reports come in: it needs at least three compounds with 10 or more reports in a group to compare.</p>
+    </div>
+
     <h2 id="watch">The side-effect watch</h2>
     <p>For each compound we compare how often each side effect is reported with how often it’s reported for every other compound. A side effect is flagged when at least three reports mention it, it’s reported at least twice as often (a proportional reporting ratio of 2 or more, with half a report added to each count), it’s unlikely to be chance (a Yates chi-square of 3.84 or more) and there are at least 20 reports on other compounds to compare with. A flag isn’t proof that the compound causes it; it’s a signal worth knowing. Reactions Miracle AI reads as serious, in a report, a question or a comment, are counted, moderators see them all, and their writers are pointed to medical help and to <a href="https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program" rel="noopener" target="_blank">MedWatch</a>, where anyone in the US can report a serious reaction to the FDA.</p>
 
@@ -837,7 +887,7 @@ function methodPage() {
   return page({
     title: 'How the numbers are made · Miracle Health',
     description: 'How the Library grades studies, how members’ reports are read, weighted and checked, how ratings get their ranges, how many improve anyway, and the side-effect watch.',
-    url: '/method/', body, current: '', bodyClass: 'doc-page', styles: [], scripts: [],
+    url: '/method/', body, current: '', bodyClass: 'doc-page', styles: [`/pages/pages.css?v=${V.pgCss}`], scripts: [`/pages/pages.js?v=${V.pgJs}`],
   });
 }
 
@@ -854,7 +904,13 @@ out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
 out.set(path.join(ROOT, 'plan', 'index.html'), planPage());
 out.set(path.join(ROOT, 'my', 'index.html'), myPage());
 out.set(path.join(ROOT, 'method', 'index.html'), methodPage());
-const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/', '/privacy', '/terms'];
+const more = buildPages({
+  ROOT, SITE, COMMUNITY, V, page, e, catalog, entries, byId, uses, baselines, STATUS, GRADE, GRADE_ORDER, GOAL_SHORT,
+  evPill, date, card, askLink, version, shownAliases,
+});
+for (const [file, html] of more.files) out.set(file, html);
+const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/',
+  ...more.urls, '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}

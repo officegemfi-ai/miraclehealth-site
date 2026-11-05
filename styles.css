@@ -307,6 +307,32 @@ ul,ol{list-style:none;margin:0;padding:0}
 .foot-links .mail{text-transform:none;letter-spacing:.02em}
 .foot .copy{font:500 12px/1.4 var(--mono);letter-spacing:.06em}
 
+/* The weekly email's sign-up: at the foot of every page (on ink), and on the weekly email's
+   own pages (on paper, .on-paper). A plain form: it works with no script. */
+.foot-news{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:18px 48px;align-items:start;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--line-ink)}
+.foot-news>p{max-width:420px;font-size:16px;line-height:1.5;color:var(--on-ink-2)}
+.foot-news>p b{display:block;margin-bottom:4px;font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.news-form{min-width:0}
+.nf-label{display:block;margin-bottom:10px;font:600 16px/1.4 var(--head)}
+.nf-row{display:flex;gap:8px}
+.nf-row input{flex:1 1 auto;min-width:0;height:54px;padding:0 22px;border-radius:40px;border:1px solid var(--line-ink);background:rgba(255,255,255,.06);color:var(--on-ink);font:400 16px/1 var(--body)}
+.nf-row input::placeholder{color:var(--on-ink-3)}
+.nf-row input:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.nf-row .btn{flex:none}
+.nf-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.nf-note{margin-top:10px;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
+.nf-note a{color:var(--on-ink-2)}
+.news-form.on-paper .nf-row input{border-color:rgba(18,30,29,.22);background:var(--white);color:var(--text)}
+.news-form.on-paper .nf-row input::placeholder{color:var(--muted)}
+.news-form.on-paper .nf-row input:focus-visible{outline-color:var(--ink)}
+.news-form.on-paper .nf-note{color:var(--muted)}
+.news-form.on-paper .nf-note a{color:var(--text-2)}
+@media (max-width:760px){
+  .foot-news{grid-template-columns:1fr}
+  .nf-row{flex-wrap:wrap}
+  .nf-row input,.nf-row .btn{width:100%}
+}
+
 /* ---------------------------------------------------------------- smaller screens */
 @media (max-width:1279px){
   .hero-card{display:none}

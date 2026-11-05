@@ -23,6 +23,8 @@ set to. On phones the links sit behind a Menu button, which works without script
 | `kit/` | Miracle Health's design kit, shared with the community app so the two look like one product: `kit.css` (the palette and type, Sig's moves) and `kit.js` (the bar of the four places on every page, Library · Miracle AI · Community · My Miracle; the evidence meter; the Community Signal number; compound tiles and chips; Sig; and the links one place opens in another, like a question typed into Miracle AI or a check-in drafted as a community post). Copied from the community's `shared/kit` by its `scripts/sync_kit.sh`; the community's checks fail if the copies here differ. Don't edit them here. The library build writes the bar, menu and footer into every page, the hand-written ones too, and the kit's version into every script that imports it |
 | `my/` | My Miracle, at /my (written by the library build, with `my.css` and `my.js`): what a member keeps on a device, together. Their Miracle Plan and its ticks, how it's going (one-tap check-ins, which can become a community post they edit and post there), their saved stack with each compound's evidence and Signal, their spaces in the community, a link and QR code that move it all to another device after "#", and a way to forget it. All of it lives in the browser's own storage |
 | `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
+| `about/`, `status/`, `goals/`, `compare/`, `weekly/`, `founders/` | Written by the library build (`scripts/build_pages.mjs`): who runs Miracle Health, how it's paid for, reviewers and corrections (`library/data/about.json`); where each compound stands with the FDA, from the fact sheets; the compounds people take for each of the twelve goals; two compounds side by side; The Signal, the weekly email: signing up and each issue (`library/data/weekly/<n>.json`, with the email itself at `weekly/<n>/email.html`); and the first 100 founding reporters. `pages/pages.css` and `pages/pages.js` (live Signals, the founders' count and the method page's check of the Signal against the studies) |
+| `img/og/` | Share images for those pages, made by `scripts/og_images.mjs` (needs Playwright; run it by hand, then the library build) |
 | `404.html` | Shown for any address that doesn't exist |
 | `img/` | The photos, as WebP in a few widths so phones get the small ones (`hero-*` at the top, `report-*` and `move-*` in How it works, `library-*` for the Library's banner, `join-*` behind the Join section) |
 | `og.jpg` | The picture shown when someone shares the link |
@@ -30,6 +32,22 @@ set to. On phones the links sit behind a Menu button, which works without script
 | `.nojekyll` | Serves the files as they are, with no Jekyll build |
 | `sitemap.xml`, `robots.txt` | For search engines (the sitemap is written by the library build) |
 | `fonts/` | The three typefaces, under the SIL Open Font License (see `fonts/README.md`) |
+
+## The weekly email
+
+Every page's footer (and /weekly/) has a sign-up form: a plain form, sent to the community's
+`newsletter` function (miracle-health-community, `supabase/functions/newsletter`), which keeps
+the address, emails a link to confirm it once an email account is connected (Resend), and comes
+back to /weekly/#… to say what happened. To publish an issue, add `library/data/weekly/<n>.json`,
+run the library build and push; then run **Weekly email** in the community repository's Actions
+with *send* and the issue number. Nothing is emailed to an address until it's confirmed.
+
+## Checks
+
+`.github/workflows/check.yml` runs on every push: the built pages match their sources
+(`node scripts/build_library.mjs --check`), no link between the site's pages is broken
+(`node scripts/check_links.mjs`), every page has its security policy, title and description, and
+every script parses.
 
 ## The Library (/library)
 

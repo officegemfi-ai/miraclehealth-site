@@ -305,24 +305,26 @@
 .fx.warn span{border-color:rgba(255,154,142,.45);background:rgba(255,154,142,.12);color:#FFD2CC;text-transform:none;letter-spacing:0;font:500 12px/1.35 var(--body)}
 .sig-sec.watch a{color:var(--on-ink);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .check.reviewed{border-color:rgba(216,255,61,.5);color:var(--lime)}
-/* The studies and the community, use by use */
-.le-voices .voices-lede a{color:var(--ink);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
-.voices-rows{display:grid;gap:10px;margin-top:20px}
-.vrow{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(0,1fr) minmax(0,1.2fr);gap:10px 18px;align-items:start;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--white)}
-.vrow-use{display:grid;gap:6px}
-.vrow-use b{font:600 16px/1.25 var(--head);letter-spacing:-.01em;color:var(--ink)}
-.vrow-lead{justify-self:start;padding:3px 8px;border-radius:20px;font:600 10px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.vrow-lead.lead-studies{background:#EEF1EA;color:var(--text-2)}
-.vrow-lead.lead-community{background:var(--ink);color:var(--lime)}
-.vrow-lead.lead-none{border:1px dashed var(--line);color:var(--muted)}
-.vrow-side{display:grid;gap:4px}
-.vrow-side .kick-sm{color:var(--muted)}
-.vrow-side.community .kick-sm{color:var(--text-2)}
-.vrow-v{font-size:14.5px;line-height:1.45;color:var(--text)}
-.vrow-base{grid-column:1/-1;margin:2px 0 0;padding:8px 10px;border-radius:9px;background:#F4F6F1;font-size:13.5px;line-height:1.5;color:var(--text-2)}
-.vrow-base b{color:var(--text);font-weight:600}
-@media (max-width:760px){.vrow{grid-template-columns:1fr 1fr}.vrow-use{grid-column:1/-1;grid-template-columns:1fr auto;align-items:center}}
-@media (max-width:420px){.vrow{grid-template-columns:1fr}.vrow-use{grid-template-columns:1fr}}
+/* The bottom line, at the top of the dark band: the fact sheet's verdict and the US status, then
+   use by use what the studies show, what people report and how many get better on a placebo
+   (the front page's real example, styles.css .vs) */
+.le-bl-wrap{padding-top:4px;padding-bottom:16px}
+.le-bl{margin-top:0}
+.bl-head{padding:30px 40px 28px}
+.bl-k{margin:0;font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.bl-why{max-width:72ch;margin-top:12px;font:500 clamp(17px,1.6vw,21px)/1.55 var(--body);color:var(--on-ink)}
+.bl-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:18px}
+.bl-status{font-size:14px;line-height:1.4;color:var(--on-ink-2)}
+.bl-how{font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-2);text-underline-offset:3px}
+.bl-how:hover{color:var(--lime)}
+.le-bl .vs-use h3{margin:0;font:inherit;letter-spacing:inherit}
+.le-bl .lead{display:inline-block;margin-top:8px;padding:3px 8px;border-radius:20px;font:600 10px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.le-bl .lead-studies{background:rgba(255,255,255,.1);color:var(--on-ink-2)}
+.le-bl .lead-community{background:rgba(216,255,61,.14);color:var(--lime)}
+.le-bl .lead-none{border:1px dashed var(--line-ink);color:var(--on-ink-3)}
+.le-bl .rate-bar .fi{fill:var(--lime)}
+.le-bl .vs-cell .vs-bar{margin-top:10px}
+@media (max-width:900px){.bl-head{padding:24px 22px 22px}}
 /* What moved this week, and the pairs the community is filling first */
 .lib-moves{display:grid;gap:10px;margin-top:22px;padding:14px 18px;border-radius:16px;background:var(--ink);color:var(--on-ink)}
 .moves-k{display:flex;align-items:center;gap:8px;font:600 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
@@ -339,4 +341,3 @@
 .moves-focus a{padding:5px 10px;border-radius:20px;border:1px solid var(--line-ink);color:var(--on-ink);text-decoration:none}
 .moves-focus a:hover{border-color:var(--lime);color:var(--lime)}
 .moves-focus .n{font:500 11px var(--mono);color:var(--lime)}
-.vrow-v{display:flex;align-items:center;gap:8px;flex-wrap:wrap}

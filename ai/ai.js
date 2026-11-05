@@ -643,7 +643,7 @@ function voiceItem(it, use) {
     ...said,
     h('div', { class: 'vx-acts' },
       h('a', { class: 'vx-act', href: spaceLink(it.id), text: 'What members report' }),
-      h('a', { class: 'vx-act add', href: draftLink([it.id], { title, body }), text: 'Taken it? Add how it went' })));
+      h('a', { class: 'vx-act add', href: draftLink([it.id], { title, body }), text: 'Took it? Share how it went' })));
 }
 
 // What sits beside what people report: how many improve anyway (on a placebo, or with time), the
@@ -729,7 +729,7 @@ function crowdNode(card) {
     el.append(h('section', { class: 'crowd-group' }, name ? h('h3', { text: name }) : null, h('ul', { class: 'crowd-list' }, rows.map(crowdRow))));
   }
   el.append(h('p', { class: 'vx-foot' }, 'Members’ ratings count once 10 or more reports, from 5 or more people, name a use; until then, how often the forums mention it. ',
-    h('a', { href: draftLink([], { title: `What I tried for ${use}`, body: '' }), text: 'Taken one of these? Add your report' })));
+    h('a', { href: draftLink([], { title: `What I tried for ${use}`, body: '' }), text: 'Took one of these? Share how it went' })));
   return el;
 }
 

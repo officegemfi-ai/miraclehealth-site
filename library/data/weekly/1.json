@@ -1,0 +1,45 @@
+{
+  "note": "One issue of The Signal, Miracle Health's weekly email. The build makes its web page (weekly/<n>/) and the email itself (weekly/<n>/email.html, which the newsletter function sends). Text is plain, with [words](link) for links; {{compounds}} and {{sheets}} become the Library's counts. Every fact comes from a checked fact sheet.",
+  "n": 1,
+  "date": "2026-11-05",
+  "subject": "The Signal #1: off FDA’s risk list isn’t the same as allowed",
+  "preview": "Where the peptides FDA reviewed this year stand, the GLP-1 news, and the five pairs the community is filling first.",
+  "intro": "This is the first Signal, Miracle Health’s weekly email: what moved in the Community Signal, new studies, and FDA news on the compounds in the Library. Every fact here links to the fact sheet it comes from, and every fact sheet to its sources. No ads, nothing for sale.",
+  "sections": [
+    {
+      "h": "The peptides FDA reviewed this year",
+      "p": [
+        "In April 2026 FDA took a group of peptides off its Category 2 list of compounding substances with significant safety risks, after their nominations were withdrawn. Among them: [BPC-157](/library/bpc157/), [TB-500](/library/tb500/), [KPV](/library/kpv/), [semax](/library/semax/), [epitalon](/library/epithalon/), [MOTS-c](/library/motsc/), [LL-37](/library/ll37/), [Melanotan II](/library/mt2/) and injectable [GHK-Cu](/library/ghkcu/).",
+        "That didn’t make them legal to compound. In July 2026 FDA’s compounding advisory committee voted to recommend allowing BPC-157 (8 to 6), TB-500 for wound healing (8 to 6), KPV (8 to 6), semax (8 to 5), epitalon (7 to 4) and MOTS-c (7 to 5), each against FDA staff’s advice. As of mid-October, FDA hadn’t added any of them to the list pharmacies may compound from.",
+        "An interim access policy for certain peptides went to the White House for review on October 14. It hadn’t been issued as of mid-October."
+      ],
+      "more": ["Where every compound stands with the FDA", "/status/"]
+    },
+    {
+      "h": "GLP-1s",
+      "p": [
+        "[Orforglipron](/library/orforglipron/), a GLP-1 pill, was approved on April 1, 2026 as Foundayo, for weight management. It isn’t approved for type 2 diabetes.",
+        "[Retatrutide](/library/retatrutide/) is still in phase 3 trials, and Lilly says it plans to submit it to FDA in the first quarter of 2027. FDA says it can’t be used in compounding under federal law, and has sent warning letters over it.",
+        "Novo Nordisk submitted CagriSema ([cagrilintide](/library/cagrilintide/) with semaglutide) for weight management in December 2025. No FDA decision had been found as of late October.",
+        "The shortages of [semaglutide](/library/semaglutide/) and [tirzepatide](/library/tirzepatide/) are over, so pharmacies may no longer routinely copy them, and in May 2026 FDA proposed keeping both off the list outsourcing facilities may compound from."
+      ],
+      "more": ["Semaglutide and tirzepatide, side by side", "/compare/semaglutide-vs-tirzepatide/"]
+    },
+    {
+      "h": "The community",
+      "p": [
+        "Every Community Signal starts from what people say on public forums. Each first-hand report from a member moves it toward what members actually experienced.",
+        "We’re filling five pairs first: tirzepatide, semaglutide and retatrutide for fat loss, tirzepatide for appetite, and BPC-157 for injury healing. Ten members’ reports unlock the community’s own rating for each. A report that says it didn’t work counts just as much.",
+        "The first 100 members to share a first-hand report become founding reporters, with a badge for good."
+      ],
+      "more": ["How to be one of the first 100", "/founders/"]
+    },
+    {
+      "h": "In the Library",
+      "p": [
+        "{{sheets}} of {{compounds}} compounds now have a checked fact sheet. New this week: [where each compound stands with the FDA](/status/), [side-by-side comparisons](/compare/) and [pages by goal](/goals/)."
+      ]
+    }
+  ],
+  "close": { "lead": "Took something on this list? Say how it went, compared with before you started. A report that says it didn’t work counts just as much.", "label": "Share how it went", "url": "https://community.miraclehealth.us/#/new" }
+}

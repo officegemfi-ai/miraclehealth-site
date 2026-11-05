@@ -313,35 +313,64 @@ function radarLayers(box, x, uses) {
     { title: 'What it is used for: what studies look at, what forums talk about and what members report on' })));   // (the "charted as reports come in" note goes too)
 }
 
-// For each use it's known for: what the studies show, what people report, which to start with,
-// and how many improve anyway. The same reading Miracle AI gives, from the same numbers.
+// The bottom line, use by use: what the studies show, what people report, which to start with,
+// and how many get better on a placebo. The same reading Miracle AI gives, from the same numbers,
+// drawn like the front page's real example. A finding's full words (caveats included) come from
+// the fact sheet on the page; the evidence file keeps only a long finding's first clause.
 const GRADE_USE = {
   strong: 'Strong evidence in people', moderate: 'Moderate evidence in people', limited: 'Early studies in people',
   preclinical: 'Animal or lab studies only', anecdotal: 'User reports only', none: 'Not studied for this',
 };
 const LEAD_WORD = { studies: 'Start with the studies', community: 'Start with what people report', none: 'Little known yet' };
-function voicesRows(sec, ev) {
-  const rows = (ev?.uses || []).filter((u) => u && u.use).slice(0, 6);
+const PUBLISHER = { 'U.S. Food and Drug Administration': 'FDA', 'National Institutes of Health': 'NIH', 'NIH Office of Dietary Supplements': 'NIH' };
+const vsBar = (v, cls) => svg(`<svg class="vs-bar ${cls}" viewBox="0 0 100 6" preserveAspectRatio="none" aria-hidden="true"><rect class="tr" width="100" height="6"/><rect class="fi" width="${Math.max(0, Math.min(100, Number(v) || 0)).toFixed(1)}" height="6"/></svg>`);
+function voicesRows(box, ev) {
+  const rows = (ev?.uses || []).filter((u) => u && u.use && u.label).slice(0, 6);
   if (!rows.length) return;
-  const list = sec.querySelector('.voices-rows');
-  list.replaceChildren(...rows.map((u) => {
+  let claims = [];
+  try { claims = JSON.parse(box.dataset.claims || '[]'); } catch { claims = []; }
+  const full = (claim) => (claim ? claims.find((x) => x.c === claim || x.c.startsWith(claim)) : null);
+  const seen = new Map();
+  box.querySelector('.vs-rows').replaceChildren(...rows.map((u) => {
     const st = u.studies;
     const g = !st ? '' : !st.forUse || st.grade === 'none' ? 'none' : st.grade;
+    const fnd = st?.finding;
+    const fc = full(fnd?.claim);
+    const claim = fc?.c || fnd?.claim || '';
+    const src = fc?.s || (fnd?.source ? { t: fnd.source.title, y: fnd.source.year, u: fnd.source.url } : null);
+    const same = claim ? seen.get(claim) : null;
+    if (claim && !same) seen.set(claim, u.label);
+    const link = src && /^https:\/\//.test(String(src.u || ''))
+      ? h('a', { href: src.u, rel: 'noopener', target: '_blank', 'aria-label': `Source: ${src.t || 'the study'}` }, `${PUBLISHER[src.p] || src.p || 'Source'}${src.y ? `, ${src.y}` : ''}`) : null;
+    const studies = h('div', { class: 'vs-cell sd' }, h('p', { class: 'vs-lbl' }, 'What the studies show'),
+      h('p', { class: 'vs-v' }, st && g && g !== 'none' ? fromKit(meterHtml(g, { bare: true })) : null, st ? GRADE_USE[g] || GRADE_USE.none : 'No fact sheet yet'),
+      claim ? h('p', { class: 'vs-sub' }, same ? `The same studies as for ${String(same).toLowerCase()}.` : [`${claim.replace(/([^.!?])$/, '$1.')} `, link]) : null);
     const c = u.community;
     const cu = c?.use;
-    const said = !c ? 'No reports yet'
-      : cu?.rating != null ? `Members rate it ${cu.rating}${cu.low != null ? ` (likely ${cu.low}–${cu.high})` : ''}, from ${fmt(cu.reports)} reports`
-      : cu?.forum ? `${FORUM_WORD[cu.forum] ? `${FORUM_WORD[cu.forum].charAt(0).toUpperCase()}${FORUM_WORD[cu.forum].slice(1)}` : cu.forum} on the forums; no member ratings yet`
-      : c.near ? `Closest use reported: ${String(c.near.label).toLowerCase()}` : 'Nothing reported on this yet';
+    let said;
+    if (!c) said = h('p', { class: 'vs-v' }, 'No reports yet');
+    else if (cu?.rating != null) {
+      said = [h('p', { class: 'vs-v' }, `Members rate it ${cu.rating} of 100`), vsBar(cu.rating, 'rate-bar'),
+        h('p', { class: 'vs-sub' }, `${cu.low != null ? `Likely ${cu.low} to ${cu.high}, from` : 'From'} ${fmt(cu.reports)} first-hand reports`)];
+    } else if (cu?.forum) {
+      said = [h('p', { class: 'vs-v' }, `${cu.forum} on the forums`),
+        h('p', { class: 'vs-sub' }, cu.reports ? `${fmt(cu.reports)} member report${cu.reports === 1 ? '' : 's'} so far; rated after 3` : 'No member ratings yet')];
+    } else if (c.near) said = h('p', { class: 'vs-v' }, `Closest use reported: ${String(c.near.label).toLowerCase()}`);
+    else said = h('p', { class: 'vs-v' }, 'Nothing reported on this yet');
+    const reports = h('div', { class: 'vs-cell rep' }, h('p', { class: 'vs-lbl' }, 'What people report'), said);
+    const b = c?.baseline;
+    const placebo = h('div', { class: 'vs-cell pl' }, h('p', { class: 'vs-lbl' }, 'Got better on a placebo'),
+      b?.pct != null
+        ? [h('p', { class: 'vs-v' }, h('b', {}, `${b.pct}%`)), vsBar(b.pct, 'pl-bar'),
+          h('p', { class: 'vs-sub' }, b.use !== u.use ? `For context, on ${String(c.near?.label || b.use).toLowerCase()}: ${b.says}` : b.says)]
+        : h('p', { class: 'vs-sub' }, 'No placebo figures for this use yet'));
     const lead = ev.blocked ? 'studies' : u.lead;
-    return h('div', { class: `vrow lead-${lead}` },
-      h('div', { class: 'vrow-use' }, h('b', {}, u.label), h('span', { class: `vrow-lead lead-${lead}` }, ev.blocked ? 'Safety first: on FDA’s safety-risk list' : LEAD_WORD[lead] || '')),
-      h('div', { class: 'vrow-side studies' }, h('span', { class: 'kick-sm' }, 'Studies'),
-        h('span', { class: 'vrow-v' }, st && g && g !== 'none' ? fromKit(meterHtml(g, { bare: true })) : null, st ? GRADE_USE[g] || g : 'No fact sheet yet')),
-      h('div', { class: 'vrow-side community' }, h('span', { class: 'kick-sm' }, 'Community'), h('span', { class: 'vrow-v' }, said)),
-      c?.baseline ? h('p', { class: 'vrow-base' }, h('b', {}, c.baseline.use !== u.use ? `For context, on ${String(c.near?.label || c.baseline.use).toLowerCase()}: ` : 'For context: '), c.baseline.says) : null);
+    return h('div', { class: 'vs-row' },
+      h('div', { class: 'vs-use' }, h('h3', {}, u.label),
+        lead ? h('span', { class: `lead lead-${lead}` }, ev.blocked ? 'Safety first: on FDA’s safety-risk list' : LEAD_WORD[lead] || '') : null),
+      studies, reports, placebo);
   }));
-  sec.hidden = false;
+  box.querySelector('.bl-uses').hidden = false;
 }
 
 function entryPage(root) {
