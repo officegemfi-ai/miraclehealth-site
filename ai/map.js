@@ -308,6 +308,7 @@ class InteractionMap {
     this.onCheck = null;
     this.saved = null;
     this.chatLen = 0;
+    this.lenFn = null;              // the page's own count of messages, when it gives one
     this.libReady = fetch('/library/data/index.json').then((r) => (r.ok ? r.json() : null)).then((ix) => {
       this.items = (ix?.items || []).filter((it) => it && /^[a-z0-9]{1,40}$/.test(it.id) && it.name);
       this.byId = new Map(this.items.map((it) => [it.id, it]));
@@ -317,6 +318,8 @@ class InteractionMap {
     const kept = keep.get();
     if (kept && Array.isArray(kept.ids)) this.adopt({ ...blank(), ...kept, source: 'picks' }, { quiet: true });
   }
+  // How many messages the chat has now: picks made after an answer stand until a newer one
+  get len() { return this.lenFn ? this.lenFn() : this.chatLen; }
   item(id) { return this.byId.get(id) || { id, name: id, family: '', category: '' }; }
   name(id) { return clean(this.item(id).name, 60) || id; }
 
@@ -360,7 +363,11 @@ class InteractionMap {
   // What the chat found last: the page calls this after each answer and on load
   fromChat(set, chatLen) {
     this.chatLen = chatLen;
-    if (set && set.at >= (this.s.source === 'picks' ? this.s.at : -1)) {
+    // Picks from a conversation that's since been cleared count as made at its start
+    if (this.s.source === 'picks' && this.s.at > chatLen) this.s.at = chatLen;
+    // The answer to what's on the map (the same compounds) is always shown, whenever it came
+    const same = set && this.s.source === 'picks' && set.ids.length === this.s.ids.length && set.ids.every((i) => this.s.ids.includes(i));
+    if (set && (same || set.at >= (this.s.source === 'picks' ? this.s.at : -1))) {
       if (set.ok != null) this.waiting = '';
       this.adopt({ ...set, source: 'chat' });
       return;
@@ -383,20 +390,21 @@ class InteractionMap {
   add(id) {
     if (this.s.ids.includes(id) || this.s.ids.length >= MAX || !this.byId.has(id)) return false;
     this.waiting = '';
-    this.adopt({ ...this.s, ids: [...this.s.ids, id], source: 'picks', at: this.chatLen });
+    this.adopt({ ...this.s, ids: [...this.s.ids, id], source: 'picks', at: this.len });
     return true;
   }
   remove(id) {
     this.waiting = '';
-    this.adopt({ ...this.s, ids: this.s.ids.filter((i) => i !== id), source: 'picks', at: this.chatLen });
+    this.adopt({ ...this.s, ids: this.s.ids.filter((i) => i !== id), source: 'picks', at: this.len });
   }
   clear() {
     this.waiting = '';
     keep.del();
-    this.adopt({ ...blank(), source: 'picks', at: this.chatLen });
+    this.adopt({ ...blank(), source: 'picks', at: this.len });
   }
   reset() {
     keep.del();
+    this.chatLen = 0;
     this.waiting = '';
     this.checking = false;
     this.adopt(blank(), { quiet: true });
@@ -1120,5 +1128,6 @@ window.MHMap = {
   waiting: (text) => map.setWaiting(text),
   reset: () => map.reset(),
   onCheck: (fn) => { map.onCheck = fn; },
+  bindChat: (fn) => { map.lenFn = fn; },
   ready: map.libReady,
 };

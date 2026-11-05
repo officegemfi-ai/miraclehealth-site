@@ -1556,6 +1556,7 @@ newBtn.addEventListener('click', () => {
 // The interaction map beside the chat, full screen from its button (or the bar's, on smaller
 // screens); its own button asks Sig to check what's on it
 if (MAP) {
+  MAP.bindChat(() => chat.length);
   MAP.mount($('mx-rail'), 'rail');
   MAP.onCheck((list) => {
     if (busy) return;
