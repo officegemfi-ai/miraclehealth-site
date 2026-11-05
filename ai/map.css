@@ -255,7 +255,7 @@ html.mxs-open{overflow:hidden}
 .mxs-close{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:none;color:var(--on-ink);cursor:pointer;transition:border-color .15s,color .15s}
 .mxs-close:hover{border-color:var(--lime);color:var(--lime)}
 .mxs-body{display:grid;grid-template-columns:minmax(0,1fr) 380px;grid-template-areas:'status panel' 'stage panel';grid-template-rows:auto 1fr;gap:12px 40px;max-width:1380px;margin:0 auto;padding:0 28px 40px}
-.mx-screen .mx-status{grid-area:status}
+.mx-screen .mx-status{grid-area:status;justify-self:center;width:100%;max-width:min(100%,calc(100svh - 150px))}
 .mx-screen .mx-stage{grid-area:stage;align-self:start;justify-self:center;width:100%;max-width:min(100%,calc(100svh - 150px));margin-top:0}
 .mx-screen .mx-panel{grid-area:panel;align-self:start;margin-top:0}
 @keyframes mxs-in{from{transform:translateY(10px)}}
