@@ -22,11 +22,13 @@
 <link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
 <link rel="stylesheet" href="/styles.css?v=59ba7a39e8">
 <link rel="stylesheet" href="/library/library.css?v=9f478b46ff">
-<link rel="stylesheet" href="/ai/ai.css?v=6a9f414444">
+<link rel="stylesheet" href="/ai/ai.css?v=03ecd2f8b9">
 <link rel="stylesheet" href="/ai/plan.css?v=43d72f6261">
+<link rel="stylesheet" href="/ai/map.css?v=a79af9da08">
 <script type="module" src="/ai/packet.js?v=413914f911"></script>
 <script type="module" src="/ai/plan.js?v=467b241958"></script>
-<script type="module" src="/ai/ai.js?v=020b6638f4"></script>
+<script type="module" src="/ai/map.js?v=a91a64a57f"></script>
+<script type="module" src="/ai/ai.js?v=56a44124f1"></script>
 </head>
 <body class="ai">
 <a class="skip" href="#main">Skip to content</a>
@@ -59,7 +61,10 @@
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Ask Sig</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
-      <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
+      <div class="ai-bar-acts">
+        <button class="ai-mapbtn" id="ai-mapbtn" type="button" aria-haspopup="dialog"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.6" stroke-dasharray="2 1.6"/><circle cx="8" cy="8" r="1.9" fill="currentColor" stroke="none"/></g><g fill="currentColor"><circle cx="8" cy="2.4" r="1.75"/><circle cx="12.85" cy="10.8" r="1.75"/><circle cx="3.15" cy="10.8" r="1.75"/></g></svg><span class="ai-mapbtn-t">Interaction map</span></button>
+        <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
+      </div>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
@@ -83,6 +88,7 @@
         <button type="button" class="ai-start" data-ask="I keep straining a tendon. What could help it heal, and what does the evidence say?" data-goal="recovery"><span class="start-ico" aria-hidden="true"></span>Recover from an injury</button>
         <button type="button" class="ai-start" data-ask="I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence?" data-goal="weight"><span class="start-ico" aria-hidden="true"></span>Lose fat</button>
         <button type="button" class="ai-start" data-ask="I want to sleep better. What has good evidence, and what is mostly hype?" data-goal="sleep"><span class="start-ico" aria-hidden="true"></span>Sleep better</button>
+        <button type="button" class="ai-start ai-start-map" id="ai-start-map" aria-haspopup="dialog"><span class="start-ico" aria-hidden="true"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.6" stroke-dasharray="2 1.6"/><circle cx="8" cy="8" r="1.9" fill="currentColor" stroke="none"/></g><g fill="currentColor"><circle cx="8" cy="2.4" r="1.75"/><circle cx="12.85" cy="10.8" r="1.75"/><circle cx="3.15" cy="10.8" r="1.75"/></g></svg></span>See how compounds interact</button>
       </div>
       <details class="ai-who">
         <summary>Who answers</summary>
@@ -92,9 +98,9 @@
     <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <aside class="ai-rail" aria-label="Who answers">
-    <div class="rail-head"><div><h2>Who answers</h2><p id="rail-sub">Waiting for your first message</p></div></div>
-    <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then reads the studies: the Library’s fact sheets.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="community"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>The community</b><span class="agent-what">What members report first-hand and the public forums say, in totals. It leads where the studies run out.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+  <aside class="ai-rail" aria-labelledby="mx-rail-h">
+    <div class="rail-head"><h2 id="mx-rail-h">How they interact</h2><button class="mx-expand" id="mx-expand" type="button" aria-haspopup="dialog" aria-label="Open the interaction map full screen"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div id="mx-rail"><noscript><p class="mx-status">The interaction map needs JavaScript.</p></noscript></div>
     <div class="rail-notes" id="rail-notes" hidden>
       <h2>In this conversation</h2>
       <div class="rail-chips" id="rail-chips"></div>
@@ -102,6 +108,11 @@
       <button type="button" class="rail-copy" id="rail-copy">Copy these questions</button>
     </div>
     <div class="rail-saved" id="rail-saved" hidden></div>
+    <details class="rail-who">
+      <summary>Who answers</summary>
+      <p id="rail-sub">Waiting for your first message</p>
+      <ol class="agent-rail"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then reads the studies: the Library’s fact sheets.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="community"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>The community</b><span class="agent-what">What members report first-hand and the public forums say, in totals. It leads where the studies run out.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+    </details>
   </aside>
 </div>
 </main>

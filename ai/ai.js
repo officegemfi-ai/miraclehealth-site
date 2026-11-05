@@ -91,6 +91,7 @@ const ICON = {
   close: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   info: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
   keep: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+  net: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.6" stroke-dasharray="2 1.6"/><circle cx="8" cy="8" r="1.9" fill="currentColor" stroke="none"/></g><g fill="currentColor"><circle cx="8" cy="2.4" r="1.75"/><circle cx="12.85" cy="10.8" r="1.75"/><circle cx="3.15" cy="10.8" r="1.75"/></g></svg>',
 };
 const GOAL_ICON = {
   stack: '<path d="M8 2 14 5 8 8 2 5z"/><path d="M2 8l6 3 6-3M2 11l6 3 6-3"/>',
@@ -417,6 +418,8 @@ function planNode(card, msg) {
     fillAudit(box, card.audit);
     box.hidden = false;
   }
+  const set = cardSet(card, -1);
+  if (set && set.ids.length > 1) el.querySelector('.audit')?.after(mapRow(() => cardSet(card, -1)));
   return el;
 }
 
@@ -448,6 +451,7 @@ function shortlistNode(card) {
   const audit = h('div', { class: 'audit' }, h('div', { class: 'audit-head busy', text: 'Synergy auditor: checking these together' }));
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
+  if (items.length > 1) audit.after(mapRow(() => cardSet(card, -1)));
   if (card.kind === 'yours') el.append(stackSaveRow(card));
   return el;
 }
@@ -767,7 +771,76 @@ function fillAudit(box, card) {
 function auditNode(card) {
   const box = h('div', { class: 'audit' });
   fillAudit(box, card);
-  return h('div', { class: 'card short' }, box);
+  const ids = [...new Set((card.findings || []).flatMap((f) => f.ids || []))];
+  return h('div', { class: 'card short' }, box,
+    ids.length > 1 ? mapRow(() => ({ ids, findings: card.findings || [], covered: [], ok: card.ok !== false, meds: [], at: -1 })) : null);
+}
+
+// ---------------------------------------------------------------------------
+// The interaction map (ai/map.js): what the chat found, drawn beside it and full screen
+// ---------------------------------------------------------------------------
+const MAP = window.MHMap || null;
+let mapAsked = false;          // the message being answered came from the map's own button
+// A set of compounds Sig laid out (a stack, a shortlist or a plan), with the auditor's check
+function cardSet(card, at) {
+  let items = [];
+  if (card.type === 'shortlist') items = card.items || [];
+  else if (card.type === 'plan') items = [...(card.peptides || []), ...(card.supplements || [])];
+  const ids = [...new Set(items.map((it) => it && it.id).filter(libId))];
+  if (!ids.length) return null;
+  const a = card.audit;
+  const ok = !a || a.skipped ? null : a.ok !== false;
+  return { ids, findings: a?.findings || [], covered: ok == null ? [] : ids, ok, meds: card.meds || [], at, title: card.title || '' };
+}
+// The last set Sig checked in this chat: a card's, or a check of its own (the auditor's step
+// names what it checked; its findings, when it has any, come as a card)
+function latestSet() {
+  for (let i = chat.length - 1; i >= 0; i--) {
+    const m = chat[i];
+    if (m.role !== 'assistant') continue;
+    const cards = (m.parts || []).filter((p) => p.t === 'card').map((p) => p.card);
+    for (let j = cards.length - 1; j >= 0; j--) {
+      const s = cardSet(cards[j], i);
+      if (s) return s;
+    }
+    const syn = [...(m.steps || [])].reverse().find((s) => s.agent === 'synergy' && s.status === 'done' && s.chips?.length);
+    if (syn) {
+      const ids = [...new Set(syn.chips.map((c) => c.id).filter(libId))];
+      if (!ids.length) continue;
+      const audit = cards.find((c) => c.type === 'audit' && !c.for);
+      const ok = !/couldn.t/i.test(syn.title || '');
+      return { ids, findings: audit?.findings || [], covered: ok ? ids : [], ok, meds: [], at: i };
+    }
+  }
+  return null;
+}
+function mapSync() { MAP?.fromChat(latestSet(), chat.length); }
+// After an answer: the map shows what it found; a check asked from the map that Sig answered
+// with questions first says so (the check finishes once they're answered)
+function mapDone(am) {
+  if (!MAP) return;
+  MAP.busy(false);
+  MAP.checking(false);
+  mapSync();
+  const i = chat.indexOf(am);
+  if (mapAsked && chat[i - 1]?.text === mapAsked) {
+    const fresh = latestSet();
+    const asked = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'intake');
+    MAP.waiting(fresh && fresh.at === i ? ''
+      : asked ? 'Sig asked a few questions first. Answer them in the chat, and the check finishes.'
+        : am.state === 'done' ? 'Sig answered in the chat: no check this time' : '');
+  }
+  mapAsked = null;
+}
+function mapRow(getSet) {
+  const b = h('button', { class: 'audit-map', type: 'button', 'aria-haspopup': 'dialog' }, svg(ICON.net), h('span', { text: 'See how they interact' }));
+  b.addEventListener('click', () => {
+    const s = getSet();
+    if (!s || !MAP) return;
+    MAP.show(s);
+    MAP.open();
+  });
+  return h('div', { class: 'audit-maprow' }, b);
 }
 function questionsNode(card) {
   const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
@@ -1012,6 +1085,7 @@ function refreshStack() {
     host.hidden = !boxes.length;
   }
   document.querySelectorAll('.stack-save').forEach((row) => row.redraw?.());
+  MAP?.setSaved(savedStack());
 }
 
 // A stack from their own link (#stack=...): offered, never saved without asking
@@ -1173,6 +1247,9 @@ async function run(am) {
   busy = { controller, msg: am };
   railReset('Working on your message');
   setBusy(true);
+  MAP?.busy(true);
+  // A check asked from the map: its lines start scanning straight away
+  if (mapAsked && chat[chat.indexOf(am) - 1]?.text === mapAsked) MAP?.checking(true);
   const t0 = performance.now();
   try {
     const res = await fetch(ENDPOINT, {
@@ -1223,6 +1300,7 @@ async function run(am) {
   setBusy(false);
   railDone(am);
   railNotes();
+  mapDone(am);
   sigs().forEach((el) => setSig(el, moodOf(am)));
   save();
   if (!coarse) input.focus();
@@ -1246,6 +1324,8 @@ function onEvent(am, ev, d) {
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
       drawStep(view, am.steps.find((s) => s.id === d.id));
       railStep(d);
+      // The map's lines scan while the auditor checks
+      if (d.agent === 'synergy' && d.status === 'run') MAP?.checking(true);
       schedule(am);
       break;
     }
@@ -1267,6 +1347,8 @@ function onEvent(am, ev, d) {
           host.card.audit = d;
           const box = view.cardEls.get(host)?.querySelector('.audit');
           if (box) { fillAudit(box, d); box.hidden = false; }
+          MAP?.checking(false);
+          mapSync();
           break;
         }
       }
@@ -1280,6 +1362,9 @@ function onEvent(am, ev, d) {
         if (Number.isFinite(view.revealIdx)) view.revealIdx += 1;
       } else am.parts.push(part);
       schedule(am);
+      // A stack, shortlist or plan goes on the map at once; its check draws in when it comes
+      if (d.type === 'audit') MAP?.checking(false);
+      if (d.type === 'shortlist' || d.type === 'plan' || d.type === 'audit') mapSync();
       break;
     }
     case 'sources':
@@ -1453,7 +1538,7 @@ document.querySelectorAll('[data-prefill]').forEach((b) => b.addEventListener('c
   input.focus();
   input.setSelectionRange(input.value.length, input.value.length);
 }));
-document.querySelectorAll('.ai-start').forEach((b) => b.querySelector('.start-ico')?.append(goalIcon(b.dataset.goal)));
+document.querySelectorAll('.ai-start[data-goal]').forEach((b) => b.querySelector('.start-ico')?.append(goalIcon(b.dataset.goal)));
 newBtn.addEventListener('click', () => {
   if (busy) busy.controller.abort();
   chat = [];
@@ -1465,8 +1550,23 @@ newBtn.addEventListener('click', () => {
   newBtn.hidden = true;
   railReset('Waiting for your first message', false);
   railNotes();
+  MAP?.reset();
   input.focus();
 });
+// The interaction map beside the chat, full screen from its button (or the bar's, on smaller
+// screens); its own button asks Sig to check what's on it
+if (MAP) {
+  MAP.mount($('mx-rail'), 'rail');
+  MAP.onCheck((list) => {
+    if (busy) return;
+    const q = `How do ${listOf(list.map((x) => x.name))} interact with each other?`;
+    mapAsked = q;
+    ask(q);
+  });
+  for (const id of ['mx-expand', 'ai-mapbtn', 'ai-start-map']) $(id)?.addEventListener('click', () => MAP.open());
+} else {
+  for (const id of ['mx-expand', 'ai-mapbtn', 'ai-start-map']) $(id)?.remove();
+}
 // The questions from this conversation, to take to whoever they see
 $('rail-copy')?.addEventListener('click', (e) => copy(['Questions for my clinician:', ...railQuestions.map((q) => `- ${q}`)].join('\n'), e.currentTarget));
 
@@ -1495,6 +1595,7 @@ if (chat.length) {
   railNotes();
   save();
 }
+mapSync();
 refreshStack();
 stackFromLink();
 // The community, live: how many members and first-hand reports Sig speaks for (totals from
