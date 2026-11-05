@@ -21,7 +21,6 @@ const sendBtn = $('ai-send');
 const countEl = $('ai-count');
 const statusEl = $('ai-status');
 const newBtn = $('ai-new');
-const railSub = $('rail-sub');
 const LIMIT = 2000;
 const KEY = 'mh-ai-chat-v1';
 const ADULT = 'mh-ai-adult';
@@ -34,7 +33,6 @@ const AGENT_NAME = {
   safety: 'Safety agent', recommender: 'Recommender', community: 'The community', synergy: 'Synergy auditor', builder: 'Stack builder',
   review: 'Safety agent',
 };
-const RAIL_KEY = { review: 'safety' };
 // Words that may mean someone is in crisis: if an answer can't come through, help still does
 const CRISIS_WORDS = /\b(?:kill(?:ing)?\s+my\s?self|kms|suicid\w*|end(?:ing)?\s+my\s+(?:own\s+)?life|end(?:ing)?\s+it\s+all|want(?:ing)?\s+to\s+die|better\s+off\s+dead|no\s+reason\s+to\s+live|don'?t\s+want\s+to\s+(?:live|be\s+alive|wake\s+up)|self[- ]?harm\w*|cut(?:ting)?\s+myself|overdos(?:e|ing))\b/i;
 const GRADE = { strong: 'Strong evidence', moderate: 'Moderate evidence', limited: 'Limited evidence', preclinical: 'Animal and lab studies', anecdotal: 'Anecdotal' };
@@ -91,6 +89,7 @@ const ICON = {
   close: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   info: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
   keep: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+  code: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   net: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.6" stroke-dasharray="2 1.6"/><circle cx="8" cy="8" r="1.9" fill="currentColor" stroke="none"/></g><g fill="currentColor"><circle cx="8" cy="2.4" r="1.75"/><circle cx="12.85" cy="10.8" r="1.75"/><circle cx="3.15" cy="10.8" r="1.75"/></g></svg>',
 };
 const GOAL_ICON = {
@@ -418,8 +417,6 @@ function planNode(card, msg) {
     fillAudit(box, card.audit);
     box.hidden = false;
   }
-  const set = cardSet(card, -1);
-  if (set && set.ids.length > 1) el.querySelector('.audit')?.after(mapRow(() => cardSet(card, -1)));
   return el;
 }
 
@@ -434,8 +431,9 @@ function warnGroups(groups) {
 
 function shortlistNode(card) {
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
+  const compact = card.kind === 'yours' && !!SCREEN;
   const sub = card.kind === 'yours'
-    ? 'What you take or asked about, checked together by the Synergy auditor.'
+    ? `What you take or asked about, checked together by the Synergy auditor.${compact ? ' How each works in the body, the blood markers and what the community reports are on the screen.' : ''}`
     : 'Laid out by the Stack builder: options to talk through with your clinician.';
   el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
@@ -443,7 +441,10 @@ function shortlistNode(card) {
   // A caution that several options share is said once, under them
   const items = card.items || [];
   const shared = [...new Set(items.map((it) => it.caution).filter((c) => c && !c.includes(':') && items.filter((x) => x.caution === c).length > 1))];
-  for (const it of items) el.append(pickNode(shared.includes(it.caution) ? { ...it, caution: '' } : it));
+  for (const it of items) {
+    const one = shared.includes(it.caution) ? { ...it, caution: '' } : it;
+    el.append(compact ? pickCompact(one) : pickNode(one));
+  }
   for (const c of shared) {
     const names = items.filter((x) => x.caution === c).map((x) => x.name);
     el.append(h('p', { class: 'short-note shared' }, svg(ICON.info), h('span', { text: `${listOf(names)}: ${c[0].toLowerCase()}${c.slice(1)}` })));
@@ -451,9 +452,16 @@ function shortlistNode(card) {
   const audit = h('div', { class: 'audit' }, h('div', { class: 'audit-head busy', text: 'Synergy auditor: checking these together' }));
   if (card.audit) fillAudit(audit, card.audit);
   el.append(audit);
-  if (items.length > 1) audit.after(mapRow(() => cardSet(card, -1)));
   if (card.kind === 'yours') el.append(stackSaveRow(card));
   return el;
+}
+// A compound in the member's own stack, in short: the screen has the rest
+function pickCompact(it) {
+  return h('div', { class: 'pick compact' },
+    h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url || `/library/${it.id}/`, text: it.name }) : h('b', { text: it.name }),
+      h('span', { class: 'pick-role', text: it.role }),
+      it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
+    it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null);
 }
 // One option: its two voices side by side (what the studies show for what was asked, what the
 // community reports), the one that leads first; then what studies found, each with its source.
@@ -771,76 +779,55 @@ function fillAudit(box, card) {
 function auditNode(card) {
   const box = h('div', { class: 'audit' });
   fillAudit(box, card);
-  const ids = [...new Set((card.findings || []).flatMap((f) => f.ids || []))];
-  return h('div', { class: 'card short' }, box,
-    ids.length > 1 ? mapRow(() => ({ ids, findings: card.findings || [], covered: [], ok: card.ok !== false, meds: [], at: -1 })) : null);
+  return h('div', { class: 'card short' }, box);
 }
 
 // ---------------------------------------------------------------------------
-// The interaction map (ai/map.js): what the chat found, drawn beside it and full screen
+// The screen (ai/screen.js): what the chat is about, drawn beside it (a tab on phones)
 // ---------------------------------------------------------------------------
-const MAP = window.MHMap || null;
-let mapAsked = false;          // the message being answered came from the map's own button
-// A set of compounds Sig laid out (a stack, a shortlist or a plan), with the auditor's check
+const SCREEN = window.MHScreen || null;
+// The compounds an answer was about, with the auditor's check when it ran: a stack, shortlist,
+// plan or comparison it laid out, or else what the member named (the community step reads those)
 function cardSet(card, at) {
   let items = [];
-  if (card.type === 'shortlist') items = card.items || [];
+  if (card.type === 'shortlist' || card.type === 'compare' || card.type === 'voices') items = card.items || [];
   else if (card.type === 'plan') items = [...(card.peptides || []), ...(card.supplements || [])];
-  const ids = [...new Set(items.map((it) => it && it.id).filter(libId))];
+  const ids = [...new Set(items.map((it) => it && it.id).filter(libId))].slice(0, 6);
   if (!ids.length) return null;
-  const a = card.audit;
+  const a = card.type === 'shortlist' || card.type === 'plan' ? card.audit : null;
   const ok = !a || a.skipped ? null : a.ok !== false;
-  return { ids, findings: a?.findings || [], covered: ok == null ? [] : ids, ok, meds: card.meds || [], at, title: card.title || '' };
+  return { ids, findings: a?.findings || [], ok, meds: card.meds || [], at };
 }
-// The last set Sig checked in this chat: a card's, or a check of its own (the auditor's step
-// names what it checked; its findings, when it has any, come as a card)
-function latestSet() {
+function subjectIn(m, i) {
+  if (!m || m.role !== 'assistant') return null;
+  const cards = (m.parts || []).filter((p) => p.t === 'card').map((p) => p.card);
+  for (let j = cards.length - 1; j >= 0; j--) {
+    const s = cardSet(cards[j], i);
+    if (s) return s;
+  }
+  const steps = m.steps || [];
+  const named = steps.find((s) => s.agent === 'community' && s.chips?.length)
+    || steps.find((s) => s.agent === 'synergy' && s.chips?.length)
+    || steps.find((s) => s.agent === 'recommender' && /fact sheet/i.test(s.title || '') && s.chips?.length);
+  if (!named) return null;
+  const ids = [...new Set(named.chips.map((c) => c.id).filter(libId))].slice(0, 6);
+  if (!ids.length) return null;
+  const audit = cards.find((c) => c.type === 'audit' && !c.for);
+  // Sig asked its questions first: the check comes with its next answer
+  const asked = cards.some((c) => c.type === 'intake');
+  return { ids, findings: audit?.findings || [], ok: audit ? audit.ok !== false : null, meds: [], asked, at: i };
+}
+function latestSubject() {
   for (let i = chat.length - 1; i >= 0; i--) {
-    const m = chat[i];
-    if (m.role !== 'assistant') continue;
-    const cards = (m.parts || []).filter((p) => p.t === 'card').map((p) => p.card);
-    for (let j = cards.length - 1; j >= 0; j--) {
-      const s = cardSet(cards[j], i);
-      if (s) return s;
-    }
-    const syn = [...(m.steps || [])].reverse().find((s) => s.agent === 'synergy' && s.status === 'done' && s.chips?.length);
-    if (syn) {
-      const ids = [...new Set(syn.chips.map((c) => c.id).filter(libId))];
-      if (!ids.length) continue;
-      const audit = cards.find((c) => c.type === 'audit' && !c.for);
-      const ok = !/couldn.t/i.test(syn.title || '');
-      return { ids, findings: audit?.findings || [], covered: ok ? ids : [], ok, meds: [], at: i };
-    }
+    const s = subjectIn(chat[i], i);
+    if (s) return s;
   }
   return null;
 }
-function mapSync() { MAP?.fromChat(latestSet(), chat.length); }
-// After an answer: the map shows what it found; a check asked from the map that Sig answered
-// with questions first says so (the check finishes once they're answered)
-function mapDone(am) {
-  if (!MAP) return;
-  MAP.busy(false);
-  MAP.checking(false);
-  mapSync();
-  const i = chat.indexOf(am);
-  if (mapAsked && chat[i - 1]?.text === mapAsked) {
-    const fresh = latestSet();
-    const asked = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'intake');
-    MAP.waiting(fresh && fresh.at === i ? ''
-      : asked ? 'Sig asked a few questions first. Answer them in the chat, and the check finishes.'
-        : am.state === 'done' ? 'Sig answered in the chat: no check this time' : '');
-  }
-  mapAsked = null;
-}
-function mapRow(getSet) {
-  const b = h('button', { class: 'audit-map', type: 'button', 'aria-haspopup': 'dialog' }, svg(ICON.net), h('span', { text: 'See how they interact' }));
-  b.addEventListener('click', () => {
-    const s = getSet();
-    if (!s || !MAP) return;
-    MAP.show(s);
-    MAP.open();
-  });
-  return h('div', { class: 'audit-maprow' }, b);
+function screenSync() {
+  if (!SCREEN) return;
+  const s = latestSubject();
+  if (s) SCREEN.show(s);
 }
 function questionsNode(card) {
   const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
@@ -1077,15 +1064,13 @@ function myBox(where) {
     h('p', { class: 'saved-note', text: 'Kept on this device. Miracle Health never receives it.' }));
 }
 function refreshStack() {
-  for (const [id, where] of [['ai-saved', 'start'], ['rail-saved', 'rail']]) {
-    const host = $(id);
-    if (!host) continue;
-    const boxes = [myBox(where)].filter(Boolean);
+  const host = $('ai-saved');
+  if (host) {
+    const boxes = [myBox('start')].filter(Boolean);
     host.replaceChildren(...boxes);
     host.hidden = !boxes.length;
   }
   document.querySelectorAll('.stack-save').forEach((row) => row.redraw?.());
-  MAP?.setSaved(savedStack());
 }
 
 // A stack from their own link (#stack=...): offered, never saved without asking
@@ -1108,13 +1093,22 @@ async function stackFromLink() {
   save.addEventListener('click', () => saveStack(st));
   now.addEventListener('click', () => { refreshStack(); ask(stackQuestion(st)); });
   no.addEventListener('click', refreshStack);
-  const host = $(chat.length ? 'rail-saved' : 'ai-saved');
-  if (!host) return;
-  host.replaceChildren(h('section', { class: 'saved-box incoming', 'aria-labelledby': 'saved-in-h' },
+  const box = h('section', { class: 'saved-box incoming', 'aria-labelledby': 'saved-in-h' },
     h('h2', { id: 'saved-in-h', text: 'A stack from your link' }),
     h('p', { class: 'saved-names', text: st.items.map((i) => i.name).join(' · ') }),
     st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
-    h('div', { class: 'saved-actions' }, save, now, no)));
+    h('div', { class: 'saved-actions' }, save, now, no));
+  if (chat.length) {
+    // Mid-conversation, the offer waits at the end of it, until they answer
+    const wrap = h('div', { class: 'ai-incoming' }, box);
+    for (const b of [save, now, no]) b.addEventListener('click', () => wrap.remove());
+    thread.append(wrap);
+    wrap.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
+    return;
+  }
+  const host = $('ai-saved');
+  if (!host) return;
+  host.replaceChildren(box);
   host.hidden = false;
 }
 
@@ -1140,58 +1134,6 @@ async function copy(text, btn) {
     setTimeout(() => { if (label) label.textContent = was; else btn.textContent = was; btn.classList.remove('done'); }, 1800);
   }
 }
-// ---------------------------------------------------------------------------
-// The agents beside the chat
-// ---------------------------------------------------------------------------
-const railAgents = () => document.querySelectorAll('.agent-rail .agent');
-function railReset(text, active = true) {
-  railAgents().forEach((a) => { a.className = 'agent'; a.querySelector('.agent-now').textContent = ''; });
-  document.querySelector('.agent-rail')?.classList.toggle('active', active);
-  if (railSub) railSub.textContent = text;
-}
-function railStep(s) {
-  const key = RAIL_KEY[s.agent] || s.agent;
-  const el = document.querySelector(`.agent-rail .agent[data-agent="${key}"]`);
-  if (!el) return;
-  const flagged = (s.flag && s.flag !== 'none') || s.fixed;
-  el.className = `agent ${s.status === 'pending' ? 'pending' : s.status === 'run' ? 'run' : 'done'}${flagged ? ' flag' : ''}`;
-  el.querySelector('.agent-now').textContent = s.title;
-}
-function railDone(msg) {
-  railAgents().forEach((a) => { if (!/\b(done|pending|flag|run)\b/.test(a.className)) a.classList.add('unused'); else a.classList.remove('run'); });
-  if (railSub) railSub.textContent = msg.state === 'done' ? `Answered in ${(msg.ms / 1000).toFixed(1)} s` : msg.state === 'stopped' ? 'Stopped' : 'Something went wrong';
-}
-// The rail as the last answer left it (after a reload, or when the review mark changes)
-function railFromChat() {
-  if (busy) return;
-  const last = [...chat].reverse().find((m) => m.role === 'assistant' && m.state);
-  if (!last) return;
-  railReset('');
-  (last.steps || []).forEach(railStep);
-  railDone(last);
-}
-let railQuestions = [];
-function railNotes() {
-  const box = $('rail-notes');
-  if (!box) return;
-  const chips = new Map();
-  const qs = [];
-  for (const m of chat) {
-    if (m.role !== 'assistant') continue;
-    for (const p of m.parts || []) {
-      if (p.t === 'card' && (p.card.type === 'shortlist' || p.card.type === 'voices')) p.card.items.forEach((it) => chips.set(it.id, it.name));
-      if (p.t === 'card' && p.card.type === 'plan') [...(p.card.peptides || []), ...(p.card.supplements || [])].forEach((it) => chips.set(it.id, it.name));
-      if (p.t === 'card' && p.card.type === 'questions') p.card.items.forEach((q) => { if (!qs.includes(q)) qs.push(q); });
-    }
-    for (const s of m.steps || []) for (const c of s.chips || []) if (s.agent === 'recommender' && /fact sheet/i.test(s.title)) chips.set(c.id, c.name);
-  }
-  box.hidden = !chips.size && !qs.length;
-  $('rail-chips').replaceChildren(...[...chips].slice(0, 16).map(([id, name]) => (isLib(id) ? h('a', { href: `/library/${id}/`, text: name }) : h('span', { text: name }))));
-  railQuestions = qs.slice(-8);
-  $('rail-qs').hidden = !qs.length;
-  $('rail-qlist').replaceChildren(...qs.slice(-8).map((q) => h('li', { text: q })));
-}
-
 // ---------------------------------------------------------------------------
 // Sending, and reading the stream
 // ---------------------------------------------------------------------------
@@ -1245,11 +1187,7 @@ function ask(text) {
 async function run(am) {
   const controller = new AbortController();
   busy = { controller, msg: am };
-  railReset('Working on your message');
   setBusy(true);
-  MAP?.busy(true);
-  // A check asked from the map: its lines start scanning straight away
-  if (mapAsked && chat[chat.indexOf(am) - 1]?.text === mapAsked) MAP?.checking(true);
   const t0 = performance.now();
   try {
     const res = await fetch(ENDPOINT, {
@@ -1298,9 +1236,8 @@ async function run(am) {
   busy = null;
   finish(am, true);
   setBusy(false);
-  railDone(am);
-  railNotes();
-  mapDone(am);
+  SCREEN?.checking(false);
+  screenSync();
   sigs().forEach((el) => setSig(el, moodOf(am)));
   save();
   if (!coarse) input.focus();
@@ -1323,9 +1260,9 @@ function onEvent(am, ev, d) {
       if (i >= 0) am.steps[i] = { ...am.steps[i], ...d }; else am.steps.push(d);
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
       drawStep(view, am.steps.find((s) => s.id === d.id));
-      railStep(d);
-      // The map's lines scan while the auditor checks
-      if (d.agent === 'synergy' && d.status === 'run') MAP?.checking(true);
+      // The screen says the auditor is checking, and shows what was named as soon as it's read
+      if (d.agent === 'synergy' && d.status === 'run') SCREEN?.checking(true);
+      if (d.agent === 'community' && d.chips?.length) screenSync();
       schedule(am);
       break;
     }
@@ -1347,8 +1284,8 @@ function onEvent(am, ev, d) {
           host.card.audit = d;
           const box = view.cardEls.get(host)?.querySelector('.audit');
           if (box) { fillAudit(box, d); box.hidden = false; }
-          MAP?.checking(false);
-          mapSync();
+          SCREEN?.checking(false);
+          screenSync();
           break;
         }
       }
@@ -1362,9 +1299,9 @@ function onEvent(am, ev, d) {
         if (Number.isFinite(view.revealIdx)) view.revealIdx += 1;
       } else am.parts.push(part);
       schedule(am);
-      // A stack, shortlist or plan goes on the map at once; its check draws in when it comes
-      if (d.type === 'audit') MAP?.checking(false);
-      if (d.type === 'shortlist' || d.type === 'plan' || d.type === 'audit') mapSync();
+      // A stack, shortlist, plan or comparison goes on the screen at once; its check when it comes
+      if (d.type === 'audit') SCREEN?.checking(false);
+      if (['shortlist', 'plan', 'audit', 'compare', 'voices'].includes(d.type)) screenSync();
       break;
     }
     case 'sources':
@@ -1434,8 +1371,11 @@ function finish(am, live) {
       : am.review ? 'Every part checked by the Safety agent before you saw it' : 'Answered';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
+    const sub = SCREEN ? subjectIn(am, chat.indexOf(am)) : null;
+    const go = sub ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
+    go?.addEventListener('click', () => { SCREEN.show(sub); showScreen(true); });
     view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
-      h('span', { class: 'foot-actions' }, btn));
+      h('span', { class: 'foot-actions' }, go, btn));
     view.foot.hidden = false;
   }
   helpPin();
@@ -1544,37 +1484,46 @@ newBtn.addEventListener('click', () => {
   chat = [];
   store.del(KEY);
   helpPin();
-  thread.querySelectorAll('.msg,.gate').forEach((n) => n.remove());
+  thread.querySelectorAll('.msg,.gate,.ai-incoming').forEach((n) => n.remove());
   setEmpty(true);
   refreshStack();
   newBtn.hidden = true;
-  railReset('Waiting for your first message', false);
-  railNotes();
-  MAP?.reset();
+  SCREEN?.clear();
+  showScreen(false);
   input.focus();
 });
 // The interaction map beside the chat, full screen from its button (or the bar's, on smaller
 // screens); its own button asks Sig to check what's on it
-if (MAP) {
-  MAP.bindChat(() => chat.length);
-  MAP.mount($('mx-rail'), 'rail');
-  MAP.onCheck((list) => {
-    if (busy) return;
-    const q = `How do ${listOf(list.map((x) => x.name))} interact with each other?`;
-    mapAsked = q;
-    ask(q);
+// The screen: beside the chat on wide screens; on phones, the switch at the top shows one or the
+// other (and a dot when the screen has something new)
+const tabChat = $('tab-chat');
+const tabScreen = $('tab-screen');
+function showScreen(on) {
+  app.classList.toggle('on-screen', on);
+  tabChat?.setAttribute('aria-pressed', String(!on));
+  tabScreen?.setAttribute('aria-pressed', String(on));
+  if (on) {
+    tabScreen?.querySelector('.tab-dot')?.setAttribute('hidden', '');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+}
+if (SCREEN) {
+  SCREEN.mount($('sc-root'));
+  SCREEN.onAsk((q) => { showScreen(false); ask(q); });
+  SCREEN.onChange((sub, fresh) => {
+    if (sub && fresh && !app.classList.contains('on-screen')) tabScreen?.querySelector('.tab-dot')?.removeAttribute('hidden');
   });
-  for (const id of ['mx-expand', 'ai-mapbtn', 'ai-start-map']) $(id)?.addEventListener('click', () => MAP.open());
+  tabChat?.addEventListener('click', () => showScreen(false));
+  tabScreen?.addEventListener('click', () => showScreen(true));
 } else {
-  for (const id of ['mx-expand', 'ai-mapbtn', 'ai-start-map']) $(id)?.remove();
+  $('ai-tabs')?.remove();
 }
 // The questions from this conversation, to take to whoever they see
-$('rail-copy')?.addEventListener('click', (e) => copy(['Questions for my clinician:', ...railQuestions.map((q) => `- ${q}`)].join('\n'), e.currentTarget));
 
 // Sig everywhere, and the agents waking up once on arrival
 document.querySelectorAll('[data-sig]').forEach((el) => setSig(el, 'idle'));
 if (!reduceMotion) {
-  for (const list of document.querySelectorAll('.agent-rail, .agent-list')) {
+  for (const list of document.querySelectorAll('.agent-list')) {
     list.querySelectorAll('.agent').forEach((a, i) => {
       a.style.setProperty('--i', String(i));
       a.classList.add('wake');
@@ -1591,12 +1540,9 @@ if (chat.length) {
   setEmpty(!chat.length);
   newBtn.hidden = !chat.length;
   for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
-  const last = [...chat].reverse().find((m) => m.role === 'assistant');
-  if (last) railFromChat();
-  railNotes();
   save();
 }
-mapSync();
+screenSync();
 refreshStack();
 stackFromLink();
 // The community, live: how many members and first-hand reports Sig speaks for (totals from

@@ -1,0 +1,48 @@
+{
+  "note": "How a compound works in the body, as the screen beside Ask Sig draws it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's fact sheet (src: its source numbers there) and plain physiology; directions are only those the sheet states (up: it says they rise; watch: it says to check, without a direction). Written by hand, compound by compound, checked against the sheet; a compound without an entry is drawn from its sheet's summary and lab list alone.",
+  "updated": "2026-11-05",
+  "markers": {
+    "igf1": { "name": "IGF-1", "what": "The growth factor growth hormone tells the body to make. It shows how much growth hormone is acting." },
+    "glucose": { "name": "Fasting glucose", "what": "Blood sugar after a night without food." },
+    "hba1c": { "name": "HbA1c", "what": "Average blood sugar over the last few months." },
+    "thyroid": { "name": "Thyroid function", "what": "TSH and free T4: how the thyroid is working." },
+    "phosphate": { "name": "Phosphate", "what": "A mineral in blood and bone." },
+    "alp": { "name": "Alkaline phosphatase", "what": "An enzyme from bone and liver." },
+    "pth": { "name": "Parathyroid hormone", "what": "The hormone that keeps calcium and phosphate in balance." },
+    "cortisol": { "name": "Cortisol", "what": "The adrenal glands' stress hormone." },
+    "lh": { "name": "LH", "what": "The pituitary hormone that tells the testes to make testosterone." },
+    "fsh": { "name": "FSH", "what": "The pituitary hormone that drives sperm production." },
+    "testosterone": { "name": "Total testosterone", "what": "Measured in the morning, when it's highest." },
+    "estradiol": { "name": "Estradiol", "what": "The main estrogen. Some testosterone turns into it." },
+    "hematocrit": { "name": "Hematocrit", "what": "The share of the blood that's red cells. Too high thickens the blood." },
+    "psa": { "name": "PSA", "what": "A protein made by the prostate." },
+    "semen": { "name": "Semen analysis", "what": "Sperm count and quality, when fertility matters." }
+  },
+  "compounds": {
+    "somatropin": {
+      "route": "injection",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "the growth hormone it makes, given from outside", "src": [1] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rises", "markers": ["igf1"], "src": [1] },
+        { "at": "muscle · fat", "op": "up", "say": "more lean mass, less fat (in growth hormone deficiency)", "src": [1] },
+        { "at": "blood sugar", "op": "up", "say": "can rise, and can unmask diabetes", "markers": ["glucose", "hba1c"], "src": [1, 3] },
+        { "at": "thyroid", "op": "watch", "say": "function can change, so it's checked", "markers": ["thyroid"], "src": [1] },
+        { "at": "bone", "op": "up", "say": "phosphate, alkaline phosphatase and PTH may rise", "markers": ["phosphate", "alp", "pth"], "src": [1] },
+        { "at": "adrenals", "op": "watch", "say": "cortisol checked first if adrenal insufficiency is possible", "markers": ["cortisol"], "src": [1] },
+        { "at": "joints · fluid", "op": "warn", "say": "swelling, joint pain, carpal tunnel", "src": [1] }
+      ],
+      "dirs": { "igf1": "up", "glucose": "up", "hba1c": "up", "thyroid": "watch", "phosphate": "up", "alp": "up", "pth": "up", "cortisol": "watch" }
+    },
+    "enclomiphene": {
+      "route": "pill",
+      "lines": [
+        { "at": "hypothalamus", "op": "block", "say": "blocks estrogen's feedback (it's a SERM)", "src": [5] },
+        { "at": "pituitary", "op": "up", "say": "LH and FSH rise", "markers": ["lh", "fsh"], "src": [5] },
+        { "at": "testes", "op": "up", "say": "testosterone rises, and sperm production keeps going", "markers": ["testosterone", "semen"], "src": [5] },
+        { "at": "blood", "op": "up", "say": "estradiol, hematocrit and PSA can rise", "markers": ["estradiol", "hematocrit", "psa"], "src": [4, 5] },
+        { "at": "veins", "op": "warn", "say": "blood clots, flagged by US and European regulators", "src": [4, 6] }
+      ],
+      "dirs": { "lh": "up", "fsh": "up", "testosterone": "up", "estradiol": "up", "hematocrit": "up", "psa": "up", "semen": "watch" }
+    }
+  }
+}

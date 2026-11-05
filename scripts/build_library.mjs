@@ -99,7 +99,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // into their import lines, so a new script never runs with an old copy of either
 const KIT_JS = version('kit/kit.js');
 const VIZ_JS = version('library/signalviz.js');
-for (const f of ['ai/ai.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js']) {
+for (const f of ['ai/ai.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js']) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
   const was = fs.readFileSync(file, 'utf8');
@@ -115,7 +115,7 @@ const V = {
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
-  mapCss: version('ai/map.css'), mapJs: version('ai/map.js'),
+  scCss: version('ai/screen.css'), scJs: version('ai/screen.js'),
   myCss: version('my/my.css'), myJs: version('my/my.js'),
   home: version('home.js'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
@@ -553,7 +553,7 @@ function aiIndex() {
   const nonzero = (g) => Object.fromEntries(Object.entries(g || {}).filter(([, v]) => Number(v) > 0));
   const checked = [...entries.values()].map((f) => f.checked || '').sort().pop() || '';
   return JSON.stringify({
-    note: 'Every compound and blend in the Library, with the status, evidence grade and goals of the ones that have a fact sheet. Written by scripts/build_library.mjs for Sig (miraclehealth.us/ai).',
+    note: 'Every compound and blend in the Library, with the status, evidence grade, goals and lab list of the ones that have a fact sheet. Written by scripts/build_library.mjs for Sig (miraclehealth.us/ai) and its screen.',
     checked,
     goals: uses.goals,
     items: catalog.map((c) => {
@@ -561,7 +561,8 @@ function aiIndex() {
       return {
         id: c.id, name: c.name, family: c.family, category: c.category, aliases: c.aliases || [], kind: c.kind, parts: c.parts || [],
         sheet: !!f,
-        ...(f ? { status: f.status_us.key, status_label: f.status_us.label, grade: f.evidence.grade, goals: nonzero(f.goals), summary: f.summary, checked: f.checked || '' } : {}),
+        ...(f ? { status: f.status_us.key, status_label: f.status_us.label, grade: f.evidence.grade, goals: nonzero(f.goals), summary: f.summary, checked: f.checked || '',
+          labs: { before: f.labs?.before || [], during: f.labs?.during || [] } } : {}),
       };
     }),
   }) + '\n';
@@ -659,10 +660,6 @@ const STARTERS = [
   ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?', ''],
 ];
 
-// The interaction map's mark: you in the middle, your compounds on the ring round you
-const MAP_ICON = '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.6" stroke-dasharray="2 1.6"/><circle cx="8" cy="8" r="1.9" fill="currentColor" stroke="none"/></g><g fill="currentColor"><circle cx="8" cy="2.4" r="1.75"/><circle cx="12.85" cy="10.8" r="1.75"/><circle cx="3.15" cy="10.8" r="1.75"/></g></svg>';
-const EXPAND_ICON = '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M9.5 2.5h4v4M6.5 13.5h-4v-4M13.5 2.5 9 7M2.5 13.5 7 9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
 function aiPage() {
   const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
@@ -670,7 +667,10 @@ function aiPage() {
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Ask Sig</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <div class="ai-bar-acts">
-        <button class="ai-mapbtn" id="ai-mapbtn" type="button" aria-haspopup="dialog">${MAP_ICON}<span class="ai-mapbtn-t">Interaction map</span></button>
+        <div class="ai-tabs" id="ai-tabs" role="group" aria-label="Show the chat or the screen">
+          <button class="ai-tab" id="tab-chat" type="button" aria-pressed="true">Chat</button>
+          <button class="ai-tab" id="tab-screen" type="button" aria-pressed="false" aria-controls="ai-screen">Screen<span class="tab-dot" hidden></span></button>
+        </div>
         <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
       </div>
     </div>
@@ -693,7 +693,6 @@ function aiPage() {
       <div class="ai-saved" id="ai-saved" hidden></div>
       <div class="ai-starts" role="group" aria-label="Start with">
         ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
-        <button type="button" class="ai-start ai-start-map" id="ai-start-map" aria-haspopup="dialog"><span class="start-ico" aria-hidden="true">${MAP_ICON}</span>See how compounds interact</button>
       </div>
       <details class="ai-who">
         <summary>Who answers</summary>
@@ -703,21 +702,8 @@ function aiPage() {
     <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <aside class="ai-rail" aria-labelledby="mx-rail-h">
-    <div class="rail-head"><h2 id="mx-rail-h">How they interact</h2><button class="mx-expand" id="mx-expand" type="button" aria-haspopup="dialog" aria-label="Open the interaction map full screen">${EXPAND_ICON}</button></div>
-    <div id="mx-rail"><noscript><p class="mx-status">The interaction map needs JavaScript.</p></noscript></div>
-    <div class="rail-notes" id="rail-notes" hidden>
-      <h2>In this conversation</h2>
-      <div class="rail-chips" id="rail-chips"></div>
-      <div class="rail-qs" id="rail-qs" hidden><h3>Questions for your clinician</h3><ul id="rail-qlist"></ul></div>
-      <button type="button" class="rail-copy" id="rail-copy">Copy these questions</button>
-    </div>
-    <div class="rail-saved" id="rail-saved" hidden></div>
-    <details class="rail-who">
-      <summary>Who answers</summary>
-      <p id="rail-sub">Waiting for your first message</p>
-      ${agentList('agent-rail')}
-    </details>
+  <aside class="ai-rail sc" id="ai-screen" aria-label="The screen: what Sig is talking about">
+    <div id="sc-root"><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
   </aside>
 </div>`;
   return page({
@@ -725,8 +711,8 @@ function aiPage() {
     description: 'Ask Sig, Miracle Health’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
     ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'ask-sig.jpg')) ? '/img/og/ask-sig.jpg' : '/og.jpg',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/map.css?v=${V.mapCss}`],
-    scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/ai/map.js?v=${V.mapJs}`, `/ai/ai.js?v=${V.aiJs}`],
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`],
+    scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/ai/screen.js?v=${V.scJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
   });
 }
