@@ -46,6 +46,13 @@
       ]
     },
     {
+      "claim": "About 1.6 kg less body fat and 1.6 kg more lean (fat-free) mass, with no change in body weight, in middle-aged and older men (29 randomized trials, 1,083 men, average age 65, average starting testosterone low-normal)",
+      "evidence": "moderate",
+      "sources": [
+        8
+      ]
+    },
+    {
       "claim": "Better sexual desire, arousal, orgasm and satisfying sexual events in postmenopausal women with low sexual desire causing distress (meta-analysis of 36 trials, 8,480 women); off-label in the US",
       "evidence": "strong",
       "sources": [
@@ -154,6 +161,14 @@
       "people": "790 men aged 65 and older with low testosterone",
       "finding": "One year of testosterone gel modestly improved sexual function and slightly improved mood and depressive symptoms, but not vitality or walking distance; the trial was too small to judge risks firmly.",
       "source": 3
+    },
+    {
+      "title": "Effects of testosterone on body composition, bone metabolism and serum lipid profile in middle-aged men: a meta-analysis",
+      "year": 2005,
+      "type": "Meta-analysis",
+      "people": "1,083 men in 29 randomized trials (average age 65)",
+      "finding": "Testosterone lowered total body fat by about 1.6 kg (about 6%) and raised fat-free mass by about 1.6 kg (about 3%) compared with controls, with no change in body weight.",
+      "source": 8
     }
   ],
   "ask_your_clinician": [
@@ -210,8 +225,15 @@
       "publisher": "New England Journal of Medicine (Ovid)",
       "year": 2023,
       "url": "https://www.ovid.com/journals/nejm/pdf/10.1056/nejmoa2215025~cardiovascular-safety-of-testosterone-replacement-therapy"
+    },
+    {
+      "n": 8,
+      "title": "Effects of testosterone on body composition, bone metabolism and serum lipid profile in middle-aged men: a meta-analysis",
+      "publisher": "Clinical Endocrinology (PubMed abstract)",
+      "year": 2005,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16117815/"
     }
   ],
-  "notes_for_editor": "The label cited is AndroGel's (revised October 2025) as reprinted by Drugs.com; FDA's own copy was not opened. Other products differ, and FDA's February 2025 page does not say whether product-specific blood-pressure boxed warnings remain on some injectable or oral products (not checked). PSA, hematocrit and fracture figures come from gel trials and TRAVERSE; rates with injections may differ and were not checked. Use in women is off-label in the US and no product for women was checked; the meta-analysis authors say long-term safety in women needs more study. The Endocrine Society guideline (2018) predates TRAVERSE. The fertility risk is described by the label as possible; the Coviello study shows how strongly testosterone suppresses LH and FSH in healthy men.",
+  "notes_for_editor": "The label cited is AndroGel's (revised October 2025) as reprinted by Drugs.com; FDA's own copy was not opened. Other products differ, and FDA's February 2025 page does not say whether product-specific blood-pressure boxed warnings remain on some injectable or oral products (not checked). PSA, hematocrit and fracture figures come from gel trials and TRAVERSE; rates with injections may differ and were not checked. Use in women is off-label in the US and no product for women was checked; the meta-analysis authors say long-term safety in women needs more study. The Endocrine Society guideline (2018) predates TRAVERSE. The fertility risk is described by the label as possible; the Coviello study shows how strongly testosterone suppresses LH and FSH in healthy men. The body-composition finding (added 2026-11-06) comes from the Isidori 2005 meta-analysis's PubMed abstract; the full text was not opened. The trials' average starting testosterone was 10.9 nmol/L (trial averages 7.8 to 19), so most men started low or low-normal.",
   "checked": "2026-10-28"
 }

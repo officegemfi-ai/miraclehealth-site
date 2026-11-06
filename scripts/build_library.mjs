@@ -650,7 +650,9 @@ const AGENTS = [
   ['planner', 'Planner', 'Turns what you want into what studies measure: fat loss is body fat, waist and lean mass.'],
   ['recommender', 'Recommender', 'Asks what it needs to know, then reads the studies: the Library’s fact sheets.'],
   ['evidence', 'Evidence librarian', 'Finds every finding on exactly that, how strong it is and who was studied.'],
+  ['relatives', 'Relatives agent', 'Finds what works through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.'],
   ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
+  ['combination', 'Combination agent', 'Says whether what you take together overlaps or works through different pathways.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
   ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
 ];

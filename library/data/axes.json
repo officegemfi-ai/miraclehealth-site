@@ -1,0 +1,58 @@
+{
+  "note": "The pathways Library compounds act through, from each member's own fact sheet (what it is). Sig's Relatives agent uses them: a compound that raises a hormone the body makes stands a rung below that hormone's own evidence, so the hormone's findings are said as expected from how the compound works, not tested; members that act on the same receptor are relatives too. The Combination agent uses them to say whether compounds taken together work through the same receptor (overlap), the same hormone by different routes, or different pathways. Nothing here is a finding. Compounds that change a hormone in other ways (aromatase inhibitors, other SERMs, GnRH drugs given continuously) are left out on purpose: their other effects mean the hormone's findings don't carry over.",
+  "updated": "2026-11-06",
+  "axes": [
+    {
+      "id": "gh",
+      "name": "growth hormone",
+      "hormone": "somatropin",
+      "members": [
+        { "id": "somatropin", "via": ["gh"], "how": "is growth hormone itself" },
+        { "id": "tesamorelin", "via": ["ghrh"], "how": "makes the pituitary release more of the body's own growth hormone (a GHRH analog)" },
+        { "id": "sermorelin", "via": ["ghrh"], "how": "makes the pituitary release more of the body's own growth hormone (a GHRH analog)" },
+        { "id": "modgrf129", "via": ["ghrh"], "how": "is a GHRH analog, the brain signal that makes the pituitary release growth hormone" },
+        { "id": "cjc1295", "via": ["ghrh"], "how": "is a long-acting GHRH analog, the brain signal that makes the pituitary release growth hormone" },
+        { "id": "ipamorelin", "via": ["ghrelin"], "how": "makes the pituitary release growth hormone through the ghrelin receptor" },
+        { "id": "ghrp2", "via": ["ghrelin"], "how": "makes the pituitary release growth hormone through the ghrelin receptor" },
+        { "id": "ghrp6", "via": ["ghrelin"], "how": "makes the pituitary release growth hormone through the ghrelin receptor" },
+        { "id": "hexarelin", "via": ["ghrelin"], "how": "makes the pituitary release growth hormone through the ghrelin receptor" },
+        { "id": "mk677", "via": ["ghrelin"], "how": "mimics ghrelin, which triggers growth hormone release" }
+      ]
+    },
+    {
+      "id": "testosterone",
+      "name": "testosterone",
+      "hormone": "testosterone",
+      "members": [
+        { "id": "testosterone", "via": ["androgen"], "how": "is testosterone itself" },
+        { "id": "enclomiphene", "via": ["serm"], "how": "raises the body's own testosterone in men: it blocks estrogen's feedback, so the pituitary makes more LH and FSH" },
+        { "id": "clomiphene", "via": ["serm"], "how": "raises the body's own testosterone in men through LH and FSH" },
+        { "id": "hcg", "via": ["lh"], "how": "acts like LH, the signal that tells the testes to make testosterone" }
+      ]
+    },
+    {
+      "id": "glp1",
+      "name": "the GLP-1 receptor",
+      "members": [
+        { "id": "semaglutide", "via": ["glp1"], "how": "switches on GLP-1 receptors" },
+        { "id": "liraglutide", "via": ["glp1"], "how": "switches on GLP-1 receptors" },
+        { "id": "dulaglutide", "via": ["glp1"], "how": "switches on GLP-1 receptors" },
+        { "id": "exenatide", "via": ["glp1"], "how": "switches on GLP-1 receptors" },
+        { "id": "orforglipron", "via": ["glp1"], "how": "switches on the GLP-1 receptor (a pill, not a peptide)" },
+        { "id": "tirzepatide", "via": ["glp1", "gip"], "how": "switches on GLP-1 and GIP receptors" },
+        { "id": "retatrutide", "via": ["glp1", "gip", "glucagon"], "how": "switches on GLP-1, GIP and glucagon receptors" },
+        { "id": "survodutide", "via": ["glp1", "glucagon"], "how": "switches on GLP-1 and glucagon receptors" },
+        { "id": "mazdutide", "via": ["glp1", "glucagon"], "how": "switches on GLP-1 and glucagon receptors" },
+        { "id": "pemvidutide", "via": ["glp1", "glucagon"], "how": "switches on GLP-1 and glucagon receptors" }
+      ]
+    },
+    {
+      "id": "amylin",
+      "name": "the amylin receptor",
+      "members": [
+        { "id": "cagrilintide", "via": ["amylin"], "how": "is a long-acting version of amylin, a hormone released with insulin after meals" },
+        { "id": "pramlintide", "via": ["amylin"], "how": "is a version of amylin, a hormone released with insulin after meals" }
+      ]
+    }
+  ]
+}

@@ -30,8 +30,8 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
 
 const AGENT_NAME = {
-  safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', community: 'The community',
-  synergy: 'Synergy auditor', builder: 'Stack builder', review: 'Safety agent',
+  safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent',
+  community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder', review: 'Safety agent',
 };
 // Words that may mean someone is in crisis: if an answer can't come through, help still does
 const CRISIS_WORDS = /\b(?:kill(?:ing)?\s+my\s?self|kms|suicid\w*|end(?:ing)?\s+my\s+(?:own\s+)?life|end(?:ing)?\s+it\s+all|want(?:ing)?\s+to\s+die|better\s+off\s+dead|no\s+reason\s+to\s+live|don'?t\s+want\s+to\s+(?:live|be\s+alive|wake\s+up)|self[- ]?harm\w*|cut(?:ting)?\s+myself|overdos(?:e|ing))\b/i;
