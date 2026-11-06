@@ -651,6 +651,7 @@ const AGENTS = [
   ['recommender', 'Recommender', 'Asks what it needs to know, then reads the studies: the Library’s fact sheets.'],
   ['evidence', 'Evidence librarian', 'Finds every finding on exactly that, how strong it is and who was studied.'],
   ['relatives', 'Relatives agent', 'Finds what works through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.'],
+  ['mechanism', 'Mechanism agent', 'Reads how each one could bear on your goal, from its fact sheet, as expected, not tested.'],
   ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
   ['combination', 'Combination agent', 'Says whether what you take together overlaps or works through different pathways.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],

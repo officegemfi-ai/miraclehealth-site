@@ -88,6 +88,17 @@ a.tk-cmt:hover{color:var(--lime);text-decoration:underline solid var(--lime)}
 .tk-mk:hover{border-color:rgba(255,255,255,.42)}
 .tk-mk.on{border-color:var(--lime);background:rgba(216,255,61,.16)}
 /* a marker picked: the lines that move it light up */
+/* the evidence for a goal, rung by rung: its own studies lead, a relative's sit a rung below */
+.sc-chip.t-goal{border-color:rgba(216,255,61,.5);background:rgba(216,255,61,.07);color:var(--lime)}
+.sc-chip.t-goal .sc-chip-mark{color:var(--lime)}
+.sc-grid.sc-ladder .sc-rung{padding-top:9px;padding-bottom:9px}
+.sc-grid.sc-ladder .rung-1{background:rgba(216,255,61,.05);box-shadow:inset 3px 0 0 rgba(216,255,61,.55)}
+.sc-grid.sc-ladder .rung-1 .ln,.sc-grid.sc-ladder .rung-1 .sc-place{color:var(--lime)}
+.sc-grid.sc-ladder .rung-2 .tk-say{color:rgba(252,252,252,.72)}
+.sc-grid.sc-ladder .rung-3 .tk-say,.sc-grid.sc-ladder .rung-4 .tk-say{color:rgba(252,252,252,.64)}
+.tk-name.tk-rel{color:var(--on-ink);font-weight:600;text-decoration:underline dotted rgba(252,252,252,.45);text-underline-offset:3px}
+a.tk-name.tk-rel:hover{color:var(--lime);text-decoration:underline solid var(--lime)}
+.sc-evkey{margin:12px 28px 2px 3.4em}
 .sc-tr.lit,.cl.lit{background:rgba(216,255,61,.1);box-shadow:inset 3px 0 0 var(--lime)}
 .sc-tr.lit .ln,.cl.lit .ln{color:var(--lime)}
 /* a chip at the top took you here */
@@ -212,6 +223,7 @@ a.tk-cmt:hover{color:var(--lime);text-decoration:underline solid var(--lime)}
   .sc-who::after{content:' '}
   .sc-tr.meet .tk-meet-say{color:var(--lime)}
   .sc-sum{grid-template-columns:2.9em minmax(0,1fr)}
+  .sc-evkey{margin:12px 14px 2px 2.9em}
   .sc-map,.sc-files-note{display:none}
   .sc-one{padding-right:14px}
   .cl{grid-template-columns:2.9em minmax(0,1fr);column-gap:10px}

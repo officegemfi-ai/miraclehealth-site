@@ -29,7 +29,7 @@ const DIR = { up: ['▲', 'may rise'], watch: ['◆', 'worth checking'] };
 const LEVEL = { avoid: 'Avoid together', caution: 'Caution', info: 'Good to know' };
 const RANK = { avoid: 3, caution: 2, info: 1 };
 const GRADE = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'limited evidence', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
-const AGENT = { safety: 'Safety agent', review: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder' };
+const AGENT = { safety: 'Safety agent', review: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent', mechanism: 'Mechanism agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder' };
 // Not approved in the US for anything, or not yet: worth asking a clinician about an approved option
 const UNAPPROVED = new Set(['not_approved', 'compounded', 'investigational', 'category2', 'under_review', 'restricted', 'unclear']);
 // The example on the empty screen: it asks Sig, like any question
@@ -173,6 +173,7 @@ function headline(ids, f, sub) {
   const first = ids.map((id, i) => (i ? mid(shortOf(id)) : shortOf(id)));
   const inside = ids.map((id) => mid(shortOf(id)));
   if (topFinding(sub) === 'avoid') return `${listOf(first)}: Sig’s Synergy auditor says to avoid taking them together.`;
+  if (sub?.ladder) return ladderHeadline(ids, sub.ladder);
   if (ids.length === 1) {
     if (!drawn(ids[0])) return `How ${inside[0]} works in the body isn’t drawn yet. Here it is from its fact sheet.`;
     const places = f.rows.map((r) => r.at);
@@ -220,6 +221,8 @@ function chipsNode(ids, f, sub) {
   const add = (key, mark, text, tone = '') => chips.push(h('li', { class: `k-${key}` }, h('button', {
     class: `sc-chip${tone ? ` t-${tone}` : ''}`, type: 'button', 'data-key': `chip:${key}`, onclick: () => jump(key),
   }, mark ? h('span', { class: 'sc-chip-mark', 'aria-hidden': 'true', text: mark }) : null, text)));
+  const L = sub.ladder;
+  if (L) add('goal', L.rows.some((r) => r.found.some((x) => PEOPLE.has(x.grade))) ? '●' : L.via.length ? '↳' : '○', ladderChip(L), 'goal');
   const sheets = ids.filter((id) => item(id).sheet).length;
   add('code', sheets === ids.length ? '✓' : '○', ids.length === 1 ? (sheets ? 'Fact sheet' : 'No fact sheet yet') : plural(sheets, 'fact sheet'));
   if (ids.length > 1) {
@@ -351,18 +354,138 @@ function fileNode(id, animate) {
 }
 function codeSection(ids, f, animate) {
   const many = ids.length > 1;
-  if (!many) S.file = ids[0];
-  else if (S.file !== 'together' && !ids.includes(S.file)) S.file = 'together';
-  const tabs = many ? h('div', { class: 'sc-files', role: 'group', 'aria-label': 'Together, or one at a time' },
-    [['together', 'together', 'var(--lime)'], ...ids.map((id) => [id, tokOf(id), colorOf(id)])].map(([k, label, c]) => colored(h('button', {
-      class: 'sc-file', type: 'button', 'aria-pressed': String(S.file === k), 'data-key': `file:${k}`,
+  const L = S.subject?.ladder || null;
+  // A question about a goal opens on its evidence; otherwise on how they work, together or alone
+  if (!S.file) S.file = L ? 'evidence' : many ? 'together' : ids[0];
+  if (S.file === 'evidence' && !L) S.file = '';
+  if (!S.file || (S.file !== 'evidence' && S.file !== 'together' && !ids.includes(S.file)) || (S.file === 'together' && !many)) S.file = many ? 'together' : ids[0];
+  const keys = [...(L ? [['evidence', `evidence · ${mainOf(L)}`, 'var(--lime)']] : []), ...(many ? [['together', 'together', 'var(--lime)']] : []), ...ids.map((id) => [id, tokOf(id), colorOf(id)])];
+  const note = S.file === 'together' ? 'by place, head to toe' : S.file === 'evidence' ? 'strongest rung first' : '';
+  const tabs = keys.length > 1 ? h('div', { class: 'sc-files', role: 'group', 'aria-label': L ? 'The evidence, or how they work' : 'Together, or one at a time' },
+    keys.map(([k, label, c]) => colored(h('button', {
+      class: `sc-file${k === 'evidence' ? ' sc-evtab' : ''}`, type: 'button', 'aria-pressed': String(S.file === k), 'data-key': `file:${k}`,
       onclick: () => { if (S.file !== k) { S.file = k; redraw('code'); } },
     }, h('i', { 'aria-hidden': 'true' }), label), c)),
-    S.file === 'together' ? h('span', { class: 'sc-files-note', text: 'by place, head to toe' }) : null) : null;
+    note ? h('span', { class: 'sc-files-note', text: note }) : null) : null;
+  const body = S.file === 'evidence' ? ladderNode(ids, L, animate) : S.file === 'together' ? togetherNode(ids, f, animate) : fileNode(S.file, animate);
   return h('section', { class: 'sc-codebox', 'aria-labelledby': 'sc-code-h' },
-    h('h3', { class: 'sr', id: 'sc-code-h', text: many ? 'How they work in the body' : 'How it works in the body' }),
-    tabs, S.file === 'together' ? togetherNode(ids, f, animate) : fileNode(S.file, animate),
+    h('h3', { class: 'sr', id: 'sc-code-h', text: S.file === 'evidence' ? `The evidence for ${mainOf(L)}` : many ? 'How they work in the body' : 'How it works in the body' }),
+    tabs, body,
     h('p', { class: 'mk-def', 'data-at': 'code', 'aria-live': 'polite', hidden: true }));
+}
+
+// ---------------------------------------------------------------------------
+// The evidence for what they asked about, rung by rung, as Sig's agents read it: each one's own
+// studies, what its relatives' studies show (a rung below), how it could bear on it, what people
+// report, and how the compounds relate. All from the Library's fact sheets and pathways.
+// ---------------------------------------------------------------------------
+const PEOPLE = new Set(['strong', 'moderate', 'limited']);
+const KINDS = new Set(['hormone', 'raises', 'receptor']);
+const PAIRS = { overlap: 'overlap', same: 'same', apart: 'apart' };
+// What the chat passed on, checked field by field
+function ladderOf(l, ids) {
+  if (!l || typeof l !== 'object' || !Array.isArray(l.rows) || !Array.isArray(l.outcomes)) return null;
+  const outcomes = l.outcomes.filter((o) => o && typeof o.label === 'string').slice(0, 4).map((o) => ({ label: clean(o.label, 40), related: !!o.related })).filter((o) => o.label);
+  if (!outcomes.length) return null;
+  const found = (xs, n) => (Array.isArray(xs) ? xs : []).slice(0, n).map((x) => ({
+    outcome: clean(x?.outcome, 40), claim: clean(x?.claim, 320), grade: GRADE[x?.grade] ? x.grade : '',
+    src: (Array.isArray(x?.src) ? x.src : []).filter((n) => Number.isInteger(n) && n > 0 && n < 100).slice(0, 3),
+  })).filter((x) => x.claim);
+  const rows = l.rows.filter((r) => r && okId(r.id) && ids.includes(r.id)).map((r) => ({
+    id: r.id, sheet: ['ok', 'none', 'unread'].includes(r.sheet) ? r.sheet : 'none', found: found(r.found, 3),
+    how: clean(r.how, 300), howFrom: r.howFrom === 'sheet' || r.howFrom === 'pathway' ? r.howFrom : '',
+  }));
+  if (!rows.length) return null;
+  const via = (Array.isArray(l.via) ? l.via : []).filter((v) => v && okId(v.id) && okId(v.of) && ids.includes(v.of) && KINDS.has(v.kin)).slice(0, 8)
+    .map((v) => ({ of: v.of, id: v.id, kin: v.kin, axis: clean(v.axis, 40), found: found(v.found, 2) })).filter((v) => v.found.length);
+  const pairs = (Array.isArray(l.pairs) ? l.pairs : []).filter((p) => p && ids.includes(p.a) && ids.includes(p.b) && PAIRS[p.kind]).slice(0, 6)
+    .map((p) => ({ a: p.a, b: p.b, kind: p.kind, on: (Array.isArray(p.on) ? p.on : []).slice(0, 2).map((x) => clean(x, 40)) }));
+  return { outcomes, rows, via, pairs };
+}
+const mainOf = (L) => (L.outcomes.find((o) => !o.related) || L.outcomes[0]).label;
+const studiedIn = (fs) => (fs.some((x) => PEOPLE.has(x.grade)) ? 'studies in people' : fs.some((x) => x.grade === 'preclinical') ? 'animal or lab studies' : 'reports');
+// The sentence at the top, for a question about a goal
+function ladderHeadline(ids, L) {
+  const said = ids.map((id, i) => {
+    const r = L.rows.find((x) => x.id === id);
+    const who = i ? mid(shortOf(id)) : shortOf(id);
+    if (!r) return '';
+    if (r.found.length) return `${who} has ${studiedIn(r.found)} on it`;
+    const via = [...new Set(L.via.filter((v) => v.of === id).map((v) => mid(shortOf(v.id))))];
+    if (via.length) return `${who}’s evidence comes through ${listOf(via)}, a rung below`;
+    return r.sheet === 'ok' ? `${who}’s fact sheet has nothing on it yet` : `${who} has no fact sheet yet`;
+  }).filter(Boolean);
+  return `For ${mainOf(L)}: ${said.join('; ')}.`;
+}
+// The chip at the top: how much there is, rung by rung
+function ladderChip(L) {
+  const own = L.rows.reduce((n, r) => n + r.found.length, 0);
+  return [cap(mainOf(L)), own ? `${own} studied` : 'nothing studied', L.via.length ? (L.via.length === 1 ? '1 through a relative' : `${L.via.length} through relatives`) : ''].filter(Boolean).join(' · ');
+}
+function ladderNode(ids, L, animate) {
+  const grid = h('div', { class: `sc-grid sc-ladder${ids.length > 3 ? ' many' : ''}`, role: 'table', 'aria-label': `The evidence for ${mainOf(L)}, rung by rung, for ${listOf(ids.map(nameOf))}` });
+  grid.style.setProperty('--n', String(ids.length));
+  const num = (x = '') => h('span', { class: 'ln', 'aria-hidden': 'true', text: x });
+  grid.append(h('div', { class: 'sc-tr sc-th', role: 'row' }, num(), h('span', { class: 'sc-place', role: 'columnheader', text: 'rung' }),
+    ids.map((id) => colored(h('span', { class: 'sc-cell', role: 'columnheader' },
+      item(id).sheet ? h('a', { class: 'tk-name', href: `/library/${id}/`, text: codeOf(id) }) : h('b', { class: 'tk-name', text: codeOf(id) })), colorOf(id)))));
+  const line = (id, glyph, ...kids) => h('div', { class: 'sc-ln' }, h('span', { class: 'sc-who', text: tokOf(id) }), h('span', { class: 'tk-tree', 'aria-hidden': 'true', text: `${glyph} ` }), ...kids);
+  const cell = (id, lines) => colored(h('div', { class: 'sc-cell', role: 'cell' }, lines), colorOf(id));
+  const own = (id) => {
+    const r = L.rows.find((x) => x.id === id);
+    if (!r) return [line(id, '·', h('span', { class: 'tk-cmt', text: '// not looked up this time' }))];
+    if (!r.found.length) {
+      return [line(id, '○', h('span', { class: 'tk-cmt', text: r.sheet === 'ok' ? `// no finding on ${mainOf(L)} in its fact sheet` : r.sheet === 'unread' ? '// its fact sheet couldn’t be loaded just now' : '// no fact sheet yet' }))];
+    }
+    return r.found.map((x) => line(id, PEOPLE.has(x.grade) ? '●' : '○',
+      h('span', { class: 'tk-grade', text: `${gradeSay(x.grade) || 'not graded'}: ` }), h('span', { class: 'tk-say', text: x.claim }),
+      x.src.length ? [' ', srcLink(id, x.src)] : null));
+  };
+  const kin = (v) => (v.kin === 'hormone' ? 'the hormone it raises' : v.kin === 'raises' ? `also raises ${v.axis}` : `same receptor: ${v.axis}`);
+  const via = (id) => {
+    const vs = L.via.filter((v) => v.of === id);
+    if (!vs.length) return [line(id, '·', h('span', { class: 'tk-cmt', text: '// no relative with findings on this' }))];
+    return vs.flatMap((v) => v.found.slice(0, 1).map((x) => line(id, '↳',
+      item(v.id).sheet ? h('a', { class: 'tk-name tk-rel', href: `/library/${v.id}/`, text: codeOf(v.id) }) : h('b', { class: 'tk-name tk-rel', text: codeOf(v.id) }),
+      h('span', { class: 'tk-cmt', text: ` (${kin(v)}) ` }), h('span', { class: 'tk-grade', text: `${gradeSay(x.grade) || 'not graded'}: ` }), h('span', { class: 'tk-say', text: x.claim }),
+      x.src.length ? [' ', srcLink(v.id, x.src)] : null,
+      h('span', { class: 'tk-cmt', text: v.kin === 'raises' ? ` // supports what raising ${v.axis} does, not a test of ${tokOf(id)}` : ` // ${tokOf(v.id)}’s evidence: for ${tokOf(id)}, expected, not tested` }))));
+  };
+  const how = (id) => {
+    const r = L.rows.find((x) => x.id === id);
+    if (!r?.how) return [line(id, '·', h('span', { class: 'tk-cmt', text: '// not on its fact sheet' }))];
+    return [line(id, '─▶', h('span', { class: 'tk-say', text: r.how }), h('span', { class: 'tk-cmt', text: r.howFrom === 'pathway' ? ' // its pathway: expected, not tested' : ' // its fact sheet: expected, not tested' }))];
+  };
+  const people = (id) => {
+    const sig = sigOf(id);
+    const th = sig ? themesOf(sig).slice(0, 2) : [];
+    if (!th.length) return [line(id, '·', h('span', { class: 'tk-cmt', text: sig ? '// nothing specific reported yet' : '// no Community Signal yet' }))];
+    return [line(id, '~', h('span', { class: 'tk-say', text: `people describe ${listOf(th)}` }), h('span', { class: 'tk-cmt', text: ' // experience, not evidence' }))];
+  };
+  const rungs = [['its own studies', own], ['through a relative', via], ['how it works', how], ['people report', people]];
+  let n = 0;
+  for (const [label, fill] of rungs) {
+    n += 1;
+    const tr = h('div', { class: `sc-tr sc-rung rung-${n}`, role: 'row' }, num(pad(n)), h('span', { class: 'sc-place', role: 'rowheader', text: label }), ids.map((id) => cell(id, fill(id))));
+    if (animate) tr.style.setProperty('--i', String(n));
+    grid.append(tr);
+  }
+  // Together: how they relate, and whether anyone has reported the pair
+  if (ids.length > 1) {
+    const say = (p) => `${tokOf(p.a)} + ${tokOf(p.b)}: ${p.kind === 'overlap' ? `both act on ${p.on[0]}, so they overlap; little extra is expected from both, while side effects add up`
+      : p.kind === 'same' ? `both work on ${p.on[0]} by different routes; its effects and risks can add up`
+      : `different pathways (${p.on.join('; ')}); only a study of the two together can show whether they add up`}`;
+    const st = stackSig(ids);
+    const rep = st ? `${plural(Number(st.first_hand) || 0, 'first-hand report')} of taking them together` : 'no first-hand reports of taking them together yet';
+    for (const t of [...L.pairs.map(say), rep]) {
+      n += 1;
+      const tr = h('div', { class: 'sc-tr sc-sum', role: 'row' }, num(pad(n)), h('span', { class: 'tk-cmt', role: 'cell', text: `// ${t}` }));
+      if (animate) tr.style.setProperty('--i', String(n));
+      grid.append(tr);
+    }
+  }
+  return h('div', { class: `sc-code${animate ? ' typing' : ''}` }, grid,
+    h('p', { class: 'sc-small sc-evkey', text: '● studies in people · ○ animal or lab studies, or nothing yet · ↳ a relative’s evidence, a rung below. Each rung is weaker than the one above it; none is a reason to take something.' }));
 }
 
 // A marker picked: what it is, and the lines that move it light up
@@ -526,6 +649,20 @@ function clinicianText(ids, f, sub) {
   for (const id of ids) {
     const it = item(id);
     L.push(`${nameOf(id)}: ${[it.status_label ? clean(it.status_label, 140) : '', it.grade ? `evidence: ${gradeSay(it.grade)}` : ''].filter(Boolean).join('. ') || 'no fact sheet yet'}.`);
+  }
+  const ev = sub.ladder;
+  if (ev) {
+    L.push('', `The evidence for ${mainOf(ev)}, from the Miracle Health Library’s fact sheets (source numbers in brackets; each rung weaker than the one above):`);
+    for (const id of ids) {
+      const r = ev.rows.find((x) => x.id === id);
+      if (!r) continue;
+      L.push(...(r.found.length ? r.found.map((x) => `- ${nameOf(id)}, its own studies (${gradeSay(x.grade) || 'not graded'}): ${x.claim}${x.src.length ? ` [${x.src.join(', ')}]` : ''}`)
+        : [`- ${nameOf(id)}, its own studies: ${r.sheet === 'ok' ? `no finding on ${mainOf(ev)} in its fact sheet` : 'no fact sheet yet'}`]));
+      for (const v of ev.via.filter((x) => x.of === id)) {
+        for (const x of v.found.slice(0, 1)) L.push(`- ${nameOf(id)}, through ${nameOf(v.id)} (${v.kin === 'hormone' ? 'the hormone it raises' : v.kin === 'raises' ? `which also raises ${v.axis}` : `same receptor: ${v.axis}`}; ${gradeSay(x.grade) || 'not graded'}): ${x.claim}. That is ${nameOf(v.id)}’s evidence, not a test of ${nameOf(id)}.`);
+      }
+      if (r.how) L.push(`- ${nameOf(id)}, how it works (expected, not tested): ${r.how}`);
+    }
   }
   L.push('', 'How they work in the body, from the Miracle Health Library’s fact sheets (source numbers in brackets):');
   for (const id of ids) if (!drawn(id)) L.push(`- ${nameOf(id)}: ${linesOf(id)[0].say}`);
@@ -704,6 +841,7 @@ function jump(where) {
     if (S.panel !== where) { S.panel = where; redraw('panels'); }
     target = root.querySelector('.sc-panels');
   } else {
+    if (where === 'goal' && sub.ladder && S.file !== 'evidence') { S.file = 'evidence'; redraw('code'); }
     if ((where === 'meet' || where === 'caution') && sub.ids.length > 1 && S.file !== 'together') { S.file = 'together'; redraw('code'); }
     target = (where === 'meet' && root.querySelector('.sc-tr.meet')) || (where === 'caution' && root.querySelector('.sc-tr.warn, .cl.op-warn')) || root.querySelector('.sc-codebox');
   }
@@ -773,7 +911,9 @@ function show(sub) {
     ids, findings: Array.isArray(sub.findings) ? sub.findings : [], ok: sub.ok === true ? true : sub.ok === false ? false : null,
     meds: Array.isArray(sub.meds) ? sub.meds : [], asked: !!sub.asked, asking: !!sub.asking, at: Number.isFinite(sub.at) ? sub.at : -1,
     log: Array.isArray(sub.log) ? sub.log.slice(0, 24) : [], ms: Number(sub.ms) || 0, src: sub.src && typeof sub.src === 'object' ? sub.src : null,
+    ladder: ladderOf(sub.ladder, ids),
   };
+  if (same && S.subject.ladder && !prev.ladder) S.file = 'evidence';
   draw(!same);
   for (const fn of listeners) fn(S.subject, !same);
 }

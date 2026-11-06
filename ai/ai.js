@@ -31,7 +31,7 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 
 const AGENT_NAME = {
   safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent',
-  community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder', review: 'Safety agent',
+  mechanism: 'Mechanism agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder', review: 'Safety agent',
 };
 // Words that may mean someone is in crisis: if an answer can't come through, help still does
 const CRISIS_WORDS = /\b(?:kill(?:ing)?\s+my\s?self|kms|suicid\w*|end(?:ing)?\s+my\s+(?:own\s+)?life|end(?:ing)?\s+it\s+all|want(?:ing)?\s+to\s+die|better\s+off\s+dead|no\s+reason\s+to\s+live|don'?t\s+want\s+to\s+(?:live|be\s+alive|wake\s+up)|self[- ]?harm\w*|cut(?:ting)?\s+myself|overdos(?:e|ing))\b/i;
@@ -841,6 +841,7 @@ function cardSet(card, at) {
 // With what the agents did, how long it took and what the answer drew on, for the screen's log
 const withLog = (s, m) => s && {
   ...s, log: (m.steps || []).map((x) => ({ agent: x.agent, title: x.title || '', status: x.status || '', flag: x.flag || '' })), ms: m.ms || 0, src: m.sources || null,
+  ladder: m.ladder || null,
 };
 function subjectIn(m, i) {
   if (!m || m.role !== 'assistant') return null;
@@ -1349,6 +1350,11 @@ function onEvent(am, ev, d) {
       if (['shortlist', 'plan', 'audit', 'compare', 'voices'].includes(d.type)) screenSync();
       break;
     }
+    // The evidence for what they asked about, rung by rung: the screen draws it
+    case 'ladder':
+      am.ladder = d && typeof d === 'object' ? d : null;
+      screenSync();
+      break;
     case 'sources':
       am.sources = { studies: d.studies || {}, community: d.community || {}, version: typeof d.version === 'string' ? d.version.slice(0, 40) : '' };
       schedule(am);
