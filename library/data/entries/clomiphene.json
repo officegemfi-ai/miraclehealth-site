@@ -171,7 +171,7 @@
     {
       "title": "Reduced IGF-1 Levels Following Clomiphene Treatment for Male Hypogonadism",
       "year": 2025,
-      "type": "Retrospective study",
+      "type": "Case series",
       "people": "20 men treated for low testosterone (median age 47), most with pituitary disease",
       "finding": "IGF-1 fell in 15 of 20 men (a median of 0.6 standard deviations), and in 2 it dropped well below the normal range for age and sex, while testosterone rose in all of them. The authors call the clinical importance unknown and suggest checking IGF-1 during treatment.",
       "source": 4
@@ -179,7 +179,7 @@
     {
       "title": "Clomiphene citrate added to treatment in men with acromegaly not controlled by standard therapy (Duarte, Jallad and Bronstein)",
       "year": 2015,
-      "type": "Open-label study",
+      "type": "Trial",
       "people": "16 men with acromegaly and low testosterone whose disease wasn't controlled",
       "finding": "Adding clomiphene for 3 months lowered IGF-1 by about 41% on average (424 to 250 ng/mL) and brought it to normal in 7 of 16; testosterone roughly doubled.",
       "source": 5

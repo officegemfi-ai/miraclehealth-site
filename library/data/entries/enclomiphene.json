@@ -89,9 +89,10 @@
       ]
     },
     {
-      "risk": "IGF-1 may fall: clomiphene, the mix enclomiphene is part of, lowered IGF-1 in 15 of 20 men treated for low testosterone in a small study (in 2, well below normal); this hasn't been studied with enclomiphene alone",
-      "how_common": "unknown",
+      "risk": "IGF-1 falls: in a 6-week randomized trial of 48 men with low testosterone, enclomiphene lowered IGF-1, more than testosterone gel did; with clomiphene, the mix enclomiphene is part of, IGF-1 fell in 15 of 20 men in a small study, in 2 well below normal",
+      "how_common": "common",
       "sources": [
+        10,
         9
       ]
     }
@@ -117,9 +118,9 @@
       "Testosterone and estradiol",
       "Hematocrit",
       "PSA",
-      "IGF-1 (it fell with clomiphene)"
+      "IGF-1 (it fell in trials)"
     ],
-    "why": "There is no approved label; these follow what the trials measured and the safety signals FDA flagged (rises in estradiol, PSA and hematocrit); IGF-1 because it fell in most men taking clomiphene, the mix enclomiphene is part of, in a 2025 study."
+    "why": "There is no approved label; these follow what the trials measured and the safety signals FDA flagged (rises in estradiol, PSA and hematocrit); IGF-1 because it fell with enclomiphene in a randomized trial, and in most men taking clomiphene in a 2025 study."
   },
   "studies": [
     {
@@ -129,6 +130,14 @@
       "people": "819 men with hypogonadism in 10 randomized trials, 4 of them testing enclomiphene",
       "finding": "Clomiphene or enclomiphene raised testosterone, LH and FSH versus placebo and reached testosterone levels similar to testosterone gel with higher sperm concentration; results were pooled, so enclomiphene alone was not estimated.",
       "source": 5
+    },
+    {
+      "title": "Testosterone Restoration by Enclomiphene Citrate in Men with Secondary Hypogonadism: Pharmacodynamics and Pharmacokinetics",
+      "year": 2013,
+      "type": "RCT",
+      "people": "48 men with low testosterone and low or normal LH (44 completed)",
+      "finding": "Over 6 weeks, enclomiphene raised testosterone into the normal range and raised LH and FSH, while testosterone gel lowered them. IGF-1 fell with both, more with enclomiphene; TSH, ACTH, cortisol, lipids and bone markers didn't change significantly.",
+      "source": 10
     },
     {
       "title": "Pharmacy Compounding Advisory Committee meeting, June 8, 2022: transcript",
@@ -145,14 +154,6 @@
       "people": "Overweight men with hypogonadotropic hypogonadism (company application to the EU)",
       "finding": "Testosterone rose, but the studies did not look at symptoms such as bone strength, weight gain, impotence and libido; with a risk of venous thromboembolism, the regulator judged that benefits did not outweigh risks.",
       "source": 6
-    },
-    {
-      "title": "Reduced IGF-1 Levels Following Clomiphene Treatment for Male Hypogonadism",
-      "year": 2025,
-      "type": "Retrospective study (clomiphene, not enclomiphene alone)",
-      "people": "20 men treated for low testosterone with clomiphene (median age 47)",
-      "finding": "IGF-1 fell in 15 of 20 men taking clomiphene, and in 2 it dropped well below normal; enclomiphene alone hasn't been studied for this. The authors suggest checking IGF-1 during treatment.",
-      "source": 9
     }
   ],
   "ask_your_clinician": [
@@ -223,8 +224,15 @@
       "publisher": "Journal of the Endocrine Society (PMC)",
       "year": 2025,
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12105911/"
+    },
+    {
+      "n": 10,
+      "title": "Testosterone Restoration by Enclomiphene Citrate in Men with Secondary Hypogonadism: Pharmacodynamics and Pharmacokinetics",
+      "publisher": "BJU International (PubMed abstract)",
+      "year": 2013,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23875626/"
     }
   ],
-  "notes_for_editor": "Enclomiphene has no approved label anywhere, so its risks come from FDA's June 2022 advisory-committee review (read in the meeting transcript; FDA's separate briefing document, fda.gov/media/158541, could not be opened), the 2018 EMA refusal and a 2025 meta-analysis that pools it with clomiphene. The meta-analysis reports 819 men, but its table sums to about 865; it lists the phase 3 trial as 256 men, while sponsor slides at the FDA meeting said 265. It remains in Category 1 on FDA's May 14, 2026 list, and no final FDA rule was found, so compounding rests only on FDA's interim policy. WADA's 2026 list names clomifene but not enclomiphene; the SERM class is open-ended. The eye risk is inferred from clomiphene's label and animal cataract findings; the transcript notes EMA listed blurred vision among reasons for stopping, but no human visual signal specific to enclomiphene was described. One stroke death and one discontinuation for high PSA occurred in the enclomiphene arm of the largest trial (the death was judged related to pre-existing risk factors). Added 2026-11-06: the IGF-1 note comes from a clomiphene study (Mogar 2025); clomiphene also contains zuclomiphene, the more estrogen-like of the two forms, and which form lowers IGF-1 isn't known, so the sheet says it hasn't been studied with enclomiphene alone.",
+  "notes_for_editor": "Enclomiphene has no approved label anywhere, so its risks come from FDA's June 2022 advisory-committee review (read in the meeting transcript; FDA's separate briefing document, fda.gov/media/158541, could not be opened), the 2018 EMA refusal and a 2025 meta-analysis that pools it with clomiphene. The meta-analysis reports 819 men, but its table sums to about 865; it lists the phase 3 trial as 256 men, while sponsor slides at the FDA meeting said 265. It remains in Category 1 on FDA's May 14, 2026 list, and no final FDA rule was found, so compounding rests only on FDA's interim policy. WADA's 2026 list names clomifene but not enclomiphene; the SERM class is open-ended. The eye risk is inferred from clomiphene's label and animal cataract findings; the transcript notes EMA listed blurred vision among reasons for stopping, but no human visual signal specific to enclomiphene was described. One stroke death and one discontinuation for high PSA occurred in the enclomiphene arm of the largest trial (the death was judged related to pre-existing risk factors). Added 2026-11-06: IGF-1 falls with enclomiphene itself, from the Wiehle 2013 phase II abstract (read through PubMed's own interface by the Library watch; the full text wasn't opened), and with clomiphene (Mogar 2025 full text). The Library watch found the Wiehle result; the sheet's first round had missed it.",
   "checked": "2026-10-28"
 }
