@@ -81,6 +81,14 @@ Write one file per entry with the Write tool: `library/data/entries/<id>.json`
   evidence-based monitoring, list a general health check and say plainly in `why` that no
   evidence-based monitoring exists. For ordinary supplements, often none are needed: leave the lists
   empty and say so in `why` (or name the one marker that matters, e.g. 25(OH)D for vitamin D).
+  **Search every marker in the panel** (`library/data/watch.json`: IGF-1, blood sugar and insulin,
+  lipids, hematocrit, liver, kidney, estradiol, testosterone and SHBG, LH and FSH, prolactin, PSA,
+  thyroid, cortisol) for the compound in people, not just what the label lists, and for an isomer,
+  salt or fragment, in the drug it's part of too (enclomiphene: clomiphene). A marker that moved in a
+  study goes in `labs.during` and, when it can matter, in `risks`, with who was studied; say when
+  it was seen with the parent drug, not the compound itself. Enclomiphene's sheet missed that
+  clomiphene lowers IGF-1 because only its label and reviews were read. The weekly Library watch
+  (miracle-health-community) catches what's published later; it never replaces this search.
 - **studies**: 1 to 4 key studies, strongest first (meta-analysis, RCT, then the rest). `type` is one
   of: Meta-analysis, Systematic review, RCT, Trial, Cohort, Case series, Case report, Animal, Cell,
   Review, Label, Guideline. `people` says who was studied ("1,961 adults with obesity", "Rats").
