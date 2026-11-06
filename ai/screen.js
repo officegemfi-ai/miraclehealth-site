@@ -392,7 +392,7 @@ function applyMarker() {
     if (!mk || def.dataset.at !== S.markerFrom) { def.replaceChildren(); def.hidden = true; return; }
     def.hidden = false;
     def.replaceChildren(h('b', { text: mk.name }), ` ${mk.what} `,
-      who.length ? h('span', { class: 'mk-from', text: `${cap(who.map((id) => `${(DIR[S.body.compounds[id].dirs[S.marker]] || DIR.watch)[1]} with ${mid(shortOf(id))}`).join('; '))}.` }) : null);
+      ...(who.length ? [h('span', { class: 'mk-from', text: `${cap(who.map((id) => `${(DIR[S.body.compounds[id].dirs[S.marker]] || DIR.watch)[1]} with ${mid(shortOf(id))}`).join('; '))}.` })] : []));
   });
 }
 
@@ -495,8 +495,11 @@ function questions(ids, f, sub) {
   const qs = [];
   const tests = [];
   for (const id of ids) {
-    const ups = Object.entries(S.body.compounds?.[id]?.dirs || {}).filter(([m, d]) => d === 'up' && S.body.markers?.[m]).map(([m]) => markerName(m));
-    tests.push(...(ups.length ? ups.slice(0, 3) : (f.labs.get(id) || []).slice(0, 2)));
+    const dirs = Object.entries(S.body.compounds?.[id]?.dirs || {}).filter(([m]) => S.body.markers?.[m]);
+    const ups = dirs.filter(([, d]) => d === 'up').map(([m]) => markerName(m));
+    const rest = dirs.filter(([, d]) => d !== 'up').map(([m]) => markerName(m));
+    // What may rise first, then what's worth checking, two at least when the sheet has them
+    tests.push(...(dirs.length ? [...ups.slice(0, 3), ...rest.slice(0, Math.max(0, 2 - ups.length))] : (f.labs.get(id) || []).slice(0, 2)));
   }
   const t = [...new Set(tests)].slice(0, 7).map(mid);
   qs.push(t.length ? `Which baseline tests make sense for me, such as ${listOf(t)}?` : 'Which baseline tests make sense for me?');
@@ -510,7 +513,12 @@ function questions(ids, f, sub) {
   if (top === 'avoid') qs.push('Sig’s Synergy auditor says to avoid taking these together. Does that apply to me?');
   else if (top === 'caution') qs.push('Sig’s Synergy auditor found a caution for taking these together. Does it apply to me?');
   if (ids.some((id) => UNAPPROVED.has(item(id).status))) qs.push('Is there an approved option for what I’m hoping to address?');
-  return qs;
+  // Each compound's own question from its fact sheet, when it has one drawn
+  for (const id of ids) {
+    const q = clean(S.body.compounds?.[id]?.ask?.[0], 200);
+    if (q && !qs.includes(q)) qs.push(q);
+  }
+  return qs.slice(0, 6);
 }
 function clinicianText(ids, f, sub) {
   if (!f) return '';
@@ -663,11 +671,13 @@ function draw(fresh) {
   if (S.marker && !ids.some((id) => S.body.compounds?.[id]?.dirs?.[S.marker])) S.marker = '';
   const was = focusKey();
   S.f = facts(ids);
-  root.replaceChildren(
+  // (no agents' log before Sig has answered: nothing in its place)
+  root.replaceChildren(...[
     h('span', { class: 'sc-handle', 'aria-hidden': 'true' }),
     barNode(ids, sub), headNode(ids, S.f, sub), codeSection(ids, S.f, animate),
     panelsNode(ids, S.f, sub), clinicianNode(ids, S.f, sub), buildLine(sub),
-    h('p', { class: 'sc-fine', text: 'From the Library’s fact sheets, each line with its source, and the community’s public totals. Education, not medical advice: no doses, and your clinician has the final say.' }));
+    h('p', { class: 'sc-fine', text: 'From the Library’s fact sheets, each line with its source, and the community’s public totals. Education, not medical advice: no doses, and your clinician has the final say.' }),
+  ].filter(Boolean));
   applyMarker();
   refocus(was);
   minimap();
