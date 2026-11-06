@@ -22,13 +22,13 @@
 <link rel="stylesheet" href="/kit/kit.css?v=75e37a5047">
 <link rel="stylesheet" href="/styles.css?v=59ba7a39e8">
 <link rel="stylesheet" href="/library/library.css?v=9f478b46ff">
-<link rel="stylesheet" href="/ai/ai.css?v=88caba4cf6">
+<link rel="stylesheet" href="/ai/ai.css?v=e58cab6f43">
 <link rel="stylesheet" href="/ai/plan.css?v=43d72f6261">
-<link rel="stylesheet" href="/ai/screen.css?v=8d50b18f3a">
+<link rel="stylesheet" href="/ai/screen.css?v=0ac83b4874">
 <script type="module" src="/ai/packet.js?v=413914f911"></script>
 <script type="module" src="/ai/plan.js?v=467b241958"></script>
-<script type="module" src="/ai/screen.js?v=52a5b5c130"></script>
-<script type="module" src="/ai/ai.js?v=8cdc5fffb5"></script>
+<script type="module" src="/ai/screen.js?v=216abc13f5"></script>
+<script type="module" src="/ai/ai.js?v=32abb21d26"></script>
 </head>
 <body class="ai">
 <a class="skip" href="#main">Skip to content</a>
@@ -62,10 +62,6 @@
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Ask Sig</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <div class="ai-bar-acts">
-        <div class="ai-tabs" id="ai-tabs" role="group" aria-label="Show the chat or the screen">
-          <button class="ai-tab" id="tab-chat" type="button" aria-pressed="true">Chat</button>
-          <button class="ai-tab" id="tab-screen" type="button" aria-pressed="false" aria-controls="ai-screen">Screen<span class="tab-dot" hidden></span></button>
-        </div>
         <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
       </div>
     </div>
@@ -77,6 +73,7 @@
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
+      <div class="ai-peek" id="ai-peek" hidden></div>
       <div class="ai-composer">
         <label class="sr" for="ai-input">Message Sig</label>
         <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, a compound or a combination" data-short="Ask about a goal or a compound"></textarea>
@@ -100,9 +97,9 @@
     <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <aside class="ai-rail sc" id="ai-screen" aria-label="The screen: what Sig is talking about">
+  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="The screen: what Sig is talking about">
     <div id="sc-root"><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
-  </aside>
+  </section>
 </div>
 </main>
 

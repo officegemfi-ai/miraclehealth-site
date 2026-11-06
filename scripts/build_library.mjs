@@ -667,10 +667,6 @@ function aiPage() {
     <div class="ai-bar">
       <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Ask Sig</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
       <div class="ai-bar-acts">
-        <div class="ai-tabs" id="ai-tabs" role="group" aria-label="Show the chat or the screen">
-          <button class="ai-tab" id="tab-chat" type="button" aria-pressed="true">Chat</button>
-          <button class="ai-tab" id="tab-screen" type="button" aria-pressed="false" aria-controls="ai-screen">Screen<span class="tab-dot" hidden></span></button>
-        </div>
         <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
       </div>
     </div>
@@ -682,6 +678,7 @@ function aiPage() {
       </div>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
+      <div class="ai-peek" id="ai-peek" hidden></div>
       <div class="ai-composer">
         <label class="sr" for="ai-input">Message Sig</label>
         <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, a compound or a combination" data-short="Ask about a goal or a compound"></textarea>
@@ -702,9 +699,9 @@ function aiPage() {
     <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <aside class="ai-rail sc" id="ai-screen" aria-label="The screen: what Sig is talking about">
+  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="The screen: what Sig is talking about">
     <div id="sc-root"><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
-  </aside>
+  </section>
 </div>`;
   return page({
     title: 'Ask Sig · Miracle Health’s AI: the studies and the whole community, in one answer',

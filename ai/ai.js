@@ -798,12 +798,16 @@ function cardSet(card, at) {
   const ok = !a || a.skipped ? null : a.ok !== false;
   return { ids, findings: a?.findings || [], ok, meds: card.meds || [], at };
 }
+// With what the agents did, how long it took and what the answer drew on, for the screen's log
+const withLog = (s, m) => s && {
+  ...s, log: (m.steps || []).map((x) => ({ agent: x.agent, title: x.title || '', status: x.status || '', flag: x.flag || '' })), ms: m.ms || 0, src: m.sources || null,
+};
 function subjectIn(m, i) {
   if (!m || m.role !== 'assistant') return null;
   const cards = (m.parts || []).filter((p) => p.t === 'card').map((p) => p.card);
   for (let j = cards.length - 1; j >= 0; j--) {
     const s = cardSet(cards[j], i);
-    if (s) return s;
+    if (s) return withLog(s, m);
   }
   const steps = m.steps || [];
   const named = steps.find((s) => s.agent === 'community' && s.chips?.length)
@@ -815,7 +819,7 @@ function subjectIn(m, i) {
   const audit = cards.find((c) => c.type === 'audit' && !c.for);
   // Sig asked its questions first: the check comes with its next answer
   const asked = cards.some((c) => c.type === 'intake');
-  return { ids, findings: audit?.findings || [], ok: audit ? audit.ok !== false : null, meds: [], asked, at: i };
+  return withLog({ ids, findings: audit?.findings || [], ok: audit ? audit.ok !== false : null, meds: [], asked, at: i }, m);
 }
 function latestSubject() {
   for (let i = chat.length - 1; i >= 0; i--) {
@@ -1373,7 +1377,7 @@ function finish(am, live) {
     btn.addEventListener('click', () => copy(textOf(am), btn));
     const sub = SCREEN ? subjectIn(am, chat.indexOf(am)) : null;
     const go = sub ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
-    go?.addEventListener('click', () => { SCREEN.show(sub); showScreen(true); });
+    go?.addEventListener('click', () => { SCREEN.show(sub); openSheet(); });
     view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
       h('span', { class: 'foot-actions' }, go, btn));
     view.foot.hidden = false;
@@ -1489,34 +1493,64 @@ newBtn.addEventListener('click', () => {
   refreshStack();
   newBtn.hidden = true;
   SCREEN?.clear();
-  showScreen(false);
+  closeSheet();
   input.focus();
 });
-// The interaction map beside the chat, full screen from its button (or the bar's, on smaller
-// screens); its own button asks Sig to check what's on it
-// The screen: beside the chat on wide screens; on phones, the switch at the top shows one or the
-// other (and a dot when the screen has something new)
-const tabChat = $('tab-chat');
-const tabScreen = $('tab-screen');
-function showScreen(on) {
-  app.classList.toggle('on-screen', on);
-  tabChat?.setAttribute('aria-pressed', String(!on));
-  tabScreen?.setAttribute('aria-pressed', String(on));
-  if (on) {
-    tabScreen?.querySelector('.tab-dot')?.setAttribute('hidden', '');
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }
+// The screen: beside the chat on wide screens. On phones and narrow windows it's a sheet that
+// pulls up over the chat, from the bar above the box to write in (or "See it on the screen"
+// under an answer); the page behind it rests until it's closed, and nothing is taken away.
+const rail = $('ai-screen');
+const narrowMq = matchMedia('(max-width: 1100px)');
+const backdrop = h('div', { class: 'sc-backdrop', 'aria-hidden': 'true' });
+let sheetFrom = null;
+const behind = () => [document.querySelector('header.top'), chatEl, document.querySelector('.foot')].filter(Boolean);
+function openSheet() {
+  if (!SCREEN || !rail || !narrowMq.matches || !SCREEN.subject() || app.classList.contains('sheet-open')) return;
+  sheetFrom = document.activeElement;
+  app.classList.add('sheet-open');
+  document.documentElement.classList.add('sheet-lock');
+  rail.setAttribute('role', 'dialog');
+  rail.setAttribute('aria-modal', 'true');
+  for (const el of behind()) el.inert = true;
+  rail.scrollTop = 0;
+  requestAnimationFrame(() => rail.querySelector('.sc-close')?.focus({ preventScroll: true }));
+}
+function closeSheet() {
+  if (!app.classList.contains('sheet-open')) return;
+  app.classList.remove('sheet-open');
+  document.documentElement.classList.remove('sheet-lock');
+  rail?.setAttribute('role', 'complementary');
+  rail?.removeAttribute('aria-modal');
+  for (const el of behind()) el.inert = false;
+  const back = sheetFrom && document.contains(sheetFrom) && sheetFrom !== document.body ? sheetFrom : $('ai-peek')?.querySelector('button');
+  sheetFrom = null;
+  back?.focus({ preventScroll: true });
 }
 if (SCREEN) {
   SCREEN.mount($('sc-root'));
-  SCREEN.onAsk((q) => { showScreen(false); ask(q); });
-  SCREEN.onChange((sub, fresh) => {
-    if (sub && fresh && !app.classList.contains('on-screen')) tabScreen?.querySelector('.tab-dot')?.removeAttribute('hidden');
+  SCREEN.peek($('ai-peek'));
+  SCREEN.onOpen(openSheet);
+  SCREEN.onClose(closeSheet);
+  SCREEN.onAsk((q) => { closeSheet(); ask(q); });
+  // Keeping what's on the screen in My Miracle: the same as saving a stack from its card
+  const fromScreen = (items, meds) => ({
+    v: 1, saved: localDate(),
+    items: items.filter((it) => libId(it.id)).slice(0, 8).map((it) => ({ id: it.id, name: cleanName(it.name), status: cleanName(it.status, 80), grade: GRADE[it.grade] ? it.grade : '' })),
+    meds: (meds || []).map((m) => cleanName(m, 40)).filter(Boolean).slice(0, 6),
   });
-  tabChat?.addEventListener('click', () => showScreen(false));
-  tabScreen?.addEventListener('click', () => showScreen(true));
-} else {
-  $('ai-tabs')?.remove();
+  SCREEN.onSave((items, meds) => {
+    const st = fromScreen(items, meds);
+    saveStack(st);
+    const now = savedStack();
+    return !!now && stackKey(now) === stackKey(st);
+  }, (items, meds) => {
+    const now = savedStack();
+    return !!now && stackKey(now) === stackKey(fromScreen(items, meds));
+  });
+  app.append(backdrop);
+  backdrop.addEventListener('click', closeSheet);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && app.classList.contains('sheet-open')) { e.preventDefault(); closeSheet(); } });
+  narrowMq.addEventListener('change', () => { if (!narrowMq.matches) closeSheet(); });
 }
 // The questions from this conversation, to take to whoever they see
 
@@ -1582,8 +1616,8 @@ if (asked) {
   input.focus({ preventScroll: true });
   input.setSelectionRange(input.value.length, input.value.length);
 }
-// A shorter prompt in the box on narrow screens
-const fitPlaceholder = () => { input.placeholder = innerWidth < 520 ? input.dataset.short : 'Ask about a goal, a compound or a combination'; };
+// A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller window)
+const fitPlaceholder = () => { input.placeholder = chatEl.clientWidth < 470 ? input.dataset.short : 'Ask about a goal, a compound or a combination'; };
 fitPlaceholder();
 addEventListener('resize', fitPlaceholder);
 updateSend();

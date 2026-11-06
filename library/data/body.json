@@ -1,6 +1,30 @@
 {
-  "note": "How a compound works in the body, as the screen beside Ask Sig draws it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's fact sheet (src: its source numbers there) and plain physiology; directions are only those the sheet states (up: it says they rise; watch: it says to check, without a direction). Written by hand, compound by compound, checked against the sheet; a compound without an entry is drawn from its sheet's summary and lab list alone.",
+  "note": "How a compound works in the body, as the screen beside Ask Sig draws it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's fact sheet (src: its source numbers there) and plain physiology; directions are only those the sheet states (up: it says they rise; watch: it says to check, without a direction). Written by hand, compound by compound, checked against the sheet; a compound without an entry is drawn from its sheet's summary and lab list alone. places: the order the screen lines compounds up in, head to toe and then the whole body (a place not listed comes after them), with how a sentence names each one. risk: a warning's short name, for the questions to take to a clinician.",
   "updated": "2026-11-05",
+  "places": [
+    { "at": "brain", "say": "the brain" },
+    { "at": "hypothalamus", "say": "the hypothalamus" },
+    { "at": "pituitary", "say": "the pituitary" },
+    { "at": "eyes", "say": "the eyes" },
+    { "at": "thyroid", "say": "the thyroid" },
+    { "at": "heart", "say": "the heart" },
+    { "at": "lungs", "say": "the lungs" },
+    { "at": "stomach", "say": "the stomach" },
+    { "at": "liver", "say": "the liver" },
+    { "at": "pancreas", "say": "the pancreas" },
+    { "at": "adrenals", "say": "the adrenals" },
+    { "at": "kidneys", "say": "the kidneys" },
+    { "at": "gut", "say": "the gut" },
+    { "at": "blood sugar", "say": "blood sugar" },
+    { "at": "blood", "say": "the blood" },
+    { "at": "bone", "say": "bone" },
+    { "at": "muscle · fat", "say": "muscle and fat" },
+    { "at": "skin", "say": "the skin" },
+    { "at": "ovaries", "say": "the ovaries" },
+    { "at": "testes", "say": "the testes" },
+    { "at": "joints · fluid", "say": "the joints and body fluid" },
+    { "at": "veins", "say": "the veins" }
+  ],
   "markers": {
     "igf1": { "name": "IGF-1", "what": "The growth factor growth hormone tells the body to make. It shows how much growth hormone is acting." },
     "glucose": { "name": "Fasting glucose", "what": "Blood sugar after a night without food." },
@@ -29,7 +53,7 @@
         { "at": "thyroid", "op": "watch", "say": "function can change, so it's checked", "markers": ["thyroid"], "src": [1] },
         { "at": "bone", "op": "up", "say": "phosphate, alkaline phosphatase and PTH may rise", "markers": ["phosphate", "alp", "pth"], "src": [1] },
         { "at": "adrenals", "op": "watch", "say": "cortisol checked first if adrenal insufficiency is possible", "markers": ["cortisol"], "src": [1] },
-        { "at": "joints · fluid", "op": "warn", "say": "swelling, joint pain, carpal tunnel", "src": [1] }
+        { "at": "joints · fluid", "op": "warn", "say": "swelling, joint pain, carpal tunnel", "risk": "swelling and joint pain", "src": [1] }
       ],
       "dirs": { "igf1": "up", "glucose": "up", "hba1c": "up", "thyroid": "watch", "phosphate": "up", "alp": "up", "pth": "up", "cortisol": "watch" }
     },
@@ -40,7 +64,7 @@
         { "at": "pituitary", "op": "up", "say": "LH and FSH rise", "markers": ["lh", "fsh"], "src": [5] },
         { "at": "testes", "op": "up", "say": "testosterone rises, and sperm production keeps going", "markers": ["testosterone", "semen"], "src": [5] },
         { "at": "blood", "op": "up", "say": "estradiol, hematocrit and PSA can rise", "markers": ["estradiol", "hematocrit", "psa"], "src": [4, 5] },
-        { "at": "veins", "op": "warn", "say": "blood clots, flagged by US and European regulators", "src": [4, 6] }
+        { "at": "veins", "op": "warn", "say": "blood clots, flagged by US and European regulators", "risk": "clot warning", "src": [4, 6] }
       ],
       "dirs": { "lh": "up", "fsh": "up", "testosterone": "up", "estradiol": "up", "hematocrit": "up", "psa": "up", "semen": "watch" }
     }
