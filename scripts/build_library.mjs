@@ -654,6 +654,7 @@ const AGENTS = [
   ['mechanism', 'Mechanism agent', 'Reads how each one could bear on your goal, from its fact sheet, as expected, not tested.'],
   ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
   ['combination', 'Combination agent', 'Says whether what you take together overlaps or works through different pathways.'],
+  ['markers', 'Markers agent', 'Flags blood markers two compounds push opposite ways, like IGF-1 with HGH and enclomiphene.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
   ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
 ];
