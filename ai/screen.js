@@ -400,7 +400,7 @@ function ladderOf(l, ids) {
     .map((v) => ({ of: v.of, id: v.id, kin: v.kin, axis: clean(v.axis, 40), found: found(v.found, 2) })).filter((v) => v.found.length);
   const pairs = (Array.isArray(l.pairs) ? l.pairs : []).filter((p) => p && ids.includes(p.a) && ids.includes(p.b) && PAIRS[p.kind]).slice(0, 6)
     .map((p) => ({ a: p.a, b: p.b, kind: p.kind, on: (Array.isArray(p.on) ? p.on : []).slice(0, 2).map((x) => clean(x, 40)) }));
-  return { outcomes, rows, via, pairs };
+  return { outcomes, rows, via, pairs, compare: !!l.compare };
 }
 const mainOf = (L) => (L.outcomes.find((o) => !o.related) || L.outcomes[0]).label;
 const studiedIn = (fs) => (fs.some((x) => PEOPLE.has(x.grade)) ? 'studies in people' : fs.some((x) => x.grade === 'preclinical') ? 'animal or lab studies' : 'reports');
@@ -470,8 +470,8 @@ function ladderNode(ids, L, animate) {
     if (animate) tr.style.setProperty('--i', String(n));
     grid.append(tr);
   }
-  // Together: how they relate, and whether anyone has reported the pair
-  if (ids.length > 1) {
+  // Together: how they relate, and whether anyone has reported the pair (not for a comparison)
+  if (ids.length > 1 && !L.compare) {
     const say = (p) => `${tokOf(p.a)} + ${tokOf(p.b)}: ${p.kind === 'overlap' ? `both act on ${p.on[0]}, so they overlap; little extra is expected from both, while side effects add up`
       : p.kind === 'same' ? `both work on ${p.on[0]} by different routes; its effects and risks can add up`
       : `different pathways (${p.on.join('; ')}); only a study of the two together can show whether they add up`}`;
