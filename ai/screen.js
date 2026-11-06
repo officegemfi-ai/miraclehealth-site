@@ -29,7 +29,7 @@ const DIR = { up: ['▲', 'may rise'], watch: ['◆', 'worth checking'] };
 const LEVEL = { avoid: 'Avoid together', caution: 'Caution', info: 'Good to know' };
 const RANK = { avoid: 3, caution: 2, info: 1 };
 const GRADE = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'limited evidence', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
-const AGENT = { safety: 'Safety agent', review: 'Safety agent', recommender: 'Recommender', community: 'The community', synergy: 'Synergy auditor', builder: 'Stack builder' };
+const AGENT = { safety: 'Safety agent', review: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', community: 'The community', synergy: 'Synergy auditor', builder: 'Stack builder' };
 // Not approved in the US for anything, or not yet: worth asking a clinician about an approved option
 const UNAPPROVED = new Set(['not_approved', 'compounded', 'investigational', 'category2', 'under_review', 'restricted', 'unclear']);
 // The example on the empty screen: it asks Sig, like any question

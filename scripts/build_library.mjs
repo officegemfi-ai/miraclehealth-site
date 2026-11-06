@@ -647,7 +647,9 @@ function guidePage(g) {
 // ---------------------------------------------------------------------------
 const AGENTS = [
   ['safety', 'Safety agent', 'Screens your message first, and checks every reply before you see it.'],
+  ['planner', 'Planner', 'Turns what you want into what studies measure: fat loss is body fat, waist and lean mass.'],
   ['recommender', 'Recommender', 'Asks what it needs to know, then reads the studies: the Library’s fact sheets.'],
+  ['evidence', 'Evidence librarian', 'Finds every finding on exactly that, how strong it is and who was studied.'],
   ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
   ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
   ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
