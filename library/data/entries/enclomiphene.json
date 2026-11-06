@@ -87,6 +87,13 @@
       "sources": [
         5
       ]
+    },
+    {
+      "risk": "IGF-1 may fall: clomiphene, the mix enclomiphene is part of, lowered IGF-1 in 15 of 20 men treated for low testosterone in a small study (in 2, well below normal); this hasn't been studied with enclomiphene alone",
+      "how_common": "unknown",
+      "sources": [
+        9
+      ]
     }
   ],
   "avoid_if": [
@@ -109,9 +116,10 @@
     "during": [
       "Testosterone and estradiol",
       "Hematocrit",
-      "PSA"
+      "PSA",
+      "IGF-1 (it fell with clomiphene)"
     ],
-    "why": "There is no approved label; these follow what the trials measured and the safety signals FDA flagged (rises in estradiol, PSA and hematocrit)."
+    "why": "There is no approved label; these follow what the trials measured and the safety signals FDA flagged (rises in estradiol, PSA and hematocrit); IGF-1 because it fell in most men taking clomiphene, the mix enclomiphene is part of, in a 2025 study."
   },
   "studies": [
     {
@@ -137,6 +145,14 @@
       "people": "Overweight men with hypogonadotropic hypogonadism (company application to the EU)",
       "finding": "Testosterone rose, but the studies did not look at symptoms such as bone strength, weight gain, impotence and libido; with a risk of venous thromboembolism, the regulator judged that benefits did not outweigh risks.",
       "source": 6
+    },
+    {
+      "title": "Reduced IGF-1 Levels Following Clomiphene Treatment for Male Hypogonadism",
+      "year": 2025,
+      "type": "Retrospective study (clomiphene, not enclomiphene alone)",
+      "people": "20 men treated for low testosterone with clomiphene (median age 47)",
+      "finding": "IGF-1 fell in 15 of 20 men taking clomiphene, and in 2 it dropped well below normal; enclomiphene alone hasn't been studied for this. The authors suggest checking IGF-1 during treatment.",
+      "source": 9
     }
   ],
   "ask_your_clinician": [
@@ -200,8 +216,15 @@
       "publisher": "World Anti-Doping Agency",
       "year": 2026,
       "url": "https://www.wada-ama.org/en/prohibited-list"
+    },
+    {
+      "n": 9,
+      "title": "Reduced IGF-1 Levels Following Clomiphene Treatment for Male Hypogonadism",
+      "publisher": "Journal of the Endocrine Society (PMC)",
+      "year": 2025,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12105911/"
     }
   ],
-  "notes_for_editor": "Enclomiphene has no approved label anywhere, so its risks come from FDA's June 2022 advisory-committee review (read in the meeting transcript; FDA's separate briefing document, fda.gov/media/158541, could not be opened), the 2018 EMA refusal and a 2025 meta-analysis that pools it with clomiphene. The meta-analysis reports 819 men, but its table sums to about 865; it lists the phase 3 trial as 256 men, while sponsor slides at the FDA meeting said 265. It remains in Category 1 on FDA's May 14, 2026 list, and no final FDA rule was found, so compounding rests only on FDA's interim policy. WADA's 2026 list names clomifene but not enclomiphene; the SERM class is open-ended. The eye risk is inferred from clomiphene's label and animal cataract findings; the transcript notes EMA listed blurred vision among reasons for stopping, but no human visual signal specific to enclomiphene was described. One stroke death and one discontinuation for high PSA occurred in the enclomiphene arm of the largest trial (the death was judged related to pre-existing risk factors).",
+  "notes_for_editor": "Enclomiphene has no approved label anywhere, so its risks come from FDA's June 2022 advisory-committee review (read in the meeting transcript; FDA's separate briefing document, fda.gov/media/158541, could not be opened), the 2018 EMA refusal and a 2025 meta-analysis that pools it with clomiphene. The meta-analysis reports 819 men, but its table sums to about 865; it lists the phase 3 trial as 256 men, while sponsor slides at the FDA meeting said 265. It remains in Category 1 on FDA's May 14, 2026 list, and no final FDA rule was found, so compounding rests only on FDA's interim policy. WADA's 2026 list names clomifene but not enclomiphene; the SERM class is open-ended. The eye risk is inferred from clomiphene's label and animal cataract findings; the transcript notes EMA listed blurred vision among reasons for stopping, but no human visual signal specific to enclomiphene was described. One stroke death and one discontinuation for high PSA occurred in the enclomiphene arm of the largest trial (the death was judged related to pre-existing risk factors). Added 2026-11-06: the IGF-1 note comes from a clomiphene study (Mogar 2025); clomiphene also contains zuclomiphene, the more estrogen-like of the two forms, and which form lowers IGF-1 isn't known, so the sheet says it hasn't been studied with enclomiphene alone.",
   "checked": "2026-10-28"
 }

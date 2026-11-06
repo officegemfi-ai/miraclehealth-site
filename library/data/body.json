@@ -1,5 +1,5 @@
 {
-  "note": "How a compound works in the body, as the screen beside Ask Sig draws it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's fact sheet (src: its source numbers there) and plain physiology; directions are only those the sheet states (up: it says they rise; watch: it says to check, without a direction). Written by hand, compound by compound, checked against the sheet; a compound without an entry is drawn from its sheet's summary and lab list alone. places: the order the screen lines compounds up in, head to toe and then the whole body (a place not listed comes after them), with how a sentence names each one. risk: a warning's short name, for the questions to take to a clinician; ask: a question from the fact sheet's \"ask your clinician\" that joins them.",
+  "note": "How a compound works in the body, as the screen beside Ask Sig draws it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's fact sheet (src: its source numbers there) and plain physiology; directions are only those the sheet states (up: it says they rise; down: it says they may fall; watch: it says to check, without a direction). Written by hand, compound by compound, checked against the sheet; a compound without an entry is drawn from its sheet's summary and lab list alone. places: the order the screen lines compounds up in, head to toe and then the whole body (a place not listed comes after them), with how a sentence names each one. risk: a warning's short name, for the questions to take to a clinician; ask: a question from the fact sheet's \"ask your clinician\" that joins them.",
   "updated": "2026-11-06",
   "places": [
     { "at": "mitochondria", "say": "the mitochondria" },
@@ -68,11 +68,12 @@
       "lines": [
         { "at": "hypothalamus", "op": "block", "say": "blocks estrogen's feedback (it's a SERM)", "src": [5] },
         { "at": "pituitary", "op": "up", "say": "LH and FSH rise", "markers": ["lh", "fsh"], "src": [5] },
+        { "at": "liver", "op": "down", "say": "IGF-1 may fall (seen with clomiphene, the mix it's part of)", "markers": ["igf1"], "src": [9] },
         { "at": "testes", "op": "up", "say": "testosterone rises, and sperm production keeps going", "markers": ["testosterone", "semen"], "src": [5] },
         { "at": "blood", "op": "up", "say": "estradiol, hematocrit and PSA can rise", "markers": ["estradiol", "hematocrit", "psa"], "src": [4, 5] },
         { "at": "veins", "op": "warn", "say": "blood clots, flagged by US and European regulators", "risk": "clot warning", "src": [4, 6] }
       ],
-      "dirs": { "lh": "up", "fsh": "up", "testosterone": "up", "estradiol": "up", "hematocrit": "up", "psa": "up", "semen": "watch" }
+      "dirs": { "lh": "up", "fsh": "up", "igf1": "down", "testosterone": "up", "estradiol": "up", "hematocrit": "up", "psa": "up", "semen": "watch" }
     },
     "ss31": {
       "route": "injection",

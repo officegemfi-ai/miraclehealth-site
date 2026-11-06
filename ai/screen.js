@@ -23,9 +23,9 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 // Narrow windows: the screen is a sheet over the chat, and it opens on the rows that matter
 const narrow = matchMedia('(max-width: 1100px)');
 const OP = {
-  is: ['─▶', 'is'], up: ['─▲', 'raises'], block: ['─┤', 'blocks'], watch: ['─◆', 'check'], warn: ['─!', 'caution'],
+  is: ['─▶', 'is'], up: ['─▲', 'raises'], down: ['─▼', 'lowers'], block: ['─┤', 'blocks'], watch: ['─◆', 'check'], warn: ['─!', 'caution'],
 };
-const DIR = { up: ['▲', 'may rise'], watch: ['◆', 'worth checking'] };
+const DIR = { up: ['▲', 'may rise'], down: ['▼', 'may fall'], watch: ['◆', 'worth checking'] };
 const LEVEL = { avoid: 'Avoid together', caution: 'Caution', info: 'Good to know' };
 const RANK = { avoid: 3, caution: 2, info: 1 };
 const GRADE = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'limited evidence', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
@@ -164,8 +164,10 @@ function facts(ids) {
   }
   const all = ids.every(drawn);
   const shared = all && ids.length > 1 ? [...markers].filter(([, xs]) => xs.length > 1).map(([m]) => m) : [];
+  // A marker one raises and another lowers: read alone, it may show neither
+  const opposed = [...markers].filter(([, xs]) => xs.some((x) => x.dir === 'up') && xs.some((x) => x.dir === 'down')).map(([m, xs]) => ({ m, up: xs.filter((x) => x.dir === 'up').map((x) => x.id), down: xs.filter((x) => x.dir === 'down').map((x) => x.id) }));
   const count = markers.size + [...labs.values()].reduce((n, xs) => n + xs.length, 0);
-  return { rows: list, meet: list.filter((r) => r.meet), cautions, markers, labs, all, shared, count };
+  return { rows: list, meet: list.filter((r) => r.meet), cautions, markers, labs, all, shared, opposed, count };
 }
 
 // The sentence at the top: what the screen shows, in plain words
@@ -196,7 +198,10 @@ function sumLine(ids, f) {
   const one = ids.length === 2 ? 'both lists' : 'more than one list';
   const where = f.meet.length ? `they meet at ${listOf(f.meet.map((r) => placeSay(r.at)))}` : 'no place in the body is on both of their fact sheets';
   const mk = f.shared.length ? `${listOf(f.shared.map(markerName))} ${f.shared.length === 1 ? 'is' : 'are'} on ${one}` : `no blood marker is on ${one}`;
-  return `${where}, and ${mk}`;
+  const opp = f.opposed.map((o) => o.m);
+  const both = !opp.length ? '' : opp.length === f.shared.length && opp.every((m) => f.shared.includes(m)) ? ', pushed opposite ways'
+    : `; ${listOf(opp.map(markerName))} ${opp.length === 1 ? 'is' : 'are'} pushed opposite ways`;
+  return `${where}, and ${mk}${both}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -241,6 +246,7 @@ function chipsNode(ids, f, sub) {
   if (f.cautions.length) add('caution', '!', plural(f.cautions.length, 'caution'), 'warn');
   if (f.count) add('markers', '', plural(f.count, 'marker'));
   if (ids.length > 1 && f.all) add('meet', '∩', f.meet.length ? `Meet: ${f.meet.map((r) => r.at).join(', ')}` : 'No place in common', f.meet.length ? 'meet' : '');
+  if (f.opposed.length) add('both', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))}: pushed both ways`, 'caution');
   return h('ul', { class: 'sc-chips', 'aria-label': 'At a glance' }, chips);
 }
 function headNode(ids, f, sub) {
@@ -632,6 +638,7 @@ function questions(ids, f, sub) {
   }).filter(Boolean);
   if (risks.length === 1) qs.push(`How would we weigh ${risks[0]} for me?`);
   else if (risks.length > 1) qs.push(`How would we weigh ${risks.slice(0, -1).join(', ')}, and ${risks[risks.length - 1]}, for me?`);
+  for (const o of f.opposed || []) qs.push(`${cap(listOf(o.up.map((id) => mid(shortOf(id)))))} ${o.up.length === 1 ? 'raises' : 'raise'} ${markerName(o.m)} and ${listOf(o.down.map((id) => mid(shortOf(id))))} may lower it. How would we read ${markerName(o.m)} if I took both?`);
   const top = topFinding(sub);
   if (top === 'avoid') qs.push('Sig’s Synergy auditor says to avoid taking these together. Does that apply to me?');
   else if (top === 'caution') qs.push('Sig’s Synergy auditor found a caution for taking these together. Does it apply to me?');
@@ -842,8 +849,13 @@ function jump(where) {
     target = root.querySelector('.sc-panels');
   } else {
     if (where === 'goal' && sub.ladder && S.file !== 'evidence') { S.file = 'evidence'; redraw('code'); }
+    if (where === 'both' && S.f?.opposed.length) {
+      if (S.file !== 'together') { S.file = 'together'; redraw('code'); }
+      if (S.marker !== S.f.opposed[0].m) pickMarker(S.f.opposed[0].m, 'code');
+      target = root.querySelector('.sc-tr.lit') || root.querySelector('.sc-codebox');
+    }
     if ((where === 'meet' || where === 'caution') && sub.ids.length > 1 && S.file !== 'together') { S.file = 'together'; redraw('code'); }
-    target = (where === 'meet' && root.querySelector('.sc-tr.meet')) || (where === 'caution' && root.querySelector('.sc-tr.warn, .cl.op-warn')) || root.querySelector('.sc-codebox');
+    target = target || (where === 'meet' && root.querySelector('.sc-tr.meet')) || (where === 'caution' && root.querySelector('.sc-tr.warn, .cl.op-warn')) || root.querySelector('.sc-codebox');
   }
   if (!target) return;
   target.scrollIntoView({ block: target.matches('.sc-tr, .cl') ? 'center' : 'start', behavior: motionOff() ? 'auto' : 'smooth' });
@@ -887,6 +899,7 @@ function drawPeek(isNew) {
   if (ids.length > 1 && f.all) chips.push(['meet', '∩', f.meet.length ? f.meet.map((r) => r.at).join(', ') : 'no place in common']);
   if (top === 'avoid') chips.push(['avoid', '✕', 'avoid together']);
   else if (top === 'caution') chips.push(['caution', '!', 'auditor: caution']);
+  if (f.opposed.length) chips.push(['caution', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))} both ways`]);
   if (f.cautions.length) chips.push(['warn', '!', plural(f.cautions.length, 'caution')]);
   if (f.count) chips.push(['', '', plural(f.count, 'marker')]);
   const btn = h('button', { class: `sc-peek${isNew && !motionOff() ? ' new' : ''}`, type: 'button', 'aria-label': `Open the screen. ${headline(ids, f, sub)}` },

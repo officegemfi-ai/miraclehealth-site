@@ -58,6 +58,13 @@
         3,
         2
       ]
+    },
+    {
+      "claim": "Lowered IGF-1 by about 41% on average, and to normal in 7 of 16, when added to treatment in men with acromegaly that standard therapy hadn't controlled (small open-label study; off-label)",
+      "evidence": "limited",
+      "sources": [
+        5
+      ]
     }
   ],
   "risks": [
@@ -104,6 +111,13 @@
         2,
         1
       ]
+    },
+    {
+      "risk": "IGF-1 can fall: in a small study of 20 men treated for low testosterone it fell in 15, and in 2 it dropped well below normal; the authors suggest checking IGF-1 during treatment, and it isn't known whether the drop matters",
+      "how_common": "common",
+      "sources": [
+        4
+      ]
     }
   ],
   "avoid_if": [
@@ -124,9 +138,10 @@
     ],
     "during": [
       "Men: testosterone, estradiol and hematocrit",
-      "Eye exam if vision changes occur"
+      "Eye exam if vision changes occur",
+      "Men: IGF-1 (it can fall)"
     ],
-    "why": "For women, the label rules out pregnancy and ovarian cysts before treatment; for off-label use in men there is no label guidance, and trials tracked testosterone, LH, FSH, estradiol and hematocrit."
+    "why": "For women, the label rules out pregnancy and ovarian cysts before treatment; for off-label use in men there is no label guidance, and trials tracked testosterone, LH, FSH, estradiol and hematocrit; a 2025 study found IGF-1 fell in most men treated for low testosterone, and its authors suggest checking it."
   },
   "studies": [
     {
@@ -152,6 +167,22 @@
       "people": "Women with ovulatory dysfunction",
       "finding": "About 30% of treated patients became pregnant; multiple pregnancies made up about 8% of pregnancies.",
       "source": 1
+    },
+    {
+      "title": "Reduced IGF-1 Levels Following Clomiphene Treatment for Male Hypogonadism",
+      "year": 2025,
+      "type": "Retrospective study",
+      "people": "20 men treated for low testosterone (median age 47), most with pituitary disease",
+      "finding": "IGF-1 fell in 15 of 20 men (a median of 0.6 standard deviations), and in 2 it dropped well below the normal range for age and sex, while testosterone rose in all of them. The authors call the clinical importance unknown and suggest checking IGF-1 during treatment.",
+      "source": 4
+    },
+    {
+      "title": "Clomiphene citrate added to treatment in men with acromegaly not controlled by standard therapy (Duarte, Jallad and Bronstein)",
+      "year": 2015,
+      "type": "Open-label study",
+      "people": "16 men with acromegaly and low testosterone whose disease wasn't controlled",
+      "finding": "Adding clomiphene for 3 months lowered IGF-1 by about 41% on average (424 to 250 ng/mL) and brought it to normal in 7 of 16; testosterone roughly doubled.",
+      "source": 5
     }
   ],
   "ask_your_clinician": [
@@ -180,8 +211,22 @@
       "publisher": "Andrology (UMC Utrecht research record)",
       "year": 2022,
       "url": "https://researchinformation.umcutrecht.nl/en/publications/clomiphene-citrate-for-men-with-hypogonadism-a-systematic-review-/"
+    },
+    {
+      "n": 4,
+      "title": "Reduced IGF-1 Levels Following Clomiphene Treatment for Male Hypogonadism",
+      "publisher": "Journal of the Endocrine Society (PMC)",
+      "year": 2025,
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12105911/"
+    },
+    {
+      "n": 5,
+      "title": "Clomiphene citrate added to treatment in men with acromegaly not controlled by standard therapy (Duarte, Jallad and Bronstein)",
+      "publisher": "Journal of Clinical Endocrinology and Metabolism (PubMed abstract)",
+      "year": 2015,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25738590/"
     }
   ],
-  "notes_for_editor": "Clomiphene is approved only for women. Studies in men are mostly small or observational; the 2025 meta-analysis rated certainty moderate for hormone levels and low for some comparisons, and its authors' suggestion that it is a viable alternative to testosterone gel goes beyond their symptom data. Hematocrit appears in the labs because the 2025 review noted discontinuations for raised hematocrit in some trial arms. The label used is a generic (Cosette) label from August 2025; the brand Clomid label was not checked. The label also says long-term cyclic use is not recommended beyond a limited number of cycles. Enclomiphene, one of its two isomers, has its own entry.",
+  "notes_for_editor": "Clomiphene is approved only for women. Studies in men are mostly small or observational; the 2025 meta-analysis rated certainty moderate for hormone levels and low for some comparisons, and its authors' suggestion that it is a viable alternative to testosterone gel goes beyond their symptom data. Hematocrit appears in the labs because the 2025 review noted discontinuations for raised hematocrit in some trial arms. The label used is a generic (Cosette) label from August 2025; the brand Clomid label was not checked. The label also says long-term cyclic use is not recommended beyond a limited number of cycles. Enclomiphene, one of its two isomers, has its own entry. Added 2026-11-06: the IGF-1 lowering, from the Mogar 2025 full text (Journal of the Endocrine Society, read on the publisher's site) and the Duarte 2015 abstract (PMID 25738590, read through a PubMed mirror; its exact title wasn't confirmed, so the source names it by its authors). Both used clomiphene, not enclomiphene alone.",
   "checked": "2026-10-28"
 }
