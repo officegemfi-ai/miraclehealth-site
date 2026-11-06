@@ -150,20 +150,26 @@ function inline(el, s) {
   if (last < s.length) el.append(s.slice(last));
 }
 const BLOCK = /^\s*(#{1,6}\s|[-*•]\s|\d+[.)]\s)/;
-// Which voice a paragraph draws on, from its words: the studies, the community, or both. A small
-// tag says so, so each claim shows where it comes from.
+// Which voice a paragraph or bullet draws on, from its words: the studies, the community, or both.
+// A dot beside it says so (hollow for the studies, lime for the community, half and half for both),
+// so each claim shows where it comes from; the line under the answer says which dot is which.
 const SAID_STUDIES = /\b(?:stud(?:y|ies|ied)|trials?|evidence|research(?:ers)?|in people|rodents?|animals?|meta-analys[ie]s|fda|approved)\b/i;
 const SAID_COMMUNITY = /\b(?:members?|forums?|community|people (?:report|describe|say|mention)|reports?|reported|community signal)\b/i;
 // Words that don't make a paragraph draw on a voice: saying there are no studies, and reporting a
 // reaction to the FDA (MedWatch) or reading a lab report
 const NOT_STUDIES = /\b(?:no|without|lacks?|lacking|few|little)\s+(?:good\s+|real\s+|human\s+|clinical\s+|published\s+)?(?:stud(?:y|ies)|trials?|evidence|research)(?:\s+in\s+(?:people|humans))?\b|\b(?:not|never|hasn['’]?t\s+been|haven['’]?t\s+been|isn['’]?t|aren['’]?t)\s+(?:been\s+)?(?:studied|tested|(?:fda[- ])?approved)(?:\s+in\s+(?:people|humans))?\b|\bunapproved\b/gi;
 const SAFETY_REPORT = /\b(?:report(?:ed|ing|s)?|tell)\b[^.]{0,40}?\b(?:fda|medwatch)\b[^.]*|\bmedwatch\b|\blab reports?\b|\bcertificates? of analysis\b/gi;
-function saidTags(text) {
+function saidOf(text) {
   const t = String(text || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(SAFETY_REPORT, ' ');
-  const tags = [];
-  if (SAID_STUDIES.test(t.replace(NOT_STUDIES, ' '))) tags.push(['studies', 'Studies']);
-  if (SAID_COMMUNITY.test(t)) tags.push(['community', 'Community']);
-  return tags.length ? h('span', { class: 'said-tags' }, tags.map(([k, l]) => h('span', { class: `said said-${k}`, title: k === 'studies' ? 'Draws on the studies (the Library’s fact sheets)' : 'Draws on what members and the forums report' }, l))) : null;
+  const studies = SAID_STUDIES.test(t.replace(NOT_STUDIES, ' '));
+  const community = SAID_COMMUNITY.test(t);
+  return studies && community ? 'both' : studies ? 'studies' : community ? 'community' : '';
+}
+const SAID_SR = { studies: ' (from the studies)', community: ' (from the community)', both: ' (from the studies and the community)' };
+function voiced(el, text) {
+  const v = saidOf(text);
+  if (v) { el.classList.add('v', `v-${v}`); el.append(h('span', { class: 'sr', text: SAID_SR[v] })); }
+  return el;
 }
 function prose(text) {
   const out = [];
@@ -182,6 +188,7 @@ function prose(text) {
         else { list.lastChild.append(' '); inline(list.lastChild, lines[i].trim()); }
         i++;
       }
+      if (kind === 'ul') for (const li of list.children) voiced(li, li.textContent);
       out.push(list);
       continue;
     }
@@ -189,9 +196,7 @@ function prose(text) {
     while (i < lines.length && lines[i].trim() && !BLOCK.test(lines[i])) buf.push(lines[i++]);
     const p = h('p');
     buf.forEach((b, j) => { if (j) p.append(h('br')); inline(p, b); });
-    const tags = saidTags(buf.join(' '));
-    if (tags) p.append(' ', tags);
-    out.push(p);
+    out.push(voiced(p, buf.join(' ')));
   }
   return out;
 }
@@ -429,7 +434,42 @@ function warnGroups(groups) {
     g.level === 'now' ? h('a', { class: 'warn-call', href: 'tel:911', text: 'Call 911' }) : null)));
 }
 
+// Their own stack, when the screen is there to show it: one line saying what the check found, and
+// how many cautions and blood markers are on the screen, which it opens
+function pointerText(card) {
+  const ids = (card.items || []).map((it) => it && it.id).filter(libId);
+  const a = card.audit;
+  const top = (a?.findings || []).reduce((t, f) => (({ avoid: 3, caution: 2 })[f?.level] || 0) > (({ avoid: 3, caution: 2 })[t] || 0) ? f.level : t, '');
+  const check = !a ? (ids.length > 1 ? 'The Synergy auditor is checking them together' : '')
+    : a.skipped ? '' : a.ok === false ? 'The Synergy auditor couldn’t check these just now'
+      : top === 'avoid' ? 'The Synergy auditor says not to take these together'
+        : top === 'caution' ? 'The Synergy auditor found a caution' : ids.length > 1 ? 'No clash found' : 'Checked for you';
+  const n = SCREEN?.sum?.(ids);
+  const bits = n ? [n.cautions ? plural(n.cautions, 'caution') : '', n.markers ? plural(n.markers, 'blood marker') : ''].filter(Boolean) : [];
+  const where = bits.length ? `${listOf(bits)} on the screen` : 'How they work, on the screen';
+  return { text: check ? `${check}. ${where}` : where, tone: a && !a.skipped && a.ok !== false ? top : '' };
+}
+function pointerNode(card) {
+  const label = h('span', { class: 'ptr-text' });
+  const btn = h('button', { class: 'ai-pointer', type: 'button', 'data-card': card.id || '' }, h('span', { class: 'ptr-code', 'aria-hidden': 'true', text: '</>' }), label);
+  btn.fill = () => {
+    const t = pointerText(card);
+    label.textContent = t.text;
+    btn.classList.toggle('t-avoid', t.tone === 'avoid');
+    btn.classList.toggle('t-caution', t.tone === 'caution');
+  };
+  btn.fill();
+  SCREEN?.ready?.then(() => btn.fill());
+  btn.addEventListener('click', () => {
+    const i = chat.findIndex((m) => (m.parts || []).some((p) => p.t === 'card' && p.card === card));
+    const sub = i >= 0 ? subjectIn(chat[i], i) : null;
+    if (sub) SCREEN.show(sub);
+    openScreen();
+  });
+  return btn;
+}
 function shortlistNode(card) {
+  if (card.kind === 'yours' && SCREEN) return pointerNode(card);
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
   const compact = card.kind === 'yours' && !!SCREEN;
   const sub = card.kind === 'yours'
@@ -748,13 +788,13 @@ function sourcesNode(src) {
   const names = (xs) => (xs || []).map((x) => x.name).join(', ');
   const bits = [];
   if (st.sheets) {
-    bits.push(h('span', { class: 'src-part', title: names(st.names) }, svg(ICON.doc),
+    bits.push(h('span', { class: 'src-part', title: names(st.names) }, h('span', { class: 'v-dot v-studies', 'aria-hidden': 'true' }),
       h('span', { text: `Studies: ${plural(st.sheets, 'fact sheet')}${st.sources ? `, ${plural(st.sources, 'source')}` : ''}` })));
   }
   if (co.signals) {
     const what = [co.reports ? plural(co.reports, 'member report') : '', co.forum ? 'public forum data' : ''].filter(Boolean).join(' and ');
     const when = src.version && !Number.isNaN(Date.parse(src.version)) ? ` · numbers of ${new Date(src.version).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}` : '';
-    bits.push(h('span', { class: 'src-part', title: `${names(co.names)}${when}` }, svg(sealSvg(co.reports ? 'early' : 'forum', 15, true)),
+    bits.push(h('span', { class: 'src-part', title: `${names(co.names)}${when}` }, h('span', { class: 'v-dot v-community', 'aria-hidden': 'true' }),
       h('span', { text: `Community: ${plural(co.signals, 'Signal')}${what ? `, from ${what}` : ''}` })));
   }
   return bits.length ? h('p', { class: 'answer-src' }, h('span', { class: 'src-k', text: 'Drawn from' }), ...bits) : null;
@@ -1288,6 +1328,7 @@ function onEvent(am, ev, d) {
           host.card.audit = d;
           const box = view.cardEls.get(host)?.querySelector('.audit');
           if (box) { fillAudit(box, d); box.hidden = false; }
+          view.cardEls.get(host)?.fill?.();
           SCREEN?.checking(false);
           screenSync();
           break;
@@ -1351,6 +1392,7 @@ function finish(am, live) {
       p.card.audit = { skipped: true };
       const box = view.cardEls.get(p)?.querySelector('.audit');
       if (box) fillAudit(box, p.card.audit);
+      view.cardEls.get(p)?.fill?.();
     }
   }
   drawParts(am);
@@ -1376,8 +1418,9 @@ function finish(am, live) {
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
     const sub = SCREEN ? subjectIn(am, chat.indexOf(am)) : null;
-    const go = sub ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
-    go?.addEventListener('click', () => { SCREEN.show(sub); openSheet(); });
+    const pointed = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'shortlist' && p.card.kind === 'yours');
+    const go = sub && !pointed ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
+    go?.addEventListener('click', () => { SCREEN.show(sub); openScreen(); });
     view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
       h('span', { class: 'foot-actions' }, go, btn));
     view.foot.hidden = false;
@@ -1514,6 +1557,19 @@ function openSheet() {
   for (const el of behind()) el.inert = true;
   rail.scrollTop = 0;
   requestAnimationFrame(() => rail.querySelector('.sc-close')?.focus({ preventScroll: true }));
+}
+function openScreen() {
+  if (!SCREEN || !rail) return;
+  if (narrowMq.matches) { openSheet(); return; }
+  rail.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  const head = rail.querySelector('.sc-headline');
+  if (!head) return;
+  head.setAttribute('tabindex', '-1');
+  head.focus({ preventScroll: true });
+  const box = head.closest('.sc-head');
+  box?.classList.remove('flash');
+  void box?.offsetWidth;
+  box?.classList.add('flash');
 }
 function closeSheet() {
   if (!app.classList.contains('sheet-open')) return;

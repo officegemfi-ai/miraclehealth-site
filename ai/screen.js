@@ -792,6 +792,12 @@ window.MHScreen = {
   onChange(fn) { listeners.add(fn); },
   subject: () => S.subject,
   title: () => (S.subject ? S.subject.ids.map(nameOf).join(' + ') : ''),
+  // How many cautions and blood markers the screen has for these, for the line in the chat that points to it
+  sum(ids) {
+    if (!S.loaded) return null;
+    const f = facts([...new Set((ids || []).filter(okId))].slice(0, 6));
+    return { cautions: f.cautions.length, markers: f.count, meet: f.meet.map((r) => r.at) };
+  },
   // In short, for the line under an answer: the sentence and the checks
   summary() {
     const sub = S.subject;

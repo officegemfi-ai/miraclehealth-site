@@ -1,7 +1,8 @@
 /* Sig (miraclehealth.us/ai): the chat with its agents and the community's voice, and the
    member's own clinician.
    Builds on styles.css and the Library's pills (library.css). The whole page is the dark
-   console; answers arrive on paper sheets, each with the agents' steps on top; on wide
+   console; Sig's answers sit on it as plain text, each with the agents' steps on top and a dot
+   beside each paragraph for the voice it comes from (studies or community); on wide
    screens the screen (screen.css) sits beside the chat and shows what it's about; on phones
    it's a sheet that pulls up from the bar above the box to write in. */
 
@@ -117,63 +118,88 @@
 .msg.me{justify-content:flex-end}
 .bubble{max-width:min(80%,620px);padding:12px 16px;border-radius:18px 18px 4px 18px;border:1px solid rgba(216,255,61,.28);background:rgba(216,255,61,.1);color:var(--on-ink);font-size:16px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
 .msg-sig{flex:none;width:36px;height:36px;margin-top:2px}
-.sheet{flex:1;min-width:0;padding:18px 22px 14px;border-radius:4px 18px 18px 18px;background:var(--paper);color:var(--text);--focus:var(--ink)}
+.sheet{flex:1;min-width:0;padding:4px 0 0;color:var(--on-ink-2);--focus:var(--lime)}
+/* cards keep their own paper (or ink) inside the quiet answer */
+.sheet-body>.card{color:var(--text);--focus:var(--ink)}
+.sheet-body>.card.qs,.sheet-body>.card.crowd,.sheet-body>.card.plan{color:var(--on-ink);--focus:var(--lime);box-shadow:inset 0 0 0 1px var(--line-ink)}
 
 /* the agents' steps for this answer */
-.trace{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.trace-sum{display:none;align-items:center;gap:8px;padding:2px 0;border:0;background:none;color:var(--muted);font:500 13.5px/1.4 var(--body);cursor:pointer}
+.trace{margin-bottom:12px}
+.trace-sum{display:none;align-items:center;gap:8px;min-height:32px;padding:2px 0;border:0;background:none;color:var(--on-ink-3);font:500 13px/1.4 var(--body);text-align:left;cursor:pointer}
 .trace-sum::after{content:'';width:7px;height:7px;margin-left:2px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
 .trace-sum[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-1px)}
-.trace-sum:hover{color:var(--text)}
+.trace-sum:hover{color:var(--on-ink)}
 .trace.done .trace-sum{display:inline-flex}
 .trace.done .trace-steps{display:none}
 .trace.done.open .trace-steps{display:grid;margin-top:8px}
 .trace-steps{display:grid;gap:2px}
 .tstep{display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;align-items:start;padding:5px 0;font-size:14px;line-height:1.45}
-.tstep-dot{position:relative;width:12px;height:12px;margin-top:4px;border-radius:50%;background:#C9D1CF}
-.tstep.run .tstep-dot{background:transparent;border:2px solid #C7E85A;border-top-color:#121E1D;animation:spin .8s linear infinite}
-.tstep.done .tstep-dot{background:#BFE843}
+.tstep-dot{position:relative;width:12px;height:12px;margin-top:4px;border-radius:50%;background:rgba(255,255,255,.2)}
+.tstep.run .tstep-dot{background:transparent;border:2px solid var(--lime);border-top-color:transparent;animation:spin .8s linear infinite}
+.tstep.done .tstep-dot{background:var(--lime)}
 .tstep.flag .tstep-dot{background:#F0A23B}
 .tstep.fixed .tstep-dot{background:#F0A23B}
-.tstep.pending .tstep-dot{background:transparent;border:2px solid #8A9290;border-radius:3px}
-.tstep-who{font:500 10.5px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:8px}
-.tstep-what{color:var(--text)}
+.tstep.pending .tstep-dot{background:transparent;border:2px solid rgba(255,255,255,.4);border-radius:3px}
+.tstep-who{font:500 10.5px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--on-ink-3);margin-right:8px}
+.tstep-what{color:var(--on-ink-2)}
 .tstep-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
-.tstep-chips a{padding:3px 9px;border-radius:40px;border:1px solid var(--line);background:#F3F5F2;color:var(--text-2);font-size:12.5px;text-decoration:none}
-.tstep-chips a:hover{border-color:#121E1D;color:var(--text)}
+.tstep-chips a{padding:3px 9px;border-radius:40px;border:1px solid var(--line-ink);background:rgba(255,255,255,.04);color:var(--on-ink-2);font-size:12.5px;text-decoration:none}
+.tstep-chips a:hover{border-color:var(--lime);color:var(--on-ink)}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* the answer */
-.prose{font-size:16px;line-height:1.65;color:var(--text);overflow-wrap:anywhere}
+.prose{font-size:16px;line-height:1.65;color:rgba(252,252,252,.86);overflow-wrap:anywhere}
 .prose>*+*{margin-top:12px}
-.prose h2{margin-top:20px;font-size:17px;letter-spacing:-.01em}
-.prose ul,.prose ol{display:grid;gap:7px}
-.prose ul li{position:relative;padding-left:18px}
-.prose ul li::before{content:'';position:absolute;left:3px;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.prose h2{margin-top:20px;font-size:17px;letter-spacing:-.01em;color:var(--on-ink)}
+/* the words sit 20px in, so the dot beside each paragraph and bullet has the gutter to itself */
+.sheet-body>.prose{padding-left:20px}
+.sheet-body>details.more{margin-left:20px}
+.sheet-body>.answer-src,.sheet-body>.waiting{padding-left:20px}
+.prose ul,.prose ol{display:grid;gap:8px}
+.prose ul li{position:relative}
+.prose ul li::before{content:'';position:absolute;left:-18px;top:.62em;width:6px;height:6px;border-radius:50%;background:rgba(252,252,252,.4)}
 .prose ol{counter-reset:n}
-.prose ol li{position:relative;padding-left:26px;counter-increment:n}
-.prose ol li::before{content:counter(n);position:absolute;left:0;top:.18em;display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:var(--ink);color:var(--paper);font:600 11px/1 var(--head)}
-.prose strong{font-weight:700;color:var(--ink)}
-.prose a{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:#9CC21C;text-decoration-thickness:2px;text-underline-offset:3px}
-.prose a:hover{background:var(--lime);text-decoration-color:var(--ink)}
-.prose.streaming>p:last-child::after,.prose.streaming>h2:last-child::after,.prose.streaming>ul:last-child>li:last-child::after,.prose.streaming>ol:last-child>li:last-child::after{content:'';display:inline-block;width:8px;height:1.05em;margin-left:3px;border-radius:2px;background:#9CC21C;vertical-align:-3px;animation:caret 1s steps(2,start) infinite}
+.prose ol li{position:relative;padding-left:28px;counter-increment:n}
+.prose ol li::before{content:counter(n);position:absolute;left:0;top:.18em;display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:rgba(255,255,255,.14);color:var(--on-ink);font:600 11px/1 var(--head)}
+.prose strong{font-weight:650;color:var(--on-ink)}
+.prose a{color:var(--on-ink);font-weight:600;text-decoration:underline;text-decoration-color:rgba(216,255,61,.6);text-decoration-thickness:2px;text-underline-offset:3px}
+.prose a:hover{color:var(--lime);text-decoration-color:var(--lime)}
+/* the voice each paragraph and bullet comes from: hollow for the studies, lime for the community */
+.prose p.v{position:relative}
+.prose p.v::before,.prose ul li.v::before,.v-dot{content:'';position:absolute;left:-19px;top:.6em;width:8px;height:8px;box-sizing:border-box;border-radius:50%}
+.prose .v-studies::before,.v-dot.v-studies{border:1.5px solid rgba(252,252,252,.75);background:transparent}
+.prose .v-community::before,.v-dot.v-community{border:0;background:var(--lime)}
+.prose .v-both::before{border:1.5px solid var(--lime);background:linear-gradient(90deg,var(--lime) 50%,transparent 50%)}
+.v-dot{position:static;display:inline-block;flex:none}
+.prose.streaming>p:last-child::after,.prose.streaming>h2:last-child::after,.prose.streaming>ul:last-child>li:last-child::after,.prose.streaming>ol:last-child>li:last-child::after{content:'';display:inline-block;width:8px;height:1.05em;margin-left:3px;border-radius:2px;background:var(--lime);vertical-align:-3px;animation:caret 1s steps(2,start) infinite}
 @keyframes caret{to{visibility:hidden}}
 .prose.edited{position:relative}
-.waiting{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14.5px}
-.waiting i{width:6px;height:6px;border-radius:50%;background:#9CC21C;animation:sig-dot 1.2s ease-in-out infinite}
+.waiting{display:flex;align-items:center;gap:10px;color:var(--on-ink-3);font-size:14.5px}
+.waiting i{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:sig-dot 1.2s ease-in-out infinite}
 .waiting i:nth-child(2){animation-delay:.2s}.waiting i:nth-child(3){animation-delay:.4s}
 .msg-sig .sig .sig-body,.msg-sig .sig .sig-shadow{animation:none}
 .ai-sig svg,.ai-hello svg,.msg-sig svg{width:100%;height:100%}
 
 /* the sheet's foot */
-.sheet-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.sheet-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:13px;color:var(--on-ink-3)}
 .cleared{display:inline-flex;align-items:center;gap:7px}
-.cleared svg{color:#5E9A0E}
-.cleared.edited svg{color:#B87300}
+.cleared svg{color:var(--lime)}
+.cleared.edited svg{color:#F2BE4B}
 .foot-actions{display:flex;gap:6px}
 .mini{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;white-space:nowrap;border-radius:40px;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 13px/1 var(--body);cursor:pointer}
 .mini:hover{border-color:var(--ink);color:var(--ink)}
 .mini.done{border-color:#9CC21C;color:#3F5200}
+.sheet-foot .mini{border-color:rgba(255,255,255,.2);background:transparent;color:var(--on-ink-2)}
+.sheet-foot .mini:hover{border-color:var(--lime);color:var(--lime)}
+.sheet-foot .mini.done{border-color:var(--lime);color:var(--lime)}
+/* their own stack: a line that points to the screen, where it all is */
+.ai-pointer{display:inline-flex;align-items:center;gap:10px;max-width:100%;min-height:44px;margin-top:16px;padding:8px 18px;border-radius:22px;border:1px solid rgba(255,255,255,.16);background:var(--ink);color:var(--on-ink);font:500 14px/1.35 var(--body);text-align:left;cursor:pointer;transition:border-color .15s}
+.ai-pointer:hover{border-color:var(--lime)}
+.ptr-code{flex:none;font:600 13px/1 var(--mono);color:var(--lime)}
+.ai-pointer.t-caution{border-color:rgba(242,190,75,.55)}
+.ai-pointer.t-caution .ptr-code{color:#F2BE4B}
+.ai-pointer.t-avoid{border-color:rgba(255,107,91,.7);background:rgba(255,107,91,.1)}
+.ai-pointer.t-avoid .ptr-code{color:#FF6B5B}
 
 /* errors */
 .oops{display:grid;gap:10px;padding:14px 16px;border-radius:12px;background:#FFF4E5;color:#5C3A00;font-size:14.5px;line-height:1.5}
@@ -417,9 +443,9 @@
 .card.crowd .vx-foot{border-top-color:var(--line-ink);color:var(--on-ink-3)}
 .card.crowd .vx-foot a{color:var(--lime)}
 /* where an answer came from */
-.answer-src{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:16px;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.answer-src{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin-top:16px;font-size:12.5px;line-height:1.4;color:var(--on-ink-3)}
 .src-k{font:500 10.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.src-part{display:inline-flex;align-items:center;gap:6px;color:var(--text-2)}
+.src-part{display:inline-flex;align-items:center;gap:7px;color:var(--on-ink-2)}
 .src-part svg{flex:none}
 /* the community, live, on the first screen */
 .ai-crowd{display:flex;align-items:center;gap:11px;margin-top:14px;font-size:14px;line-height:1.45;color:var(--on-ink-2)}
@@ -466,9 +492,9 @@
    flush with the sheet, and each option's evidence beside its name */
 @media (max-width:600px){
   .msg.ai .msg-sig{display:none}
-  .msg.ai .sheet{margin:0 -14px;padding:16px 16px 12px;border-radius:0}
+  .msg.ai .sheet{margin:0;padding:0}
   .ai-dock{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}
-  .sheet-body>.card:not(.help){margin-left:-16px;margin-right:-16px;border-radius:0;border-left:0;border-right:0}
+  .sheet-body>.card:not(.help){margin-left:-14px;margin-right:-14px;border-radius:0;border-left:0;border-right:0}
   .card.qs,.card.warn{padding-left:16px;padding-right:16px}
   .card-head,.audit,.short-meds,.stack-save,.short-note{padding-left:16px;padding-right:16px}
   .pick{padding:13px 16px}
@@ -498,19 +524,16 @@
   .bubble{border:1px solid #999;background:#fff;color:#000}
   .sheet{padding:0}
   .trace{display:none}
+  .sheet,.prose,.prose strong,.prose a,.prose h2,.answer-src,.src-part{color:#000}
+  .ai-pointer{display:none}
 }
-/* Which voice a paragraph draws on: the studies (paper) or the community (ink and lime) */
-.said-tags{display:inline-flex;gap:4px;vertical-align:1px;margin-left:2px;white-space:nowrap}
-.said{display:inline-block;padding:1px 6px 2px;border-radius:5px;font:600 9.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.said-studies{border:1px solid var(--line);background:#F4F6F1;color:var(--text-2)}
-.said-community{background:var(--ink);color:var(--lime)}
 /* What the answer folds away: more on how it works, how the pieces fit */
-details.more{margin:6px 0 10px;border-top:1px dashed var(--line)}
-details.more>summary{display:flex;align-items:center;gap:8px;min-height:40px;cursor:pointer;list-style:none;font:600 13px/1 var(--head);color:var(--text-2)}
+details.more{margin:6px 0 10px;border-top:1px dashed var(--line-ink)}
+details.more>summary{display:flex;align-items:center;gap:8px;min-height:40px;cursor:pointer;list-style:none;font:600 13px/1 var(--head);color:var(--on-ink-2)}
 details.more>summary::-webkit-details-marker{display:none}
 details.more>summary::before{content:'';width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .2s}
 details.more[open]>summary::before{transform:rotate(45deg)}
-details.more>summary:hover{color:var(--ink)}
+details.more>summary:hover{color:var(--lime)}
 /* Beside what people report: how many improve anyway, the side-effect watch */
 .vx-base{padding:8px 10px;border-radius:9px;background:#F4F6F1}
 .vx-dim{color:var(--muted)}
