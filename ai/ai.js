@@ -846,10 +846,14 @@ const withLog = (s, m) => s && {
 function subjectIn(m, i) {
   if (!m || m.role !== 'assistant') return null;
   const cards = (m.parts || []).filter((p) => p.t === 'card').map((p) => p.card);
+  // The evidence for what they asked about keeps the screen: a card about other compounds (a plan
+  // built on foundations, options for the goal) doesn't take it away
+  const about = [...new Set((Array.isArray(m.ladder?.rows) ? m.ladder.rows : []).map((r) => r && r.id).filter(libId))].slice(0, 6);
   for (let j = cards.length - 1; j >= 0; j--) {
     const s = cardSet(cards[j], i);
-    if (s) return withLog(s, m);
+    if (s && (!about.length || about.some((id) => s.ids.includes(id)))) return withLog(s, m);
   }
+  if (about.length) return withLog({ ids: about, findings: [], ok: null, meds: [], asked: cards.some((c) => c.type === 'intake'), at: i }, m);
   const steps = m.steps || [];
   const named = steps.find((s) => s.agent === 'community' && s.chips?.length)
     || steps.find((s) => s.agent === 'synergy' && s.chips?.length)
