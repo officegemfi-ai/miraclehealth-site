@@ -22,6 +22,7 @@ import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompoun
 // The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
 // and the founding reporters (scripts/build_pages.mjs)
 import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
+import { SIGNAL_URL } from '../lib/dom.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -31,6 +32,10 @@ const COMMUNITY = 'https://community.miraclehealth.us';
 // Sig's chat: the ask function in the community's live Supabase project
 // (miracle-health-community, supabase/functions/ask). The address isn't secret.
 const ASK_URL = 'https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask';
+// The Community Signal's public read API, in the same project (supabase/functions/signal): the pages
+// that show the Signal read it through lib/dom.js's getSignal, with snapshot.json as the fallback,
+// so their policy lets them connect to both
+const READS_SIGNAL = `${new URL(SIGNAL_URL).origin} ${COMMUNITY}`;
 const CHECK = process.argv.includes('--check');
 
 const catalog = JSON.parse(fs.readFileSync(path.join(DATA, 'catalog.json'), 'utf8'));
@@ -168,13 +173,15 @@ function stampShell(html, file, { current = '', home = false } = {}) {
     .replace(news, `$1\n    ${footNews()}\n    `)
     // The sign-up goes to the newsletter function, which sends the browser back here: both allowed
     .replace(/form-action ([^;"]*)/, `form-action 'self' ${NEWSLETTER_ORIGIN}`)
+    // A page that reads the community's numbers (the front page) may read them from the Signal API
+    .replace(/connect-src 'self'[^;"]*https:\/\/community\.miraclehealth\.us[^;"]*/, `connect-src 'self' ${READS_SIGNAL}`)
     .replace(/<link rel="stylesheet" href="\/?kit\/kit\.css(?:\?v=[0-9a-f]+)?">\n/, '')
     .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`);
 }
 
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
-  styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = COMMUNITY, head = '',
+  styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = READS_SIGNAL, head = '',
   ogImage = '/og.jpg',
 }) {
   return `<!doctype html>
@@ -791,7 +798,7 @@ function myPage() {
     url: '/my/', body, current: 'my', bodyClass: 'my-page',
     styles: [`/ai/plan.css?v=${V.plCss}`, `/my/my.css?v=${V.myCss}`],
     scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/my/my.js?v=${V.myJs}`],
-    connect: COMMUNITY, head: '<meta name="robots" content="noindex">',
+    connect: READS_SIGNAL, head: '<meta name="robots" content="noindex">',
   });
 }
 

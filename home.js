@@ -6,7 +6,7 @@
 // into view. If the files can't load, the page keeps what it was published with.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 import { COMMUNITY, node } from '/kit/kit.js?v=f08d778478';
-import { h, getJson } from '/lib/dom.js?v=0f94d70a0f';
+import { h, getJson, getSignal } from '/lib/dom.js?v=c2c1c85126';
 
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -88,7 +88,8 @@ function update(ev, snap) {
     v('cap').textContent = [sig.summary_label, sig.confidence_label ? `${sig.confidence_label} confidence` : null,
       Number(sig.internal_share) > 0 ? `${sig.internal_share}% from members` : 'From public forums so far'].filter(Boolean).join(' · ');
   }
-  if (snap?.generated_at && ago(snap.generated_at)) v('when').textContent = `Live from the Library, updated ${ago(snap.generated_at)}`;
+  const at = snap?.checked_at || snap?.generated_at;
+  if (at && ago(at)) v('when').textContent = `Live from the Library, updated ${ago(at)}`;
 }
 
 // The one moment of motion on the page: the Signal counts up and the bars fill, once
@@ -112,7 +113,7 @@ if (card) {
     target = v('score').textContent;
     v('score').textContent = '0.0';
   }
-  const loaded = Promise.all([getJson(`${COMMUNITY}/evidence/${encodeURIComponent(card.dataset.id)}.json`), getJson(`${COMMUNITY}/snapshot.json`)])
+  const loaded = Promise.all([getJson(`${COMMUNITY}/evidence/${encodeURIComponent(card.dataset.id)}.json`), getSignal()])
     .then(([ev, snap]) => update(ev, snap));
   if (animate) {
     // Wait for the live numbers, but not for long, so the card never sits empty

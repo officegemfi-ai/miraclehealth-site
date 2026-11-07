@@ -7,7 +7,7 @@
 // link or QR code: the packet travels in the part of the link after "#", which browsers never send
 // to a server, so Miracle Health never receives or keeps it.
 // Used by the chat (/ai/) and by the page a clinician opens (/ai/packet/).
-import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { h } from '/lib/dom.js?v=c2c1c85126';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
 const SITE = 'https://miraclehealth.us';

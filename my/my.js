@@ -8,7 +8,7 @@
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
 import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { h, getSignal } from '/lib/dom.js?v=c2c1c85126';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
 const P = window.MHPlan;
@@ -30,7 +30,7 @@ const daysSince = (iso) => Math.max(0, Math.round((Date.parse(`${P.today()}T12:0
 
 // One file each for every compound and every Signal (nothing says which ones are theirs)
 const libIndex = fetch('/library/data/index.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
-const snapshot = fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+const snapshot = getSignal();
 
 // ---------------------------------------------------------------------------
 // Their saved stack (Sig saves it, in the same place)

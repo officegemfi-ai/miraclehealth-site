@@ -4,7 +4,7 @@
 // taken, how far the first pairs are, and the method page's check of the Signal against the
 // studies. Every page reads fine without it.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h, svg, getJson } from '/lib/dom.js?v=0f94d70a0f';
+import { h, svg, getJson, getSignal } from '/lib/dom.js?v=c2c1c85126';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -101,7 +101,7 @@ function calibration(snap, index, box) {
 const wants = document.querySelector('.lc-sig[data-sig], [data-live="founders"], [data-live="focus"], [data-live="calibration"]');
 if (wants) {
   const box = document.querySelector('[data-live="calibration"]');
-  Promise.all([getJson(`${COMMUNITY}/snapshot.json`), box ? getJson('/library/data/index.json') : null]).then(([snap, index]) => {
+  Promise.all([getSignal(), box ? getJson('/library/data/index.json') : null]).then(([snap, index]) => {
     if (!snap || !snap.signals) return;
     signals(snap);
     founders(snap);

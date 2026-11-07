@@ -15,9 +15,9 @@
 // they're placed as text, never markup. Beside the chat on wide screens; on phones and narrow
 // windows it's a sheet that pulls up over the chat (ai.js opens and closes it), and a bar above
 // the box to write in says what's on it. window.MHScreen is the whole interface.
-import { COMMUNITY, draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=f08d778478';
+import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=f08d778478';
 import { sealSvg } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { h, getSignal } from '/lib/dom.js?v=c2c1c85126';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
@@ -70,7 +70,7 @@ const json = (url) => fetch(url).then((r) => (r.ok ? r.json() : null)).catch(() 
 const ready = Promise.all([
   json('/library/data/index.json').then((ix) => { for (const it of ix?.items || []) if (okId(it.id)) S.lib.set(it.id, it); }),
   json('/library/data/body.json').then((b) => { if (b?.compounds) S.body = { places: [], ...b }; }),
-  json(`${COMMUNITY}/snapshot.json`).then((s) => { S.snap = s && typeof s === 'object' ? s : null; }),
+  getSignal().then((s) => { S.snap = s && typeof s === 'object' ? s : null; }),
 ]).then(() => { S.loaded = true; const fresh = S.pending; S.pending = false; draw(fresh); });
 
 const item = (id) => S.lib.get(id) || { id, name: id, family: '', category: '' };
