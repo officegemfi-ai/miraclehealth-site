@@ -5,27 +5,12 @@
 // each use and the placebo figures beside them. Then the bars are drawn in once, as the card comes
 // into view. If the files can't load, the page keeps what it was published with.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { node } from '/kit/kit.js?v=f08d778478';
+import { COMMUNITY, node } from '/kit/kit.js?v=f08d778478';
+import { h, getJson } from '/lib/dom.js?v=0f94d70a0f';
 
-const COMMUNITY = 'https://community.miraclehealth.us';
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  Object.entries(attrs || {}).forEach(([k, v]) => {
-    if (v == null || v === false) return;
-    if (k === 'class') el.className = v; else el.setAttribute(k, v === true ? '' : String(v));
-  });
-  kids.flat(Infinity).forEach((k) => { if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k)); });
-  return el;
-}
-async function getJson(url) {
-  try {
-    const r = await fetch(url, { credentials: 'omit' });
-    return r.ok ? await r.json() : null;
-  } catch { return null; }
-}
 const fmt = (n) => Number(n || 0).toLocaleString('en-US');
 const clamp = (v) => Math.max(0, Math.min(100, Number(v) || 0));
 function ago(iso) {

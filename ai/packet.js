@@ -7,6 +7,8 @@
 // link or QR code: the packet travels in the part of the link after "#", which browsers never send
 // to a server, so Miracle Health never receives or keeps it.
 // Used by the chat (/ai/) and by the page a clinician opens (/ai/packet/).
+import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
 const SITE = 'https://miraclehealth.us';
 const LEVEL = { avoid: 'Avoid', caution: 'Caution', unknown: 'Never studied together', info: 'Good to know' };
@@ -33,17 +35,6 @@ const LEVEL_CODE = { avoid: 'a', caution: 'c', unknown: 'u', info: 'i' };
 const CODE_LEVEL = { a: 'avoid', c: 'caution', u: 'unknown', i: 'info' };
 const UNAPPROVED = new Set(['not_approved', 'investigational', 'under_review', 'category2', 'restricted', 'unclear']);
 
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs || {})) {
-    if (v == null || v === false) continue;
-    if (k === 'class') el.className = v;
-    else if (k === 'text') el.textContent = v;
-    else el.setAttribute(k, v === true ? '' : String(v));
-  }
-  for (const k of kids.flat(Infinity)) if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k));
-  return el;
-}
 const clip = (s, n) => { const t = String(s ?? '').replace(/\s+/g, ' ').trim(); return t.length > n ? `${t.slice(0, n - 1)}…` : t; };
 const isId = (id) => typeof id === 'string' && /^[a-z0-9-]{1,40}$/.test(id);
 const isHttps = (u) => typeof u === 'string' && /^https:\/\/[^\s"'<>]+$/.test(u);
@@ -149,12 +140,6 @@ function compact(p) {
     f: p.findings.slice(0, 10).map((f) => [LEVEL_CODE[f.level] || 'i', clip(f.names.join(' + '), 90), clip(f.note, 200)]),
     q: p.questions.slice(0, 8).map((q) => clip(q, 170)),
   };
-}
-const b64url = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-const unb64url = (s) => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
-async function pipe(bytes, stream) {
-  const out = new Response(new Blob([bytes]).stream().pipeThrough(stream));
-  return new Uint8Array(await out.arrayBuffer());
 }
 export async function encode(p) {
   const json = new TextEncoder().encode(JSON.stringify(compact(p)));

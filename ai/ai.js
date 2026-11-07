@@ -8,6 +8,7 @@
 // AI uses (bold, lists, Library links) is built node by node.
 import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
+import { h, svg } from '/lib/dom.js?v=0f94d70a0f';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -25,7 +26,6 @@ const LIMIT = 2000;
 const KEY = 'mh-ai-chat-v1';
 const ADULT = 'mh-ai-adult';
 const STACK = 'mh-ai-stack-v1';    // their stack, kept on this device only if they ask
-const QR_SRC = app.dataset.qr;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
 
@@ -59,23 +59,6 @@ const STATUS = {
 // ---------------------------------------------------------------------------
 // Small helpers
 // ---------------------------------------------------------------------------
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs || {})) {
-    if (v == null || v === false) continue;
-    if (k === 'class') el.className = v;
-    else if (k === 'text') el.textContent = v;
-    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
-    else el.setAttribute(k, v === true ? '' : String(v));
-  }
-  for (const k of kids.flat(Infinity)) if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k));
-  return el;
-}
-const parser = new DOMParser();
-function svg(markup) {
-  const doc = parser.parseFromString(markup.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"'), 'image/svg+xml');
-  return document.importNode(doc.documentElement, true);
-}
 const ICON = {
   check: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   edit: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M3 13h3l7-7-3-3-7 7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
@@ -889,10 +872,6 @@ function questionsNode(card) {
 // Questions for the visitor, the way a clinician takes a history: tap an answer, type one, or
 // both. The answers go back as the visitor's next message; nothing is kept anywhere else.
 const NONE_LIKE = /^(?:none|no|not sure|neither|nothing|prefer not to say)\b/i;
-const answerOf = (card, i) => {
-  const a = card.answered?.[i];
-  return a ? [...(a.picked || []), a.text || ''].filter(Boolean).join(', ') : '';
-};
 function intakeNode(card) {
   const closed = !!(card.answered || card.closed);
   const state = card.questions.map((_, i) => ({ picked: new Set(card.answered?.[i]?.picked || []), text: card.answered?.[i]?.text || '' }));
