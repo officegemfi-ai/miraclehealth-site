@@ -85,8 +85,10 @@ const NOT_SHOWN = new Set(['kyolic', 'ksm-66', 'sensoril', 'bacognize', 'synapsa
   'affron', 'primavie', 'spermidinelife', 'avmacol', 'teacrine', 'lj100', 'mitopure', 'timeline', 'pepzingi', 'senolytic',
   'niacin flush', 'protein powder']);
 const shownAliases = (c) => (c.aliases || []).filter((a) => !NOT_SHOWN.has(a.toLowerCase()));
-// Not an approved medicine: blood-marker lists describe what a trial or clinician would check
-const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'under_review']);
+// Not an approved medicine: blood-marker lists describe what a trial or clinician would check. With
+// 'unclear' (PDA: not approved, and not on any compounding list); without 'restricted' (NAC, an
+// approved drug) or 'compounded' (some are compounded forms of approved drugs, such as low-dose naltrexone)
+const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'under_review', 'unclear']);
 
 // ---------------------------------------------------------------------------
 // The page around everything
