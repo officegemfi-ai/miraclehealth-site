@@ -43,8 +43,11 @@ ul,ol{list-style:none;margin:0;padding:0}
 .kick{color:var(--muted)}
 .kick.lime{color:var(--lime)}
 .live{display:inline-flex;align-items:center;gap:10px}
-.live i{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:live 1.8s ease-out infinite}
-@keyframes live{0%{box-shadow:0 0 0 0 rgba(216,255,61,.55)}70%{box-shadow:0 0 0 8px rgba(216,255,61,0)}100%{box-shadow:0 0 0 0 rgba(216,255,61,0)}}
+.live i{position:relative;width:7px;height:7px;border-radius:50%;background:var(--lime)}
+/* The ring grows and fades on the compositor (transform, opacity): a box-shadow that grows
+   repaints the page every frame, which cost a phone a fifth of its main thread while idle */
+.live i::after{content:'';position:absolute;inset:0;border-radius:50%;background:rgba(216,255,61,.55);animation:live 1.8s ease-out infinite}
+@keyframes live{0%{transform:scale(1);opacity:1}70%,100%{transform:scale(3.3);opacity:0}}
 
 /* ---------------------------------------------------------------- buttons: pills */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:40px;border:1px solid transparent;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:background-color .2s,border-color .2s,color .2s,transform .1s}
@@ -119,11 +122,13 @@ ul,ol{list-style:none;margin:0;padding:0}
 .hc-body p{font-size:14.5px;line-height:1.45;color:var(--on-ink-2)}
 .hc-body b{font-weight:600;color:var(--on-ink)}
 .hc-scale{position:relative;margin-top:20px}
-.hc-track{position:relative;height:8px;border-radius:8px;background:var(--scale);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.hc-track{position:relative;height:8px;border-radius:8px;background:var(--scale);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2);container-type:inline-size}
 .hc-track i{position:absolute;top:0;bottom:0;width:1px;background:rgba(12,20,19,.38)}
 .hc-track .t25{left:25%}.hc-track .t50{left:50%}.hc-track .t75{left:75%}
 .hc-knob{position:absolute;top:50%;left:72%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#FCFCFC;box-shadow:0 0 0 3px var(--lime),0 0 16px 3px rgba(216,255,61,.5);animation:hc-drift 8s ease-in-out infinite}
-@keyframes hc-drift{0%,100%{left:69%}30%{left:76%}55%{left:71%}78%{left:74%}}
+/* Drifts between 69% and 76% of the track by transform (cqw is a hundredth of the track's width),
+   not by moving its left edge, which laid out the page every frame */
+@keyframes hc-drift{0%,100%{transform:translateX(-3cqw)}30%{transform:translateX(4cqw)}55%{transform:translateX(-1cqw)}78%{transform:translateX(2cqw)}}
 .hc-labels{display:flex;justify-content:space-between;margin-top:10px;font:500 10px/1 var(--mono);letter-spacing:.08em;color:var(--on-ink-3)}
 .hc-foot{position:relative;display:flex;align-items:center;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-2)}
 .hc-foot svg{flex:none;color:var(--lime)}
@@ -435,6 +440,9 @@ ul,ol{list-style:none;margin:0;padding:0}
   .doc .short{padding:20px}
   .nf-in{padding-top:calc(var(--top-h) + 40px);padding-bottom:72px}
 }
+
+/* Endless motion holds still while it's off screen: lib/dom.js's calm() marks those parts */
+.is-away,.is-away *{animation-play-state:paused!important}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}

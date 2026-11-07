@@ -6,7 +6,7 @@
 // into view. If the files can't load, the page keeps what it was published with.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 import { COMMUNITY, node } from '/kit/kit.js?v=f08d778478';
-import { h, getJson, getSignal } from '/lib/dom.js?v=c2c1c85126';
+import { h, getJson, getSignal, calm } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -127,3 +127,7 @@ if (card) {
     });
   }
 }
+
+// The drawings that move without end (Sig, the takeover line's pulse, the flow) only move while
+// they're on screen
+document.querySelectorAll('svg.sig, svg.takeover, svg.flowviz').forEach(calm);

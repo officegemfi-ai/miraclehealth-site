@@ -4,7 +4,7 @@
 // taken, how far the first pairs are, and the method page's check of the Signal against the
 // studies. Every page reads fine without it.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h, svg, getJson, getSignal } from '/lib/dom.js?v=c2c1c85126';
+import { h, svg, getJson, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
