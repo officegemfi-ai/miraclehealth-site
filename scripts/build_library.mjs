@@ -95,18 +95,19 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 // browser or GitHub's cache never pairs a new page with an old stylesheet (GitHub Pages caches
 // files for 10 minutes)
 const version = (...files) => createHash('sha256').update(files.map((f) => fs.readFileSync(path.join(ROOT, f))).join('\n')).digest('hex').slice(0, 10);
-// Scripts import the kit (and the Signal's drawings) by their version too: the build writes it
-// into their import lines, so a new script never runs with an old copy of either
-const KIT_JS = version('kit/kit.js');
-const VIZ_JS = version('library/signalviz.js');
-for (const f of ['ai/ai.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js']) {
+// Scripts import the kit, the Signal's drawings and the site's own helpers (lib/) by their
+// version too: the build writes it into their import lines, so a new script never runs with an
+// old copy of any of them. The shared scripts import nothing themselves, so their versions come first.
+const SHARED = ['kit/kit.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js'].map((f) => [f, version(f)]);
+const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js'];
+for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
   const was = fs.readFileSync(file, 'utf8');
-  const now = was.replace(/(from '\/kit\/kit\.js)(?:\?v=[0-9a-f]+)?'/g, `$1?v=${KIT_JS}'`)
-    .replace(/(from '\/library\/signalviz\.js)(?:\?v=[0-9a-f]+)?'/g, `$1?v=${VIZ_JS}'`);
+  const now = SHARED.reduce((text, [shared, v]) =>
+    text.replace(new RegExp(`(from '/${shared.replace(/\./g, '\\.')})(?:\\?v=[0-9a-f]+)?'`, 'g'), `$1?v=${v}'`), was);
   if (now === was) continue;
-  if (CHECK) { console.error(`out of date: ${f} imports an older kit (run node scripts/build_library.mjs)`); process.exit(1); }
+  if (CHECK) { console.error(`out of date: ${f} imports an older shared script (run node scripts/build_library.mjs)`); process.exit(1); }
   fs.writeFileSync(file, now);
 }
 const V = {

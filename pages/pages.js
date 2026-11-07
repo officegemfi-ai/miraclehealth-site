@@ -4,29 +4,12 @@
 // taken, how far the first pairs are, and the method page's check of the Signal against the
 // studies. Every page reads fine without it.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
+import { h, svg, getJson } from '/lib/dom.js?v=0f94d70a0f';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  Object.entries(attrs || {}).forEach(([k, v]) => {
-    if (v == null || v === false) return;
-    if (k === 'class') el.className = v; else el.setAttribute(k, v === true ? '' : String(v));
-  });
-  kids.flat(Infinity).forEach((k) => { if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k)); });
-  return el;
-}
-// Static SVG markup we draw ourselves (never anyone's text) becomes a node
-const parser = new DOMParser();
-const svg = (markup) => document.importNode(parser.parseFromString(markup.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"'), 'image/svg+xml').documentElement, true);
 const fmt = (n) => Number(n || 0).toLocaleString('en-US');
-async function getJson(url) {
-  try {
-    const r = await fetch(url, { credentials: 'omit' });
-    return r.ok ? await r.json() : null;
-  } catch { return null; }
-}
 // A bar's fill, set through the DOM (the pages allow no inline styles), grown in once
 function grow(el, pct) {
   const w = `${Math.max(0, Math.min(100, pct))}%`;

@@ -17,6 +17,7 @@
 // the box to write in says what's on it. window.MHScreen is the whole interface.
 import { COMMUNITY, draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=f08d778478';
 import { sealSvg } from '/library/signalviz.js?v=d8ffb3d8c3';
+import { h } from '/lib/dom.js?v=0f94d70a0f';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
@@ -35,18 +36,6 @@ const UNAPPROVED = new Set(['not_approved', 'compounded', 'investigational', 'ca
 // The example on the empty screen: it asks Sig, like any question
 const EXAMPLE = { ids: ['somatropin', 'enclomiphene'], label: 'HGH + enclomiphene', ask: 'What do HGH and enclomiphene do together, according to the community and the studies?' };
 
-function h(tag, attrs = {}, ...kids) {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (v == null || v === false) continue;
-    if (k === 'class') n.className = v;
-    else if (k === 'text') n.textContent = v;
-    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
-    else n.setAttribute(k, v === true ? '' : String(v));
-  }
-  for (const k of kids.flat(Infinity)) if (k != null && k !== false && k !== '') n.append(k instanceof Node ? k : String(k));
-  return n;
-}
 const SVGNS = 'http://www.w3.org/2000/svg';
 function icon(d, size = 18) {
   const s = document.createElementNS(SVGNS, 'svg');
