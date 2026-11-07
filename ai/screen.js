@@ -31,8 +31,9 @@ const LEVEL = { avoid: 'Avoid together', caution: 'Caution', info: 'Good to know
 const RANK = { avoid: 3, caution: 2, info: 1 };
 const GRADE = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'limited evidence', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
 const AGENT = { safety: 'Safety agent', review: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent', mechanism: 'Mechanism agent', markers: 'Markers agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder' };
-// Not approved in the US for anything, or not yet: worth asking a clinician about an approved option
-const UNAPPROVED = new Set(['not_approved', 'compounded', 'investigational', 'category2', 'under_review', 'restricted', 'unclear']);
+// Not approved in the US for anything, or not yet: worth asking a clinician about an approved option.
+// Not 'restricted': the Library's special case (today NAC) is an approved drug
+const UNAPPROVED = new Set(['not_approved', 'compounded', 'investigational', 'category2', 'under_review', 'unclear']);
 // The example on the empty screen: it asks Sig, like any question
 const EXAMPLE = { ids: ['somatropin', 'enclomiphene'], label: 'HGH + enclomiphene', ask: 'What do HGH and enclomiphene do together, according to the community and the studies?' };
 

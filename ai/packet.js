@@ -33,7 +33,9 @@ const GOAL_WORDS = {
 };
 const LEVEL_CODE = { avoid: 'a', caution: 'c', unknown: 'u', info: 'i' };
 const CODE_LEVEL = { a: 'avoid', c: 'caution', u: 'unknown', i: 'info' };
-const UNAPPROVED = new Set(['not_approved', 'investigational', 'under_review', 'category2', 'restricted', 'unclear']);
+// Not approved in the US for any use. Not 'restricted': the Library's special case (today NAC, an
+// approved drug sold as a supplement), which is described in its own words instead
+const UNAPPROVED = new Set(['not_approved', 'investigational', 'under_review', 'category2', 'unclear']);
 
 const clip = (s, n) => { const t = String(s ?? '').replace(/\s+/g, ' ').trim(); return t.length > n ? `${t.slice(0, n - 1)}…` : t; };
 const isId = (id) => typeof id === 'string' && /^[a-z0-9-]{1,40}$/.test(id);
@@ -44,6 +46,13 @@ export function dateLabel(iso) {
   return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 }
 
+// A special case at FDA in the Library's own words, after a colon: "Approved drug; …" reads
+// "approved drug; …", while "FDA …" stays as it is (the same words as Sig's caution line)
+function specialCase(label) {
+  const l = String(label || '').trim().replace(/[.\s]+$/, '');
+  return `Its FDA status is a special case: ${!l ? 'see its fact sheet' : /^[A-Z][a-z]/.test(l) ? l[0].toLowerCase() + l.slice(1) : l}.`;
+}
+
 // What a clinician should know about a compound's status, from the Library's own labels
 function cautionFrom(it) {
   const key = it.status?.key || '';
@@ -51,6 +60,7 @@ function cautionFrom(it) {
   if (key === 'investigational') return 'Not for use outside a clinical trial.';
   if (key === 'compounded') return 'Not an FDA-approved product; compounded only under a prescription.';
   if (key === 'category2') return 'On FDA’s list of substances with safety risks for compounding.';
+  if (key === 'restricted') return specialCase(it.status?.label);
   if (UNAPPROVED.has(key)) return 'Not an approved medicine: products sold as research chemicals vary in contents, purity and sterility.';
   return '';
 }
