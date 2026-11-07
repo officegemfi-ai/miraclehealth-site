@@ -90,6 +90,10 @@
 
 .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;padding-top:18px;padding-bottom:110px}
 .lib-card{display:flex;flex-direction:column;gap:10px;min-height:212px;padding:20px 20px 18px;border-radius:16px;border:1px solid var(--line);background:var(--white);color:var(--text);text-decoration:none;transition:border-color .2s,transform .2s,box-shadow .2s}
+/* The Library's 300 cards: the browser lays out and paints only those near the screen (212px is a
+   card's height, so the scrollbar stays true until each is drawn). Not on shorter lists, where it
+   costs more than it saves */
+#grid .lib-card{content-visibility:auto;contain-intrinsic-size:auto 212px}
 .lib-card:hover{border-color:rgba(18,30,29,.32);transform:translateY(-2px);box-shadow:0 18px 40px -26px rgba(18,30,29,.45)}
 .lib-card.pending{background:var(--paper)}
 .lc-top{display:flex;align-items:center;justify-content:space-between;gap:10px}

@@ -8,7 +8,7 @@
 // AI uses (bold, lists, Library links) is built node by node.
 import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h, svg, getSignal } from '/lib/dom.js?v=c2c1c85126';
+import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -271,19 +271,31 @@ function moreFold(view) {
     const box = h('div', { class: 'prose' });
     const d = h('details', { class: 'more' }, h('summary', {}, h('span', { text: 'More detail' })), box);
     d.addEventListener('toggle', () => { view.moreOpen = d.open; });
-    view.more = { d, box };
+    view.more = { d, box, words: null };
   }
   view.more.d.open = !!view.moreOpen;
-  view.more.box.replaceChildren();
   return view.more;
 }
+// The answer's body, kept in step with its parts. While the words are written out, each frame
+// draws again only what changed (the paragraph being written, the fold's words); the paragraphs
+// before it, the cards and the sources line stay as they are. Drawing the whole answer again
+// every frame kept a phone's main thread half busy while an answer came in.
 function drawParts(msg) {
   const view = msg.view;
   const parts = msg.parts || [];
-  // Rebuild the body only where it changed: text parts re-render, cards are made once
-  view.body.replaceChildren();
+  const drawn = view.drawn || (view.drawn = new Map());
+  // A piece is made again only when what it's drawn from changed
+  const keep = (key, from, make) => {
+    const was = drawn.get(key);
+    if (was && was.from === from) return was.el;
+    const el = make();
+    drawn.set(key, { from, el });
+    return el;
+  };
+  const want = [];
   let hasText = false;
   let fold = null;
+  const folded = [];
   parts.forEach((p, i) => {
     if (p.t === 'text') {
       hasText = hasText || !!p.s.trim();
@@ -297,26 +309,43 @@ function drawParts(msg) {
       if (fold) { after = before; before = ''; }
       else if (m) { after = before.slice(m.index + m[0].length); before = before.slice(0, m.index); }
       if (before.trim()) {
-        const el = h('div', { class: `prose${live && !m ? ' streaming' : ''}` });
-        el.append(...prose(before));
-        view.body.append(el);
+        const cls = `prose${live && !m ? ' streaming' : ''}`;
+        want.push(keep(`text ${i}`, `${cls}|${before}`, () => {
+          const el = h('div', { class: cls });
+          el.append(...prose(before));
+          return el;
+        }));
       }
       if (m || fold) {
         // A caution never hides: if one ends up after "More detail:", the fold stays open
         if (CAUTION.test(after)) view.moreOpen = true;
-        if (!fold) { fold = moreFold(view); view.body.append(fold.d); }
+        if (!fold) { fold = moreFold(view); want.push(fold.d); }
         if (view.moreOpen) fold.d.open = true;
-        fold.box.append(...prose(after));
+        folded.push(after);
       }
     } else if (p.t === 'card') {
       let el = view.cardEls.get(p);
       if (!el) { el = cardNode(p.card, msg); view.cardEls.set(p, el); }
-      view.body.append(el);
+      want.push(el);
     }
   });
-  if (!msg.state && !hasText) view.body.append(h('p', { class: 'waiting' }, h('i'), h('i'), h('i'), h('span', { text: waitingText(msg) })));
-  if (msg.sources && hasText) { const src = sourcesNode(msg.sources); if (src) view.body.append(src); }
-  if (msg.state === 'error' && msg.error) view.body.append(errorNode(msg));
+  if (fold) {
+    const words = folded.join('\u0000');
+    if (fold.words !== words) { fold.box.replaceChildren(...folded.flatMap((t) => prose(t))); fold.words = words; }
+  }
+  if (!msg.state && !hasText) {
+    const said = waitingText(msg);
+    want.push(keep('waiting', said, () => h('p', { class: 'waiting' }, h('i'), h('i'), h('i'), h('span', { text: said }))));
+  }
+  if (msg.sources && hasText) {
+    const src = keep('sources', JSON.stringify(msg.sources), () => sourcesNode(msg.sources));
+    if (src) want.push(src);
+  }
+  if (msg.state === 'error' && msg.error) want.push(keep('error', msg.error, () => errorNode(msg)));
+  // The pieces in order, touching only those that came, went or moved
+  const kids = view.body.childNodes;
+  want.forEach((el, i) => { if (kids[i] !== el) view.body.insertBefore(el, kids[i] || null); });
+  while (kids.length > want.length) view.body.lastChild.remove();
 }
 const waitingText = (msg) => {
   const last = (msg.steps || []).filter((s) => s.status === 'run').pop();
@@ -977,7 +1006,12 @@ const localDate = () => { const d = new Date(); return `${d.getFullYear()}-${Str
 // ---------------------------------------------------------------------------
 const cleanName = (x, n = 60) => String(x ?? '').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
 const libId = (id) => typeof id === 'string' && /^[a-z0-9]{1,40}$/.test(id);
-const dayLabel = (iso) => window.MHPacket?.dateLabel(iso) || iso;
+// A date as the chat shows it ("November 7, 2026"), the same words as the clinician's copy (ai/packet.js),
+// which this page no longer loads just for this
+const dayLabel = (iso) => {
+  const d = new Date(`${iso}T12:00:00`);
+  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+};
 const GRADE_WORDS = { strong: 'strong', moderate: 'moderate', limited: 'limited', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
 const listOf = (xs) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
 let libIndexP = null;

@@ -51,6 +51,8 @@
 .st-desc{max-width:760px;margin-top:8px;color:var(--text-2)}
 .st-rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px;margin-top:18px}
 .st-row{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:16px;border:1px solid var(--line);background:var(--white);scroll-margin-top:calc(var(--top-h) + 16px)}
+/* 122 rows: the browser lays out and paints only those near the screen (rows run 180 to 500px) */
+.st-row{content-visibility:auto;contain-intrinsic-size:auto 320px}
 .st-row h3{font-size:19px;line-height:1.25;letter-spacing:-.015em}
 .st-row h3 a{text-decoration:none}
 .st-row h3 a:hover{text-decoration:underline}

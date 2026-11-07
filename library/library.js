@@ -3,7 +3,7 @@
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f08d778478';
-import { h, svg, getJson, getSignal } from '/lib/dom.js?v=c2c1c85126';
+import { h, svg, getJson, getSignal, calm, hold } from '/lib/dom.js?v=cef2a56736';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 // Both voices for each compound and use, worked out with Sig's own code from the same
@@ -80,6 +80,11 @@ const GRADE_ORDER = { strong: 0, moderate: 1, limited: 2, preclinical: 3, anecdo
 function frontPage(grid) {
   const cards = [...grid.querySelectorAll('.lib-card')];
   const original = new Map(cards.map((c, i) => [c, i]));
+  // Read once: what each card is searched by and its name (every keystroke used to fold all 300
+  // cards' words again, and a sort read every name from the page again for each comparison)
+  const words = new Map(cards.map((c) => [c, fold(c.dataset.text)]));
+  const names = new Map(cards.map((c) => [c, c.querySelector('.lc-name').textContent]));
+  let order = cards;
   const q = document.getElementById('q');
   const goal = document.getElementById('goal');
   const ev = document.getElementById('ev');
@@ -99,22 +104,24 @@ function frontPage(grid) {
     const terms = q.value.split(/\s+/).map(fold).filter(Boolean);
     let shown = 0;
     cards.forEach((c) => {
-      const text = fold(c.dataset.text);
+      const text = words.get(c);
       const ok = (!family || c.dataset.family === family)
         && (!goal.value || c.dataset.goals.split(' ').includes(goal.value))
         && (!ev.value || c.dataset.ev === ev.value)
         && terms.every((t) => text.includes(t));
-      c.hidden = !ok;
+      if (c.hidden === ok) c.hidden = !ok;
       if (ok) shown += 1;
     });
-    const byName = (a, b) => a.querySelector('.lc-name').textContent.localeCompare(b.querySelector('.lc-name').textContent, 'en', { sensitivity: 'base' });
-    const order = [...cards].sort((a, b) => {
+    const byName = (a, b) => names.get(a).localeCompare(names.get(b), 'en', { sensitivity: 'base' });
+    const next = [...cards].sort((a, b) => {
       if (sort.value === 'signal') return (scores.get(b.dataset.id) ?? -1) - (scores.get(a.dataset.id) ?? -1) || original.get(a) - original.get(b);
       if (sort.value === 'evidence') return (GRADE_ORDER[a.dataset.ev] ?? 9) - (GRADE_ORDER[b.dataset.ev] ?? 9) || byName(a, b);
       if (sort.value === 'name') return byName(a, b);
       return original.get(a) - original.get(b);   // fact sheets first, the page's own order
     });
-    order.forEach((c) => grid.insertBefore(c, empty));
+    // Moving 300 cards lays out the whole grid again: only when the order really changed
+    if (next.some((c, i) => c !== order[i])) next.forEach((c) => grid.insertBefore(c, empty));
+    order = next;
     chips.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.family === family)));
     count.textContent = `${shown} compound${shown === 1 ? '' : 's'}`;
     empty.hidden = shown > 0;
@@ -160,6 +167,7 @@ function frontPage(grid) {
       };
       panel.querySelector('.viz-wide')?.replaceChildren(svg(flowSvg(data)));
       panel.querySelector('.viz-compact')?.replaceChildren(svg(flowSvg(data, { compact: true })));
+      hold(panel);
     }
     // What moved this week, and the pairs the community is filling first
     const moves = document.querySelector('[data-live="moves"]');
@@ -394,3 +402,6 @@ const grid = document.getElementById('grid');
 if (grid) frontPage(grid);
 const entry = document.querySelector('.lib-entry');
 if (entry) { entryPage(entry); stackCheck(entry); }
+// The drawings that move without end (the flow's particles, the takeover line's pulse) only move
+// while they're on screen
+document.querySelectorAll('[data-live="flow"], [data-live="signal"], svg.takeover').forEach(calm);

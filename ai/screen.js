@@ -17,7 +17,7 @@
 // the box to write in says what's on it. window.MHScreen is the whole interface.
 import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=f08d778478';
 import { sealSvg } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h, getSignal } from '/lib/dom.js?v=c2c1c85126';
+import { h, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
