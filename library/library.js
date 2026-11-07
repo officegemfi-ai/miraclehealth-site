@@ -1,8 +1,9 @@
 // The Library's live parts: search and filters on the front page, and on each compound's
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
-import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from './signalviz.js';
+import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f08d778478';
+import { h, svg, getJson } from '/lib/dom.js?v=0f94d70a0f';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const SNAPSHOT = `${COMMUNITY}/snapshot.json`;
@@ -23,21 +24,6 @@ const SOURCE_FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': '
 // ---------------------------------------------------------------------------
 // Small helpers
 // ---------------------------------------------------------------------------
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  Object.entries(attrs || {}).forEach(([k, v]) => {
-    if (v == null || v === false) return;
-    if (k === 'class') el.className = v; else if (k === 'text') el.textContent = v; else el.setAttribute(k, v === true ? '' : String(v));
-  });
-  kids.flat(Infinity).forEach((k) => { if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k)); });
-  return el;
-}
-// Static SVG markup we write ourselves (never anyone's text) becomes a node
-const parser = new DOMParser();
-function svg(markup) {
-  const doc = parser.parseFromString(markup.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"'), 'image/svg+xml');
-  return document.importNode(doc.documentElement, true);
-}
 const fmt = (n) => Number(n || 0).toLocaleString('en-US');
 const fold = (s) => String(s || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '');
 function ago(iso) {
@@ -68,12 +54,6 @@ function bar(pct, cls = 'bar') {
   return b;
 }
 
-async function getJson(url) {
-  try {
-    const r = await fetch(url, { credentials: 'omit' });
-    return r.ok ? await r.json() : null;
-  } catch { return null; }
-}
 async function load() {
   const [snap, usesFile, base] = await Promise.all([getJson(SNAPSHOT), getJson('/library/data/uses.json'), getJson('/library/data/baselines.json')]);
   const uses = {};

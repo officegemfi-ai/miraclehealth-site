@@ -8,6 +8,8 @@
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
 import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
+import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
 const P = window.MHPlan;
 const root = document.getElementById('my-root');
@@ -16,18 +18,6 @@ const QR_SRC = root.dataset.qr;
 const STACK = 'mh-ai-stack-v1';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs || {})) {
-    if (v == null || v === false) continue;
-    if (k === 'class') el.className = v;
-    else if (k === 'text') el.textContent = v;
-    else if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2), v);
-    else el.setAttribute(k, v === true ? '' : String(v));
-  }
-  for (const k of kids.flat(Infinity)) if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k));
-  return el;
-}
 const local = {
   get(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } },
@@ -55,26 +45,23 @@ function savedStack() {
     meds: (Array.isArray(st.meds) ? st.meds : []).map((m) => clean(m, 40)).filter(Boolean).slice(0, 6) };
 }
 const stackQuestion = (st) => `I take ${listOf(st.items.map((i) => i.name))}.${st.meds.length ? ` My medicines: ${st.meds.join(', ')}.` : ''} Is that combination OK?`;
-const b64 = (bytes) => { let s = ''; for (const b of bytes) s += String.fromCharCode(b); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
-const unb64 = (text) => Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
-const stackLink = (st) => `${location.origin}/ai/#stack=${b64(new TextEncoder().encode(JSON.stringify({ v: 1, i: st.items.map((i) => i.id), m: st.meds })))}`;
+const stackLink = (st) => `${location.origin}/ai/#stack=${b64url(new TextEncoder().encode(JSON.stringify({ v: 1, i: st.items.map((i) => i.id), m: st.meds })))}`;
 
 // ---------------------------------------------------------------------------
 // Moving it all to another device: one link (and its QR code) that carries it after "#"
 // ---------------------------------------------------------------------------
-async function pipe(bytes, stream) { return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer()); }
 async function packAll() {
   const k = P.keptPlan();
   const st = savedStack();
   const json = JSON.stringify({ v: 1, p: k ? { s: k.saved, c: k.plan, d: k.done } : null, st: st ? { s: st.saved, i: st.items.map((i) => i.id), m: st.meds } : null, ci: P.checkIns() });
   const raw = new TextEncoder().encode(json);
   if (typeof CompressionStream === 'function') {
-    try { return `z${b64(await pipe(raw, new CompressionStream('deflate-raw')))}`; } catch { /* fall through */ }
+    try { return `z${b64url(await pipe(raw, new CompressionStream('deflate-raw')))}`; } catch { /* fall through */ }
   }
-  return `u${b64(raw)}`;
+  return `u${b64url(raw)}`;
 }
 async function unpackAll(s) {
-  let bytes = unb64(s.slice(1));
+  let bytes = unb64url(s.slice(1));
   if (s[0] === 'z') bytes = await pipe(bytes, new DecompressionStream('deflate-raw'));
   else if (s[0] !== 'u') throw new Error('not a My Miracle link');
   const x = JSON.parse(new TextDecoder().decode(bytes));

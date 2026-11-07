@@ -9,9 +9,10 @@
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
-import { GRADES, meterHtml, node as fromKit, draftLink } from '/kit/kit.js?v=f08d778478';
+import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=f08d778478';
+import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
-const COMMUNITY = 'https://community.miraclehealth.us';
 const KEPT = 'mh-ai-plan-v1';
 const CHECKINS = 'mh-my-checkins-v1';
 const PILLARS = ['nutrition', 'sleep', 'exercise'];
@@ -51,18 +52,6 @@ const local = {
   del() { try { localStorage.removeItem(KEPT); } catch { /* blocked */ } },
 };
 
-function h(tag, attrs, ...kids) {
-  const el = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs || {})) {
-    if (v == null || v === false) continue;
-    if (k === 'class') el.className = v;
-    else if (k === 'text') el.textContent = v;
-    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
-    else el.setAttribute(k, v === true ? '' : String(v));
-  }
-  for (const k of kids.flat(Infinity)) if (k != null && k !== false && k !== '') el.append(k instanceof Node ? k : String(k));
-  return el;
-}
 function icon(name, cls = 'picon') {
   const s = document.createElementNS(NS, 'svg');
   s.setAttribute('viewBox', '0 0 24 24');
@@ -326,12 +315,6 @@ const announceKept = () => document.querySelectorAll('.card.plan').forEach((c) =
 // ---------------------------------------------------------------------------
 // In a link, and on this device: compact, and checked field by field when read back
 // ---------------------------------------------------------------------------
-const b64url = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-const unb64url = (s) => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
-async function pipe(bytes, stream) {
-  const out = new Response(new Blob([bytes]).stream().pipeThrough(stream));
-  return new Uint8Array(await out.arrayBuffer());
-}
 const item = (it) => [it.id, clip(it.name, 60), clip(it.role, 50), clip(it.tag, 30), TONES[it.tone] || 'n', evidenceOf(it)];
 function compact(raw) {
   const card = normalize(raw);
