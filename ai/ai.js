@@ -8,7 +8,7 @@
 // AI uses (bold, lists, Library links) is built node by node.
 import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=f08d778478';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { h, svg } from '/lib/dom.js?v=0f94d70a0f';
+import { h, svg, getSignal } from '/lib/dom.js?v=c2c1c85126';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -1627,7 +1627,7 @@ stackFromLink();
 // The community, live: how many members and first-hand reports Sig speaks for (totals from
 // the community's public snapshot; the line stays hidden if it can't load)
 const FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': 'YouTube', 'Podcast / YouTube': 'podcasts' };
-fetch(`${COMMUNITY}/snapshot.json`).then((r) => (r.ok ? r.json() : null)).then((snap) => {
+getSignal().then((snap) => {
   const c = snap?.community;
   const el = $('ai-crowd');
   if (!el || !c || !(c.signals > 0)) return;

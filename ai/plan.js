@@ -10,7 +10,7 @@
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
 import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=f08d778478';
-import { h } from '/lib/dom.js?v=0f94d70a0f';
+import { h } from '/lib/dom.js?v=c2c1c85126';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
 const KEPT = 'mh-ai-plan-v1';

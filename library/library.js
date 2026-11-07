@@ -3,10 +3,9 @@
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f08d778478';
-import { h, svg, getJson } from '/lib/dom.js?v=0f94d70a0f';
+import { h, svg, getJson, getSignal } from '/lib/dom.js?v=c2c1c85126';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
-const SNAPSHOT = `${COMMUNITY}/snapshot.json`;
 // Both voices for each compound and use, worked out with Sig's own code from the same
 // snapshot (the community's scripts/build_evidence.ts)
 const EVIDENCE = `${COMMUNITY}/evidence`;
@@ -55,7 +54,7 @@ function bar(pct, cls = 'bar') {
 }
 
 async function load() {
-  const [snap, usesFile, base] = await Promise.all([getJson(SNAPSHOT), getJson('/library/data/uses.json'), getJson('/library/data/baselines.json')]);
+  const [snap, usesFile, base] = await Promise.all([getSignal(), getJson('/library/data/uses.json'), getJson('/library/data/baselines.json')]);
   const uses = {};
   (usesFile?.uses || []).forEach((u) => { uses[u.id] = [u.label, u.goal]; });
   Object.assign(uses, snap?.uses || {});
@@ -147,7 +146,7 @@ function frontPage(grid) {
     const live = (k, v) => document.querySelectorAll(`[data-live="${k}"]`).forEach((el) => { el.textContent = v; });
     live('signals', fmt(Object.keys(sig).length));
     live('reports', fmt(snap.community?.reports));
-    live('updated', `Updated ${ago(snap.generated_at)}`);
+    live('updated', `Updated ${ago(snap.checked_at || snap.generated_at)}`);
     const panel = document.querySelector('[data-live="flow"]');
     if (panel) {
       const fams = new Map();
@@ -268,7 +267,7 @@ function signalPanel(box, id, name, x, space, uses, snap, baselines = new Map())
   kids.push(h('div', { class: 'sig-sec' }, h('span', { class: 'kick-sm' }, 'On the takeover line: from forum data to members’ own'),
     svg(takeoverSvg({ w, max: w * 6, you: { share: x.internal_share, label: name.toUpperCase().slice(0, 16) } }, { compact: true, width: 520 }))));
   if (space && (space[0] || space[1])) kids.push(h('p', { class: 'sig-cap' }, `${fmt(space[0])} member${space[0] === 1 ? '' : 's'} · ${fmt(space[1])} post${space[1] === 1 ? '' : 's'} in s/${name}`));
-  kids.push(h('p', { class: 'sig-cap' }, `Updated ${ago(snap.generated_at)}`));
+  kids.push(h('p', { class: 'sig-cap' }, `Updated ${ago(snap.checked_at || snap.generated_at)}`));
   box.replaceChildren(...kids, cta);
 }
 
