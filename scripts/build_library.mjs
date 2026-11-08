@@ -6,7 +6,8 @@
 //   baselines.json     how many improve anyway (on a placebo, or with time) by use, with sources
 //                      (the community's shared/baselines.json; for the methodology page)
 // Writes library/index.html, library/<id>/index.html (one per compound), library/data/index.json
-// (what Sig reads to find and rank compounds), the Ask Sig page (ai/index.html), the
+// (what Sig reads to find and rank compounds), library/data/body/ (the body map, split for the
+// screen beside Ask Sig: an index, and one small file per drawn compound), the Ask Sig page (ai/index.html), the
 // pages scripts/build_pages.mjs makes (about, status, goals, compare, weekly, founders) and
 // sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
 // the live Community Signal from community.miraclehealth.us/snapshot.json; ai/ai.js is the chat.
@@ -906,9 +907,32 @@ function methodPage() {
 }
 
 // ---------------------------------------------------------------------------
+// The body map, split for the screen beside Ask Sig. library/data/body.json is the one copy people
+// edit (scripts/check_body.mjs checks it) and what Sig's server reads. The screen loads only an
+// index with the page (the places, the markers, and each drawn compound with a version for its
+// file), then a compound's own lines when it first shows that compound, so the page doesn't carry
+// every compound's lines to show one or two.
+// ---------------------------------------------------------------------------
+const BODY_DIR = path.join(DATA, 'body');
+function bodyFiles() {
+  const b = JSON.parse(fs.readFileSync(path.join(DATA, 'body.json'), 'utf8'));
+  const files = new Map();
+  const drawn = {};
+  for (const [id, c] of Object.entries(b.compounds || {})) {
+    if (!/^[a-z0-9]{1,40}$/.test(id)) throw new Error(`body.json: "${id}" isn't a compound id`);
+    const json = `${JSON.stringify(c)}\n`;
+    drawn[id] = createHash('sha256').update(json).digest('hex').slice(0, 10);
+    files.set(path.join(BODY_DIR, `${id}.json`), json);
+  }
+  files.set(path.join(BODY_DIR, 'index.json'), `${JSON.stringify({ updated: b.updated, places: b.places, markers: b.markers, drawn })}\n`);
+  return files;
+}
+
+// ---------------------------------------------------------------------------
 // Write it all
 // ---------------------------------------------------------------------------
 const out = new Map();
+for (const [file, json] of bodyFiles()) out.set(file, json);
 out.set(path.join(LIB, 'index.html'), indexPage());
 for (const c of catalog) out.set(path.join(LIB, c.id, 'index.html'), entryPage(c));
 out.set(path.join(DATA, 'index.json'), aiIndex());
@@ -976,6 +1000,11 @@ for (const d of fs.readdirSync(LIB, { withFileTypes: true })) {
   if (d.isDirectory() && !['data', 'research'].includes(d.name) && !known.has(d.name)) {
     if (CHECK) { console.error(`left over: library/${d.name}`); stale += 1; } else fs.rmSync(path.join(LIB, d.name), { recursive: true });
   }
+}
+// A compound taken off the body map loses its file
+for (const f of fs.existsSync(BODY_DIR) ? fs.readdirSync(BODY_DIR) : []) {
+  const file = path.join(BODY_DIR, f);
+  if (!out.has(file)) { if (CHECK) { console.error(`left over: library/data/body/${f}`); stale += 1; } else fs.rmSync(file); }
 }
 if (CHECK && stale) process.exit(1);
 console.log(`${CHECK ? 'checked' : 'wrote'} the library: ${catalog.length} compounds, ${entries.size} fact sheets`);

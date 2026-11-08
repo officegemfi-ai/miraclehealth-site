@@ -5,7 +5,8 @@
 //      auditor found, the cautions, the blood markers and where they meet; each jumps to its part;
 //   2. how they work, written like code. "together" lines them up place by place, head to toe,
 //      with where they meet lit; each compound's own tab has its lines. Every line comes from its
-//      fact sheet (library/data/body.json, written from the sheets), with its source. On a phone
+//      fact sheet (library/data/body.json, written from the sheets; the build splits it, so the
+//      page loads an index and each compound's lines only when it's shown), with its source. On a phone
 //      the rows that matter come first (where they meet, and the cautions), the rest a tap away;
 //   3. panels: what the community reports, what the auditor found, the blood markers that may
 //      move (pick one to light the lines that move it), and what Sig's agents did;
@@ -62,16 +63,33 @@ const okId = (id) => typeof id === 'string' && /^[a-z0-9]{1,40}$/.test(id);
 // community's public totals. Each loads once; the screen draws with whatever has arrived.
 // ---------------------------------------------------------------------------
 const S = {
-  lib: new Map(), body: { markers: {}, compounds: {}, places: [] }, snap: null, subject: null, f: null, checking: false,
+  lib: new Map(), body: { markers: {}, compounds: {}, places: [], drawn: {} }, snap: null, subject: null, f: null, checking: false,
   onAsk: null, onSave: null, isSaved: null, onOpen: null, onClose: null, root: null, peek: null,
   seen: '', marker: '', markerFrom: 'code', file: '', panel: '', all: false, loaded: false, pending: false,
 };
 const json = (url) => fetch(url).then((r) => (r.ok ? r.json() : null)).catch(() => null);
 const ready = Promise.all([
   json('/library/data/index.json').then((ix) => { for (const it of ix?.items || []) if (okId(it.id)) S.lib.set(it.id, it); }),
-  json('/library/data/body.json').then((b) => { if (b?.compounds) S.body = { places: [], ...b }; }),
+  // The body map's index: the places, the markers, and which compounds are drawn (each with its
+  // file's version). A compound's own lines load when the screen first shows it (need, below)
+  json('/library/data/body/index.json').then((b) => { if (b?.drawn && typeof b.drawn === 'object') S.body = { places: [], markers: {}, ...b, compounds: {} }; }),
   getSignal().then((s) => { S.snap = s && typeof s === 'object' ? s : null; }),
 ]).then(() => { S.loaded = true; const fresh = S.pending; S.pending = false; draw(fresh); });
+// The lines of the drawn compounds among these, each fetched once; one that can't be read is
+// shown from its fact sheet's summary, as an undrawn compound is
+const fetching = new Map();
+function need(ids) {
+  return Promise.all(ids.filter((id) => okId(id) && S.body.drawn?.[id] && !S.body.compounds[id]).map((id) => {
+    if (!fetching.has(id)) {
+      fetching.set(id, json(`/library/data/body/${id}.json?v=${encodeURIComponent(S.body.drawn[id])}`).then((c) => {
+        if (c && Array.isArray(c.lines)) S.body.compounds[id] = c;
+        else delete S.body.drawn[id];
+      }));
+    }
+    return fetching.get(id);
+  }));
+}
+const have = (ids) => ids.every((id) => !S.body.drawn?.[id] || S.body.compounds[id]);
 
 const item = (id) => S.lib.get(id) || { id, name: id, family: '', category: '' };
 const nameOf = (id) => clean(item(id).name, 60) || id;
@@ -792,12 +810,14 @@ function draw(fresh) {
   root.classList.remove('is-empty');
   const ids = sub.ids;
   // Until the Library and the pathways have loaded, just say what's coming
-  if (!S.loaded) {
-    S.pending = S.pending || fresh;
+  const key = ids.join('+');
+  if (!S.loaded || !have(ids)) {
     root.replaceChildren(h('div', { class: 'sc-empty' }, h('div', { class: 'sc-bar' }, cmdNode(ids)), h('p', { class: 'sc-lede sc-wait', text: 'Drawing it…' })));
+    // The Library first (ready draws what's waiting), then these compounds' own lines
+    if (!S.loaded) S.pending = S.pending || fresh;
+    else need(ids).then(() => { if (S.subject?.ids.join('+') === key) draw(fresh); });
     return;
   }
-  const key = ids.join('+');
   const isNew = fresh && key !== S.seen;
   const animate = isNew && !motionOff();
   if (fresh) S.seen = key;
@@ -947,10 +967,14 @@ window.MHScreen = {
   title: () => (S.subject ? S.subject.ids.map(nameOf).join(' + ') : ''),
   // How many cautions and blood markers the screen has for these, for the line in the chat that points to it
   sum(ids) {
+    const xs = [...new Set((ids || []).filter(okId))].slice(0, 6);
     if (!S.loaded) return null;
-    const f = facts([...new Set((ids || []).filter(okId))].slice(0, 6));
+    if (!have(xs)) { need(xs); return null; }
+    const f = facts(xs);
     return { cautions: f.cautions.length, markers: f.count, meet: f.meet.map((r) => r.at) };
   },
+  // Load these compounds' lines (sum answers once it resolves)
+  need: (ids) => ready.then(() => need([...new Set((ids || []).filter(okId))].slice(0, 6))),
   // In short, for the line under an answer: the sentence and the checks
   summary() {
     const sub = S.subject;
