@@ -30,7 +30,7 @@ but never adds a claim the sheet doesn't make.
 ```
 
 - `route`: how it's taken, if the sheet says: one of `injection`, `pill`, `by mouth` (taken by
-  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `on the skin`, `under the
+  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `nasal drops`, `on the skin`, `under the
   tongue`, `infusion`, `implant`, `inhaled`, or two of them joined by ` or ` (`injection or pill`).
   Left out when the sheet doesn't say.
 - `checked`: the sheet's own `checked` date, so a sheet changed later shows up as needing a redraw.
