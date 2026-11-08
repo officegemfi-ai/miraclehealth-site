@@ -93,3 +93,8 @@ test('the map itself checks out, in its usual layout', () => {
   const r = checkMap(JSON.parse(text), loadSheets(), text);
   assert.deepEqual(r.errors, []);
 });
+
+test('only a check from the lab list may go without a source', () => {
+  assert.deepEqual(with_((e) => { e.lines.splice(1, 0, { at: 'liver', op: 'watch', say: 'liver tests checked', src: [] }); }).errors, []);
+  assert.ok(hasError(with_((e) => { e.lines[0].src = []; }), /only a watch line from the lab list may have none/));
+});

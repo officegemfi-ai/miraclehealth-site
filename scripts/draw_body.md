@@ -30,15 +30,16 @@ but never adds a claim the sheet doesn't make.
 ```
 
 - `route`: how it's taken, if the sheet says: one of `injection`, `pill`, `by mouth` (taken by
-  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `nasal drops`, `on the skin`, `under the
+  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `nasal drops`, `eye drops`, `on the skin`, `under the
   tongue`, `infusion`, `implant`, `inhaled`, or two of them joined by ` or ` (`injection or pill`).
   Left out when the sheet doesn't say.
 - `checked`: the sheet's own `checked` date, so a sheet changed later shows up as needing a redraw.
 - `lines`: 3 to 10 read best, and up to 12 when the sheet has that much that matters, in the
   sheet's order: how it works first, then what it does, then what's checked, then the cautions.
 - `dirs`: every marker named in the lines, once, with its direction: `up` (the sheet says it
-  rises), `down` (the sheet says it falls or may fall) or `watch` (the sheet says to check it, with
-  no direction). Exactly the markers the lines name, no more.
+  rises in people), `down` (it falls or may fall in people) or `watch` (the sheet says to check it,
+  or the direction comes only from animal or lab studies: a marker's chip on the screen has no
+  room to say "in rats"). Exactly the markers the lines name, no more.
 - `ask`: one question copied word for word from the sheet's `ask_your_clinician`, the one that
   best fits the lines (it joins the questions a member takes to a clinician).
 
@@ -54,7 +55,9 @@ but never adds a claim the sheet doesn't make.
   - `warn`: a caution from the sheet's risks or warnings; needs `risk`
 - `say`: what happens, in plain words, lowercase unless it starts with a name or abbreviation,
   90 characters at most (aim for 70), no full stop at the end.
-- `src`: 1 to 4 of the sheet's source numbers that back this line.
+- `src`: 1 to 4 of the sheet's source numbers that back this line. Never a source that doesn't.
+  The one exception: a `watch` line from the sheet's own lab list, when the sheet gives that lab
+  no source, has `"src": []`. A general health check that isn't about this compound isn't drawn.
 - `markers`: blood markers from the list below that this line moves or checks.
 - `risk`: on a `warn` line only, the caution's short name for a clinician question (2 to 4 words:
   "clot warning", "pancreatitis risk").

@@ -18,7 +18,7 @@ const BODY = path.join(DATA, 'body.json');
 
 export const OPS = new Set(['is', 'up', 'down', 'block', 'watch', 'warn']);
 export const DIRS = new Set(['up', 'down', 'watch']);
-export const ROUTES = new Set(['injection', 'pill', 'by mouth', 'powder', 'liquid', 'nasal spray', 'nasal drops', 'on the skin', 'under the tongue', 'infusion', 'implant', 'inhaled']);
+export const ROUTES = new Set(['injection', 'pill', 'by mouth', 'powder', 'liquid', 'nasal spray', 'nasal drops', 'eye drops', 'on the skin', 'under the tongue', 'infusion', 'implant', 'inhaled']);
 const ENTRY_KEYS = ['route', 'checked', 'lines', 'dirs', 'ask'];
 const LINE_KEYS = ['at', 'op', 'say', 'markers', 'risk', 'src'];
 const ID = /^[a-z0-9]{1,40}$/;
@@ -79,7 +79,9 @@ export function checkEntry(id, entry, { places, markers, sheet }) {
       if (ADVICE.test(say)) err(`${at}: "${say}" reads like advice`);
       if (/^[A-Z][a-z]/.test(say)) warn(`${at}: "${say}" starts with a capital (lowercase unless it's a name)`);
     }
-    if (!intsIn(ln.src) || ln.src.length < 1 || ln.src.length > 4) err(`${at}: src must list 1 to 4 of the sheet's source numbers`);
+    // A check from the sheet's own lab list may have no source when the sheet gives that lab none;
+    // every other line cites the sources that back it
+    if (!intsIn(ln.src) || ln.src.length > 4 || (ln.src.length < 1 && ln.op !== 'watch')) err(`${at}: src must list 1 to 4 of the sheet's source numbers${ln.op === 'watch' ? '' : ' (only a watch line from the lab list may have none)'}`);
     else {
       for (const n of ln.src) if (!sources.has(n)) err(`${at}: source ${n} isn't on the fact sheet (it has ${[...sources].join(', ') || 'none'})`);
       if (new Set(ln.src).size !== ln.src.length) err(`${at}: src repeats a number`);
