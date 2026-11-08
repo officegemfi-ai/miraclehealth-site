@@ -471,7 +471,8 @@ function pointerNode(card) {
     btn.classList.toggle('t-caution', t.tone === 'caution');
   };
   btn.fill();
-  SCREEN?.ready?.then(() => btn.fill());
+  // Again once the screen has these compounds' lines, for its counts
+  SCREEN?.ready?.then(() => SCREEN.need?.((card.items || []).map((it) => it && it.id).filter(libId))).then(() => btn.fill());
   btn.addEventListener('click', () => {
     const i = chat.findIndex((m) => (m.parts || []).some((p) => p.t === 'card' && p.card === card));
     const sub = i >= 0 ? subjectIn(chat[i], i) : null;

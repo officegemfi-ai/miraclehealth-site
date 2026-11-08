@@ -1,5 +1,7 @@
 # Checks the site on every push and pull request, before or as GitHub Pages publishes main:
 #   - the built pages match their sources (scripts/build_library.mjs --check)
+#   - Ask Sig's body map follows its rules and cites its fact sheets (scripts/check_body.mjs),
+#     and the scripts' own tests pass (tests/)
 #   - no link between the site's own pages is broken, nor any #part it points to
 #   - every page has its security policy, a title and a description, and every script parses
 # GitHub emails you when a run fails.
@@ -22,6 +24,10 @@ jobs:
           node-version: 22
       - name: The built pages match their sources
         run: node scripts/build_library.mjs --check
+      - name: The body map follows its rules and cites its fact sheets
+        run: node scripts/check_body.mjs
+      - name: The scripts' tests
+        run: node --test tests/*.test.mjs
       - name: No broken links between the site's pages
         run: node scripts/check_links.mjs
       - name: Every page has its security policy, a title and a description
