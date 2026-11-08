@@ -90,6 +90,9 @@ function need(ids) {
   }));
 }
 const have = (ids) => ids.every((id) => !S.body.drawn?.[id] || S.body.compounds[id]);
+// The example on the empty screen is what most first visits show: its lines load while the page
+// is idle, so "Try it" draws at once
+ready.then(() => (window.requestIdleCallback || ((fn) => setTimeout(fn, 1500)))(() => need(EXAMPLE.ids)));
 
 const item = (id) => S.lib.get(id) || { id, name: id, family: '', category: '' };
 const nameOf = (id) => clean(item(id).name, 60) || id;
