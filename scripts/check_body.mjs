@@ -57,7 +57,11 @@ export function checkEntry(id, entry, { places, markers, sheet }) {
 
   const lines = entry.lines;
   if (!Array.isArray(lines) || lines.length < 1 || lines.length > 12) err('lines must be a list of 1 to 12');
-  else if (lines.length < 3 || lines.length > 10) warn(`${lines.length} lines; 3 to 10 read best`);
+  else {
+    if (lines.length < 3) warn(`${lines.length} line${lines.length === 1 ? '' : 's'}; at least 3 read best`);
+    const cautions = lines.filter((ln) => ln?.op === 'warn').length;
+    if (cautions > 5) warn(`${cautions} cautions; keep the 5 most serious`);
+  }
   const named = new Map(); // marker -> the ops of the lines naming it
   for (const [i, ln] of (Array.isArray(lines) ? lines : []).entries()) {
     const at = `line ${i + 1}`;
