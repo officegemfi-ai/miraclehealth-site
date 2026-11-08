@@ -3,30 +3,41 @@
   "updated": "2026-11-06",
   "places": [
     { "at": "mitochondria", "say": "the mitochondria" },
+    { "at": "hair", "say": "the hair" },
     { "at": "brain", "say": "the brain" },
     { "at": "hypothalamus", "say": "the hypothalamus" },
     { "at": "pituitary", "say": "the pituitary" },
     { "at": "eyes", "say": "the eyes" },
+    { "at": "nose", "say": "the nose" },
     { "at": "thyroid", "say": "the thyroid" },
     { "at": "heart", "say": "the heart" },
+    { "at": "blood vessels", "say": "the blood vessels" },
     { "at": "lungs", "say": "the lungs" },
+    { "at": "breast", "say": "the breast" },
     { "at": "stomach", "say": "the stomach" },
     { "at": "liver", "say": "the liver" },
+    { "at": "gallbladder", "say": "the gallbladder" },
     { "at": "pancreas", "say": "the pancreas" },
     { "at": "adrenals", "say": "the adrenals" },
     { "at": "kidneys", "say": "the kidneys" },
     { "at": "gut", "say": "the gut" },
+    { "at": "urinary · genital", "say": "the urinary and genital tract" },
     { "at": "blood sugar", "say": "blood sugar" },
     { "at": "blood", "say": "the blood" },
     { "at": "immune system", "say": "the immune system" },
+    { "at": "nerves", "say": "the nerves" },
     { "at": "bone", "say": "bone" },
     { "at": "muscle", "say": "muscle" },
+    { "at": "tendons", "say": "tendons and ligaments" },
     { "at": "fat", "say": "body fat" },
     { "at": "skin", "say": "the skin" },
+    { "at": "uterus", "say": "the uterus" },
     { "at": "ovaries", "say": "the ovaries" },
+    { "at": "prostate", "say": "the prostate" },
     { "at": "testes", "say": "the testes" },
     { "at": "joints · fluid", "say": "the joints and body fluid" },
-    { "at": "veins", "say": "the veins" }
+    { "at": "veins", "say": "the veins" },
+    { "at": "whole body", "say": "the whole body" }
   ],
   "markers": {
     "igf1": { "name": "IGF-1", "what": "The growth factor growth hormone tells the body to make. It shows how much growth hormone is acting." },
@@ -45,7 +56,25 @@
     "psa": { "name": "PSA", "what": "A protein made by the prostate." },
     "semen": { "name": "Semen analysis", "what": "Sperm count and quality, when fertility matters." },
     "eosinophils": { "name": "Eosinophil count", "what": "A type of white blood cell, counted in a complete blood count with differential. It rises with allergies and with some drugs." },
-    "kidney": { "name": "Kidney function", "what": "Creatinine and eGFR: how well the kidneys filter the blood. When they filter less, drugs they clear can build up." }
+    "kidney": { "name": "Kidney function", "what": "Creatinine and eGFR: how well the kidneys filter the blood. When they filter less, drugs they clear can build up." },
+    "lipids": { "name": "Lipid panel", "what": "Cholesterol (LDL and HDL) and triglycerides in the blood." },
+    "triglycerides": { "name": "Triglycerides", "what": "A fat carried in the blood, part of the lipid panel." },
+    "liver": { "name": "Liver enzymes", "what": "ALT and AST: they rise when liver cells are stressed or damaged." },
+    "potassium": { "name": "Potassium", "what": "A mineral the heart and muscles need, kept in a narrow range." },
+    "sodium": { "name": "Sodium", "what": "The main salt in the blood, kept in a narrow range." },
+    "magnesium": { "name": "Magnesium", "what": "A mineral that muscles, nerves and the heart’s rhythm depend on." },
+    "calcium": { "name": "Calcium", "what": "A mineral in blood and bone, kept in a narrow range." },
+    "uricacid": { "name": "Uric acid", "what": "A waste product in the blood; too much can cause gout." },
+    "prolactin": { "name": "Prolactin", "what": "The pituitary hormone behind breast milk. Too much can lower sex hormones." },
+    "inr": { "name": "INR", "what": "How long blood takes to clot, checked in people who take warfarin." },
+    "cbc": { "name": "Complete blood count", "what": "Red cells, white cells and platelets." },
+    "ferritin": { "name": "Ferritin", "what": "How much iron the body has stored." },
+    "b12": { "name": "Vitamin B12", "what": "The B12 in the blood." },
+    "mma": { "name": "Methylmalonic acid", "what": "It rises when the body is short of B12, so it’s a sensitive check of B12 status." },
+    "homocysteine": { "name": "Homocysteine", "what": "An amino acid that rises when B12 or folate runs low." },
+    "vitd": { "name": "Vitamin D", "what": "25-hydroxy vitamin D, the form measured to judge vitamin D status." },
+    "ketones": { "name": "Ketones", "what": "Made when the body burns fat for fuel. Very high levels make the blood acidic (ketoacidosis)." },
+    "urineprotein": { "name": "Urine protein", "what": "Protein in the urine, a sign the kidneys are under strain." }
   },
   "compounds": {
     "somatropin": {
@@ -77,8 +106,6 @@
     },
     "ss31": {
       "route": "injection",
-      "dirs": { "eosinophils": "up", "kidney": "watch" },
-      "ask": ["What do human trials show for my goal, given that the approval covers only Barth syndrome?"],
       "lines": [
         { "at": "mitochondria", "op": "is", "say": "binds cardiolipin in their inner membrane, where cells make energy", "src": [1] },
         { "at": "muscle", "op": "up", "say": "strength rose over months in Barth syndrome (about 10 people, open-label)", "src": [1, 2] },
@@ -89,7 +116,9 @@
         { "at": "blood", "op": "up", "say": "eosinophils often rise, peaking around 90 days, then settle", "markers": ["eosinophils"], "src": [1] },
         { "at": "immune system", "op": "warn", "say": "serious allergic reactions reported, from minutes to months after starting", "risk": "allergy warning", "src": [1] },
         { "at": "skin", "op": "warn", "say": "injection-site redness in every treated patient, with itching, pain or hardening", "risk": "injection-site reactions", "src": [1] }
-      ]
+      ],
+      "dirs": { "eosinophils": "up", "kidney": "watch" },
+      "ask": ["What do human trials show for my goal, given that the approval covers only Barth syndrome?"]
     }
   }
 }
