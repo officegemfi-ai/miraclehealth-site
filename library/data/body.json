@@ -1,6 +1,6 @@
 {
-  "note": "How a compound works in the body, as the screen beside Ask Sig draws it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's fact sheet (src: its source numbers there) and plain physiology; directions are only those the sheet states (up: it says they rise; down: it says they may fall; watch: it says to check, without a direction). Written by hand, compound by compound, checked against the sheet; a compound without an entry is drawn from its sheet's summary and lab list alone. places: the order the screen lines compounds up in, head to toe and then the whole body (a place not listed comes after them), with how a sentence names each one. risk: a warning's short name, for the questions to take to a clinician; ask: a question from the fact sheet's \"ask your clinician\" that joins them.",
-  "updated": "2026-11-06",
+  "note": "How a compound works in the body, as the screen beside Ask Sig and each fact sheet draw it: where it acts, what changes there, and which blood markers its fact sheet lists may move. Every line comes from the compound's own fact sheet (src: its source numbers there, empty only for a check from the sheet's lab list that the sheet gives no source) and plain physiology; directions are only those the sheet states (up: it says they rise in people; down: it says they may fall in people; watch: it says to check, or the direction comes only from animal or lab studies). Every fact sheet is drawn: HGH, enclomiphene and SS-31 first by hand, then all of them drafted by drawing agents from their sheets, read line by line against each sheet by a separate reviewer, and corrected. scripts/draw_body.md has the rules; scripts/check_body.mjs checks every entry against them and its sheet, in CI. places: the order the screen lines compounds up in, head to toe and then the whole body, with how a sentence names each one. risk: a warning's short name, for the questions to take to a clinician; ask: a question from the fact sheet's \"ask your clinician\" that joins them; checked: the date of the fact sheet it was drawn from.",
+  "updated": "2026-11-07",
   "places": [
     { "at": "mitochondria", "say": "the mitochondria" },
     { "at": "hair", "say": "the hair" },
@@ -81,48 +81,1919 @@
     "insulin": { "name": "Fasting insulin", "what": "How much insulin is in the blood after a night without food." }
   },
   "compounds": {
-    "somatropin": {
-      "route": "injection",
+    "afamelanotide": {
+      "route": "implant or injection",
+      "checked": "2026-10-28",
       "lines": [
-        { "at": "pituitary", "op": "is", "say": "the growth hormone it makes, given from outside", "src": [1] },
-        { "at": "liver", "op": "up", "say": "IGF-1 rises", "markers": ["igf1"], "src": [1] },
-        { "at": "muscle", "op": "up", "say": "more lean mass (in growth hormone deficiency)", "src": [1] },
-        { "at": "fat", "op": "is", "say": "fat mass falls (in growth hormone deficiency)", "src": [1] },
-        { "at": "blood sugar", "op": "up", "say": "can rise, and can unmask diabetes", "markers": ["glucose", "hba1c"], "src": [1, 3] },
-        { "at": "thyroid", "op": "watch", "say": "function can change, so it's checked", "markers": ["thyroid"], "src": [1] },
-        { "at": "bone", "op": "up", "say": "phosphate, alkaline phosphatase and PTH may rise", "markers": ["phosphate", "alp", "pth"], "src": [1] },
-        { "at": "adrenals", "op": "watch", "say": "cortisol checked first if adrenal insufficiency is possible", "markers": ["cortisol"], "src": [1] },
-        { "at": "joints · fluid", "op": "warn", "say": "swelling, joint pain, carpal tunnel", "risk": "swelling and joint pain", "src": [1] }
+        { "at": "skin", "op": "up", "say": "modeled on alpha-MSH; activates melanocortin 1 receptors, raising dark pigment without sun", "src": [1] },
+        { "at": "skin", "op": "up", "say": "more pain-free hours in sunlight in EPP, a rare light disorder (2 trials, 168 people)", "src": [5] },
+        { "at": "skin", "op": "watch", "say": "regular full-body skin exams per the label, to watch existing and new moles", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "implant-site reactions in 21% vs 10% on placebo, most often discoloration", "risk": "implant-site reactions", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "darker skin, moles and freckles; new moles in 4% vs 2% on placebo", "risk": "mole changes", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "new or changing moles and melanoma in case reports of unlicensed use (cause not proven)", "risk": "mole and melanoma reports", "src": [4, 6] }
       ],
-      "dirs": { "igf1": "up", "glucose": "up", "hba1c": "up", "thyroid": "watch", "phosphate": "up", "alp": "up", "pth": "up", "cortisol": "watch" }
+      "dirs": {},
+      "ask": ["How often should my skin and moles be checked?"]
+    },
+    "anastrozole": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "fat", "op": "block", "say": "blocks aromatase, the enzyme that makes estrogen", "src": [1] },
+        { "at": "blood", "op": "down", "say": "estradiol falls: about 80% in women after menopause, modestly in older men (small trial)", "markers": ["estradiol"], "src": [1, 4] },
+        { "at": "breast", "op": "is", "say": "treats hormone receptor-positive breast cancer after menopause", "src": [1] },
+        { "at": "breast", "op": "down", "say": "invasive breast cancer fell from 3% to 2% over 5 years in high-risk women (off-label)", "src": [2, 3] },
+        { "at": "testes", "op": "up", "say": "testosterone rose over a year in older men with low levels (off-label; small trial)", "markers": ["testosterone"], "src": [4] },
+        { "at": "fat", "op": "up", "say": "body fat rose in men when estrogen was blocked (16-week trial)", "src": [5] },
+        { "at": "brain", "op": "down", "say": "blocking estrogen in men contributed to lower sexual desire and function (16-week trial)", "src": [5] },
+        { "at": "blood", "op": "up", "say": "high cholesterol more often than with tamoxifen (9% versus 3.5%)", "markers": ["lipids"], "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes (36%)", "risk": "hot flashes", "src": [1] },
+        { "at": "joints · fluid", "op": "warn", "say": "joint pain and stiffness, more often than with tamoxifen", "risk": "joint pain", "src": [1] },
+        { "at": "bone", "op": "warn", "say": "bone thins: osteoporosis 11%, fractures 10%; spine density fell in older men", "risk": "bone loss", "src": [1, 4] },
+        { "at": "heart", "op": "warn", "say": "more heart events than with tamoxifen in women with heart disease (17% versus 10%)", "risk": "heart events", "src": [1] }
+      ],
+      "dirs": { "estradiol": "down", "testosterone": "up", "lipids": "up" },
+      "ask": ["For men: is there a medical reason to lower my estrogen, given its role in bone, body fat and sexual function?"]
+    },
+    "aod9604": {
+      "route": "injection or pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "fat", "op": "is", "say": "a lab-made tail piece of growth hormone that doesn't bind its receptor (lab tests)", "src": [1, 6] },
+        { "at": "fat", "op": "down", "say": "more fat burning and less weight gain in obese mice (mouse study)", "src": [6] },
+        { "at": "fat", "op": "is", "say": "missed its weight-loss goal in a 24-week, 502-person trial; earlier gains were small", "src": [1] },
+        { "at": "liver", "op": "is", "say": "no change in IGF-1 versus placebo in six human trials, unlike growth hormone", "src": [5] },
+        { "at": "blood sugar", "op": "is", "say": "no change in glucose tolerance in human trials; no rise in blood sugar in mice", "src": [5, 6] },
+        { "at": "joints · fluid", "op": "up", "say": "better knee joint healing (rabbit study); FDA didn't evaluate joint uses", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions; injecting it has no human data, and FDA can't rule them out", "risk": "immune reaction risk", "src": [1, 3] },
+        { "at": "whole body", "op": "warn", "say": "serious adverse events that may be linked to it, cause unclear, FDA says", "risk": "serious adverse events", "src": [3] },
+        { "at": "liver", "op": "warn", "say": "possible liver cell changes in toxicity testing (monkey study)", "risk": "liver changes in animals", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Which approved weight-loss options fit me, given that AOD-9604 failed its main trial?"]
+    },
+    "armodafinil": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "promotes wakefulness; it's the R-form, one mirror-image half of modafinil", "src": [1] },
+        { "at": "brain", "op": "up", "say": "wakefulness improves in sleepiness from narcolepsy, sleep apnea or shift work", "src": [1] },
+        { "at": "brain", "op": "is", "say": "for focus in rested people, evidence comes from modafinil studies: small effects", "src": [2, 3] },
+        { "at": "heart", "op": "watch", "say": "small rises in blood pressure and pulse; closer checks may be appropriate", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "serious rash, including Stevens-Johnson syndrome, has needed hospital care", "risk": "serious rash", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions: angioedema, anaphylaxis and multi-organ ones such as DRESS", "risk": "allergy warning", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "anxiety and agitation; mania, hallucinations and suicidal thoughts reported", "risk": "psychiatric effects", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "misuse and dependence: a controlled substance; misuse, dependence and tolerance reported", "risk": "misuse and dependence", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Do my heart or mental-health history make it unsafe for me?"]
+    },
+    "ashwagandha": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "down", "say": "stress and anxiety scores fell vs placebo (small trials, very low certainty)", "src": [1, 2] },
+        { "at": "adrenals", "op": "down", "say": "cortisol fell vs placebo (review of 7 small trials in India)", "markers": ["cortisol"], "src": [1] },
+        { "at": "brain", "op": "up", "say": "slightly better sleep, more so in insomnia and after 8 weeks (small trials)", "src": [3, 1] },
+        { "at": "testes", "op": "up", "say": "testosterone may rise in men (small trials)", "markers": ["testosterone"], "src": [1] },
+        { "at": "liver", "op": "watch", "say": "liver tests if yellow skin or eyes, itching or unusual tiredness appear", "markers": ["liver"], "src": [] },
+        { "at": "thyroid", "op": "watch", "say": "TSH fell, T3 and T4 rose (small trial); rechecked in thyroid conditions", "markers": ["thyroid"], "src": [1] },
+        { "at": "liver", "op": "warn", "say": "rare liver injury with jaundice and itching, 2 to 12 weeks in (case reports)", "risk": "liver injury", "src": [4, 1] },
+        { "at": "thyroid", "op": "warn", "say": "overactive thyroid that resolved after stopping (case reports)", "risk": "overactive thyroid", "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "possible miscarriage reported (unproven); some experts advise against it in pregnancy", "risk": "pregnancy caution", "src": [1] }
+      ],
+      "dirs": { "cortisol": "down", "testosterone": "up", "liver": "watch", "thyroid": "watch" },
+      "ask": ["Which liver symptoms should make me stop it and call you?"]
+    },
+    "b12": {
+      "route": "pill or injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "gut", "op": "is", "say": "freed from food by stomach acid, then absorbed with intrinsic factor", "src": [1] },
+        { "at": "blood", "op": "is", "say": "needed to make red cells; deficiency can cause megaloblastic anemia and fatigue", "src": [1] },
+        { "at": "nerves", "op": "is", "say": "needed for the nerves; deficiency can damage them even without anemia", "src": [1] },
+        { "at": "blood", "op": "up", "say": "B12 levels normalize by mouth about as well as by injection (small trials)", "markers": ["b12"], "src": [2, 3] },
+        { "at": "blood", "op": "watch", "say": "B12 checked, with methylmalonic acid (most sensitive) and homocysteine", "markers": ["b12", "mma", "homocysteine"], "src": [1] },
+        { "at": "blood", "op": "watch", "say": "B12 runs low more often on metformin or long-term acid reducers, which can cut absorption", "markers": ["b12"], "src": [1] }
+      ],
+      "dirs": { "b12": "up", "mma": "watch", "homocysteine": "watch" },
+      "ask": ["Should my B12 be checked, given my diet, age or medicines like metformin or acid reducers?"]
+    },
+    "berberine": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "liver", "op": "block", "say": "slowed liver enzymes CYP2D6, 2C9 and 3A4 in healthy men, which can raise drug levels", "src": [5] },
+        { "at": "blood sugar", "op": "down", "say": "blood sugar falls modestly in type 2 diabetes (many trials poorly reported)", "markers": ["glucose", "hba1c"], "src": [3, 4] },
+        { "at": "fat", "op": "down", "say": "modest drops in weight and BMI (18 studies, many at high risk of bias)", "src": [1] },
+        { "at": "blood", "op": "down", "say": "may lower cholesterol (limited evidence)", "markers": ["lipids"], "src": [2] },
+        { "at": "gut", "op": "warn", "say": "nausea, abdominal pain, bloating, constipation and diarrhea", "risk": "digestive side effects", "src": [1, 2] },
+        { "at": "uterus", "op": "warn", "say": "can cause or worsen newborn jaundice, risking brain-damaging kernicterus", "risk": "newborn jaundice", "src": [2, 1] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "lipids": "down" },
+      "ask": ["Could berberine interact with any of my medicines, especially ones broken down by the liver?"]
+    },
+    "bpc157": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood vessels", "op": "is", "say": "may spur new blood vessels and nitric oxide signaling; how it works is unclear", "src": [1] },
+        { "at": "tendons", "op": "is", "say": "cut tendons healed faster (rodent studies)", "src": [1] },
+        { "at": "gut", "op": "is", "say": "healed surgically made colon fistulas; protected stomach and gut from NSAIDs (rat studies)", "src": [1] },
+        { "at": "gut", "op": "is", "say": "enemas lowered ulcerative colitis scores in 53 people; FDA judged the data inadequate", "src": [1] },
+        { "at": "blood", "op": "up", "say": "ALT, glucose and triglycerides rose; clotting tests changed (animal studies)", "markers": ["liver", "glucose", "triglycerides"], "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions, flagged by FDA; peptide clumping could make them worse", "risk": "immune reaction risk", "src": [1, 2] },
+        { "at": "blood vessels", "op": "warn", "say": "cancer risk unknown: no cancer studies, and it may spur new blood vessel growth", "risk": "unknown cancer risk", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "skin and gum darkening and injection-site swelling reported to FDA; cause not established", "risk": "skin darkening report", "src": [1] },
+        { "at": "lungs", "op": "warn", "say": "shortness of breath leading to an ER visit after injection; cause not established", "risk": "breathing trouble report", "src": [1] }
+      ],
+      "dirs": { "liver": "watch", "glucose": "watch", "triglycerides": "watch" },
+      "ask": ["What does the human evidence actually show for my injury or gut condition?"]
+    },
+    "bronchogen": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "lungs", "op": "up", "say": "switched on airway genes for mucus and surfactant (lab studies; never tested in people)", "src": [7, 8, 9] },
+        { "at": "lungs", "op": "is", "say": "reversed airway-lining damage and calmed inflammation in COPD-like disease (rat study)", "src": [5] },
+        { "at": "lungs", "op": "is", "say": "faster recovery from bacterial lung inflammation, milder scarring (rat data in a patent)", "src": [6] }
+      ],
+      "dirs": {},
+      "ask": ["Is my breathing problem being treated with the most effective proven options?"]
+    },
+    "cabergoline": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts like dopamine at D2 receptors, blocking prolactin release", "src": [1] },
+        { "at": "pituitary", "op": "down", "say": "prolactin fell to normal in 77% of women in 8 weeks, versus 59% with bromocriptine", "markers": ["prolactin"], "src": [1] },
+        { "at": "breast", "op": "down", "say": "milk discharge stopped in 73% of women with high prolactin", "src": [1] },
+        { "at": "uterus", "op": "is", "say": "periods returned in 77% of women with high prolactin", "src": [1] },
+        { "at": "ovaries", "op": "down", "say": "dopamine agonists probably cut ovarian hyperstimulation in IVF (off-label)", "src": [2] },
+        { "at": "blood vessels", "op": "watch", "say": "blood pressure checked; dizziness on standing can occur", "src": [1] },
+        { "at": "stomach", "op": "warn", "say": "nausea (27%), the most common side effect", "risk": "frequent nausea", "src": [1] },
+        { "at": "heart", "op": "warn", "say": "heart valve damage reported; echocardiograms before and during treatment", "risk": "heart valve damage", "src": [1, 3] },
+        { "at": "lungs", "op": "warn", "say": "scarring of the lungs or their lining, the heart's lining, or behind the abdomen", "risk": "fibrosis warning", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "impulse control problems: compulsive gambling, spending or sexual urges", "risk": "impulse control problems", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "stopping milk after birth with drugs like it: linked to stroke, heart attack, death", "risk": "postpartum use warning", "src": [1] }
+      ],
+      "dirs": { "prolactin": "down" },
+      "ask": ["Do I need an echocardiogram before starting, and how often should it be repeated?"]
+    },
+    "cagrilintide": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "a long-acting lab-made version of the hormone amylin", "src": [6, 1] },
+        { "at": "fat", "op": "down", "say": "with semaglutide, 20.4% less body weight in 68 weeks, versus 3.0% on placebo", "src": [4, 5] },
+        { "at": "blood sugar", "op": "down", "say": "with semaglutide in type 2 diabetes, 74% reached HbA1c 6.5% or lower vs 15.9% on placebo", "markers": ["hba1c"], "src": [5] },
+        { "at": "fat", "op": "down", "say": "alone, 6.0% to 10.8% less body weight in 26 weeks, versus 3.0% on placebo (phase 2 trial)", "src": [6] },
+        { "at": "heart", "op": "watch", "say": "resting heart rate checked, as the semaglutide label calls for", "src": [7] },
+        { "at": "thyroid", "op": "warn", "say": "thyroid C-cell tumors in rodents, a semaglutide boxed warning; unknown in humans", "risk": "thyroid tumor warning", "src": [7] },
+        { "at": "pancreas", "op": "warn", "say": "pancreatitis, a semaglutide label warning; rate with cagrilintide unknown", "risk": "pancreatitis risk", "src": [7] },
+        { "at": "gallbladder", "op": "warn", "say": "gallbladder disease, a semaglutide label warning; rate with cagrilintide unknown", "risk": "gallbladder disease", "src": [7] },
+        { "at": "stomach", "op": "warn", "say": "digestive side effects in 79.6% on the combination with semaglutide, vs 39.9% on placebo", "risk": "digestive side effects", "src": [4] }
+      ],
+      "dirs": { "hba1c": "watch" },
+      "ask": ["How do approved options, such as semaglutide or tirzepatide, compare for me?"]
+    },
+    "canagliflozin": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "kidneys", "op": "block", "say": "blocks SGLT2, so more filtered sugar leaves in the urine", "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "blood sugar falls in type 2 diabetes", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "heart", "op": "down", "say": "fewer heart attacks, strokes or cardiovascular deaths in type 2 diabetes and heart disease", "src": [1] },
+        { "at": "kidneys", "op": "is", "say": "slower kidney decline and less kidney failure in type 2 diabetes with kidney disease", "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked; an early creatinine rise usually steadies", "markers": ["kidney"], "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "potassium checked with moderate kidney impairment, where it rose more often", "markers": ["potassium"], "src": [1] },
+        { "at": "blood", "op": "warn", "say": "ketoacidosis, even with near-normal blood sugar; ketones checked if suspected", "markers": ["ketones"], "risk": "ketoacidosis risk", "src": [1] },
+        { "at": "feet", "op": "warn", "say": "lower-limb amputations: about twice placebo's rate in one trial, similar in another", "risk": "amputation risk", "src": [1, 2] },
+        { "at": "blood vessels", "op": "warn", "say": "dehydration, low blood pressure and acute kidney injury, sometimes needing hospital care", "risk": "dehydration risk", "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "genital yeast infections; rare serious urinary infections and Fournier's gangrene", "risk": "genital infection risk", "src": [1] },
+        { "at": "bone", "op": "warn", "say": "more low-impact fractures of the lower arms and legs; small hip bone loss in older adults", "risk": "fracture risk", "src": [1] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "down", "potassium": "up", "ketones": "watch" },
+      "ask": ["Given my feet and circulation, how much does the amputation risk matter for me?"]
+    },
+    "cerebrolysin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "a mix of small peptides and amino acids taken from pig brain", "src": [1, 3] },
+        { "at": "brain", "op": "up", "say": "better thinking scores in vascular dementia (6 small trials, very low certainty)", "src": [4] },
+        { "at": "brain", "op": "is", "say": "no fewer deaths after stroke across 7 pooled trials (1,773 people)", "src": [3] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked first; severe kidney impairment rules it out", "markers": ["kidney"], "src": [1] },
+        { "at": "brain", "op": "warn", "say": "ruled out in epilepsy, in the maker's prescribing information", "risk": "epilepsy warning", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "about 2.4 times the risk of non-fatal serious side effects in stroke trials", "risk": "serious side effects", "src": [3] }
+      ],
+      "dirs": { "kidney": "watch" },
+      "ask": ["Given that stroke trials found more serious side effects, is any benefit worth the risk for me?"]
+    },
+    "cjc1295": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "a long-acting copy of GHRH, the brain signal that releases growth hormone", "src": [5, 6] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone rose for days after one injection in healthy adults (small studies)", "src": [5, 6] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rose about 40% a week after one injection in healthy adults (small study)", "markers": ["igf1"], "src": [6] },
+        { "at": "heart", "op": "up", "say": "heart rate rose in a second study", "src": [2, 5] },
+        { "at": "blood sugar", "op": "watch", "say": "higher blood sugar assumed, from the label of tesamorelin, which works the same way", "markers": ["glucose", "hba1c"], "src": [5, 7] },
+        { "at": "skin", "op": "warn", "say": "injection-site reactions in about 70% after one injection", "risk": "injection-site reactions", "src": [5] },
+        { "at": "blood vessels", "op": "warn", "say": "flushing, headache, dizziness and low blood pressure after repeat injections", "risk": "vasodilatory reactions", "src": [2, 5] },
+        { "at": "heart", "op": "warn", "say": "one death from a heart attack in a halted trial, with causality not established", "risk": "heart attack report", "src": [5] },
+        { "at": "pituitary", "op": "warn", "say": "animal studies found DNA damage in pituitary cells; no cancer studies exist", "risk": "DNA damage in animals", "src": [5] },
+        { "at": "joints · fluid", "op": "warn", "say": "fluid retention is a label warning for tesamorelin, which works the same way", "risk": "swelling and joint pain", "src": [5, 7] }
+      ],
+      "dirs": { "igf1": "up", "glucose": "watch", "hba1c": "watch" },
+      "ask": ["Given my heart health, blood pressure and blood sugar, is a long-acting growth hormone booster safe for me?"]
+    },
+    "clomiphene": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "up", "say": "LH and FSH rise (it's a SERM)", "markers": ["lh", "fsh"], "src": [1, 2, 3] },
+        { "at": "ovaries", "op": "is", "say": "triggers ovulation; about 30% became pregnant in the label's studies", "src": [1] },
+        { "at": "testes", "op": "up", "say": "testosterone rises in men (off-label)", "markers": ["testosterone"], "src": [2, 3] },
+        { "at": "testes", "op": "is", "say": "sperm counts held up better than on testosterone gel (pooled trials)", "markers": ["semen"], "src": [2] },
+        { "at": "brain", "op": "is", "say": "men's symptoms improved in mostly observational studies; randomized trials were mixed", "src": [3, 2] },
+        { "at": "liver", "op": "down", "say": "IGF-1 can fall (small studies in men)", "markers": ["igf1"], "src": [4, 5] },
+        { "at": "blood", "op": "up", "say": "estradiol rises in men, and hematocrit is checked", "markers": ["estradiol", "hematocrit"], "src": [3, 2] },
+        { "at": "ovaries", "op": "warn", "say": "enlargement (13.6%) and hyperstimulation, which can turn serious within days", "risk": "ovarian hyperstimulation", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes (10.4%)", "risk": "hot flashes", "src": [1] },
+        { "at": "eyes", "op": "warn", "say": "blurring, spots or flashes (1.5%), sometimes long-lasting or permanent", "risk": "vision warning", "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "multiple pregnancy in about 8% of pregnancies in trials", "risk": "multiple pregnancy", "src": [1] },
+        { "at": "testes", "op": "warn", "say": "testicular tumors and breast enlargement reported in men (label reports)", "risk": "tumor reports in men", "src": [1] }
+      ],
+      "dirs": { "lh": "up", "fsh": "up", "testosterone": "up", "semen": "watch", "igf1": "down", "estradiol": "up", "hematocrit": "watch" },
+      "ask": ["Which vision changes mean I should stop and get checked?"]
+    },
+    "collagen": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "skin", "op": "is", "say": "better hydration and elasticity overall, but none in independent or high-quality trials", "src": [2] },
+        { "at": "skin", "op": "is", "say": "a 19-trial pooling: better hydration and brightness, modest on wrinkles, wide variation", "src": [3] },
+        { "at": "joints · fluid", "op": "is", "say": "less osteoarthritis stiffness and lower overall scores; pain and function didn't improve", "src": [4] },
+        { "at": "stomach", "op": "warn", "say": "mild stomach discomfort in isolated cases; no severe side effects in trials", "risk": "stomach discomfort", "src": [3] }
+      ],
+      "dirs": {},
+      "ask": ["Is the evidence for collagen strong enough to justify trying it for my skin or joints, compared with better-studied options?"]
+    },
+    "coq10": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "mitochondria", "op": "is", "say": "a cofactor cells need to make energy; it also acts as an antioxidant", "src": [1] },
+        { "at": "heart", "op": "down", "say": "fewer major heart events and deaths over 2 years in one 420-person heart failure trial", "src": [2, 1] },
+        { "at": "heart", "op": "is", "say": "symptoms and heart measures unchanged at 16 weeks; NIH calls the evidence inconclusive", "src": [2, 1] },
+        { "at": "brain", "op": "down", "say": "may mean fewer, shorter migraines, not milder ones (little evidence, small effects)", "src": [3] },
+        { "at": "muscle", "op": "is", "say": "no relief of statin muscle pain in 7 pooled trials (321 people)", "src": [4] },
+        { "at": "blood", "op": "warn", "say": "may interact with the blood thinner warfarin, so INR may need extra checks", "markers": ["inr"], "risk": "warfarin interaction", "src": [1] },
+        { "at": "blood sugar", "op": "warn", "say": "may interact with insulin, so blood sugar may need extra checks", "markers": ["glucose"], "risk": "insulin interaction", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "may not be compatible with some cancer treatments", "risk": "cancer treatment interaction", "src": [1] }
+      ],
+      "dirs": { "inr": "watch", "glucose": "watch" },
+      "ask": ["Do I need extra INR or blood sugar checks if I take it with warfarin or insulin?"]
+    },
+    "creatine": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "up", "say": "muscle creatine stores rise, used to remake ATP (cell energy) in intense effort", "src": [1, 3] },
+        { "at": "muscle", "op": "up", "say": "bigger strength gains than training alone, under 50 (23 trials, mostly men)", "src": [2] },
+        { "at": "muscle", "op": "up", "say": "better performance in repeated short, intense bursts like sprints and lifts", "src": [1, 3] },
+        { "at": "muscle", "op": "up", "say": "more lean mass and slightly more strength with training in adults over 50", "src": [4] },
+        { "at": "muscle", "op": "is", "say": "little value for endurance; gains in women not significant (only 3 trials)", "src": [1, 3, 2] },
+        { "at": "kidneys", "op": "up", "say": "creatinine rises, so kidney tests can look worse than they are", "markers": ["kidney"], "src": [5] },
+        { "at": "kidneys", "op": "watch", "say": "checked in older or ill long-term users; cystatin C avoids the creatinine effect", "markers": ["kidney"], "src": [] },
+        { "at": "fat", "op": "warn", "say": "weight gain, mainly from water retention", "risk": "water weight gain", "src": [1] },
+        { "at": "kidneys", "op": "warn", "say": "little safety data in kidney disease; reviewers advise against it if function is very low", "risk": "kidney disease caution", "src": [5] }
+      ],
+      "dirs": { "kidney": "watch" },
+      "ask": ["Should my kidney function be checked before I start, and should future tests use cystatin C because creatine raises creatinine?"]
+    },
+    "crystagen": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "up", "say": "boosted the growth and maturation of immune cells (rat and lab studies)", "src": [4, 5] },
+        { "at": "immune system", "op": "is", "say": "the thymus, where T cells mature, shrank less after radiation (rat studies)", "src": [4, 5] },
+        { "at": "immune system", "op": "is", "say": "immune tests normalized in 82% vs 56% of weak-immunity elders (developers; unclear design)", "src": [4, 5] },
+        { "at": "blood", "op": "watch", "say": "blood count with white-cell breakdown; developers judged it by immune blood tests", "markers": ["cbc"], "src": [4, 5] },
+        { "at": "immune system", "op": "warn", "say": "could in theory worsen autoimmune disease or work against anti-rejection drugs", "risk": "autoimmune flare risk", "src": [5] }
+      ],
+      "dirs": { "cbc": "watch" },
+      "ask": ["Could this affect any immune condition I have or medicine I take?"]
+    },
+    "curcumin": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "joints · fluid", "op": "down", "say": "less knee osteoarthritis pain, like NSAIDs (small trials, early evidence)", "src": [2, 1] },
+        { "at": "muscle", "op": "down", "say": "less soreness and lower muscle-damage markers after exercise (limited evidence)", "src": [2] },
+        { "at": "liver", "op": "is", "say": "some benefit in early fatty liver studies; unclear which measures improve", "src": [1] },
+        { "at": "liver", "op": "watch", "say": "liver tests if tiredness, dark urine, or yellow skin or eyes appear", "markers": ["liver"], "src": [] },
+        { "at": "liver", "op": "warn", "say": "rare liver injury 1 to 4 months in; 1 of 10 US cases died (case series)", "risk": "liver injury", "src": [3, 1] },
+        { "at": "blood", "op": "warn", "say": "may add to bleeding with blood thinners and NSAIDs; INR rose on warfarin (case report)", "markers": ["inr"], "risk": "bleeding risk", "src": [4] },
+        { "at": "uterus", "op": "warn", "say": "may be unsafe in pregnancy; a monograph advises avoiding it while pregnant or nursing", "risk": "pregnancy caution", "src": [1, 4] }
+      ],
+      "dirs": { "liver": "watch", "inr": "up" },
+      "ask": ["Which liver symptoms should make me stop it and call you?"]
+    },
+    "dapagliflozin": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "kidneys", "op": "block", "say": "blocks SGLT2, so more filtered sugar leaves in the urine", "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "blood sugar falls in type 2 diabetes", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "kidneys", "op": "is", "say": "slower kidney decline and fewer deaths in chronic kidney disease, with or without diabetes", "src": [3, 1] },
+        { "at": "heart", "op": "down", "say": "fewer cardiovascular deaths and heart failure hospital stays in heart failure", "src": [1, 4] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked; a small early eGFR dip is expected, then steadies", "markers": ["kidney"], "src": [1] },
+        { "at": "blood", "op": "warn", "say": "ketoacidosis, even with near-normal blood sugar; ketones checked if suspected", "markers": ["ketones"], "risk": "ketoacidosis risk", "src": [1, 2] },
+        { "at": "blood vessels", "op": "warn", "say": "dehydration, low blood pressure and acute kidney injury, more so in older adults", "risk": "dehydration risk", "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "genital yeast and urinary infections; rare serious ones include Fournier's gangrene", "risk": "genital infection risk", "src": [1, 2] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "down", "ketones": "watch" },
+      "ask": ["Which signs of a genital or urinary infection, or of ketoacidosis, should make me call you right away?"]
+    },
+    "dhea": {
+      "route": "by mouth or vaginal",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "adrenals", "op": "is", "say": "a steroid hormone they make, which the body turns into testosterone and estrogen", "src": [6] },
+        { "at": "blood", "op": "up", "say": "testosterone and estrogen levels rise", "markers": ["testosterone", "estradiol"], "src": [6] },
+        { "at": "urinary · genital", "op": "down", "say": "prescription vaginal form eased painful sex after menopause in two 12-week trials", "src": [3] },
+        { "at": "brain", "op": "up", "say": "slightly better sexual function than placebo in menopausal women (small trials)", "src": [5] },
+        { "at": "brain", "op": "is", "say": "no better quality of life than placebo across 28 trials in menopausal women", "src": [5] },
+        { "at": "adrenals", "op": "up", "say": "slightly better quality of life and mood in adrenal insufficiency; not advised routinely", "src": [6] },
+        { "at": "muscle", "op": "is", "say": "no gain in strength or muscle in two small trials in men", "src": [1] },
+        { "at": "blood", "op": "down", "say": "HDL, the good cholesterol, falls with oral use in postmenopausal women", "markers": ["lipids"], "src": [6] },
+        { "at": "skin", "op": "warn", "say": "acne and other male-pattern effects in about 15% of women vs under 3% on placebo", "risk": "androgenic side effects", "src": [5, 1] },
+        { "at": "whole body", "op": "warn", "say": "raises estrogen, a concern in breast or other hormone-sensitive cancers", "risk": "hormone-sensitive cancer", "src": [6] },
+        { "at": "liver", "op": "warn", "say": "some evidence suggests even short-term use may cause harm, such as liver damage", "risk": "liver damage", "src": [7] }
+      ],
+      "dirs": { "testosterone": "up", "estradiol": "up", "lipids": "watch" },
+      "ask": ["Should my cholesterol or hormone levels be checked before and during use?"]
+    },
+    "dihexa": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "binds HGF, boosting signaling through c-Met (lab studies; never tested in people)", "src": [5, 1] },
+        { "at": "brain", "op": "up", "say": "new synapses grew between nerve cells in the hippocampus (lab studies)", "src": [5] },
+        { "at": "brain", "op": "up", "say": "better spatial learning in a water maze, lost when HGF was blocked (rodent study)", "src": [5] },
+        { "at": "brain", "op": "warn", "say": "strengthens the HGF growth-factor system; long-term effects in people are unknown", "risk": "growth-factor stimulation", "src": [5, 1] }
+      ],
+      "dirs": {},
+      "ask": ["Could a compound that boosts a growth-factor pathway be risky given my personal or family cancer history?"]
+    },
+    "dsip": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "crosses from blood into the brain, but enzymes break it down within minutes", "src": [6] },
+        { "at": "brain", "op": "up", "say": "better sleep continuity in small early insomnia studies, mostly from one group", "src": [6] },
+        { "at": "brain", "op": "is", "say": "little or no sleep benefit in two small placebo-controlled trials", "src": [6] },
+        { "at": "blood vessels", "op": "warn", "say": "blood pressure dropped at the first injection in 2 of 107 people (1984 study)", "risk": "blood pressure drop", "src": [4] },
+        { "at": "brain", "op": "warn", "say": "anxiety and marked insomnia returned on stopping (alcohol and opioid withdrawal studies)", "risk": "rebound insomnia", "src": [4, 6] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to clumped peptide or impurities, FDA says", "risk": "immune reaction risk", "src": [4] }
+      ],
+      "dirs": {},
+      "ask": ["Is my blood pressure low enough that a further drop could be a problem?"]
+    },
+    "dulaglutide": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GLP-1 receptors: more insulin, less glucagon when blood sugar is high", "src": [1] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows, which can change warfarin absorption, so INR is checked", "markers": ["inr"], "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "in type 2 diabetes, HbA1c about 0.7 to 1.1 points lower than placebo", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "heart", "op": "down", "say": "fewer heart attacks, strokes and cardiovascular deaths in type 2 diabetes: 12.0% vs 13.4%", "src": [3, 1] },
+        { "at": "fat", "op": "down", "say": "about 2 to 3 kg more weight lost than placebo or insulin (not approved for weight loss)", "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked in kidney disease if vomiting or diarrhea is severe", "markers": ["kidney"], "src": [1, 2] },
+        { "at": "thyroid", "op": "warn", "say": "boxed warning: thyroid C-cell tumors in rats; unknown in humans", "risk": "thyroid tumor warning", "src": [1] },
+        { "at": "pancreas", "op": "warn", "say": "acute pancreatitis, rarely in bleeding or tissue-destroying forms that can be fatal", "risk": "pancreatitis risk", "src": [1, 2] },
+        { "at": "gallbladder", "op": "warn", "say": "gallstones and gallbladder inflammation, a label warning", "risk": "gallbladder disease", "src": [1] },
+        { "at": "blood sugar", "op": "warn", "say": "low blood sugar is more likely with insulin or a sulfonylurea, so it's checked", "markers": ["glucose"], "risk": "low blood sugar risk", "src": [1] },
+        { "at": "stomach", "op": "warn", "say": "nausea in 12% to 21% versus 5% on placebo, plus diarrhea, vomiting and stomach pain", "risk": "digestive side effects", "src": [1] }
+      ],
+      "dirs": { "inr": "watch", "glucose": "down", "hba1c": "down", "kidney": "watch" },
+      "ask": ["Does my heart risk make dulaglutide's heart benefit relevant to me?"]
+    },
+    "dutasteride": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "prostate", "op": "block", "say": "blocks both enzymes that turn testosterone into DHT; blood DHT falls 85% to 95%", "src": [1] },
+        { "at": "prostate", "op": "down", "say": "enlarged-prostate symptoms ease; urinary retention and surgery less likely", "src": [1, 2] },
+        { "at": "hair", "op": "up", "say": "hair counts rose more than with finasteride (3 trials, 24 weeks; off-label)", "src": [3] },
+        { "at": "prostate", "op": "down", "say": "PSA falls by about half; any confirmed rise from its lowest is evaluated", "markers": ["psa"], "src": [1] },
+        { "at": "testes", "op": "down", "say": "semen volume, sperm count and motility fell after a year; fertility effect unknown", "markers": ["semen"], "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "erection, desire and ejaculation problems; some may persist after stopping", "risk": "sexual side effects", "src": [1, 2] },
+        { "at": "breast", "op": "warn", "say": "breast enlargement or tenderness; male breast cancer reported after approval", "risk": "breast changes", "src": [1] },
+        { "at": "prostate", "op": "warn", "say": "more high-grade prostate cancer (1.0% versus 0.5% on placebo)", "risk": "high-grade prostate cancer", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "depressed mood reported; suicidal thoughts added to EU labels as a precaution", "risk": "mood warning", "src": [1, 4] }
+      ],
+      "dirs": { "psa": "down", "semen": "down" },
+      "ask": ["Given how long dutasteride stays in the body, what should I know about side effects, PSA tests and blood donation?"]
+    },
+    "empagliflozin": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "kidneys", "op": "block", "say": "blocks SGLT2, so more filtered sugar leaves in the urine", "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "blood sugar falls in type 2 diabetes: HbA1c about 0.4 to 0.9 points below placebo", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "heart", "op": "down", "say": "fewer cardiovascular deaths in type 2 diabetes with heart disease: 3.7% vs 5.9% on placebo", "src": [2, 1] },
+        { "at": "heart", "op": "down", "say": "fewer cardiovascular deaths or heart failure hospital stays in heart failure", "src": [3, 1] },
+        { "at": "kidneys", "op": "is", "say": "slower kidney decline in chronic kidney disease, with or without diabetes", "src": [1] },
+        { "at": "fat", "op": "down", "say": "about 2% to 3% more weight lost than placebo in diabetes (not approved for weight loss)", "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked; a small early eGFR dip is expected and usually steadies", "markers": ["kidney"], "src": [1] },
+        { "at": "feet", "op": "watch", "say": "foot sores and infections watched; amputations not significantly raised across 4 trials", "src": [1] },
+        { "at": "blood", "op": "warn", "say": "ketoacidosis, even when blood sugar isn't very high; ketones checked if suspected", "markers": ["ketones"], "risk": "ketoacidosis risk", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "dehydration, low blood pressure and acute kidney injury, more so in older adults", "risk": "dehydration risk", "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "genital yeast and urinary infections; rare serious ones include Fournier's gangrene", "risk": "genital infection risk", "src": [1] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "down", "ketones": "watch" },
+      "ask": ["Which symptoms of ketoacidosis or a genital infection should make me call you right away?"]
     },
     "enclomiphene": {
       "route": "pill",
+      "checked": "2026-10-28",
       "lines": [
         { "at": "hypothalamus", "op": "block", "say": "blocks estrogen's feedback (it's a SERM)", "src": [5] },
         { "at": "pituitary", "op": "up", "say": "LH and FSH rise", "markers": ["lh", "fsh"], "src": [5] },
-        { "at": "liver", "op": "down", "say": "IGF-1 falls (more than with testosterone gel, in a trial)", "markers": ["igf1"], "src": [10, 9] },
-        { "at": "testes", "op": "up", "say": "testosterone rises, and sperm production keeps going", "markers": ["testosterone", "semen"], "src": [5] },
-        { "at": "blood", "op": "up", "say": "estradiol, hematocrit and PSA can rise", "markers": ["estradiol", "hematocrit", "psa"], "src": [4, 5] },
-        { "at": "veins", "op": "warn", "say": "blood clots, flagged by US and European regulators", "risk": "clot warning", "src": [4, 6] }
+        { "at": "testes", "op": "up", "say": "testosterone rises", "markers": ["testosterone"], "src": [5] },
+        { "at": "testes", "op": "is", "say": "sperm counts held up better than on testosterone gel (pooled trials)", "markers": ["semen"], "src": [5] },
+        { "at": "brain", "op": "is", "say": "no clinically meaningful gain in symptoms or signs of low testosterone, FDA found", "src": [4] },
+        { "at": "liver", "op": "down", "say": "IGF-1 falls, more than with testosterone gel (small trial)", "markers": ["igf1"], "src": [10] },
+        { "at": "blood", "op": "up", "say": "estradiol and hematocrit can rise", "markers": ["estradiol", "hematocrit"], "src": [4, 5] },
+        { "at": "prostate", "op": "up", "say": "PSA can rise; a few trial participants stopped because of it", "markers": ["psa"], "src": [4, 5] },
+        { "at": "veins", "op": "warn", "say": "blood clots, flagged by US and European regulators", "risk": "clot warning", "src": [4, 6] },
+        { "at": "eyes", "op": "warn", "say": "possible vision effects, as with clomiphene; cataracts in animal studies", "risk": "vision warning", "src": [7, 4] }
       ],
-      "dirs": { "lh": "up", "fsh": "up", "igf1": "down", "testosterone": "up", "estradiol": "up", "hematocrit": "up", "psa": "up", "semen": "watch" }
+      "dirs": { "lh": "up", "fsh": "up", "testosterone": "up", "semen": "watch", "igf1": "down", "estradiol": "up", "hematocrit": "up", "psa": "up" },
+      "ask": ["Which blood tests, such as estradiol, hematocrit and PSA, should we check, and how often?"]
+    },
+    "epithalon": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "modeled on epithalamin, an extract of cattle pineal glands", "src": [3] },
+        { "at": "brain", "op": "up", "say": "melatonin rose to age-typical levels in 40 women with low levels (small trial)", "src": [3] },
+        { "at": "brain", "op": "up", "say": "evening melatonin rose over fourfold in older monkeys (monkey study)", "src": [3] },
+        { "at": "brain", "op": "is", "say": "the melatonin trial didn't measure sleep; FDA found no evidence it helps insomnia", "src": [3] },
+        { "at": "whole body", "op": "warn", "say": "activates telomerase (lab studies), which FDA says could cause cancer long term", "risk": "cancer risk", "src": [3] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to the peptide or its impurities and clumps, FDA says", "risk": "immune reaction risk", "src": [3] }
+      ],
+      "dirs": {},
+      "ask": ["Does my personal or family cancer history change the picture, given the telomerase concern?"]
+    },
+    "estradiol": {
+      "route": "pill or on the skin",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "down", "say": "LH and FSH, high after menopause, fall; FSH and estradiol levels don't guide treatment", "markers": ["lh", "fsh"], "src": [1] },
+        { "at": "ovaries", "op": "is", "say": "replaces the estrogen they make when they fail or are removed", "src": [1] },
+        { "at": "blood vessels", "op": "down", "say": "hot flashes cut by about 75% versus placebo, and night sweats eased", "src": [5, 4] },
+        { "at": "urinary · genital", "op": "is", "say": "treats vaginal dryness and thinning after menopause", "src": [1] },
+        { "at": "bone", "op": "is", "say": "approved to prevent osteoporosis after menopause when non-estrogen drugs can't be used", "src": [1] },
+        { "at": "thyroid", "op": "watch", "say": "thyroid function checked in people on thyroid hormone, as its binding protein rises", "markers": ["thyroid"], "src": [1] },
+        { "at": "blood", "op": "watch", "say": "triglycerides checked if they are known to be high", "markers": ["triglycerides"], "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "without a progestogen, endometrial cancer is 2 to 12 times likelier (boxed warning)", "risk": "endometrial cancer warning", "src": [4, 1] },
+        { "at": "veins", "op": "warn", "say": "tablets raised clots, patches and gels didn't (UK study); related hormones raised stroke", "risk": "clot and stroke risk", "src": [8, 6] },
+        { "at": "breast", "op": "warn", "say": "breast cancer risk rises with longer use, and more with a progestogen added", "risk": "breast cancer risk", "src": [6, 9] },
+        { "at": "gallbladder", "op": "warn", "say": "gallbladder disease needing surgery, 2 to 4 times more often in estrogen users", "risk": "gallbladder disease", "src": [1, 6] }
+      ],
+      "dirs": { "lh": "down", "fsh": "down", "thyroid": "watch", "triglycerides": "watch" },
+      "ask": ["Would a patch or gel be safer for me than a tablet, given my clot and stroke risk?"]
+    },
+    "exemestane": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "fat", "op": "block", "say": "blocks aromatase, the enzyme that makes estrogen, irreversibly", "src": [1] },
+        { "at": "blood", "op": "down", "say": "estrogen falls 85% to 95% at peak; estradiol fell about 38% in 12 young men", "markers": ["estradiol"], "src": [1, 4] },
+        { "at": "breast", "op": "is", "say": "treats estrogen receptor-positive breast cancer after menopause, following tamoxifen", "src": [1] },
+        { "at": "breast", "op": "down", "say": "invasive breast cancer fell from 0.55% to 0.19% a year in at-risk women (off-label)", "src": [3] },
+        { "at": "testes", "op": "up", "say": "testosterone rose about 60% over 10 days in 12 young men (off-label; small study)", "markers": ["testosterone"], "src": [4] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes (21%)", "risk": "hot flashes", "src": [1] },
+        { "at": "joints · fluid", "op": "warn", "say": "joint pain (15%), more often than with tamoxifen or placebo", "risk": "joint pain", "src": [1, 3] },
+        { "at": "bone", "op": "warn", "say": "bone thins over time, with more fractures than on tamoxifen; vitamin D checked first", "markers": ["vitd"], "risk": "bone loss", "src": [1] },
+        { "at": "heart", "op": "warn", "say": "more ischemic heart events than with tamoxifen (1.6% versus 0.6%)", "risk": "heart events", "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "can harm a fetus; not meant for women before menopause", "risk": "fetal harm", "src": [1] }
+      ],
+      "dirs": { "estradiol": "down", "testosterone": "up", "vitd": "watch" },
+      "ask": ["Should I have a bone density scan and vitamin D test before starting?"]
+    },
+    "exenatide": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GLP-1 receptors: more insulin, less excess glucagon when blood sugar is high", "src": [1, 2] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows; nausea in 44% versus 18% on placebo, plus vomiting and diarrhea", "src": [1, 2] },
+        { "at": "blood sugar", "op": "down", "say": "about 0.5 to 1.0 points lower HbA1c than placebo; antibodies can weaken this", "markers": ["glucose", "hba1c"], "src": [1, 2] },
+        { "at": "heart", "op": "is", "say": "no rise in heart attacks, strokes or cardiovascular deaths in 14,752 adults; no fall shown", "src": [2] },
+        { "at": "fat", "op": "down", "say": "0.3 to 2.7 kg more weight lost than placebo (not approved for weight loss)", "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked if vomiting or diarrhea is severe; dehydration can injure them", "markers": ["kidney"], "src": [1, 2] },
+        { "at": "thyroid", "op": "warn", "say": "boxed warning (extended-release form): thyroid C-cell tumors in rats; unknown in humans", "risk": "thyroid tumor warning", "src": [2] },
+        { "at": "pancreas", "op": "warn", "say": "pancreatitis, a rare serious reaction", "risk": "pancreatitis risk", "src": [1, 2] },
+        { "at": "gallbladder", "op": "warn", "say": "gallbladder disease such as gallstones, a label warning", "risk": "gallbladder disease", "src": [1, 2] },
+        { "at": "blood sugar", "op": "warn", "say": "low blood sugar is more likely with insulin or a sulfonylurea, so it's checked", "markers": ["glucose"], "risk": "low blood sugar risk", "src": [1] },
+        { "at": "blood", "op": "warn", "say": "rare drug-caused low platelets, sometimes fatal bleeding; reports of high INR on warfarin", "markers": ["inr"], "risk": "bleeding risk", "src": [1, 2] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "watch", "inr": "up" },
+      "ask": ["How would we tell if antibodies are making it work less well for me?"]
+    },
+    "finasteride": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "prostate", "op": "block", "say": "blocks the enzyme that turns testosterone into DHT, lowering DHT in blood and scalp", "src": [1, 2] },
+        { "at": "hair", "op": "up", "say": "hair improved in 48% versus 7% on placebo at one year; lost within a year of stopping", "src": [1] },
+        { "at": "prostate", "op": "down", "say": "enlarged-prostate surgery and urinary retention about halved over 4 years", "src": [2] },
+        { "at": "prostate", "op": "down", "say": "PSA falls by about half; any confirmed rise from its lowest is evaluated", "markers": ["psa"], "src": [2, 1] },
+        { "at": "testes", "op": "down", "say": "infertility and poor semen quality reported after approval", "markers": ["semen"], "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "erection, desire and ejaculation problems; some reported to last after stopping", "risk": "sexual side effects", "src": [1, 2] },
+        { "at": "brain", "op": "warn", "say": "suicidal thoughts, a side effect EU regulators confirmed in 2025; depression reported", "risk": "mood warning", "src": [1, 5] },
+        { "at": "prostate", "op": "warn", "say": "more high-grade prostate cancer (1.8% versus 1.1% over 7 years)", "risk": "high-grade prostate cancer", "src": [2] },
+        { "at": "breast", "op": "warn", "say": "breast tenderness or enlargement (2.2% versus 0.7%); male breast cancer reported", "risk": "breast changes", "src": [2] }
+      ],
+      "dirs": { "psa": "down", "semen": "watch" },
+      "ask": ["What sexual or mood changes should I watch for, and what should I do if they happen?"]
+    },
+    "follistatin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "block", "say": "blocks myostatin, a muscle protein that limits muscle growth", "src": [3] },
+        { "at": "muscle", "op": "is", "say": "injected follistatin, the form sold, has no human safety or benefit data", "src": [2, 3] },
+        { "at": "muscle", "op": "up", "say": "walking distance improved over a year in 6 men with myositis given gene therapy", "src": [3] },
+        { "at": "muscle", "op": "up", "say": "4 of 6 patients with Becker muscular dystrophy walked farther after gene therapy", "src": [2] },
+        { "at": "muscle", "op": "is", "say": "biopsies after gene therapy showed less scarring and signs of muscle repair", "src": [2, 3] },
+        { "at": "muscle", "op": "up", "say": "bigger muscles in mice when follistatin was raised (mouse study)", "src": [3] },
+        { "at": "pituitary", "op": "watch", "say": "reproductive hormones monitored in the gene-therapy trial, with no changes seen", "markers": ["fsh", "lh", "testosterone"], "src": [3, 4] }
+      ],
+      "dirs": { "fsh": "watch", "lh": "watch", "testosterone": "watch" },
+      "ask": ["Is there any evidence that injected follistatin builds muscle in healthy people?"]
+    },
+    "fsh": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "recombinant human FSH, the hormone it makes, given from outside", "src": [1, 2] },
+        { "at": "testes", "op": "up", "say": "with hCG, started sperm production in 43% to 80% of men with low LH and FSH (small trials)", "markers": ["semen"], "src": [1, 2] },
+        { "at": "testes", "op": "up", "say": "gonadotropins raised pregnancy 7% to 16% in unexplained male infertility (weak, off-label)", "src": [5, 6] },
+        { "at": "ovaries", "op": "is", "say": "in women who weren't ovulating, 58% ovulated in the first cycle and 81% by the third", "src": [1] },
+        { "at": "pituitary", "op": "watch", "say": "LH, FSH and testosterone checked first, to confirm a pituitary cause", "markers": ["lh", "fsh", "testosterone"], "src": [1, 2] },
+        { "at": "ovaries", "op": "warn", "say": "ovarian hyperstimulation, which can turn serious fast, and multiple pregnancies", "risk": "ovarian hyperstimulation", "src": [1, 2] },
+        { "at": "veins", "op": "warn", "say": "blood clots in veins or arteries, likelier with clotting risk factors", "risk": "clot warning", "src": [1, 2] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions, including anaphylaxis", "risk": "allergic reactions", "src": [1] },
+        { "at": "breast", "op": "warn", "say": "in men, breast enlargement in 6%; one case needed surgery", "risk": "breast enlargement", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "in men, acne in 27% and injection-site pain in 11%", "risk": "acne in men", "src": [1] }
+      ],
+      "dirs": { "semen": "up", "lh": "watch", "fsh": "watch", "testosterone": "watch" },
+      "ask": ["Do my hormone tests show a pituitary cause, so that FSH with hCG could work for me?"]
+    },
+    "ghkcu": {
+      "route": "on the skin or injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "skin", "op": "up", "say": "raises collagen and elastin production (mostly lab studies)", "src": [7] },
+        { "at": "skin", "op": "is", "say": "fewer fine lines with copper-peptide creams (small, mostly not peer-reviewed studies)", "src": [6] },
+        { "at": "skin", "op": "is", "say": "faster wound healing, with more new blood vessels and collagen (animal studies)", "src": [6] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to the injected peptide, its clumps or impurities, FDA says", "risk": "immune reaction risk", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["What are the risks of injecting a peptide that FDA says may cause immune reactions?"]
+    },
+    "ghrp2": {
+      "route": "injection or nasal spray",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts on the ghrelin receptor to prompt growth hormone release", "src": [6, 9] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone secretion roughly doubled in children given a nasal form", "src": [9] },
+        { "at": "liver", "op": "is", "say": "IGF-1 didn't rise in nine healthy men taking it alone (small study)", "markers": ["igf1"], "src": [7] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rose in 14 men on testosterone taking it with sermorelin and GHRP-6", "markers": ["igf1"], "src": [7] },
+        { "at": "brain", "op": "up", "say": "appetite and food intake rose in lean and obese adults", "src": [6] },
+        { "at": "adrenals", "op": "up", "say": "cortisol rises, a class effect of ghrelin-type drugs per a review", "markers": ["cortisol"], "src": [9] },
+        { "at": "blood sugar", "op": "watch", "say": "FDA has reports of higher insulin needs; blood sugar and HbA1c are tracked", "markers": ["glucose", "hba1c"], "src": [1, 6] },
+        { "at": "pancreas", "op": "warn", "say": "FDA cites reports of pancreatitis and infection; causality not established", "risk": "pancreatitis report", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "FDA flags possible immune reactions from aggregation and impurities", "risk": "immune reaction risk", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "FDA cites deaths of critically ill study subjects; causality not established", "risk": "deaths in critical illness", "src": [1] }
+      ],
+      "dirs": { "igf1": "up", "cortisol": "up", "glucose": "watch", "hba1c": "watch" },
+      "ask": ["Would the appetite and cortisol effects work against my goals?"]
+    },
+    "ghrp6": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts on the ghrelin receptor to prompt growth hormone release", "src": [6, 8] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone release rose in adults with obesity, though less than in lean adults", "src": [6] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rose in 14 men on testosterone taking it with GHRP-2 and sermorelin", "markers": ["igf1"], "src": [7] },
+        { "at": "brain", "op": "up", "say": "more stage 2 sleep with higher growth hormone in 7 healthy young men (small study)", "src": [6] },
+        { "at": "brain", "op": "up", "say": "appetite rises, a class effect of ghrelin-type drugs per a review", "src": [8] },
+        { "at": "adrenals", "op": "up", "say": "brief rises in cortisol and ACTH (stress hormones)", "markers": ["cortisol"], "src": [6] },
+        { "at": "fat", "op": "up", "say": "fat gain reported with the extra appetite, as a class effect", "src": [8] },
+        { "at": "blood sugar", "op": "watch", "say": "FDA flags higher blood sugar from reduced insulin sensitivity", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "FDA cites possible immune reactions from aggregation and impurities", "risk": "immune reaction risk", "src": [1] }
+      ],
+      "dirs": { "igf1": "up", "cortisol": "up", "glucose": "watch", "hba1c": "watch" },
+      "ask": ["Would the appetite and cortisol effects work against my goals?"]
+    },
+    "glutathione": {
+      "route": "by mouth or infusion",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood", "op": "is", "say": "an antioxidant the body makes and keeps in blood and tissues", "src": [4, 6] },
+        { "at": "blood", "op": "up", "say": "taken by mouth, body stores rose up to about 35% over 6 months (54-person trial)", "src": [4] },
+        { "at": "liver", "op": "down", "say": "ALT, triglycerides and ferritin fell in a 29-person fatty liver study (uncontrolled)", "markers": ["liver", "triglycerides", "ferritin"], "src": [5] },
+        { "at": "blood sugar", "op": "up", "say": "in a 29-person fatty liver study, HbA1c rose overall (uncontrolled)", "markers": ["hba1c"], "src": [5] },
+        { "at": "skin", "op": "is", "say": "some lightening with oral and topical forms (small trials, inconsistent results)", "src": [6] },
+        { "at": "liver", "op": "watch", "say": "liver enzymes checked before and during use for liver disease; they rose in some", "markers": ["liver"], "src": [5] },
+        { "at": "liver", "op": "warn", "say": "liver injury reported with IV use for skin lightening", "risk": "liver injury", "src": [6] },
+        { "at": "immune system", "op": "warn", "say": "severe allergic reactions, including anaphylaxis, reported with IV use", "risk": "severe allergic reactions", "src": [6] },
+        { "at": "gut", "op": "warn", "say": "mild, short-lived gas or loose stools with oral forms", "risk": "stomach upset", "src": [6] }
+      ],
+      "dirs": { "liver": "watch", "triglycerides": "down", "ferritin": "down", "hba1c": "up" },
+      "ask": ["Should my liver enzymes be checked before and during use?"]
+    },
+    "glycine": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "hypothalamus", "op": "is", "say": "may aid sleep via NMDA receptors in the body clock (needs more study)", "src": [2] },
+        { "at": "brain", "op": "up", "say": "better self-rated sleep, less daytime sleepiness (3 tiny trials at high risk of bias)", "src": [2] },
+        { "at": "blood sugar", "op": "is", "say": "improved in one diabetes trial but worsened in a metabolic syndrome study", "src": [2] },
+        { "at": "brain", "op": "warn", "say": "high single intakes impaired sensory filtering and thinking in healthy adults", "risk": "impaired thinking", "src": [2] }
+      ],
+      "ask": ["Could something treatable, such as sleep apnea or a medicine side effect, be behind my poor sleep?"]
+    },
+    "gonadorelin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "hypothalamus", "op": "is", "say": "a lab-made copy of GnRH, the signal it sends in pulses to the pituitary", "src": [2] },
+        { "at": "pituitary", "op": "up", "say": "LH rises, and FSH to a lesser degree", "markers": ["lh", "fsh"], "src": [2] },
+        { "at": "testes", "op": "up", "say": "pump pulses started sperm production in men born short of GnRH (observational studies)", "markers": ["semen"], "src": [6, 7] },
+        { "at": "testes", "op": "is", "say": "lasts only minutes, so occasional injections may not do what pump pulses do", "src": [2] },
+        { "at": "pituitary", "op": "watch", "say": "LH, FSH and testosterone or estradiol tracked in fertility care; no set checks off-label", "markers": ["lh", "fsh", "testosterone", "estradiol"], "src": [6, 7] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions, from hives and injection-site hardening to trouble breathing", "risk": "allergic reactions", "src": [1, 6] },
+        { "at": "whole body", "op": "warn", "say": "repeated use may raise sex hormones and worsen hormone-dependent tumors", "risk": "hormone-sensitive cancer", "src": [1] },
+        { "at": "pituitary", "op": "warn", "say": "in a rare pituitary tumor, it may cause pituitary problems and sudden blindness", "risk": "pituitary tumor risk", "src": [1] }
+      ],
+      "dirs": { "lh": "up", "fsh": "up", "semen": "up", "testosterone": "watch", "estradiol": "watch" },
+      "ask": ["If I am on testosterone, is there any evidence that gonadorelin injections keep my testes working?"]
+    },
+    "hcg": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "testes", "op": "is", "say": "acts like LH, so it treats low testosterone when the pituitary is the cause", "src": [1] },
+        { "at": "ovaries", "op": "is", "say": "after menotropins, triggers ovulation in some infertile women", "src": [1] },
+        { "at": "testes", "op": "is", "say": "approved for undescended testes in boys; a 2025 guideline advises against it", "src": [1, 5] },
+        { "at": "testes", "op": "is", "say": "kept testes' testosterone near normal in 29 men on testosterone; no sperm data (off-label)", "src": [4] },
+        { "at": "fat", "op": "is", "say": "not shown to help obesity; FDA says hCG-diet weight loss comes from the diet", "src": [1, 3] },
+        { "at": "pituitary", "op": "watch", "say": "LH, FSH and morning testosterone checked first, to confirm the cause", "markers": ["lh", "fsh", "testosterone"], "src": [] },
+        { "at": "testes", "op": "watch", "say": "testosterone, and semen if fertility is the goal, show whether they respond", "markers": ["testosterone", "semen"], "src": [] },
+        { "at": "ovaries", "op": "warn", "say": "ovarian hyperstimulation and multiple pregnancy when used to induce ovulation", "risk": "ovarian hyperstimulation", "src": [1] },
+        { "at": "breast", "op": "warn", "say": "breast enlargement in men", "risk": "breast enlargement", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "blood clots in arteries have been reported", "risk": "arterial clots", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions, including anaphylaxis", "risk": "allergic reactions", "src": [1] }
+      ],
+      "dirs": { "lh": "watch", "fsh": "watch", "testosterone": "watch", "semen": "watch" },
+      "ask": ["Is my low testosterone caused by a pituitary problem that hCG could treat?"]
+    },
+    "hexarelin": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts on the ghrelin receptor to prompt growth hormone release", "src": [5, 6] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone rose through the night in 7 healthy men (small study)", "src": [5] },
+        { "at": "bone", "op": "up", "say": "growth sped up in 8 short children given a nasal form (small study)", "src": [5] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rose in the same 8 short children over up to 8 months (small study)", "markers": ["igf1"], "src": [5] },
+        { "at": "pituitary", "op": "up", "say": "prolactin rose overnight in 7 healthy men (small study)", "markers": ["prolactin"], "src": [5] },
+        { "at": "adrenals", "op": "up", "say": "cortisol rises, a class effect of ghrelin-type drugs per a review", "markers": ["cortisol"], "src": [6] },
+        { "at": "brain", "op": "up", "say": "appetite rises, a class effect of ghrelin-type drugs per a review", "src": [6] },
+        { "at": "blood sugar", "op": "watch", "say": "blood sugar tracked for this drug class, which can raise it", "markers": ["glucose", "hba1c"], "src": [5] },
+        { "at": "brain", "op": "warn", "say": "deep sleep was shorter in the first half of the night in 7 healthy men", "risk": "sleep disruption", "src": [5] }
+      ],
+      "dirs": { "igf1": "up", "prolactin": "up", "cortisol": "up", "glucose": "watch", "hba1c": "watch" },
+      "ask": ["Could it affect my sleep, blood sugar or cortisol, and how would we check?"]
+    },
+    "hghfrag": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "fat", "op": "is", "say": "tail of growth hormone; fat-loss data are from related AOD-9604 (never tested in people)", "src": [6, 7, 8, 9] },
+        { "at": "fat", "op": "is", "say": "related AOD-9604 cut weight gain and body fat in obese mice and rats (animal studies)", "src": [6, 7] },
+        { "at": "fat", "op": "is", "say": "related AOD-9604 gave no more weight loss than placebo in a 502-person trial", "src": [11] },
+        { "at": "liver", "op": "is", "say": "no change in IGF-1 in human trials of related AOD-9604, unlike growth hormone", "src": [8] },
+        { "at": "blood sugar", "op": "is", "say": "no change in glucose tolerance in human trials of related AOD-9604", "src": [8] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions, which FDA cites for related AOD-9604", "risk": "immune reaction risk", "src": [2] },
+        { "at": "whole body", "op": "warn", "say": "serious adverse events of unclear cause, which FDA cites for related AOD-9604", "risk": "serious adverse events", "src": [2] }
+      ],
+      "dirs": {},
+      "ask": ["Which approved weight-loss options fit my situation, and how does their evidence compare with a peptide that has no proven effect in people?"]
+    },
+    "hmg": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "FSH and LH activity like its own, from women's urine; most LH activity comes from hCG", "src": [1] },
+        { "at": "ovaries", "op": "is", "say": "supports multiple-egg development for IVF; pregnancies no worse than recombinant FSH", "src": [1] },
+        { "at": "testes", "op": "up", "say": "gonadotropins started sperm production in about 75% of men with low LH and FSH (off-label)", "markers": ["semen"], "src": [3] },
+        { "at": "testes", "op": "is", "say": "earlier testosterone didn't lower success here; says nothing about recovery after steroids", "src": [3] },
+        { "at": "ovaries", "op": "watch", "say": "ultrasound and estradiol track how they respond", "markers": ["estradiol"], "src": [1] },
+        { "at": "pituitary", "op": "watch", "say": "FSH checked first to rule out ovarian failure; in men, LH and testosterone too", "markers": ["fsh", "lh", "testosterone"], "src": [1, 3] },
+        { "at": "ovaries", "op": "warn", "say": "ovarian hyperstimulation in 7.2%, and 35% of pregnancies were multiples, in a trial", "risk": "ovarian hyperstimulation", "src": [1] },
+        { "at": "veins", "op": "warn", "say": "blood clots and lung complications, with rare deaths", "risk": "clot warning", "src": [1] }
+      ],
+      "dirs": { "semen": "watch", "estradiol": "watch", "fsh": "watch", "lh": "watch", "testosterone": "watch" },
+      "ask": ["Is my infertility caused by low pituitary hormones, so that gonadotropins could help?"]
+    },
+    "humanin": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "mitochondria", "op": "is", "say": "a peptide from their own DNA that protects cells (lab studies; never tested in people)", "src": [3, 4] },
+        { "at": "brain", "op": "is", "say": "protected nerve cells from amyloid-beta, the Alzheimer's protein (cell studies)", "src": [3] },
+        { "at": "blood sugar", "op": "is", "say": "improved insulin action (rat studies)", "src": [3] },
+        { "at": "heart", "op": "down", "say": "less heart damage after an induced heart attack (mouse studies)", "src": [3] },
+        { "at": "blood vessels", "op": "down", "say": "less artery plaque (mouse studies)", "src": [3] },
+        { "at": "fat", "op": "down", "say": "its analog HNG lowered visceral fat but didn't extend lifespan (mouse study)", "src": [4] },
+        { "at": "whole body", "op": "warn", "say": "unclear effects on tumor growth and spread; the studies are inconclusive", "risk": "unclear cancer effects", "src": [3] },
+        { "at": "whole body", "op": "warn", "say": "smaller bodies and fewer offspring in worms and mice with more humanin (animal studies)", "risk": "fewer offspring in animals", "src": [4] }
+      ],
+      "dirs": {},
+      "ask": ["Is there any human evidence that taking humanin is safe or helpful?"]
+    },
+    "igf1des": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "is", "say": "a shortened IGF-1 made to act more strongly; no human studies were found", "src": [5] },
+        { "at": "blood", "op": "is", "say": "escapes the binding proteins that buffer IGF-1, so it acts more strongly (lab studies)", "src": [5] },
+        { "at": "muscle", "op": "is", "say": "taken by athletes for muscle growth, with little evidence it improves performance", "src": [5] },
+        { "at": "blood sugar", "op": "warn", "say": "the approved IGF-1 drug warns of severe low blood sugar, including seizures", "markers": ["glucose"], "risk": "low blood sugar warning", "src": [7] },
+        { "at": "whole body", "op": "warn", "say": "approved drugs that raise IGF-1 warn about tumor growth in people with cancer", "risk": "tumor growth risk", "src": [6] }
+      ],
+      "dirs": { "glucose": "down" },
+      "ask": ["Given my cancer history and blood sugar, is any IGF-1 product safe for me?"]
+    },
+    "igf1lr3": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "is", "say": "an engineered IGF-1 made to act more strongly; no human studies were found", "src": [5] },
+        { "at": "blood", "op": "is", "say": "escapes the binding proteins that buffer IGF-1, so it acts more strongly (lab studies)", "src": [5] },
+        { "at": "muscle", "op": "is", "say": "taken by athletes for muscle growth, with little evidence it improves performance", "src": [5] },
+        { "at": "blood sugar", "op": "warn", "say": "the approved IGF-1 drug warns of severe low blood sugar, including seizures", "markers": ["glucose"], "risk": "low blood sugar warning", "src": [7] },
+        { "at": "whole body", "op": "warn", "say": "approved drugs that raise IGF-1 warn about tumor growth in people with cancer", "risk": "tumor growth risk", "src": [6] }
+      ],
+      "dirs": { "glucose": "down" },
+      "ask": ["Given my cancer history and blood sugar, is any IGF-1 product safe for me?"]
+    },
+    "ipamorelin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts on the ghrelin receptor to prompt growth hormone release", "src": [6] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone rose in 48 healthy men, falling back to very low within 6 hours", "src": [6] },
+        { "at": "stomach", "op": "up", "say": "stomach and gut movement is stimulated", "src": [6] },
+        { "at": "muscle", "op": "is", "say": "no human data for injection under the skin, the way it is used today", "src": [1, 6] },
+        { "at": "gut", "op": "is", "say": "its main goal in a 117-patient surgery trial, time to first tolerated meal, wasn't met", "src": [6] },
+        { "at": "blood sugar", "op": "up", "say": "high blood sugar at discharge was more common than with placebo in the trial", "markers": ["glucose", "hba1c"], "src": [6] },
+        { "at": "blood", "op": "down", "say": "low potassium was more common than with placebo in the surgery trial", "markers": ["potassium"], "src": [6] },
+        { "at": "liver", "op": "watch", "say": "IGF-1 checked, as with other drugs that raise growth hormone", "markers": ["igf1"], "src": [8] },
+        { "at": "immune system", "op": "warn", "say": "FDA flags possible immune reactions from aggregation and impurities", "risk": "immune reaction risk", "src": [1, 6] },
+        { "at": "whole body", "op": "warn", "say": "two deaths and serious complications in the surgery trial; causality not reported", "risk": "deaths in a trial", "src": [1, 6] }
+      ],
+      "dirs": { "glucose": "up", "hba1c": "watch", "potassium": "down", "igf1": "watch" },
+      "ask": ["Since the only treatment trial failed and there are no human data for injection under the skin, what would make this worth the risk for me?"]
+    },
+    "iron": {
+      "route": "pill or infusion",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood", "op": "is", "say": "an essential part of hemoglobin, which carries oxygen in red blood cells", "src": [1] },
+        { "at": "blood", "op": "up", "say": "hemoglobin and iron stores rise and anemia falls (67 trials, menstruating women)", "markers": ["ferritin"], "src": [2] },
+        { "at": "muscle", "op": "up", "say": "better exercise performance, less fatigue in menstruating women (limited evidence)", "src": [2] },
+        { "at": "blood", "op": "watch", "say": "blood count and ferritin checked; inflammation can falsely raise ferritin", "markers": ["cbc", "ferritin"], "src": [3] },
+        { "at": "whole body", "op": "warn", "say": "accidental overdose can be fatal in young children", "risk": "child poisoning risk", "src": [1] },
+        { "at": "gut", "op": "warn", "say": "constipation, diarrhea, nausea, metallic taste; bowel effects about doubled", "risk": "bowel side effects", "src": [2, 3, 1] },
+        { "at": "liver", "op": "warn", "say": "iron overload in hemochromatosis can lead to liver cirrhosis and heart disease", "risk": "iron overload", "src": [1] }
+      ],
+      "dirs": { "cbc": "watch", "ferritin": "up" },
+      "ask": ["Do my ferritin and hemoglobin results show that I need iron, and what is causing my deficiency?"]
+    },
+    "kisspeptin": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "hypothalamus", "op": "is", "say": "a piece of the hormone it makes to trigger GnRH, which drives the reproductive chain", "src": [5] },
+        { "at": "pituitary", "op": "up", "say": "LH rises fast in healthy men, and in women near ovulation (small studies)", "markers": ["lh"], "src": [5, 6] },
+        { "at": "pituitary", "op": "is", "say": "no LH rise in women earlier in the menstrual cycle (small study)", "src": [6] },
+        { "at": "testes", "op": "up", "say": "testosterone rose over hours of infusion in healthy men (small studies)", "markers": ["testosterone"], "src": [5] },
+        { "at": "pituitary", "op": "watch", "say": "LH, FSH and testosterone or estradiol checked if a clinician supervises use", "markers": ["lh", "fsh", "testosterone", "estradiol"], "src": [5, 6] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions; FDA lists it as a significant safety risk", "risk": "immune reactions", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "raises sex hormones, which could matter in hormone-sensitive cancers", "risk": "hormone-sensitive cancer", "src": [5] }
+      ],
+      "dirs": { "lh": "up", "testosterone": "up", "fsh": "watch", "estradiol": "watch" },
+      "ask": ["Could raising my sex hormones affect any cancer risk or other condition I have?"]
+    },
+    "kpv": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "down", "say": "dampened inflammation, maybe via NF-kB (cell and rodent studies; never tested in people)", "src": [1] },
+        { "at": "gut", "op": "down", "say": "inflammatory signaling fell in human gut-lining cells (lab studies)", "src": [1] },
+        { "at": "skin", "op": "is", "say": "eased inflammation and helped wounds heal (rodent studies)", "src": [1] },
+        { "at": "skin", "op": "is", "say": "crossed intact human skin poorly unless its barrier was broken (lab studies)", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions if the peptide clumps; FDA had too little data to rule it out", "risk": "immune reaction risk", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["What are the risks of using an unregulated product that has never been tested in people?"]
+    },
+    "ldn": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "block", "say": "blocks opioid receptors; at standard strength it's approved for alcohol dependence", "src": [1] },
+        { "at": "immune system", "op": "block", "say": "may block TLR4 to calm immune cells in the brain and spinal cord (unproven)", "src": [2] },
+        { "at": "nerves", "op": "is", "say": "no pain benefit in a 99-woman fibromyalgia trial, after smaller ones suggested one", "src": [3, 2] },
+        { "at": "gut", "op": "is", "say": "no clear gain in Crohn's remission in two small trials (46 people), low certainty", "src": [4] },
+        { "at": "brain", "op": "warn", "say": "can bring on sudden withdrawal in people on opioids, and block opioid medicines", "risk": "opioid withdrawal", "src": [1, 5] },
+        { "at": "brain", "op": "warn", "say": "opioids used after stopping can cause fatal overdose (label warning; unclear for LDN)", "risk": "opioid overdose risk", "src": [1] },
+        { "at": "liver", "op": "warn", "say": "liver injury is a label warning for standard-strength naltrexone; liver tests at the start", "markers": ["liver"], "risk": "liver injury warning", "src": [1, 5] },
+        { "at": "brain", "op": "warn", "say": "vivid dreams in 39% vs 18% on placebo", "risk": "vivid dreams", "src": [3] }
+      ],
+      "dirs": { "liver": "watch" },
+      "ask": ["Would LDN interfere with any opioid or other medicine I might need, including for surgery or an emergency?"]
+    },
+    "letrozole": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "fat", "op": "block", "say": "blocks aromatase, the enzyme that makes estrogen", "src": [1] },
+        { "at": "blood", "op": "down", "say": "estradiol falls: 75% to 95% within days in women after menopause", "markers": ["estradiol"], "src": [1] },
+        { "at": "breast", "op": "is", "say": "treats hormone receptor-positive breast cancer after menopause", "src": [1] },
+        { "at": "ovaries", "op": "is", "say": "triggers ovulation: more live births than clomiphene in PCOS (off-label)", "src": [3] },
+        { "at": "pituitary", "op": "is", "say": "high estradiol can suppress LH and FSH, so it's used off-label in some infertile men", "markers": ["lh", "fsh"], "src": [4, 5] },
+        { "at": "testes", "op": "up", "say": "testosterone and semen measures improved in men (8 studies of its class; off-label)", "markers": ["testosterone", "semen"], "src": [4] },
+        { "at": "blood", "op": "up", "say": "high cholesterol more often than with tamoxifen (52.3% versus 28.6%)", "markers": ["lipids"], "src": [1] },
+        { "at": "bone", "op": "warn", "say": "bone thins: fractures 14.7% and osteoporosis 5.1%, more than with tamoxifen", "risk": "bone loss", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes (33.5%)", "risk": "hot flashes", "src": [1] },
+        { "at": "joints · fluid", "op": "warn", "say": "joint pain or arthritis (25.4%)", "risk": "joint pain", "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "harm to a fetus: miscarriages and birth defects reported", "risk": "fetal harm", "src": [1] },
+        { "at": "testes", "op": "warn", "say": "may impair male fertility (animal studies)", "risk": "male fertility concern", "src": [1] }
+      ],
+      "dirs": { "estradiol": "down", "lh": "watch", "fsh": "watch", "testosterone": "watch", "semen": "watch", "lipids": "up" },
+      "ask": ["Do I need a bone density scan and cholesterol test before starting, and how will we follow them?"]
+    },
+    "leuprolide": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts like GnRH; given continuously, it shuts down sex hormones and pauses early puberty", "src": [1, 4] },
+        { "at": "testes", "op": "down", "say": "testosterone surges briefly, then falls to castration levels, usually within 4 weeks", "markers": ["testosterone"], "src": [1, 3] },
+        { "at": "prostate", "op": "down", "say": "hormone-lowering therapy like it cut prostate cancer deaths (11 trials); PSA is tracked", "markers": ["psa"], "src": [5, 1] },
+        { "at": "uterus", "op": "is", "say": "eases endometriosis pain and lesions, and fibroid anemia before surgery (with iron)", "src": [2] },
+        { "at": "blood sugar", "op": "up", "say": "can rise, with new or worse diabetes", "markers": ["glucose", "hba1c"], "src": [1, 3, 6] },
+        { "at": "blood", "op": "up", "say": "blood fats can rise, so lipids are checked", "markers": ["lipids"], "src": [1, 3, 6] },
+        { "at": "heart", "op": "watch", "say": "ECG checked if at risk; heart attack, stroke and long QT linked in men, a risk called low", "src": [1, 5, 6] },
+        { "at": "pituitary", "op": "watch", "say": "in children, LH or sex hormones, growth and bone age are checked", "markers": ["lh"], "src": [4] },
+        { "at": "prostate", "op": "warn", "say": "early testosterone surge can flare prostate cancer, even compressing the spinal cord", "risk": "tumor flare", "src": [1] },
+        { "at": "bone", "op": "warn", "say": "women lost about 6% spine density in a year without add-back, some lasting; also in men", "risk": "bone loss", "src": [1, 2] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes and sweats in about half or more of users", "risk": "hot flashes", "src": [1, 2, 3] },
+        { "at": "brain", "op": "warn", "say": "mood changes, depression and seizures; raised skull pressure in children", "risk": "mood changes and seizures", "src": [2, 4, 1, 7] }
+      ],
+      "dirs": { "testosterone": "down", "psa": "watch", "glucose": "up", "hba1c": "up", "lipids": "up", "lh": "watch" },
+      "ask": ["How will we check my blood sugar, cholesterol and heart rhythm while I'm on it?"]
+    },
+    "lions": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "up", "say": "its compounds stimulated nerve growth factor (lab studies)", "src": [1] },
+        { "at": "brain", "op": "up", "say": "better thinking scores in mild cognitive impairment and mild Alzheimer's (2 small trials)", "src": [1] },
+        { "at": "brain", "op": "is", "say": "no lasting memory or thinking gains in healthy adults (small trials)", "src": [1, 2, 3] },
+        { "at": "brain", "op": "down", "say": "lower depression and anxiety scores in two small randomized trials", "src": [1] },
+        { "at": "stomach", "op": "warn", "say": "stomach discomfort, nausea or diarrhea in some trials; reporting often incomplete", "risk": "stomach upset", "src": [1] },
+        { "at": "lungs", "op": "warn", "say": "severe lung reaction (ARDS) in one long-term user, possibly allergic; cause unproven", "risk": "allergic reaction", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Should my memory or mood symptoms be checked before I try a supplement?"]
+    },
+    "liraglutide": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GLP-1 receptors; GLP-1 helps regulate blood sugar and appetite", "src": [1, 2] },
+        { "at": "brain", "op": "down", "say": "appetite falls", "src": [1, 2] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows", "src": [1, 2] },
+        { "at": "blood sugar", "op": "down", "say": "in type 2 diabetes, HbA1c about 0.9 to 1.4 points lower than placebo", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "fat", "op": "down", "say": "8.4 kg less body weight in 56 weeks, versus 2.8 kg on placebo", "src": [7, 2] },
+        { "at": "heart", "op": "down", "say": "fewer heart attacks, strokes and cardiovascular deaths in high-risk type 2 diabetes", "src": [1, 2] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked if vomiting or diarrhea is severe; dehydration can injure them", "markers": ["kidney"], "src": [1, 2] },
+        { "at": "thyroid", "op": "warn", "say": "boxed warning: thyroid C-cell tumors in rats and mice; unknown in humans", "risk": "thyroid tumor warning", "src": [2, 1] },
+        { "at": "pancreas", "op": "warn", "say": "acute pancreatitis: 0.3% versus 0.1% on placebo", "risk": "pancreatitis risk", "src": [8, 2] },
+        { "at": "gallbladder", "op": "warn", "say": "gallstones and gallbladder inflammation; gallstones in 2.2% versus 0.8% on placebo", "risk": "gallbladder disease", "src": [8, 2] },
+        { "at": "blood sugar", "op": "warn", "say": "low blood sugar is more likely with insulin or a sulfonylurea, so it's checked", "markers": ["glucose"], "risk": "low blood sugar risk", "src": [1, 2] },
+        { "at": "stomach", "op": "warn", "say": "nausea in 39% versus 14% on placebo, plus diarrhea, constipation and vomiting", "risk": "digestive side effects", "src": [2] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "watch" },
+      "ask": ["Which symptoms, such as severe stomach pain or a racing heart, mean I should call you?"]
+    },
+    "ll37": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "is", "say": "kills bacteria, some viruses and fungi and recruits immune cells (lab studies)", "src": [5] },
+        { "at": "skin", "op": "is", "say": "spurred skin cells involved in wound repair to move and grow (lab studies)", "src": [5] },
+        { "at": "skin", "op": "is", "say": "a leg-ulcer gel didn't help overall in 144 people, only larger wounds (developer data)", "src": [4] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions, which FDA flags for some routes of use", "risk": "immune reaction risk", "src": [1] },
+        { "at": "testes", "op": "warn", "say": "may harm male reproduction (lab and animal findings, per FDA)", "risk": "male fertility concern", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "may promote tumors in some tissues (lab and animal findings, per FDA)", "risk": "tumor growth signal", "src": [1, 6] },
+        { "at": "immune system", "op": "warn", "say": "could in theory worsen psoriasis or lupus, where it's part of the immune attack", "risk": "autoimmune flare risk", "src": [5] }
+      ],
+      "dirs": {},
+      "ask": ["Do I have an autoimmune or inflammatory condition, such as psoriasis or lupus, that LL-37 could worsen?"]
+    },
+    "ltheanine": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "reaches the brain, reportedly raising alpha waves; how it works isn't fully known", "src": [3] },
+        { "at": "brain", "op": "down", "say": "stress and anxiety may fall under acute stress (small, industry-linked trials)", "src": [3] },
+        { "at": "brain", "op": "up", "say": "better self-rated sleep quality and faster sleep onset (small, industry-linked trials)", "src": [3, 4] },
+        { "at": "brain", "op": "up", "say": "small gains in attention and reaction time, more with caffeine (small trials)", "src": [3] },
+        { "at": "brain", "op": "is", "say": "no longer total sleep; overall scores matched placebo in a 30-person trial", "src": [3, 4] },
+        { "at": "brain", "op": "is", "say": "no sedation in trials; side effects few and mild, at placebo rates", "src": [3] }
+      ],
+      "ask": ["Could L-theanine help my sleep or stress, or should we look for an underlying cause?"]
+    },
+    "mag": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "down", "say": "slightly lower insomnia scores, below a meaningful change (one 4-week trial)", "src": [2] },
+        { "at": "brain", "op": "is", "say": "no change in fatigue, daytime sleepiness, mood or stress (same trial)", "src": [2] },
+        { "at": "blood vessels", "op": "down", "say": "blood pressure fell marginally in trials of magnesium supplements", "src": [1] },
+        { "at": "brain", "op": "down", "say": "possibly fewer migraines; experts rate it possibly to probably effective", "src": [3, 1] },
+        { "at": "blood sugar", "op": "is", "say": "may improve insulin sensitivity in people at high risk; uncertain in diabetes", "src": [4, 1] },
+        { "at": "blood", "op": "watch", "say": "magnesium checked on long-term acid reducers (PPIs); a poor gauge of stores", "markers": ["magnesium"], "src": [1] },
+        { "at": "heart", "op": "warn", "say": "excess can be toxic: low blood pressure, irregular heartbeat, even cardiac arrest", "risk": "magnesium toxicity", "src": [1] },
+        { "at": "kidneys", "op": "warn", "say": "toxicity is more likely when kidney function is impaired", "risk": "kidney disease caution", "src": [1] },
+        { "at": "gut", "op": "warn", "say": "diarrhea, nausea, cramps at high intakes; no more than placebo with glycinate", "risk": "bowel side effects", "src": [1, 3, 2] }
+      ],
+      "dirs": { "magnesium": "watch" },
+      "ask": ["Is my kidney function normal enough for a magnesium supplement?"]
+    },
+    "mazdutide": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GLP-1 and glucagon receptors; its maker calls it an oxyntomodulin analog", "src": [4, 2] },
+        { "at": "fat", "op": "down", "say": "11.0% and 14.0% less body weight in 48 weeks, versus 0.3% on placebo (Chinese adults)", "src": [4] },
+        { "at": "blood sugar", "op": "down", "say": "about 1.4 to 2.0 points lower HbA1c than placebo in type 2 diabetes (company-reported)", "markers": ["hba1c"], "src": [2] },
+        { "at": "liver", "op": "down", "say": "liver enzymes and liver fat lower than on placebo (company-reported)", "markers": ["liver"], "src": [5] },
+        { "at": "blood", "op": "down", "say": "blood fats and uric acid lower than on placebo (company-reported)", "markers": ["lipids", "uricacid"], "src": [5] },
+        { "at": "heart", "op": "watch", "say": "resting heart rate checked, as the semaglutide label calls for", "src": [6] },
+        { "at": "stomach", "op": "warn", "say": "nausea, diarrhea and vomiting, mostly mild to moderate; few stopped over side effects", "risk": "digestive side effects", "src": [4, 5] },
+        { "at": "thyroid", "op": "warn", "say": "approved GLP-1s carry a rodent thyroid tumor warning; unknown whether it applies", "risk": "thyroid tumor warning", "src": [6] }
+      ],
+      "dirs": { "hba1c": "down", "liver": "down", "lipids": "down", "uricacid": "down" },
+      "ask": ["How do approved options, such as semaglutide or tirzepatide, compare for me?"]
+    },
+    "melatonin": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "hypothalamus", "op": "is", "say": "a hormone the brain makes in the dark that times the body clock", "src": [1] },
+        { "at": "brain", "op": "up", "say": "in sleep disorders, asleep about 7 minutes sooner and 8 minutes longer (19 trials)", "src": [5] },
+        { "at": "brain", "op": "up", "say": "asleep about 34 minutes earlier in delayed sleep phase disorder (one trial)", "src": [1] },
+        { "at": "brain", "op": "down", "say": "may ease jet lag, mainly after eastward flights (low-quality evidence)", "src": [1] },
+        { "at": "brain", "op": "down", "say": "less anxiety before surgery than with placebo (review of trials)", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "accidental swallowing by young children: about 11,000 emergency visits in 4 years", "risk": "child poisoning risk", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "next-day drowsiness, especially in older adults; also headache and dizziness", "risk": "next-day drowsiness", "src": [1] }
+      ],
+      "ask": ["Is my sleep problem the kind melatonin may help, such as jet lag or a delayed sleep schedule, or would CBT for insomnia be better?"]
+    },
+    "metformin": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "liver", "op": "down", "say": "makes less sugar", "src": [1] },
+        { "at": "gut", "op": "down", "say": "absorbs less sugar", "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "blood sugar falls in type 2 diabetes as insulin works better; alone it rarely gets too low", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "prediabetes (off-label): 31% fewer new diabetes cases than placebo; lifestyle cut 58%", "src": [2] },
+        { "at": "muscle", "op": "down", "say": "smaller lean-mass gains from strength training in healthy adults 65+ (small trial)", "src": [4] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked, since metformin builds up when the kidneys are weak", "markers": ["kidney"], "src": [1] },
+        { "at": "blood", "op": "warn", "say": "boxed warning: lactic acidosis, a rare but sometimes fatal acid buildup", "risk": "lactic acidosis warning", "src": [1] },
+        { "at": "blood", "op": "warn", "say": "about 7% had low B12 in trials, which can cause anemia; B12 and blood count checked", "markers": ["b12", "cbc"], "risk": "low B12", "src": [1] },
+        { "at": "gut", "op": "warn", "say": "diarrhea, nausea, vomiting, gas and stomach upset are common", "risk": "digestive side effects", "src": [1] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "watch", "b12": "down", "cbc": "watch" },
+      "ask": ["Is there a reason for me to take metformin if I don't have diabetes or prediabetes?"]
+    },
+    "methyleneblue": {
+      "route": "injection or by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood", "op": "is", "say": "helps turn hemoglobin that can't carry oxygen back to normal (approved use)", "src": [1] },
+        { "at": "brain", "op": "up", "say": "7% more correct memory answers than placebo after one use (small study, 26 healthy adults)", "src": [3] },
+        { "at": "brain", "op": "is", "say": "a related compound (LMTM) missed its main goals in an 891-person Alzheimer's trial", "src": [5] },
+        { "at": "blood", "op": "watch", "say": "G6PD tested first, since G6PD deficiency rules it out", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "boxed warning: serious or fatal serotonin syndrome with antidepressants or opioids", "risk": "serotonin syndrome warning", "src": [1] },
+        { "at": "blood", "op": "warn", "say": "red blood cells can break down (hemolytic anemia), especially with G6PD deficiency", "risk": "red-cell breakdown", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "confusion, dizziness and vision problems that can affect driving", "risk": "confusion and dizziness", "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "turns urine blue, which can interfere with urine tests", "risk": "blue urine", "src": [1, 4] }
+      ],
+      "dirs": {},
+      "ask": ["Could methylene blue interact with my antidepressant, pain medicine or other prescriptions, and would stopping either one be safe?"]
+    },
+    "mgf": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "is", "say": "a peptide copying IGF-1Ec, whose existence as a natural peptide isn't established", "src": [6] },
+        { "at": "muscle", "op": "is", "say": "based on the IGF-1 gene, whose product IGF-1 acts on muscle; MGF's added role is disputed", "src": [6] },
+        { "at": "muscle", "op": "is", "say": "used for muscle growth and repair as a doping agent, but untested in people", "src": [5, 6] },
+        { "at": "muscle", "op": "is", "say": "FDA says there are no human exposure data for PEG-MGF", "src": [3] },
+        { "at": "immune system", "op": "warn", "say": "FDA flags a possible significant risk of immune reactions for PEG-MGF", "risk": "immune reaction risk", "src": [3] }
+      ],
+      "dirs": {},
+      "ask": ["What are the risks of injecting a peptide with no human safety data?"]
+    },
+    "minoxidil": {
+      "route": "on the skin or pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "hair", "op": "up", "say": "the scalp form regrows hair on top of the scalp over months; loss resumes if stopped", "src": [1, 2] },
+        { "at": "hair", "op": "is", "say": "tablets for hair loss (off-label) were no better than the scalp form in 90 men", "src": [4] },
+        { "at": "blood vessels", "op": "down", "say": "tablets lower blood pressure in severe, hard-to-control cases", "src": [3] },
+        { "at": "heart", "op": "up", "say": "heart rate can rise, with lightheadedness (about 1% to 2% on tablets for hair)", "src": [5, 3] },
+        { "at": "hair", "op": "warn", "say": "extra face and body hair on tablets: about 80% for blood pressure, 15% to 49% for hair", "risk": "unwanted hair growth", "src": [3, 4, 5] },
+        { "at": "heart", "op": "warn", "say": "tablets' boxed warning: fluid around the heart, sometimes compressing it, and angina", "risk": "boxed heart warning", "src": [3] },
+        { "at": "joints · fluid", "op": "warn", "say": "fluid retention with swelling: 7% on blood pressure tablets, about 1% for hair", "risk": "fluid retention", "src": [3, 5] },
+        { "at": "skin", "op": "warn", "say": "scalp form: scalp irritation and unwanted facial hair", "risk": "scalp irritation", "src": [1, 2] }
+      ],
+      "dirs": {},
+      "ask": ["Would tablets or a scalp product suit me better, given my heart health and blood pressure?"]
+    },
+    "mk677": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "mimics ghrelin, the hormone that triggers growth hormone release", "src": [5] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone rose to young-adult levels over 12 months in adults aged 60 to 81", "src": [5] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rose to young-adult levels in the same trial", "markers": ["igf1"], "src": [5] },
+        { "at": "muscle", "op": "up", "say": "lean mass rose about 1 kg, but strength and function didn't improve", "src": [5] },
+        { "at": "brain", "op": "up", "say": "more deep and REM sleep in two small studies of 8 young and 6 older adults", "src": [7] },
+        { "at": "brain", "op": "up", "say": "appetite rises, usually fading within a few months", "src": [5] },
+        { "at": "blood sugar", "op": "up", "say": "fasting glucose rose and insulin sensitivity fell over a year in older adults", "markers": ["glucose"], "src": [5] },
+        { "at": "fat", "op": "up", "say": "weight rose about 2.7 kg over a year, with more fat on the arms and legs", "src": [5] },
+        { "at": "heart", "op": "warn", "say": "a hip-fracture trial was stopped early over a heart-failure signal, which FDA cites", "risk": "heart failure risk", "src": [1, 6] },
+        { "at": "joints · fluid", "op": "warn", "say": "mild temporary leg swelling and muscle pain, among the most frequent side effects", "risk": "swelling and muscle pain", "src": [5] }
+      ],
+      "dirs": { "igf1": "up", "glucose": "up" },
+      "ask": ["Given FDA's heart-failure concern, should I avoid it?"]
+    },
+    "modafinil": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "promotes wakefulness; how it works is not known", "src": [1] },
+        { "at": "brain", "op": "up", "say": "wakefulness improves in sleepiness from narcolepsy, sleep apnea or shift work", "src": [1] },
+        { "at": "brain", "op": "up", "say": "only small effects on a few kinds of thinking tests in rested adults (small trials)", "src": [2, 3] },
+        { "at": "heart", "op": "watch", "say": "closer checks of heart rate and blood pressure may be appropriate", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "serious rash, including Stevens-Johnson syndrome: rare but can be life-threatening", "risk": "serious rash", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions: angioedema, anaphylaxis, multi-organ ones; at least one death", "risk": "allergy warning", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "psychiatric symptoms; the label urges caution with past psychosis, depression or mania", "risk": "psychiatric effects", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "misuse and dependence: a controlled substance, and prescribers watch for misuse", "risk": "misuse and dependence", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Given my heart and mental-health history, is it safe for me?"]
+    },
+    "modgrf129": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "a modified copy of GHRH's active part, meant to signal growth hormone release", "src": [5, 8] },
+        { "at": "pituitary", "op": "is", "say": "expected to trigger growth hormone release like sermorelin; no study of this peptide", "src": [5, 6] },
+        { "at": "pituitary", "op": "up", "say": "with GHRPs, more growth hormone than either alone (shown with related peptides)", "src": [7] },
+        { "at": "liver", "op": "watch", "say": "IGF-1 checked, as on the label of tesamorelin, which works the same way", "markers": ["igf1"], "src": [9] },
+        { "at": "blood sugar", "op": "watch", "say": "higher blood sugar is a label warning for tesamorelin, which works the same way", "markers": ["glucose", "hba1c"], "src": [9] },
+        { "at": "skin", "op": "is", "say": "untested; the long-acting form often caused injection-site reactions in trials", "src": [8] },
+        { "at": "joints · fluid", "op": "warn", "say": "fluid retention and joint pain are label warnings for tesamorelin, same mechanism", "risk": "swelling and joint pain", "src": [9] },
+        { "at": "pituitary", "op": "warn", "say": "animal studies of CJC-1295 found DNA damage in pituitary cells; no cancer studies", "risk": "DNA damage in animals", "src": [8] },
+        { "at": "immune system", "op": "warn", "say": "FDA flags possible immune reactions from impurities", "risk": "immune reaction risk", "src": [2, 8] }
+      ],
+      "dirs": { "igf1": "watch", "glucose": "watch", "hba1c": "watch" },
+      "ask": ["What would we measure to know whether my growth hormone axis actually needs support?"]
+    },
+    "motsc": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "mitochondria", "op": "is", "say": "a peptide from their own DNA, found naturally in blood (never tested in people)", "src": [3] },
+        { "at": "fat", "op": "down", "say": "less weight gain on a high-fat diet, and after ovary removal (mouse studies)", "src": [3] },
+        { "at": "blood sugar", "op": "down", "say": "blood glucose and insulin fell in obese or high-fat-fed mice (mouse studies)", "markers": ["glucose", "insulin"], "src": [3] },
+        { "at": "muscle", "op": "up", "say": "better physical capacity in aged mice (mouse study)", "src": [3] },
+        { "at": "bone", "op": "down", "say": "less bone loss (mouse study)", "src": [3] },
+        { "at": "blood vessels", "op": "down", "say": "less blood-vessel calcification (rat study)", "src": [3] },
+        { "at": "blood sugar", "op": "watch", "say": "fasting glucose or HbA1c checked first, since it lowered blood sugar in mice", "markers": ["glucose", "hba1c"], "src": [3] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to the peptide or its impurities and clumps, FDA says", "risk": "immune reaction risk", "src": [3] },
+        { "at": "blood sugar", "op": "warn", "say": "theoretical interaction with diabetes medicines; not studied in people", "risk": "diabetes medicine interaction", "src": [3] }
+      ],
+      "dirs": { "glucose": "watch", "insulin": "watch", "hba1c": "watch" },
+      "ask": ["Since MOTS-c has never been tested in people, what would make it worth the risk for me?"]
+    },
+    "mt2": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "skin", "op": "up", "say": "modeled on alpha-MSH, the signal for skin pigment; darker skin in 2 of 3 men (pilot study)", "src": [1] },
+        { "at": "brain", "op": "is", "say": "acts on the brain: spontaneous erections, yawning, and nausea that is sometimes severe", "src": [1, 2] },
+        { "at": "urinary · genital", "op": "up", "say": "erections after 12 of 19 injections vs 1 of 21 on placebo, in men with ED (10-man trial)", "src": [2] },
+        { "at": "brain", "op": "up", "say": "sexual desire rose vs placebo (10-man trial)", "src": [2] },
+        { "at": "skin", "op": "watch", "say": "full-body skin and mole exam first, then regular checks for changing moles", "src": [] },
+        { "at": "skin", "op": "warn", "say": "new or changing moles and melanoma in case reports of unlicensed use (cause not proven)", "risk": "mole and melanoma reports", "src": [3, 4] },
+        { "at": "urinary · genital", "op": "warn", "say": "priapism, a prolonged erection needing emergency care (case reports)", "risk": "priapism risk", "src": [4] },
+        { "at": "brain", "op": "warn", "say": "PRES, a brain condition, and stimulant-like toxic reactions (case reports)", "risk": "PRES and toxic reactions", "src": [4] }
+      ],
+      "dirs": {},
+      "ask": ["Which symptoms, such as an erection lasting hours or a severe headache, mean I need emergency care?"]
+    },
+    "nac": {
+      "route": "by mouth or inhaled",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "liver", "op": "is", "say": "approved antidote for acetaminophen overdose; probably protects via glutathione", "src": [3, 4] },
+        { "at": "liver", "op": "is", "say": "works best started early in emergency care; a home supplement is no substitute", "src": [3, 4] },
+        { "at": "lungs", "op": "is", "say": "inhaled, it thins abnormally thick mucus in lung disease (approved use)", "src": [4] },
+        { "at": "lungs", "op": "is", "say": "older reviews found fewer COPD flare-ups; a 2023 review of newer trials didn't", "src": [5] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions to the IV form, mostly rash and flushing; rarely anaphylaxis", "risk": "allergy warning", "src": [3] },
+        { "at": "lungs", "op": "warn", "say": "inhaled, it can narrow airways unpredictably; asthma needs close watching", "risk": "airway narrowing", "src": [4, 3] },
+        { "at": "stomach", "op": "warn", "say": "nausea and vomiting, common by mouth, more so at high intakes", "risk": "stomach upset", "src": [4] },
+        { "at": "blood vessels", "op": "warn", "say": "with nitroglycerin, symptomatic low blood pressure in a hospital trial (IV form)", "risk": "nitrate interaction", "src": [6] }
+      ],
+      "ask": ["Could NAC interact with my medicines or affect my asthma?"]
+    },
+    "nad": {
+      "route": "infusion or injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "mitochondria", "op": "is", "say": "a molecule cells use to make energy", "src": [3, 4] },
+        { "at": "blood", "op": "is", "say": "at first infused NAD+ was quickly cleared, probably broken down by enzymes", "src": [4] },
+        { "at": "blood", "op": "up", "say": "blood NAD+ rose only after about 2 hours of a 6-hour infusion (pilot, 8 men)", "src": [4] },
+        { "at": "liver", "op": "watch", "say": "liver function checked first; infusion studies found no meaningful change", "markers": ["liver"], "src": [4, 5] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked first; infusion studies found no meaningful change", "markers": ["kidney"], "src": [4, 5] },
+        { "at": "stomach", "op": "warn", "say": "in a chart review, all 6 had moderate to severe symptoms on IV, like cramping or nausea", "risk": "gut upset during infusion", "src": [5] },
+        { "at": "heart", "op": "warn", "say": "racing heart or chest pressure during IV, stopping when it ended (chart review)", "risk": "racing heart during infusion", "src": [5] }
+      ],
+      "dirs": { "liver": "watch", "kidney": "watch" },
+      "ask": ["What should happen if I get chest pressure, cramping or a racing heart during an infusion?"]
+    },
+    "nmn": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "mitochondria", "op": "is", "say": "a form of vitamin B3 the body turns into NAD+, which cells use to make energy", "src": [3, 4] },
+        { "at": "blood", "op": "up", "say": "blood NAD+ rose in 5 of 8 small trials; whether it rises inside cells is unclear", "src": [3, 4] },
+        { "at": "blood sugar", "op": "is", "say": "no change in fasting blood sugar, insulin or HbA1c vs placebo (8 small trials)", "src": [3] },
+        { "at": "blood", "op": "is", "say": "no change in blood fats vs placebo (8 small trials)", "src": [3] },
+        { "at": "blood sugar", "op": "is", "say": "better muscle insulin sensitivity in one small trial of women with prediabetes", "src": [3] },
+        { "at": "whole body", "op": "warn", "say": "higher NAD+ might feed tumor growth, reviewers say (theoretical)", "risk": "theoretical tumor growth", "src": [3] },
+        { "at": "heart", "op": "warn", "say": "its by-product nicotinamide has a possible link with heart disease risk (theoretical)", "risk": "theoretical heart risk", "src": [3] }
+      ],
+      "dirs": {},
+      "ask": ["Since trials found no change in blood sugar or cholesterol, how would we tell whether NMN is doing anything for me?"]
+    },
+    "nr": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "mitochondria", "op": "is", "say": "a form of vitamin B3 the body turns into NAD+, which cells use to make energy", "src": [3, 2] },
+        { "at": "blood", "op": "up", "say": "blood NAD+ reliably rose in trials, most of them small", "src": [3, 2] },
+        { "at": "muscle", "op": "is", "say": "generally no NAD+ rise in muscle, and no gain in muscle function or exercise", "src": [3, 2] },
+        { "at": "immune system", "op": "down", "say": "modest drops in some blood markers of inflammation, its most consistent effect", "src": [3] },
+        { "at": "blood sugar", "op": "is", "say": "no gain in insulin sensitivity in several placebo-controlled trials", "src": [3] },
+        { "at": "brain", "op": "up", "say": "brain NAD rose in 30 with Parkinson's; symptom gains only in an after-the-fact subgroup", "src": [3] },
+        { "at": "blood", "op": "warn", "say": "cholesterol rose with NR plus pterostilbene, triglycerides with NR (two trials)", "markers": ["lipids", "triglycerides"], "risk": "rising blood fats", "src": [3] }
+      ],
+      "dirs": { "lipids": "up", "triglycerides": "up" },
+      "ask": ["Should I avoid NR products combined with pterostilbene because of my cholesterol?"]
+    },
+    "omega3": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood", "op": "down", "say": "triglycerides fall by about 15% (2020 review)", "markers": ["triglycerides"], "src": [1] },
+        { "at": "heart", "op": "down", "say": "prescription EPA cut major heart events 25% (high triglycerides, on statins)", "src": [1, 2] },
+        { "at": "heart", "op": "is", "say": "no fewer major heart events in 2 big fish oil trials; fewer heart attacks in one", "src": [1] },
+        { "at": "joints · fluid", "op": "is", "say": "in rheumatoid arthritis, may cut anti-inflammatory drug need; joint effects vary", "src": [1] },
+        { "at": "uterus", "op": "down", "say": "lower risk of preterm birth when taken in pregnancy", "src": [1] },
+        { "at": "blood", "op": "watch", "say": "INR checked at intervals in people taking warfarin", "markers": ["inr"], "src": [1] },
+        { "at": "heart", "op": "warn", "say": "atrial fibrillation: 25% higher risk in trials, more at higher intakes", "risk": "atrial fibrillation", "src": [3, 2] },
+        { "at": "blood", "op": "warn", "say": "bleeding, especially with blood thinners; 12% vs 10% on prescription EPA", "risk": "bleeding risk", "src": [2, 1] },
+        { "at": "stomach", "op": "warn", "say": "heartburn, nausea, diarrhea, bad breath and unpleasant taste", "risk": "stomach upset", "src": [1] }
+      ],
+      "dirs": { "triglycerides": "down", "inr": "watch" },
+      "ask": ["With my heart rhythm history and any blood thinners I take, is omega-3 safe for me?"]
+    },
+    "orforglipron": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GLP-1 receptors; a small molecule, not a peptide", "src": [2, 3] },
+        { "at": "brain", "op": "down", "say": "food intake falls, likely through lower appetite", "src": [2] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows", "src": [2] },
+        { "at": "fat", "op": "down", "say": "weight fell about 7% to 11% over 72 weeks, vs about 2% on placebo", "src": [2] },
+        { "at": "blood sugar", "op": "down", "say": "in type 2 diabetes, HbA1c fell up to 2.2 points (company-reported; not an approved use)", "markers": ["hba1c", "glucose"], "src": [4] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked, especially if vomiting or diarrhea is severe", "markers": ["kidney"], "src": [2] },
+        { "at": "heart", "op": "watch", "say": "resting heart rate checked; it rose about 4 to 5 beats a minute on average", "src": [2] },
+        { "at": "thyroid", "op": "warn", "say": "boxed warning: C-cell tumors in rodents on other GLP-1 drugs; human risk not determined", "risk": "thyroid tumor warning", "src": [2] },
+        { "at": "pancreas", "op": "warn", "say": "acute pancreatitis: rare, but more cases than on placebo", "risk": "pancreatitis risk", "src": [2] },
+        { "at": "lungs", "op": "warn", "say": "stomach contents can be breathed in under anesthesia or deep sedation", "risk": "aspiration under anesthesia", "src": [2] },
+        { "at": "stomach", "op": "warn", "say": "nausea in 26% to 35% vs 10% on placebo, plus vomiting, diarrhea and constipation", "risk": "digestive side effects", "src": [2] }
+      ],
+      "dirs": { "hba1c": "down", "glucose": "down", "kidney": "watch" },
+      "ask": ["Which side effects, such as severe stomach pain or a racing heart, mean I should call you?"]
+    },
+    "ovagen": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "liver", "op": "is", "say": "listed as Glu-Asp-Leu, which a patent claims helps the liver regenerate", "src": [6, 4] },
+        { "at": "liver", "op": "up", "say": "about 75% more dividing liver cells after part of the liver was removed (rat study)", "src": [4] },
+        { "at": "liver", "op": "is", "say": "liver chemistry and stored sugar moved toward normal in cirrhosis (rat study)", "src": [4] },
+        { "at": "liver", "op": "down", "say": "less weakness and pain reported in a 34-person hepatitis study (only in a patent)", "src": [4] },
+        { "at": "liver", "op": "watch", "say": "liver enzymes checked first, since liver support is its claimed use", "markers": ["liver"], "src": [4] }
+      ],
+      "dirs": { "liver": "watch" },
+      "ask": ["Is there reliable evidence this would help my liver compared with proven steps?"]
+    },
+    "oxytocin": {
+      "route": "injection or nasal spray",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "uterus", "op": "is", "say": "makes it contract to start or strengthen labor and control bleeding after birth", "src": [1] },
+        { "at": "kidneys", "op": "is", "say": "an antidiuretic effect makes the body hold on to water", "src": [1] },
+        { "at": "brain", "op": "is", "say": "nasal sprays had no clear effect on anxiety or depression (15 small trials)", "src": [2] },
+        { "at": "brain", "op": "is", "say": "no social or cognitive gains in a 290-child autism trial of the nasal spray", "src": [3] },
+        { "at": "kidneys", "op": "watch", "say": "fluid and blood sodium checked during long infusions; no set tests for nasal use", "markers": ["sodium"], "src": [] },
+        { "at": "kidneys", "op": "warn", "say": "water intoxication, which in severe cases has caused seizures and coma", "risk": "water intoxication", "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "overstimulation or rupture, and harm to the baby; not for elective induction", "risk": "uterine overstimulation", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "dangerous blood pressure spikes and bleeding in the brain", "risk": "blood pressure spikes", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "maternal deaths have been reported with drugs of this type", "risk": "maternal deaths", "src": [1] }
+      ],
+      "dirs": { "sodium": "watch" },
+      "ask": ["Is there evidence that oxytocin would help my mood or relationship concerns, compared with standard treatments?"]
+    },
+    "pancragen": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "up", "say": "switched on genes pancreatic cells need to mature and make hormones (lab studies)", "src": [8, 9] },
+        { "at": "blood sugar", "op": "down", "say": "fasting blood sugar, insulin and insulin resistance fell in type 2 diabetes (small study)", "markers": ["glucose", "insulin"], "src": [5] },
+        { "at": "blood sugar", "op": "down", "say": "less insulin needed in 36 people with diabetes (small study in the developer's patent)", "src": [6] },
+        { "at": "blood sugar", "op": "down", "say": "faster sugar clearing in old monkeys, lower blood sugar in diabetic rats (animal studies)", "src": [7, 6] },
+        { "at": "blood sugar", "op": "watch", "say": "fasting glucose and HbA1c checked; blood sugar too if on diabetes medicines", "markers": ["glucose", "hba1c"], "src": [] },
+        { "at": "blood sugar", "op": "warn", "say": "could fall too low with insulin or other diabetes medicines (not formally studied)", "risk": "low blood sugar risk", "src": [6, 5] }
+      ],
+      "dirs": { "glucose": "down", "insulin": "down", "hba1c": "watch" },
+      "ask": ["Could this cause low blood sugar with my current diabetes medicines?"]
+    },
+    "pda": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "tendons", "op": "is", "say": "described as BPC-157 with arginine, used for injuries; no published studies of PDA itself", "src": [2] },
+        { "at": "gut", "op": "is", "say": "gut protection seen with BPC-157 in rodents has never been tested with PDA", "src": [2] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to the peptide, its clumps or impurities, FDA says of BPC-157", "risk": "immune reaction risk", "src": [2] }
+      ],
+      "dirs": {},
+      "ask": ["What proven treatments exist for my injury, and how do they compare?"]
+    },
+    "pegmgf": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "is", "say": "a pegylated copy of an IGF-1 tail peptide; never studied in people", "src": [1, 5] },
+        { "at": "muscle", "op": "is", "say": "not shown to exist on its own in the body or to do more than full-length IGF-1", "src": [5] },
+        { "at": "muscle", "op": "is", "say": "its case rests on unmodified MGF in cells and rodents, with conflicting results", "src": [5, 6] },
+        { "at": "muscle", "op": "is", "say": "MGF peptide didn't grow muscle cells in a 2014 lab study, while mature IGF-1 did", "src": [6] },
+        { "at": "brain", "op": "up", "say": "nerve cells protected after brain ischemia in gerbils (animal studies)", "src": [5] },
+        { "at": "heart", "op": "up", "say": "heart function improved in mice, from gel rods placed in the heart (mouse study)", "src": [7] },
+        { "at": "immune system", "op": "warn", "say": "FDA flagged immune reactions to the peptide as a possible significant risk", "risk": "immune reaction risk", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Is there any human evidence that PEG-MGF builds muscle or speeds healing?"]
+    },
+    "pemvidutide": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on glucagon and GLP-1 receptors in equal measure", "src": [1, 2] },
+        { "at": "liver", "op": "down", "say": "MASH cleared in 52% to 58% versus 20% on placebo at 24 weeks (company-reported)", "src": [1] },
+        { "at": "liver", "op": "is", "say": "no significant improvement in scarring: 33% to 36% versus 28% (company-reported)", "src": [1] },
+        { "at": "fat", "op": "down", "say": "10.3% to 15.6% less body weight in 48 weeks, versus 2.2% on placebo (company-reported)", "src": [4] },
+        { "at": "brain", "op": "down", "say": "fewer heavy drinking days than placebo in alcohol use disorder (company-reported)", "src": [2] },
+        { "at": "liver", "op": "down", "say": "lower liver stiffness and fibrosis scores at 48 weeks, no biopsy (company-reported)", "src": [5, 1] },
+        { "at": "heart", "op": "watch", "say": "resting heart rate checked, as the semaglutide label calls for", "src": [6] },
+        { "at": "stomach", "op": "warn", "say": "nausea in 44% versus 24% on placebo, constipation 26% vs 6% (company-reported)", "risk": "digestive side effects", "src": [2] },
+        { "at": "thyroid", "op": "warn", "say": "approved GLP-1s carry a rodent thyroid tumor warning; unknown whether it applies", "risk": "thyroid tumor warning", "src": [6] }
+      ],
+      "dirs": {},
+      "ask": ["Would a clinical trial for MASH or alcohol use be an option for me?"]
+    },
+    "phentermine": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "down", "say": "related to amphetamine; appetite falls, though the effect can wear off with tolerance", "src": [1] },
+        { "at": "fat", "op": "down", "say": "short-term weight loss alongside a weight-reduction program (approved use)", "src": [1] },
+        { "at": "fat", "op": "down", "say": "off-label use over a year: 7.4% more weight lost than short-term use (health-record study)", "src": [2] },
+        { "at": "blood sugar", "op": "watch", "say": "blood glucose checked in diabetes, as medicine needs may change", "markers": ["glucose"], "src": [1] },
+        { "at": "heart", "op": "warn", "say": "raised blood pressure, fast heart rate, heart attacks; ruled out with past heart disease", "risk": "heart risk", "src": [1] },
+        { "at": "lungs", "op": "warn", "say": "pulmonary hypertension, rare and often fatal; heart valve disease also reported", "risk": "pulmonary hypertension", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "misuse and dependence: it's related to amphetamine and a controlled substance", "risk": "misuse and dependence", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "overstimulation, restlessness, insomnia, dizziness and tremor; psychosis reported", "risk": "overstimulation and psychosis", "src": [1] }
+      ],
+      "dirs": { "glucose": "watch" },
+      "ask": ["Are my heart and blood pressure healthy enough for phentermine?"]
+    },
+    "pramlintide": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "lab-made amylin, a hormone it releases with insulin; blunts glucagon's rise after meals", "src": [1, 2] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows", "src": [1] },
+        { "at": "brain", "op": "down", "say": "food intake falls as fullness rises", "src": [1] },
+        { "at": "blood sugar", "op": "down", "say": "after-meal sugar falls; HbA1c about 0.3 points lower than placebo, with insulin", "markers": ["hba1c"], "src": [1] },
+        { "at": "fat", "op": "down", "say": "0.8 to 1.6 kg lost versus small gains on placebo (not approved for weight loss)", "src": [1, 2] },
+        { "at": "blood sugar", "op": "watch", "say": "glucose checked often around meals and at bedtime, especially when starting", "markers": ["glucose"], "src": [1] },
+        { "at": "blood sugar", "op": "warn", "say": "boxed warning: severe lows with insulin, more in type 1, usually within 3 hours of a shot", "risk": "severe low blood sugar", "src": [1, 2] },
+        { "at": "stomach", "op": "warn", "say": "nausea in 48% versus 17% on placebo in type 1 diabetes, mostly early on", "risk": "digestive side effects", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "headache in 13% versus 7% on placebo in type 2 diabetes", "risk": "headache side effect", "src": [1] }
+      ],
+      "dirs": { "hba1c": "down", "glucose": "watch" },
+      "ask": ["How should my insulin plan change to lower the risk of severe lows?"]
+    },
+    "pregnenolone": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "a neurosteroid the body turns into other steroid hormones and brain-active steroids", "src": [1, 8] },
+        { "at": "nerves", "op": "down", "say": "less low back pain than placebo over 4 weeks in 94 veterans (small trial)", "src": [5] },
+        { "at": "brain", "op": "down", "say": "fewer negative symptoms of schizophrenia as an add-on to antipsychotics (small trial)", "src": [6] },
+        { "at": "brain", "op": "down", "say": "bipolar depression eased as an add-on, though two scales disagreed (small trial)", "src": [7] },
+        { "at": "whole body", "op": "warn", "say": "can raise steroids made from it, so trials excluded prostate, uterine and breast cancer", "risk": "hormone-sensitive cancer", "src": [1, 7] },
+        { "at": "brain", "op": "warn", "say": "mild restlessness, cold hands and feet, muscle aches and headache, more than on placebo", "risk": "mild side effects", "src": [1] },
+        { "at": "heart", "op": "warn", "say": "one published report of palpitations", "risk": "heart palpitations", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Could pregnenolone raise my other hormone levels, given my health history?"]
+    },
+    "probiotic": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "gut", "op": "is", "say": "live bacteria or yeasts whose effects are specific to each strain", "src": [1] },
+        { "at": "gut", "op": "down", "say": "C. difficile diarrhea on antibiotics fell from 4% to 1.5%, mainly at high risk", "src": [2] },
+        { "at": "gut", "op": "down", "say": "antibiotic-related diarrhea in children fell from 19% to 8% (33 trials)", "src": [3, 1] },
+        { "at": "gut", "op": "down", "say": "S. boulardii cut antibiotic-related diarrhea in adults and children (21 trials)", "src": [1] },
+        { "at": "gut", "op": "down", "say": "IBS symptoms and ulcerative colitis may ease modestly (limited evidence)", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "FDA warns of invasive, potentially fatal infections in preterm infants", "risk": "preterm infant warning", "src": [1] },
+        { "at": "blood", "op": "warn", "say": "rare bloodstream infections, mostly when very ill, immunocompromised or catheterized", "risk": "bloodstream infection", "src": [1, 3] },
+        { "at": "gut", "op": "warn", "say": "gas, bloating, nausea or constipation; in children, no more than controls", "risk": "bowel side effects", "src": [3, 1] }
+      ],
+      "ask": ["Does my health or immune status make probiotics unsafe for me?"]
+    },
+    "progesterone": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "uterus", "op": "down", "say": "counters estrogen on the lining: overgrowth in 6% vs 64% on estrogen alone", "src": [1] },
+        { "at": "uterus", "op": "is", "say": "brings on a period when periods have stopped (80% vs 10% on placebo)", "src": [1] },
+        { "at": "blood vessels", "op": "down", "say": "hot flashes and night sweats fell when taken alone, in one 12-week trial (off-label)", "src": [5] },
+        { "at": "blood vessels", "op": "is", "say": "main hot-flash score no better than placebo in a perimenopause trial (off-label)", "src": [6] },
+        { "at": "brain", "op": "up", "say": "self-rated sleep improved in a perimenopause trial (off-label)", "src": [6] },
+        { "at": "breast", "op": "watch", "say": "breast and pelvic exams with mammograms; no routine blood tests", "src": [1] },
+        { "at": "breast", "op": "is", "say": "with estrogen, breast cancer not raised for up to 5 years", "src": [7] },
+        { "at": "veins", "op": "warn", "say": "label warns of clots and stroke, from a trial of a synthetic progestin, not progesterone", "risk": "clot and stroke warning", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "drowsiness and dizziness, which can affect driving", "risk": "drowsiness and dizziness", "src": [1] },
+        { "at": "breast", "op": "warn", "say": "tenderness in 27% vs 6%; limited evidence of more breast cancer after 5 years", "risk": "breast effects", "src": [1, 7] }
+      ],
+      "dirs": {},
+      "ask": ["Do I need progesterone to protect my uterus with the estrogen I take?"]
+    },
+    "prostamax": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "is", "say": "reactivated genes in old people's white cells (lab study; no human trials found)", "src": [4, 5] },
+        { "at": "immune system", "op": "is", "say": "loosened tightly packed DNA in those cells, including on chromosome 1 (lab study)", "src": [4] },
+        { "at": "prostate", "op": "is", "say": "promoted for the prostate, but no human safety or effect data were found", "src": [6, 4, 5] }
+      ],
+      "dirs": {},
+      "ask": ["Do my urinary or prostate symptoms need a PSA test or prostate exam first?"]
+    },
+    "pt141": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "activates melanocortin receptors; how it raises desire is unknown", "src": [1] },
+        { "at": "brain", "op": "up", "say": "desire rose and distress fell modestly in premenopausal women (24-week trials)", "src": [1, 2] },
+        { "at": "brain", "op": "is", "say": "no rise in satisfying sexual events versus placebo", "src": [1] },
+        { "at": "urinary · genital", "op": "up", "say": "erections more often than placebo in men (small early trials, not approved for men)", "src": [4, 5] },
+        { "at": "blood vessels", "op": "warn", "say": "blood pressure rises and heart rate dips briefly after each use", "risk": "blood pressure rise", "src": [1] },
+        { "at": "stomach", "op": "warn", "say": "nausea in 40% of women (about 1% on placebo); 8% quit over it", "risk": "frequent nausea", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "darkened skin patches: 1% in trials, 38% with more frequent use; not always fading", "risk": "skin darkening", "src": [1] }
+      ],
+      "dirs": {},
+      "ask": ["Are my blood pressure and heart health safe for a drug that briefly raises blood pressure?"]
+    },
+    "raloxifene": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "bone", "op": "down", "say": "first spine fractures fell from 4.3% to 1.9% in women with osteoporosis (it's a SERM)", "src": [1] },
+        { "at": "breast", "op": "down", "say": "invasive breast cancer fell 44% to 71% versus placebo after menopause", "src": [1] },
+        { "at": "pituitary", "op": "up", "say": "LH and FSH rose over 3 months in 30 older men (small trial; off-label)", "markers": ["lh", "fsh"], "src": [4] },
+        { "at": "testes", "op": "is", "say": "testosterone rose in one small trial of older men, not in another (not advised for men)", "markers": ["testosterone"], "src": [4, 3, 1] },
+        { "at": "prostate", "op": "up", "say": "PSA rose about 17% over 3 months in 30 older men (small trial)", "markers": ["psa"], "src": [4] },
+        { "at": "blood", "op": "watch", "say": "triglycerides checked in women whose levels rose on estrogen", "markers": ["triglycerides"], "src": [1] },
+        { "at": "veins", "op": "warn", "say": "blood clots in the legs or lungs, most likely in the first 4 months (boxed warning)", "risk": "clot warning", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "death from stroke in women with heart disease or high heart risk (boxed warning)", "risk": "stroke warning", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes (9.7% versus 6.4% on placebo)", "risk": "hot flashes", "src": [1] }
+      ],
+      "dirs": { "lh": "up", "fsh": "up", "testosterone": "watch", "psa": "up", "triglycerides": "watch" },
+      "ask": ["Do my risks for blood clots or stroke make raloxifene a poor fit for me?"]
+    },
+    "rapamycin": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "block", "say": "blocks mTOR, a pathway tied to lifespan in mice, and suppresses the immune system", "src": [1, 2] },
+        { "at": "immune system", "op": "is", "say": "some immune, heart and skin aging measures improved (19-study review, with related drugs)", "src": [3] },
+        { "at": "muscle", "op": "is", "say": "no gain in muscle, hormone or nerve aging measures (19-study review, with related drugs)", "src": [3] },
+        { "at": "fat", "op": "is", "say": "no change in visceral fat in a 48-week trial of 114 healthy adults aged 50 to 85", "src": [4] },
+        { "at": "blood", "op": "up", "say": "cholesterol and triglycerides rose in 30% or more of transplant patients; checked", "markers": ["lipids", "triglycerides"], "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function and urine protein checked; protein in the urine is a listed risk", "markers": ["kidney", "urineprotein"], "src": [1] },
+        { "at": "blood sugar", "op": "up", "say": "high blood sugar and new diabetes reported; glucose checked", "markers": ["glucose"], "src": [1] },
+        { "at": "blood", "op": "watch", "say": "blood count checked before starting", "markers": ["cbc"], "src": [] },
+        { "at": "immune system", "op": "warn", "say": "boxed warning: infections, lymphoma and other cancers, from a weakened immune system", "risk": "infection and cancer warning", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "wounds heal slowly; skin cancer is also a listed risk", "risk": "slow wound healing", "src": [1] },
+        { "at": "lungs", "op": "warn", "say": "lung inflammation (interstitial lung disease), sometimes fatal", "risk": "lung inflammation", "src": [1] },
+        { "at": "gut", "op": "warn", "say": "gut complaints in about 1 in 5 healthy older adults vs 1 in 10 on placebo (small trial)", "risk": "digestive side effects", "src": [4] }
+      ],
+      "dirs": { "lipids": "up", "triglycerides": "up", "kidney": "watch", "urineprotein": "up", "glucose": "up", "cbc": "watch" },
+      "ask": ["Given my infection history, cholesterol and any planned surgery, what are the risks of rapamycin for me?"]
+    },
+    "retatrutide": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GIP, GLP-1 and glucagon receptors", "src": [3, 2] },
+        { "at": "brain", "op": "down", "say": "appetite falls, reported among side effects in trials", "src": [2, 3] },
+        { "at": "fat", "op": "down", "say": "21.6% to 22.6% less body weight in 80 weeks, versus 3.2% on placebo (company-reported)", "src": [2] },
+        { "at": "fat", "op": "down", "say": "8.7% to 24.2% less body weight in 48 weeks, versus 2.1% on placebo (phase 2 trial)", "src": [3] },
+        { "at": "blood sugar", "op": "down", "say": "in type 2 diabetes, HbA1c fell 1.4 to 1.6 points vs 0.2 on placebo (company-reported)", "markers": ["glucose", "hba1c"], "src": [2] },
+        { "at": "heart", "op": "up", "say": "resting heart rate rose, peaking around 24 weeks, then eased (phase 2 trial); checked", "src": [3] },
+        { "at": "stomach", "op": "warn", "say": "diarrhea in 27% to 34% versus 13% on placebo, plus nausea and vomiting (company-reported)", "risk": "digestive side effects", "src": [2, 3] },
+        { "at": "skin", "op": "warn", "say": "unpleasant skin sensations in 4.5% to 7.3% versus 0.7% on placebo (company-reported)", "risk": "skin sensation changes", "src": [2] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down" },
+      "ask": ["How do approved options such as tirzepatide or semaglutide compare for me?"]
+    },
+    "rhodiola": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "less mental fatigue in 3 of 5 trials, all flawed or at high risk of bias", "src": [2] },
+        { "at": "muscle", "op": "is", "say": "less physical fatigue in only 2 of 6 trials, all flawed or at high risk of bias", "src": [2] },
+        { "at": "brain", "op": "is", "say": "depression: lower scores in a 3-study review, no better than placebo in a small trial", "src": [3, 4] },
+        { "at": "brain", "op": "warn", "say": "dizziness, headache and poor sleep; side effects 30% vs 17% on placebo (one trial)", "risk": "common side effects", "src": [1, 4] },
+        { "at": "blood vessels", "op": "warn", "say": "interactions reported with losartan, a blood pressure medicine", "risk": "losartan interaction", "src": [1] }
+      ],
+      "ask": ["Could rhodiola interact with my blood pressure medicine, antidepressant or anything else I take?"]
+    },
+    "selank": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "changed GABA receptor gene activity, which may explain calming (rat study)", "src": [6] },
+        { "at": "brain", "op": "down", "say": "anxiety eased about as much as on the anti-anxiety drug medazepam (one study of 62)", "src": [5] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to clumped peptide or impurities, FDA says", "risk": "immune reaction risk", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "marked immune effects described by researchers; consequences in people unknown", "risk": "immune system effects", "src": [6] },
+        { "at": "brain", "op": "warn", "say": "thought to act on the same GABA system as benzodiazepines and other sedatives", "risk": "sedative interaction", "src": [6] }
+      ],
+      "dirs": {},
+      "ask": ["Could it interact with sedatives, sleep aids or other medicines I take?"]
+    },
+    "semaglutide": {
+      "route": "injection or pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GLP-1 receptors: more insulin, less glucagon when blood sugar is high", "src": [1, 2] },
+        { "at": "brain", "op": "down", "say": "calorie intake falls", "src": [2] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows", "src": [1, 2] },
+        { "at": "fat", "op": "down", "say": "about 15% less body weight in 68 weeks, versus 2% on placebo; most returns after stopping", "src": [7, 2, 9] },
+        { "at": "blood sugar", "op": "down", "say": "falls in type 2 diabetes", "markers": ["glucose", "hba1c"], "src": [1, 3] },
+        { "at": "heart", "op": "down", "say": "fewer heart attacks, strokes and cardiovascular deaths in heart disease with excess weight", "src": [8, 2] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked if vomiting or diarrhea is severe", "markers": ["kidney"], "src": [1, 2] },
+        { "at": "thyroid", "op": "warn", "say": "boxed warning: thyroid C-cell tumors in rodents; unknown in humans", "risk": "thyroid tumor warning", "src": [2, 1] },
+        { "at": "pancreas", "op": "warn", "say": "acute pancreatitis (rare)", "risk": "pancreatitis risk", "src": [2] },
+        { "at": "gallbladder", "op": "warn", "say": "gallstones and gallbladder inflammation; gallstones in 1.6% versus 0.7% on placebo", "risk": "gallbladder disease", "src": [2] },
+        { "at": "blood sugar", "op": "warn", "say": "low blood sugar is more likely with insulin or a sulfonylurea, so it's checked", "markers": ["glucose"], "risk": "low blood sugar risk", "src": [1, 2, 3] },
+        { "at": "stomach", "op": "warn", "say": "digestive side effects in 74% versus 48% on placebo, such as nausea and vomiting", "risk": "digestive side effects", "src": [2, 7] }
+      ],
+      "dirs": { "glucose": "down", "hba1c": "down", "kidney": "watch" },
+      "ask": ["What is our plan if I stop, given that most of the weight tends to return?"]
+    },
+    "semax": {
+      "route": "nasal drops",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "brain", "op": "is", "say": "a peptide modeled on part of ACTH; FDA says how it works is poorly understood", "src": [4] },
+        { "at": "brain", "op": "up", "say": "the growth factor BDNF rose in the hippocampus, with better learning (rat study)", "src": [7] },
+        { "at": "brain", "op": "up", "say": "faster stroke recovery, higher blood BDNF (study of 110; randomization unclear)", "src": [9] },
+        { "at": "brain", "op": "is", "say": "FDA found too little evidence it works for stroke, migraine or nerve pain", "src": [4] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to clumped peptide or impurities, FDA says", "risk": "immune reaction risk", "src": [4] },
+        { "at": "brain", "op": "warn", "say": "boosted amphetamine's dopamine release (mouse study); abuse potential unstudied", "risk": "stimulant interaction", "src": [4] },
+        { "at": "blood", "op": "warn", "say": "anti-clotting effects (animal studies); bleeding risk in people is unclear", "risk": "bleeding risk", "src": [4] }
+      ],
+      "dirs": {},
+      "ask": ["Could semax interact with any stimulant or blood-thinning medicine I take?"]
+    },
+    "sermorelin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "a copy of GHRH's active first part, the brain signal that releases growth hormone", "src": [1] },
+        { "at": "pituitary", "op": "up", "say": "growth hormone is released; FDA approved it as a test of the pituitary's ability", "src": [1] },
+        { "at": "bone", "op": "up", "say": "treated growth failure in children with growth hormone deficiency (its approved use)", "src": [1] },
+        { "at": "bone", "op": "is", "say": "a 2012 review called it largely ineffective as a growth promoter", "src": [5] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rose in 14 men on testosterone taking it with GHRP-2 and GHRP-6", "markers": ["igf1"], "src": [6] },
+        { "at": "blood sugar", "op": "watch", "say": "higher blood sugar is a label warning for tesamorelin, which works the same way", "markers": ["glucose", "hba1c"], "src": [8] },
+        { "at": "joints · fluid", "op": "warn", "say": "fluid retention and joint pain are label warnings for tesamorelin, same mechanism", "risk": "swelling and joint pain", "src": [8] }
+      ],
+      "dirs": { "igf1": "up", "glucose": "watch", "hba1c": "watch" },
+      "ask": ["Is my IGF-1 actually low, and what result would show this is working?"]
+    },
+    "sildenafil": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "urinary · genital", "op": "block", "say": "blocks PDE5; it's in the same drug class as tadalafil", "src": [2] },
+        { "at": "urinary · genital", "op": "up", "say": "better erections for 63% to 82% of men versus 24% on placebo", "src": [1] },
+        { "at": "testes", "op": "watch", "say": "testosterone checked if it may be low; treating it may improve results (low certainty)", "markers": ["testosterone"], "src": [2] },
+        { "at": "blood vessels", "op": "warn", "say": "headache (16% versus 4% on placebo) and flushing (10% versus 1%)", "risk": "headache and flushing", "src": [1] },
+        { "at": "eyes", "op": "warn", "say": "color tinge or blurring; rare sudden vision loss from optic nerve damage (NAION)", "risk": "vision loss", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "severe blood pressure drop with nitrates or riociguat, added drop with alpha-blockers", "risk": "nitrate interaction", "src": [1, 2] },
+        { "at": "ears", "op": "warn", "say": "rare sudden hearing loss", "risk": "hearing loss", "src": [1] },
+        { "at": "urinary · genital", "op": "warn", "say": "erection over 4 hours (priapism), which can do permanent damage without prompt care", "risk": "priapism risk", "src": [1] }
+      ],
+      "dirs": { "testosterone": "watch" },
+      "ask": ["Do any of my medicines, including nitrates, alpha-blockers or HIV drugs, interact with sildenafil?"]
+    },
+    "slupp332": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "is", "say": "switches on estrogen-related receptors (lab studies; never tested in people)", "src": [4, 1] },
+        { "at": "muscle", "op": "up", "say": "endurance and oxidative muscle fibers increased (mouse study)", "src": [4] },
+        { "at": "fat", "op": "down", "say": "obese mice gained less fat and lost 12% of body weight in a month (mouse studies)", "src": [5, 1] },
+        { "at": "blood sugar", "op": "is", "say": "insulin sensitivity improved in obese mice (mouse study)", "src": [5] },
+        { "at": "mitochondria", "op": "up", "say": "mitochondrial function and respiration rose in muscle cells (lab study)", "src": [4] }
+      ],
+      "dirs": {},
+      "ask": ["What are the risks of taking a compound that has never been tested in people?"]
+    },
+    "snap8": {
+      "route": "on the skin",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "nerves", "op": "block", "say": "copies part of SNAP-25 and partly blocked nerve-signal release (lab studies)", "src": [1] },
+        { "at": "skin", "op": "is", "say": "peptides cross the skin's outer layer poorly, limiting how much gets through", "src": [7] },
+        { "at": "skin", "op": "is", "say": "expression wrinkles about 35% shallower (manufacturer data, not peer-reviewed)", "src": [1] },
+        { "at": "skin", "op": "is", "say": "better hydration and density with mixed-ingredient microneedle patches (20 women)", "src": [4] }
+      ],
+      "dirs": {},
+      "ask": ["What treatments with stronger evidence exist for my expression lines?"]
+    },
+    "somatropin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "the growth hormone it makes, given from outside", "src": [1] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rises", "markers": ["igf1"], "src": [1] },
+        { "at": "muscle", "op": "up", "say": "more lean mass (in GH deficiency; 2 kg more in healthy older adults, 18 small trials)", "src": [1, 3] },
+        { "at": "fat", "op": "down", "say": "fat mass falls (in growth hormone deficiency)", "src": [1] },
+        { "at": "blood sugar", "op": "up", "say": "can rise, and can unmask diabetes", "markers": ["glucose", "hba1c"], "src": [1, 3] },
+        { "at": "thyroid", "op": "watch", "say": "function can change, so it's checked", "markers": ["thyroid"], "src": [1] },
+        { "at": "eyes", "op": "watch", "say": "eye exams for raised pressure inside the skull", "src": [1] },
+        { "at": "adrenals", "op": "watch", "say": "cortisol checked first if adrenal insufficiency is possible", "markers": ["cortisol"], "src": [1] },
+        { "at": "bone", "op": "up", "say": "phosphate, alkaline phosphatase and PTH may rise", "markers": ["phosphate", "alp", "pth"], "src": [1] },
+        { "at": "joints · fluid", "op": "warn", "say": "swelling, joint pain, carpal tunnel", "risk": "swelling and joint pain", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "higher death rates in critically ill adults after major surgery or trauma", "risk": "deaths in critical illness", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "existing tumors can grow; also second tumors in irradiated childhood cancer survivors", "risk": "tumor growth risk", "src": [1] }
+      ],
+      "dirs": { "igf1": "up", "glucose": "up", "hba1c": "up", "thyroid": "watch", "phosphate": "up", "alp": "up", "pth": "up", "cortisol": "watch" },
+      "ask": ["How will we watch my blood sugar, thyroid and eyes during treatment?"]
+    },
+    "spironolactone": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "kidneys", "op": "is", "say": "a water pill (diuretic) that can raise potassium", "src": [1] },
+        { "at": "skin", "op": "block", "say": "blocks male hormones, so it's used off-label for acne and female pattern hair loss", "src": [2, 3] },
+        { "at": "heart", "op": "is", "say": "improves survival and cuts hospital stays in heart failure (approved use)", "src": [1] },
+        { "at": "blood vessels", "op": "down", "say": "lowers blood pressure as an add-on drug (approved use)", "src": [1] },
+        { "at": "skin", "op": "up", "say": "acne improved slightly more than on placebo in women; 82% versus 63% saw better skin", "src": [2] },
+        { "at": "hair", "op": "up", "say": "about 81% with female pattern hair loss improved (off-label; mostly uncontrolled studies)", "src": [3] },
+        { "at": "kidneys", "op": "watch", "say": "potassium and kidney function checked, with uric acid and glucose", "markers": ["potassium", "kidney", "uricacid", "glucose"], "src": [1] },
+        { "at": "blood", "op": "warn", "say": "high potassium, which can be dangerous, more so with other potassium-raising drugs", "markers": ["potassium"], "risk": "high potassium", "src": [1] },
+        { "at": "breast", "op": "warn", "say": "breast enlargement in men, the label's most common side effect, usually reversible", "risk": "breast enlargement", "src": [1] },
+        { "at": "kidneys", "op": "warn", "say": "too much fluid loss: low blood pressure, dehydration, worse kidney function", "markers": ["kidney"], "risk": "fluid loss", "src": [1, 4] }
+      ],
+      "dirs": { "potassium": "up", "kidney": "watch", "uricacid": "watch", "glucose": "watch" },
+      "ask": ["Do I need potassium or kidney tests, given my health and other medicines?"]
     },
     "ss31": {
       "route": "injection",
+      "checked": "2026-10-28",
       "lines": [
         { "at": "mitochondria", "op": "is", "say": "binds cardiolipin in their inner membrane, where cells make energy", "src": [1] },
         { "at": "muscle", "op": "up", "say": "strength rose over months in Barth syndrome (about 10 people, open-label)", "src": [1, 2] },
-        { "at": "muscle", "op": "is", "say": "no gain in walking or fatigue in a 218-person myopathy trial", "src": [3] },
+        { "at": "muscle", "op": "is", "say": "walking, fatigue and strength didn't improve in its 12-week placebo-controlled Barth trial", "src": [1] },
+        { "at": "muscle", "op": "is", "say": "no improvement in walking or fatigue in a 218-person mitochondrial myopathy trial", "src": [3] },
         { "at": "heart", "op": "up", "say": "heart relaxation recovered in old mice after 8 weeks (mouse study)", "src": [4] },
-        { "at": "kidneys", "op": "watch", "say": "levels rise when kidney function is low; not studied on dialysis", "markers": ["kidney"], "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "drug levels rise when kidney function is low; not studied on dialysis", "markers": ["kidney"], "src": [1] },
         { "at": "kidneys", "op": "block", "say": "blocks MATE1 in lab tests, a transporter that clears some drugs", "src": [1] },
-        { "at": "blood", "op": "up", "say": "eosinophils often rise, peaking around 90 days, then settle", "markers": ["eosinophils"], "src": [1] },
+        { "at": "immune system", "op": "up", "say": "eosinophils often rise, peaking around 90 days, then settle", "markers": ["eosinophils"], "src": [1] },
         { "at": "immune system", "op": "warn", "say": "serious allergic reactions reported, from minutes to months after starting", "risk": "allergy warning", "src": [1] },
-        { "at": "skin", "op": "warn", "say": "injection-site redness in every treated patient, with itching, pain or hardening", "risk": "injection-site reactions", "src": [1] }
+        { "at": "skin", "op": "warn", "say": "injection-site reactions in every treated patient: redness, itching, pain or hardening", "risk": "injection-site reactions", "src": [1] }
       ],
       "dirs": { "eosinophils": "up", "kidney": "watch" },
       "ask": ["What do human trials show for my goal, given that the approval covers only Barth syndrome?"]
+    },
+    "survodutide": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on glucagon and GLP-1 receptors", "src": [4] },
+        { "at": "fat", "op": "down", "say": "up to 16.6% less weight in 76 weeks vs 3.2%, as if all stayed on it (company-reported)", "src": [1] },
+        { "at": "fat", "op": "down", "say": "6.2% to 14.9% less body weight in 46 weeks, versus 2.8% on placebo (phase 2 trial)", "src": [4] },
+        { "at": "blood sugar", "op": "down", "say": "in type 2 diabetes, HbA1c fell up to 1.21 points vs 0.03 on placebo (company-reported)", "markers": ["hba1c"], "src": [2] },
+        { "at": "liver", "op": "down", "say": "liver fat back to normal in 61% versus 5.7% on placebo (company-reported)", "src": [1] },
+        { "at": "heart", "op": "watch", "say": "resting heart rate checked, as the semaglutide label calls for", "src": [5] },
+        { "at": "stomach", "op": "warn", "say": "nausea, vomiting, diarrhea; 18% to 19% stopped for them vs 1.2% to 2.9% (company-reported)", "risk": "digestive side effects", "src": [1, 2] },
+        { "at": "thyroid", "op": "warn", "say": "approved GLP-1s carry a rodent thyroid tumor warning; unknown whether it applies", "risk": "thyroid tumor warning", "src": [5] }
+      ],
+      "dirs": { "hba1c": "down" },
+      "ask": ["How do approved options, such as semaglutide or tirzepatide, compare for me?"]
+    },
+    "ta1": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "is", "say": "acts on the immune system; FDA found the evidence insufficient for every use reviewed", "src": [5] },
+        { "at": "immune system", "op": "is", "say": "no survival gain in a 1,106-person sepsis trial (23.4% vs 24.1% deaths)", "src": [6] },
+        { "at": "liver", "op": "is", "say": "hepatitis B virus became undetectable about as often as on placebo (20% vs 21%)", "src": [5] },
+        { "at": "liver", "op": "up", "say": "ALT flares reported in hepatitis B; liver enzymes checked with viral hepatitis", "markers": ["liver"], "src": [3, 5] },
+        { "at": "thyroid", "op": "watch", "say": "TSH changed in hepatitis C trials, so it's checked with viral hepatitis", "markers": ["thyroid"], "src": [3, 5] },
+        { "at": "blood", "op": "watch", "say": "blood count checked before starting", "markers": ["cbc"], "src": [] },
+        { "at": "skin", "op": "warn", "say": "injection-site irritation, redness or discomfort, the most commonly reported side effects", "risk": "injection-site reactions", "src": [5] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to the peptide, its clumps or impurities, FDA says", "risk": "immune reaction risk", "src": [1, 3] },
+        { "at": "blood", "op": "warn", "say": "fatal immune attack on red cells in 1 of 6 stem-cell transplant patients; link unclear", "risk": "transplant safety concern", "src": [3] }
+      ],
+      "dirs": { "liver": "up", "thyroid": "watch", "cbc": "watch" },
+      "ask": ["Which side effects or lab changes should make me stop?"]
+    },
+    "tadalafil": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "urinary · genital", "op": "block", "say": "blocks PDE5, strengthening the blood-flow signal of sexual stimulation", "src": [1] },
+        { "at": "urinary · genital", "op": "up", "say": "better erections: successful attempts 50% and 64% versus 25% and 23% on placebo", "src": [1] },
+        { "at": "urinary · genital", "op": "is", "say": "the effect lasted up to 36 hours in trials", "src": [1] },
+        { "at": "prostate", "op": "is", "say": "treats urinary symptoms of an enlarged prostate, with or without ED", "src": [1, 2] },
+        { "at": "testes", "op": "watch", "say": "testosterone checked if it may be low; treating it may improve results (low certainty)", "markers": ["testosterone"], "src": [3] },
+        { "at": "blood vessels", "op": "warn", "say": "severe blood pressure drop with nitrates or riociguat, added drop with alpha-blockers", "risk": "nitrate interaction", "src": [1, 3] },
+        { "at": "urinary · genital", "op": "warn", "say": "erection over 4 hours (priapism), which needs emergency care", "risk": "priapism risk", "src": [1] },
+        { "at": "eyes", "op": "warn", "say": "rare sudden vision loss from optic nerve damage (NAION)", "risk": "vision loss", "src": [1] },
+        { "at": "ears", "op": "warn", "say": "rare sudden hearing loss", "risk": "hearing loss", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "serious skin reactions reported, including Stevens-Johnson syndrome", "risk": "serious skin reactions", "src": [1] }
+      ],
+      "dirs": { "testosterone": "watch" },
+      "ask": ["Do any of my medicines, including nitrates, alpha-blockers or other blood pressure drugs, interact with tadalafil?"]
+    },
+    "tamoxifen": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "breast", "op": "block", "say": "blocks estrogen's effect on receptor-positive breast cancer (it's a SERM)", "src": [1] },
+        { "at": "breast", "op": "is", "say": "treats receptor-positive breast cancer; about half of men with spread cancer responded", "src": [1] },
+        { "at": "breast", "op": "down", "say": "invasive breast cancer fell 43% in women with DCIS after surgery and radiation", "src": [1] },
+        { "at": "breast", "op": "down", "say": "breast enlargement from prostate cancer drugs fell (off-label); not advised in general", "src": [3, 4] },
+        { "at": "pituitary", "op": "up", "say": "LH and FSH rose in men with low sperm counts", "markers": ["lh", "fsh"], "src": [1] },
+        { "at": "testes", "op": "up", "say": "testosterone rose in men with low sperm counts; fertility trials conflict (off-label)", "markers": ["testosterone", "semen"], "src": [1, 5, 6] },
+        { "at": "blood", "op": "up", "say": "estrogen rose in men with low sperm counts; blood counts checked, lipids if high", "markers": ["estradiol", "cbc", "lipids"], "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "uterine cancers, sometimes fatal (boxed warning)", "risk": "uterine cancer warning", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "stroke, sometimes fatal (boxed warning)", "risk": "stroke warning", "src": [1] },
+        { "at": "veins", "op": "warn", "say": "blood clots in the lungs, sometimes fatal (boxed warning)", "risk": "clot warning", "src": [1] },
+        { "at": "eyes", "op": "warn", "say": "cataracts, retinal changes and color vision changes", "risk": "vision warning", "src": [1] },
+        { "at": "liver", "op": "warn", "say": "rare severe or fatal liver injury and liver cancer; liver tests checked", "markers": ["liver"], "risk": "liver warning", "src": [1] }
+      ],
+      "dirs": { "lh": "up", "fsh": "up", "testosterone": "up", "semen": "watch", "estradiol": "up", "cbc": "watch", "lipids": "watch", "liver": "watch" },
+      "ask": ["Given the boxed warning, how do my own risks of blood clots, stroke and uterine cancer compare with the expected benefit?"]
+    },
+    "taurine": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood", "op": "is", "say": "blood taurine rises or stays the same with age in people, monkeys and mice", "src": [1, 4] },
+        { "at": "blood vessels", "op": "down", "say": "blood pressure fell slightly in a meta-analysis of 25 small trials", "src": [3] },
+        { "at": "blood sugar", "op": "down", "say": "fasting blood sugar fell slightly in the same meta-analysis", "markers": ["glucose"], "src": [3] },
+        { "at": "blood", "op": "down", "say": "triglycerides fell slightly; HDL cholesterol didn't change", "markers": ["triglycerides"], "src": [3] },
+        { "at": "blood vessels", "op": "warn", "say": "could add to blood pressure medicines' effect (not directly studied)", "risk": "added blood pressure lowering", "src": [3] },
+        { "at": "blood sugar", "op": "warn", "say": "could add to diabetes medicines' effect (not directly studied)", "risk": "added blood sugar lowering", "src": [3] }
+      ],
+      "dirs": { "glucose": "down", "triglycerides": "down" },
+      "ask": ["Would any of my medicines add to taurine's blood pressure or blood sugar effects?"]
+    },
+    "tb4": {
+      "route": "eye drops or on the skin",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "skin", "op": "is", "say": "binds actin inside cells; faster skin-wound repair (animal studies)", "src": [8, 4] },
+        { "at": "eyes", "op": "is", "say": "corneal wounds healed in 6 of 10 vs 1 of 8 on placebo (not significant); a phase 3 missed", "src": [3, 2] },
+        { "at": "eyes", "op": "is", "say": "dry-eye trials in over 1,600 people missed their main goals; some symptoms eased", "src": [4, 5] },
+        { "at": "skin", "op": "is", "say": "skin-gel trials in leg and pressure ulcers gave conflicting healing results", "src": [6, 7] },
+        { "at": "blood vessels", "op": "warn", "say": "drives blood vessel growth and has a role in tumor progression (lab and animal studies)", "risk": "possible cancer concern", "src": [9] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions; FDA says injected peptides may pose a significant risk", "risk": "immune reaction risk", "src": [8] }
+      ],
+      "dirs": {},
+      "ask": ["Given my personal and family cancer history, are there reasons to avoid it?"]
+    },
+    "tb500": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood vessels", "op": "is", "say": "its sequence is reported to spur blood vessel growth (lab studies; never tested in people)", "src": [1] },
+        { "at": "skin", "op": "is", "say": "TB-500 itself, a piece of thymosin beta-4, showed no wound-healing effect (lab study)", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "possible immune reactions to the injected peptide, its clumps or impurities, FDA says", "risk": "immune reaction risk", "src": [1, 2] },
+        { "at": "blood vessels", "op": "warn", "say": "cancer risk unknown: no cancer studies, and lab work links it to blood vessel growth", "risk": "unknown cancer risk", "src": [1] },
+        { "at": "skin", "op": "warn", "say": "skin and gum darkening after a BPC-157 blend, back on re-use (one report; cause unproven)", "risk": "skin darkening report", "src": [5] }
+      ],
+      "dirs": {},
+      "ask": ["Is there any human evidence for TB-500, as opposed to the full thymosin beta-4 protein?"]
+    },
+    "telmisartan": {
+      "route": "pill",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "blood vessels", "op": "block", "say": "blocks angiotensin II's AT1 receptor in vessel walls and the adrenal gland", "src": [1] },
+        { "at": "fat", "op": "is", "say": "partly activates PPAR-gamma, a receptor involved in metabolism (lab studies)", "src": [2] },
+        { "at": "blood vessels", "op": "down", "say": "blood pressure falls (approved use)", "src": [1] },
+        { "at": "heart", "op": "is", "say": "matched the ACE inhibitor ramipril on heart and stroke events in 25,620 high-risk people", "src": [1] },
+        { "at": "heart", "op": "is", "say": "didn't significantly beat placebo on its main outcome in 5,926 high-risk people", "src": [1] },
+        { "at": "fat", "op": "down", "say": "less belly fat, not fat under the skin, in 15 small trials in high blood pressure", "src": [2] },
+        { "at": "kidneys", "op": "watch", "say": "potassium and kidney function checked; potassium can rise and kidney function change", "markers": ["potassium", "kidney"], "src": [1] },
+        { "at": "uterus", "op": "warn", "say": "boxed warning: drugs like it can injure or kill a developing baby", "risk": "pregnancy warning", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "blood pressure can drop too low, especially when low on salt or fluids", "risk": "low blood pressure", "src": [1] }
+      ],
+      "dirs": { "potassium": "up", "kidney": "watch" },
+      "ask": ["What would telmisartan do for me if my blood pressure is normal?"]
+    },
+    "tesamorelin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "a synthetic GRF that signals the pituitary to release growth hormone", "src": [1] },
+        { "at": "liver", "op": "up", "say": "IGF-1 rises, far above normal in about a third at 26 weeks", "markers": ["igf1"], "src": [1] },
+        { "at": "fat", "op": "down", "say": "visceral (deep belly) fat fell about 15% over 26 weeks versus placebo in adults with HIV", "src": [1, 3] },
+        { "at": "fat", "op": "is", "say": "the fat came back in people who stopped", "src": [1, 3] },
+        { "at": "liver", "op": "down", "say": "liver fat fell over 12 months in 61 adults with HIV and fatty liver", "src": [4] },
+        { "at": "blood", "op": "down", "say": "triglycerides fell and the cholesterol ratio improved in adults with HIV", "markers": ["triglycerides"], "src": [3] },
+        { "at": "blood sugar", "op": "up", "say": "can rise; 5% vs 1% reached a diabetes-range HbA1c at 26 weeks", "markers": ["glucose", "hba1c"], "src": [1] },
+        { "at": "skin", "op": "warn", "say": "injection-site redness, itching or pain (17% vs 6% on placebo)", "risk": "injection-site reactions", "src": [1] },
+        { "at": "joints · fluid", "op": "warn", "say": "swelling, joint pain, tingling, sometimes carpal tunnel", "risk": "swelling and joint pain", "src": [1] },
+        { "at": "immune system", "op": "warn", "say": "allergic reactions such as itching, flushing, hives or rash (4% in trials)", "risk": "allergy warning", "src": [1] },
+        { "at": "whole body", "op": "warn", "say": "more deaths reported with growth hormone drugs in acute critical illness", "risk": "deaths in critical illness", "src": [1] }
+      ],
+      "dirs": { "igf1": "up", "triglycerides": "down", "glucose": "up", "hba1c": "up" },
+      "ask": ["How will we track my blood sugar and IGF-1, and at what point would we stop?"]
+    },
+    "testagen": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "testes", "op": "is", "say": "spurred growth of rat testicular tissue, not other tissues tested (lab study)", "src": [5] },
+        { "at": "testes", "op": "up", "say": "testosterone and sperm improved in 48 older men (developer study, not peer reviewed)", "markers": ["testosterone", "semen"], "src": [5] },
+        { "at": "brain", "op": "up", "say": "men reported better well-being and sexual activity (small developer study)", "src": [5] },
+        { "at": "pituitary", "op": "watch", "say": "LH and FSH checked with testosterone (the developers' study tracked them)", "markers": ["lh", "fsh"], "src": [5] }
+      ],
+      "dirs": { "testosterone": "up", "semen": "up", "lh": "watch", "fsh": "watch" },
+      "ask": ["Has my testosterone been confirmed low with proper morning tests, and what is causing it?"]
+    },
+    "testosterone": {
+      "route": "on the skin or injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "testes", "op": "up", "say": "replaces missing testosterone when they fail or aren't signaled properly", "markers": ["testosterone"], "src": [1] },
+        { "at": "pituitary", "op": "down", "say": "LH and FSH fall, the signals that drive the testes", "markers": ["lh", "fsh"], "src": [1, 5, 6] },
+        { "at": "urinary · genital", "op": "up", "say": "sexual activity, desire and erections rose modestly in men 65+ with low testosterone", "src": [3] },
+        { "at": "brain", "op": "is", "say": "mood lifted slightly, but vitality and walking distance didn't (men 65+, a year)", "src": [3] },
+        { "at": "muscle", "op": "up", "say": "about 1.6 kg more lean mass and 1.6 kg less fat in middle-aged and older men", "src": [8] },
+        { "at": "brain", "op": "up", "say": "desire, arousal and orgasm rose in postmenopausal women with low desire (off-label)", "src": [4] },
+        { "at": "blood", "op": "up", "say": "hematocrit can rise, which thickens the blood; lipids are checked too", "markers": ["hematocrit", "lipids"], "src": [1, 5, 3] },
+        { "at": "prostate", "op": "up", "say": "PSA can rise (11.1% vs 0% on placebo in a gel trial); an enlarged prostate can worsen", "markers": ["psa"], "src": [1, 5] },
+        { "at": "skin", "op": "warn", "say": "gel on the skin can pass to children and masculinize them (boxed warning)", "risk": "gel transfer to children", "src": [1] },
+        { "at": "blood vessels", "op": "warn", "say": "blood pressure rises with all testosterone products, FDA says; it's checked", "risk": "blood pressure rise", "src": [2, 1] },
+        { "at": "testes", "op": "warn", "say": "lower sperm production and possible infertility", "markers": ["semen"], "risk": "infertility risk", "src": [1, 5, 6] },
+        { "at": "heart", "op": "warn", "say": "major heart events no likelier than placebo in 5,246 men, but atrial fibrillation rose", "risk": "atrial fibrillation", "src": [7, 1] }
+      ],
+      "dirs": { "testosterone": "up", "lh": "down", "fsh": "down", "hematocrit": "up", "lipids": "watch", "psa": "up", "semen": "down" },
+      "ask": ["How often will you check my hematocrit, PSA and blood pressure?"]
+    },
+    "tirzepatide": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pancreas", "op": "is", "say": "switches on GIP and GLP-1 receptors; both hormones help regulate blood sugar and appetite", "src": [1, 2] },
+        { "at": "brain", "op": "down", "say": "appetite and calorie intake fall", "src": [1] },
+        { "at": "stomach", "op": "down", "say": "stomach emptying slows, which can change warfarin absorption, so INR is checked", "markers": ["inr"], "src": [1] },
+        { "at": "fat", "op": "down", "say": "15% to 21% less body weight in 72 weeks, versus 3% on placebo; most returns after stopping", "src": [7, 1, 8] },
+        { "at": "blood sugar", "op": "down", "say": "control improves in type 2 diabetes", "markers": ["glucose", "hba1c"], "src": [2, 1] },
+        { "at": "lungs", "op": "down", "say": "breathing pauses in sleep apnea with obesity fell 51% to 59% in 52 weeks, vs 3% on placebo", "src": [1] },
+        { "at": "kidneys", "op": "watch", "say": "kidney function checked if vomiting or diarrhea is severe; dehydration can injure them", "markers": ["kidney"], "src": [1] },
+        { "at": "thyroid", "op": "warn", "say": "boxed warning: thyroid C-cell tumors in rats; unknown in humans", "risk": "thyroid tumor warning", "src": [1, 2] },
+        { "at": "pancreas", "op": "warn", "say": "acute pancreatitis, a label warning, though rates matched placebo in weight trials", "risk": "pancreatitis risk", "src": [1] },
+        { "at": "gallbladder", "op": "warn", "say": "gallstones and gallbladder inflammation; inflammation in 0.7% versus 0.2% on placebo", "risk": "gallbladder disease", "src": [1] },
+        { "at": "blood sugar", "op": "warn", "say": "low blood sugar is more likely with insulin or a sulfonylurea, so it's checked", "markers": ["glucose"], "risk": "low blood sugar risk", "src": [1, 2] },
+        { "at": "stomach", "op": "warn", "say": "nausea in about 1 in 4 versus 8% on placebo, plus diarrhea, vomiting and constipation", "risk": "digestive side effects", "src": [1, 7] }
+      ],
+      "dirs": { "inr": "watch", "glucose": "down", "hba1c": "down", "kidney": "watch" },
+      "ask": ["What is our plan if I stop, given that most of the weight tends to return?"]
+    },
+    "tongkatali": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "testes", "op": "up", "say": "testosterone rose in men with low levels, though trials varied widely (small trials)", "markers": ["testosterone"], "src": [2] },
+        { "at": "testes", "op": "is", "say": "no significant rise in men with normal testosterone (small trials)", "src": [2] },
+        { "at": "urinary · genital", "op": "is", "say": "no clear erection benefit in 2 placebo trials of 139 men; older small studies mixed", "src": [1, 3] },
+        { "at": "adrenals", "op": "is", "say": "better stress-hormone profile and some mood scores in 63 stressed adults (one study)", "src": [1] },
+        { "at": "liver", "op": "warn", "say": "implicated in liver injury in a US network; yellow skin or dark urine prompts liver tests", "markers": ["liver"], "risk": "liver injury", "src": [1] },
+        { "at": "prostate", "op": "warn", "say": "enlarged the prostate (in rats); raised testosterone is a concern in prostate cancer", "risk": "prostate cancer caution", "src": [1, 2] }
+      ],
+      "dirs": { "testosterone": "up", "liver": "watch" },
+      "ask": ["Should my testosterone be tested before I try this, and is there an underlying cause to look for?"]
+    },
+    "tretinoin": {
+      "route": "on the skin",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "skin", "op": "is", "say": "retinoic acid, a prescription skin medicine approved to treat acne", "src": [1, 3] },
+        { "at": "skin", "op": "is", "say": "a cream eased fine wrinkles in 24% vs 8% of under-50s at 24 weeks; most fades on stopping", "src": [2] },
+        { "at": "skin", "op": "warn", "say": "irritation such as redness, peeling and burning, in nearly everyone in wrinkle trials", "risk": "skin irritation", "src": [1, 2] },
+        { "at": "skin", "op": "warn", "say": "skin burns more easily in sun; more UV skin tumors in hairless mice (mouse studies)", "risk": "sun sensitivity", "src": [1, 3] },
+        { "at": "uterus", "op": "warn", "say": "animal birth defects; a label says not to use in pregnancy; human data can't rule it out", "risk": "pregnancy warning", "src": [1, 2] }
+      ],
+      "dirs": {},
+      "ask": ["I may become pregnant: should I use something else?"]
+    },
+    "triptorelin": {
+      "route": "injection",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "pituitary", "op": "is", "say": "acts like GnRH: LH and FSH surge at first, then it stops responding with continued use", "src": [1, 2] },
+        { "at": "testes", "op": "down", "say": "testosterone surges briefly, then falls to castration levels in 91% to 98% by day 29", "markers": ["testosterone"], "src": [1] },
+        { "at": "pituitary", "op": "down", "say": "halts early puberty from age 2; LH suppressed in over 93% of 44 children (one trial)", "markers": ["lh"], "src": [2, 4] },
+        { "at": "uterus", "op": "is", "say": "treats endometriosis, an approved use in the UK but not the US", "src": [5, 1, 2] },
+        { "at": "blood sugar", "op": "watch", "say": "checked, since long-term use raises the risk of diabetes", "markers": ["glucose", "hba1c"], "src": [6, 1] },
+        { "at": "blood", "op": "watch", "say": "lipids checked periodically", "markers": ["lipids"], "src": [1] },
+        { "at": "heart", "op": "watch", "say": "heart rhythm checked if at risk; FDA calls the added heart attack and stroke risk low", "src": [6, 1] },
+        { "at": "prostate", "op": "warn", "say": "early surge can flare prostate cancer, with urinary blockage or spinal cord compression", "risk": "tumor flare", "src": [1] },
+        { "at": "bone", "op": "warn", "say": "bone thinning with long-term use, which may raise fracture risk", "risk": "bone loss", "src": [5] },
+        { "at": "blood vessels", "op": "warn", "say": "hot flashes in 59% to 73% of men", "risk": "hot flashes", "src": [1] },
+        { "at": "brain", "op": "warn", "say": "mood changes, depression and seizures; raised skull pressure in children", "risk": "mood changes and seizures", "src": [5, 1, 2] }
+      ],
+      "dirs": { "testosterone": "down", "lh": "down", "glucose": "watch", "hba1c": "watch", "lipids": "watch" },
+      "ask": ["How will we watch my blood sugar, lipids, heart rhythm and bone health while I take it?"]
+    },
+    "turkesterone": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "muscle", "op": "is", "say": "a plant steroid structurally like androgens, from plants used to promote muscle growth", "src": [6] },
+        { "at": "muscle", "op": "is", "say": "relatives seem to act via estrogen receptors, not as androgens (lab and animal studies)", "src": [6] },
+        { "at": "muscle", "op": "is", "say": "no change in weight, lean mass or fat vs placebo after 4 weeks in 31 adults (abstract)", "src": [4] },
+        { "at": "liver", "op": "is", "say": "IGF-1 didn't change 3 or 24 hours after a single use in 11 men", "src": [1] },
+        { "at": "fat", "op": "is", "say": "resting metabolism and fat burning didn't change over 3 hours after a single use in 11 men", "src": [5] }
+      ],
+      "dirs": {},
+      "ask": ["Which proven approaches to building muscle should I focus on first?"]
+    },
+    "vitd3": {
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "liver", "op": "is", "say": "converted to 25-hydroxyvitamin D, the form blood tests measure", "src": [1] },
+        { "at": "kidneys", "op": "is", "say": "made into the active hormone, which helps the gut absorb calcium", "src": [1] },
+        { "at": "blood", "op": "up", "say": "vitamin D levels rise, more and for longer with D3 than with D2", "markers": ["vitd"], "src": [1] },
+        { "at": "bone", "op": "is", "say": "prevents rickets in children and bone softening (osteomalacia) in adults", "src": [1, 2] },
+        { "at": "blood sugar", "op": "is", "say": "prediabetes became diabetes less often in pooled trials, not in one big trial", "src": [3, 1, 2] },
+        { "at": "immune system", "op": "down", "say": "respiratory infections may fall in children and teens (limited evidence)", "src": [2] },
+        { "at": "blood", "op": "is", "say": "a guideline advises against routine vitamin D tests in healthy people", "markers": ["vitd"], "src": [2] },
+        { "at": "blood", "op": "warn", "say": "excess raises blood calcium: nausea, weakness, stones, in extremes kidney failure", "markers": ["calcium"], "risk": "too much vitamin D", "src": [1, 3] },
+        { "at": "kidneys", "op": "warn", "say": "with calcium, 17% more kidney stones over 7 years in postmenopausal women", "risk": "kidney stones", "src": [1] }
+      ],
+      "dirs": { "vitd": "up", "calcium": "up" },
+      "ask": ["Is a vitamin D blood test useful for me, or not needed?"]
+    },
+    "zinc": {
+      "route": "by mouth",
+      "checked": "2026-10-28",
+      "lines": [
+        { "at": "immune system", "op": "is", "say": "needed for immune function and for hundreds of enzymes", "src": [1] },
+        { "at": "immune system", "op": "down", "say": "colds may be about 2 days shorter (low-certainty evidence)", "src": [3, 1] },
+        { "at": "immune system", "op": "is", "say": "little to no effect on preventing colds (34 trials)", "src": [3, 1] },
+        { "at": "eyes", "op": "down", "say": "25% lower risk of advanced macular degeneration if high-risk (with copper, antioxidants)", "src": [1] },
+        { "at": "gut", "op": "down", "say": "children's acute diarrhea shorter in low-income countries; marginal if well-nourished", "src": [1] },
+        { "at": "blood", "op": "down", "say": "long-term high intakes can lower HDL, the good cholesterol", "src": [1] },
+        { "at": "immune system", "op": "down", "say": "long-term high intakes can weaken immune function", "src": [1] },
+        { "at": "nose", "op": "warn", "say": "loss of smell, possibly permanent, reported with nasal zinc gels and swabs", "risk": "smell loss", "src": [2] },
+        { "at": "blood", "op": "warn", "say": "long-term high intakes can cause copper deficiency: anemia, nerve damage", "markers": ["copper"], "risk": "copper deficiency", "src": [1] },
+        { "at": "stomach", "op": "warn", "say": "altered taste and stomach upset with lozenges; nausea and vomiting with excess", "risk": "stomach upset", "src": [3, 1] }
+      ],
+      "dirs": { "copper": "down" },
+      "ask": ["If I take zinc long term, should my copper level be checked?"]
     }
   }
 }
