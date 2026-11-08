@@ -66,33 +66,49 @@ const S = {
   lib: new Map(), body: { markers: {}, compounds: {}, places: [], drawn: {} }, snap: null, subject: null, f: null, checking: false,
   onAsk: null, onSave: null, isSaved: null, onOpen: null, onClose: null, root: null, peek: null,
   seen: '', marker: '', markerFrom: 'code', file: '', panel: '', all: false, loaded: false, pending: false,
+  wait: null, refocus: '', bodyLost: false,
 };
 const json = (url) => fetch(url).then((r) => (r.ok ? r.json() : null)).catch(() => null);
 const ready = Promise.all([
   json('/library/data/index.json').then((ix) => { for (const it of ix?.items || []) if (okId(it.id)) S.lib.set(it.id, it); }),
   // The body map's index: the places, the markers, and which compounds are drawn (each with its
   // file's version). A compound's own lines load when the screen first shows it (need, below)
-  json('/library/data/body/index.json').then((b) => { if (b?.drawn && typeof b.drawn === 'object') S.body = { places: [], markers: {}, ...b, compounds: {} }; }),
+  json('/library/data/body/index.json').then((b) => {
+    if (b?.drawn && typeof b.drawn === 'object') S.body = { places: [], markers: {}, ...b, compounds: {} };
+    else S.bodyLost = true;
+  }),
   getSignal().then((s) => { S.snap = s && typeof s === 'object' ? s : null; }),
 ]).then(() => { S.loaded = true; const fresh = S.pending; S.pending = false; draw(fresh); });
-// The lines of the drawn compounds among these, each fetched once; one that can't be read is
-// shown from its fact sheet's summary, as an undrawn compound is
+// The lines of the drawn compounds among these, each fetched once. One that can't be read is shown
+// from its fact sheet's summary and said to be unloaded, not undrawn; a later need tries it again,
+// a few seconds on, or at once when the browser is back online
 const fetching = new Map();
+const failed = new Map();
+const RETRY_MS = 4000;
 function need(ids) {
-  return Promise.all(ids.filter((id) => okId(id) && S.body.drawn?.[id] && !S.body.compounds[id]).map((id) => {
+  const now = Date.now();
+  return Promise.all(ids.filter((id) => okId(id) && S.body.drawn?.[id] && !S.body.compounds[id] && !(now - (failed.get(id) || 0) < RETRY_MS)).map((id) => {
     if (!fetching.has(id)) {
       fetching.set(id, json(`/library/data/body/${id}.json?v=${encodeURIComponent(S.body.drawn[id])}`).then((c) => {
-        if (c && Array.isArray(c.lines)) S.body.compounds[id] = c;
-        else delete S.body.drawn[id];
+        if (c && Array.isArray(c.lines)) { S.body.compounds[id] = c; failed.delete(id); }
+        else failed.set(id, Date.now());
+        fetching.delete(id);
       }));
     }
     return fetching.get(id);
   }));
 }
-const have = (ids) => ids.every((id) => !S.body.drawn?.[id] || S.body.compounds[id]);
+// Every one of these is in, or settled as undrawn or unloaded
+const have = (ids) => ids.every((id) => !S.body.drawn?.[id] || S.body.compounds[id] || failed.has(id));
+window.addEventListener('online', () => {
+  if (!failed.size) return;
+  failed.clear();
+  const key = S.subject?.ids.join('+');
+  if (key) need(S.subject.ids).then(() => { if (S.subject?.ids.join('+') === key) draw(false); });
+});
 // The example on the empty screen is what most first visits show: its lines load while the page
-// is idle, so "Try it" draws at once
-ready.then(() => (window.requestIdleCallback || ((fn) => setTimeout(fn, 1500)))(() => need(EXAMPLE.ids)));
+// is idle, so "Try it" draws at once. A chat brought back with its own subject never shows it
+ready.then(() => (window.requestIdleCallback || ((fn) => setTimeout(fn, 1500)))(() => { if (!S.subject) need(EXAMPLE.ids); }));
 
 const item = (id) => S.lib.get(id) || { id, name: id, family: '', category: '' };
 const nameOf = (id) => clean(item(id).name, 60) || id;
@@ -103,6 +119,8 @@ const codeOf = (id) => nameOf(id).toLowerCase();
 const colorOf = (id) => catColor(item(id).category);
 const sigOf = (id) => S.snap?.signals?.[id] || null;
 const drawn = (id) => !!S.body.compounds?.[id]?.lines?.length;
+// Drawn, maybe, but its lines couldn't be loaded (or the map's index couldn't)
+const lost = (id) => !drawn(id) && (failed.has(id) || S.bodyLost);
 const markerName = (m) => S.body.markers?.[m]?.name || m;
 const placeSay = (at) => clean((S.body.places || []).find((p) => p && p.at === at)?.say, 60) || `the ${at}`;
 const gradeSay = (g) => GRADE[g] || g;
@@ -188,15 +206,17 @@ function headline(ids, f, sub) {
   if (topFinding(sub) === 'avoid') return `${listOf(first)}: Sig’s Synergy auditor says to avoid taking them together.`;
   if (sub?.ladder) return ladderHeadline(ids, sub.ladder);
   if (ids.length === 1) {
-    if (!drawn(ids[0])) return `How ${inside[0]} works in the body isn’t drawn yet. Here it is from its fact sheet.`;
+    if (!drawn(ids[0])) return `How ${inside[0]} works in the body ${lost(ids[0]) ? 'couldn’t be loaded just now' : 'isn’t drawn yet'}. Here it is from its fact sheet.`;
     const places = f.rows.map((r) => r.at);
     return places.length > 1
       ? `${first[0]} works in ${places.length} places in the body, from ${placeSay(places[0])} to ${placeSay(places[places.length - 1])}.`
       : `${first[0]} works in one place in the body: ${placeSay(places[0])}.`;
   }
   if (!f.all) {
-    const missing = ids.filter((id) => !drawn(id)).map((id) => mid(shortOf(id)));
-    return `Where ${listOf(inside)} meet isn’t drawn yet: ${listOf(missing)} ${missing.length === 1 ? 'is' : 'are'} still to be added.`;
+    const missing = ids.filter((id) => !drawn(id) && !lost(id)).map((id) => mid(shortOf(id)));
+    const gone = ids.filter(lost).map((id) => mid(shortOf(id)));
+    const why = [missing.length ? `${listOf(missing)} ${missing.length === 1 ? 'is' : 'are'} still to be added` : '', gone.length ? `${listOf(gone)} couldn’t be loaded just now` : ''];
+    return `Where ${listOf(inside)} meet ${missing.length ? 'isn’t drawn yet' : 'can’t be shown yet'}: ${why.filter(Boolean).join(', and ')}.`;
   }
   const where = f.meet.map((r) => placeSay(r.at));
   if (!where.length) return `${listOf(first)} work in different places in the body, with none in common.`;
@@ -798,12 +818,55 @@ function emptyNode() {
 }
 // Keep the keyboard where it was when a part is drawn again
 const focusKey = () => { const a = document.activeElement; return a && S.root?.contains(a) ? a.dataset?.key || '' : ''; };
-const refocus = (key) => { if (key) S.root?.querySelector(`[data-key="${CSS.escape(key)}"]`)?.focus({ preventScroll: true }); };
+const refocus = (key) => {
+  const el = key ? S.root?.querySelector(`[data-key="${CSS.escape(key)}"]`) : null;
+  el?.focus({ preventScroll: true });
+  return !!el;
+};
+// While a subject's lines load: what's coming, with the keyboard kept in the screen (and its place
+// remembered for the draw that follows) and the peek bar already on the new subject
+function waitNode(root, ids, key) {
+  const had = root.contains(document.activeElement);
+  const was = focusKey();
+  if (was) S.refocus = was;
+  const wait = h('p', { class: 'sc-lede sc-wait', tabindex: '-1', text: 'Drawing it…' });
+  root.replaceChildren(h('div', { class: 'sc-empty' }, h('div', { class: 'sc-bar' }, cmdNode(ids)), wait));
+  root.classList.remove('is-empty');
+  root.setAttribute('aria-busy', 'true');
+  root.dataset.wait = key;
+  if (had) wait.focus({ preventScroll: true });
+  S.f = null;
+  drawPeek(false);
+}
 function draw(fresh) {
   const root = S.root;
   if (!root) return;
   const sub = S.subject;
-  if (!sub || !sub.ids?.length) {
+  const ids = sub?.ids || [];
+  const key = ids.join('+');
+  // Until the Library and these compounds' lines have loaded, just say what's coming. The Library
+  // first (ready draws what's waiting), then the lines: one wait per subject, whose draw is fresh if
+  // any draw that waited was
+  if (ids.length && (!S.loaded || !have(ids))) {
+    if (!S.loaded) S.pending = S.pending || fresh;
+    else if (S.wait?.key === key) S.wait.fresh = S.wait.fresh || fresh;
+    else {
+      const w = { key, fresh };
+      S.wait = w;
+      need(ids).then(() => {
+        if (S.wait !== w) return;
+        S.wait = null;
+        if (S.subject?.ids.join('+') === key) draw(w.fresh);
+      });
+    }
+    if (root.dataset.wait !== key) waitNode(root, ids, key);
+    return;
+  }
+  const waited = root.dataset.wait != null;
+  const onWait = waited && root.contains(document.activeElement);
+  delete root.dataset.wait;
+  root.removeAttribute('aria-busy');
+  if (!ids.length) {
     S.f = null;
     root.replaceChildren(emptyNode());
     root.classList.add('is-empty');
@@ -811,22 +874,13 @@ function draw(fresh) {
     return;
   }
   root.classList.remove('is-empty');
-  const ids = sub.ids;
-  // Until the Library and the pathways have loaded, just say what's coming
-  const key = ids.join('+');
-  if (!S.loaded || !have(ids)) {
-    root.replaceChildren(h('div', { class: 'sc-empty' }, h('div', { class: 'sc-bar' }, cmdNode(ids)), h('p', { class: 'sc-lede sc-wait', text: 'Drawing it…' })));
-    // The Library first (ready draws what's waiting), then these compounds' own lines
-    if (!S.loaded) S.pending = S.pending || fresh;
-    else need(ids).then(() => { if (S.subject?.ids.join('+') === key) draw(fresh); });
-    return;
-  }
   const isNew = fresh && key !== S.seen;
   const animate = isNew && !motionOff();
   if (fresh) S.seen = key;
   if (isNew) { S.file = ''; S.panel = ''; S.all = false; }
   if (S.marker && !ids.some((id) => S.body.compounds?.[id]?.dirs?.[S.marker])) S.marker = '';
-  const was = focusKey();
+  const was = focusKey() || (waited ? S.refocus : '');
+  S.refocus = '';
   S.f = facts(ids);
   // (no agents' log before Sig has answered: nothing in its place)
   root.replaceChildren(...[
@@ -836,9 +890,13 @@ function draw(fresh) {
     h('p', { class: 'sc-fine', text: 'From the Library’s fact sheets, each line with its source, and the community’s public totals. Education, not medical advice: no doses, and your clinician has the final say.' }),
   ].filter(Boolean));
   applyMarker();
-  refocus(was);
+  if (!refocus(was) && onWait) refocus('close');
   minimap();
   drawPeek(isNew);
+  // A compound whose lines couldn't be loaded is tried again as the screen is drawn, at most every
+  // few seconds, and drawn in once it arrives
+  const retry = ids.filter((id) => failed.has(id));
+  if (retry.length) need(retry).then(() => { if (retry.some((id) => S.body.compounds[id]) && S.subject?.ids.join('+') === key) draw(false); });
 }
 function redraw(part) {
   const root = S.root;
@@ -905,17 +963,18 @@ function drawPeek(isNew) {
   if (!host) return;
   const sub = S.subject;
   const f = S.f;
-  if (!sub?.ids?.length || !f) { host.replaceChildren(); host.hidden = true; return; }
+  if (!sub?.ids?.length) { host.replaceChildren(); host.hidden = true; return; }
+  // (while its lines load, the new subject with what the auditor said, and the rest once drawn)
   const ids = sub.ids;
   const chips = [];
   const top = topFinding(sub);
-  if (ids.length > 1 && f.all) chips.push(['meet', '∩', f.meet.length ? f.meet.map((r) => r.at).join(', ') : 'no place in common']);
+  if (f && ids.length > 1 && f.all) chips.push(['meet', '∩', f.meet.length ? f.meet.map((r) => r.at).join(', ') : 'no place in common']);
   if (top === 'avoid') chips.push(['avoid', '✕', 'avoid together']);
   else if (top === 'caution') chips.push(['caution', '!', 'auditor: caution']);
-  if (f.opposed.length) chips.push(['caution', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))} both ways`]);
-  if (f.cautions.length) chips.push(['warn', '!', plural(f.cautions.length, 'caution')]);
-  if (f.count) chips.push(['', '', plural(f.count, 'marker')]);
-  const btn = h('button', { class: `sc-peek${isNew && !motionOff() ? ' new' : ''}`, type: 'button', 'aria-label': `Open the screen. ${headline(ids, f, sub)}` },
+  if (f?.opposed.length) chips.push(['caution', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))} both ways`]);
+  if (f?.cautions.length) chips.push(['warn', '!', plural(f.cautions.length, 'caution')]);
+  if (f?.count) chips.push(['', '', plural(f.count, 'marker')]);
+  const btn = h('button', { class: `sc-peek${isNew && !motionOff() ? ' new' : ''}`, type: 'button', 'aria-label': `Open the screen. ${f ? headline(ids, f, sub) : 'Drawing it…'}` },
     h('span', { class: 'pk-grip', 'aria-hidden': 'true' }),
     h('span', { class: 'pk-top', 'aria-hidden': 'true' }, cmdNode(ids), h('span', { class: 'pk-hint', text: coarse ? 'Swipe up' : 'Open' })),
     chips.length ? h('span', { class: 'pk-chips', 'aria-hidden': 'true' }, chips.map(([tone, mark, text]) => h('span', { class: `pk-chip${tone ? ` t-${tone}` : ''}` }, mark ? h('span', { class: 'pk-mark', text: mark }) : null, text))) : null);
@@ -973,6 +1032,8 @@ window.MHScreen = {
     const xs = [...new Set((ids || []).filter(okId))].slice(0, 6);
     if (!S.loaded) return null;
     if (!have(xs)) { need(xs); return null; }
+    // A compound whose lines couldn't be loaded would leave its cautions out: no count without it
+    if (S.bodyLost || xs.some((id) => failed.has(id))) { need(xs); return null; }
     const f = facts(xs);
     return { cautions: f.cautions.length, markers: f.count, meet: f.meet.map((r) => r.at) };
   },
