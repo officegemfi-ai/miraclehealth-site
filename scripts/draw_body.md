@@ -106,7 +106,7 @@ the screen and the fact sheet already say)
 Lab tests only (blood, urine, semen), by key: `igf1`, `glucose`, `hba1c`, `thyroid`, `phosphate`,
 `alp`, `pth`, `cortisol`, `lh`, `fsh`, `testosterone`, `estradiol`, `hematocrit`, `psa`, `semen`,
 `eosinophils`, `kidney` (creatinine and eGFR), `lipids`, `triglycerides`, `liver` (ALT and AST),
-`potassium`, `sodium`, `magnesium`, `calcium`, `copper`, `uricacid`, `prolactin`, `inr`, `cbc`
+`insulin`, `potassium`, `sodium`, `magnesium`, `calcium`, `copper`, `uricacid`, `prolactin`, `inr`, `cbc`
 (complete blood count), `ferritin`, `b12`, `mma` (methylmalonic acid), `homocysteine`, `vitd`,
 `ketones`, `urineprotein`. Their names and what each one is are in `body.json`'s `markers`. Blood pressure,
 heart rate, scans and exams aren't markers: say them in a `watch` line without one.

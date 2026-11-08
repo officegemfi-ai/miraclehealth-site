@@ -75,7 +75,8 @@
     "vitd": { "name": "Vitamin D", "what": "25-hydroxy vitamin D, the form measured to judge vitamin D status." },
     "ketones": { "name": "Ketones", "what": "Made when the body burns fat for fuel. Very high levels make the blood acidic (ketoacidosis)." },
     "urineprotein": { "name": "Urine protein", "what": "Protein in the urine, a sign the kidneys are under strain." },
-    "copper": { "name": "Copper", "what": "A mineral the body needs to make blood cells and keep nerves working." }
+    "copper": { "name": "Copper", "what": "A mineral the body needs to make blood cells and keep nerves working." },
+    "insulin": { "name": "Fasting insulin", "what": "How much insulin is in the blood after a night without food." }
   },
   "compounds": {
     "somatropin": {
