@@ -34,8 +34,8 @@ but never adds a claim the sheet doesn't make.
   tongue`, `infusion`, `implant`, `inhaled`, or two of them joined by ` or ` (`injection or pill`).
   Left out when the sheet doesn't say.
 - `checked`: the sheet's own `checked` date, so a sheet changed later shows up as needing a redraw.
-- `lines`: 3 to 10, in the sheet's order: how it works first, then what it does, then what's
-  checked, then the cautions.
+- `lines`: 3 to 10 read best, and up to 12 when the sheet has that much that matters, in the
+  sheet's order: how it works first, then what it does, then what's checked, then the cautions.
 - `dirs`: every marker named in the lines, once, with its direction: `up` (the sheet says it
   rises), `down` (the sheet says it falls or may fall) or `watch` (the sheet says to check it, with
   no direction). Exactly the markers the lines name, no more.
@@ -82,13 +82,13 @@ but never adds a claim the sheet doesn't make.
 - **No brands, sellers or labs**, no advice ("you should…", "take it…") and no diagnosis. Generic
   names only.
 - **The few that matter.** The main way it works, its main effects as studied, the markers its
-  labs list, and the 1 to 3 most serious or most common cautions (label warnings first). Not every
-  side effect.
+  labs list, and the 1 to 3 most serious or most common cautions (label warnings first; up to 5
+  when a boxed warning or several serious risks need them). Not every side effect.
 
 ## Places, head to toe
 
 `mitochondria` · `hair` (hair and scalp) · `brain` (appetite, mood, sleep, focus, desire) ·
-`hypothalamus` · `pituitary` (growth hormone release, LH and FSH) · `eyes` · `nose` (nasal sprays)
+`hypothalamus` · `pituitary` (growth hormone release, LH and FSH) · `eyes` · `ears` · `nose` (nasal sprays)
 · `thyroid` · `heart` (rate, rhythm, heart muscle) · `blood vessels` (blood pressure, widening) ·
 `lungs` · `breast` · `stomach` (emptying, nausea) · `liver` · `gallbladder` · `pancreas` (insulin,
 glucagon, pancreatitis) · `adrenals` · `kidneys` · `gut` (bowel, diarrhea, constipation) ·

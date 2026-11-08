@@ -8,6 +8,7 @@
     { "at": "hypothalamus", "say": "the hypothalamus" },
     { "at": "pituitary", "say": "the pituitary" },
     { "at": "eyes", "say": "the eyes" },
+    { "at": "ears", "say": "the ears" },
     { "at": "nose", "say": "the nose" },
     { "at": "thyroid", "say": "the thyroid" },
     { "at": "heart", "say": "the heart" },
