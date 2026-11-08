@@ -36,6 +36,7 @@
     { "at": "prostate", "say": "the prostate" },
     { "at": "testes", "say": "the testes" },
     { "at": "joints · fluid", "say": "the joints and body fluid" },
+    { "at": "feet", "say": "the feet" },
     { "at": "veins", "say": "the veins" },
     { "at": "whole body", "say": "the whole body" }
   ],
