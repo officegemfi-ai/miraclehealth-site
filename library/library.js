@@ -3,7 +3,7 @@
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
 import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f08d778478';
-import { wireBodyMap } from '/kit/bodymap.js?v=7a8b60ede3';
+import { wireBodyMap } from '/kit/bodymap.js?v=cd717c0f13';
 import { h, svg, getJson, getSignal, calm, hold } from '/lib/dom.js?v=cef2a56736';
 
 const COMMUNITY = 'https://community.miraclehealth.us';

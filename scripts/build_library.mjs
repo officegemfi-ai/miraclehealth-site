@@ -45,6 +45,9 @@ const catalog = JSON.parse(fs.readFileSync(path.join(DATA, 'catalog.json'), 'utf
 const uses = JSON.parse(fs.readFileSync(path.join(DATA, 'uses.json'), 'utf8'));
 const baselines = JSON.parse(fs.readFileSync(path.join(DATA, 'baselines.json'), 'utf8'));
 const BODY = JSON.parse(fs.readFileSync(path.join(DATA, 'body.json'), 'utf8'));
+// A fact sheet shows how it works in the body once its compound is drawn (scripts/draw_body.md);
+// until then it has no such section, rather than one saying it isn't drawn
+const drawnHere = (id) => Object.hasOwn(BODY.compounds || {}, id) && Array.isArray(BODY.compounds[id]?.lines) && BODY.compounds[id].lines.length > 0;
 const entries = new Map();
 for (const f of fs.readdirSync(path.join(DATA, 'entries')).filter((x) => x.endsWith('.json')).sort()) {
   const e = JSON.parse(fs.readFileSync(path.join(DATA, 'entries', f), 'utf8'));
@@ -375,11 +378,11 @@ function factSheet(c, f) {
       <div class="ev-box">${evPill(f.evidence.grade, g[0])}<p>${e(f.evidence.why)}</p></div>
     </section>
 
-    <section class="le-sec" id="body">
+${drawnHere(c.id) ? `    <section class="le-sec" id="body">
       <h2>How it works in the body</h2>
-      ${bodyMapHtml({ items: [{ id: c.id, name: c.name, entry: BODY.compounds?.[c.id] || null }], places: BODY.places, markers: BODY.markers, sourceHref: (id, n) => `#src-${n}`, id: 'body-map' })}
+      ${bodyMapHtml({ items: [{ id: c.id, name: c.name, entry: BODY.compounds[c.id] }], places: BODY.places, markers: BODY.markers, sourceHref: (id, n) => `#src-${n}`, id: 'body-map' })}
     </section>
-
+` : ''}
     <section class="le-sec" id="benefits">
       <h2>What it may do</h2>
       <ul class="claims">${(f.benefits || []).map((b) => `<li>${evPill(b.evidence)}<p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
@@ -502,7 +505,7 @@ function entryPage(c) {
       : 'None routinely needed'],
     ['Checked', `${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a>`],
   ].filter(Boolean) : [];
-  const toc = f ? [['voices', 'Bottom line'], ['what', 'What it is'], ['body', 'In the body'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
+  const toc = f ? [['voices', 'Bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood markers to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero">
