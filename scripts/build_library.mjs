@@ -20,6 +20,8 @@ import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signa
 // Miracle Health's design kit, shared with the community app (copied from the community's
 // shared/kit by its scripts/sync_kit.sh): the bar of the four places, the evidence meter, Sig
 import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompound } from '../kit/kit.js';
+// The body map (the kit's bodymap.js): how each compound works in the body, from body.json
+import { bodyMapHtml } from '../kit/bodymap.js';
 // The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
 // and the founding reporters (scripts/build_pages.mjs)
 import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
@@ -42,6 +44,7 @@ const CHECK = process.argv.includes('--check');
 const catalog = JSON.parse(fs.readFileSync(path.join(DATA, 'catalog.json'), 'utf8'));
 const uses = JSON.parse(fs.readFileSync(path.join(DATA, 'uses.json'), 'utf8'));
 const baselines = JSON.parse(fs.readFileSync(path.join(DATA, 'baselines.json'), 'utf8'));
+const BODY = JSON.parse(fs.readFileSync(path.join(DATA, 'body.json'), 'utf8'));
 const entries = new Map();
 for (const f of fs.readdirSync(path.join(DATA, 'entries')).filter((x) => x.endsWith('.json')).sort()) {
   const e = JSON.parse(fs.readFileSync(path.join(DATA, 'entries', f), 'utf8'));
@@ -106,7 +109,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // Scripts import the kit, the Signal's drawings and the site's own helpers (lib/) by their
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them. The shared scripts import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -372,6 +375,11 @@ function factSheet(c, f) {
       <div class="ev-box">${evPill(f.evidence.grade, g[0])}<p>${e(f.evidence.why)}</p></div>
     </section>
 
+    <section class="le-sec" id="body">
+      <h2>How it works in the body</h2>
+      ${bodyMapHtml({ items: [{ id: c.id, name: c.name, entry: BODY.compounds?.[c.id] || null }], places: BODY.places, markers: BODY.markers, sourceHref: (id, n) => `#src-${n}`, id: 'body-map' })}
+    </section>
+
     <section class="le-sec" id="benefits">
       <h2>What it may do</h2>
       <ul class="claims">${(f.benefits || []).map((b) => `<li>${evPill(b.evidence)}<p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
@@ -494,7 +502,7 @@ function entryPage(c) {
       : 'None routinely needed'],
     ['Checked', `${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a>`],
   ].filter(Boolean) : [];
-  const toc = f ? [['voices', 'Bottom line'], ['what', 'What it is'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
+  const toc = f ? [['voices', 'Bottom line'], ['what', 'What it is'], ['body', 'In the body'], ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood markers to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero">
@@ -915,7 +923,7 @@ function methodPage() {
 // ---------------------------------------------------------------------------
 const BODY_DIR = path.join(DATA, 'body');
 function bodyFiles() {
-  const b = JSON.parse(fs.readFileSync(path.join(DATA, 'body.json'), 'utf8'));
+  const b = BODY;
   const files = new Map();
   const drawn = {};
   for (const [id, c] of Object.entries(b.compounds || {})) {
