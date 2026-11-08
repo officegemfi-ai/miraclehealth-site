@@ -96,8 +96,9 @@ glucagon, pancreatitis) · `adrenals` · `kidneys` · `gut` (bowel, diarrhea, co
 allergy) · `nerves` · `bone` · `muscle` · `tendons` (tendons and ligaments) · `fat` (body fat and
 weight) · `skin` (also injection sites, tanning, wounds) · `uterus` · `ovaries` · `prostate` (and
 PSA) · `testes` (testosterone made there, sperm) · `joints · fluid` (joints, swelling) · `veins`
-(blood clots) · `whole body` (only for a serious caution with no one place: deaths in critical
-illness, tumor growth in people with cancer)
+(blood clots) · `whole body` (only for a serious event with no one place: deaths in critical
+illness, tumor growth in people with cancer; never for missing data, which the evidence grade on
+the screen and the fact sheet already say)
 
 ## Blood markers
 
