@@ -29,9 +29,10 @@ but never adds a claim the sheet doesn't make.
 }
 ```
 
-- `route`: how it's taken, if the sheet says: one of `injection`, `pill`, `powder`, `liquid`,
-  `nasal spray`, `on the skin`, `under the tongue`, `infusion`, `implant`, `inhaled`, or two of
-  them joined by ` or ` (`injection or pill`). Left out when the sheet doesn't say.
+- `route`: how it's taken, if the sheet says: one of `injection`, `pill`, `by mouth` (taken by
+  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `on the skin`, `under the
+  tongue`, `infusion`, `implant`, `inhaled`, or two of them joined by ` or ` (`injection or pill`).
+  Left out when the sheet doesn't say.
 - `checked`: the sheet's own `checked` date, so a sheet changed later shows up as needing a redraw.
 - `lines`: 3 to 10, in the sheet's order: how it works first, then what it does, then what's
   checked, then the cautions.
@@ -105,9 +106,9 @@ the screen and the fact sheet already say)
 Lab tests only (blood, urine, semen), by key: `igf1`, `glucose`, `hba1c`, `thyroid`, `phosphate`,
 `alp`, `pth`, `cortisol`, `lh`, `fsh`, `testosterone`, `estradiol`, `hematocrit`, `psa`, `semen`,
 `eosinophils`, `kidney` (creatinine and eGFR), `lipids`, `triglycerides`, `liver` (ALT and AST),
-`potassium`, `sodium`, `magnesium`, `calcium`, `uricacid`, `prolactin`, `inr`, `cbc` (complete
-blood count), `ferritin`, `b12`, `mma` (methylmalonic acid), `homocysteine`, `vitd`, `ketones`,
-`urineprotein`. Their names and what each one is are in `body.json`'s `markers`. Blood pressure,
+`potassium`, `sodium`, `magnesium`, `calcium`, `copper`, `uricacid`, `prolactin`, `inr`, `cbc`
+(complete blood count), `ferritin`, `b12`, `mma` (methylmalonic acid), `homocysteine`, `vitd`,
+`ketones`, `urineprotein`. Their names and what each one is are in `body.json`'s `markers`. Blood pressure,
 heart rate, scans and exams aren't markers: say them in a `watch` line without one.
 
 ## Check it

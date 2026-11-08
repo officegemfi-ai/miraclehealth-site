@@ -74,7 +74,8 @@
     "homocysteine": { "name": "Homocysteine", "what": "An amino acid that rises when B12 or folate runs low." },
     "vitd": { "name": "Vitamin D", "what": "25-hydroxy vitamin D, the form measured to judge vitamin D status." },
     "ketones": { "name": "Ketones", "what": "Made when the body burns fat for fuel. Very high levels make the blood acidic (ketoacidosis)." },
-    "urineprotein": { "name": "Urine protein", "what": "Protein in the urine, a sign the kidneys are under strain." }
+    "urineprotein": { "name": "Urine protein", "what": "Protein in the urine, a sign the kidneys are under strain." },
+    "copper": { "name": "Copper", "what": "A mineral the body needs to make blood cells and keep nerves working." }
   },
   "compounds": {
     "somatropin": {

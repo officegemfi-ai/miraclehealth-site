@@ -18,7 +18,7 @@ const BODY = path.join(DATA, 'body.json');
 
 export const OPS = new Set(['is', 'up', 'down', 'block', 'watch', 'warn']);
 export const DIRS = new Set(['up', 'down', 'watch']);
-export const ROUTES = new Set(['injection', 'pill', 'powder', 'liquid', 'nasal spray', 'on the skin', 'under the tongue', 'infusion', 'implant', 'inhaled']);
+export const ROUTES = new Set(['injection', 'pill', 'by mouth', 'powder', 'liquid', 'nasal spray', 'on the skin', 'under the tongue', 'infusion', 'implant', 'inhaled']);
 const ENTRY_KEYS = ['route', 'checked', 'lines', 'dirs', 'ask'];
 const LINE_KEYS = ['at', 'op', 'say', 'markers', 'risk', 'src'];
 const ID = /^[a-z0-9]{1,40}$/;
