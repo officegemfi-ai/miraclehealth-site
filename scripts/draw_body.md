@@ -30,7 +30,7 @@ but never adds a claim the sheet doesn't make.
 ```
 
 - `route`: how it's taken, if the sheet says: one of `injection`, `pill`, `by mouth` (taken by
-  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `nasal drops`, `eye drops`, `on the skin`, `under the
+  mouth in more than one form), `powder`, `liquid`, `nasal spray`, `nasal drops`, `eye drops`, `on the skin`, `vaginal`, `under the
   tongue`, `infusion`, `implant`, `inhaled`, or two of them joined by ` or ` (`injection or pill`).
   Left out when the sheet doesn't say.
 - `checked`: the sheet's own `checked` date, so a sheet changed later shows up as needing a redraw.
@@ -99,7 +99,7 @@ glucagon, pancreatitis) · `adrenals` · `kidneys` · `gut` (bowel, diarrhea, co
 `blood` (red cells, clotting, lipids carried in it) · `immune system` (white cells, inflammation,
 allergy) · `nerves` · `bone` · `muscle` · `tendons` (tendons and ligaments) · `fat` (body fat and
 weight) · `skin` (also injection sites, tanning, wounds) · `uterus` · `ovaries` · `prostate` (and
-PSA) · `testes` (testosterone made there, sperm) · `joints · fluid` (joints, swelling) · `feet` · `veins`
+PSA: a line moving PSA always sits here, so compounds that move it meet) · `testes` (testosterone made there, sperm) · `joints · fluid` (joints, swelling) · `feet` · `veins`
 (blood clots) · `whole body` (only for a serious event with no one place: deaths in critical
 illness, tumor growth in people with cancer; never for missing data, which the evidence grade on
 the screen and the fact sheet already say)
