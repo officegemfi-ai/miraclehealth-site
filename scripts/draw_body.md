@@ -33,15 +33,19 @@ but never adds a claim the sheet doesn't make.
   mouth in more than one form), `powder`, `liquid`, `nasal spray`, `nasal drops`, `eye drops`, `on the skin`, `vaginal`, `under the
   tongue`, `infusion`, `implant`, `inhaled`, or two of them joined by ` or ` (`injection or pill`).
   Left out when the sheet doesn't say.
-- `checked`: the sheet's own `checked` date, so a sheet changed later shows up as needing a redraw.
+- `checked`: the sheet's own `checked` date. When the sheet is checked again, the check fails until
+  someone reads the lines against it and updates this date: the fact sheet page prints these lines
+  with links to the sheet's numbered sources, which a re-check may renumber.
 - `lines`: 3 to 10 read best, and up to 12 when the sheet has that much that matters, in the
   sheet's order: how it works first, then what it does, then what's checked, then the cautions.
 - `dirs`: every marker named in the lines, once, with its direction: `up` (the sheet says it
   rises in people), `down` (it falls or may fall in people) or `watch` (the sheet says to check it,
   or the direction comes only from animal or lab studies: a marker's chip on the screen has no
-  room to say "in rats"). Exactly the markers the lines name, no more.
+  room to say "in rats"). Exactly the markers the lines name, no more, and never the other way from
+  the lines naming it. A marker named only on lines without a source is `watch`.
 - `ask`: one question copied word for word from the sheet's `ask_your_clinician`, the one that
-  best fits the lines (it joins the questions a member takes to a clinician).
+  best fits the lines (it joins the questions a member takes to a clinician). Required when the
+  sheet has them.
 
 ## A line
 
@@ -57,7 +61,11 @@ but never adds a claim the sheet doesn't make.
   90 characters at most (aim for 70), no full stop at the end.
 - `src`: 1 to 4 of the sheet's source numbers that back this line. Never a source that doesn't.
   The one exception: a `watch` line from the sheet's own lab list, when the sheet gives that lab
-  no source, has `"src": []`. A general health check that isn't about this compound isn't drawn.
+  no source, has `"src": []` and names the lab instead (below). It says what's checked, never which
+  way anything goes. A general health check that isn't about this compound isn't drawn.
+- `lab`: on a `watch` line from the lab list, which of the sheet's labs it comes from: 1 to 3 of
+  `before.N` and `during.N` (the Nth on that list, from 0) or `why` (the note under the lists):
+  `"lab": ["before.0", "during.1"]`.
 - `markers`: blood markers from the list below that this line moves or checks.
 - `risk`: on a `warn` line only, the caution's short name for a clinician question (2 to 4 words:
   "clot warning", "pancreatitis risk").
@@ -79,11 +87,14 @@ but never adds a claim the sheet doesn't make.
 - **The body, not the bottle.** Places are anatomy. A caution about the product itself (purity,
   identity, contamination) has no place on the map: the fact sheet carries it, and the screen
   links there.
-- **No doses, ever.** No amounts (mg, mcg, IU, units, mL) and no schedules ("once a week", "per
-  day"). How long a study ran is fine ("after 8 weeks"), and so are a study's results ("about 15%
-  less body weight in trials") when the sheet gives them.
-- **No brands, sellers or labs**, no advice ("you should…", "take it…") and no diagnosis. Generic
-  names only.
+- **No doses, ever.** No amounts (mg, mcg, IU, units, mL, spelled out or not), no schedules ("once
+  a week", "every other day", "2 capsules a day", "5 days on, 2 off") and not the word dose itself:
+  "at higher doses" becomes what the sheet says happened. Lab units count as amounts too, so a
+  result goes in words or a percentage ("LDL fell about 15%"), never "30 mg/dL". How long a study
+  ran is fine ("after 8 weeks"), and so are a study's results ("about 15% less body weight in
+  trials") when the sheet gives them.
+- **No brands, sellers or labs**, no advice ("you should…", "take it…", "best taken…", "not
+  recommended…") and no diagnosis. Generic names only.
 - **The few that matter.** The main way it works, its main effects as studied, the markers its
   labs list, and the 1 to 3 most serious or most common cautions (label warnings first; up to 5
   when a boxed warning or several serious risks need them). Not every side effect.
@@ -123,7 +134,9 @@ node scripts/check_body.mjs --merge <dir>   # check the drafts, then write them 
 ```
 
 It refuses a line on an unknown place, op or marker, a source number the sheet doesn't have, a
-dose or a schedule, advice, a `warn` without `risk`, an `ask` that isn't the sheet's own words,
-and `dirs` that don't match the lines. It warns when a sheet has no entry yet, or has changed since
-its entry was drawn. What it can't check is whether the sheet really says it: that's the reviewer's
-job, line by line, against the sheet.
+line without a source that doesn't name its lab or says which way something goes, a dose or a
+schedule, advice, an invisible character (it reads the text as a person would, so "５ mg" is "5
+mg"), a `warn` without `risk`, an `ask` that isn't the sheet's own words, `dirs` that don't match
+the lines, a compound listed twice, and an entry whose sheet was checked again after it was drawn.
+It warns when a sheet has no entry yet. What it can't check is whether the sheet really says it:
+that's the reviewer's job, line by line, against the sheet.
