@@ -24,8 +24,8 @@
 <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/img/library-graph.svg?v=457269dd22" fetchpriority="high">
 <link rel="stylesheet" href="/kit/kit.css?v=09f38515c0">
-<link rel="stylesheet" href="styles.css?v=e38dc9d907">
-<script type="module" src="/home.js?v=fb70ec455b"></script>
+<link rel="stylesheet" href="styles.css?v=d610fea4ff">
+<script type="module" src="/home.js?v=cf9196c008"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -109,10 +109,13 @@
       <circle cx="19.8" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/><circle cx="44.2" cy="44.5" r="2.4" fill="#FF8FA3" opacity=".45"/>
     </g></svg>
         </span>
-        <p><b>One number per compound</b> for how it went, from what people who took it report.</p>
+        <div class="hc-says">
+          <p class="hc-idle"><b>One number per compound</b> for how it went, from what people who took it report.</p>
+          <div class="hc-now" aria-hidden="true"><span class="hc-name" data-hc="name"></span><span class="hc-val"><b data-hc="score"></b><span>/100</span></span><span class="hc-lvl" data-hc="level"></span></div>
+        </div>
       </div>
       <div class="hc-scale" aria-hidden="true">
-        <div class="hc-track"><i class="t25"></i><i class="t50"></i><i class="t75"></i><span class="hc-knob"></span></div>
+        <div class="hc-track"><i class="t25"></i><i class="t50"></i><i class="t75"></i><span class="hc-rest"></span><span class="hc-knob"></span></div>
         <div class="hc-labels"><span>0</span><span>50</span><span>100</span></div>
       </div>
       <p class="hc-foot"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.6 8.2A5.6 5.6 0 1 1 11.9 4M12.4 1.6v2.9H9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Moves as new reports come in</p>

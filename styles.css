@@ -169,8 +169,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .hero-card::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(70% 55% at 15% 0%,rgba(216,255,61,.13),rgba(216,255,61,0) 70%)}
 .hc-head{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 10.5px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .hero .hero-card .live i{outline:0}
-.hc-range{max-width:150px;overflow:hidden;padding:2px 9px;border-radius:40px;border:1px solid rgba(255,255,255,.18);color:var(--on-ink-2);letter-spacing:.08em;white-space:nowrap;text-overflow:ellipsis}
-.hc-head>.live{white-space:nowrap}
+.hc-range{padding:2px 9px;border-radius:40px;border:1px solid rgba(255,255,255,.18);color:var(--on-ink-2);letter-spacing:.08em;white-space:nowrap}
 .hc-body{position:relative;display:flex;align-items:center;gap:14px;margin-top:16px}
 .hc-sig{flex:none;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 50% 58%,rgba(216,255,61,.24),rgba(216,255,61,0) 68%)}
 .hc-body p{font-size:14.5px;line-height:1.45;color:var(--on-ink-2)}
@@ -183,9 +182,23 @@ ul,ol{list-style:none;margin:0;padding:0}
 /* Drifts between 69% and 76% of the track by transform (cqw is a hundredth of the track's width),
    not by moving its left edge, which laid out the page every frame */
 @keyframes hc-drift{0%,100%{transform:translateX(-3cqw)}30%{transform:translateX(4cqw)}55%{transform:translateX(-1cqw)}78%{transform:translateX(2cqw)}}
-/* While the graph traces a compound with a Signal, the marker stands at its Signal */
+/* While the graph traces a compound with a Signal, the card reads it out in the words' place:
+   its name, its Signal as the example further down shows one, and its level; the marker stands
+   at its Signal and the scale past it dims. The two readings share one spot, so the card keeps its size */
+.hc-says{display:grid;align-items:center}
+.hc-says>*{grid-area:1/1;transition:opacity .35s ease}
+.hc-now{display:flex;flex-direction:column;min-width:0;opacity:0}
+.hero-card.is-live .hc-idle{opacity:0}
+.hero-card.is-live .hc-now{opacity:1}
+.hc-now .hc-name{height:20px;overflow:hidden;font:600 16px/20px var(--head);letter-spacing:-.01em;color:var(--on-ink);white-space:nowrap;text-overflow:ellipsis}
+.hc-now .hc-val{display:flex;align-items:baseline;gap:6px;height:40px;margin-top:5px}
+.hc-now .hc-val b{font:600 44px/.9 var(--head);letter-spacing:-.05em;color:var(--lime);font-variant-numeric:tabular-nums}
+.hc-now .hc-val span{font:500 12px/1 var(--mono);color:var(--on-ink-3)}
+.hc-now .hc-lvl{display:flex;align-items:center;gap:7px;height:18px;margin-top:9px;font:500 10px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-2)}
+.hc-lvl svg{flex:none;width:18px;height:18px}
+.hc-rest{position:absolute;top:0;right:0;bottom:0;left:100%;border-radius:0 8px 8px 0;background:rgba(9,14,13,.66);opacity:0;transition:left .7s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.hero-card.is-live .hc-rest{opacity:1}
 .hero-card.is-live .hc-knob{animation:none;transition:left .7s cubic-bezier(.2,.8,.2,1)}
-.hero-card.is-live .hc-range{border-color:rgba(216,255,61,.4);color:var(--on-ink)}
 .hc-labels{display:flex;justify-content:space-between;margin-top:10px;font:500 10px/1 var(--mono);letter-spacing:.08em;color:var(--on-ink-3)}
 .hc-foot{position:relative;display:flex;align-items:center;gap:9px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);font:500 10.5px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-2)}
 .hc-foot svg{flex:none;color:var(--lime)}

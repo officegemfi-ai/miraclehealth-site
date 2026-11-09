@@ -160,14 +160,36 @@ async function startNet(net) {
     : s.kind === 's' ? `What may the ${s.name} blend (${s.parts.join(' + ')}) do for me? What does the evidence say about each part, and what do members report?`
       : s.kind === 'p' ? `In the Library, which compounds act on ${s.label}, and what do their fact sheets say?`
         : `In the Library, which compounds may change ${s.name} on a blood test, and what do their fact sheets say?`);
-  // the Signal card beside the graph shows the Signal of what's traced, when there is one
-  const sc = document.querySelector('.hero-card'), knob = sc && sc.querySelector('.hc-knob'), range = sc && sc.querySelector('.hc-range');
+  // the Signal card beside the graph reads out the Signal of what's traced, when there is one:
+  // its name, its number (counting to it, as the marker slides there) and its level
+  const sc = document.querySelector('.hero-card');
+  const hc = (k) => sc && sc.querySelector(`[data-hc="${k}"]`);
+  const knob = sc && sc.querySelector('.hc-knob'), rest = sc && sc.querySelector('.hc-rest');
+  let snapNow = null, was = null, counting = 0;
+  const countTo = (el, to) => {
+    const from = was == null ? to : was;
+    was = to;
+    cancelAnimationFrame(counting);
+    if (reduceMotion || from === to) { el.textContent = to.toFixed(1); return; }
+    const t0 = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / 700);
+      el.textContent = (from + (to - from) * (1 - (1 - k) ** 3)).toFixed(1);
+      if (k < 1) counting = requestAnimationFrame(step);
+    };
+    counting = requestAnimationFrame(step);
+  };
   const traced = (s) => {
-    if (!knob || !range) return;
-    const v = s && Number.isFinite(s.signal) ? s.signal : null;
+    if (!knob || !hc('score')) return;
+    const v = s && Number.isFinite(s.signal) ? Math.max(0, Math.min(100, s.signal)) : null;
     sc.classList.toggle('is-live', v != null);
-    knob.style.left = v != null ? `${Math.max(0, Math.min(100, v))}%` : '';
-    range.textContent = v != null ? `${v.toFixed(1)} ${s.label}` : '0–100';
+    knob.style.left = v != null ? `${v}%` : '';
+    if (rest) rest.style.left = v != null ? `${v}%` : '';
+    if (v == null) return;
+    hc('name').textContent = s.label;
+    countTo(hc('score'), v);
+    const lvl = levelOf(snapNow?.signals?.[s.id]?.certification || 'forum');
+    hc('level').replaceChildren(seal(lvl.key), h('span', {}, lvl.name));
   };
   let g;
   try {
@@ -178,7 +200,7 @@ async function startNet(net) {
       links: { sheet: (id) => `/library/${id}/`, ask: (s) => askLink(question(s), { site: '' }) },
     });
   } catch { return; }
-  getSignal().then((snap) => g.setSignal(snap), () => {});
+  getSignal().then((snap) => { snapNow = snap; g.setSignal(snap); }, () => {});
   // pointing (a mouse or a pen) and clicking; a touch screen taps
   let touch = false;
   const at = (e) => { const r = net.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
