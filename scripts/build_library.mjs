@@ -25,6 +25,7 @@ import { bodyMapHtml } from '../kit/bodymap.js';
 // The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
 // and the founding reporters (scripts/build_pages.mjs)
 import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
+import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -111,15 +112,16 @@ const UNAPPROVED = new Set(['investigational', 'not_approved', 'category2', 'und
 const version = (...files) => createHash('sha256').update(files.map((f) => fs.readFileSync(path.join(ROOT, f))).join('\n')).digest('hex').slice(0, 10);
 // Scripts import the kit, the Signal's drawings and the site's own helpers (lib/) by their
 // version too: the build writes it into their import lines, so a new script never runs with an
-// old copy of any of them. The shared scripts import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js'].map((f) => [f, version(f)]);
+// old copy of any of them (or of one a script loads later, with import()). The shared scripts
+// import nothing themselves, so their versions come first.
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
   const was = fs.readFileSync(file, 'utf8');
   const now = SHARED.reduce((text, [shared, v]) =>
-    text.replace(new RegExp(`(from '/${shared.replace(/\./g, '\\.')})(?:\\?v=[0-9a-f]+)?'`, 'g'), `$1?v=${v}'`), was);
+    text.replace(new RegExp(`((?:from |import\\()'/${shared.replace(/\./g, '\\.')})(?:\\?v=[0-9a-f]+)?'`, 'g'), `$1?v=${v}'`), was);
   if (now === was) continue;
   if (CHECK) { console.error(`out of date: ${f} imports an older shared script (run node scripts/build_library.mjs)`); process.exit(1); }
   fs.writeFileSync(file, now);
@@ -947,6 +949,11 @@ for (const [file, json] of bodyFiles()) out.set(file, json);
 out.set(path.join(LIB, 'index.html'), indexPage());
 for (const c of catalog) out.set(path.join(LIB, c.id, 'index.html'), entryPage(c));
 out.set(path.join(DATA, 'index.json'), aiIndex());
+// The Library as one graph, for the front page's hero (scripts/graph.mjs): laid out again whenever
+// the Library changes, with its still picture
+const GRAPH = buildGraph({ body: BODY, catalog });
+out.set(path.join(DATA, 'graph.json'), GRAPH.json);
+out.set(path.join(ROOT, 'img', 'library-graph.svg'), GRAPH.svg);
 for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g));
 out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
@@ -974,6 +981,16 @@ const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'count:compounds', String(catalog.length));
 front = fill(front, 'count:sheets', String(entries.size));
+// The graph in the hero: its data and still picture by their versions, its size, its legend, the
+// count of what its lines say, and the graph as text
+const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
+front = front.replace(/\/library\/data\/graph\.json(?:\?v=[0-9a-f]+)?"/g, `/library/data/graph.json?v=${hashOf(GRAPH.json)}"`);
+front = front.replace(/\/img\/library-graph\.svg(?:\?v=[0-9a-f]+)?"/g, `/img/library-graph.svg?v=${hashOf(GRAPH.svg)}"`);
+front = fill(front, 'graph:size', `<span>${GRAPH.data.counts.nodes.toLocaleString('en-US')} nodes</span><span>${GRAPH.data.counts.links.toLocaleString('en-US')} links</span>`);
+front = fill(front, 'graph:legend', GRAPH.legend);
+front = fill(front, 'graph:foot', GRAPH.foot);
+front = fill(front, 'graph:lines', `${GRAPH.data.counts.lines.toLocaleString('en-US')} lines`);
+front = fill(front, 'graph:text', GRAPH.text);
 front = fill(front, 'signal-art:takeover', `<div class="viz-wide">${takeoverSvg({ w: 50, max: 300 })}</div><div class="viz-compact">${takeoverSvg({ w: 50, max: 300 }, { compact: true })}</div>`);
 front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key, 30)}<span><b>${e(l.name)}</b>${e(l.rule)}</span></li>`).join(''));
 // The real example's level seal sits beside the level's name, so it's only a picture
