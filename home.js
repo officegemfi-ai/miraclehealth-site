@@ -135,7 +135,7 @@ if (card) {
 const net = document.querySelector('.net[data-graph]');
 if (net) startNet(net);
 async function startNet(net) {
-  const [mod, data] = await Promise.all([import('/lib/graph.js?v=0111170ef6').catch(() => null), getJson(net.dataset.graph)]);
+  const [mod, data] = await Promise.all([import('/lib/graph.js?v=73cd373abf').catch(() => null), getJson(net.dataset.graph)]);
   if (!mod || !data || !data.counts) return;
   const css = () => {
     const cs = getComputedStyle(net);
