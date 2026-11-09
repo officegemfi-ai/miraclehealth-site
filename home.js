@@ -5,7 +5,7 @@
 // each use and the placebo figures beside them. Then the bars are drawn in once, as the card comes
 // into view. If the files can't load, the page keeps what it was published with.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { COMMUNITY, node } from '/kit/kit.js?v=f08d778478';
+import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=f08d778478';
 import { h, getJson, getSignal, calm } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -126,6 +126,85 @@ if (card) {
       io.observe(card);
     });
   }
+}
+
+// The hero: the Library as one graph (lib/graph.js; its data, and the still picture shown until
+// it starts, by scripts/graph.mjs). Its script and data load after the page; if either can't, the
+// still picture stays. Pointing at a dot traces it and clicking it opens its fact sheet; the
+// "Jump to" chips and the search box ask for what they name; Sig's link follows what's traced.
+const net = document.querySelector('.net[data-graph]');
+if (net) startNet(net);
+async function startNet(net) {
+  const [mod, data] = await Promise.all([import('/lib/graph.js?v=73cd373abf').catch(() => null), getJson(net.dataset.graph)]);
+  if (!mod || !data || !data.counts) return;
+  const css = () => {
+    const cs = getComputedStyle(net);
+    const v = (k, d) => { const x = parseFloat(cs.getPropertyValue(k)); return Number.isFinite(x) ? x : d; };
+    const bar = net.querySelector('.net-bar'), foot = net.querySelector('.net-foot');
+    return {
+      cx: v('--gx', 0.6), cy: v('--gy', 0.5), unit: v('--gu', 0.27), unitH: v('--guh', 0), caption: v('--gcap', 0) > 0,
+      callouts: v('--gcap', 0) > 0 ? 1 : 4, top: (bar ? bar.offsetHeight : 0) + 4, bottom: (foot ? foot.offsetHeight : 0) + 6,
+    };
+  };
+  // labels keep clear of what's laid over the graph: the legend, the Signal card, and the words
+  // (as far as their text reaches, not their whole column)
+  const tight = (el) => { if (el.matches('form')) return el.getBoundingClientRect(); const r = document.createRange(); r.selectNodeContents(el); return r.getBoundingClientRect(); };
+  const over = () => {
+    const r0 = net.getBoundingClientRect();
+    return [...document.querySelectorAll('.net-key, .hero-card')].map((el) => el.getBoundingClientRect())
+      .concat([...document.querySelectorAll('.hero-copy > *')].map(tight))
+      .filter((r) => r.width && r.height && r.bottom > r0.top && r.top < r0.bottom).map((r) => [r.left - r0.left, r.top - r0.top, r.width, r.height]);
+  };
+  const ask = net.querySelector('.net-ask');
+  const question = (s) => (s.kind === 'c' ? askAboutCompound(s.name)
+    : s.kind === 's' ? `What may the ${s.name} blend (${s.parts.join(' + ')}) do for me? What does the evidence say about each part, and what do members report?`
+      : s.kind === 'p' ? `In the Library, which compounds act on ${s.label}, and what do their fact sheets say?`
+        : `In the Library, which compounds may change ${s.name} on a blood test, and what do their fact sheets say?`);
+  // the Signal card beside the graph shows the Signal of what's traced, when there is one
+  const sc = document.querySelector('.hero-card'), knob = sc && sc.querySelector('.hc-knob'), range = sc && sc.querySelector('.hc-range');
+  const traced = (s) => {
+    if (!knob || !range) return;
+    const v = s && Number.isFinite(s.signal) ? s.signal : null;
+    sc.classList.toggle('is-live', v != null);
+    knob.style.left = v != null ? `${Math.max(0, Math.min(100, v))}%` : '';
+    range.textContent = v != null ? `${v.toFixed(1)} ${s.label}` : '0–100';
+  };
+  let g;
+  try {
+    g = mod.startGraph(net, data, {
+      onTrace: traced,
+      ...css(), layout: css, avoid: over, poster: net.querySelector('.net-poster'), ask,
+      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#0E1B36', '#0A1328', '#070A14'] },
+      links: { sheet: (id) => `/library/${id}/`, ask: (s) => askLink(question(s), { site: '' }) },
+    });
+  } catch { return; }
+  getSignal().then((snap) => g.setSignal(snap), () => {});
+  // pointing (a mouse or a pen) and clicking; a touch screen taps
+  let touch = false;
+  const at = (e) => { const r = net.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  net.addEventListener('pointerdown', (e) => { touch = e.pointerType === 'touch'; }, { passive: true });
+  net.addEventListener('pointermove', (e) => { if (e.pointerType !== 'touch') g.pointerAt(...at(e), e.target === g.surface); }, { passive: true });
+  net.addEventListener('pointerleave', () => g.pointerOut());
+  g.surface.addEventListener('click', (e) => { const url = g.activate(...at(e), touch); if (url) location.assign(url); });
+  ask.addEventListener('pointerenter', () => g.keep(true));
+  ask.addEventListener('pointerleave', () => g.keep(false));
+  // the chips: Sig traces what a chip names while it's pointed at or focused
+  for (const a of document.querySelectorAll('.hero-try a[href^="/library/"]')) {
+    const id = a.getAttribute('href').split('/')[2];
+    a.addEventListener('pointerenter', () => g.hold(id));
+    a.addEventListener('focus', () => g.hold(id));
+    a.addEventListener('pointerleave', () => g.release());
+    a.addEventListener('blur', () => g.release());
+  }
+  // the search box: what's typed lights up, as the Library's search would find it
+  const q = document.getElementById('hero-q'), size = net.querySelector('.net-size'), found = net.querySelector('.net-found');
+  const typed = () => {
+    const r = g.light(q.value), on = q.value.trim().length > 1;
+    found.textContent = !on ? '' : r.lit ? `${r.lit} of ${r.of} light up` : `none of the ${r.of} drawn`;
+    found.hidden = !on; size.hidden = on;
+  };
+  q.addEventListener('input', typed);
+  if (q.value) typed();
 }
 
 // The drawings that move without end (Sig, the takeover line's pulse, the flow) only move while
