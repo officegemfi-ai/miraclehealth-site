@@ -45,7 +45,7 @@ function savedStack() {
     meds: (Array.isArray(st.meds) ? st.meds : []).map((m) => clean(m, 40)).filter(Boolean).slice(0, 6) };
 }
 const stackQuestion = (st) => `I take ${listOf(st.items.map((i) => i.name))}.${st.meds.length ? ` My medicines: ${st.meds.join(', ')}.` : ''} Is that combination OK?`;
-const stackLink = (st) => `${location.origin}/ai/#stack=${b64url(new TextEncoder().encode(JSON.stringify({ v: 1, i: st.items.map((i) => i.id), m: st.meds })))}`;
+const stackLink = (st) => `${location.origin}/sig/#stack=${b64url(new TextEncoder().encode(JSON.stringify({ v: 1, i: st.items.map((i) => i.id), m: st.meds })))}`;
 
 // ---------------------------------------------------------------------------
 // Moving it all to another device: one link (and its QR code) that carries it after "#"
@@ -264,7 +264,7 @@ function emptyState() {
     h('h2', { id: 'empty-h', text: 'Nothing kept here yet' }),
     h('p', { class: 'my-lede', text: 'When you keep a Miracle Plan or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.' }),
     h('div', { class: 'my-actions' },
-      h('a', { class: 'btn lime', href: '/ai/' }, 'Build your plan with Sig'),
+      h('a', { class: 'btn lime', href: '/sig/' }, 'Build your plan with Sig'),
       h('a', { class: 'btn line', href: '/library/' }, 'Explore the Library')));
 }
 

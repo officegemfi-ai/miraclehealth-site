@@ -1,5 +1,6 @@
-// Ask Sig (miraclehealth.us/ai): the chat with Sig, Miracle Health's AI. The conversation lives only in this browser
-// tab (sessionStorage). Each message goes to the ask function (the community's Supabase
+// Sig's own page (miraclehealth.us/sig): the chat with Sig, Miracle Health's AI, filling the browser
+// window. The chats are kept on this device until they're deleted (see "The conversation"), with
+// the list of them in the side panel. Each message goes to the ask function (the community's Supabase
 // project), which streams back each agent's steps, the answer, the cards, where the answer came
 // from and the final check as server-sent events. The page is Sig's health terminal (ai/term.css):
 // each agent keeps one colour, its steps are log lines, the ring of the eleven who answer lights
@@ -71,6 +72,7 @@ const ICON = {
   print: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M4.5 6V2h7v4M4.5 11.5H2.5v-5h11v5h-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.5 9.5h7V14h-7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
   qr: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5h1.6v1.6H9.5zM12.4 12.4H14V14h-1.6zM12.4 9.5H14v1.6h-1.6zM9.5 12.4h1.6V14H9.5z" fill="currentColor"/></svg>',
   link: '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M6.8 9.2a3 3 0 0 0 4.3 0l2-2a3 3 0 0 0-4.3-4.3l-.8.8M9.2 6.8a3 3 0 0 0-4.3 0l-2 2a3 3 0 0 0 4.3 4.3l.8-.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+  trash: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   close: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   info: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.9v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
   keep: '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
@@ -275,11 +277,16 @@ function settle(t) {
 // ---------------------------------------------------------------------------
 // Each message: {role:'user', text} or {role:'assistant', parts:[{t:'text',s}|{t:'card',card}],
 // steps:[...], review, memo, ms, state:'done'|'stopped'|'error', error}
-// The chats, like a browser's tabs: each keeps its own conversation, all of them in this browser
-// tab only (sessionStorage), one open at a time. The chat from before tabs comes back as the first.
-const TABS = 'mh-ai-tabs-v1';
+// The chats are kept on this device (localStorage), never sent to us to keep: a list of them, and
+// each one under its own key, so two windows of Sig don't write over each other's chats. Which are
+// open as tabs, and which is in front, belongs to this browser tab (sessionStorage), like a
+// browser window's tabs. Chats the last versions kept only in the tab join the list once.
+const LIST = 'mh-sig-chats-v1';
+const ONE = (id) => `mh-sig-chat-v1-${id}`;
+const OPEN = 'mh-sig-open-v1';
 const MAX_TABS = 8;
-const newId = () => Math.random().toString(36).slice(2, 10);
+const MAX_KEPT = 60;
+const newId = () => Math.random().toString(36).slice(2, 10).padEnd(8, '0');
 function fromStore(list) {
   const c = (Array.isArray(list) ? list : []).map((m) => (m.role === 'assistant' && Array.isArray(m.steps) ? { ...m, steps: m.steps.filter((s) => s.agent !== 'clinician') } : m));
   // A turn that never finished (the tab closed mid-answer) is dropped
@@ -287,18 +294,74 @@ function fromStore(list) {
   if (c.length && c[c.length - 1].role === 'user') c.pop();
   return c;
 }
-const kept = store.get(TABS);
-const sessions = kept?.v === 1 && Array.isArray(kept.tabs) && kept.tabs.length
-  ? kept.tabs.slice(0, MAX_TABS).map((t) => ({ id: String(t.id || newId()), chat: fromStore(t.chat), nodes: null }))
-  : [{ id: newId(), chat: fromStore(store.get(KEY)), nodes: null }];
-let activeId = sessions.some((t) => t.id === kept?.active) ? kept.active : sessions[0].id;
+// A write that says whether it fit (a full device, or storage that's blocked)
+function put(k, v) { try { localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v)); return true; } catch { return false; } }
+const readList = () => {
+  const l = store.get(LIST, 'local');
+  return Array.isArray(l) ? l.filter((c) => c && typeof c.id === 'string' && /^[a-z0-9]{6,16}$/.test(c.id)).map((c) => ({ id: c.id, title: String(c.title || 'Chat').slice(0, 80), at: Number(c.at) || 0 })) : [];
+};
+const titleOf = (c) => c.find((m) => m.role === 'user')?.text.replace(/\s+/g, ' ').trim().slice(0, 80) || 'New chat';
+const bare = (m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined });
+let list = readList();
+const gone = new Set();     // deleted in this window: not kept again
+let carried = [];
+{
+  const tabs = store.get('mh-ai-tabs-v1');
+  const one = store.get(KEY);
+  const old = tabs?.v === 1 && Array.isArray(tabs.tabs) ? tabs.tabs.map((t) => t.chat) : one ? [one] : [];
+  const now = Date.now();
+  for (const [i, raw] of old.entries()) {
+    const c = fromStore(raw);
+    if (!c.length) continue;
+    const id = newId();
+    if (put(ONE(id), c.map(bare))) { list.push({ id, title: titleOf(c), at: now - i }); carried.push(id); }
+  }
+  if (old.length) { put(LIST, list); store.del('mh-ai-tabs-v1'); store.del(KEY); }
+}
+// The tabs that were open in this browser tab come back (the chats they show from the device)
+const loadChat = (id) => fromStore(store.get(ONE(id), 'local'));
+const openKept = store.get(OPEN);
+const sessions = (carried.length ? carried : Array.isArray(openKept?.open) ? openKept.open : [])
+  .filter((id, i, a) => typeof id === 'string' && /^[a-z0-9]{6,16}$/.test(id) && a.indexOf(id) === i).slice(0, MAX_TABS)
+  .map((id) => ({ id, chat: list.some((c) => c.id === id) ? loadChat(id) : [], nodes: null, at: list.find((c) => c.id === id)?.at || 0 }));
+if (!sessions.length) sessions.push({ id: newId(), chat: [], nodes: null, at: 0 });
+let activeId = sessions.some((t) => t.id === openKept?.active) ? openKept.active : sessions[0].id;
 let chat = sessions.find((t) => t.id === activeId).chat;
 let busy = null;            // {controller, msg, sid}: one answer at a time, in the chat it was asked in
 let adult = store.get(ADULT, 'local') === true;
-const bare = (m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined });
+const touch = (sid) => { const t = sessions.find((x) => x.id === sid); if (t) t.at = Date.now(); };
+// Keeping: every open chat with words in it (only when it changed), the list merged with what
+// other windows have kept meanwhile, and the open tabs. A full device makes room by letting go of
+// the oldest chats that aren't open; past the most kept, the oldest go too.
 function save() {
-  store.set(TABS, { v: 1, active: activeId, tabs: sessions.map((t) => ({ id: t.id, chat: t.chat.map(bare) })) });
-  store.del(KEY);
+  let kept = readList().filter((c) => !gone.has(c.id));
+  const open = new Set(sessions.map((t) => t.id));
+  const spare = () => kept.filter((c) => !open.has(c.id)).sort((a, b) => a.at - b.at)[0];
+  for (const t of sessions) {
+    if (!t.chat.length || gone.has(t.id)) continue;
+    const entry = { id: t.id, title: titleOf(t.chat), at: t.at || Date.now() };
+    const i = kept.findIndex((c) => c.id === t.id);
+    if (i >= 0) kept[i] = entry; else kept.push(entry);
+    const json = JSON.stringify(t.chat.map(bare));
+    if (json === t.saved) continue;
+    for (let tries = 0; !put(ONE(t.id), json) && tries < MAX_KEPT; tries++) {
+      const old = spare();
+      if (!old) break;
+      store.del(ONE(old.id), 'local');
+      kept = kept.filter((c) => c !== old);
+    }
+    t.saved = json;
+  }
+  while (kept.length > MAX_KEPT) {
+    const old = spare();
+    if (!old) break;
+    store.del(ONE(old.id), 'local');
+    kept = kept.filter((c) => c !== old);
+  }
+  put(LIST, kept);
+  list = kept;
+  store.set(OPEN, { active: activeId, open: sessions.map((t) => t.id) });
+  drawList();
 }
 // The conversation a message belongs to (an answer can finish in a chat that isn't open)
 const chatOf = (m) => sessions.find((t) => t.chat.includes(m))?.chat || chat;
@@ -318,10 +381,16 @@ let gap = 0;
 const measureGap = () => { gap = parseFloat(getComputedStyle(app).getPropertyValue('--tm-g')) || 0; };
 measureGap();
 addEventListener('resize', measureGap);
-const chatEnd = () => app.getBoundingClientRect().bottom + gap + window.scrollY - window.innerHeight;
-function nearBottom() { return window.scrollY >= chatEnd() - 180; }
+// On Sig's own page a wide screen scrolls the conversation in its pane (the window fills the
+// browser); a phone scrolls the page
+const paneMq = matchMedia('(min-width: 701px)');
+const inPane = () => paneMq.matches && document.body.classList.contains('sigapp');
+const scroller = () => (inPane() ? chatEl : window);
+const scrollPos = () => (inPane() ? chatEl.scrollTop : window.scrollY);
+const chatEnd = () => (inPane() ? chatEl.scrollHeight - chatEl.clientHeight : app.getBoundingClientRect().bottom + gap + window.scrollY - window.innerHeight);
+function nearBottom() { return scrollPos() >= chatEnd() - 180; }
 // (at once: the page's smooth scrolling, started again every frame, would never catch up)
-function toBottom() { window.scrollTo({ top: Math.max(0, chatEnd()), behavior: 'instant' }); }
+function toBottom() { scroller().scrollTo({ top: Math.max(0, chatEnd()), behavior: 'instant' }); }
 // Following an answer down as it's written: from sending it until they scroll up themselves (the
 // parts of an answer can arrive faster than the page scrolls to them)
 let following = false;
@@ -1427,6 +1496,7 @@ function ask(text) {
   input.value = '';
   grow();
   setEmpty(false);
+  touch(activeId);
   const um = { role: 'user', text: t };
   chat.push(um);
   thread.append(userNode(t));
@@ -1495,6 +1565,7 @@ async function run(am) {
   am.ms = am.ms || Math.round(performance.now() - t0);
   if (!am.state) am.state = 'done';
   busy = null;
+  touch(sid);
   finish(am, true);
   setBusy(false);
   drawTabs();
@@ -1765,7 +1836,7 @@ const rail = $('ai-screen');
 const narrowMq = matchMedia('(max-width: 1100px)');
 const backdrop = h('div', { class: 'sc-backdrop', 'aria-hidden': 'true' });
 let sheetFrom = null;
-const behind = () => [document.querySelector('header.top'), chatEl, document.querySelector('.foot')].filter(Boolean);
+const behind = () => [document.querySelector('header.top'), document.querySelector('.sg-side'), chatEl, document.querySelector('.foot')].filter(Boolean);
 function openSheet() {
   if (!SCREEN || !rail || !narrowMq.matches || !SCREEN.subject() || app.classList.contains('sheet-open')) return;
   sheetFrom = document.activeElement;
@@ -1909,7 +1980,7 @@ function drawTeam(m) {
 const tabsNav = $('tm-chats');
 const plusBtn = $('tm-plus');
 const tabStrip = $('tm-tabstrip');
-const chatName = (t) => t.chat.find((m) => m.role === 'user')?.text.replace(/\s+/g, ' ').trim().slice(0, 80) || 'New chat';
+const chatName = (t) => titleOf(t.chat);
 function drawTabs() {
   if (!tabsNav) return;
   const was = document.activeElement?.closest?.('.tm-tab');
@@ -1945,6 +2016,7 @@ function drawTabs() {
     const tab = tabsNav.querySelector(`.tm-tab[data-id="${back.id}"]`) || on;
     tab?.querySelector(back.x && tab.dataset.id === back.id ? '.tm-tabx' : '.tm-tabopen')?.focus();
   }
+  drawList();
 }
 // The status bar for the chat that's open, unless Sig is busy (then it says so)
 function showState() {
@@ -1976,8 +2048,9 @@ function switchTo(id, { from = sessions.find((t) => t.id === activeId) } = {}) {
   const to = sessions.find((t) => t.id === id);
   if (!to || to === from) return;
   const lines = [...thread.querySelectorAll(':scope > .msg, :scope > .gate, :scope > .ai-incoming')];
+  if (from) from.scroll = scrollPos();
   lines.forEach((n) => n.remove());
-  if (from) { from.nodes = lines; from.scroll = window.scrollY; }
+  if (from) from.nodes = lines;
   activeId = to.id;
   chat = to.chat;
   if (to.nodes) thread.append(...to.nodes);
@@ -1986,27 +2059,226 @@ function switchTo(id, { from = sessions.find((t) => t.id === activeId) } = {}) {
   setEmpty(!thread.querySelector(':scope > .msg, :scope > .gate'));
   shown();
   save();
-  window.scrollTo({ top: to.scroll ?? Math.max(0, chatEnd()), behavior: 'instant' });
+  scroller().scrollTo({ top: to.scroll ?? Math.max(0, chatEnd()), behavior: 'instant' });
 }
+// A new chat: in a new tab, unless the one in front is still empty
 function newTab() {
-  if (sessions.length >= MAX_TABS) return;
-  const t = { id: newId(), chat: [], nodes: null };
+  const here = sessions.find((t) => t.id === activeId);
+  if (here && !here.chat.length && !thread.querySelector(':scope > .gate')) { closeDrawer(false); input.focus({ preventScroll: true }); return; }
+  if (sessions.length >= MAX_TABS) {
+    const spare = sessions.find((t) => t.id !== activeId && busy?.sid !== t.id);
+    if (!spare) return;
+    closeTab(spare.id);
+  }
+  const t = { id: newId(), chat: [], nodes: null, at: 0 };
   sessions.push(t);
   switchTo(t.id);
+  closeDrawer(false);
   input.focus({ preventScroll: true });
 }
+// Closing a tab keeps its chat in the list (an empty one is just closed); its answer, if Sig is
+// writing one, stops
 function closeTab(id) {
   const i = sessions.findIndex((t) => t.id === id);
   if (i < 0) return;
   const lone = sessions.length === 1;
-  if (lone && !sessions[0].chat.length) return;
+  if (lone && !sessions[0].chat.length && !gone.has(id)) return;
   if (busy?.sid === id) busy.controller.abort();
-  const [gone] = sessions.splice(i, 1);
-  if (!sessions.length) sessions.push({ id: newId(), chat: [], nodes: null });
-  if (gone.id === activeId) switchTo(sessions[Math.min(i, sessions.length - 1)].id, { from: null });
+  const [shut] = sessions.splice(i, 1);
+  if (!sessions.length) sessions.push({ id: newId(), chat: [], nodes: null, at: 0 });
+  if (shut.id === activeId) switchTo(sessions[Math.min(i, sessions.length - 1)].id, { from: null });
   else { drawTabs(); save(); }
   if (lone) input.focus({ preventScroll: true });
 }
+// ---------------------------------------------------------------------------
+// The side panel: the chats kept on this device, newest first (open one; delete one, or all of
+// them), and the site's own links. Beside the window wherever the site's bar shows its links (it
+// folds away), sliding in over it where the bar would fold them into a menu (900px and under).
+// ---------------------------------------------------------------------------
+const drawerMq = matchMedia('(max-width: 900px)');
+const listEl = $('sg-list');
+const noneEl = $('sg-none');
+const wipeBtn = $('sg-wipe');
+const sg = $('sg');
+const side = $('sg-side');
+const menuBtn = $('tm-menu');
+const foldBtn = $('sg-fold');
+const scrim = $('sg-scrim');
+const dayFmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+const yearFmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const timeFmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' });
+function whenOf(at) {
+  if (!at) return '';
+  const d = new Date(at);
+  const now = new Date();
+  if (d.toDateString() === now.toDateString()) return timeFmt.format(d);
+  return d.getFullYear() === now.getFullYear() ? dayFmt.format(d) : yearFmt.format(d);
+}
+// Deleting one is asked once more in its row ("Keep" is where the focus goes)
+let asking = null;
+const BTNS = ['sg-open', 'sg-del', 'sg-yes', 'sg-no'];
+const rowBtn = (id, cls) => listEl.querySelector(`.sg-item[data-id="${id}"] .${cls}`);
+function stopAsking({ focus = false } = {}) {
+  const id = asking;
+  if (!id) return;
+  asking = null;
+  drawList();
+  if (focus) rowBtn(id, 'sg-del')?.focus();
+}
+function drawList() {
+  if (!listEl) return;
+  const was = document.activeElement?.closest?.('.sg-item');
+  const back = was ? { id: was.dataset.id, cls: BTNS.find((c) => document.activeElement.classList.contains(c)) } : null;
+  const open = new Set(sessions.map((t) => t.id));
+  const items = [...list].sort((a, b) => b.at - a.at);
+  if (asking && !items.some((c) => c.id === asking)) asking = null;
+  listEl.replaceChildren(...items.map((c) => {
+    const on = c.id === activeId;
+    const cls = `sg-item${on ? ' on' : ''}${open.has(c.id) ? ' tabbed' : ''}${busy?.sid === c.id ? ' busy' : ''}`;
+    if (c.id === asking) {
+      const yes = h('button', { class: 'sg-yes', type: 'button', text: 'Delete', 'aria-describedby': `sg-ask-${c.id}` });
+      const no = h('button', { class: 'sg-no', type: 'button', text: 'Keep', 'aria-describedby': `sg-ask-${c.id}` });
+      yes.addEventListener('click', () => { asking = null; deleteChat(c.id); });
+      no.addEventListener('click', () => stopAsking({ focus: true }));
+      return h('li', { class: `${cls} asking`, 'data-id': c.id },
+        h('p', { class: 'sg-ask', id: `sg-ask-${c.id}` }, 'Delete ', h('b', { text: c.title }), ' from this device?'), h('div', { class: 'sg-asks' }, yes, no));
+    }
+    const go = h('button', { class: 'sg-open', type: 'button', 'aria-current': on ? 'true' : null },
+      h('i', { class: 'sg-dot', 'aria-hidden': 'true' }), h('span', { class: 'sg-name', text: c.title }), h('span', { class: 'sg-when', text: whenOf(c.at) }),
+      busy?.sid === c.id ? h('span', { class: 'sr', text: ' (Sig is answering)' }) : null);
+    const del = h('button', { class: 'sg-del', type: 'button', title: 'Delete chat', 'aria-label': `Delete chat: ${c.title}` }, svg(ICON.trash));
+    go.addEventListener('click', () => { asking = null; openChat(c.id); closeDrawer(false); });
+    del.addEventListener('click', () => { asking = c.id; drawList(); rowBtn(c.id, 'sg-no')?.focus(); });
+    return h('li', { class: cls, 'data-id': c.id }, go, del);
+  }));
+  if (noneEl) noneEl.hidden = items.length > 0;
+  if (wipeBtn) wipeBtn.disabled = !items.length;
+  if (back?.cls) (rowBtn(back.id, back.cls) || rowBtn(back.id, 'sg-open'))?.focus();
+}
+// A chat from the list: its tab if it's open, else in the empty tab in front or a new one
+function openChat(id) {
+  if (sessions.some((t) => t.id === id)) { switchTo(id); return; }
+  const c = list.find((x) => x.id === id);
+  if (!c) return;
+  const loaded = loadChat(id);
+  if (!loaded.length) { gone.add(id); store.del(ONE(id), 'local'); save(); return; }
+  const t = { id, chat: loaded, nodes: null, at: c.at, saved: JSON.stringify(loaded.map(bare)) };
+  const i = sessions.findIndex((x) => x.id === activeId);
+  if (i >= 0 && !sessions[i].chat.length && busy?.sid !== activeId && !thread.querySelector(':scope > .gate')) {
+    sessions.splice(i, 0, t);
+    sessions.splice(i + 1, 1);
+    switchTo(id, { from: null });
+    return;
+  }
+  if (sessions.length >= MAX_TABS) {
+    const spare = sessions.find((x) => x.id !== activeId && busy?.sid !== x.id);
+    if (!spare) return;
+    closeTab(spare.id);
+  }
+  sessions.push(t);
+  switchTo(id);
+}
+// Deleting: gone from this device (its answer stops if Sig is writing one)
+function deleteChat(id) {
+  const order = [...list].sort((a, b) => b.at - a.at).map((c) => c.id);
+  const at = order.indexOf(id);
+  const wasFocused = !!document.activeElement?.closest?.('.sg-list');
+  gone.add(id);
+  store.del(ONE(id), 'local');
+  list = list.filter((c) => c.id !== id);
+  if (sessions.some((t) => t.id === id)) closeTab(id); else save();
+  if (wasFocused) {
+    const next = order.filter((x) => x !== id)[Math.min(at, order.length - 2)];
+    (next && listEl.querySelector(`.sg-item[data-id="${next}"] .sg-open`) || $('sg-new'))?.focus();
+  }
+}
+function wipeAll() {
+  if (busy) busy.controller.abort();
+  for (const c of list) { gone.add(c.id); store.del(ONE(c.id), 'local'); }
+  for (const t of sessions) { gone.add(t.id); store.del(ONE(t.id), 'local'); }
+  list = [];
+  put(LIST, []);
+  const fresh = { id: newId(), chat: [], nodes: null, at: 0 };
+  sessions.splice(0, sessions.length, fresh);
+  switchTo(fresh.id, { from: null });
+}
+// Delete all, asked once more in place: "Keep them" is where the focus goes
+wipeBtn?.addEventListener('click', () => {
+  const n = list.length;
+  if (!n) return;
+  const row = $('sg-wipe-row');
+  const q = h('p', { class: 'sg-wipe-ask', id: 'sg-wipe-ask', text: `Delete ${n === 1 ? 'your chat' : `all ${n} chats`} from this device? This can’t be undone.` });
+  const yes = h('button', { class: 'sg-wipe-yes', type: 'button', text: 'Delete', 'aria-describedby': 'sg-wipe-ask' });
+  const no = h('button', { class: 'sg-wipe-no', type: 'button', text: 'Keep them', 'aria-describedby': 'sg-wipe-ask' });
+  const done = () => { q.remove(); yes.remove(); no.remove(); wipeBtn.hidden = false; };
+  no.addEventListener('click', () => { done(); wipeBtn.focus(); });
+  yes.addEventListener('click', () => { done(); wipeAll(); $('sg-new')?.focus(); });
+  wipeBtn.hidden = true;
+  row.append(q, yes, no);
+  no.focus();
+});
+$('sg-new')?.addEventListener('click', () => { stopAsking(); newTab(); });
+// Showing and hiding the panel
+let folded = store.get('mh-sig-side', 'local') === 'folded';
+function syncSide() {
+  if (!sg || !side) return;
+  const narrow = drawerMq.matches;
+  if (!narrow) { sg.classList.remove('drawer'); if (scrim) scrim.hidden = true; }
+  sg.classList.toggle('folded', !narrow && folded);
+  const shown = narrow ? sg.classList.contains('drawer') : !folded;
+  side.inert = !shown;
+  menuBtn?.setAttribute('aria-expanded', String(shown));
+  foldBtn?.setAttribute('aria-expanded', String(shown));
+  foldBtn?.setAttribute('aria-label', narrow ? 'Close the side panel' : 'Hide the side panel');
+}
+function openDrawer() {
+  if (!sg) return;
+  sg.classList.add('drawer');
+  if (scrim) scrim.hidden = false;
+  syncSide();
+  $('sg-new')?.focus();
+}
+function closeDrawer(back = true) {
+  if (!sg?.classList.contains('drawer')) return;
+  stopAsking();
+  sg.classList.remove('drawer');
+  if (scrim) scrim.hidden = true;
+  syncSide();
+  if (back) menuBtn?.focus();
+}
+menuBtn?.addEventListener('click', () => {
+  if (drawerMq.matches) { openDrawer(); return; }
+  folded = false;
+  store.set('mh-sig-side', 'open', 'local');
+  syncSide();
+  foldBtn?.focus();
+});
+foldBtn?.addEventListener('click', () => {
+  if (drawerMq.matches) { closeDrawer(); return; }
+  folded = true;
+  store.set('mh-sig-side', 'folded', 'local');
+  syncSide();
+  menuBtn?.focus();
+});
+scrim?.addEventListener('click', () => closeDrawer());
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (asking && document.activeElement?.closest?.('.sg-item.asking')) { e.preventDefault(); stopAsking({ focus: true }); return; }
+  if (sg?.classList.contains('drawer')) { e.preventDefault(); closeDrawer(); }
+});
+drawerMq.addEventListener('change', syncSide);
+// Another window of Sig kept or deleted a chat: the list follows, and a chat deleted there closes
+// here too (unless Sig is answering in it)
+addEventListener('storage', (e) => {
+  if (e.storageArea !== window.localStorage || (e.key !== LIST && e.key !== null)) return;
+  const before = new Set(list.map((c) => c.id));
+  list = readList().filter((c) => !gone.has(c.id));
+  const now = new Set(list.map((c) => c.id));
+  for (const t of [...sessions]) {
+    if (before.has(t.id) && !now.has(t.id) && busy?.sid !== t.id) { gone.add(t.id); closeTab(t.id); }
+  }
+  drawList();
+});
 plusBtn?.addEventListener('click', newTab);
 addEventListener('resize', () => tabsNav?.classList.toggle('scrolls', tabsNav.scrollWidth > tabsNav.clientWidth + 1));
 // On a phone the tabs sit in the conversation's header, the width of the screen
@@ -2049,8 +2321,25 @@ if (SCREEN) {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && app.classList.contains('sheet-open')) { e.preventDefault(); closeSheet(); } });
   narrowMq.addEventListener('change', () => { if (!narrowMq.matches) closeSheet(); });
 }
-// The questions from this conversation, to take to whoever they see
-
+// A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller
+// window); after an answer that ends on a question, an invitation to answer it
+let ruler = null;
+const widthOf = (t) => {
+  ruler ||= document.createElement('canvas').getContext('2d');
+  if (!ruler) return t.length * 9;
+  const cs = getComputedStyle(input);
+  ruler.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  return ruler.measureText(t).width;
+};
+function fitPlaceholder() {
+  const last = chat[chat.length - 1];
+  const back = last?.role === 'assistant' && last.state === 'done' && /\?\W*$/.test(textOf(last));
+  const hints = back ? ['Answer Sig, or ask something else', 'Answer Sig, or ask more', 'Answer Sig']
+    : ['Ask about a goal, something you take, or a mix', input.dataset.short, 'Ask about what you take', 'Ask Sig'];
+  // the longest hint that fits on the prompt's one line, after the cursor
+  const room = input.clientWidth;
+  input.placeholder = (room && hints.find((t) => widthOf(`${t}00`) <= room)) || hints[hints.length - 1];
+}
 // Sig everywhere, and the agents waking up once on arrival
 document.querySelectorAll('[data-sig]').forEach((el) => setSig(el, 'idle'));
 if (!reduceMotion) {
@@ -2063,12 +2352,13 @@ if (!reduceMotion) {
   }
 }
 
-// The chats from earlier in this tab come back as they were: the open one on the page, the
-// others when they're opened
+// The chats that were open in this browser tab come back as they were: the open one on the page,
+// the others when they're opened
 for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
 setEmpty(!chat.length);
 save();
 placeStrip();
+syncSide();
 screenSync();
 // The window as it was: the chats in their tabs, the last answer's agents, and the screen in front
 // when it has something on it
@@ -2080,6 +2370,9 @@ showState();
   const m = teamMsg();
   if (m?.flag && m.flag !== 'none') sigs().forEach((el) => setSig(el, 'concerned'));
 }
+// A question or a stack sent from elsewhere starts a chat of its own; the one that was open stays
+// in its tab
+if (/^#(?:ask|stack)=/.test(location.hash) && (chat.length || thread.querySelector(':scope > .gate'))) newTab();
 refreshStack();
 stackFromLink();
 // The community, live: how many members and first-hand reports Sig speaks for (totals from
@@ -2118,25 +2411,6 @@ if (asked) {
   updateSend();
   input.focus({ preventScroll: true });
   input.setSelectionRange(input.value.length, input.value.length);
-}
-// A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller
-// window); after an answer that ends on a question, an invitation to answer it
-let ruler = null;
-const widthOf = (t) => {
-  ruler ||= document.createElement('canvas').getContext('2d');
-  if (!ruler) return t.length * 9;
-  const cs = getComputedStyle(input);
-  ruler.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-  return ruler.measureText(t).width;
-};
-function fitPlaceholder() {
-  const last = chat[chat.length - 1];
-  const back = last?.role === 'assistant' && last.state === 'done' && /\?\W*$/.test(textOf(last));
-  const hints = back ? ['Answer Sig, or ask something else', 'Answer Sig, or ask more', 'Answer Sig']
-    : ['Ask about a goal, something you take, or a mix', input.dataset.short, 'Ask about what you take', 'Ask Sig'];
-  // the longest hint that fits on the prompt's one line, after the cursor
-  const room = input.clientWidth;
-  input.placeholder = (room && hints.find((t) => widthOf(`${t}00`) <= room)) || hints[hints.length - 1];
 }
 fitPlaceholder();
 addEventListener('resize', fitPlaceholder);

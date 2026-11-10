@@ -470,10 +470,12 @@ ${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1
   }
 
   // -------------------------------------------------------------------------
-  // miraclehealth.us/sig: a short address for Ask Sig, to say out loud or print. It forwards to
-  // /ai/, keeping any question in the link, and isn't a page of its own for search engines.
+  // miraclehealth.us/ai, where Ask Sig was first: on to Sig's own page at /sig/ (the library
+  // build writes it), keeping any question or stack in the link, and not a page of its own for
+  // search engines. Every link made before (Library pages, the community, My Miracle) still works.
+  // The refresh is only for browsers without scripts: racing go.js, it could drop the #ask= part.
   // -------------------------------------------------------------------------
-  files.set(path.join(ROOT, 'sig', 'index.html'), `<!doctype html>
+  files.set(path.join(ROOT, 'ai', 'index.html'), `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -482,16 +484,16 @@ ${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1
 <meta name="description" content="Ask Sig, Miracle Health’s AI: the studies and the whole community, in one answer.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex">
-<link rel="canonical" href="${SITE}/ai/">
-<meta http-equiv="refresh" content="0; url=/ai/">
-<script src="/sig/go.js"></script>
+<link rel="canonical" href="${SITE}/sig/">
+<script src="/ai/go.js"></script>
+<noscript><meta http-equiv="refresh" content="0; url=/sig/"></noscript>
 </head>
 <body>
-<p><a href="/ai/">Ask Sig</a></p>
+<p><a href="/sig/">Ask Sig</a></p>
 </body>
 </html>
 `);
-  files.set(path.join(ROOT, 'sig', 'go.js'), '// miraclehealth.us/sig: on to Ask Sig, keeping a question in the link\nlocation.replace(`/ai/${location.search}${location.hash}`);\n');
+  files.set(path.join(ROOT, 'ai', 'go.js'), '// miraclehealth.us/ai: on to Sig\'s own page at /sig/, keeping a question or a stack in the link\nlocation.replace(`/sig/${location.search}${location.hash}`);\n');
 
   return { files, urls, pairs, goals: goalStats, issues, V, og };
 }

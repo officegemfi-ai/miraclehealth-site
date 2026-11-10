@@ -377,6 +377,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm .ai-chat{min-height:calc(100svh - var(--top-h) - var(--tm-tb));border:0}
   .tm .help-pin{top:calc(var(--top-h) + var(--tm-tb) + 8px)}
   .tm .ai-dock{bottom:0;margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+  .tm .ai-peek:not([hidden]){margin:0 0 8px}
   .tm .ai-composer{min-height:52px;padding:6px 10px calc(6px + env(safe-area-inset-bottom)) var(--tm-px)}
   .tm .ai-chat.is-empty .ai-composer{padding-bottom:6px}
   .tm .ai-composer textarea,.tm-caret{font-size:16px}
@@ -394,14 +395,121 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm-dim{display:none}
 }
 
+/* ---------------------------------------------------------------- Sig's own page (/sig) */
+/* No site bar over it: the window starts at the top, beside a side panel with the chats kept on
+   this device and the site's own links (the site's bar and footer give way to it, nothing is
+   lost). On wide screens the window fills the browser and the conversation scrolls in its pane,
+   like an app; on a phone the page scrolls, as before, and the panel slides in from the left. */
+html:has(body.sigapp){--top-h:0px}
+.sg{--sg-w:272px;display:grid;grid-template-columns:var(--sg-w) minmax(0,1fr);min-height:100dvh}
+.sg-main{min-width:0}
+.sg-side{position:sticky;top:0;z-index:30;display:flex;flex-direction:column;height:100dvh;padding:10px 10px 12px 12px;border-right:1px solid var(--tm-line);background:#080B0C;color:var(--tm-tx)}
+.sg-head{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 0 0 6px}
+.sg-logo{display:block;padding:4px 0}
+.sg-logo img{display:block;width:auto;height:22px}
+.sg-fold,.tm-menu{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:7px;background:none;color:var(--tm-t2);cursor:pointer}
+.sg-fold:hover,.tm-menu:hover{background:rgba(238,236,230,.08);color:var(--tm-tx)}
+.sg-fold:focus-visible,.tm-menu:focus-visible,.sg-new:focus-visible,.sg-open:focus-visible,.sg-del:focus-visible,.sg-wipe:focus-visible,.sg-site a:focus-visible,.sg-yes:focus-visible,.sg-no:focus-visible,.sg-wipe-yes:focus-visible,.sg-wipe-no:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-2px}
+.tm-menu{display:none;align-self:center;margin-right:8px}
+.sg-new{display:flex;align-items:center;gap:10px;width:100%;min-height:40px;margin:10px 0 4px;padding:0 12px;border:1px solid var(--tm-line2);border-radius:8px;background:rgba(238,236,230,.03);color:var(--tm-tx);font:600 13.5px/1 var(--body);cursor:pointer}
+.sg-new:hover{border-color:rgba(238,236,230,.45);background:rgba(238,236,230,.06)}
+.sg-new svg{color:var(--a-community)}
+.sg-chats{flex:1;min-height:0;margin:12px -6px 0 0;padding-right:6px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(238,236,230,.2) transparent}
+.sg-k{margin:0 8px 8px;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3)}
+.sg-list{display:grid;grid-template-columns:minmax(0,1fr);gap:1px;margin:0;padding:0;list-style:none}
+.sg-item{position:relative;display:flex;align-items:center;border-radius:7px}
+.sg-item:hover{background:rgba(238,236,230,.05)}
+.sg-item.on{background:rgba(238,236,230,.09)}
+.sg-open{display:flex;align-items:center;gap:9px;flex:1;min-width:0;min-height:36px;padding:0 6px 0 10px;border:0;border-radius:7px;background:none;color:var(--tm-t2);font:500 13px/1.3 var(--body);text-align:left;cursor:pointer}
+.sg-item.on .sg-open{color:var(--tm-tx)}
+.sg-dot{flex:none;width:6px;height:6px;border-radius:50%}
+.sg-item.tabbed .sg-dot{background:rgba(238,236,230,.35)}
+.sg-item.on .sg-dot{background:var(--a-community);box-shadow:0 0 6px rgba(216,255,61,.7)}
+.sg-item.busy .sg-dot{width:8px;height:8px;border:1.5px solid rgba(216,255,61,.28);border-top-color:var(--a-community);background:none;box-shadow:none;animation:tm-spin .8s linear infinite}
+.sg-name{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.sg-when{flex:none;font:500 10.5px/1 var(--mono);color:var(--tm-t3)}
+.sg-del{flex:none;display:grid;place-items:center;width:28px;height:28px;margin-right:4px;padding:0;border:0;border-radius:6px;background:none;color:var(--tm-t3);opacity:0;cursor:pointer}
+.sg-del svg{width:14px;height:14px}
+.sg-item:hover .sg-del,.sg-item:focus-within .sg-del{opacity:1}
+.sg-item:hover .sg-when,.sg-item:focus-within .sg-when{display:none}
+.sg-del:hover{background:rgba(255,107,91,.14);color:#FFB4A9}
+/* a touch screen can't hover: the bin is always there */
+@media (hover:none){
+  .sg-del{opacity:.7}
+  .sg-item:hover .sg-when,.sg-item:focus-within .sg-when{display:inline}
+}
+.sg-item.asking{display:grid;gap:8px;padding:9px 8px 9px 10px;background:rgba(255,107,91,.07);box-shadow:inset 0 0 0 1px rgba(255,107,91,.32)}
+.sg-ask{margin:0;font-size:12.5px;line-height:1.4;color:var(--tm-t2);overflow-wrap:anywhere}
+.sg-ask b{font-weight:600;color:var(--tm-tx)}
+.sg-asks{display:flex;gap:8px}
+.sg-none{margin:2px 8px;font-size:13px;line-height:1.5;color:var(--tm-t3)}
+.sg-foot{display:grid;gap:10px;padding:12px 0 0;border-top:1px solid var(--tm-line)}
+.sg-site{display:grid;gap:1px}
+.sg-site a{display:flex;align-items:center;min-height:34px;padding:0 10px;border-radius:7px;color:var(--tm-t2);font:500 13.5px/1 var(--body);text-decoration:none}
+.sg-site a:hover{background:rgba(238,236,230,.05);color:var(--tm-tx)}
+.sg-site a[aria-current="page"]{background:rgba(238,236,230,.06);color:var(--tm-tx)}
+.sg-acct{display:flex;align-items:center;gap:14px;padding:0 10px}
+.sg-signin{color:var(--tm-t2);font:500 13.5px/1 var(--body);text-decoration:none}
+.sg-signin:hover{color:var(--tm-tx)}
+.sg-wipe-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:0 0 0 2px}
+.sg-wipe,.sg-wipe-yes,.sg-wipe-no,.sg-yes,.sg-no{display:inline-flex;align-items:center;gap:9px;min-height:32px;padding:0 8px;border:0;border-radius:7px;background:none;color:var(--tm-t3);font:500 12.5px/1 var(--body);cursor:pointer}
+.sg-wipe:hover:not(:disabled){background:rgba(255,107,91,.1);color:#FFB4A9}
+.sg-wipe:disabled{opacity:.45;cursor:default}
+.sg-wipe-ask{width:100%;margin:0 8px;font-size:12.5px;line-height:1.45;color:var(--tm-t2)}
+.sg-wipe-yes,.sg-yes{border:1px solid rgba(255,107,91,.55);color:#FFB4A9}
+.sg-wipe-yes:hover,.sg-yes:hover{background:rgba(255,107,91,.12)}
+.sg-wipe-no,.sg-no{border:1px solid var(--tm-line2);color:var(--tm-t2)}
+.sg-wipe-no:hover,.sg-no:hover{color:var(--tm-tx)}
+.sg-legal{margin:0;padding:0 10px;font-size:11.5px;color:var(--tm-t3)}
+.sg-legal a{color:inherit}
+.sg-legal a:hover{color:var(--tm-tx)}
+.sg-scrim{position:fixed;inset:0;z-index:29;background:rgba(0,0,0,.55)}
+/* hidden on a wide screen: the panel folds away and the menu button brings it back */
+.sg.folded{grid-template-columns:minmax(0,1fr)}
+.sg.folded .sg-side{display:none}
+.sg.folded .tm-menu{display:grid}
+.sigapp .tm.ai-app{margin:var(--tm-g) auto}
+@media (min-width:701px){
+  body.sigapp{overflow:hidden}
+  .sigapp .tm.ai-app{height:calc(100dvh - 2 * var(--tm-g))}
+  .sigapp .tm .tm-title{position:relative;top:auto}
+  .sigapp .tm .tm-status{position:relative;bottom:auto}
+  .sigapp .tm .ai-chat{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(238,236,230,.22) transparent;scroll-padding:calc(var(--tm-ph) + 12px) 0 96px}
+  .sigapp .tm .ai-bar{top:0}
+  .sigapp .tm .help-pin{top:calc(var(--tm-ph) + 8px)}
+  .sigapp .tm .ai-dock{bottom:0}
+}
+@media (min-width:1101px){
+  .sigapp .tm .ai-rail.sc{position:relative;top:auto;align-self:stretch;height:auto;min-height:0}
+}
+/* where the site's bar would fold its links into a menu, the panel slides in over the window from
+   the menu button; a little narrower until then */
+@media (min-width:901px) and (max-width:1100px){
+  .sg{--sg-w:248px}
+}
+@media (max-width:900px){
+  .sg,.sg.folded{grid-template-columns:minmax(0,1fr)}
+  .sg-side,.sg.folded .sg-side{position:fixed;top:0;bottom:0;left:0;display:flex;width:min(86vw,300px);height:100dvh;visibility:hidden;transform:translateX(-102%);transition:transform .22s ease,visibility 0s linear .22s;box-shadow:12px 0 40px rgba(0,0,0,.5)}
+  .sg.drawer .sg-side{visibility:visible;transform:none;transition:transform .22s ease}
+  .tm-menu,.sg.folded .tm-menu{display:grid}
+}
+@media (max-width:700px){
+  .sigapp .tm.ai-app{margin:0}
+  .tm-menu{margin-right:4px}
+}
+
 /* ---------------------------------------------------------------- less motion, and paper */
 @media (prefers-reduced-motion:reduce){
   [data-sig].is-spin svg,.tm-live.on [data-sig] svg,[data-sig].is-flag .rg,.tm-bigring .rg.is-now,.ts-busy,.tstep.run .ts-st::before,.tm-who.is-run .tm-st::before,
   .tm-sb-state .tm-ico::before,.tm textarea:focus:placeholder-shown+.tm-caret,.tm .prose.streaming>*::after,.tm .prose.streaming>*>li::after,.tm .agent.wake .agent-node{animation:none!important}
-  .rg,.tm-who,.tm-who b{transition:none}
+  .rg,.tm-who,.tm-who b,.sg-side{transition:none!important}
+  .sg-item.busy .sg-dot{animation:none!important}
 }
 @media print{
-  .tm-title,.tm-status,.tm-boot,.tm-tabs,.tm-team,.tm-ahead,.ai-composer,.ts-sw{display:none!important}
+  .tm-title,.tm-status,.tm-boot,.tm-tabs,.tm-team,.tm-ahead,.ai-composer,.ts-sw,.sg-side,.sg-scrim{display:none!important}
+  .sg{display:block!important}
+  body.sigapp{overflow:visible!important}
+  .sigapp .tm.ai-app,.sigapp .tm .ai-chat{height:auto!important;overflow:visible!important}
   .tm.ai-app{display:block!important;padding:0!important}
   .ai,.ai #main,.ai-app,.tm .ai-chat{background:#FFFFFF!important;color:#111111!important;border:0!important;margin:0!important;width:auto!important}
   .tm .bubble,.tm .echo-ps1,.tm .prose,.tm .prose p,.tm .prose li,.tm .prose strong,.tm .prose a,.tm .prose h2,.tm .answer-src,.tm .src-part,.tm .sheet,.tm .cleared{color:#111111!important;text-shadow:none!important}

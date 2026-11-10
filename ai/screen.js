@@ -1,4 +1,4 @@
-// The screen beside Ask Sig (miraclehealth.us/ai): what Sig is talking about, laid out like a code
+// The screen beside Ask Sig (miraclehealth.us/sig): what Sig is talking about, laid out like a code
 // editor. For the compounds in the conversation it shows, top to bottom:
 //   1. one plain sentence: where they meet in the body (or that they don't), and a row of checks:
 //      the fact sheets, the community's reports of taking them together, what Sig's Synergy
@@ -729,7 +729,7 @@ function clinicianText(ids, f, sub) {
   }
   L.push('', 'What the community reports (experience, not evidence):', ...cm.map((x) => `- ${x}`));
   L.push('', 'Questions for my doctor:', ...questions(ids, f, sub).map((q) => `- ${q}`));
-  L.push('', `From Ask Sig at miraclehealth.us/ai, ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Education, not medical advice: no doses. My doctor decides.`);
+  L.push('', `From Ask Sig at miraclehealth.us/sig, ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Education, not medical advice: no doses. My doctor decides.`);
   return L.join('\n');
 }
 async function copyText(text, btn) {
