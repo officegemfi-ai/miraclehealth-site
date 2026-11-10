@@ -1,7 +1,7 @@
 {
   "id": "ovagen",
   "name": "Ovagen",
-  "summary": "A short synthetic peptide from Russian 'bioregulator' research, promoted for the liver and digestive tract; its exact identity and any benefit in people are poorly documented.",
+  "summary": "A short lab-made peptide from Russian 'bioregulator' research, promoted for the liver and digestive tract. Exactly what it is, and whether it helps people, are poorly documented.",
   "what_it_is": "Ovagen is one of the short 'bioregulator' peptides associated with Vladimir Khavinson's research group in Russia. An online peptide catalog lists it as a chain of three amino acids, glutamic acid, aspartic acid and leucine (Glu-Asp-Leu, or EDL), but we found no journal article or official register that uses the name Ovagen. A patent from Khavinson's group claims the Glu-Asp-Leu peptide helps the liver regenerate, and the group's lab work suggests short peptides like this act by changing which genes are switched on.",
   "evidence": {
     "grade": "preclinical",

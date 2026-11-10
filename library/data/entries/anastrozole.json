@@ -1,7 +1,7 @@
 {
   "id": "anastrozole",
   "name": "Anastrozole",
-  "summary": "A prescription pill that blocks estrogen production, approved to treat hormone-sensitive breast cancer after menopause; it has also been studied off-label in men with low testosterone.",
+  "summary": "A prescription pill that stops the body making estrogen. Approved for hormone-sensitive breast cancer after menopause. Also studied in men with low testosterone, which it isn't approved for.",
   "what_it_is": "Anastrozole is a nonsteroidal aromatase inhibitor: it blocks aromatase, the enzyme that converts androgens into estrogen. In postmenopausal women it lowers estradiol by about 70% within a day and about 80% after two weeks, without affecting cortisol or aldosterone. In men it raises testosterone and lowers estradiol.",
   "evidence": {
     "grade": "strong",

@@ -391,7 +391,7 @@ function cardNode(card, msg) {
   if (card.type === 'warn') {
     return h('div', { class: 'card warn', role: 'note', 'aria-labelledby': `${card.id || 'warn'}-h` },
       h('h2', { id: `${card.id || 'warn'}-h`, text: 'When to get help' }), warnGroups(card.groups), h('p', { class: 'warn-note', text: card.note || '' }),
-      h('p', { class: 'warn-note' }, 'After a serious reaction to a medicine, supplement or other product, you or your clinician can report it to the FDA through ', h('a', { href: MEDWATCH, target: '_blank', rel: 'noopener', text: 'MedWatch' }), '.'));
+      h('p', { class: 'warn-note' }, 'After a serious reaction to a medicine, supplement or other product, you or your doctor can report it to the FDA through ', h('a', { href: MEDWATCH, target: '_blank', rel: 'noopener', text: 'MedWatch' }), '.'));
   }
   if (card.type === 'inject') {
     return h('div', { class: 'card warn inject', role: 'note' },
@@ -487,7 +487,7 @@ function shortlistNode(card) {
   const compact = card.kind === 'yours' && !!SCREEN;
   const sub = card.kind === 'yours'
     ? `What you take or asked about, checked together by the Synergy auditor.${compact ? ' How each works in the body, the blood markers and what the community reports are on the screen.' : ''}`
-    : 'Laid out by the Stack builder: options to talk through with your clinician.';
+    : 'Laid out by the Stack builder: options to talk through with your doctor.';
   el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
   if (card.kind === 'yours' && card.meds?.length) el.append(h('p', { class: 'short-meds', text: `Checked with what you told me you take: ${card.meds.join(', ')}` }));
@@ -619,7 +619,7 @@ function useLine(c) {
 }
 // note: 'pregnancy' or 'reaction' (what people report is left out) or 'down' (the numbers couldn't be read)
 const LEFT_OUT = {
-  pregnancy: ['Left out in pregnancy', 'Most of these haven’t been studied in pregnancy, so what people report isn’t shown. Your obstetric clinician is the one to ask.'],
+  pregnancy: ['Left out in pregnancy', 'Most of these haven’t been studied in pregnancy, so what people report isn’t shown. Your obstetrician or midwife is the one to ask.'],
   reaction: ['Left out for now', 'What’s happening now comes first. What people report can wait until that’s been seen to.'],
   down: ['Couldn’t load just now', 'The community’s numbers couldn’t be read just now. Ask again in a little while to see them.'],
 };
@@ -893,9 +893,9 @@ function screenSync() {
 }
 function questionsNode(card) {
   const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
-  btn.addEventListener('click', () => copy(['Questions for my clinician:', ...card.items.map((q) => `- ${q}`)].join('\n'), btn));
+  btn.addEventListener('click', () => copy(['Questions for my doctor:', ...card.items.map((q) => `- ${q}`)].join('\n'), btn));
   return h('div', { class: 'card qs' },
-    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'Questions for your clinician' }), h('p', { class: 'sub', text: 'Bring these to your next visit.' })), btn),
+    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'Questions to ask your doctor' }), h('p', { class: 'sub', text: 'Bring these to your next visit.' })), btn),
     h('ul', {}, card.items.map((q) => h('li', { text: q }))));
 }
 
@@ -1104,7 +1104,7 @@ function myBox(where) {
       h('div', { class: 'saved-actions' }, check)));
   }
   if (st) {
-    const check = h('button', { class: 'saved-check', type: 'button', text: 'Check my stack again' });
+    const check = h('button', { class: 'saved-check', type: 'button', text: 'Check what I take again' });
     check.addEventListener('click', () => ask(stackQuestion(st)));
     const changes = h('div', { class: 'saved-changes' });
     whatChanged(st).then((lines) => {
@@ -1510,7 +1510,7 @@ function gate(pending) {
   const box = h('div', { class: 'gate', id: 'ai-gate', role: 'region', 'aria-labelledby': 'ai-gate-h', 'data-q': pending },
     h('p', { class: 'gate-q' }, h('span', { class: 'sr', text: 'Your question, waiting: ' }), h('span', { text: pending })),
     h('h2', { id: 'ai-gate-h', text: 'One check before Sig answers' }),
-    h('p', { text: 'Sig is Miracle Health’s AI, for adults 18 and over. It explains evidence and what people report; it isn’t a person or a clinician.' }),
+    h('p', { text: 'Sig is Miracle Health’s AI, for adults 18 and over. It explains evidence and what people report; it isn’t a person or a doctor.' }),
     h('div', { class: 'gate-actions' }, yes, no));
   yes.addEventListener('click', () => {
     adult = true;
@@ -1697,7 +1697,7 @@ if (asked) {
   input.setSelectionRange(input.value.length, input.value.length);
 }
 // A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller window)
-const fitPlaceholder = () => { input.placeholder = chatEl.clientWidth < 470 ? input.dataset.short : 'Ask about a goal, a compound or a combination'; };
+const fitPlaceholder = () => { input.placeholder = chatEl.clientWidth < 470 ? input.dataset.short : 'Ask about a goal, something you take, or a mix'; };
 fitPlaceholder();
 addEventListener('resize', fitPlaceholder);
 updateSend();

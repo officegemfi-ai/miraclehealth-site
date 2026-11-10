@@ -1,7 +1,7 @@
 {
   "id": "humanin",
   "name": "Humanin",
-  "summary": "A small peptide encoded in mitochondrial DNA that protects cells in lab and animal studies; levels fall with age, but it is untested as a treatment in people.",
+  "summary": "A small peptide coded for in the DNA of mitochondria. It protects cells in lab and animal studies, and levels fall with age. It has not been tested as a treatment in people.",
   "what_it_is": "Humanin is a peptide of 21 or 24 amino acids encoded by a short stretch of DNA inside mitochondria, the cell's energy-producing structures. It was discovered in 2001 in a part of the brain spared by Alzheimer's disease, and in lab and animal studies it protects cells against several kinds of stress. Blood levels fall with age in people and mice. A more potent lab-made analog, HNG, is used in animal research.",
   "evidence": {
     "grade": "preclinical",

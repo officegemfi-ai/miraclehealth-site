@@ -1,7 +1,7 @@
 {
   "id": "tamoxifen",
   "name": "Tamoxifen",
-  "summary": "A prescription SERM that treats hormone-sensitive breast cancer, including in men, and lowers breast cancer risk in high-risk women; it is also used off-label for male breast enlargement and infertility.",
+  "summary": "A prescription SERM that treats hormone-sensitive breast cancer, including in men, and lowers the risk in high-risk women. Also used for male breast enlargement and infertility, which it isn't approved for.",
   "what_it_is": "Tamoxifen is a selective estrogen receptor modulator (SERM), available as tablets and as an oral solution (Soltamox). It counters estrogen's effect on estrogen receptor-positive breast cancer, but it also acts on other tissues, raising the risk of uterine cancer and blood clots. In men with low sperm counts, it raised LH, FSH, testosterone and estrogen levels.",
   "evidence": {
     "grade": "strong",

@@ -1,7 +1,7 @@
 {
   "id": "kpv",
   "name": "KPV",
-  "summary": "A three-amino-acid fragment of the hormone alpha-MSH, used for gut and skin inflammation on the strength of cell and animal studies; never tested in people.",
+  "summary": "A tiny piece of the hormone alpha-MSH, used for gut and skin inflammation. That rests on cell and animal studies. It has never been tested in people.",
   "what_it_is": "KPV is a tiny peptide made of three amino acids (lysine, proline and valine) that matches the tail end of alpha-melanocyte-stimulating hormone (alpha-MSH). In cell and rodent studies it dampened inflammatory signaling, possibly by blocking a pathway called NF-kB, but FDA says its molecular targets are still unknown. It has never been studied in humans, and in lab tests it crossed intact human skin poorly unless the skin barrier was broken.",
   "evidence": {
     "grade": "preclinical",

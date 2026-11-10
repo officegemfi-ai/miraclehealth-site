@@ -1,7 +1,7 @@
 {
   "id": "metformin",
   "name": "Metformin",
-  "summary": "A prescription pill that lowers blood sugar in type 2 diabetes; some people take it off-label hoping to slow aging, which is unproven.",
+  "summary": "A prescription pill that lowers blood sugar in type 2 diabetes. Some people take it hoping to slow aging. It isn't approved for that, and it's unproven.",
   "what_it_is": "Metformin is a biguanide, a type of oral diabetes medicine. It lowers blood sugar by reducing the sugar the liver makes, reducing sugar absorbed from the gut and helping the body respond better to insulin. Taken alone it rarely causes low blood sugar.",
   "evidence": {
     "grade": "strong",

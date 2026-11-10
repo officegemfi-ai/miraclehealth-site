@@ -1,7 +1,7 @@
 {
   "id": "mgf",
   "name": "MGF",
-  "summary": "A lab-made peptide based on a variant of the IGF-1 gene, used for muscle growth and banned in sport; its role in the body is disputed.",
+  "summary": "A lab-made peptide based on a variant of the IGF-1 gene. Used for muscle growth, and banned in sport. Its role in the body is disputed.",
   "what_it_is": "Mechano growth factor (MGF) is a peptide based on IGF-1Ec, a product of the IGF-1 gene that includes an extra stretch coded by exon 5, a part left out of the IGF-1 made in the liver. Products sold as MGF, and a pegylated version (PEG-MGF), are lab-made. A 2012 review called the physiological importance of IGF-1Ec controversial and said MGF's existence as a natural peptide is not established. It is not approved for human use.",
   "evidence": {
     "grade": "preclinical",
