@@ -667,18 +667,19 @@ function guidePage(g) {
 // Ask Sig (miraclehealth.us/ai): Sig, Miracle Health's AI, with its agents and the community's numbers, and the
 // member's own clinician last
 // ---------------------------------------------------------------------------
+// Each agent: its key, its name, what it does, and that in a few words (the agents' tab on Ask Sig)
 const AGENTS = [
-  ['safety', 'Safety agent', 'Reads your message first, and checks every answer before you see it.'],
-  ['planner', 'Planner', 'Turns your goal into what studies measure. “Lose fat” becomes body fat, waist and lean mass.'],
-  ['recommender', 'Recommender', 'Asks what it needs to know, then reads the fact sheets in the Library.'],
-  ['evidence', 'Evidence librarian', 'Finds every study result on exactly that: how strong it is, and who was studied.'],
-  ['relatives', 'Relatives agent', 'Finds things that work through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.'],
-  ['mechanism', 'Mechanism agent', 'Explains how each one could affect your goal, from its fact sheet. That is theory, not a test result, and it says so.'],
-  ['community', 'The community', 'What members report first-hand and what public forums say, as totals. It leads where the studies run out.'],
-  ['combination', 'Combination agent', 'Says whether the things you take together overlap or work in different ways.'],
-  ['markers', 'Markers agent', 'Flags blood tests that two things push in opposite directions, like IGF-1 with HGH and enclomiphene.'],
-  ['synergy', 'Synergy auditor', 'Checks everything together with your medicines and conditions.'],
-  ['builder', 'Stack builder', 'Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.'],
+  ['safety', 'Safety agent', 'Reads your message first, and checks every answer before you see it.', 'First to read, last to check'],
+  ['planner', 'Planner', 'Turns your goal into what studies measure. “Lose fat” becomes body fat, waist and lean mass.', 'Turns goals into measures'],
+  ['recommender', 'Recommender', 'Asks what it needs to know, then reads the fact sheets in the Library.', 'Asks, then reads fact sheets'],
+  ['evidence', 'Evidence librarian', 'Finds every study result on exactly that: how strong it is, and who was studied.', 'Finds every study result'],
+  ['relatives', 'Relatives agent', 'Finds things that work through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.', 'Evidence from close relatives'],
+  ['mechanism', 'Mechanism agent', 'Explains how each one could affect your goal, from its fact sheet. That is theory, not a test result, and it says so.', 'How each one could work'],
+  ['community', 'The community', 'What members report first-hand and what public forums say, as totals. It leads where the studies run out.', 'Member and forum reports'],
+  ['combination', 'Combination agent', 'Says whether the things you take together overlap or work in different ways.', 'Overlap, or different paths'],
+  ['markers', 'Markers agent', 'Flags blood tests that two things push in opposite directions, like IGF-1 with HGH and enclomiphene.', 'Blood tests pushed two ways'],
+  ['synergy', 'Synergy auditor', 'Checks everything together with your medicines and conditions.', 'Checks it all with your meds'],
+  ['builder', 'Stack builder', 'Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.', 'Lays out options to discuss'],
 ];
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
@@ -697,7 +698,7 @@ function aiPage() {
   // The Library's newest change: a fact sheet checked, the body map or a guide
   const libDate = date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
   const ring = (size, cls = '', opts = {}) => `<span${cls ? ` class="${cls}"` : ''} data-sig="${size}" aria-hidden="true">${ringSvg(size, opts)}</span>`;
-  const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq" aria-hidden="true"></span><b>${e(name)}</b><span class="tm-now">${e(what)}</span></li>`).join('')}</ol>`;
+  const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq" aria-hidden="true"></span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title" aria-hidden="true">
     <span class="tm-brand">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
