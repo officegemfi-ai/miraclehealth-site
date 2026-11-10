@@ -66,12 +66,12 @@
   linear-gradient(90deg,rgba(12,20,19,.9) 0,rgba(12,20,19,.8) calc(var(--text-r) - 80px),rgba(12,20,19,.5) calc(var(--text-r) + 70px),rgba(12,20,19,0) calc(var(--text-r) + 300px)),
   linear-gradient(0deg,rgba(12,20,19,.6) 0,rgba(12,20,19,0) 36%)}
 .lib-hero-in{display:grid;grid-template-columns:minmax(0,var(--col));gap:36px;align-items:end;padding-top:calc(var(--top-h) + 76px);padding-bottom:64px}
-.lib-hero h1{margin-top:18px;font-size:clamp(46px,6vw,84px);line-height:.98;letter-spacing:-.045em}
+.lib-hero h1{margin-top:18px;font-size:clamp(46px,6vw,84px);line-height:.98;letter-spacing:-.03em}
 .lib-hero .lede{max-width:56ch;color:rgba(252,252,252,.86)}
 .lib-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:0;border-radius:6px;overflow:hidden;border:1px solid var(--line-ink);background:var(--line-ink)}
 .lib-stats div{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:18px 20px;background:rgba(12,20,19,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .lib-stats dt{font:500 10.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-3)}
-.lib-stats dd{margin:0;font:500 40px/1 var(--head);letter-spacing:-.03em}
+.lib-stats dd{margin:0;font:700 36px/1 var(--mono);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 
 .lib-tools{display:grid;gap:16px;padding-top:36px;padding-bottom:8px}
 .lib-search{position:relative;display:flex;align-items:center}
@@ -101,7 +101,7 @@
 .lc-sig{display:inline-flex;align-items:center;gap:6px;padding:4px 9px 4px 5px;border-radius:40px;background:var(--ink);color:var(--lime);font:600 12px/1 var(--mono)}
 .lc-sig svg{width:18px;height:18px}
 .lc-sig[hidden]{display:none}
-.lc-name{font:500 22px/1.15 var(--head);letter-spacing:-.025em}
+.lc-name{font:700 22px/1.15 var(--head);letter-spacing:-.025em}
 .lc-sum{font-size:14px;line-height:1.5;color:var(--text-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .lib-card.pending .lc-sum{color:var(--muted)}
 .lc-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
@@ -127,7 +127,7 @@
 .crumbs a{color:var(--on-ink-2);text-decoration:none}
 .crumbs a:hover{color:var(--lime)}
 .le-hero .kick{margin-top:30px}
-.le-hero h1{margin-top:12px;font-size:clamp(44px,6.4vw,92px);line-height:.96;letter-spacing:-.045em;overflow-wrap:anywhere}
+.le-hero h1{margin-top:12px;font-size:clamp(44px,6.4vw,92px);line-height:.96;letter-spacing:-.03em;overflow-wrap:anywhere}
 .aka{margin-top:14px;font:500 12px/1.6 var(--mono);letter-spacing:.06em;color:var(--on-ink-3)}
 .le-hero .lede{max-width:62ch;margin-top:20px}
 .le-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
@@ -165,10 +165,10 @@
 .sig-wait{color:var(--on-ink-2)}
 .sig-cta{justify-self:start}
 .sig-top{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
-.sig-top .n{font:500 76px/.9 var(--head);letter-spacing:-.05em}
+.sig-top .n{font:700 68px/.9 var(--mono);letter-spacing:-.055em;font-variant-numeric:tabular-nums}
 .sig-top .of{font:500 16px var(--mono);color:var(--on-ink-3);margin-bottom:8px}
 .sig-top .lvl{display:flex;align-items:center;gap:10px;margin-left:auto;margin-bottom:6px}
-.sig-top .lvl-name{display:block;font:500 16px/1.2 var(--head);color:var(--on-ink)}
+.sig-top .lvl-name{display:block;font:600 16px/1.2 var(--body);color:var(--on-ink)}
 .sig-top .lvl-rule{display:block;margin-top:2px;font:500 10.5px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--on-ink-3)}
 .sig-scale{position:relative;height:6px;border-radius:4px;background:rgba(255,255,255,.14)}
 .sig-scale i{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--scale)}
@@ -211,7 +211,7 @@
 .dots{display:grid;gap:8px;margin-top:12px}
 .nums{display:grid;gap:8px;margin-top:12px;padding-left:24px;list-style:decimal}
 .nums li{padding-left:4px;font-size:15.5px;line-height:1.55;color:var(--text-2)}
-.nums li::marker{font:500 14px var(--head);color:var(--text)}
+.nums li::marker{font:700 13px var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
 .le-sec>.dots li,.le-sec>.nums li{font-size:16px}
 .guide-link{margin-top:14px;font-size:15px;line-height:1.6;color:var(--text-2)}
 .guide-link a,.lib-guide .le-sec p a:not(.ref){color:var(--ink);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
@@ -231,7 +231,7 @@
 .studies{display:grid;gap:12px;margin-top:20px}
 .study{padding:18px 20px;border-radius:6px;border:1px solid var(--line);background:var(--white)}
 .st-meta{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.st-title{margin-top:10px;font:500 16.5px/1.35 var(--head);letter-spacing:-.01em}
+.st-title{margin-top:10px;font:600 16.5px/1.35 var(--body);letter-spacing:-.01em}
 .st-title a{text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
 .study p:last-child{margin-top:8px;font-size:15px;line-height:1.6;color:var(--text-2)}
 .asks{display:grid;gap:10px;margin-top:18px;counter-reset:ask}
@@ -248,7 +248,7 @@
 .pending-box{padding:30px 32px;border:1px dashed rgba(18,30,29,.3);border-radius:6px;background:var(--white)}
 .parts{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:20px}
 .part{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:6px;border:1px solid var(--line);background:var(--white);color:var(--text);text-decoration:none}
-.part b{font:500 19px/1.2 var(--head);letter-spacing:-.02em}
+.part b{font:700 19px/1.2 var(--head);letter-spacing:-.02em}
 .part>span:not(.lc-fam):not(.lc-badges){font-size:14px;color:var(--text-2)}
 .part:hover{border-color:rgba(18,30,29,.32)}
 
@@ -276,7 +276,8 @@
   .lib-hero{display:block;min-height:0}
   .lib-hero-photo{position:static;display:block;height:auto;aspect-ratio:2560/1348;margin-top:var(--top-h);-webkit-mask-image:linear-gradient(180deg,#000 72%,transparent);mask-image:linear-gradient(180deg,#000 72%,transparent)}
   .lib-hero::before{display:none}
-  .lib-hero-in{grid-template-columns:1fr;gap:32px;padding-top:20px;padding-bottom:48px}
+  .bl-why{font-size:18px}
+  .lib-hero-in{grid-template-columns:1fr;gap:32px;padding-top:calc(var(--top-h) + 28px);padding-bottom:48px}
   .lib-stats{grid-template-columns:1fr 1fr}
   .le-glance-in{grid-template-columns:1fr}
   .lib-explain .explain-grid{grid-template-columns:1fr}
@@ -352,8 +353,10 @@
 .lib-hero{border-bottom:1px solid var(--line)}
 .lib-hero::before,.lib-hero::after,.le-hero::before{display:none}
 .lib-hero h1{font-size:clamp(46px,5.4vw,78px);line-height:.98;letter-spacing:-.028em}
+/* On a phone the second line, "before you take it.", has to fit whole: it is 8.5 times the type size wide. */
+@media (max-width:560px){.lib-hero h1{font-size:clamp(30px,calc((100vw - 40px) / 8.7),46px)}}
 .lib-stats{border-radius:6px;border:1px solid var(--line);background:var(--card);-webkit-backdrop-filter:none;backdrop-filter:none}
-.lib-stats dd{font-family:var(--head);font-weight:500;letter-spacing:-.02em}
+.lib-stats dd{font-family:var(--mono);font-weight:700;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 .ev,.st,.pill,.ev-strong,.ev-moderate,.ev-limited,.ev-preclinical,.ev-anecdotal,.ev-pending,.st-approved,.st-otc,.st-supplement,.st-compounded,.st-category2,.st-investigational,.st-not_approved,.st-restricted,.st-unclear,.st-under_review,.st-blend{border:1px solid var(--line-2);border-radius:5px;background:transparent;color:var(--text)}
 .st-category2,.st-restricted{border-color:rgba(232,183,90,.55);color:var(--amber)}
 .ev-pending{color:var(--muted)}
@@ -373,8 +376,8 @@
 .dots li::before{background:var(--text-2)}
 .le-sec h2{letter-spacing:-.02em}
 .claims li,.study,.asks li,.part,.pending-box,.lab-note{border-radius:6px}
-.asks li{font:italic 400 20px/1.35 var(--head);color:var(--text)}
+.asks li{font:500 18px/1.4 var(--body);color:var(--text)}
 .ref{color:var(--muted)}
-.bl-why{font:400 22px/1.42 var(--head);letter-spacing:-.006em}
+.bl-why{font:400 20px/1.5 var(--body);}
 @media (min-width:901px){.claims li{grid-template-columns:216px minmax(0,1fr)}}
 @media (max-width:600px){.ev-box{grid-template-columns:1fr}}

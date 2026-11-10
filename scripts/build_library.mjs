@@ -211,7 +211,7 @@ function page({
 <meta property="og:image" content="${SITE}${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
+<link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}

@@ -5,8 +5,8 @@ lives at https://community.miraclehealth.us (the `miracle-health-community` repo
 
 Static pages with no tracking and no cookies, served by GitHub Pages from the `main`
 branch: the front page (no scripts), the Library at /library, Ask Sig, the chat with Sig (Miracle Health's AI) that
-speaks for the studies and the whole community, at /ai, and My Miracle, what a member keeps on their device, at /my. The look is Plate: deep ink pages, bone type, Newsreader
-headlines with the turn of the sentence in italic, Plus Jakarta Sans text, IBM Plex Mono labels,
+speaks for the studies and the whole community, at /ai, and My Miracle, what a member keeps on their device, at /my. The look is Plate: deep ink pages, bone type, Mona Sans
+for the words (headlines set wide and heavy), Monaspace Neon for labels and everything measured,
 plates (cards and figures) with hairline frames, and lime kept for the Community Signal and the
 one main action on a page. No photographs: the Library's graph is the picture. The colors stay the
 same whatever the visitor's device is set to. On phones the links sit behind a Menu button, which

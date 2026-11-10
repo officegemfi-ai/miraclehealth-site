@@ -53,12 +53,12 @@ const cards = [
 
 const meter = (g) => `<span class="meter">${[0, 1, 2, 3].map((i) => `<i class="${i < BARS[g] ? 'on' : ''}"></i>`).join('')}</span>`;
 const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
-@font-face{font-family:Newsreader;src:url('${font('newsreader.woff2')}') format('woff2');font-weight:400 500;font-style:normal}
-@font-face{font-family:Newsreader;src:url('${font('newsreader-italic.woff2')}') format('woff2');font-weight:400 500;font-style:italic}
-@font-face{font-family:Jakarta;src:url('${font('jakarta.woff2')}') format('woff2');font-weight:200 800}
-@font-face{font-family:Plex;src:url('${font('plexmono-500.woff2')}') format('woff2');font-weight:500}
+@font-face{font-family:Mona;src:url('${font('mona-sans.woff2')}') format('woff2');font-weight:200 900;font-stretch:75% 125%}
+@font-face{font-family:MonaDisplay;src:url('${font('mona-sans.woff2')}') format('woff2');font-weight:640 900;font-stretch:112.5% 125%}
+@font-face{font-family:Neon;src:url('${font('monaspace-neon-400.woff2')}') format('woff2');font-weight:100 549}
+@font-face{font-family:Neon;src:url('${font('monaspace-neon-700.woff2')}') format('woff2');font-weight:550 900}
 *{box-sizing:border-box;margin:0}
-body{width:1200px;height:630px;overflow:hidden;background:#0A100F;color:#F0ECE0;font-family:Jakarta,sans-serif;position:relative}
+body{width:1200px;height:630px;overflow:hidden;background:#0A100F;color:#F0ECE0;font-family:Mona,sans-serif;position:relative}
 /* the plate: a hairline frame with a tick in each corner */
 .frame{position:absolute;inset:26px;border:1px solid rgba(240,236,224,.16)}
 .frame i{position:absolute;width:14px;height:14px;border:0 solid rgba(240,236,224,.6)}
@@ -68,11 +68,11 @@ body{width:1200px;height:630px;overflow:hidden;background:#0A100F;color:#F0ECE0;
 .frame i:nth-child(4){right:-1px;bottom:-1px;border-right-width:1px;border-bottom-width:1px}
 .in{position:relative;height:100%;padding:70px 78px 66px;display:flex;flex-direction:column}
 .logo{height:40px;width:auto;align-self:flex-start}
-.url{position:absolute;right:78px;top:80px;font:500 17px/1 Plex,monospace;letter-spacing:.14em;color:rgba(240,236,224,.56)}
-.kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 20px/1 Plex,monospace;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,236,224,.6)}
+.url{position:absolute;right:78px;top:80px;font:500 16px/1 Neon,monospace;letter-spacing:.12em;color:rgba(240,236,224,.56)}
+.kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 19px/1 Neon,monospace;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,236,224,.6)}
 .kick::before{content:'';width:40px;height:1px;background:currentColor}
-h1{margin-top:22px;font:500 ${c.pair ? 80 : 78}px/1 Newsreader,Georgia,serif;letter-spacing:-.028em;max-width:${c.art ? 700 : 1010}px}
-h1 em,.vs{font-style:italic;font-weight:400}
+h1{margin-top:22px;font:700 ${c.pair ? 66 : 64}px/1.03 MonaDisplay,sans-serif;letter-spacing:-.03em;max-width:${c.art ? 700 : 1010}px}
+h1 em,.vs{font-style:normal;font-weight:inherit}
 .vs{color:rgba(240,236,224,.6)}
 .sub{margin-top:24px;max-width:${c.art ? 680 : 880}px;font-size:27px;line-height:1.42;color:rgba(240,236,224,.74)}
 .art{position:absolute;right:86px;bottom:74px;width:300px;display:grid;place-items:center}
@@ -80,17 +80,17 @@ h1 em,.vs{font-style:italic;font-weight:400}
 /* the Signal's ring and dot, on every picture */
 .mark{position:absolute;right:78px;bottom:66px;width:44px;height:44px}
 .pills{display:flex;gap:14px;margin-top:30px}
-.pill{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px;border:1px solid rgba(240,236,224,.32);font:500 17px/1 Plex,monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(240,236,224,.78)}
-.pill b{font:500 24px/1 Newsreader,Georgia,serif;letter-spacing:-.01em;text-transform:none;color:#F0ECE0}
+.pill{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px;border:1px solid rgba(240,236,224,.32);font:500 16px/1 Neon,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,236,224,.78)}
+.pill b{font:700 21px/1 MonaDisplay,sans-serif;letter-spacing:-.01em;text-transform:none;color:#F0ECE0}
 .meter{display:inline-grid;grid-template-columns:repeat(4,14px);gap:3px}
 .meter i{height:10px;border-radius:2px;background:#F0ECE0;opacity:.22}
 .meter i.on{opacity:1}
 .plan{width:300px;display:grid;gap:12px}
 .p-start{display:grid;gap:6px;padding:16px 18px;border-radius:6px;background:#F0ECE0;color:#121E1D}
-.p-start span{font:500 12px/1 Plex,monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
-.p-start b{font:500 24px/1.1 Newsreader,Georgia,serif;letter-spacing:-.01em}
+.p-start span{font:500 12px/1 Neon,monospace;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.p-start b{font:700 21px/1.1 MonaDisplay,sans-serif;letter-spacing:-.01em}
 .p-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;height:150px;margin-top:6px;padding:0 10px}
-.p-pillars i{display:flex;align-items:flex-end;padding:10px;border:1px solid rgba(240,236,224,.32);border-radius:6px;font:500 16px/1 Newsreader,Georgia,serif;font-style:normal}
+.p-pillars i{display:flex;align-items:flex-end;padding:10px;border:1px solid rgba(240,236,224,.32);border-radius:6px;font:600 15px/1 Mona,sans-serif;font-style:normal}
 .p-pillars .on{border-color:#F0ECE0;background:#F0ECE0;color:#121E1D}
 .p-pillars .next{background:repeating-linear-gradient(135deg,rgba(240,236,224,.12) 0 5px,rgba(240,236,224,.03) 5px 12px)}
 .p-ground{height:8px;margin-top:-12px;border-radius:2px;background:#F0ECE0}

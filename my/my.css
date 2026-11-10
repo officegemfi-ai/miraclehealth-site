@@ -6,12 +6,12 @@
 .my-wrap{width:100%;max-width:880px;margin:0 auto;padding:calc(var(--top-h) + 32px) 24px 48px}
 .my-intro{display:flex;align-items:center;gap:18px}
 .my-intro .sig{flex:none;width:64px;height:64px}
-.my-intro h1{font:500 36px/1.1 var(--head);letter-spacing:-.03em;color:var(--on-ink)}
+.my-intro h1{font:700 36px/1.1 var(--head);letter-spacing:-.03em;color:var(--on-ink)}
 .my-intro p{margin-top:8px;max-width:60ch;font-size:16px;line-height:1.6;color:var(--on-ink-2)}
 .my-loading{margin-top:24px;color:var(--on-ink-3)}
 
 .my-sec{margin-top:22px;padding:22px 24px;border-radius:6px;background:var(--card);border:1px solid var(--line-ink)}
-.my-sec>h2{font:500 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.my-sec>h2{font:700 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
 .my-lede{margin-top:8px;max-width:62ch;font-size:15.5px;line-height:1.6;color:var(--on-ink-2)}
 .my-fine{margin-top:12px;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
 .my-meds{margin-top:10px;font-size:14px;color:var(--on-ink-2)}
