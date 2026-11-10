@@ -25,10 +25,10 @@ works without scripts.
 | `my/` | My Miracle, at /my (written by the library build, with `my.css` and `my.js`): what a member keeps on a device, together. Their Miracle Plan and its ticks, how it's going (one-tap check-ins, which can become a community post they edit and post there), their saved stack with each compound's evidence and Signal, their spaces in the community, a link and QR code that move it all to another device after "#", and a way to forget it. All of it lives in the browser's own storage |
 | `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
 | `about/`, `status/`, `goals/`, `compare/`, `weekly/`, `founders/` | Written by the library build (`scripts/build_pages.mjs`): who runs Miracle Health, how it's paid for, reviewers and corrections (`library/data/about.json`); where each compound stands with the FDA, from the fact sheets; the compounds people take for each of the twelve goals; two compounds side by side; The Signal, the weekly email: signing up and each issue (`library/data/weekly/<n>.json`, with the email itself at `weekly/<n>/email.html`); and the first 100 founding reporters. `pages/pages.css` and `pages/pages.js` (live Signals, the founders' count and the method page's check of the Signal against the studies) |
-| `img/og/` | Share images for those pages, made by `scripts/og_images.mjs` (needs Playwright; run it by hand, then the library build) |
+| `img/og/`, `img/og-plan.jpg` | Share images for those pages and for a shared plan, in Plate like the site, made by `scripts/og_images.mjs` (needs Playwright; run it by hand, then the library build) |
 | `404.html` | Shown for any address that doesn't exist |
-| `img/` | The photos, as WebP in a few widths so phones get the small ones (`hero-*`, the photo the top used to have, `report-*` and `move-*` in How it works, `library-*` for the Library's banner, `join-*` behind the Join section) |
-| `og.jpg` | The picture shown when someone shares the link |
+| `img/` | The share images and the graph's still picture. Plate uses no photographs: the photos the site had (`hero-*`, `report-*`, `move-*`, `library-*`, `join-*`, as WebP in a few widths) are kept, unused, in case they're wanted back |
+| `og.jpg` | The picture shown when someone shares the link (made by `scripts/og_images.mjs`, with the others) |
 | `CNAME` | Tells GitHub Pages this site is miraclehealth.us |
 | `.nojekyll` | Serves the files as they are, with no Jekyll build |
 | `sitemap.xml`, `robots.txt` | For search engines (the sitemap is written by the library build) |
@@ -117,10 +117,10 @@ under them say the site is independent and free for adults; change them there if
 changes. The real compound's "What the studies show" column is copied from its fact sheet
 (`library/data/entries/bpc157.json`); update it there too when the fact sheet changes.
 
-To swap a photo, replace the files in `img/` with new ones of the same names and sizes
-(the photos in How it works are 760 and 480 wide, in portrait). The top of the front page is
-the graph, not a photo: it changes with the Library. The photo it had (`img/hero-*`) is kept,
-unused, in case it's wanted back.
+The site shows no photographs: the top of the front page is the graph, which changes with
+the Library, and the rest is type on plates. The photos it used to show are still in `img/`,
+unused, in case they're wanted back; a photo goes back in by adding its `<img>` where it was
+(the page's history has each one).
 
 ## Domain
 
