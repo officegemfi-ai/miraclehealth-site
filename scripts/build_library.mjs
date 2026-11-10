@@ -27,6 +27,8 @@ import { bodyMapHtml } from '../kit/bodymap.js';
 import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
 import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
+// Sig's mark on Ask Sig: the eleven who answer as one ring (lib/ring.js, shared with ai/ai.js)
+import { ringSvg, WHEEL } from '../lib/ring.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -114,7 +116,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -132,7 +134,7 @@ const V = {
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
-  scCss: version('ai/screen.css'), scJs: version('ai/screen.js'),
+  scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'),
   myCss: version('my/my.css'), myJs: version('my/my.js'),
   home: version('home.js'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
@@ -686,19 +688,37 @@ const STARTERS = [
   ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?', ''],
 ];
 
+// Ask Sig is Sig's health terminal: a window under the site's bar with a title bar (Sig's ring, the
+// question it's on and the eleven who answer), the conversation on the left with the box to write
+// in as its prompt, the agents and the screen beside it as two tabs, and a status bar. On a phone it
+// is the conversation alone, with the ring in its title bar; the screen pulls up as a sheet.
 function aiPage() {
   const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
-  const body = `<div class="ai-app is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
+  // The Library's newest change: a fact sheet checked, the body map or a guide
+  const libDate = date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
+  const ring = (size, cls = '', opts = {}) => `<span${cls ? ` class="${cls}"` : ''} data-sig="${size}" aria-hidden="true">${ringSvg(size, opts)}</span>`;
+  const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq" aria-hidden="true"></span><b>${e(name)}</b><span class="tm-now">${e(what)}</span></li>`).join('')}</ol>`;
+  const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
+  <div class="tm-title" aria-hidden="true">
+    <span class="tm-brand">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
+    <span class="tm-tab"><i></i><span>ask</span><span class="tm-topic" id="tm-topic">new session</span></span>
+    <span class="tm-online"><span class="tm-dots">${WHEEL.map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>10 agents + the community</span></span>
+    <span class="tm-count-sm" id="tm-count-sm"><b>11</b>/11 ready</span>
+  </div>
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
-      <div class="ai-id"><span class="ai-sig" data-sig="40" aria-hidden="true"></span><span><h1>Ask Sig</h1><span class="ai-status" id="ai-status">Ready</span></span></div>
+      <div class="ai-id"><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">one question · every answer checked</span></div>
       <div class="ai-bar-acts">
         <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
       </div>
     </div>
+    <div class="tm-boot">
+      <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · 10 agents + the community ready ·</span> <span class="tm-nw">Library updated ${libDate}</span></p>
+      <p class="tm-boot-2">No doses. No sellers. No diagnosis. The Safety agent checks every answer before you see it.</p>
+    </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
+        <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
         <p class="ai-lede">I’m Sig, Miracle Health’s AI. Ask me about a goal, something you take, or something you’re thinking about. I’ll tell you what the studies show and what people report, and I’ll always say which is which. No doses, no sellers, no diagnosis. Your doctor has the final say.</p>
         <p class="ai-crowd" id="ai-crowd" hidden></p>
       </div>
@@ -706,10 +726,11 @@ function aiPage() {
     <form class="ai-dock" id="ai-form" novalidate>
       <div class="ai-peek" id="ai-peek" hidden></div>
       <div class="ai-composer">
+        <span class="tm-ps1" aria-hidden="true">›</span>
         <label class="sr" for="ai-input">Message Sig</label>
-        <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea>
+        <span class="tm-field"><textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea><span class="tm-caret" aria-hidden="true"></span></span>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
-        <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
+        <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg><span class="tm-key k-send" aria-hidden="true">↵ send</span><span class="tm-key k-stop" aria-hidden="true">■ stop</span></button>
       </div>
     </form>
     <div class="ai-begin" id="ai-begin">
@@ -725,16 +746,32 @@ function aiPage() {
     <p class="ai-fine">For adults 18 and over. Sig is an AI. It explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab. Messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
-  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="The screen: what Sig is talking about">
-    <div id="sc-root"><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
+  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="Beside the chat: the agents and the screen">
+    <div class="tm-tabs" role="tablist" aria-label="Beside the chat">
+      <button class="tm-tabbtn" type="button" role="tab" id="tm-t-agents" aria-controls="tm-team" aria-selected="true">Agents</button>
+      <button class="tm-tabbtn" type="button" role="tab" id="tm-t-screen" aria-controls="sc-root" aria-selected="false" tabindex="-1">Screen</button>
+      <span class="tm-live" id="tm-live">${ring(12)}<span id="tm-live-t">ready</span></span>
+    </div>
+    <div class="tm-team" id="tm-team" role="tabpanel" aria-labelledby="tm-t-agents" data-state="idle">
+      <div class="tm-ringbox">${ring(212, 'tm-bigring', { sw: 20 })}<p class="tm-count"><span class="tm-frac"><b id="tm-n">11</b><span>/11</span></span><span class="tm-count-k" id="tm-k">ready</span></p></div>
+      ${roster}
+    </div>
+    <div id="sc-root" role="tabpanel" aria-labelledby="tm-t-screen" hidden><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
   </section>
+  <div class="tm-status">
+    <span class="tm-sb tm-sb-sig" aria-hidden="true">${ring(12)}SIG</span>
+    <span class="tm-sb tm-sb-state" id="tm-state" data-state="ready"><i class="tm-ico" aria-hidden="true"></i><span id="ai-status">ready</span></span>
+    <span class="tm-sb tm-sb-safe"><i aria-hidden="true"></i>safety on</span>
+    <span class="tm-sb tm-sb-rules">no doses · no sellers · no diagnosis</span>
+    <span class="tm-sb tm-sb-lib">Library · ${libDate}</span>
+  </div>
 </div>`;
   return page({
     title: 'Ask Sig · Miracle Health’s AI: the studies and the whole community, in one answer',
     description: 'Ask Sig, Miracle Health’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
     ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'ask-sig.jpg')) ? '/img/og/ask-sig.jpg' : '/og.jpg',
     url: '/ai/', body, current: 'ai', bodyClass: 'ai',
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`],
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`, `/ai/term.css?v=${V.tmCss}`],
     scripts: [`/ai/plan.js?v=${V.plJs}`, `/ai/screen.js?v=${V.scJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
   });
