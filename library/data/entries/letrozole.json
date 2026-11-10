@@ -2,10 +2,10 @@
   "id": "letrozole",
   "name": "Letrozole",
   "summary": "A prescription pill that stops the body making estrogen. Approved for hormone-sensitive breast cancer after menopause. Also used to trigger ovulation and in men with low testosterone, both unapproved uses.",
-  "what_it_is": "Letrozole is a nonsteroidal aromatase inhibitor: it blocks aromatase, the enzyme that makes estrogens. In postmenopausal women with advanced breast cancer it lowers estradiol, estrone and estrone sulfate by 75% to 95% within two to three days, without significantly affecting cortisol, aldosterone or thyroid hormones. Because high estradiol can suppress LH and FSH, it is used off-label to raise testosterone and sperm production in some infertile men.",
+  "what_it_is": "Letrozole is a nonsteroidal aromatase inhibitor. It blocks aromatase, the enzyme that makes estrogens. In postmenopausal women with advanced breast cancer it lowers estradiol, estrone and estrone sulfate by 75% to 95% within two to three days. It does not significantly affect cortisol, aldosterone or thyroid hormones. High estradiol can suppress LH and FSH, so letrozole is used off-label to raise testosterone and sperm production in some infertile men.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for breast cancer after menopause; for ovulation induction in PCOS (off-label), a 2022 Cochrane review found high-certainty evidence of more live births than with clomiphene, while evidence in men comes from 8 studies whose reviewers called for proper randomized trials."
+    "why": "It is FDA-approved for breast cancer after menopause. For ovulation induction in PCOS (off-label), a 2022 Cochrane review found high-certainty evidence of more live births than with clomiphene. The evidence in men comes from 8 studies, and their reviewers called for proper randomized trials."
   },
   "status_us": {
     "key": "approved",

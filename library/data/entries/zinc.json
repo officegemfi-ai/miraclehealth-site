@@ -2,10 +2,10 @@
   "id": "zinc",
   "name": "Zinc",
   "summary": "An essential mineral the body needs for immune function, wound healing and hundreds of enzymes. Taken mostly to shorten colds and support immunity.",
-  "what_it_is": "Zinc is an essential mineral required for the activity of hundreds of enzymes and involved in immune function, protein and DNA synthesis, wound healing and cell signaling. Deficiency can delay growth, impair taste and smell, slow wound healing, and cause hair loss and frequent infections. Besides supplements, zinc is found in cold lozenges, some nasal sprays and some denture adhesive creams.",
+  "what_it_is": "Zinc is an essential mineral. Hundreds of enzymes need it to work, and it is involved in immune function, making protein and DNA, wound healing and cell signaling. Deficiency can delay growth, impair taste and smell, slow wound healing, and cause hair loss and frequent infections. Besides supplements, zinc is found in cold lozenges, some nasal sprays and some denture adhesive creams.",
   "evidence": {
     "grade": "limited",
-    "why": "Many trials suggest zinc may shorten colds by about 2 days, but a 2024 Cochrane review rated the evidence low to very low certainty; a large trial supports a zinc-containing formula for macular degeneration."
+    "why": "Many trials suggest zinc may shorten colds by about 2 days, but a 2024 Cochrane review rated the evidence low to very low certainty. A large trial supports a zinc-containing formula for macular degeneration."
   },
   "status_us": {
     "key": "supplement",

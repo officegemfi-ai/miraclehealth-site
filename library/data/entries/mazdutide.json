@@ -2,10 +2,10 @@
   "id": "mazdutide",
   "name": "Mazdutide",
   "summary": "A drug that acts on two hormone receptors, GLP-1 and glucagon. Approved in China in 2025 for weight management and type 2 diabetes. Not approved in the US.",
-  "what_it_is": "Mazdutide (IBI362) is a lab-made drug that switches on the receptors for two hormones, GLP-1 and glucagon; its developer, Innovent Biologics, describes it as an analog of the hormone oxyntomodulin. Innovent develops it in China under a license from Eli Lilly. China approved it in 2025, but it is not approved in the US.",
+  "what_it_is": "Mazdutide (IBI362) is a lab-made drug that switches on the receptors for two hormones, GLP-1 and glucagon. Its developer, Innovent Biologics, describes it as an analog of the hormone oxyntomodulin. Innovent develops it in China under a license from Eli Lilly. China approved it in 2025. It is not approved in the US.",
   "evidence": {
     "grade": "moderate",
-    "why": "One published phase 3 randomized trial in 610 Chinese adults with obesity or overweight, plus company-reported phase 3 diabetes trials in China; long-term safety is not known."
+    "why": "The evidence is one published phase 3 randomized trial in 610 Chinese adults with obesity or overweight, plus phase 3 diabetes trials in China reported by the company. Long-term safety is not known."
   },
   "status_us": {
     "key": "investigational",

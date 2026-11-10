@@ -2,10 +2,10 @@
   "id": "mt2",
   "name": "Melanotan II",
   "summary": "An unapproved, lab-made version of a hormone, injected for tanning and sometimes for sexual arousal. Case reports link it to mole changes and serious side effects.",
-  "what_it_is": "Melanotan II is a synthetic peptide modeled on alpha-melanocyte-stimulating hormone (alpha-MSH), the body's signal that tells skin cells to make pigment. Besides darkening the skin, it acts on the brain and can trigger spontaneous erections, nausea and yawning. It was tested in a few small studies between 1996 and 2000 but was never approved as a medicine. A related peptide, afamelanotide, is approved for a few medical uses.",
+  "what_it_is": "Melanotan II is a lab-made peptide modeled on alpha-melanocyte-stimulating hormone (alpha-MSH), the body's signal that tells skin cells to make pigment. Besides darkening the skin, it acts on the brain and can trigger spontaneous erections, nausea and yawning. It was tested in a few small studies between 1996 and 2000 but was never approved as a medicine. A related peptide, afamelanotide, is approved for a few medical uses.",
   "evidence": {
     "grade": "limited",
-    "why": "Its effects on skin color and erections come from a pilot study of 3 men and a placebo-controlled crossover trial of 10 men; most safety information comes from case reports."
+    "why": "Its effects on skin color and erections come from a pilot study of 3 men and a placebo-controlled crossover trial of 10 men. Most of the safety information comes from case reports."
   },
   "status_us": {
     "key": "under_review",

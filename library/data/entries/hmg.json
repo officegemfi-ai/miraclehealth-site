@@ -2,10 +2,10 @@
   "id": "hmg",
   "name": "hMG",
   "summary": "A prescription fertility injection with FSH and LH activity, purified from the urine of women past menopause. Approved for IVF. Also used in men to start sperm production, which it isn't approved for.",
-  "what_it_is": "Human menopausal gonadotropin (hMG, menotropins) is a mix of the pituitary hormones FSH and LH, purified from the urine of postmenopausal women; in Menopur, most of the LH activity comes from hCG. FSH and LH drive egg development in women and, in men, sperm and testosterone production in the testes. Menopur's US approval was converted to a biologics license on March 23, 2020.",
+  "what_it_is": "Human menopausal gonadotropin (hMG, menotropins) is a mix of the pituitary hormones FSH and LH, purified from the urine of postmenopausal women. In Menopur, most of the LH activity comes from hCG. FSH and LH drive egg development in women. In men they drive sperm and testosterone production in the testes. Menopur's US approval was converted to a biologics license on March 23, 2020.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for multiple-egg development in IVF based on a randomized trial of 373 women; use in men is off-label, with only indirect evidence (a meta-analysis of 44 studies of gonadotropin therapy that did not report hMG separately)."
+    "why": "It is FDA-approved for multiple-egg development in IVF, based on a randomized trial of 373 women. Use in men is off-label, with only indirect evidence: a meta-analysis of 44 studies of gonadotropin therapy that did not report hMG separately."
   },
   "status_us": {
     "key": "approved",

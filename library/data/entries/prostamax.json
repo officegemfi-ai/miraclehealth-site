@@ -2,10 +2,10 @@
   "id": "prostamax",
   "name": "Prostamax",
   "summary": "A short lab-made peptide from Russian 'bioregulator' research, promoted for prostate health. The published evidence is limited to lab studies on cells and DNA.",
-  "what_it_is": "Prostamax is a lab-made chain of four amino acids: lysine, glutamic acid, aspartic acid and proline (Lys-Glu-Asp-Pro, or KEDP). The US National Library of Medicine indexes it under that name, and it comes from Vladimir Khavinson's 'peptide bioregulator' research in Russia; online catalogs promote it for the prostate. Its developers propose that short peptides like this loosen tightly packed DNA and switch genes back on, but this has only been studied in lab dishes.",
+  "what_it_is": "Prostamax is a lab-made chain of four amino acids: lysine, glutamic acid, aspartic acid and proline (Lys-Glu-Asp-Pro, or KEDP). The US National Library of Medicine indexes it under that name. It comes from Vladimir Khavinson's 'peptide bioregulator' research in Russia, and online catalogs promote it for the prostate. Its developers propose that short peptides like this loosen tightly packed DNA and switch genes back on. This has only been studied in lab dishes.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Only lab studies were found, on white blood cells from elderly people and on DNA in test tubes, all from the developer's group; no human trials were found."
+    "why": "Only lab studies were found, on white blood cells from elderly people and on DNA in test tubes. All are from the developer's group. No human trials were found."
   },
   "status_us": {
     "key": "not_approved",

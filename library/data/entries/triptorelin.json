@@ -2,10 +2,10 @@
   "id": "triptorelin",
   "name": "Triptorelin",
   "summary": "A prescription hormone drug that, with continued use, shuts down the body's testosterone and estrogen. Approved for advanced prostate cancer and for puberty that starts too early in children.",
-  "what_it_is": "Triptorelin is a lab-made version of gonadotropin-releasing hormone (GnRH), the brain signal that tells the pituitary gland to release LH and FSH. A first dose briefly raises LH, FSH, testosterone and estradiol; with continued use the pituitary stops responding and testosterone falls to castrate levels. In the US it is sold as Trelstar (prostate cancer) and Triptodur (early puberty); in the UK it is sold as Decapeptyl, with added uses such as endometriosis. Because the first dose stimulates testosterone, anti-doping rules ban it in male athletes.",
+  "what_it_is": "Triptorelin is a lab-made version of gonadotropin-releasing hormone (GnRH), the brain signal that tells the pituitary gland to release LH and FSH. A first dose briefly raises LH, FSH, testosterone and estradiol. With continued use the pituitary stops responding, and testosterone falls to castrate levels. In the US it is sold as Trelstar (prostate cancer) and Triptodur (early puberty). In the UK it is sold as Decapeptyl, with added uses such as endometriosis. Because the first dose stimulates testosterone, anti-doping rules ban it in male athletes.",
   "evidence": {
     "grade": "strong",
-    "why": "It is an approved drug: controlled trials in men with advanced prostate cancer and a single-arm trial in 44 children with early puberty support its labeled uses."
+    "why": "It is an approved drug. Controlled trials in men with advanced prostate cancer and a single-arm trial in 44 children with early puberty support its labeled uses."
   },
   "status_us": {
     "key": "approved",

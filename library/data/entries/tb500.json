@@ -2,10 +2,10 @@
   "id": "tb500",
   "name": "TB-500",
   "summary": "A lab-made piece of the protein thymosin beta-4, promoted for injury and wound recovery. FDA found no studies of it in people.",
-  "what_it_is": "TB-500 is a synthetic seven-amino-acid peptide (acetylated LKKTETQ) that copies amino acids 17 to 23 of thymosin beta-4, a protein found in most cells and in blood, saliva, tears and wound fluid. That stretch of thymosin beta-4 has been linked to wound repair and new blood vessel growth in lab and animal work. FDA stresses that TB-500 and thymosin beta-4 are not the same substance, and a 2024 lab study found TB-500 itself had no wound-healing effect.",
+  "what_it_is": "TB-500 is a lab-made peptide of seven amino acids (acetylated LKKTETQ). It copies amino acids 17 to 23 of thymosin beta-4, a protein found in most cells and in blood, saliva, tears and wound fluid. That stretch of thymosin beta-4 has been linked to wound repair and new blood vessel growth in lab and animal work. FDA stresses that TB-500 and thymosin beta-4 are not the same substance. A 2024 lab study found TB-500 itself had no wound-healing effect.",
   "evidence": {
     "grade": "preclinical",
-    "why": "There are no human studies; the evidence is animal and lab work, mostly on the full thymosin beta-4 protein or related peptides, and a lab test of TB-500 itself found no wound-healing effect."
+    "why": "There are no human studies. The evidence is animal and lab work, mostly on the full thymosin beta-4 protein or related peptides. A lab test of TB-500 itself found no wound-healing effect."
   },
   "status_us": {
     "key": "under_review",

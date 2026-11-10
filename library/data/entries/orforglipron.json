@@ -2,10 +2,10 @@
   "id": "orforglipron",
   "name": "Orforglipron",
   "summary": "A GLP-1 medicine you take as a pill, sold as Foundayo. Approved in April 2026 for weight management in adults with obesity, or with overweight and a related health problem.",
-  "what_it_is": "Orforglipron is a small-molecule drug, not a peptide, that switches on the GLP-1 receptor. It lowers food intake, likely by reducing appetite, and slows stomach emptying. It is taken by mouth, and its half-life is about 29 to 49 hours. Eli Lilly has also tested it in type 2 diabetes, but so far it is approved only for weight management.",
+  "what_it_is": "Orforglipron is a small-molecule drug, not a peptide, that switches on the GLP-1 receptor. It lowers food intake, likely by reducing appetite, and slows stomach emptying. It is taken by mouth, and its half-life is about 29 to 49 hours. Eli Lilly has also tested it in type 2 diabetes. So far it is approved only for weight management.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA approval for weight management based on two 72-week randomized trials in 4,740 adults, 1,613 of them with type 2 diabetes."
+    "why": "FDA approved it for weight management, based on two 72-week randomized trials in 4,740 adults, 1,613 of them with type 2 diabetes."
   },
   "status_us": {
     "key": "approved",

@@ -2,10 +2,10 @@
   "id": "tadalafil",
   "name": "Tadalafil",
   "summary": "A prescription pill (a PDE5 inhibitor) for erectile dysfunction and for urinary symptoms of an enlarged prostate. In trials, its effect on erections lasted up to 36 hours.",
-  "what_it_is": "Tadalafil is a phosphodiesterase type 5 (PDE5) inhibitor. During sexual stimulation, nerves and blood vessel linings release nitric oxide, which raises cGMP and relaxes smooth muscle so blood flows into the penis; blocking PDE5 keeps cGMP higher, so tadalafil has no effect without sexual stimulation. The same drug is sold as Adcirca for pulmonary arterial hypertension, and the two should not be taken together.",
+  "what_it_is": "Tadalafil is a phosphodiesterase type 5 (PDE5) inhibitor. During sexual stimulation, nerves and blood vessel linings release nitric oxide. That raises cGMP and relaxes smooth muscle, so blood flows into the penis. Blocking PDE5 keeps cGMP higher, so tadalafil has no effect without sexual stimulation. The same drug is sold as Adcirca for pulmonary arterial hypertension, and the two should not be taken together.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for erectile dysfunction and for urinary symptoms of benign prostatic hyperplasia based on randomized trials; AUA guidelines recommend PDE5 inhibitors for ED and list tadalafil as an option for these urinary symptoms."
+    "why": "It is FDA-approved for erectile dysfunction and for urinary symptoms of benign prostatic hyperplasia, based on randomized trials. AUA guidelines recommend PDE5 inhibitors for ED and list tadalafil as an option for these urinary symptoms."
   },
   "status_us": {
     "key": "approved",

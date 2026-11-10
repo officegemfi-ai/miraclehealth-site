@@ -2,10 +2,10 @@
   "id": "testosterone",
   "name": "Testosterone",
   "summary": "A male sex hormone. Prescribed to men whose testosterone is low because of a problem with the testicles, the pituitary gland or the hypothalamus. A Schedule III controlled substance in the US.",
-  "what_it_is": "Testosterone is an androgen, a male sex hormone. Together with dihydrotestosterone (DHT), it is responsible for the normal growth and development of the male sex organs and for maintaining male secondary sex characteristics. Prescription testosterone replaces it in men whose testes fail or whose pituitary or hypothalamus does not signal the testes properly. It comes in several forms, including gels applied to the skin.",
+  "what_it_is": "Testosterone is an androgen, a male sex hormone. Together with dihydrotestosterone (DHT), it is responsible for the normal growth and development of the male sex organs and for maintaining male secondary sex characteristics. Prescription testosterone replaces it in men whose testes fail, or whose pituitary or hypothalamus does not signal the testes properly. It comes in several forms, including gels applied to the skin.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for male hypogonadism, and large randomized trials (TRAVERSE, 5,246 men; the Testosterone Trials, 790 men) describe its heart safety and its modest benefits in older men."
+    "why": "It is FDA-approved for male hypogonadism. Large randomized trials (TRAVERSE, 5,246 men; the Testosterone Trials, 790 men) describe its heart safety and its modest benefits in older men."
   },
   "status_us": {
     "key": "approved",

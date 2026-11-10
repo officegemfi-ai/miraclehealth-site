@@ -2,10 +2,10 @@
   "id": "afamelanotide",
   "name": "Melanotan I (afamelanotide)",
   "summary": "A lab-made version of alpha-MSH, the hormone that darkens skin. Approved as an implant for a rare disorder that makes people sensitive to light. Unlicensed Melanotan I products are used for tanning.",
-  "what_it_is": "Afamelanotide, also known as Melanotan I, is a lab-made peptide of 13 amino acids modeled on alpha-melanocyte-stimulating hormone (alpha-MSH). It activates the melanocortin 1 receptor in the skin, which raises production of the dark pigment eumelanin regardless of sun or UV exposure. As the prescription implant Scenesse, it helps adults with erythropoietic protoporphyria (EPP), a rare disorder that causes painful reactions to light. Unlicensed products sold as Melanotan I for tanning are untested and unregulated.",
+  "what_it_is": "Afamelanotide, also known as Melanotan I, is a lab-made peptide of 13 amino acids. It is modeled on alpha-melanocyte-stimulating hormone (alpha-MSH). It switches on the melanocortin 1 receptor in the skin, so the skin makes more of the dark pigment eumelanin, with or without sun or UV exposure. As the prescription implant Scenesse, it helps adults with erythropoietic protoporphyria (EPP), a rare disorder that causes painful reactions to light. Unlicensed products sold as Melanotan I for tanning are untested and unregulated.",
   "evidence": {
     "grade": "strong",
-    "why": "Strong only for its FDA-approved use (preventing light-triggered pain in adults with EPP), from two randomized placebo-controlled trials in 168 patients. It is not approved for cosmetic tanning, and unlicensed 'Melanotan I' tanning products have only small early trials and case reports."
+    "why": "The evidence is strong only for its FDA-approved use: preventing light-triggered pain in adults with EPP. That comes from two randomized placebo-controlled trials in 168 patients. It is not approved for cosmetic tanning. Unlicensed 'Melanotan I' tanning products have only small early trials and case reports behind them."
   },
   "status_us": {
     "key": "approved",

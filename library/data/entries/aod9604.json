@@ -2,10 +2,10 @@
   "id": "aod9604",
   "name": "AOD-9604",
   "summary": "A lab-made piece of human growth hormone, taken for fat loss. It was developed as an obesity drug, but its main weight-loss trial failed. Not approved.",
-  "what_it_is": "AOD-9604 is a synthetic 16-amino-acid peptide: the tail end of human growth hormone (amino acids 177 to 191) plus an extra tyrosine. In obese mice it increased fat burning and reduced weight gain without raising blood sugar, and in lab tests it did not bind the growth hormone receptor or make cells multiply as full growth hormone does. An Australian company tested it as an obesity pill and ended that work in 2007 after a key trial failed.",
+  "what_it_is": "AOD-9604 is a lab-made peptide of 16 amino acids: the tail end of human growth hormone (amino acids 177 to 191) plus an extra tyrosine. In obese mice it increased fat burning and reduced weight gain without raising blood sugar. In lab tests it did not bind the growth hormone receptor or make cells multiply the way full growth hormone does. An Australian company tested it as an obesity pill and ended that work in 2007 after a key trial failed.",
   "evidence": {
     "grade": "limited",
-    "why": "Fat-loss effects come from mouse and rat studies; in people, a 24-week trial of 502 adults with obesity missed its weight-loss goal, earlier small trials showed little or no effect, and FDA found no evidence that it works."
+    "why": "Its fat-loss effects come from mouse and rat studies. In people, a 24-week trial of 502 adults with obesity missed its weight-loss goal, and earlier small trials showed little or no effect. FDA found no evidence that it works."
   },
   "status_us": {
     "key": "not_approved",

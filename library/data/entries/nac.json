@@ -2,10 +2,10 @@
   "id": "nac",
   "name": "NAC (N-acetylcysteine)",
   "summary": "A modified form of the amino acid cysteine. Approved as an antidote for acetaminophen overdose and as a mucus thinner, and sold for decades as a dietary supplement.",
-  "what_it_is": "N-acetylcysteine (acetylcysteine) is the N-acetyl form of the amino acid L-cysteine. After an acetaminophen overdose it probably protects the liver by maintaining or restoring glutathione levels and by helping neutralize a toxic breakdown product of acetaminophen; inhaled, it thins abnormally thick mucus. It was approved as a drug in 1963, and products labeled as dietary supplements have been sold in the US for over 30 years.",
+  "what_it_is": "N-acetylcysteine (acetylcysteine) is the N-acetyl form of the amino acid L-cysteine. After an acetaminophen overdose it probably protects the liver in two ways: it maintains or restores glutathione levels, and it helps neutralize a toxic breakdown product of acetaminophen. Inhaled, it thins abnormally thick mucus. It was approved as a drug in 1963. Products labeled as dietary supplements have been sold in the US for over 30 years.",
   "evidence": {
     "grade": "limited",
-    "why": "It is an approved antidote for acetaminophen overdose, but evidence for everyday supplement uses is weak or conflicting; a 2023 meta-analysis of 9 COPD trials found no benefit."
+    "why": "It is an approved antidote for acetaminophen overdose. But the evidence for everyday supplement uses is weak or conflicting. A 2023 meta-analysis of 9 COPD trials found no benefit."
   },
   "status_us": {
     "key": "restricted",

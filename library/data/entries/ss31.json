@@ -2,10 +2,10 @@
   "id": "ss31",
   "name": "SS-31",
   "summary": "A lab-made peptide that targets mitochondria, where cells make energy. FDA-approved in 2025 as Forzinity, for Barth syndrome only. People also take it for aging and energy, based mostly on animal studies.",
-  "what_it_is": "SS-31, or elamipretide, is a small synthetic peptide that binds cardiolipin, a fat in the inner membrane of mitochondria, the parts of cells that make energy; its label says this improves mitochondrial structure and function. FDA approved it in 2025 as Forzinity to improve muscle strength in Barth syndrome, a rare inherited mitochondrial disease. People also take it hoping to slow aging, based mainly on mouse studies.",
+  "what_it_is": "SS-31, or elamipretide, is a small lab-made peptide. It binds cardiolipin, a fat in the inner membrane of mitochondria, the parts of cells that make energy. Its label says this improves mitochondrial structure and function. FDA approved it in 2025 as Forzinity to improve muscle strength in Barth syndrome, a rare inherited mitochondrial disease. People also take it hoping to slow aging, based mainly on mouse studies.",
   "evidence": {
     "grade": "limited",
-    "why": "FDA's accelerated approval rests on strength gains in about 10 people with Barth syndrome during an open-label extension, after a 12-week placebo-controlled phase in 12 patients missed its goals; a 218-person trial in mitochondrial myopathy found no benefit, and anti-aging effects come from mouse studies."
+    "why": "FDA's accelerated approval rests on strength gains in about 10 people with Barth syndrome during an open-label extension. Before that, a 12-week placebo-controlled phase in 12 patients missed its goals. A 218-person trial in mitochondrial myopathy found no benefit. The anti-aging effects come from mouse studies."
   },
   "status_us": {
     "key": "approved",

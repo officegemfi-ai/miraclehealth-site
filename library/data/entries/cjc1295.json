@@ -2,10 +2,10 @@
   "id": "cjc1295",
   "name": "CJC-1295 with DAC",
   "summary": "A long-acting, lab-made version of the hormone that triggers the release of growth hormone. Taken to raise growth hormone and IGF-1. The data in people come from short studies in healthy adults.",
-  "what_it_is": "CJC-1295 with DAC is a synthetic, 29-amino-acid analog of growth hormone-releasing hormone (GHRH), the brain signal that tells the pituitary gland to release growth hormone. It carries an extra chemical unit at one end (MPA-lysine, the 'DAC'), part of a design meant to latch onto albumin, a blood protein, so its half-life stretches to about 6 to 8 days instead of minutes. It reached early human studies but is not an approved medicine.",
+  "what_it_is": "CJC-1295 with DAC is a lab-made analog, 29 amino acids long, of growth hormone-releasing hormone (GHRH), the brain signal that tells the pituitary gland to release growth hormone. It carries an extra chemical unit at one end (MPA-lysine, the 'DAC'). That is part of a design meant to latch onto albumin, a blood protein, so its half-life stretches to about 6 to 8 days instead of minutes. It reached early human studies but is not an approved medicine.",
   "evidence": {
     "grade": "limited",
-    "why": "Two small 2006 studies in healthy adults showed higher growth hormone and IGF-1 for days after injection; FDA found no data on effectiveness for any health outcome."
+    "why": "Two small 2006 studies in healthy adults showed higher growth hormone and IGF-1 for days after an injection. FDA found no data on whether it works for any health outcome."
   },
   "status_us": {
     "key": "not_approved",

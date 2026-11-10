@@ -2,10 +2,10 @@
   "id": "liraglutide",
   "name": "Liraglutide",
   "summary": "A prescription GLP-1 medicine that lowers blood sugar and appetite. Sold as Victoza for type 2 diabetes and as Saxenda for weight management.",
-  "what_it_is": "Liraglutide is a lab-made version of GLP-1, a natural hormone that helps regulate blood sugar and appetite. It switches on GLP-1 receptors and slows stomach emptying. Victoza and Saxenda contain the same drug for different uses, and generic versions are approved. It is given as an injection under the skin.",
+  "what_it_is": "Liraglutide is a lab-made version of GLP-1, a natural hormone that helps regulate blood sugar and appetite. It switches on GLP-1 receptors and slows stomach emptying. Victoza and Saxenda contain the same drug, for different uses. Generic versions are approved. It is given as an injection under the skin.",
   "evidence": {
     "grade": "strong",
-    "why": "Large randomized trials, including SCALE (3,731 adults) for weight and LEADER (9,340 adults) for heart outcomes, plus FDA approval for each main use."
+    "why": "It has been tested in large randomized trials, including SCALE (3,731 adults) for weight and LEADER (9,340 adults) for heart outcomes. FDA has approved it for each main use."
   },
   "status_us": {
     "key": "approved",

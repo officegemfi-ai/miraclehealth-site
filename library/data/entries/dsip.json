@@ -2,10 +2,10 @@
   "id": "dsip",
   "name": "DSIP",
   "summary": "A small peptide, also called emideltide, first found in rabbit brain blood. People take it hoping to sleep better. The evidence that it works is weak.",
-  "what_it_is": "DSIP (delta sleep-inducing peptide), or emideltide, is a chain of nine amino acids first found in blood draining from rabbits' brains and later made in the lab. FDA found it is not a registered medicine in any country it searched, and it is not FDA-approved. It can cross from the blood into the brain, but enzymes in blood and tissue break it down within minutes.",
+  "what_it_is": "DSIP (delta sleep-inducing peptide), also called emideltide, is a chain of nine amino acids. It was first found in blood draining from rabbits' brains and was later made in the lab. FDA found it is not a registered medicine in any country it searched, and it is not FDA-approved. It can cross from the blood into the brain, but enzymes in blood and tissue break it down within minutes.",
   "evidence": {
     "grade": "limited",
-    "why": "Small studies from the 1980s and 1990s, most with under 20 people; two small placebo-controlled trials found little or no sleep benefit, and FDA identified no data supporting effectiveness."
+    "why": "The studies are small and date from the 1980s and 1990s, most with under 20 people. Two small placebo-controlled trials found little or no sleep benefit. FDA identified no data showing that it works."
   },
   "status_us": {
     "key": "not_approved",

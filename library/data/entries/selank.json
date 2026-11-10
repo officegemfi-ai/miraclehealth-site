@@ -2,10 +2,10 @@
   "id": "selank",
   "name": "Selank",
   "summary": "A small lab-made peptide based on tuftsin, a piece of an immune protein. Taken for anxiety and focus. The evidence in people is one small Russian study.",
-  "what_it_is": "Selank is a synthetic seven-amino-acid peptide built from tuftsin, a natural four-amino-acid fragment of human antibodies (immunoglobulin G), with three amino acids added so it lasts longer in the body. Researchers propose that it calms anxiety by acting on the brain's GABA system, the target of benzodiazepines, but this rests mainly on rat studies. It is not an FDA-approved drug.",
+  "what_it_is": "Selank is a lab-made peptide of seven amino acids. It is built from tuftsin, a natural four-amino-acid fragment of human antibodies (immunoglobulin G), with three amino acids added so it lasts longer in the body. Researchers propose that it calms anxiety by acting on the brain's GABA system, the target of benzodiazepines. This rests mainly on rat studies. It is not an FDA-approved drug.",
   "evidence": {
     "grade": "limited",
-    "why": "The only human evidence we found is one Russian comparative study of 62 patients, in which selank eased anxiety about as much as the drug medazepam; other data come from rat studies."
+    "why": "The only human evidence we found is one Russian comparative study of 62 patients. In it, selank eased anxiety about as much as the drug medazepam. The other data come from rat studies."
   },
   "status_us": {
     "key": "not_approved",

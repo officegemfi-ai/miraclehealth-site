@@ -2,10 +2,10 @@
   "id": "epithalon",
   "name": "Epitalon",
   "summary": "A tiny lab-made peptide from Russian aging research. People take it hoping to slow aging and restore their melatonin rhythms. The evidence in people is very thin.",
-  "what_it_is": "Epitalon (also spelled epithalon; sequence Ala-Glu-Asp-Gly, or AEDG) is a synthetic tetrapeptide developed by Vladimir Khavinson's group in St. Petersburg, Russia. It was modeled on epithalamin, an extract of cattle pineal glands. In lab studies it switched on telomerase, the enzyme that rebuilds chromosome tips, and in older monkeys it raised evening melatonin. FDA found no approved epitalon product in Canada, Australia, the UK or the EU.",
+  "what_it_is": "Epitalon (also spelled epithalon; sequence Ala-Glu-Asp-Gly, or AEDG) is a lab-made chain of four amino acids (a tetrapeptide). It was developed by Vladimir Khavinson's group in St. Petersburg, Russia, and modeled on epithalamin, an extract of cattle pineal glands. In lab studies it switched on telomerase, the enzyme that rebuilds chromosome tips. In older monkeys it raised evening melatonin. FDA found no approved epitalon product in Canada, Australia, the UK or the EU.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Its anti-aging case rests on cell and animal studies, mostly from the Russian group that developed it; FDA found only three human studies, none of which assessed safety."
+    "why": "Its anti-aging case rests on cell and animal studies, mostly from the Russian group that developed it. FDA found only three human studies, and none of them assessed safety."
   },
   "status_us": {
     "key": "under_review",

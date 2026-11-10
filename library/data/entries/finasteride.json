@@ -2,10 +2,10 @@
   "id": "finasteride",
   "name": "Finasteride",
   "summary": "A prescription pill that stops testosterone turning into the hormone DHT. Approved for male pattern hair loss and an enlarged prostate. Sexual and mood side effects are a known concern.",
-  "what_it_is": "Finasteride is a 5-alpha-reductase inhibitor: it blocks the Type II enzyme that converts testosterone into dihydrotestosterone (DHT), lowering DHT in the blood and scalp, which is how it treats male pattern hair loss and an enlarged prostate. It also lowers PSA, a blood test used in prostate cancer screening. No topical (skin) finasteride product is FDA-approved; topical versions are compounded.",
+  "what_it_is": "Finasteride is a 5-alpha-reductase inhibitor. It blocks the Type II enzyme that turns testosterone into dihydrotestosterone (DHT). That lowers DHT in the blood and scalp, which is how it treats male pattern hair loss and an enlarged prostate. It also lowers PSA, a blood test used in prostate cancer screening. No topical (skin) finasteride product is FDA-approved. Topical versions are compounded.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for male pattern hair loss and enlarged prostate based on large randomized trials (1,879 men in the hair-loss trials; about 3,000 men in each of two prostate trials)."
+    "why": "It is FDA-approved for male pattern hair loss and an enlarged prostate, based on large randomized trials. The hair-loss trials had 1,879 men, and each of two prostate trials had about 3,000 men."
   },
   "status_us": {
     "key": "approved",

@@ -2,10 +2,10 @@
   "id": "curcumin",
   "name": "Curcumin",
   "summary": "The main yellow compound in turmeric, taken mostly for joint pain and inflammation. The evidence is still early, and turmeric supplements have been linked to rare liver injury.",
-  "what_it_is": "Turmeric (Curcuma longa) is a plant in the ginger family grown mainly in India and Southeast Asia; its underground stem (rhizome) is used in cooking and was used in traditional medicine for indigestion, colds, skin infections, arthritis and liver disease. Curcumin, which gives turmeric its yellow color, belongs to a group of compounds called curcuminoids that are thought to account for its effects. Products vary in how much curcumin they contain, and many add piperine from black pepper, which raises how much curcumin the body absorbs; piperine was in 3 of 7 products tested in US liver-injury cases.",
+  "what_it_is": "Turmeric (Curcuma longa) is a plant in the ginger family, grown mainly in India and Southeast Asia. Its underground stem (rhizome) is used in cooking. In traditional medicine it was used for indigestion, colds, skin infections, arthritis and liver disease. Curcumin gives turmeric its yellow color. It belongs to a group of compounds called curcuminoids, which are thought to account for turmeric's effects. Products vary in how much curcumin they contain. Many add piperine from black pepper, which raises how much curcumin the body absorbs. Piperine was in 3 of 7 products tested in US liver-injury cases.",
   "evidence": {
     "grade": "limited",
-    "why": "Several meta-analyses of small trials suggest less knee osteoarthritis pain, but NIH says higher-quality studies are needed and there isn't enough evidence to confirm any health benefit."
+    "why": "Several meta-analyses of small trials suggest less pain in knee osteoarthritis. But NIH says higher-quality studies are needed, and that there isn't enough evidence to confirm any health benefit."
   },
   "status_us": {
     "key": "supplement",

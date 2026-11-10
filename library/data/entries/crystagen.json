@@ -2,10 +2,10 @@
   "id": "crystagen",
   "name": "Crystagen",
   "summary": "A tiny peptide from Russian 'bioregulator' research, promoted to support immunity in older people. The evidence is mainly small studies by its own developers.",
-  "what_it_is": "Crystagen is a lab-made chain of three amino acids, glutamic acid, aspartic acid and proline (Glu-Asp-Pro, or EDP), from Vladimir Khavinson's peptide research in Russia. Its developers patented it as an 'immunogeroprotector', meaning a substance meant to slow the age-related decline of the immune system. In their lab and rat studies it boosted the growth and maturation of immune cells and helped protect the thymus, the gland where T cells mature.",
+  "what_it_is": "Crystagen is a lab-made chain of three amino acids: glutamic acid, aspartic acid and proline (Glu-Asp-Pro, or EDP). It comes from Vladimir Khavinson's peptide research in Russia. Its developers patented it as an 'immunogeroprotector', meaning a substance meant to slow the age-related decline of the immune system. In their lab and rat studies it boosted the growth and maturation of immune cells and helped protect the thymus, the gland where T cells mature.",
   "evidence": {
     "grade": "limited",
-    "why": "Rat and cell studies plus small studies in older adults with no randomization described, all reported by the developers in a patent and a review."
+    "why": "The evidence is rat and cell studies, plus small studies in older adults in which no randomization is described. All of it was reported by the developers, in a patent and a review."
   },
   "status_us": {
     "key": "not_approved",

@@ -2,10 +2,10 @@
   "id": "spironolactone",
   "name": "Spironolactone",
   "summary": "A prescription water pill for heart failure and high blood pressure. It also blocks male hormones, so it's used for acne and hair loss in women, which it isn't approved for.",
-  "what_it_is": "Spironolactone, sold as Aldactone, is a prescription diuretic (water pill) that can raise potassium levels. It is approved for heart failure, high blood pressure, fluid buildup from liver cirrhosis or kidney disease (nephrotic syndrome), and primary hyperaldosteronism. Because it also has anti-androgen (male-hormone-blocking) effects, dermatologists prescribe it off-label for acne and female pattern hair loss.",
+  "what_it_is": "Spironolactone, sold as Aldactone, is a prescription diuretic (water pill) that can raise potassium levels. It is approved for heart failure, high blood pressure, fluid buildup from liver cirrhosis or kidney disease (nephrotic syndrome), and primary hyperaldosteronism. It also has anti-androgen (male-hormone-blocking) effects. For that reason dermatologists prescribe it off-label for acne and female pattern hair loss.",
   "evidence": {
     "grade": "moderate",
-    "why": "For acne, a well-run trial in 410 women found modest benefits; for female pattern hair loss the evidence is small, mostly uncontrolled studies; its heart and fluid uses are FDA-approved."
+    "why": "For acne, a well-run trial in 410 women found modest benefits. For female pattern hair loss, the evidence is small, mostly uncontrolled studies. Its heart and fluid uses are FDA-approved."
   },
   "status_us": {
     "key": "approved",

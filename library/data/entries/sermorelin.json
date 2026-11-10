@@ -2,10 +2,10 @@
   "id": "sermorelin",
   "name": "Sermorelin",
   "summary": "A shortened copy of the brain hormone that tells the pituitary gland to release growth hormone. Once an approved drug. Now made by compounding pharmacies and used to raise growth hormone and IGF-1.",
-  "what_it_is": "Sermorelin is a lab-made peptide that matches the active first part (amino acids 1-29) of growth hormone-releasing hormone (GHRH), which the brain uses to signal the pituitary gland. It prompts the pituitary to release the body's own growth hormone, which in turn raises IGF-1. It was sold in the US as Geref, for testing pituitary function and for children with growth hormone deficiency, until the maker stopped selling it in 2008.",
+  "what_it_is": "Sermorelin is a lab-made peptide that matches the active first part (amino acids 1-29) of growth hormone-releasing hormone (GHRH), which the brain uses to signal the pituitary gland. It prompts the pituitary to release the body's own growth hormone, which in turn raises IGF-1. It was sold in the US as Geref, for testing pituitary function and for children with growth hormone deficiency. The maker stopped selling it in 2008.",
   "evidence": {
     "grade": "limited",
-    "why": "It was an approved drug for children with growth hormone deficiency, but evidence for the adult uses people seek today (body composition, aging) found here is limited to a small retrospective study and reviews."
+    "why": "It was an approved drug for children with growth hormone deficiency. For the adult uses people seek today (body composition, aging), the evidence found here is limited to a small retrospective study and reviews."
   },
   "status_us": {
     "key": "compounded",

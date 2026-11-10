@@ -2,10 +2,10 @@
   "id": "ldn",
   "name": "Low-dose naltrexone (LDN)",
   "summary": "Naltrexone is an opioid-blocking drug for addiction. In much smaller amounts, people take it for chronic pain and inflammatory conditions, which it isn't approved for. Small trials have given mixed results.",
-  "what_it_is": "Naltrexone is a prescription drug that blocks opioid receptors; at its standard strength it is approved to treat alcohol dependence and to block the effects of opioids. Low-dose naltrexone (LDN) uses a small fraction of that amount, which is not sold as an approved product, so it is made by compounding pharmacies. Researchers think low doses may calm immune cells in the brain and spinal cord by blocking a receptor called TLR4, or briefly raise the body's own endorphins, but these ideas are unproven.",
+  "what_it_is": "Naltrexone is a prescription drug that blocks opioid receptors. At its standard strength it is approved to treat alcohol dependence and to block the effects of opioids. Low-dose naltrexone (LDN) uses a small fraction of that amount. That amount is not sold as an approved product, so compounding pharmacies make it. Researchers think low doses may calm immune cells in the brain and spinal cord by blocking a receptor called TLR4, or may briefly raise the body's own endorphins. These ideas are unproven.",
   "evidence": {
     "grade": "limited",
-    "why": "The best trial, in 99 women with fibromyalgia, found no pain benefit over placebo; a review of two small Crohn's disease trials found the evidence too thin for firm conclusions, and other studies are small."
+    "why": "The best trial, in 99 women with fibromyalgia, found no pain benefit over placebo. A review of two small Crohn's disease trials found the evidence too thin for firm conclusions. Other studies are small."
   },
   "status_us": {
     "key": "compounded",

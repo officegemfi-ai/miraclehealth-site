@@ -2,10 +2,10 @@
   "id": "rhodiola",
   "name": "Rhodiola rosea",
   "summary": "A cold-climate herb (golden root) taken to fight fatigue and stress and to lift mood. Trials are small and conflicting, and NIH says there isn't enough evidence.",
-  "what_it_is": "Rhodiola (Rhodiola rosea), also called golden root, rose root or arctic root, is a plant that grows in cold regions and at high altitudes in Europe, Asia and North America. It has a long history of traditional use in Russia, Scandinavia and other parts of Europe for work performance, endurance, fatigue, depression and altitude sickness. Today it is promoted for athletic performance, mood, thinking, energy and stress.",
+  "what_it_is": "Rhodiola (Rhodiola rosea), also called golden root, rose root or arctic root, is a plant that grows in cold regions and at high altitudes in Europe, Asia and North America. It has a long history of traditional use in Russia, Scandinavia and other parts of Europe. There it was used for work performance, endurance, fatigue, depression and altitude sickness. Today it is promoted for athletic performance, mood, thinking, energy and stress.",
   "evidence": {
     "grade": "limited",
-    "why": "A review of 11 controlled trials found contradictory results for fatigue, all at high risk of bias or poorly reported, and NIH calls most human research low to moderate quality."
+    "why": "A review of 11 controlled trials found contradictory results for fatigue. All of the trials were at high risk of bias or poorly reported. NIH calls most of the human research low to moderate quality."
   },
   "status_us": {
     "key": "supplement",

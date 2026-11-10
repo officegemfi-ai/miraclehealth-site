@@ -2,10 +2,10 @@
   "id": "tesamorelin",
   "name": "Tesamorelin",
   "summary": "A lab-made version of the brain hormone that triggers the release of growth hormone. FDA-approved to shrink excess deep belly fat in adults with HIV.",
-  "what_it_is": "Tesamorelin is a synthetic version of growth hormone-releasing factor (GRF): the full 44-amino-acid hormone with a small chemical group (hexenoyl) attached. It signals the pituitary gland to release the body's own growth hormone, which raises IGF-1 and reduces deep abdominal (visceral) fat. It is sold as Egrifta SV and Egrifta WR and has been FDA-approved since 2010.",
+  "what_it_is": "Tesamorelin is a lab-made version of growth hormone-releasing factor (GRF): the full 44-amino-acid hormone with a small chemical group (hexenoyl) attached. It signals the pituitary gland to release the body's own growth hormone. That raises IGF-1 and reduces deep abdominal (visceral) fat. It is sold as Egrifta SV and Egrifta WR and has been FDA-approved since 2010.",
   "evidence": {
     "grade": "strong",
-    "why": "Two randomized, placebo-controlled trials in 816 adults with HIV supported its approval for reducing visceral fat; other uses (fatty liver, thinking skills) rest on single smaller trials."
+    "why": "Two randomized, placebo-controlled trials in 816 adults with HIV supported its approval for reducing visceral fat. Other uses (fatty liver, thinking skills) rest on single smaller trials."
   },
   "status_us": {
     "key": "approved",

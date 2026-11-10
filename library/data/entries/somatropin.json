@@ -2,10 +2,10 @@
   "id": "somatropin",
   "name": "Somatropin (HGH)",
   "summary": "Lab-made human growth hormone. Prescribed for growth hormone deficiency and certain growth disorders. Distributing it for anti-aging or bodybuilding is a federal crime.",
-  "what_it_is": "Somatropin is recombinant human growth hormone: a 191-amino-acid protein made in E. coli bacteria with the same sequence as the growth hormone made by the pituitary gland. In children it promotes growth; in adults it shifts body composition toward more lean mass and less fat. Blood levels of IGF-1 rise during treatment. It is given by injection.",
+  "what_it_is": "Somatropin is recombinant human growth hormone: a protein of 191 amino acids made in E. coli bacteria, with the same sequence as the growth hormone made by the pituitary gland. In children it promotes growth. In adults it shifts body composition toward more lean mass and less fat. Blood levels of IGF-1 rise during treatment. It is given by injection.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for growth hormone deficiency and several childhood growth disorders; in healthy older adults, a review of 18 small trials found small body-composition changes and more side effects."
+    "why": "It is FDA-approved for growth hormone deficiency and several childhood growth disorders. In healthy older adults, a review of 18 small trials found small changes in body composition and more side effects."
   },
   "status_us": {
     "key": "approved",

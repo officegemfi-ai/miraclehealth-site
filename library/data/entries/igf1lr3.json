@@ -2,10 +2,10 @@
   "id": "igf1lr3",
   "name": "IGF-1 LR3",
   "summary": "A lab-made, stronger form of IGF-1 that escapes the proteins that normally hold IGF-1 in check. Sold as a 'research chemical' for muscle growth. The evidence is limited to lab studies.",
-  "what_it_is": "IGF-1 LR3 (Long R3 IGF-1) is an engineered version of insulin-like growth factor 1, the hormone that carries out some of growth hormone's effects, including on muscle. It has arginine in place of glutamic acid at position 3 plus a 13-amino-acid extension at the front end; these changes make it bind poorly to the IGF-binding proteins that normally hold IGF-1 in check, so it acts more strongly. Natural IGF-1 (mecasermin) is sold as a medicine for rare conditions such as primary IGF-1 deficiency, but the LR3 analog is not approved for human use.",
+  "what_it_is": "IGF-1 LR3 (Long R3 IGF-1) is an engineered version of insulin-like growth factor 1, the hormone that carries out some of growth hormone's effects, including on muscle. It has arginine in place of glutamic acid at position 3, plus an extension of 13 amino acids at the front end. These changes make it bind poorly to the IGF-binding proteins that normally hold IGF-1 in check, so it acts more strongly. Natural IGF-1 (mecasermin) is sold as a medicine for rare conditions such as primary IGF-1 deficiency. The LR3 analog is not approved for human use.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Its extra potency comes from lab studies; no human studies were identified, and a review notes little evidence that IGF-1 improves performance in healthy people."
+    "why": "Its extra potency comes from lab studies. No human studies were identified. A review notes little evidence that IGF-1 improves performance in healthy people."
   },
   "status_us": {
     "key": "not_approved",

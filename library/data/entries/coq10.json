@@ -2,10 +2,10 @@
   "id": "coq10",
   "name": "CoQ10",
   "summary": "A substance your body makes that helps cells produce energy. Taken for heart health, muscle aches from statins, migraine and energy.",
-  "what_it_is": "Coenzyme Q10 (CoQ10) is a substance made naturally in the body, with the highest amounts in the heart, liver, kidneys and pancreas. It is an essential cofactor for energy production in cells and also acts as an antioxidant, and low levels in heart muscle are related to how severe heart failure is. It is sold in the United States as a dietary supplement.",
+  "what_it_is": "Coenzyme Q10 (CoQ10) is a substance the body makes naturally. The highest amounts are in the heart, liver, kidneys and pancreas. Cells need it as a cofactor to produce energy, and it also acts as an antioxidant. Low levels in heart muscle are related to how severe heart failure is. It is sold in the United States as a dietary supplement.",
   "evidence": {
     "grade": "limited",
-    "why": "One 420-patient heart failure trial found fewer major heart events, but NIH calls the heart evidence inconclusive, pooled trials show no help for statin muscle pain, and migraine evidence is small."
+    "why": "One heart failure trial in 420 patients found fewer major heart events, but NIH calls the heart evidence inconclusive. Pooled trials show no help for statin muscle pain. The migraine evidence is small."
   },
   "status_us": {
     "key": "supplement",

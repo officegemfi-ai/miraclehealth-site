@@ -2,10 +2,10 @@
   "id": "pt141",
   "name": "PT-141",
   "summary": "A lab-made peptide, FDA-approved as Vyleesi for low sexual desire in women before menopause. Also used for libido and erections, which it isn't approved for.",
-  "what_it_is": "PT-141, also called bremelanotide, is a synthetic peptide that activates melanocortin receptors. It is the active ingredient in Vyleesi, an injection FDA approved in 2019 for premenopausal women with low sexual desire that causes distress. Its label says how it improves desire is unknown. Small early studies in men tested it for erections, but it is not approved for men.",
+  "what_it_is": "PT-141, also called bremelanotide, is a lab-made peptide that activates melanocortin receptors. It is the active ingredient in Vyleesi, an injection FDA approved in 2019 for premenopausal women with low sexual desire that causes distress. Its label says how it improves desire is unknown. Small early studies in men tested it for erections, but it is not approved for men.",
   "evidence": {
     "grade": "strong",
-    "why": "Two 24-week randomized, placebo-controlled trials in about 1,250 premenopausal women supported its approval, though the gains in desire were modest and satisfying sexual events did not increase; in men, only small early-phase studies exist."
+    "why": "Two 24-week randomized, placebo-controlled trials in about 1,250 premenopausal women supported its approval. The gains in desire were modest, though, and satisfying sexual events did not increase. In men, only small early-phase studies exist."
   },
   "status_us": {
     "key": "approved",

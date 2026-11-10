@@ -2,10 +2,10 @@
   "id": "telmisartan",
   "name": "Telmisartan",
   "summary": "A prescription drug for blood pressure and heart protection. In lab studies it also partly turns on a metabolic switch (PPAR-gamma). Benefits for healthy aging are unproven.",
-  "what_it_is": "Telmisartan, sold as Micardis, is an angiotensin II receptor blocker (ARB). It works by stopping the hormone angiotensin II from binding to its AT1 receptor in blood vessel walls and the adrenal gland. It is approved for high blood pressure and to lower the risk of heart attack, stroke and heart-related death in people 55 and older at high risk who cannot take ACE inhibitors. In lab studies, it also partly activates PPAR-gamma, a receptor involved in metabolism.",
+  "what_it_is": "Telmisartan, sold as Micardis, is an angiotensin II receptor blocker (ARB). It stops the hormone angiotensin II from binding to its AT1 receptor in blood vessel walls and the adrenal gland. It is approved for high blood pressure. It is also approved to lower the risk of heart attack, stroke and heart-related death in people 55 and older at high risk who cannot take ACE inhibitors. In lab studies it also partly activates PPAR-gamma, a receptor involved in metabolism.",
   "evidence": {
     "grade": "limited",
-    "why": "Large trials support its approved blood pressure and heart uses, but its use for healthy aging rests on metabolic findings, such as a meta-analysis of 15 small trials showing less belly fat in people with high blood pressure and metabolic problems, not on aging outcomes."
+    "why": "Large trials support its approved uses for blood pressure and the heart. Its use for healthy aging rests on metabolic findings, not on aging outcomes. One example is a meta-analysis of 15 small trials showing less belly fat in people with high blood pressure and metabolic problems."
   },
   "status_us": {
     "key": "approved",

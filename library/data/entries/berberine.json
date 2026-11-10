@@ -2,10 +2,10 @@
   "id": "berberine",
   "name": "Berberine",
   "summary": "A plant compound from goldenseal, barberry and Oregon grape. Taken mainly to lower blood sugar and for weight loss.",
-  "what_it_is": "Berberine is an isoquinoline alkaloid found in plants such as goldenseal, barberry and Oregon grape, which have a long history of use in Ayurvedic and Chinese medicine. It is sold as a supplement for blood sugar, cholesterol and weight. In healthy volunteers it slowed several liver enzymes that break down common medicines, which raises concern about drug interactions.",
+  "what_it_is": "Berberine is an isoquinoline alkaloid found in plants such as goldenseal, barberry and Oregon grape. These plants have a long history of use in Ayurvedic and Chinese medicine. It is sold as a supplement for blood sugar, cholesterol and weight. In healthy volunteers it slowed several liver enzymes that break down common medicines. That raises concern about drug interactions.",
   "evidence": {
     "grade": "moderate",
-    "why": "Dozens of randomized trials, almost all in China and many poorly reported, show modest blood-sugar lowering in type 2 diabetes; weight-loss studies are fewer and at high risk of bias."
+    "why": "Dozens of randomized trials show modest blood-sugar lowering in type 2 diabetes. Almost all were done in China, and many are poorly reported. Weight-loss studies are fewer and at high risk of bias."
   },
   "status_us": {
     "key": "supplement",

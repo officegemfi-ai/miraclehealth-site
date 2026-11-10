@@ -2,10 +2,10 @@
   "id": "oxytocin",
   "name": "Oxytocin",
   "summary": "A hormone that makes the uterus contract. Approved as an injection to start or strengthen labor. Nasal sprays taken for mood or bonding have little evidence behind them.",
-  "what_it_is": "Oxytocin is a hormone that makes the muscle of the uterus contract, and it also has an antidiuretic effect that makes the body hold on to water. Pitocin is synthetic oxytocin given in hospitals by IV infusion or muscle injection to start or strengthen labor and to control bleeding after birth. Nasal oxytocin has been tested for anxiety, depression and autism, but trials have not shown clear benefits.",
+  "what_it_is": "Oxytocin is a hormone that makes the muscle of the uterus contract. It also has an antidiuretic effect, which makes the body hold on to water. Pitocin is synthetic oxytocin given in hospitals by IV infusion or muscle injection, to start or strengthen labor and to control bleeding after birth. Nasal oxytocin has been tested for anxiety, depression and autism, but trials have not shown clear benefits.",
   "evidence": {
     "grade": "limited",
-    "why": "It is FDA-approved for labor and delivery, but for mood, anxiety and social goals, trials of nasal oxytocin have been small or negative, including a 290-child autism trial that found no benefit."
+    "why": "It is FDA-approved for labor and delivery. For mood, anxiety and social goals, trials of nasal oxytocin have been small or negative. One of them, a 290-child autism trial, found no benefit."
   },
   "status_us": {
     "key": "approved",

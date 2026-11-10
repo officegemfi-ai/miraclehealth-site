@@ -2,10 +2,10 @@
   "id": "dapagliflozin",
   "name": "Dapagliflozin",
   "summary": "A prescription pill, sold as Farxiga, that makes the kidneys pass extra sugar out in the urine. It treats type 2 diabetes and lowers kidney and heart failure risks.",
-  "what_it_is": "Dapagliflozin is an SGLT2 inhibitor. It blocks SGLT2 in the kidney tubules, the protein that takes back most filtered sugar, so more sugar leaves in the urine and blood sugar falls. Besides type 2 diabetes, it is approved for chronic kidney disease and heart failure, and those uses do not require diabetes. Its half-life is about 13 hours.",
+  "what_it_is": "Dapagliflozin is an SGLT2 inhibitor. It blocks SGLT2 in the kidney tubules, the protein that takes back most of the filtered sugar. So more sugar leaves in the urine and blood sugar falls. Besides type 2 diabetes, it is approved for chronic kidney disease and heart failure, and those uses do not require diabetes. Its half-life is about 13 hours.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA approval for each main use, based on large randomized trials including DECLARE-TIMI 58 (17,160 adults with type 2 diabetes), DAPA-HF (4,744 adults with heart failure) and DAPA-CKD (4,304 adults with kidney disease)."
+    "why": "FDA has approved it for each main use, based on large randomized trials. They include DECLARE-TIMI 58 (17,160 adults with type 2 diabetes), DAPA-HF (4,744 adults with heart failure) and DAPA-CKD (4,304 adults with kidney disease)."
   },
   "status_us": {
     "key": "approved",

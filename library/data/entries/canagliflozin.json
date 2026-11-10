@@ -2,10 +2,10 @@
   "id": "canagliflozin",
   "name": "Canagliflozin",
   "summary": "A prescription pill, sold as Invokana, that lowers blood sugar and heart and kidney risks in type 2 diabetes. The anti-aging interest rests on a mouse study.",
-  "what_it_is": "Canagliflozin is an SGLT2 inhibitor. It blocks SGLT2 in the kidney tubules, so less filtered sugar returns to the blood and more leaves in the urine; it also sends more sodium further along the tubule, which may lower pressure inside the kidney's filters. Its half-life is about 11 to 13 hours. Its heart and kidney approvals apply to adults with type 2 diabetes.",
+  "what_it_is": "Canagliflozin is an SGLT2 inhibitor. It blocks SGLT2 in the kidney tubules, so less of the filtered sugar returns to the blood and more leaves in the urine. It also sends more sodium further along the tubule, which may lower the pressure inside the kidney's filters. Its half-life is about 11 to 13 hours. Its heart and kidney approvals apply to adults with type 2 diabetes.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA approval for blood sugar control and for heart and kidney risk reduction in type 2 diabetes, based on large randomized trials including CANVAS and CREDENCE; the anti-aging interest comes from one study in mice."
+    "why": "FDA has approved it for blood sugar control and for lowering heart and kidney risk in type 2 diabetes, based on large randomized trials including CANVAS and CREDENCE. The anti-aging interest comes from one study in mice."
   },
   "status_us": {
     "key": "approved",

@@ -2,10 +2,10 @@
   "id": "motsc",
   "name": "MOTS-c",
   "summary": "A small peptide coded for in the DNA of mitochondria. People take it hoping to improve metabolism, exercise capacity and aging. Its effects have only been tested in rodents and cells.",
-  "what_it_is": "MOTS-c is a 16-amino-acid peptide encoded by a short stretch of mitochondrial DNA (inside the 12S rRNA gene), and it circulates naturally in the blood of people and rodents. In mice and rats, giving extra MOTS-c changed how the body handles glucose and fat. It is not an approved drug, and FDA found no studies in which it was given to people.",
+  "what_it_is": "MOTS-c is a peptide of 16 amino acids. It is encoded by a short stretch of mitochondrial DNA (inside the 12S rRNA gene), and it circulates naturally in the blood of people and rodents. In mice and rats, giving extra MOTS-c changed how the body handles glucose and fat. It is not an approved drug. FDA found no studies in which it was given to people.",
   "evidence": {
     "grade": "preclinical",
-    "why": "All evidence of benefit comes from mouse, rat and cell studies; FDA found no clinical studies of MOTS-c given to people and no toxicity studies."
+    "why": "All the evidence of benefit comes from mouse, rat and cell studies. FDA found no clinical studies of MOTS-c given to people and no toxicity studies."
   },
   "status_us": {
     "key": "under_review",

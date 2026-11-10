@@ -2,10 +2,10 @@
   "id": "raloxifene",
   "name": "Raloxifene",
   "summary": "A prescription pill (a SERM) that lowers the risk of spine fractures and of breast cancer in women after menopause. Its label says it is not recommended for men.",
-  "what_it_is": "Raloxifene is a selective estrogen receptor modulator (SERM) taken as a tablet. In postmenopausal women it reduces spine fractures and the risk of invasive breast cancer, but it raises the risk of blood clots and, in women with heart disease or high heart risk, of death from stroke. It has not been adequately studied in men, and small trials in older men found mixed effects on testosterone.",
+  "what_it_is": "Raloxifene is a selective estrogen receptor modulator (SERM) taken as a tablet. In postmenopausal women it reduces spine fractures and the risk of invasive breast cancer. But it raises the risk of blood clots and, in women with heart disease or high heart risk, the risk of death from stroke. It has not been adequately studied in men, and small trials in older men found mixed effects on testosterone.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for osteoporosis and breast cancer risk reduction after menopause, based on large randomized trials; in men, only two small trials were found (30 and 50 older men), with conflicting hormone results and no clear benefit."
+    "why": "It is FDA-approved for osteoporosis and for lowering breast cancer risk after menopause, based on large randomized trials. In men, only two small trials were found (30 and 50 older men), with conflicting hormone results and no clear benefit."
   },
   "status_us": {
     "key": "approved",

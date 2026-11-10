@@ -2,10 +2,10 @@
   "id": "cerebrolysin",
   "name": "Cerebrolysin",
   "summary": "A mix of small peptides from pig brain. Prescribed abroad for stroke and dementia, and taken for focus and memory. Not approved in the US, and the evidence behind it is weak.",
-  "what_it_is": "Cerebrolysin is a mixture of small peptides and amino acids taken from pig brain tissue and made into an injectable solution. It is made by an Austrian company and prescribed there for dementia, stroke and brain injury, and it is widely used for stroke in Russia, Eastern Europe, China and other Asian countries. It is not approved in the US.",
+  "what_it_is": "Cerebrolysin is a mixture of small peptides and amino acids taken from pig brain tissue and made into a solution for injection. An Austrian company makes it, and it is prescribed in Austria for dementia, stroke and brain injury. It is widely used for stroke in Russia, Eastern Europe, China and other Asian countries. It is not approved in the US.",
   "evidence": {
     "grade": "limited",
-    "why": "Several mostly industry-supported randomized trials exist: Cochrane rated the evidence for better thinking in vascular dementia very low certainty, and pooled stroke trials (7 trials, 1,773 people) found no reduction in deaths but more non-fatal serious adverse events."
+    "why": "There are several randomized trials, most of them supported by industry. Cochrane rated the evidence for better thinking in vascular dementia as very low certainty. Pooled stroke trials (7 trials, 1,773 people) found no reduction in deaths but more non-fatal serious adverse events."
   },
   "status_us": {
     "key": "not_approved",
