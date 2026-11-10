@@ -250,7 +250,7 @@ function posterSvg(g) {
   const xy = (i) => `${n(o.x[i])} ${n(o.y[i])}`;
   const near = (i) => Math.max(0.28, Math.min(1, 0.66 - o.z[i] * 0.42));
   const col = (c) => `rgb(${c[0]},${c[1]},${c[2]})`;
-  const BODY = [230, 237, 247], AMBER = [245, 181, 68], LIME = [216, 255, 61], WHITE = [240, 248, 255];
+  const BODY = [240, 236, 224], AMBER = [232, 183, 90], LIME = [216, 255, 61], WHITE = [250, 247, 238];
   const GROUP = [...FAM, BODY, AMBER];
   const glow = (id, c) => `<radialGradient id="${id}"><stop offset="0" stop-color="${col(c)}"/><stop offset=".16" stop-color="${col(c)}" stop-opacity=".6"/><stop offset=".42" stop-color="${col(c)}" stop-opacity=".13"/><stop offset="1" stop-color="${col(c)}" stop-opacity="0"/></radialGradient>`;
   const haze = (id, c) => `<radialGradient id="${id}"><stop offset="0" stop-color="${col(c)}" stop-opacity=".5"/><stop offset=".5" stop-color="${col(c)}" stop-opacity=".16"/><stop offset="1" stop-color="${col(c)}" stop-opacity="0"/></radialGradient>`;

@@ -213,7 +213,7 @@ function page({
 <meta property="og:image" content="${SITE}${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
+<link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
@@ -321,7 +321,7 @@ function indexPage() {
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <p class="kick lime">// Two kinds of evidence</p>
+        <p class="kick lime">Two kinds of evidence</p>
         <h2 id="two-h">What studies show. What people report.</h2>
       </div>
       <p class="sec-note">Side by side on every page, never mixed together.</p>
@@ -832,7 +832,7 @@ function methodPage() {
       </tr>`).join('');
   const body = `<div class="doc-head">
     <div class="wrap">
-      <p class="kick">// Method</p>
+      <p class="kick">Method</p>
       <h1>How the numbers are made</h1>
       <p>Updated ${date(baselines.checked)}</p>
     </div>
