@@ -191,7 +191,7 @@ function stampShell(html, file, { current = '', home = false } = {}) {
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
   styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = READS_SIGNAL, head = '',
-  ogImage = '/og.jpg',
+  ogImage = '/og.jpg', app = false,
 }) {
   return `<!doctype html>
 <html lang="en">
@@ -202,7 +202,7 @@ function page({
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#0C1413">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect}; base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
 <meta property="og:type" content="website">
@@ -221,7 +221,11 @@ ${scripts.map((src) => `<script type="module" src="${src}"></script>`).join('\n'
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
-
+${app ? `
+${body}
+</body>
+</html>
+` : `
 ${shellTop(current)}
 
 <main id="main">
@@ -243,7 +247,7 @@ ${body}
 </footer>
 </body>
 </html>
-`;
+`}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -522,7 +526,7 @@ function entryPage(c) {
     </div>
     <div class="le-actions">
       <a class="btn bone sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
-      <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it against what I take</a>
+      <a class="btn line sm" href="/sig/" data-with-stack="${c.id}" hidden>Check it against what I take</a>
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
     </div>
@@ -664,7 +668,7 @@ function guidePage(g) {
 }
 
 // ---------------------------------------------------------------------------
-// Ask Sig (miraclehealth.us/ai): Sig, Miracle Health's AI, with its agents and the community's numbers, and the
+// Ask Sig, Sig's own page (miraclehealth.us/sig): Sig, Miracle Health's AI, with its agents and the community's numbers, and the
 // member's own clinician last
 // ---------------------------------------------------------------------------
 // Each agent: its key, its name, what it does, and that in a few words (the agents' tab on Ask Sig)
@@ -701,6 +705,7 @@ function aiPage() {
   const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq" aria-hidden="true"></span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title">
+    <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
     <div class="tm-tabstrip" id="tm-tabstrip">
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
@@ -744,7 +749,7 @@ function aiPage() {
         ${agentList('agent-list')}
       </details>
     </div>
-    <p class="ai-fine">For adults 18 and over. Sig is an AI. It explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab. Messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
+    <p class="ai-fine">For adults 18 and over. Sig is an AI. It explains evidence; it doesn’t diagnose, give doses or name sellers. Your chats stay on this device until you delete them. Messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="Beside the chat: the agents and the screen">
@@ -767,11 +772,44 @@ function aiPage() {
     <span class="tm-sb tm-sb-lib">Library · ${libDate}</span>
   </div>
 </div>`;
+  // Sig's own page: the window fills the browser beside a side panel with the chats kept on this
+  // device and the site's own links (the site's bar and footer give way to it)
+  const ico = (d) => `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const shell = `<div class="sg" id="sg">
+<aside class="sg-side" id="sg-side" aria-label="Your chats and the site">
+  <div class="sg-head">
+    <a class="sg-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <button class="sg-fold" id="sg-fold" type="button" aria-label="Hide the side panel" aria-controls="sg-side" aria-expanded="true">${ico('M10 3.5 5.5 8l4.5 4.5')}</button>
+  </div>
+  <button class="sg-new" id="sg-new" type="button">${ico('M8 2.5v11M2.5 8h11')}<span>New chat</span></button>
+  <section class="sg-chats" aria-labelledby="sg-chats-h">
+    <h2 class="sg-k" id="sg-chats-h">Chats on this device</h2>
+    <ol class="sg-list" id="sg-list"></ol>
+    <p class="sg-none" id="sg-none">Your chats show here. They stay on this device, never on our servers.</p>
+  </section>
+  <div class="sg-foot">
+    <nav class="sg-site" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+    <div class="sg-acct"><a class="sg-signin" href="${COMMUNITY}/">Sign in</a><a class="btn lime sm" href="${COMMUNITY}/">Join</a></div>
+    <div class="sg-wipe-row" id="sg-wipe-row">
+      <button class="sg-wipe" id="sg-wipe" type="button">${ico('M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5')}<span>Delete all chats</span></button>
+    </div>
+    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><span aria-hidden="true"> · </span><a href="/terms">Terms</a><span aria-hidden="true"> · </span><a href="/">miraclehealth.us</a></p>
+  </div>
+</aside>
+<div class="sg-scrim" id="sg-scrim" hidden></div>
+<main id="main" class="sg-main">
+${body}
+</main>
+</div>`;
   return page({
     title: 'Ask Sig · Miracle Health’s AI: the studies and the whole community, in one answer',
     description: 'Ask Sig, Miracle Health’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
     ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'ask-sig.jpg')) ? '/img/og/ask-sig.jpg' : '/og.jpg',
-    url: '/ai/', body, current: 'ai', bodyClass: 'ai',
+    url: '/sig/', body: shell, current: 'ai', bodyClass: 'ai sigapp', app: true,
+    head: `<link rel="manifest" href="/sig/sig.webmanifest">
+<link rel="apple-touch-icon" href="/sig/icon-180.png">
+<meta name="apple-mobile-web-app-title" content="Sig">
+<meta name="mobile-web-app-capable" content="yes">`,
     styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`, `/ai/term.css?v=${V.tmCss}`],
     scripts: [`/ai/plan.js?v=${V.plJs}`, `/ai/screen.js?v=${V.scJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
@@ -785,7 +823,7 @@ function packetPage() {
   <section class="pk-welcome">
     <h1>Clinician review packet</h1>
     <p>This page shows a review packet that a patient made with Sig and shared with you as a link or QR code. The packet travels inside the link itself, so Miracle Health never receives or keeps it.</p>
-    <p>If you were sent here without a packet, ask for the link or the code again. Patients can make one at <a href="/ai/">miraclehealth.us/ai</a>.</p>
+    <p>If you were sent here without a packet, ask for the link or the code again.</p>
   </section>
   <noscript><p class="pk-loading">Opening a packet needs JavaScript.</p></noscript>
 </div>`;
@@ -812,7 +850,7 @@ function planPage() {
   <section class="plan-cta">
     <h2>Build your own plan</h2>
     <p>Tell Sig your goal and what you take. It asks about your nutrition, sleep and training, finds the pillar that will make the biggest difference, and builds your plan around it.</p>
-    <a class="btn lime" href="/ai/">Start with Sig</a>
+    <a class="btn lime" href="/sig/">Start with Sig</a>
   </section>
   <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own doctor.</p>
 </div>`;
@@ -1023,7 +1061,8 @@ const GRAPH = buildGraph({ body: BODY, catalog });
 out.set(path.join(DATA, 'graph.json'), GRAPH.json);
 out.set(path.join(ROOT, 'img', 'library-graph.svg'), GRAPH.svg);
 for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g));
-out.set(path.join(ROOT, 'ai', 'index.html'), aiPage());
+// Sig's own page is /sig/; /ai/ (and every link made before) goes on to it (the pages build)
+out.set(path.join(ROOT, 'sig', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
 out.set(path.join(ROOT, 'plan', 'index.html'), planPage());
 out.set(path.join(ROOT, 'my', 'index.html'), myPage());
@@ -1033,7 +1072,7 @@ const more = buildPages({
   evPill, date, card, askLink, version, shownAliases,
 });
 for (const [file, html] of more.files) out.set(file, html);
-const urls = ['/', '/ai/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/',
+const urls = ['/', '/sig/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/',
   ...more.urls, '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

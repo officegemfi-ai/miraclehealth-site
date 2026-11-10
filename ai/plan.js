@@ -4,7 +4,7 @@
 //   on them, the supplements that shore up the weak spot, and wellbeing and community on top.
 //   Then: the rest of the steps, numbered, to tick off. A pillar that's "not sure yet" can be
 //   answered in place, and Sig updates the plan.
-// Drawn in the chat (/ai/) and on the page a shared plan opens (/plan/). A shared plan travels in
+// Drawn in the chat (/sig/) and on the page a shared plan opens (/plan/). A shared plan travels in
 // the part of the link after "#", which browsers never send to a server, so Miracle Health never
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
@@ -715,7 +715,7 @@ function paint(ctx, raw, W, top, draw) {
     y += 40;
   }
   y += 4;
-  y += para('Made with Sig, Miracle Health’s AI, at miraclehealth.us/ai. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
+  y += para('Made with Sig, Miracle Health’s AI, at miraclehealth.us/sig. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
   return y + 48;
 }
 
