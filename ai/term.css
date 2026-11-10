@@ -78,10 +78,32 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-logo{width:18px;height:18px}
 .tm-brand b{font:650 14px/1 var(--body);letter-spacing:-.01em;color:var(--tm-tx)}
 .tm-dim{font:400 11.5px/1 var(--mono);color:var(--tm-t3)}
-/* the tab: the question Sig is on, joined to the conversation below it */
-.tm-tab{position:relative;z-index:1;display:flex;align-items:center;gap:9px;min-width:0;max-width:min(460px,42%);height:31px;margin-bottom:-1px;padding:0 14px;border:1px solid var(--tm-line);border-bottom:0;border-radius:8px 8px 0 0;background:var(--tm-win);font:500 12px/1 var(--mono);color:var(--tm-tx);white-space:nowrap}
-.tm-tab i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--a-community);box-shadow:0 0 8px rgba(216,255,61,.8)}
-.tm-topic{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--tm-t3)}
+/* The chats, as a browser's tabs: the open one joined to the conversation below it, the others
+   behind; × on the open one and on hover, + after the last. They shrink as more open, then the
+   strip scrolls. */
+.tm-tabstrip{display:flex;align-items:flex-end;gap:2px;flex:0 1 auto;min-width:0;align-self:stretch}
+.tm-chats{position:relative;display:flex;align-items:flex-end;gap:2px;min-width:0;height:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.tm-chats::-webkit-scrollbar{display:none}
+.tm-chats.scrolls{-webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 18px),transparent)}
+.tm-tab{position:relative;display:flex;align-items:center;flex:0 1 220px;min-width:100px;height:31px;margin-bottom:-1px;border:1px solid transparent;border-bottom:0;border-radius:8px 8px 0 0;color:var(--tm-t3);transition:background-color .15s,color .15s}
+.tm-tab.on{z-index:1;border-color:var(--tm-line);background:var(--tm-win);color:var(--tm-tx)}
+.tm-tab:not(.on):hover{background:rgba(238,236,230,.05);color:var(--tm-t2)}
+.tm-tab:not(.on)+.tm-tab:not(.on)::before{content:'';position:absolute;left:-2px;top:9px;bottom:9px;width:1px;background:var(--tm-line)}
+.tm-tabopen{display:flex;align-items:center;gap:9px;flex:1;min-width:0;height:100%;padding:0 4px 0 13px;border:0;border-radius:8px 0 0 0;background:none;color:inherit;font:500 12px/1 var(--mono);text-align:left;cursor:pointer}
+.tm-tabopen:focus-visible,.tm-tabx:focus-visible,.tm-plus:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-3px}
+.tm-tabdot{flex:none;width:7px;height:7px;border-radius:50%;background:rgba(238,236,230,.32)}
+.tm-tab.on .tm-tabdot{background:var(--a-community);box-shadow:0 0 8px rgba(216,255,61,.8)}
+.tm-tab.busy .tm-tabdot{width:9px;height:9px;border:1.6px solid rgba(216,255,61,.28);border-top-color:var(--a-community);background:none;box-shadow:none;animation:tm-spin .8s linear infinite}
+.tm-tabname{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.tm-tabx{flex:none;display:grid;place-items:center;width:22px;height:22px;margin-right:5px;padding:0;border:0;border-radius:5px;background:none;color:inherit;opacity:0;cursor:pointer;transition:opacity .15s,background-color .15s}
+.tm-tabx svg{width:11px;height:11px}
+.tm-tab.on .tm-tabx,.tm-tab:hover .tm-tabx,.tm-tabx:focus-visible{opacity:.75}
+.tm-tabx:hover{opacity:1;background:rgba(238,236,230,.1)}
+.tm-tab.lone .tm-tabx{display:none}
+.tm-tab.lone .tm-tabopen{padding-right:13px}
+.tm-plus{flex:none;display:grid;place-items:center;align-self:center;width:28px;height:28px;margin-left:4px;padding:0;border:0;border-radius:6px;background:none;color:var(--tm-t2);cursor:pointer;transition:background-color .15s,color .15s}
+.tm-plus:hover:not(:disabled){background:rgba(238,236,230,.08);color:var(--tm-tx)}
+.tm-plus:disabled{opacity:.35;cursor:default}
 .tm-online{display:flex;align-items:center;gap:12px;margin-left:auto;align-self:center;padding-left:16px;font:500 11.5px/1 var(--mono);color:var(--tm-t2);white-space:nowrap}
 .tm-dots{display:flex;gap:3px}
 .tm-dots i{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 5px color-mix(in srgb,var(--ac) 70%,transparent)}
@@ -115,9 +137,6 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-id{gap:12px;min-width:0}
 .tm .ai-id h1{font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-tx);white-space:nowrap}
 .tm-what{overflow:hidden;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);white-space:nowrap;text-overflow:ellipsis}
-.tm .ai-bar-acts{flex:none}
-.tm .ai-new{white-space:nowrap;min-height:26px;padding:0 10px;border-radius:5px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11px/1 var(--mono)}
-.tm .ai-new:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
 /* the pane's header stays under the title bar, like the agents' tabs beside it */
 @media (min-width:701px){
   .tm .ai-bar{position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));z-index:7;background:var(--tm-win)}
@@ -345,7 +364,12 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm-brand{padding-right:10px}
   .tm-brand b{font-size:15px}
   .tm-dim{font-size:11px}
-  .tm-tab,.tm-online{display:none}
+  .tm-online{display:none}
+  .tm .ai-bar{gap:0;padding:0 6px 0 4px}
+  .tm .ai-bar .ai-id{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .tm .ai-bar .tm-tabstrip{flex:1;height:var(--tm-ph)}
+  .tm .ai-bar .tm-tab{flex-basis:180px;min-width:100px;height:29px}
+  .tm .ai-bar .tm-tabx{opacity:.75}
   .tm-count-sm{display:inline-flex;align-items:baseline;gap:0;margin-left:auto;font:500 12px/1 var(--mono);color:var(--tm-t3);white-space:nowrap}
   .tm-count-sm b{font-weight:700;color:var(--tm-tx)}
   .tm-count-sm.on b{color:var(--a-community)}
