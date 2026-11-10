@@ -700,18 +700,18 @@ function aiPage() {
   const ring = (size, cls = '', opts = {}) => `<span${cls ? ` class="${cls}"` : ''} data-sig="${size}" aria-hidden="true">${ringSvg(size, opts)}</span>`;
   const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq" aria-hidden="true"></span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
-  <div class="tm-title" aria-hidden="true">
-    <span class="tm-brand">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
-    <span class="tm-tab"><i></i><span>ask</span><span class="tm-topic" id="tm-topic">new session</span></span>
-    <span class="tm-online"><span class="tm-dots">${WHEEL.map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>10 agents + the community</span></span>
-    <span class="tm-count-sm" id="tm-count-sm"><b>11</b>/11 ready</span>
+  <div class="tm-title">
+    <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
+    <div class="tm-tabstrip" id="tm-tabstrip">
+      <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
+      <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+    </div>
+    <span class="tm-online" aria-hidden="true"><span class="tm-dots">${WHEEL.map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>10 agents + the community</span></span>
+    <span class="tm-count-sm" id="tm-count-sm" aria-hidden="true"><b>11</b>/11 ready</span>
   </div>
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
       <div class="ai-id"><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">one question · every answer checked</span></div>
-      <div class="ai-bar-acts">
-        <button class="ai-new" id="ai-new" type="button" hidden>New chat</button>
-      </div>
     </div>
     <div class="tm-boot">
       <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · 10 agents + the community ready ·</span> <span class="tm-nw">Library updated ${libDate}</span></p>

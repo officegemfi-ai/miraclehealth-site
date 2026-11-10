@@ -24,7 +24,6 @@ const input = $('ai-input');
 const sendBtn = $('ai-send');
 const countEl = $('ai-count');
 const statusEl = $('ai-status');
-const newBtn = $('ai-new');
 const LIMIT = 2000;
 const KEY = 'mh-ai-chat-v1';
 const ADULT = 'mh-ai-adult';
@@ -276,10 +275,33 @@ function settle(t) {
 // ---------------------------------------------------------------------------
 // Each message: {role:'user', text} or {role:'assistant', parts:[{t:'text',s}|{t:'card',card}],
 // steps:[...], review, memo, ms, state:'done'|'stopped'|'error', error}
-let chat = (store.get(KEY) || []).map((m) => (m.role === 'assistant' && Array.isArray(m.steps) ? { ...m, steps: m.steps.filter((s) => s.agent !== 'clinician') } : m));
-let busy = null;            // {controller, msg}
+// The chats, like a browser's tabs: each keeps its own conversation, all of them in this browser
+// tab only (sessionStorage), one open at a time. The chat from before tabs comes back as the first.
+const TABS = 'mh-ai-tabs-v1';
+const MAX_TABS = 8;
+const newId = () => Math.random().toString(36).slice(2, 10);
+function fromStore(list) {
+  const c = (Array.isArray(list) ? list : []).map((m) => (m.role === 'assistant' && Array.isArray(m.steps) ? { ...m, steps: m.steps.filter((s) => s.agent !== 'clinician') } : m));
+  // A turn that never finished (the tab closed mid-answer) is dropped
+  while (c.length && c[c.length - 1].role === 'assistant' && !c[c.length - 1].state) c.pop();
+  if (c.length && c[c.length - 1].role === 'user') c.pop();
+  return c;
+}
+const kept = store.get(TABS);
+const sessions = kept?.v === 1 && Array.isArray(kept.tabs) && kept.tabs.length
+  ? kept.tabs.slice(0, MAX_TABS).map((t) => ({ id: String(t.id || newId()), chat: fromStore(t.chat), nodes: null }))
+  : [{ id: newId(), chat: fromStore(store.get(KEY)), nodes: null }];
+let activeId = sessions.some((t) => t.id === kept?.active) ? kept.active : sessions[0].id;
+let chat = sessions.find((t) => t.id === activeId).chat;
+let busy = null;            // {controller, msg, sid}: one answer at a time, in the chat it was asked in
 let adult = store.get(ADULT, 'local') === true;
-const save = () => store.set(KEY, chat.map((m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined })));
+const bare = (m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined });
+function save() {
+  store.set(TABS, { v: 1, active: activeId, tabs: sessions.map((t) => ({ id: t.id, chat: t.chat.map(bare) })) });
+  store.del(KEY);
+}
+// The conversation a message belongs to (an answer can finish in a chat that isn't open)
+const chatOf = (m) => sessions.find((t) => t.chat.includes(m))?.chat || chat;
 
 // The first screen (a greeting, the box, four ways in) or the conversation
 function setEmpty(on) {
@@ -510,7 +532,8 @@ function schedule(msg) {
   if (!view || view.raf) return;
   view.raf = requestAnimationFrame(() => {
     view.raf = 0;
-    const stick = following || nearBottom();
+    // (an answer going on in a chat that isn't open doesn't move the page)
+    const stick = view.node.isConnected && (following || nearBottom());
     following = stick;
     // Advance the writing-out of the newest paragraph
     const p = msg.parts?.[view.revealIdx];
@@ -1357,8 +1380,6 @@ async function copy(text, btn) {
 // Sending, and reading the stream
 // ---------------------------------------------------------------------------
 function setBusy(on) {
-  sendBtn.classList.toggle('stop', on);
-  sendBtn.setAttribute('aria-label', on ? 'Stop' : 'Send');
   if (on) setState('working');
   sigs().forEach((el) => setSig(el, on ? 'think' : 'idle'));
   thread.setAttribute('aria-busy', String(on));
@@ -1373,18 +1394,18 @@ function setState(st, ms = 0) {
   if (stateEl) stateEl.dataset.state = known ? st : 'done';
   if (statusEl.textContent !== said) statusEl.textContent = said;
 }
-// The tab in the title bar: the question Sig is on
-const topicEl = $('tm-topic');
-function setTopic() {
-  if (!topicEl) return;
-  const q = [...chat].reverse().find((m) => m.role === 'user')?.text || '';
-  topicEl.textContent = q ? q.replace(/\s+/g, ' ').trim().slice(0, 120) : 'new session';
-}
+// Send, or stop the answer being written in this chat; while Sig answers in another chat, this one
+// waits (one answer at a time)
 function updateSend() {
   const n = input.value.length;
   countEl.textContent = n > LIMIT - 300 ? `${(LIMIT - n).toLocaleString('en-US')} left` : '';
   countEl.classList.toggle('over', n > LIMIT);
-  sendBtn.disabled = !busy && (!input.value.trim() || n > LIMIT);
+  const here = !!busy && busy.sid === activeId;
+  const elsewhere = !!busy && !here;
+  sendBtn.classList.toggle('stop', here);
+  sendBtn.setAttribute('aria-label', here ? 'Stop' : 'Send');
+  sendBtn.title = elsewhere ? 'Sig is answering in another chat' : '';
+  sendBtn.disabled = elsewhere || (!busy && (!input.value.trim() || n > LIMIT));
 }
 function grow() {
   input.style.height = 'auto';
@@ -1406,10 +1427,8 @@ function ask(text) {
   input.value = '';
   grow();
   setEmpty(false);
-  newBtn.hidden = false;
   const um = { role: 'user', text: t };
   chat.push(um);
-  setTopic();
   thread.append(userNode(t));
   const am = { role: 'assistant', parts: [], steps: [] };
   chat.push(am);
@@ -1422,8 +1441,11 @@ function ask(text) {
 
 async function run(am) {
   const controller = new AbortController();
-  busy = { controller, msg: am };
+  const sid = activeId;
+  const own = chat;
+  busy = { controller, msg: am, sid };
   setBusy(true);
+  drawTabs();
   // Beside the chat: the agents at work, unless they're looking at something there themselves
   if (!tabByHand) setTab('agents');
   drawTeam(am);
@@ -1475,17 +1497,21 @@ async function run(am) {
   busy = null;
   finish(am, true);
   setBusy(false);
-  setState(am.state, am.ms);
+  drawTabs();
   SCREEN?.checking(false);
-  screenSync();
-  // What the answer was about, on the screen, once it's done
-  if (!tabByHand && SCREEN?.subject() && subjectIn(am, chat.indexOf(am))) setTab('screen');
+  const open = sid === activeId;
+  if (open) {
+    setState(am.state, am.ms);
+    screenSync();
+    // What the answer was about, on the screen, once it's done
+    if (!tabByHand && SCREEN?.subject() && subjectIn(am, own.indexOf(am))) setTab('screen');
+  } else showState();
   tabByHand = false;
   sigs().forEach((el) => setSig(el, moodOf(am) === 'concerned' ? 'concerned' : 'idle'));
   drawTeam(teamMsg());
   fitPlaceholder();
   save();
-  if (!coarse) input.focus();
+  if (open && !coarse) input.focus();
 }
 // Whatever stops an answer, the way to help is still on the page
 const HELP_LINE = ' If you’re thinking about hurting yourself, call or text 988 any time; in an emergency, call 911.';
@@ -1506,9 +1532,9 @@ function onEvent(am, ev, d) {
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
       drawStep(view, am.steps.find((s) => s.id === d.id));
       drawTrace(am);
-      if (busy?.msg === am) drawTeam(am);
+      if (busy?.msg === am && busy.sid === activeId) drawTeam(am);
       // The screen says the auditor is checking, and shows what was named as soon as it's read
-      if (d.agent === 'synergy' && d.status === 'run') SCREEN?.checking(true);
+      if (d.agent === 'synergy' && d.status === 'run' && busy?.sid === activeId) SCREEN?.checking(true);
       if (d.agent === 'community' && d.chips?.length) screenSync();
       schedule(am);
       break;
@@ -1620,7 +1646,7 @@ function finish(am, live) {
       : am.review ? 'every part checked before you saw it' : '';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
-    const sub = SCREEN ? subjectIn(am, chat.indexOf(am)) : null;
+    const sub = SCREEN ? subjectIn(am, chatOf(am).indexOf(am)) : null;
     const pointed = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'shortlist' && p.card.kind === 'yours');
     const go = sub && !pointed ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
     go?.addEventListener('click', () => { SCREEN.show(sub); openScreen(); });
@@ -1631,18 +1657,18 @@ function finish(am, live) {
     view.foot.hidden = false;
   }
   helpPin();
-  if (live && !am.helpShown) {
+  if (live && !am.helpShown && view.node.isConnected) {
     if (following || nearBottom()) toBottom();
     following = false;
   }
 }
 
-// After a sign of crisis, 988 stays in reach for the rest of the chat
-// Once someone has written about wanting to die or hurt themselves, 988 stays on screen for the
-// rest of the chat, even if the answer couldn't come
+// After a sign of crisis, 988 stays in reach for the rest of the visit
+// Once someone has written about wanting to die or hurt themselves, 988 stays on screen in every
+// chat, even if the answer couldn't come
 function helpPin() {
-  const show = chat.some((m) => (m.role === 'user' && CRISIS_WORDS.test(m.text || ''))
-    || (m.role === 'assistant' && (m.flag === 'self_harm' || (m.parts || []).some((p) => p.t === 'card' && p.card.type === 'crisis'))));
+  const show = sessions.some((t) => t.chat.some((m) => (m.role === 'user' && CRISIS_WORDS.test(m.text || ''))
+    || (m.role === 'assistant' && (m.flag === 'self_harm' || (m.parts || []).some((p) => p.t === 'card' && p.card.type === 'crisis')))));
   const pin = $('ai-help-pin');
   if (!show) { pin?.remove(); return; }
   if (pin) return;
@@ -1664,8 +1690,9 @@ function errorNode(am) {
     save();
     run(am);
   });
-  const i = chat.indexOf(am);
-  const said = i > 0 && chat[i - 1].role === 'user' ? chat[i - 1].text : '';
+  const own = chatOf(am);
+  const i = own.indexOf(am);
+  const said = i > 0 && own[i - 1].role === 'user' ? own[i - 1].text : '';
   const oops = h('div', { class: 'oops', role: 'alert' }, h('span', { text: am.error }), retry);
   // A message that may come from someone in crisis gets help even when no answer can
   return CRISIS_WORDS.test(said) ? h('div', {}, cardNode({ type: 'crisis' }), oops) : oops;
@@ -1711,7 +1738,7 @@ function gate(pending) {
 // ---------------------------------------------------------------------------
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (busy) { busy.controller.abort(); return; }
+  if (busy) { if (busy.sid === activeId) busy.controller.abort(); return; }
   if (input.value.length > LIMIT) return;
   ask(input.value);
 });
@@ -1731,25 +1758,6 @@ document.querySelectorAll('[data-prefill]').forEach((b) => b.addEventListener('c
   input.setSelectionRange(input.value.length, input.value.length);
 }));
 document.querySelectorAll('.ai-start[data-goal]').forEach((b) => b.querySelector('.start-ico')?.append(goalIcon(b.dataset.goal)));
-newBtn.addEventListener('click', () => {
-  if (busy) busy.controller.abort();
-  chat = [];
-  store.del(KEY);
-  helpPin();
-  thread.querySelectorAll('.msg,.gate,.ai-incoming').forEach((n) => n.remove());
-  setEmpty(true);
-  refreshStack();
-  newBtn.hidden = true;
-  SCREEN?.clear();
-  closeSheet();
-  tabByHand = false;
-  setTab('agents');
-  drawTeam(null);
-  setState('ready');
-  setTopic();
-  fitPlaceholder();
-  input.focus();
-});
 // The screen: beside the chat on wide screens. On phones and narrow windows it's a sheet that
 // pulls up over the chat, from the bar above the box to write in (or "See it on the screen"
 // under an answer); the page behind it rests until it's closed, and nothing is taken away.
@@ -1850,7 +1858,7 @@ const team = {
 const JOBS = new Map([...team.rows].map(([k, li]) => [k, li.querySelector('.tm-now')?.textContent || '']));
 // The answer the agents' tab is about: the one being written, or the last one with steps
 function teamMsg() {
-  if (busy) return busy.msg;
+  if (busy && busy.sid === activeId) return busy.msg;
   for (let i = chat.length - 1; i >= 0; i--) if (chat[i].role === 'assistant') return (chat[i].steps || []).length ? chat[i] : null;
   return null;
 }
@@ -1892,6 +1900,126 @@ function drawTeam(m) {
   const logo = document.querySelector('.tm-logo');
   if (logo && narrowMq.matches) setSig(logo, busy ? 'think' : 'idle', state === 'idle' ? null : [...last.keys()]);
 }
+// ---------------------------------------------------------------------------
+// The chats as tabs, like a browser's: in the title bar (in the conversation's header on a phone),
+// named by their first question. + opens a new one; × closes one, and stops its answer if it's
+// being written (the last one closed leaves an empty chat). Each chat keeps its own lines on the
+// page and its place in them; the screen, the agents and the status bar follow the one that's open.
+// ---------------------------------------------------------------------------
+const tabsNav = $('tm-chats');
+const plusBtn = $('tm-plus');
+const tabStrip = $('tm-tabstrip');
+const chatName = (t) => t.chat.find((m) => m.role === 'user')?.text.replace(/\s+/g, ' ').trim().slice(0, 80) || 'New chat';
+function drawTabs() {
+  if (!tabsNav) return;
+  const was = document.activeElement?.closest?.('.tm-tab');
+  const back = was ? { id: was.dataset.id, x: document.activeElement.classList.contains('tm-tabx') } : null;
+  const lone = sessions.length === 1 && !sessions[0].chat.length;
+  tabsNav.replaceChildren(...sessions.map((t) => {
+    const name = chatName(t);
+    const on = t.id === activeId;
+    const open = h('button', { class: 'tm-tabopen', type: 'button', title: name, 'aria-current': on ? 'true' : null },
+      h('i', { class: 'tm-tabdot', 'aria-hidden': 'true' }), h('span', { class: 'tm-tabname', text: name }),
+      busy?.sid === t.id ? h('span', { class: 'sr', text: ' (Sig is answering)' }) : null);
+    const shut = h('button', { class: 'tm-tabx', type: 'button', title: 'Close chat', 'aria-label': `Close chat: ${name}` }, svg(ICON.close));
+    open.addEventListener('click', () => switchTo(t.id));
+    open.addEventListener('auxclick', (e) => { if (e.button === 1) { e.preventDefault(); closeTab(t.id); } });
+    shut.addEventListener('click', () => closeTab(t.id));
+    return h('div', { class: `tm-tab${on ? ' on' : ''}${busy?.sid === t.id ? ' busy' : ''}${lone ? ' lone' : ''}`, 'data-id': t.id }, open, shut);
+  }));
+  if (plusBtn) {
+    plusBtn.disabled = sessions.length >= MAX_TABS;
+    plusBtn.title = plusBtn.disabled ? 'Close a chat to open another' : 'New chat';
+  }
+  // The open tab in view along the strip (the page itself doesn't move), the strip's ends fading
+  // when there are more than fit
+  tabsNav.classList.toggle('scrolls', tabsNav.scrollWidth > tabsNav.clientWidth + 1);
+  const on = tabsNav.querySelector('.tm-tab.on');
+  if (on) {
+    const l = on.offsetLeft;
+    const r = l + on.offsetWidth;
+    if (l < tabsNav.scrollLeft) tabsNav.scrollLeft = l;
+    else if (r > tabsNav.scrollLeft + tabsNav.clientWidth) tabsNav.scrollLeft = r - tabsNav.clientWidth;
+  }
+  if (back) {
+    const tab = tabsNav.querySelector(`.tm-tab[data-id="${back.id}"]`) || on;
+    tab?.querySelector(back.x && tab.dataset.id === back.id ? '.tm-tabx' : '.tm-tabopen')?.focus();
+  }
+}
+// The status bar for the chat that's open, unless Sig is busy (then it says so)
+function showState() {
+  if (busy) return;
+  const last = chat[chat.length - 1];
+  setState(last?.role === 'assistant' && last.state ? last.state : 'ready', last?.ms || 0);
+}
+// Everything around the conversation, for the chat that's open
+function shown() {
+  drawTabs();
+  following = false;
+  if (SCREEN) {
+    const sub = latestSubject();
+    if (sub) SCREEN.show(sub); else SCREEN.clear();
+    SCREEN.checking(false);
+  }
+  tabs.screen?.classList.remove('new');
+  closeSheet();
+  tabByHand = false;
+  setTab(busy?.sid === activeId || !SCREEN?.subject() ? 'agents' : 'screen');
+  drawTeam(teamMsg());
+  showState();
+  helpPin();
+  refreshStack();
+  fitPlaceholder();
+  updateSend();
+}
+function switchTo(id, { from = sessions.find((t) => t.id === activeId) } = {}) {
+  const to = sessions.find((t) => t.id === id);
+  if (!to || to === from) return;
+  const lines = [...thread.querySelectorAll(':scope > .msg, :scope > .gate, :scope > .ai-incoming')];
+  lines.forEach((n) => n.remove());
+  if (from) { from.nodes = lines; from.scroll = window.scrollY; }
+  activeId = to.id;
+  chat = to.chat;
+  if (to.nodes) thread.append(...to.nodes);
+  else for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
+  to.nodes = null;
+  setEmpty(!thread.querySelector(':scope > .msg, :scope > .gate'));
+  shown();
+  save();
+  window.scrollTo({ top: to.scroll ?? Math.max(0, chatEnd()), behavior: 'instant' });
+}
+function newTab() {
+  if (sessions.length >= MAX_TABS) return;
+  const t = { id: newId(), chat: [], nodes: null };
+  sessions.push(t);
+  switchTo(t.id);
+  input.focus({ preventScroll: true });
+}
+function closeTab(id) {
+  const i = sessions.findIndex((t) => t.id === id);
+  if (i < 0) return;
+  const lone = sessions.length === 1;
+  if (lone && !sessions[0].chat.length) return;
+  if (busy?.sid === id) busy.controller.abort();
+  const [gone] = sessions.splice(i, 1);
+  if (!sessions.length) sessions.push({ id: newId(), chat: [], nodes: null });
+  if (gone.id === activeId) switchTo(sessions[Math.min(i, sessions.length - 1)].id, { from: null });
+  else { drawTabs(); save(); }
+  if (lone) input.focus({ preventScroll: true });
+}
+plusBtn?.addEventListener('click', newTab);
+addEventListener('resize', () => tabsNav?.classList.toggle('scrolls', tabsNav.scrollWidth > tabsNav.clientWidth + 1));
+// On a phone the tabs sit in the conversation's header, the width of the screen
+const phoneMq = matchMedia('(max-width: 700px)');
+function placeStrip() {
+  if (!tabStrip) return;
+  const bar = document.querySelector('.tm-title');
+  const pane = document.querySelector('.ai-bar');
+  if (phoneMq.matches) { if (pane && tabStrip.parentElement !== pane) pane.append(tabStrip); }
+  else if (bar && tabStrip.parentElement !== bar) bar.insertBefore(tabStrip, bar.querySelector('.tm-online'));
+  drawTabs();
+}
+phoneMq.addEventListener('change', placeStrip);
 if (SCREEN) {
   SCREEN.mount($('sc-root'));
   SCREEN.peek($('ai-peek'));
@@ -1935,27 +2063,21 @@ if (!reduceMotion) {
   }
 }
 
-// A conversation from earlier in this tab comes back as it was
-if (chat.length) {
-  // A turn that never finished (the tab closed mid-answer) is dropped
-  while (chat.length && chat[chat.length - 1].role === 'assistant' && !chat[chat.length - 1].state) chat.pop();
-  if (chat.length && chat[chat.length - 1].role === 'user') chat.pop();
-  setEmpty(!chat.length);
-  newBtn.hidden = !chat.length;
-  for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
-  save();
-}
+// The chats from earlier in this tab come back as they were: the open one on the page, the
+// others when they're opened
+for (const m of chat) thread.append(m.role === 'user' ? userNode(m.text) : assistantNode(m));
+setEmpty(!chat.length);
+save();
+placeStrip();
 screenSync();
-// The window as it was: the question in the tab, the last answer's agents, and the screen in front
+// The window as it was: the chats in their tabs, the last answer's agents, and the screen in front
 // when it has something on it
-setTopic();
 drawTeam(teamMsg());
 syncPanels();
 if (SCREEN?.subject()) setTab('screen');
+showState();
 {
   const m = teamMsg();
-  const last = chat[chat.length - 1];
-  setState(last?.role === 'assistant' && last.state ? last.state : 'ready', last?.ms || 0);
   if (m?.flag && m.flag !== 'none') sigs().forEach((el) => setSig(el, 'concerned'));
 }
 refreshStack();
