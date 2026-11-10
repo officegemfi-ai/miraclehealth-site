@@ -16,8 +16,8 @@
 // they're placed as text, never markup. Beside the chat on wide screens; on phones and narrow
 // windows it's a sheet that pulls up over the chat (ai.js opens and closes it), and a bar above
 // the box to write in says what's on it. window.MHScreen is the whole interface.
-import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=f08d778478';
-import { sealSvg } from '/library/signalviz.js?v=d8ffb3d8c3';
+import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=3153dc9b83';
+import { sealSvg } from '/library/signalviz.js?v=794444e261';
 import { h, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -396,7 +396,7 @@ function codeSection(ids, f, animate) {
   if (!S.file) S.file = L ? 'evidence' : many ? 'together' : ids[0];
   if (S.file === 'evidence' && !L) S.file = '';
   if (!S.file || (S.file !== 'evidence' && S.file !== 'together' && !ids.includes(S.file)) || (S.file === 'together' && !many)) S.file = many ? 'together' : ids[0];
-  const keys = [...(L ? [['evidence', `evidence · ${mainOf(L)}`, 'var(--lime)']] : []), ...(many ? [['together', 'together', 'var(--lime)']] : []), ...ids.map((id) => [id, tokOf(id), colorOf(id)])];
+  const keys = [...(L ? [['evidence', `evidence · ${mainOf(L)}`, 'var(--bone)']] : []), ...(many ? [['together', 'together', 'var(--bone)']] : []), ...ids.map((id) => [id, tokOf(id), colorOf(id)])];
   const note = S.file === 'together' ? 'by place, head to toe' : S.file === 'evidence' ? 'strongest rung first' : '';
   const tabs = keys.length > 1 ? h('div', { class: 'sc-files', role: 'group', 'aria-label': L ? 'The evidence, or how they work' : 'Together, or one at a time' },
     keys.map(([k, label, c]) => colored(h('button', {

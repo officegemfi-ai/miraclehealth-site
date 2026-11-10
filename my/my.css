@@ -6,12 +6,12 @@
 .my-wrap{width:100%;max-width:880px;margin:0 auto;padding:calc(var(--top-h) + 32px) 24px 48px}
 .my-intro{display:flex;align-items:center;gap:18px}
 .my-intro .sig{flex:none;width:64px;height:64px}
-.my-intro h1{font:600 36px/1.1 var(--head);letter-spacing:-.03em;color:var(--on-ink)}
+.my-intro h1{font:500 36px/1.1 var(--head);letter-spacing:-.03em;color:var(--on-ink)}
 .my-intro p{margin-top:8px;max-width:60ch;font-size:16px;line-height:1.6;color:var(--on-ink-2)}
 .my-loading{margin-top:24px;color:var(--on-ink-3)}
 
-.my-sec{margin-top:22px;padding:22px 24px;border-radius:18px;background:var(--card);border:1px solid var(--line-ink)}
-.my-sec>h2{font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.my-sec{margin-top:22px;padding:22px 24px;border-radius:6px;background:var(--card);border:1px solid var(--line-ink)}
+.my-sec>h2{font:500 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
 .my-lede{margin-top:8px;max-width:62ch;font-size:15.5px;line-height:1.6;color:var(--on-ink-2)}
 .my-fine{margin-top:12px;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
 .my-meds{margin-top:10px;font-size:14px;color:var(--on-ink-2)}
@@ -45,7 +45,7 @@
 .ci-took-b{min-height:40px;padding:0 14px;border-radius:40px;border:1px dashed rgba(255,255,255,.3);background:transparent;color:var(--on-ink-2);font:500 14px/1 var(--body);cursor:pointer}
 .ci-took-b[aria-pressed="true"]{border-style:solid;border-color:rgba(216,255,61,.7);background:rgba(216,255,61,.12);color:var(--on-ink)}
 .ci-took-b[aria-pressed="true"]::before{content:'✓';margin-right:7px;color:var(--lime)}
-.ci-note{display:block;width:100%;margin-top:8px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:var(--on-ink);font:15px/1.5 var(--body);resize:vertical}
+.ci-note{display:block;width:100%;margin-top:8px;padding:12px 14px;border-radius:6px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:var(--on-ink);font:15px/1.5 var(--body);resize:vertical}
 .ci-note::placeholder{color:var(--on-ink-3)}
 .ci-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .ci-fine{margin-top:12px;max-width:64ch;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
@@ -65,7 +65,7 @@
 
 /* Moving it to a phone */
 .my-qr{margin-top:16px}
-.my-qr-code{width:min(240px,100%);padding:10px;border-radius:14px;background:#fff}
+.my-qr-code{width:min(240px,100%);padding:10px;border-radius:6px;background:var(--white)}
 .my-qr-code svg{display:block;width:100%;height:auto}
 .my-qr p{margin-top:10px;font-size:14px;color:var(--on-ink-2)}
 
@@ -85,3 +85,7 @@
   .my-sec{padding:18px 16px}
   .ci-how-b{flex:1 1 auto;padding:0 16px}
 }
+
+/* ================================================================ Plate */
+.my-sec{border:1px solid var(--line);border-radius:6px;background:var(--card)}
+.my-qr-code{background:#FFFFFF}
