@@ -1,0 +1,382 @@
+/* Ask Sig as Sig's health terminal (miraclehealth.us/ai). Loads after ai.css, plan.css and
+   screen.css and dresses the same page: a window under the site's bar with a title bar (Sig's ring,
+   a tab for the question it's on, the eleven who answer) and a status bar that stay put while the
+   conversation scrolls between them; the conversation on the left, with each agent's steps as log
+   lines and the box to write in as its prompt; the agents and the screen beside it, as two tabs.
+   Every agent keeps one colour (Eleven), and so does every part of an answer: a rule beside it
+   and a line over it say which agent it comes from and what kind of part it is (caution, the
+   studies, the forums, blood tests…). On a phone it is the conversation alone, edge to edge, with
+   the ring and the count in its title bar; the screen still pulls up as a sheet. */
+
+.ai{
+  --a-safety:#FF6B5B;--a-planner:#FF9F4A;--a-recommender:#F2C94C;--a-community:#D8FF3D;--a-combination:#5FE08A;--a-markers:#3FE0C5;
+  --a-synergy:#55D3FF;--a-evidence:#6FA8FF;--a-relatives:#8F95FF;--a-mechanism:#B98CFF;--a-builder:#FF7FC8;
+  --tm-page:var(--darker);--tm-win:#0B0F11;--tm-bar:#12171A;--tm-pane2:#0E1316;--tm-stat:#07090A;
+  --tm-tx:#EEECE6;--tm-t2:rgba(238,236,230,.74);--tm-t3:rgba(238,236,230,.6);--tm-line:rgba(238,236,230,.1);--tm-line2:rgba(238,236,230,.2);
+  /* the gap around the window, the title bar, the pane's header, the status bar, the pane's padding */
+  --tm-g:16px;--tm-tb:42px;--tm-ph:34px;--tm-sb:28px;--tm-px:24px;
+  /* the height between the title bar and the status bar */
+  --tm-h:calc(100svh - var(--top-h) - 2 * var(--tm-g) - var(--tm-tb) - var(--tm-sb));
+}
+.ai [data-agent="safety"],.ai [data-agent="review"]{--ac:var(--a-safety)}
+.ai [data-agent="planner"]{--ac:var(--a-planner)}
+.ai [data-agent="recommender"]{--ac:var(--a-recommender)}
+.ai [data-agent="community"]{--ac:var(--a-community)}
+.ai [data-agent="combination"]{--ac:var(--a-combination)}
+.ai [data-agent="markers"]{--ac:var(--a-markers)}
+.ai [data-agent="synergy"]{--ac:var(--a-synergy)}
+.ai [data-agent="evidence"]{--ac:var(--a-evidence)}
+.ai [data-agent="relatives"]{--ac:var(--a-relatives)}
+.ai [data-agent="mechanism"]{--ac:var(--a-mechanism)}
+.ai [data-agent="builder"]{--ac:var(--a-builder)}
+.ai [data-a1="safety"]{--ac1:var(--a-safety)}.ai [data-a2="safety"]{--ac2:var(--a-safety)}
+.ai [data-a1="planner"]{--ac1:var(--a-planner)}.ai [data-a2="planner"]{--ac2:var(--a-planner)}
+.ai [data-a1="recommender"]{--ac1:var(--a-recommender)}.ai [data-a2="recommender"]{--ac2:var(--a-recommender)}
+.ai [data-a1="community"]{--ac1:var(--a-community)}.ai [data-a2="community"]{--ac2:var(--a-community)}
+.ai [data-a1="combination"]{--ac1:var(--a-combination)}.ai [data-a2="combination"]{--ac2:var(--a-combination)}
+.ai [data-a1="markers"]{--ac1:var(--a-markers)}.ai [data-a2="markers"]{--ac2:var(--a-markers)}
+.ai [data-a1="synergy"]{--ac1:var(--a-synergy)}.ai [data-a2="synergy"]{--ac2:var(--a-synergy)}
+.ai [data-a1="evidence"]{--ac1:var(--a-evidence)}.ai [data-a2="evidence"]{--ac2:var(--a-evidence)}
+.ai [data-a1="relatives"]{--ac1:var(--a-relatives)}.ai [data-a2="relatives"]{--ac2:var(--a-relatives)}
+.ai [data-a1="mechanism"]{--ac1:var(--a-mechanism)}.ai [data-a2="mechanism"]{--ac2:var(--a-mechanism)}
+.ai [data-a1="builder"]{--ac1:var(--a-builder)}.ai [data-a2="builder"]{--ac2:var(--a-builder)}
+html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(--tm-tb,42px) + 12px);scroll-padding-bottom:120px}
+
+/* ---------------------------------------------------------------- Sig's ring */
+/* Every piece lit while Sig is idle; turning while the agents work; beside an answer and in the
+   agents' tab, lit piece by piece as each one reports */
+[data-sig]{display:block;flex:none}
+[data-sig] svg{display:block;width:100%;height:100%;overflow:visible}
+.rg{opacity:.16;transition:opacity .4s}
+.rg.on{opacity:1}
+[data-sig].is-spin svg{animation:tm-turn 2.4s linear infinite}
+[data-sig].is-flag .rg[data-a="safety"]{animation:tm-pulse 1.2s ease-in-out infinite}
+@keyframes tm-turn{to{transform:rotate(360deg)}}
+@keyframes tm-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes tm-blink{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes tm-spin{to{transform:rotate(360deg)}}
+
+/* ---------------------------------------------------------------- the window */
+.tm.ai-app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:0;width:calc(100% - 80px);max-width:1400px;margin:calc(var(--top-h) + var(--tm-g)) auto 0;padding:0}
+.tm .tm-title{grid-column:1/-1;grid-row:1}
+.tm .ai-chat{grid-column:1;grid-row:2}
+.tm .tm-status{grid-column:1/-1;grid-row:3}
+@media (min-width:1101px){
+  .tm.ai-app{grid-template-columns:minmax(340px,min(500px,38%)) minmax(0,1fr)}
+}
+@media (min-width:701px) and (max-width:1100px){
+  .tm.ai-app{width:calc(100% - 56px);max-width:880px}
+}
+/* the panes: the conversation on the window's own dark, the side pane a shade lighter */
+.tm .ai-chat{max-width:none;width:auto;justify-self:stretch;min-height:var(--tm-h);background:var(--tm-win);border-left:1px solid var(--tm-line);border-right:1px solid var(--tm-line)}
+
+/* The title bar: stays under the site's bar while the conversation scrolls. Above it, the gap
+   keeps the page's colour; its round corners are painted in the page's colour too, so nothing
+   scrolling behind them shows. */
+.tm .tm-title{position:sticky;top:calc(var(--top-h) + var(--tm-g));z-index:9;display:flex;align-items:flex-end;height:var(--tm-tb);padding:0 14px 0 16px;border:1px solid var(--tm-line);border-radius:12px 12px 0 0;background:var(--tm-bar);color:var(--tm-tx)}
+.tm .tm-title::before{content:'';position:absolute;left:-1px;right:-1px;bottom:100%;height:calc(var(--tm-g) + 2px);background:var(--tm-page);pointer-events:none}
+.tm .tm-title::after{content:'';position:absolute;left:-1px;right:-1px;top:-1px;height:13px;pointer-events:none;
+  background:radial-gradient(circle at 100% 100%,transparent 11.4px,var(--tm-page) 12.2px) left top/13px 13px no-repeat,radial-gradient(circle at 0 100%,transparent 11.4px,var(--tm-page) 12.2px) right top/13px 13px no-repeat}
+.tm-brand{display:flex;align-items:center;gap:10px;flex:none;align-self:center;padding-right:18px}
+.tm-logo{width:18px;height:18px}
+.tm-brand b{font:650 14px/1 var(--body);letter-spacing:-.01em;color:var(--tm-tx)}
+.tm-dim{font:400 11.5px/1 var(--mono);color:var(--tm-t3)}
+/* the tab: the question Sig is on, joined to the conversation below it */
+.tm-tab{position:relative;z-index:1;display:flex;align-items:center;gap:9px;min-width:0;max-width:min(340px,40%);height:31px;margin-bottom:-1px;padding:0 14px;border:1px solid var(--tm-line);border-bottom:0;border-radius:8px 8px 0 0;background:var(--tm-win);font:500 12px/1 var(--mono);color:var(--tm-tx);white-space:nowrap}
+.tm-tab i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--a-community);box-shadow:0 0 8px rgba(216,255,61,.8)}
+.tm-topic{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--tm-t3)}
+.tm-online{display:flex;align-items:center;gap:12px;margin-left:auto;align-self:center;padding-left:16px;font:500 11.5px/1 var(--mono);color:var(--tm-t2);white-space:nowrap}
+.tm-dots{display:flex;gap:3px}
+.tm-dots i{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 5px color-mix(in srgb,var(--ac) 70%,transparent)}
+.tm-count-sm{display:none}
+
+/* The status bar: stays at the foot of the window */
+.tm .tm-status{position:sticky;bottom:var(--tm-g);z-index:9;display:flex;align-items:stretch;height:var(--tm-sb);border:1px solid var(--tm-line);border-radius:0 0 12px 12px;background:var(--tm-stat);font:600 11px/1 var(--mono);color:var(--tm-t3)}
+.tm .tm-status::before{content:'';position:absolute;left:-1px;right:-1px;top:100%;height:calc(var(--tm-g) + 2px);background:var(--tm-page);pointer-events:none}
+.tm .tm-status::after{content:'';position:absolute;left:-1px;right:-1px;bottom:-1px;height:13px;pointer-events:none;
+  background:radial-gradient(circle at 100% 0,transparent 11.4px,var(--tm-page) 12.2px) left bottom/13px 13px no-repeat,radial-gradient(circle at 0 0,transparent 11.4px,var(--tm-page) 12.2px) right bottom/13px 13px no-repeat}
+.tm-sb{display:inline-flex;align-items:center;gap:7px;padding:0 12px;white-space:nowrap}
+.tm-sb-sig{border-bottom-left-radius:11px;background:var(--tm-tx);color:#0B0F11;letter-spacing:.04em}
+.tm-sb-sig [data-sig]{width:12px;height:12px}
+.tm-sb-state{min-width:132px;border-right:1px solid var(--tm-line);color:var(--tm-tx)}
+.tm-sb-state[data-state="ready"]{color:var(--tm-t3)}
+.tm-sb-state[data-state="done"]{color:var(--a-community)}
+.tm-sb-state[data-state="error"]{color:#FFB4A9}
+.tm-ico{display:inline-grid;place-items:center;width:10px;font-style:normal}
+.tm-ico::before{content:'●';font-size:8px}
+.tm-sb-state[data-state="working"] .tm-ico::before,.tm-sb-state[data-state="writing"] .tm-ico::before{content:'';width:7px;height:7px;border-radius:50%;border:1.6px solid rgba(238,236,230,.25);border-top-color:var(--tm-tx);animation:tm-spin .8s linear infinite}
+.tm-sb-state[data-state="done"] .tm-ico::before{content:'✓';font-size:11px}
+.tm-sb-state[data-state="stopped"] .tm-ico::before{content:'■';font-size:8px}
+.tm-sb-state[data-state="error"] .tm-ico::before{content:'!';font-size:11px}
+.tm-sb-safe{border-right:1px solid var(--tm-line);color:var(--tm-t2)}
+.tm-sb-safe i{width:6px;height:6px;border-radius:50%;background:var(--a-safety);box-shadow:0 0 6px var(--a-safety)}
+.tm-sb-rules{margin-left:auto}
+.tm-sb-lib{border-left:1px solid var(--tm-line)}
+
+/* ---------------------------------------------------------------- the conversation's pane */
+.tm .ai-bar{min-height:var(--tm-ph);padding:0 10px 0 var(--tm-px);border-bottom:1px solid var(--tm-line);gap:12px}
+.tm .ai-id{gap:12px;min-width:0}
+.tm .ai-id h1{font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-tx);white-space:nowrap}
+.tm-what{overflow:hidden;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);white-space:nowrap;text-overflow:ellipsis}
+.tm .ai-bar-acts{flex:none}
+.tm .ai-new{white-space:nowrap;min-height:26px;padding:0 10px;border-radius:5px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11px/1 var(--mono)}
+.tm .ai-new:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
+/* the pane's header stays under the title bar, like the agents' tabs beside it */
+@media (min-width:701px){
+  .tm .ai-bar{position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));z-index:7;background:var(--tm-win)}
+  .tm .help-pin{top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb) + var(--tm-ph) + 8px)}
+}
+/* the lines Sig starts with */
+.tm-boot{padding:12px var(--tm-px) 0;font:500 12.5px/1.5 var(--mono);color:var(--tm-tx)}
+.tm-boot-1 [data-sig]{display:inline-block;width:13px;height:13px;margin-right:8px;vertical-align:-2px}
+.tm-boot-1>span{color:var(--tm-t3)}
+.tm-nw{white-space:nowrap}
+.tm-boot-2{margin-top:2px;font-weight:400;color:var(--tm-t3)}
+.tm .ai-chat.is-empty .tm-boot-2{display:none}
+
+/* the first screen: the greeting, the prompt as a box, four ways in */
+.tm .ai-thread{gap:16px;padding:14px var(--tm-px) 24px}
+.tm .ai-chat.is-empty .ai-thread{padding:0 var(--tm-px) 18px}
+.tm .ai-empty{padding:12px 0 0}
+.tm .ai-hello{width:52px;height:52px}
+.tm .ai-begin{padding:8px var(--tm-px) 24px}
+.tm .ai-start{border-color:var(--tm-line2);background:rgba(238,236,230,.025)}
+.tm .ai-start:hover{border-color:rgba(238,236,230,.5);background:rgba(238,236,230,.05)}
+.tm .ai-fine{padding:4px var(--tm-px) 18px;font-size:12px;color:var(--tm-t3)}
+.tm .ai-chat:not(.is-empty) .ai-fine{padding-top:10px;font-size:11.5px}
+.tm .ai-who{border-top-color:var(--tm-line)}
+
+/* ---------------------------------------------------------------- the prompt */
+/* At the foot of the pane, above the status bar, while the conversation scrolls under it */
+.tm .ai-dock{position:sticky;bottom:calc(var(--tm-g) + var(--tm-sb));z-index:5;margin:auto 0 0;padding:0;background:var(--tm-win)}
+.tm .ai-dock::before{top:-20px;height:20px;background:linear-gradient(rgba(11,15,17,0),var(--tm-win))}
+.tm .ai-composer{align-items:flex-start;gap:10px;min-height:56px;padding:7px 14px 7px var(--tm-px);border:0;border-top:1px solid var(--tm-line);border-radius:0;background:rgba(0,0,0,.2);transition:border-color .15s}
+.tm .ai-composer:focus-within{border-top-color:rgba(238,236,230,.5);background:rgba(0,0,0,.32)}
+.tm .ai-composer:focus-within .tm-ps1{text-shadow:0 0 12px rgba(216,255,61,.9)}
+.tm .ai-chat.is-empty .ai-dock{position:static;margin:0;padding:0 var(--tm-px);background:none}
+.tm .ai-chat.is-empty .ai-composer{padding-left:16px;border:1px solid var(--tm-line2);border-radius:8px;background:rgba(0,0,0,.28)}
+.tm .ai-chat.is-empty .ai-composer:focus-within{border-color:rgba(238,236,230,.5)}
+.tm-ps1{flex:none;padding-top:9px;font:600 16px/22px var(--mono);color:var(--a-community);text-shadow:0 0 8px rgba(216,255,61,.6)}
+.tm-field{position:relative;display:flex;flex:1;min-width:0}
+.tm .ai-composer textarea{padding:9px 0;font:500 15px/22px var(--mono);color:var(--tm-tx);caret-color:var(--a-community)}
+.tm .ai-composer textarea::placeholder{font-weight:400;color:var(--tm-t3)}
+/* An empty prompt shows a block cursor (dim until the box has the keyboard), the hint after it */
+.tm .ai-composer textarea:placeholder-shown{text-indent:1.5ch;caret-color:transparent}
+.tm-caret{display:none;position:absolute;left:0;top:11px;width:1ch;height:18px;font:500 15px/22px var(--mono);background:var(--tm-tx);opacity:.35;pointer-events:none}
+.tm textarea:placeholder-shown+.tm-caret{display:block}
+.tm textarea:focus:placeholder-shown+.tm-caret{opacity:1;animation:tm-blink 1.06s steps(1) infinite}
+.tm .ai-count{align-self:center;font:500 11px/1 var(--mono);color:var(--tm-t3)}
+/* the send key: ↵ send, then ■ stop while the agents work */
+.tm .ai-send{align-self:center;display:inline-flex;align-items:center;justify-content:center;width:auto;height:30px;padding:0 10px;border-radius:5px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t3);font:500 11.5px/1 var(--mono);white-space:nowrap;transition:border-color .15s,color .15s,background-color .15s}
+.tm .ai-send svg,.tm .ai-send .k-stop{display:none}
+.tm .ai-send.stop .k-send{display:none}
+.tm .ai-send.stop .k-stop{display:inline}
+.tm .ai-send:not(:disabled){border-color:rgba(216,255,61,.6);background:transparent;color:var(--a-community)}
+.tm .ai-send:not(:disabled):hover{background:rgba(216,255,61,.08)}
+.tm .ai-send.stop,.tm .ai-send.stop:hover{border-color:rgba(238,236,230,.6);background:transparent;color:var(--tm-tx)}
+.tm .ai-send:disabled{background:transparent;color:var(--tm-t3);opacity:.75}
+@media (pointer:coarse),(max-width:700px){
+  .tm .ai-send{width:40px;height:40px;padding:0;border:0;border-radius:8px;background:var(--a-community);color:#121E1D}
+  .tm .ai-send svg{display:block}
+  .tm .ai-send .tm-key{display:none!important}
+  .tm .ai-send:not(:disabled),.tm .ai-send:not(:disabled):hover{background:var(--a-community);color:#121E1D}
+  .tm .ai-send:disabled{background:rgba(238,236,230,.1);color:var(--tm-t3);opacity:1}
+  .tm .ai-send.stop,.tm .ai-send.stop:hover{background:var(--tm-tx);color:#0B0F11}
+  .tm .ai-send.stop .i-send{display:none}
+  .tm .ai-send.stop .i-stop{display:inline}
+}
+
+/* ---------------------------------------------------------------- the log */
+/* their question, as typed at the prompt */
+.tm .msg.me{display:flex;justify-content:flex-start;align-items:baseline;gap:10px}
+.tm .echo-ps1{flex:none;font:600 14px/1.5 var(--mono);color:var(--a-community);text-shadow:0 0 8px rgba(216,255,61,.6)}
+.tm .bubble{max-width:none;padding:0;border:0;border-radius:0;background:none;font:500 14px/1.5 var(--mono);color:var(--tm-tx)}
+.tm .msg.ai{display:block}
+.tm .msg.ai .sheet{margin:0;padding:0}
+.tm .waiting{display:none}
+/* the run: one line per step, in the colour of the agent that took it, folded into one line once
+   the answer is being written */
+.tm .trace{margin:0 0 4px}
+.tm .trace-sum{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:28px;padding:2px 0;font:500 12.5px/1.5 var(--mono);color:var(--tm-t2);text-align:left}
+.tm .trace-sum::after{display:none}
+.tm .trace-sum:hover{color:var(--tm-tx)}
+.tm .trace-sum b{font-weight:500;color:var(--tm-tx)}
+.ts-car{width:1ch;color:var(--tm-t3)}
+.ts-sw{display:inline-flex;gap:2px}
+.ts-sw i{width:9px;height:4px;border-radius:1px;background:var(--ac)}
+.ts-act{color:var(--tm-t3);text-decoration:underline;text-underline-offset:3px}
+.ts-busy{width:9px;height:9px;border-radius:50%;border:1.6px solid rgba(238,236,230,.25);border-top-color:var(--tm-tx);animation:tm-spin .8s linear infinite}
+.tm .trace .trace-steps,.tm .trace.done .trace-steps{display:none}
+.tm .trace.open .trace-steps,.tm .trace.done.open .trace-steps{display:grid;gap:0;margin-top:2px}
+.tm .tstep{display:grid;grid-template-columns:24px 8px minmax(0,1fr) 14px;column-gap:8px;align-items:start;padding:2px 0;font:400 12.5px/1.5 var(--mono)}
+.ts-n{color:var(--tm-t3);font-variant-numeric:tabular-nums}
+.ts-dot{width:7px;height:7px;margin-top:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px color-mix(in srgb,var(--ac) 85%,transparent)}
+.tm .tstep-who{margin-right:8px;font:600 12.5px/1.5 var(--mono);letter-spacing:0;text-transform:none;color:var(--ac);text-shadow:0 0 9px color-mix(in srgb,var(--ac) 45%,transparent)}
+.tm .tstep-what{color:var(--tm-t2)}
+.ts-st{position:relative;height:18px;text-align:right;color:var(--ac)}
+.tstep.done .ts-st::before{content:'✓';text-shadow:0 0 8px color-mix(in srgb,var(--ac) 60%,transparent)}
+.tstep.run .ts-st::before{content:'';position:absolute;right:1px;top:5px;width:8px;height:8px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
+.tstep.flag .ts-st::before{content:'!';color:#F2BE4B;text-shadow:none}
+.tm .tstep-chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 3px}
+.tm .tstep-chips a,.tm .tstep-chips span{padding:2px 8px;border-radius:4px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11.5px/1.5 var(--mono);text-decoration:none}
+.tm .tstep-chips a:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
+/* the answer's head */
+.tm-ahead{display:flex;align-items:center;gap:8px;margin:6px 0 2px;font:600 12.5px/1.5 var(--mono);color:var(--tm-tx)}
+.tm .tm-ahead .msg-sig{display:block;width:13px;height:13px;margin:0}
+.tm-ahead i{font-style:normal;font-weight:400;color:var(--tm-t3)}
+
+/* ---------------------------------------------------------------- the answer, part by part */
+.tm .sheet-body>.prose{padding-left:0}
+.tm .sheet-body>details.more{margin-left:0}
+.tm .sheet-body>.answer-src,.tm .sheet-body>.waiting{padding-left:0}
+.tm .prose{font-size:15.5px;line-height:1.62;color:rgba(238,236,230,.9)}
+.tm .prose>*+*{margin-top:6px}
+.tm .prose ul{gap:6px}
+.tm .prose ul+p,.tm .prose p+ul{margin-top:6px}
+.tm .prose .apart{position:relative;padding:7px 0 9px 17px}
+.tm .prose .apart::before,.tm .prose ul li.apart::before{content:'';display:block;position:absolute;left:0;top:9px;bottom:10px;width:3px;height:auto;border:0;border-radius:2px;background:var(--ac1);box-shadow:0 0 10px color-mix(in srgb,var(--ac1) 50%,transparent)}
+.tm .prose .apart[data-a2]::before,.tm .prose ul li.apart[data-a2]::before{background:linear-gradient(180deg,var(--ac1) 0 50%,var(--ac2) 50% 100%)}
+.tm .prose .apart.is-live::before,.tm .prose ul li.apart.is-live::before{background:var(--tm-line2);box-shadow:none}
+.tm .prose ul li:not(.apart){padding-left:17px}
+.tm .prose ul li:not(.apart)::before{left:3px;top:.68em;width:5px;height:5px;background:var(--tm-t3)}
+.ptag{display:block;margin:0 0 4px;font:600 10.5px/1.45 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
+.ptag b{font-weight:600;color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 40%,transparent)}
+.tm .prose h2{margin-top:14px;font:600 16px/1.35 var(--body)}
+.tm .prose ol li::before{font-family:var(--mono)}
+.tm .prose.streaming>p:last-child::after,.tm .prose.streaming>h2:last-child::after,.tm .prose.streaming>ul:last-child>li:last-child::after,.tm .prose.streaming>ol:last-child>li:last-child::after{width:.6em;height:1.1em;border-radius:1px;background:var(--tm-tx);animation:tm-blink 1.06s steps(1) infinite}
+.tm details.more{margin:8px 0 4px;border-top:1px dashed var(--tm-line2)}
+.tm details.more>summary{min-height:36px;font:500 12px/1 var(--mono);color:var(--tm-t2)}
+/* the cards keep their own layout, with the agent that made them over each and its colour down its side */
+.ctag{display:block;margin:16px 0 0;font:600 10.5px/1.45 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
+.ctag b{font-weight:600;color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 40%,transparent)}
+.tm .sheet-body>.ctag+.card,.tm .sheet-body>.ctag+.ai-pointer{margin-top:6px}
+.tm .sheet-body>.card[data-agent]{border-left:3px solid var(--ac)}
+.tm .ai-pointer{border-color:var(--tm-line2);background:rgba(0,0,0,.2);font:500 12.5px/1.4 var(--mono)}
+/* where it came from: the studies in the Evidence librarian's blue, the community in its lime */
+.tm .answer-src{gap:4px 14px;margin-top:12px;font:500 11.5px/1.45 var(--mono);color:var(--tm-t3)}
+.tm .src-part{color:var(--tm-t2)}
+.tm .v-dot{width:8px;height:8px;border:0;border-radius:2px}
+.tm .v-dot.v-studies{background:var(--a-evidence);box-shadow:0 0 6px rgba(111,168,255,.6)}
+.tm .v-dot.v-community{background:var(--a-community);box-shadow:0 0 6px rgba(216,255,61,.5)}
+/* the foot: the Safety agent's check, then the screen and copying */
+.tm .sheet-foot{margin-top:10px;font:500 12px/1.45 var(--mono);color:var(--tm-t2)}
+.tm .cleared{display:block;flex:1 1 260px}
+.tm .cleared svg{display:inline-block;margin-right:7px;color:var(--a-safety);vertical-align:-3px}
+.tm .cleared b{font-weight:600;color:var(--a-safety);text-shadow:0 0 8px rgba(255,107,91,.4)}
+.tm .cleared.edited svg{color:#F2BE4B}
+.tm .ai-toscreen{display:inline-flex}
+.tm .sheet-foot .mini,.tm .ai-toscreen{min-height:30px;margin:0;padding:0 10px;border-radius:5px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11.5px/1 var(--mono)}
+.tm .sheet-foot .mini:hover,.tm .ai-toscreen:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
+/* after words of crisis, 988 stays in reach: opaque, so nothing scrolling under it shows through */
+.tm .help-pin{margin:10px var(--tm-px) 0;background:linear-gradient(rgba(224,104,92,.16),rgba(224,104,92,.16)),var(--tm-win)}
+/* who answers, on narrow screens: each node in its agent's colour */
+.tm .agent-node{border-color:color-mix(in srgb,var(--ac) 65%,transparent);background:var(--tm-win)}
+.tm .agent:not(:last-child)::before{left:13px;width:2px;background:var(--tm-line2)}
+.tm .agent b{color:var(--ac)}
+.tm .agent.wake .agent-node{animation:tm-wake .9s ease-out both;animation-delay:calc(var(--i,0) * 120ms)}
+.tm .agent[data-agent="community"] .agent-node{background:radial-gradient(circle,var(--a-community) 0 2px,transparent 2.5px),var(--tm-win)}
+@keyframes tm-wake{0%{background:var(--tm-win)}40%{background:var(--ac);box-shadow:0 0 0 6px color-mix(in srgb,var(--ac) 25%,transparent)}100%{background:var(--tm-win);box-shadow:0 0 0 0 transparent}}
+
+/* ---------------------------------------------------------------- beside the chat */
+.tm-tabs,.tm-team{display:none}
+@media (min-width:1101px){
+  .tm .ai-rail.sc{grid-column:2;grid-row:2;position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));align-self:start;height:var(--tm-h);max-height:none;margin:0;padding:0;overflow:auto;border:0;border-right:1px solid var(--tm-line);border-radius:0;background:var(--tm-pane2);--sc-code:var(--tm-pane2);scrollbar-width:thin;scrollbar-color:rgba(238,236,230,.22) transparent}
+  .tm .ai-chat{border-right-color:var(--tm-line)}
+  .tm-tabs{position:sticky;top:0;z-index:4;display:flex;align-items:stretch;height:34px;padding:0 10px 0 4px;border-bottom:1px solid var(--tm-line);background:var(--tm-pane2)}
+  .tm-tabbtn{position:relative;display:inline-flex;align-items:center;gap:7px;padding:0 12px;border:0;background:none;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);cursor:pointer;box-shadow:inset 0 -2px 0 transparent;transition:color .15s,box-shadow .15s}
+  .tm-tabbtn:hover{color:var(--tm-tx)}
+  .tm-tabbtn[aria-selected="true"]{color:var(--tm-tx);box-shadow:inset 0 -2px 0 var(--tm-tx)}
+  .tm-tabbtn.new::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--a-community);box-shadow:0 0 6px var(--a-community)}
+  .tm-tabbtn:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-4px}
+  .tm-live{display:inline-flex;align-items:center;gap:7px;margin-left:auto;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);white-space:nowrap}
+  .tm-live [data-sig]{width:12px;height:12px}
+  .tm-live.on{color:var(--a-community)}
+  .tm-live.on [data-sig] svg{animation:tm-turn 2.4s linear infinite}
+  .tm-team{display:block;padding:4px 18px 28px}
+  .tm-team[hidden]{display:none}
+}
+/* the agents: the ring of the eleven, and each one's latest line; side by side in a wide pane */
+@container sc (min-width:680px){
+  .tm-team{display:grid;grid-template-columns:236px minmax(0,1fr);align-items:start;column-gap:26px;padding:8px 22px 28px}
+  .tm-ringbox{margin:30px 12px 0}
+  .tm-roster{max-width:none;margin:22px 0 0}
+}
+.tm-ringbox{position:relative;width:212px;height:212px;margin:26px auto 20px}
+.tm-bigring{width:100%;height:100%}
+.tm-bigring .rg{opacity:.13;transition:opacity .45s}
+.tm-bigring .rg.on{opacity:1;filter:drop-shadow(0 0 7px currentColor)}
+.tm-team[data-state="idle"] .tm-bigring .rg.on{opacity:.9;filter:none}
+.tm-bigring .rg.is-now{animation:tm-pulse 1.2s ease-in-out infinite}
+.tm-count{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0}
+.tm-frac{font:700 30px/1 var(--mono);color:var(--tm-tx);font-variant-numeric:tabular-nums}
+.tm-frac span{color:var(--tm-t3)}
+.tm-count-k{margin-top:8px;font:600 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tm-t3)}
+.tm-roster{display:grid;gap:2px;max-width:700px;margin:0 auto;padding:0;list-style:none}
+.tm-who{position:relative;display:grid;grid-template-columns:14px 8px 150px minmax(0,1fr);align-items:baseline;column-gap:9px;padding:6px 10px;border-radius:5px;font:400 11.5px/1.5 var(--mono);transition:background-color .25s,box-shadow .25s}
+.tm-st{align-self:start;height:17px;color:var(--ac)}
+.tm-st::before{content:'·';color:var(--tm-t3)}
+.tm-who.is-run .tm-st::before{content:'';display:block;width:8px;height:8px;margin-top:4px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
+.tm-who.is-done .tm-st::before{content:'✓';color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 60%,transparent)}
+.tm-who.is-flag .tm-st::before{content:'!';color:#F2BE4B;text-shadow:none}
+.tm-who.is-skip .tm-st::before{content:'–'}
+.tm-sq{align-self:start;width:8px;height:8px;margin-top:5px;border-radius:2px;background:var(--ac);box-shadow:0 0 8px color-mix(in srgb,var(--ac) 70%,transparent)}
+.tm-who b{font-weight:600;color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 35%,transparent);white-space:nowrap;transition:opacity .3s}
+.tm-now{min-width:0;overflow:hidden;color:var(--tm-t2);white-space:nowrap;text-overflow:ellipsis}
+.tm-team[data-state="idle"] .tm-now{white-space:normal;color:var(--tm-t3)}
+.tm-who.is-run{background:color-mix(in srgb,var(--ac) 10%,transparent);box-shadow:inset 2px 0 0 var(--ac)}
+.tm-who.is-wait b,.tm-who.is-skip b{opacity:.42}
+.tm-who.is-wait .tm-now,.tm-who.is-skip .tm-now{color:var(--tm-t3)}
+
+/* ---------------------------------------------------------------- tablets: one pane, the screen as a sheet */
+@media (max-width:1100px){
+  .tm #sc-root[hidden]{display:block!important}
+}
+
+/* ---------------------------------------------------------------- phones: edge to edge */
+@media (max-width:700px){
+  .ai{--tm-g:0px;--tm-px:14px;--tm-tb:52px;--tm-sb:0px}
+  .tm.ai-app{width:100%;max-width:none;margin:var(--top-h) 0 0}
+  .tm .tm-title{top:var(--top-h);padding:0 14px;border-width:0 0 1px;border-radius:0;align-items:center}
+  .tm .tm-title::before,.tm .tm-title::after{display:none}
+  .tm-logo{width:30px;height:30px}
+  .tm-brand{padding-right:10px}
+  .tm-brand b{font-size:15px}
+  .tm-dim{font-size:11px}
+  .tm-tab,.tm-online{display:none}
+  .tm-count-sm{display:inline-flex;align-items:baseline;gap:0;margin-left:auto;font:500 12px/1 var(--mono);color:var(--tm-t3);white-space:nowrap}
+  .tm-count-sm b{font-weight:700;color:var(--tm-tx)}
+  .tm-count-sm.on b{color:var(--a-community)}
+  .tm .tm-status{display:none}
+  .tm .ai-chat{min-height:calc(100svh - var(--top-h) - var(--tm-tb));border:0}
+  .tm .help-pin{top:calc(var(--top-h) + var(--tm-tb) + 8px)}
+  .tm .ai-dock{bottom:0;margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+  .tm .ai-composer{min-height:52px;padding:6px 10px calc(6px + env(safe-area-inset-bottom)) var(--tm-px)}
+  .tm .ai-chat.is-empty .ai-composer{padding-bottom:6px}
+  .tm .ai-composer textarea,.tm-caret{font-size:16px}
+  .tm-ps1{padding-top:10px}
+  .tm .ai-thread{padding-top:12px}
+  .tm .prose{font-size:15px}
+  .ptag,.ctag{font-size:10px}
+  .tm .tstep{grid-template-columns:22px 7px minmax(0,1fr) 13px;column-gap:6px;font-size:11.5px}
+  .tm .tstep-who{font-size:11.5px}
+  .ts-dot{width:6px;height:6px;margin-top:6px}
+  .tm .trace-sum{font-size:11.5px}
+}
+@media (max-width:480px){
+  .tm-what{display:none}
+  .tm-dim{display:none}
+}
+
+/* ---------------------------------------------------------------- less motion, and paper */
+@media (prefers-reduced-motion:reduce){
+  [data-sig].is-spin svg,.tm-live.on [data-sig] svg,[data-sig].is-flag .rg,.tm-bigring .rg.is-now,.ts-busy,.tstep.run .ts-st::before,.tm-who.is-run .tm-st::before,
+  .tm-sb-state .tm-ico::before,.tm textarea:focus:placeholder-shown+.tm-caret,.tm .prose.streaming>*::after,.tm .prose.streaming>*>li::after,.tm .agent.wake .agent-node{animation:none!important}
+  .rg,.tm-who,.tm-who b{transition:none}
+}
+@media print{
+  .tm-title,.tm-status,.tm-boot,.tm-tabs,.tm-team,.tm-ahead,.ai-composer,.ts-sw{display:none!important}
+  .tm.ai-app{display:block!important;padding:0!important}
+  .ai,.ai #main,.ai-app,.tm .ai-chat{background:#FFFFFF!important;color:#111111!important;border:0!important;margin:0!important;width:auto!important}
+  .tm .bubble,.tm .echo-ps1,.tm .prose,.tm .prose p,.tm .prose li,.tm .prose strong,.tm .prose a,.tm .prose h2,.tm .answer-src,.tm .src-part,.tm .sheet,.tm .cleared{color:#111111!important;text-shadow:none!important}
+  .ptag,.ctag,.ptag b,.ctag b{color:#444444!important;text-shadow:none!important}
+}

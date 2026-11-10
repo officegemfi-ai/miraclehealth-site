@@ -1,14 +1,17 @@
 // Ask Sig (miraclehealth.us/ai): the chat with Sig, Miracle Health's AI. The conversation lives only in this browser
 // tab (sessionStorage). Each message goes to the ask function (the community's Supabase
 // project), which streams back each agent's steps, the answer, the cards, where the answer came
-// from and the final check as server-sent events. Every answer speaks for two voices, drawn in
-// their own materials: the studies on paper, as in the Library, and the community in ink and
-// lime, as in the community itself. Nothing here uses innerHTML for anything the AI or the
-// visitor wrote: text is placed with textContent, and the small amount of formatting the
-// AI uses (bold, lists, Library links) is built node by node.
-import { sigSvg, askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=d966f02403';
+// from and the final check as server-sent events. The page is Sig's health terminal (ai/term.css):
+// each agent keeps one colour, its steps are log lines, the ring of the eleven who answer lights
+// as each reports, and every part of an answer says which agent it comes from and what kind of
+// part it is, so the two voices stay apart: the studies in the Evidence librarian's blue, the
+// community in its lime. Nothing here uses innerHTML for anything the AI or the visitor wrote:
+// text is placed with textContent, and the small amount of formatting the AI uses (bold, lists,
+// Library links) is built node by node.
+import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=d966f02403';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=51b1ee6555';
 import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
+import { ringSvg } from '/lib/ring.js?v=b9eb24e4e4';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -95,16 +98,24 @@ const store = {
 };
 
 // ---------------------------------------------------------------------------
-// Sig, the Community Signal in person: the design kit's drawing (the community's Sig), on the
-// chat's dark page
+// Sig on this page: the ring of the eleven who answer, each in its own colour (lib/ring.js). Every
+// piece lit while Sig is idle, turning while the agents work, the Safety agent's piece beating when
+// something was flagged; beside an answer, lit piece by piece as each one reports (lit: who did)
 // ---------------------------------------------------------------------------
-const sigMarkup = (size, mood) => sigSvg(size, mood, { dark: true });
-function setSig(el, mood) {
-  if (!el || el.dataset.mood === mood) return;
+function setSig(el, mood, lit) {
+  if (!el) return;
+  if (!el.querySelector('svg')) el.replaceChildren(svg(ringSvg(Number(el.dataset.sig) || 36)));
+  const on = lit ? new Set(lit) : null;
+  for (const p of el.querySelectorAll('.rg')) p.classList.toggle('on', !on || on.has(p.dataset.a));
+  el.classList.toggle('is-spin', mood === 'think' && !lit);
+  el.classList.toggle('is-flag', mood === 'concerned');
   el.dataset.mood = mood;
-  el.replaceChildren(svg(sigMarkup(Number(el.dataset.sig) || 36, mood)));
 }
 const sigs = () => document.querySelectorAll('.ai-sig');
+// The agent behind a step (the final check is the Safety agent's), and who reported in an answer,
+// in the order they first did
+const agentOf = (a) => (a === 'review' ? 'safety' : a);
+const ranOf = (m) => [...new Set((m?.steps || []).map((s) => agentOf(s.agent)).filter((a) => a !== 'clinician' && AGENT_NAME[a]))];
 
 // ---------------------------------------------------------------------------
 // The answer's words: paragraphs, ### headings, - lists, 1. lists, **bold**, *italic* and
@@ -134,8 +145,8 @@ function inline(el, s) {
 }
 const BLOCK = /^\s*(#{1,6}\s|[-*•]\s|\d+[.)]\s)/;
 // Which voice a paragraph or bullet draws on, from its words: the studies, the community, or both.
-// A dot beside it says so (hollow for the studies, lime for the community, half and half for both),
-// so each claim shows where it comes from; the line under the answer says which dot is which.
+// Its line says so (the Evidence librarian for the studies, the community for the community), so
+// each claim shows where it comes from, and screen readers hear which after it.
 const SAID_STUDIES = /\b(?:stud(?:y|ies|ied)|trials?|evidence|research(?:ers)?|in people|rodents?|animals?|meta-analys[ie]s|fda|approved)\b/i;
 const SAID_COMMUNITY = /\b(?:members?|forums?|community|people (?:report|describe|say|mention)|reports?|reported|community signal)\b/i;
 // Words that don't make a paragraph draw on a voice: saying there are no studies, and reporting a
@@ -149,39 +160,108 @@ function saidOf(text) {
   return studies && community ? 'both' : studies ? 'studies' : community ? 'community' : '';
 }
 const SAID_SR = { studies: ' (from the studies)', community: ' (from the community)', both: ' (from the studies and the community)' };
-function voiced(el, text) {
+
+// Every part of an answer says who it comes from: a rule beside it in that agent's colour, and a
+// line over it naming the agent and the kind of part (caution, next step, the studies, the forums,
+// blood tests…). Read from the words, in this order: a caution or a next step stands alone; the
+// first words are the bottom line; a closing question is the Recommender's; then an agent the part
+// names, the voices it draws on, and what it's about. Two at most. A part still being written
+// says so, and who it's from once it's whole.
+const LEAD_CAUTION = /^(?:caution|warning|be careful|safety first)\b/i;
+const LEAD_NEXT = /^next steps?\b/i;
+const NAMED = [['synergy', /\bsynergy auditor\b/i], ['markers', /\bmarkers agent\b/i], ['combination', /\bcombination agent\b/i], ['mechanism', /\bmechanism agent\b/i],
+  ['relatives', /\brelatives agent\b/i], ['evidence', /\bevidence librarian\b/i], ['builder', /\bstack builder\b/i]];
+const BLOOD = /\b(?:igf-?1|hba1c|a1c|hematocrit|haematocrit|hemoglobin|estradiol|psa|shbg|tsh|ferritin|prolactin|ldl|hdl|triglycerides?|cholesterol|creatinine|egfr|fasting (?:glucose|insulin)|blood (?:tests?|work|markers?|sugar|levels?|counts?)|lab (?:tests?|results?|work))\b/i;
+const RELATIVES = /\b(?:relatives?|same (?:hormone|receptor|pathway)|\w+['’]s (?:own )?evidence)\b/i;
+const MECHANISM = /\b(?:how (?:it|they) works?|pathways?|mechanisms?|receptors?|in theory|not tested|expected from)\b/i;
+const COMBINE = /\b(?:overlap(?:s|ping)?|different (?:pathways|ways|directions)|separate (?:\w+ )?pathways?)\b/i;
+const PART_LABEL = { evidence: 'the studies', markers: 'blood tests', relatives: 'related compounds', mechanism: 'how it could work', combination: 'how they combine', synergy: 'checked together', builder: 'your stack' };
+const plainOf = (s) => String(s || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*`]/g, '').trim();
+function crowdLabel(t) {
+  const forums = /\bforums?\b/i.test(t);
+  const members = /\bmembers?\b/i.test(t);
+  return forums && !members ? 'the forums' : members && !forums ? 'member reports' : forums ? 'members and forums' : 'what people report';
+}
+function partOf(text, { lead = false, live = false } = {}) {
+  const t = plainOf(text);
+  if (LEAD_CAUTION.test(t)) return [['safety', 'caution']];
+  if (LEAD_NEXT.test(t)) return [['recommender', 'next step']];
+  if (lead && live) return [['recommender', 'bottom line']];
+  if (live) return null;
+  if (!lead && /\?\W*$/.test(t)) return [['recommender', 'a question for you']];
+  const out = [];
+  const add = (a, label) => { if (out.length < 2 && !out.some(([x]) => x === a)) out.push([a, label]); };
+  if (lead) add('recommender', 'bottom line');
+  for (const [a, re] of NAMED) if (re.test(t)) add(a, PART_LABEL[a]);
+  const named = out.length > (lead ? 1 : 0);
   const v = saidOf(text);
-  if (v) { el.classList.add('v', `v-${v}`); el.append(h('span', { class: 'sr', text: SAID_SR[v] })); }
+  if (v === 'studies' || v === 'both') add('evidence', 'the studies');
+  if (v === 'community' || v === 'both') add('community', crowdLabel(t));
+  if (lead || named) return out;
+  if (BLOOD.test(t)) add('markers', PART_LABEL.markers);
+  if (RELATIVES.test(t)) add('relatives', PART_LABEL.relatives);
+  if (MECHANISM.test(t)) add('mechanism', PART_LABEL.mechanism);
+  if (COMBINE.test(t)) add('combination', PART_LABEL.combination);
+  return out;
+}
+function tagPart(el, text, ctx) {
+  const v = saidOf(text);
+  if (v) el.append(h('span', { class: 'sr', text: SAID_SR[v] }));
+  const who = partOf(text, ctx);
+  if (!who) {
+    el.classList.add('apart', 'is-live');
+    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true', text: 'writing…' }));
+  } else if (who.length) {
+    el.classList.add('apart');
+    el.dataset.a1 = who[0][0];
+    if (who[1]) el.dataset.a2 = who[1][0];
+    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true' }, who.map(([a], i) => [i ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]),
+      ` · ${[...new Set(who.map(([, label]) => label))].join(' + ')}`));
+  }
   return el;
 }
-function prose(text) {
-  const out = [];
+// The words in blocks first (headings, lists, paragraphs), so the first can be the bottom line and
+// the last the one still being written
+function prose(text, { lead = false, live = false } = {}) {
+  const blocks = [];
   const lines = String(text || '').replace(/\r/g, '').split('\n');
   for (let i = 0; i < lines.length;) {
     const line = lines[i];
     if (!line.trim()) { i++; continue; }
-    let m = /^\s*#{1,6}\s+(.*)$/.exec(line);
-    if (m) { const el = h('h2'); inline(el, m[1].replace(/\*\*/g, '')); out.push(el); i++; continue; }
+    const m = /^\s*#{1,6}\s+(.*)$/.exec(line);
+    if (m) { blocks.push({ k: 'h2', text: m[1] }); i++; continue; }
     const kind = /^\s*[-*•]\s+/.test(line) ? 'ul' : /^\s*\d+[.)]\s+/.test(line) ? 'ol' : '';
     if (kind) {
-      const list = h(kind);
+      const items = [];
       const re = kind === 'ul' ? /^\s*[-*•]\s+/ : /^\s*\d+[.)]\s+/;
-      while (i < lines.length && (re.test(lines[i]) || (/^\s{2,}\S/.test(lines[i]) && list.lastChild))) {
-        if (re.test(lines[i])) { const li = h('li'); inline(li, lines[i].replace(re, '')); list.append(li); }
-        else { list.lastChild.append(' '); inline(list.lastChild, lines[i].trim()); }
+      while (i < lines.length && (re.test(lines[i]) || (/^\s{2,}\S/.test(lines[i]) && items.length))) {
+        if (re.test(lines[i])) items.push(lines[i].replace(re, ''));
+        else items[items.length - 1] += ` ${lines[i].trim()}`;
         i++;
       }
-      if (kind === 'ul') for (const li of list.children) voiced(li, li.textContent);
-      out.push(list);
+      blocks.push({ k: kind, items });
       continue;
     }
     const buf = [];
     while (i < lines.length && lines[i].trim() && !BLOCK.test(lines[i])) buf.push(lines[i++]);
-    const p = h('p');
-    buf.forEach((b, j) => { if (j) p.append(h('br')); inline(p, b); });
-    out.push(voiced(p, buf.join(' ')));
+    blocks.push({ k: 'p', lines: buf });
   }
-  return out;
+  return blocks.map((b, bi) => {
+    const last = live && bi === blocks.length - 1;
+    if (b.k === 'h2') { const el = h('h2'); inline(el, b.text.replace(/\*\*/g, '')); return el; }
+    if (b.k === 'p') {
+      const p = h('p');
+      b.lines.forEach((ln, j) => { if (j) p.append(h('br')); inline(p, ln); });
+      return tagPart(p, b.lines.join(' '), { lead: lead && bi === 0, live: last });
+    }
+    const list = h(b.k);
+    b.items.forEach((it, ii) => {
+      const li = h('li');
+      inline(li, it);
+      list.append(b.k === 'ul' ? tagPart(li, it, { live: last && ii === b.items.length - 1 }) : li);
+    });
+    return list;
+  });
 }
 // While words are still arriving: close an open **, hide a link's half-written address
 function settle(t) {
@@ -209,52 +289,96 @@ function setEmpty(on) {
   app.classList.toggle('is-empty', on);
 }
 
-// "The bottom" is where the conversation ends and the box to write in sits, not the page's
-// footer below it
+// "The bottom" is where the conversation ends and the box to write in sits, with the window's
+// status bar and the gap under it, not the page's footer below it
 const chatEl = document.querySelector('.ai-chat');
-const chatEnd = () => chatEl.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+let gap = 0;
+const measureGap = () => { gap = parseFloat(getComputedStyle(app).getPropertyValue('--tm-g')) || 0; };
+measureGap();
+addEventListener('resize', measureGap);
+const chatEnd = () => app.getBoundingClientRect().bottom + gap + window.scrollY - window.innerHeight;
 function nearBottom() { return window.scrollY >= chatEnd() - 180; }
-function toBottom() { window.scrollTo({ top: Math.max(0, chatEnd()), behavior: 'auto' }); }
+// (at once: the page's smooth scrolling, started again every frame, would never catch up)
+function toBottom() { window.scrollTo({ top: Math.max(0, chatEnd()), behavior: 'instant' }); }
+// Following an answer down as it's written: from sending it until they scroll up themselves (the
+// parts of an answer can arrive faster than the page scrolls to them)
+let following = false;
+addEventListener('wheel', (e) => { if (e.deltaY < 0) following = false; }, { passive: true });
+addEventListener('touchstart', () => { following = false; }, { passive: true });
+addEventListener('keydown', (e) => { if (/^(?:PageUp|ArrowUp|Home)$/.test(e.key) && !e.target.closest?.('textarea, input')) following = false; });
 
+// Their question, as typed at the prompt
 function userNode(text) {
-  return h('div', { class: 'msg me' }, h('div', { class: 'bubble', text }));
+  return h('div', { class: 'msg me' }, h('span', { class: 'echo-ps1', 'aria-hidden': 'true', text: '›' }), h('div', { class: 'bubble', text }));
 }
 
-// A view: the DOM for one answer, kept in step with its message
+// A view: the DOM for one answer, kept in step with its message. The run (each agent's steps, as
+// log lines), then the answer under Sig's ring, then the Safety agent's check
 function assistantNode(msg) {
-  const sigEl = h('span', { class: 'msg-sig', 'data-sig': '36', 'aria-hidden': 'true' });
-  const trace = h('div', { class: 'trace' });
-  const sum = h('button', { class: 'trace-sum', type: 'button', 'aria-expanded': 'false' });
-  const steps = h('ol', { class: 'trace-steps' });
+  const sigEl = h('span', { class: 'msg-sig', 'data-sig': '13', 'aria-hidden': 'true' });
+  const trace = h('div', { class: 'trace open' });
+  const sum = h('button', { class: 'trace-sum', type: 'button', 'aria-expanded': 'true' });
+  const steps = h('ol', { class: 'trace-steps', 'aria-label': 'What the agents did' });
   trace.append(sum, steps);
   sum.addEventListener('click', () => {
-    const open = trace.classList.toggle('open');
-    sum.setAttribute('aria-expanded', String(open));
+    view.open = !traceOpen(msg);
+    drawTrace(msg);
   });
+  const head = h('p', { class: 'tm-ahead', 'aria-hidden': 'true', hidden: true }, sigEl, h('b', { text: 'sig' }), h('i', { text: '· answer' }));
   const body = h('div', { class: 'sheet-body' });
   const foot = h('div', { class: 'sheet-foot', hidden: true });
-  const sheet = h('div', { class: 'sheet' }, trace, body, foot);
-  const node = h('div', { class: 'msg ai' }, sigEl, sheet);
-  const view = { node, sigEl, trace, sum, steps, body, foot, stepEls: new Map(), partEls: [], cardEls: new Map(), raf: 0, revealIdx: -1, revealShown: Infinity };
+  const sheet = h('div', { class: 'sheet' }, trace, head, body, foot);
+  const node = h('div', { class: 'msg ai' }, sheet);
+  const view = { node, sigEl, trace, sum, steps, head, body, foot, stepEls: new Map(), partEls: [], cardEls: new Map(), cardTags: new Map(), raf: 0, revealIdx: -1, revealShown: Infinity, open: null };
   msg.view = view;
-  setSig(sigEl, msg.state ? moodOf(msg) : 'think');
   for (const s of msg.steps || []) drawStep(view, s);
   drawParts(msg);
   if (msg.state) finish(msg, false);
+  else drawTrace(msg);
   return node;
+}
+// The run stays open while the agents work and folds into one line once the answer is being
+// written, unless they opened or closed it themselves
+const hasBody = (m) => (m.parts || []).some((p) => (p.t === 'text' && p.s.trim()) || p.t === 'card');
+const traceOpen = (m) => (m.view?.open ?? (!m.state && !hasBody(m)));
+function drawTrace(m) {
+  const view = m.view;
+  if (!view) return;
+  const open = traceOpen(m);
+  const steps = m.steps || [];
+  const ran = ranOf(m);
+  const agents = ran.filter((a) => a !== 'community').length;
+  const heard = ran.includes('community');
+  const bits = steps.length ? [plural(steps.length, 'step'), `${agents} agent${agents === 1 ? '' : 's'}${heard ? ' + the community' : ''}`] : ['starting'];
+  if (m.state && m.ms) bits.push(`${(m.ms / 1000).toFixed(1)} s`);
+  view.trace.classList.toggle('open', open);
+  view.sum.setAttribute('aria-expanded', String(open));
+  view.sum.replaceChildren(...[
+    h('span', { class: 'ts-car', 'aria-hidden': 'true', text: open ? '▾' : '▸' }),
+    h('span', { class: 'sr', text: 'What the agents did: ' }), h('b', { text: 'run' }), h('span', { text: ` · ${bits.join(' · ')}` }),
+    ran.length ? h('span', { class: 'ts-sw', 'aria-hidden': 'true' }, ran.map((a) => h('i', { 'data-agent': a }))) : null,
+    m.state ? h('span', { class: 'ts-act', 'aria-hidden': 'true', text: open ? 'hide steps' : 'show steps' }) : open ? null : h('span', { class: 'ts-busy', 'aria-hidden': 'true' }),
+  ].filter(Boolean));
+  view.trace.hidden = !steps.length && !!m.state;
+  // Sig's ring over the answer, lit by the agents who've reported so far
+  view.head.hidden = !hasBody(m);
+  setSig(view.sigEl, m.state ? moodOf(m) : 'idle', ran);
 }
 const moodOf = (msg) => ((msg.flag && msg.flag !== 'none') || msg.state === 'error' ? 'concerned' : msg.state === 'done' ? 'happy' : 'idle');
 
+// A step as a log line: its number, the agent in its colour, what it did, and a spinner until it's done
 function drawStep(view, s) {
   let el = view.stepEls.get(s.id);
   if (!el) {
-    el = h('li', { class: 'tstep' }, h('span', { class: 'tstep-dot', 'aria-hidden': 'true' }), h('span', { class: 'tstep-text' }));
+    el = h('li', { class: 'tstep' }, h('span', { class: 'ts-n', 'aria-hidden': 'true', text: String(view.stepEls.size + 1).padStart(2, '0') }),
+      h('span', { class: 'ts-dot', 'aria-hidden': 'true' }), h('span', { class: 'ts-text' }), h('span', { class: 'ts-st', 'aria-hidden': 'true' }));
     view.stepEls.set(s.id, el);
     view.steps.append(el);
   }
   const flagged = (s.flag && s.flag !== 'none') || s.fixed;
-  el.className = `tstep ${s.status}${flagged ? ' flag' : ''}`;
-  const text = el.lastChild;
+  el.className = `tstep ${s.status || 'done'}${flagged ? ' flag' : ''}`;
+  el.dataset.agent = agentOf(s.agent);
+  const text = el.querySelector('.ts-text');
   text.replaceChildren(h('span', { class: 'tstep-who', text: AGENT_NAME[s.agent] || s.agent }), h('span', { class: 'tstep-what', text: s.title || '' }));
   if (s.chips?.length) {
     text.append(h('span', { class: 'tstep-chips' }, s.chips.slice(0, 8).map((c) => (isLib(c.id) ? h('a', { href: `/library/${c.id}/`, text: c.name }) : h('span', { text: c.name })))));
@@ -296,6 +420,8 @@ function drawParts(msg) {
   let hasText = false;
   let fold = null;
   const folded = [];
+  // The answer's first words are its bottom line
+  const first = parts.findIndex((p) => p.t === 'text' && p.s.trim());
   parts.forEach((p, i) => {
     if (p.t === 'text') {
       hasText = hasText || !!p.s.trim();
@@ -310,9 +436,10 @@ function drawParts(msg) {
       else if (m) { after = before.slice(m.index + m[0].length); before = before.slice(0, m.index); }
       if (before.trim()) {
         const cls = `prose${live && !m ? ' streaming' : ''}`;
-        want.push(keep(`text ${i}`, `${cls}|${before}`, () => {
+        const ctx = { lead: i === first, live: live && !m };
+        want.push(keep(`text ${i}`, `${cls}|${ctx.lead}|${before}`, () => {
           const el = h('div', { class: cls });
-          el.append(...prose(before));
+          el.append(...prose(before, ctx));
           return el;
         }));
       }
@@ -325,7 +452,17 @@ function drawParts(msg) {
       }
     } else if (p.t === 'card') {
       let el = view.cardEls.get(p);
-      if (!el) { el = cardNode(p.card, msg); view.cardEls.set(p, el); }
+      if (!el) {
+        el = cardNode(p.card, msg);
+        view.cardEls.set(p, el);
+        const who = cardWho(p.card);
+        if (who) {
+          if (el.classList.contains('card')) el.dataset.agent = who[0][0];
+          view.cardTags.set(p, h('p', { class: 'ctag', 'aria-hidden': 'true' }, who[0].map((a, j) => [j ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]), ` · ${who[1]}`));
+        }
+      }
+      const tag = view.cardTags.get(p);
+      if (tag) want.push(tag);
       want.push(el);
     }
   });
@@ -346,6 +483,23 @@ function drawParts(msg) {
   const kids = view.body.childNodes;
   want.forEach((el, i) => { if (kids[i] !== el) view.body.insertBefore(el, kids[i] || null); });
   while (kids.length > want.length) view.body.lastChild.remove();
+  if (view.head.hidden === hasBody(msg)) drawTrace(msg);
+}
+// Who made each card, and what it is; help in a crisis or an emergency stands alone
+function cardWho(card) {
+  switch (card.type) {
+    case 'shortlist': return card.kind === 'yours' ? [['synergy'], 'your stack, checked together'] : [['builder'], 'options to discuss with your doctor'];
+    case 'plan': return [['builder'], 'your plan'];
+    case 'voices': return [['evidence', 'community'], 'the studies and the community'];
+    case 'community': return [['community'], 'what people report'];
+    case 'compare': return [['evidence'], 'side by side'];
+    case 'questions': return [['recommender'], 'for your doctor'];
+    case 'intake': return [['recommender'], 'a few questions first'];
+    case 'audit': return [['synergy'], 'checked together'];
+    case 'warn': return [['safety'], 'when to get help'];
+    case 'inject': return [['safety'], 'the safety basics'];
+    default: return null;
+  }
 }
 const waitingText = (msg) => {
   const last = (msg.steps || []).filter((s) => s.status === 'run').pop();
@@ -356,7 +510,8 @@ function schedule(msg) {
   if (!view || view.raf) return;
   view.raf = requestAnimationFrame(() => {
     view.raf = 0;
-    const stick = nearBottom();
+    const stick = following || nearBottom();
+    following = stick;
     // Advance the writing-out of the newest paragraph
     const p = msg.parts?.[view.revealIdx];
     let more = false;
@@ -371,6 +526,7 @@ function schedule(msg) {
     if (msg.showHelp) {
       msg.showHelp = false;
       msg.helpShown = true;
+      following = false;
       view.body.querySelector('.card.help')?.scrollIntoView({ block: 'start' });
     } else if (stick && !msg.helpShown) toBottom();
   });
@@ -1203,11 +1359,26 @@ async function copy(text, btn) {
 function setBusy(on) {
   sendBtn.classList.toggle('stop', on);
   sendBtn.setAttribute('aria-label', on ? 'Stop' : 'Send');
-  statusEl.textContent = on ? 'The agents are working' : 'Ready';
-  statusEl.classList.toggle('busy', on);
+  if (on) setState('working');
   sigs().forEach((el) => setSig(el, on ? 'think' : 'idle'));
   thread.setAttribute('aria-busy', String(on));
   updateSend();
+}
+// The status bar: ready, the agents working, Sig writing, then how it ended and how long it took
+const stateEl = $('tm-state');
+const STATE_SAID = { ready: 'ready', working: 'working', writing: 'writing', stopped: 'stopped', error: 'couldn’t answer' };
+function setState(st, ms = 0) {
+  const known = Object.hasOwn(STATE_SAID, st);
+  const said = known ? STATE_SAID[st] : `done${ms ? ` · ${(ms / 1000).toFixed(1)} s` : ''}`;
+  if (stateEl) stateEl.dataset.state = known ? st : 'done';
+  if (statusEl.textContent !== said) statusEl.textContent = said;
+}
+// The tab in the title bar: the question Sig is on
+const topicEl = $('tm-topic');
+function setTopic() {
+  if (!topicEl) return;
+  const q = [...chat].reverse().find((m) => m.role === 'user')?.text || '';
+  topicEl.textContent = q ? q.replace(/\s+/g, ' ').trim().slice(0, 120) : 'new session';
 }
 function updateSend() {
   const n = input.value.length;
@@ -1238,11 +1409,13 @@ function ask(text) {
   newBtn.hidden = false;
   const um = { role: 'user', text: t };
   chat.push(um);
+  setTopic();
   thread.append(userNode(t));
   const am = { role: 'assistant', parts: [], steps: [] };
   chat.push(am);
   thread.append(assistantNode(am));
   toBottom();
+  following = true;
   save();
   run(am);
 }
@@ -1251,6 +1424,9 @@ async function run(am) {
   const controller = new AbortController();
   busy = { controller, msg: am };
   setBusy(true);
+  // Beside the chat: the agents at work, unless they're looking at something there themselves
+  if (!tabByHand) setTab('agents');
+  drawTeam(am);
   const t0 = performance.now();
   try {
     const res = await fetch(ENDPOINT, {
@@ -1299,9 +1475,15 @@ async function run(am) {
   busy = null;
   finish(am, true);
   setBusy(false);
+  setState(am.state, am.ms);
   SCREEN?.checking(false);
   screenSync();
-  sigs().forEach((el) => setSig(el, moodOf(am)));
+  // What the answer was about, on the screen, once it's done
+  if (!tabByHand && SCREEN?.subject() && subjectIn(am, chat.indexOf(am))) setTab('screen');
+  tabByHand = false;
+  sigs().forEach((el) => setSig(el, moodOf(am) === 'concerned' ? 'concerned' : 'idle'));
+  drawTeam(teamMsg());
+  fitPlaceholder();
   save();
   if (!coarse) input.focus();
 }
@@ -1323,6 +1505,8 @@ function onEvent(am, ev, d) {
       if (i >= 0) am.steps[i] = { ...am.steps[i], ...d }; else am.steps.push(d);
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
       drawStep(view, am.steps.find((s) => s.id === d.id));
+      drawTrace(am);
+      if (busy?.msg === am) drawTeam(am);
       // The screen says the auditor is checking, and shows what was named as soon as it's read
       if (d.agent === 'synergy' && d.status === 'run') SCREEN?.checking(true);
       if (d.agent === 'community' && d.chips?.length) screenSync();
@@ -1330,6 +1514,7 @@ function onEvent(am, ev, d) {
       break;
     }
     case 'text': {
+      if (busy?.msg === am) setState('writing');
       const last = am.parts[am.parts.length - 1];
       if (last && last.t === 'text') last.s += d.d;
       else {
@@ -1420,39 +1605,35 @@ function finish(am, live) {
     }
   }
   drawParts(am);
-  // Agents that actually ran; the visitor's own clinician isn't one of them, and the community is
-  // people, not an agent
-  const ran = new Set(am.steps.map((s) => (s.agent === 'review' ? 'safety' : s.agent)).filter((a) => a !== 'clinician' && a !== 'community'));
-  const heard = am.steps.some((s) => s.agent === 'community');
+  // The run, folded into one line: its steps, the agents who worked on it (the visitor's own
+  // clinician isn't one of them, and the community is people, not an agent) and how long it took
   view.trace.classList.add('done');
-  view.sum.textContent = am.steps.length
-    ? `${ran.size} agent${ran.size === 1 ? '' : 's'}${heard ? ' and the community' : ''} worked on this${am.ms ? ` · ${(am.ms / 1000).toFixed(1)} s` : ''}`
-    : 'No steps recorded';
-  view.trace.hidden = !am.steps.length;
-  setSig(view.sigEl, moodOf(am));
+  drawTrace(am);
   // The foot: whether the Safety agent cleared it or edited it, and copying the answer
   view.foot.replaceChildren();
   if (am.state === 'done' || am.state === 'stopped') {
     const edited = am.review && am.review.ok === false;
     const r = am.review || {};
     const changes = [r.edited ? `edited ${r.edited} part${r.edited === 1 ? '' : 's'}` : '', r.held ? `held back ${r.held}` : ''].filter(Boolean).join(' and ');
-    const said = am.state === 'stopped' ? 'Stopped before the end; what’s shown was checked by the Safety agent'
-      : edited ? `The Safety agent ${changes || 'edited this'} before you saw it`
-      : am.review ? 'Every part checked by the Safety agent before you saw it' : 'Answered';
+    const said = am.state === 'stopped' ? 'stopped before the end; what’s shown was checked'
+      : edited ? `${changes || 'edited this'} before you saw it`
+      : am.review ? 'every part checked before you saw it' : '';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(textOf(am), btn));
     const sub = SCREEN ? subjectIn(am, chat.indexOf(am)) : null;
     const pointed = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'shortlist' && p.card.kind === 'yours');
     const go = sub && !pointed ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
     go?.addEventListener('click', () => { SCREEN.show(sub); openScreen(); });
-    view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: said })),
+    const checked = am.review || am.state === 'stopped';
+    view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check),
+      checked ? h('b', { text: 'Safety agent' }) : null, checked ? ' ' : null, h('span', { text: checked ? said : 'Answered' })),
       h('span', { class: 'foot-actions' }, go, btn));
     view.foot.hidden = false;
   }
   helpPin();
   if (live && !am.helpShown) {
-    const stick = nearBottom();
-    if (stick) toBottom();
+    if (following || nearBottom()) toBottom();
+    following = false;
   }
 }
 
@@ -1561,6 +1742,12 @@ newBtn.addEventListener('click', () => {
   newBtn.hidden = true;
   SCREEN?.clear();
   closeSheet();
+  tabByHand = false;
+  setTab('agents');
+  drawTeam(null);
+  setState('ready');
+  setTopic();
+  fitPlaceholder();
   input.focus();
 });
 // The screen: beside the chat on wide screens. On phones and narrow windows it's a sheet that
@@ -1585,6 +1772,7 @@ function openSheet() {
 function openScreen() {
   if (!SCREEN || !rail) return;
   if (narrowMq.matches) { openSheet(); return; }
+  setTab('screen');
   rail.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   const head = rail.querySelector('.sc-headline');
   if (!head) return;
@@ -1606,12 +1794,113 @@ function closeSheet() {
   sheetFrom = null;
   back?.focus({ preventScroll: true });
 }
+// Beside the chat on wide screens, two tabs: the agents (the ring of the eleven, and what each is
+// doing or did) and the screen. The agents' tab while they work, the screen once an answer about
+// something is done; a tab picked by hand during an answer stays picked. On narrower screens the
+// screen alone, as the sheet.
+const tabs = { agents: $('tm-t-agents'), screen: $('tm-t-screen') };
+const panels = { agents: $('tm-team'), screen: $('sc-root') };
+let tab = 'agents';
+let tabByHand = false;
+function syncPanels() {
+  const wide = !narrowMq.matches;
+  if (panels.agents) panels.agents.hidden = !wide || tab !== 'agents';
+  if (panels.screen) {
+    panels.screen.hidden = wide && tab !== 'screen';
+    // On a narrow screen the sheet is the screen alone: no tabs to belong to
+    if (wide) panels.screen.setAttribute('role', 'tabpanel'); else panels.screen.removeAttribute('role');
+  }
+  if (rail && !app.classList.contains('sheet-open')) rail.setAttribute('aria-label', wide ? 'Beside the chat: the agents and the screen' : 'The screen: what Sig is talking about');
+}
+function setTab(name, { hand = false, focus = false } = {}) {
+  if (!tabs.agents || !panels[name]) return;
+  tab = name;
+  if (hand) tabByHand = true;
+  for (const [k, b] of Object.entries(tabs)) {
+    const on = k === name;
+    b.setAttribute('aria-selected', String(on));
+    b.tabIndex = on ? 0 : -1;
+    if (on) b.classList.remove('new');
+  }
+  syncPanels();
+  if (focus) tabs[name].focus();
+}
+for (const [name, b] of Object.entries(tabs)) {
+  if (!b) continue;
+  b.addEventListener('click', () => setTab(name, { hand: !!busy }));
+  b.addEventListener('keydown', (e) => {
+    const to = e.key === 'Home' ? 'agents' : e.key === 'End' ? 'screen' : (e.key === 'ArrowLeft' || e.key === 'ArrowRight') ? (tab === 'agents' ? 'screen' : 'agents') : '';
+    if (!to) return;
+    e.preventDefault();
+    setTab(to, { hand: !!busy, focus: true });
+  });
+}
+narrowMq.addEventListener('change', () => {
+  syncPanels();
+  // Sig's ring in the title bar: lit by who reported on a phone, whole beside the agents' tab
+  if (!narrowMq.matches) setSig(document.querySelector('.tm-logo'), busy ? 'think' : 'idle');
+  drawTeam(teamMsg());
+});
+// The agents' tab: the ring lights piece by piece as each one reports, and each one's line says
+// what it's doing, what it did, or (before anyone has asked) what it's for
+const team = {
+  ring: document.querySelector('.tm-bigring'), n: $('tm-n'), k: $('tm-k'), live: $('tm-live'), liveT: $('tm-live-t'), small: $('tm-count-sm'),
+  rows: new Map([...document.querySelectorAll('.tm-who')].map((li) => [li.dataset.agent, li])),
+};
+const JOBS = new Map([...team.rows].map(([k, li]) => [k, li.querySelector('.tm-now')?.textContent || '']));
+// The answer the agents' tab is about: the one being written, or the last one with steps
+function teamMsg() {
+  if (busy) return busy.msg;
+  for (let i = chat.length - 1; i >= 0; i--) if (chat[i].role === 'assistant') return (chat[i].steps || []).length ? chat[i] : null;
+  return null;
+}
+function drawTeam(m) {
+  const steps = m ? (m.steps || []).filter((s) => s.agent !== 'clinician') : [];
+  const state = !m ? 'idle' : m.state ? 'done' : 'run';
+  const last = new Map();
+  const flagged = new Set();
+  for (const s of steps) {
+    const a = agentOf(s.agent);
+    if (!team.rows.has(a)) continue;
+    last.set(a, s);
+    if ((s.flag && s.flag !== 'none') || s.fixed) flagged.add(a);
+  }
+  const running = new Set([...last].filter(([, s]) => s.status === 'run' && state === 'run').map(([a]) => a));
+  if (panels.agents) panels.agents.dataset.state = state;
+  for (const [a, li] of team.rows) {
+    const s = last.get(a);
+    const cls = state === 'idle' ? '' : !s ? (state === 'done' ? 'is-skip' : 'is-wait') : running.has(a) ? 'is-run' : flagged.has(a) ? 'is-done is-flag' : 'is-done';
+    const text = state === 'idle' ? JOBS.get(a) : !s ? (state === 'run' ? 'waiting' : m.state === 'done' ? 'not needed this time' : 'stopped before its turn') : s.title || '';
+    li.className = `tm-who${cls ? ` ${cls}` : ''}`;
+    const now = li.querySelector('.tm-now');
+    if (now && now.textContent !== text) now.textContent = text;
+  }
+  const n = state === 'idle' ? 11 : last.size;
+  if (team.ring) {
+    setSig(team.ring, 'idle', state === 'idle' ? null : [...last.keys()]);
+    for (const p of team.ring.querySelectorAll('.rg')) p.classList.toggle('is-now', running.has(p.dataset.a));
+  }
+  if (team.n) team.n.textContent = String(n);
+  if (team.k) team.k.textContent = state === 'idle' ? 'ready' : state === 'run' ? 'reporting' : 'reported';
+  team.live?.classList.toggle('on', state === 'run');
+  if (team.liveT) team.liveT.textContent = state === 'run' ? 'live' : state === 'done' ? `${n}/11 reported` : 'ready';
+  // On a phone, in the title bar: how many have reported
+  if (team.small) {
+    team.small.classList.toggle('on', state === 'run');
+    team.small.replaceChildren(h('b', { text: String(n) }), state === 'idle' ? '/11 ready' : '/11 agents');
+  }
+  const logo = document.querySelector('.tm-logo');
+  if (logo && narrowMq.matches) setSig(logo, busy ? 'think' : 'idle', state === 'idle' ? null : [...last.keys()]);
+}
 if (SCREEN) {
   SCREEN.mount($('sc-root'));
   SCREEN.peek($('ai-peek'));
   SCREEN.onOpen(openSheet);
   SCREEN.onClose(closeSheet);
-  SCREEN.onAsk((q) => { closeSheet(); ask(q); });
+  // Asked from the screen ("Try it"): the screen stays in front while the agents work
+  SCREEN.onAsk((q) => { closeSheet(); tabByHand = true; ask(q); });
+  // Something new on the screen while another tab is in front: its tab says so
+  SCREEN.onChange((sub, fresh) => { if (sub && fresh && tab !== 'screen') tabs.screen?.classList.add('new'); });
   // Keeping what's on the screen in My Miracle: the same as saving a stack from its card
   const fromScreen = (items, meds) => ({
     v: 1, saved: localDate(),
@@ -1657,6 +1946,18 @@ if (chat.length) {
   save();
 }
 screenSync();
+// The window as it was: the question in the tab, the last answer's agents, and the screen in front
+// when it has something on it
+setTopic();
+drawTeam(teamMsg());
+syncPanels();
+if (SCREEN?.subject()) setTab('screen');
+{
+  const m = teamMsg();
+  const last = chat[chat.length - 1];
+  setState(last?.role === 'assistant' && last.state ? last.state : 'ready', last?.ms || 0);
+  if (m?.flag && m.flag !== 'none') sigs().forEach((el) => setSig(el, 'concerned'));
+}
 refreshStack();
 stackFromLink();
 // The community, live: how many members and first-hand reports Sig speaks for (totals from
@@ -1696,8 +1997,26 @@ if (asked) {
   input.focus({ preventScroll: true });
   input.setSelectionRange(input.value.length, input.value.length);
 }
-// A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller window)
-const fitPlaceholder = () => { input.placeholder = chatEl.clientWidth < 470 ? input.dataset.short : 'Ask about a goal, something you take, or a mix'; };
+// A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller
+// window); after an answer that ends on a question, an invitation to answer it
+let ruler = null;
+const widthOf = (t) => {
+  ruler ||= document.createElement('canvas').getContext('2d');
+  if (!ruler) return t.length * 9;
+  const cs = getComputedStyle(input);
+  ruler.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  return ruler.measureText(t).width;
+};
+function fitPlaceholder() {
+  const last = chat[chat.length - 1];
+  const back = last?.role === 'assistant' && last.state === 'done' && /\?\W*$/.test(textOf(last));
+  const hints = back ? ['Answer Sig, or ask something else', 'Answer Sig, or ask more', 'Answer Sig']
+    : ['Ask about a goal, something you take, or a mix', input.dataset.short, 'Ask about what you take', 'Ask Sig'];
+  // the longest hint that fits on the prompt's one line, after the cursor
+  const room = input.clientWidth;
+  input.placeholder = (room && hints.find((t) => widthOf(`${t}00`) <= room)) || hints[hints.length - 1];
+}
 fitPlaceholder();
 addEventListener('resize', fitPlaceholder);
+document.fonts?.ready.then(fitPlaceholder);
 updateSend();
