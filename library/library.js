@@ -1,8 +1,8 @@
 // The Library's live parts: search and filters on the front page, and on each compound's
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
-import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f08d778478';
+import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=794444e261';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=f68f960487';
 import { wireBodyMap } from '/kit/bodymap.js?v=cd717c0f13';
 import { h, svg, getJson, getSignal, calm, hold } from '/lib/dom.js?v=cef2a56736';
 

@@ -4,8 +4,8 @@
 // public files (totals only: no posts, no names): the Community Signal, what people report for
 // each use and the placebo figures beside them. Then the bars are drawn in once, as the card comes
 // into view. If the files can't load, the page keeps what it was published with.
-import { sealSvg, levelOf } from '/library/signalviz.js?v=d8ffb3d8c3';
-import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=f08d778478';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=794444e261';
+import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=f68f960487';
 import { h, getJson, getSignal, calm } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
