@@ -138,8 +138,6 @@ const V = {
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
 };
 
-// The library's banner photo, in three widths
-const BANNER = { src: '/img/library-1600.webp', srcset: '/img/library-960.webp 960w, /img/library-1600.webp 1600w, /img/library-2560.webp 2560w' };
 
 // The top of every page: the logo, the four places (the design kit's bar, the same one the
 // community shows), and joining the community; on phones, a menu with the same places. home: the
@@ -213,7 +211,7 @@ function page({
 <meta property="og:image" content="${SITE}${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
+<link rel="preload" href="/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
@@ -272,7 +270,6 @@ function indexPage() {
   const counts = Object.fromEntries(FAMILIES.map((f) => [f, catalog.filter((c) => c.family === f).length]));
   const flowData = { sources: [{ name: 'Reddit', n: 0 }, { name: 'YouTube', n: 0 }, { name: 'Podcasts', n: 0 }, { name: 'Forums & reviews', n: 0 }], share: 0, reports: 0, sames: 0, signals: 0, levels: {}, weight: 50 };
   const body = `<section class="lib-hero">
-  <img class="lib-hero-photo" src="${BANNER.src}" srcset="${BANNER.srcset}" sizes="100vw" alt="" width="2560" height="1348" fetchpriority="high">
   <div class="wrap lib-hero-in">
     <div>
       <p class="kick lime live"><i aria-hidden="true"></i>The Library · live community data</p>
@@ -321,7 +318,7 @@ function indexPage() {
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <p class="kick lime">// Two kinds of evidence</p>
+        <p class="kick lime">Two kinds of evidence</p>
         <h2 id="two-h">What studies show. What people report.</h2>
       </div>
       <p class="sec-note">Side by side on every page, never mixed together.</p>
@@ -352,7 +349,6 @@ function indexPage() {
     description: `${catalog.length} peptides, hormones, supplements and medications: what each one is, what the studies show, the risks and the blood tests to watch, checked against primary sources, next to how it went for people who took it.`,
     url: '/library/',
     body,
-    preload: `<link rel="preload" as="image" href="${BANNER.src}" imagesrcset="${BANNER.srcset}" imagesizes="100vw" fetchpriority="high">`,
   });
 }
 
@@ -476,7 +472,7 @@ function bottomLine(c, f) {
         <p class="bl-tags">${evPill(f.evidence.grade)}<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span><span class="bl-status">${e(f.status_us.label)}</span></p>
       </header>
       <div class="bl-uses" hidden>
-        <div class="vs-cols" aria-hidden="true"><span>Use</span><span>What the studies show</span><span class="c-rep">What people report</span><span>Got better on a placebo</span></div>
+        <div class="vs-cols" aria-hidden="true"><span>Taken for</span><span>What the studies show</span><span class="c-rep">What people report</span><span>Got better on a placebo</span></div>
         <div class="vs-rows"></div>
       </div>
       <footer class="vs-foot">
@@ -523,7 +519,7 @@ function entryPage(c) {
       <span class="check${reviewedBy(f) ? ' reviewed' : ''}">Fact-checked ${date(f.checked)}${reviewedBy(f) ? ` · ${reviewWords(f)}` : ''}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
     </div>
     <div class="le-actions">
-      <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
+      <a class="btn bone sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
       <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it against what I take</a>
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
@@ -832,7 +828,7 @@ function methodPage() {
       </tr>`).join('');
   const body = `<div class="doc-head">
     <div class="wrap">
-      <p class="kick">// Method</p>
+      <p class="kick">Method</p>
       <h1>How the numbers are made</h1>
       <p>Updated ${date(baselines.checked)}</p>
     </div>

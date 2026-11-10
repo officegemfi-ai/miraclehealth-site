@@ -25,7 +25,7 @@ export const NEWSLETTER_ORIGIN = new URL(NEWSLETTER_URL).origin;
 export function signupForm(e, { source, id, cls = '', button = 'Get it weekly', label = '' }) {
   return `<form class="news-form ${cls}" action="${NEWSLETTER_URL}" method="post">
     ${label ? `<label class="nf-label" for="${id}">${label}</label>` : `<label class="mh-sr" for="${id}">Your email address</label>`}
-    <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn lime" type="submit">${e(button)}</button></div>
+    <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn bone" type="submit">${e(button)}</button></div>
     <input type="hidden" name="source" value="${e(source)}">
     <span class="nf-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
     <p class="nf-note">Free, once a week. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
@@ -68,7 +68,7 @@ export function buildPages(ctx) {
   const headline = (i) => { const t = i.subject.replace(/^The Signal #\d+:\s*/, ''); return t.charAt(0).toUpperCase() + t.slice(1); };
   const docHead = (kick, title, sub = '') => `<div class="doc-head">
     <div class="wrap">
-      <p class="kick">// ${e(kick)}</p>
+      <p class="kick">${e(kick)}</p>
       <h1>${title}</h1>
       ${sub ? `<p>${sub}</p>` : ''}
     </div>
@@ -281,7 +281,7 @@ export function buildPages(ctx) {
       ];
       const body = `<div class="doc-head cmp-head">
     <div class="wrap">
-      <p class="kick">// Side by side</p>
+      <p class="kick">Side by side</p>
       <h1>${e(a.name)} <span class="cmp-vs">vs</span> ${e(b.name)}</h1>
       <p>From each fact sheet · checked ${date([a.checked, b.checked].sort()[0])}</p>
     </div>

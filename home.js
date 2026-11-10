@@ -135,7 +135,7 @@ if (card) {
 const net = document.querySelector('.net[data-graph]');
 if (net) startNet(net);
 async function startNet(net) {
-  const [mod, data] = await Promise.all([import('/lib/graph.js?v=73cd373abf').catch(() => null), getJson(net.dataset.graph)]);
+  const [mod, data] = await Promise.all([import('/lib/graph.js?v=611d29108d').catch(() => null), getJson(net.dataset.graph)]);
   if (!mod || !data || !data.counts) return;
   const css = () => {
     const cs = getComputedStyle(net);
@@ -196,7 +196,7 @@ async function startNet(net) {
     g = mod.startGraph(net, data, {
       onTrace: traced,
       ...css(), layout: css, avoid: over, poster: net.querySelector('.net-poster'), ask,
-      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#0E1B36', '#0A1328', '#070A14'] },
+      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#111B19', '#0E1615', '#0C1312'] },
       links: { sheet: (id) => `/library/${id}/`, ask: (s) => askLink(question(s), { site: '' }) },
     });
   } catch { return; }
