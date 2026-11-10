@@ -5,12 +5,12 @@ lives at https://community.miraclehealth.us (the `miracle-health-community` repo
 
 Static pages with no tracking and no cookies, served by GitHub Pages from the `main`
 branch: the front page (no scripts), the Library at /library, Ask Sig, the chat with Sig (Miracle Health's AI) that
-speaks for the studies and the whole community, at /ai, and My Miracle, what a member keeps on their device, at /my. The look: a full-width photo (shown exactly as supplied, with
-the headline on its sky) under a dark see-through header,
-paper-white sections between deep green-black bands, lime accents, frosted "glass"
-cards, Inter headlines, Plus Jakarta Sans text, IBM Plex Mono labels, and Sig, the
-Community Signal in person. The colors stay the same whatever the visitor's device is
-set to. On phones the links sit behind a Menu button, which works without scripts.
+speaks for the studies and the whole community, at /ai, and My Miracle, what a member keeps on their device, at /my. The look is Plate: deep ink pages, bone type, Newsreader
+headlines with the turn of the sentence in italic, Plus Jakarta Sans text, IBM Plex Mono labels,
+plates (cards and figures) with hairline frames, and lime kept for the Community Signal and the
+one main action on a page. No photographs: the Library's graph is the picture. The colors stay the
+same whatever the visitor's device is set to. On phones the links sit behind a Menu button, which
+works without scripts.
 
 ## Files
 
@@ -32,7 +32,7 @@ set to. On phones the links sit behind a Menu button, which works without script
 | `CNAME` | Tells GitHub Pages this site is miraclehealth.us |
 | `.nojekyll` | Serves the files as they are, with no Jekyll build |
 | `sitemap.xml`, `robots.txt` | For search engines (the sitemap is written by the library build) |
-| `fonts/` | The three typefaces, under the SIL Open Font License (see `fonts/README.md`) |
+| `fonts/` | The typefaces, under the SIL Open Font License (see `fonts/README.md`) |
 
 ## The graph at the top of the front page
 

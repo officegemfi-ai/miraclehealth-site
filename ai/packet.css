@@ -2,6 +2,14 @@
    clinician opens a shared link, and on paper. A plain clinical document: white page, ink type,
    one green rule for the note to the clinician, and a dashed box the clinician fills in. */
 
+/* The packet is a clinical document on white paper, whatever the site around it looks like:
+   inside it, and inside its dialog, the colours and the headline face are the plain ones. */
+.pk-dialog,.packet-root{--ink:#121E1D;--paper:#FCFCFC;--white:#FFFFFF;--text:#121E1D;--text-2:#3A4644;--muted:#6A6F6E;
+  --line:rgba(18,30,29,.12);--line-2:rgba(18,30,29,.32);--bone:#121E1D;--on-bone:#FCFCFC;--card:#FFFFFF;
+  --head:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+.packet-root{color:var(--text)}
+body.packet-page main{background:#EEF1EB}
+
 /* ---------------------------------------------------------------- the dialog */
 .pk-dialog{width:min(820px,calc(100vw - 32px));max-width:none;max-height:calc(100svh - 32px);padding:0;border:0;border-radius:18px;background:#EEF1EB;color:var(--text);box-shadow:0 30px 80px rgba(0,0,0,.45);overflow:hidden;--focus:var(--ink)}
 .pk-dialog[open]{display:flex;flex-direction:column}

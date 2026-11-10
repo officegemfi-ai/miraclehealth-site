@@ -20,7 +20,7 @@
   --lime:#D8FF3D;--lime-2:#C6F02A;
   --ink:#0A100F;--darker:#0A100F;--card:#0E1615;--band:#0C1413;
   --paper:#0A100F;--white:#0E1615;
-  --bone:#F0ECE0;--on-lime:#121E1D;--amber:#E8B75A;
+  --bone:#F0ECE0;--on-bone:#121E1D;--on-lime:#121E1D;--amber:#E8B75A;
   --text:#F0ECE0;--text-2:rgba(240,236,224,.74);--muted:rgba(240,236,224,.58);
   --line:rgba(240,236,224,.16);--line-2:rgba(240,236,224,.32);--line-ink:rgba(240,236,224,.16);
   --on-ink:#F0ECE0;--on-ink-2:rgba(240,236,224,.74);--on-ink-3:rgba(240,236,224,.56);
@@ -154,8 +154,8 @@ ul,ol{list-style:none;margin:0;padding:0}
 .lede{margin-top:22px;max-width:50ch;font-size:18px;line-height:1.6;color:var(--on-ink-2)}
 .hero .lede{max-width:min(470px,38vw);font-size:17px;color:var(--on-ink-2)}
 .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn.line{border-color:rgba(18,30,29,.5);color:var(--ink)}
-.btn.line:hover{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.btn.line{border-color:rgba(18,30,29,.5);color:var(--text)}
+.btn.line:hover{background:var(--ink);border-color:var(--bone);color:var(--on-ink)}
 .hero .btn.line{border-color:rgba(255,255,255,.3);color:var(--on-ink)}
 .hero .btn.line:hover{background:transparent;border-color:var(--lime);color:var(--lime)}
 /* The hero's search goes straight to the Library (it reads ?q=), with a few compounds to jump to;
@@ -163,8 +163,8 @@ ul,ol{list-style:none;margin:0;padding:0}
 .hero h1{max-width:11.5em}
 .hero-search{display:flex;align-items:center;gap:8px;width:min(540px,100%);margin-top:30px;padding:6px;border-radius:40px;background:var(--white);box-shadow:0 24px 48px -28px rgba(0,0,0,.7)}
 .hero-search:focus-within{outline:2px solid var(--lime);outline-offset:3px}
-.hero-search input{flex:1;min-width:0;height:48px;padding:0 8px 0 18px;border:0;border-radius:40px;background:transparent;font:500 16px/1 var(--body);color:var(--ink);-webkit-appearance:none;appearance:none}
-.hero-search input::placeholder{color:#737977;opacity:1}
+.hero-search input{flex:1;min-width:0;height:48px;padding:0 8px 0 18px;border:0;border-radius:40px;background:transparent;font:500 16px/1 var(--body);color:var(--text);-webkit-appearance:none;appearance:none}
+.hero-search input::placeholder{color:var(--muted);opacity:1}
 .hero-search input:focus{outline:none}
 .hero-search .btn{min-height:48px;padding:0 26px}
 .hero-try{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:560px;margin-top:16px}
@@ -191,7 +191,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .hc-track{position:relative;height:8px;border-radius:8px;background:var(--scale);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2);container-type:inline-size}
 .hc-track i{position:absolute;top:0;bottom:0;width:1px;background:rgba(12,20,19,.38)}
 .hc-track .t25{left:25%}.hc-track .t50{left:50%}.hc-track .t75{left:75%}
-.hc-knob{position:absolute;top:50%;left:72%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#FCFCFC;box-shadow:0 0 0 3px var(--lime),0 0 16px 3px rgba(216,255,61,.5);animation:hc-drift 8s ease-in-out infinite}
+.hc-knob{position:absolute;top:50%;left:72%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--white);box-shadow:0 0 0 3px var(--lime),0 0 16px 3px rgba(216,255,61,.5);animation:hc-drift 8s ease-in-out infinite}
 /* Drifts between 69% and 76% of the track by transform (cqw is a hundredth of the track's width),
    not by moving its left edge, which laid out the page every frame */
 @keyframes hc-drift{0%,100%{transform:translateX(-3cqw)}30%{transform:translateX(4cqw)}55%{transform:translateX(-1cqw)}78%{transform:translateX(2cqw)}}
@@ -314,7 +314,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .rules li{display:flex;flex-direction:column;gap:12px;min-height:220px;padding:28px;border-radius:14px;border:1px solid var(--line);background:var(--white)}
 .rules h3{position:relative;padding-top:58px;font-size:21px;line-height:1.2;letter-spacing:-.02em}
 .rules h3::before,.rules h3::after{content:'';position:absolute;box-sizing:border-box}
-.rules h3::before{top:0;left:0;width:34px;height:34px;border-radius:50%;border:2.5px solid var(--ink);background:var(--lime)}
+.rules h3::before{top:0;left:0;width:34px;height:34px;border-radius:50%;border:2.5px solid var(--bone);background:var(--lime)}
 .rules h3::after{top:16px;left:5px;width:24px;height:2.5px;border-radius:2px;background:var(--ink);transform:rotate(45deg)}
 .rules h3+p{font-size:15px;color:var(--text-2)}
 .rules a,.rules-members a{color:var(--ink);font-weight:600;text-decoration-color:var(--lime-2);text-decoration-thickness:2px}
@@ -332,9 +332,9 @@ ul,ol{list-style:none;margin:0;padding:0}
 .faq-list details{border-bottom:1px solid var(--line)}
 .faq-list summary{position:relative;display:block;padding:26px 52px 26px 0;font:500 20px/1.3 var(--head);letter-spacing:-.015em;cursor:pointer;list-style:none}
 .faq-list summary::-webkit-details-marker{display:none}
-.faq-list summary::after{content:'';position:absolute;top:50%;right:10px;width:10px;height:10px;margin-top:-8px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s,margin-top .2s}
+.faq-list summary::after{content:'';position:absolute;top:50%;right:10px;width:10px;height:10px;margin-top:-8px;border-right:2px solid var(--bone);border-bottom:2px solid var(--bone);transform:rotate(45deg);transition:transform .2s,margin-top .2s}
 .faq-list details[open] summary::after{margin-top:-3px;transform:rotate(-135deg)}
-.faq-list summary:hover{color:#000}
+.faq-list summary:hover{color:#FFFFFF}
 .faq-list details p{max-width:62ch;padding:0 52px 28px 0;font-size:16.5px;line-height:1.65;color:var(--text-2)}
 
 /* Join: the darkest band over a muted gym photo, a lime glow from the top, frosted cards.
@@ -535,7 +535,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .method .mtable{width:100%;margin-top:18px;border-collapse:collapse;font-size:14.5px;line-height:1.5;color:var(--text-2)}
 .method .mtable-wrap .mtable{margin-top:0;min-width:720px}
 .method .mtable th,.method .mtable td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-.method .mtable thead th{font:600 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:#F4F6F1}
+.method .mtable thead th{font:600 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(240,236,224,.05)}
 .method .mtable tbody th{font-weight:600;color:var(--text)}
 .method .mtable tr:last-child>*{border-bottom:0}
 .method .mtable .num{font:600 15px/1.3 var(--mono);color:var(--text);white-space:nowrap}
@@ -543,9 +543,9 @@ ul,ol{list-style:none;margin:0;padding:0}
 .method .cell-sub{display:block;margin-top:4px;font-size:12.5px;color:var(--muted)}
 .method .cell-note{font-size:14px}
 .method .conf{display:inline-block;padding:2px 8px;border-radius:20px;font:600 10.5px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase}
-.method .conf-good{background:#ECFBC2;color:#3F5200}
-.method .conf-fair{background:#FBF0CC;color:#6E5300}
-.method .conf-weak{background:#F9DEDA;color:#8A2F28}
+.method .conf-good{background:rgba(216,255,61,.12);color:#C6F02A}
+.method .conf-fair{background:rgba(232,183,90,.14);color:#F2C46B}
+.method .conf-weak{background:rgba(224,104,92,.14);color:#FFB4A9}
 
 /* ================================================================ Plate
    The pieces above, redrawn: rectangular buttons in the text face, plates with hairline frames
@@ -562,7 +562,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:400}
 .btn{min-height:48px;padding:0 22px;border-radius:8px;font:600 14.5px/1 var(--body);letter-spacing:0;text-transform:none}
 .btn.sm{min-height:44px;padding:0 18px;font-size:14px}
 .btn.lime{color:var(--on-lime)}
-.btn.bone,.btn.ink{background:var(--bone);border-color:var(--bone);color:var(--on-lime)}
+.btn.bone,.btn.ink{background:var(--bone);border-color:var(--bone);color:var(--on-bone)}
 .btn.bone:hover,.btn.ink:hover{background:#FFFFFF;border-color:#FFFFFF}
 .btn.line,.hero .btn.line,.btn.glass{background:transparent;border-color:var(--line-2);color:var(--text);-webkit-backdrop-filter:none;backdrop-filter:none}
 .btn.line:hover,.hero .btn.line:hover,.btn.glass:hover{background:transparent;border-color:var(--bone);color:#FFFFFF}
