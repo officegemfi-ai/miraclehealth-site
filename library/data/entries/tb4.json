@@ -121,7 +121,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+      "General health check (complete blood count and metabolic panel) if a doctor is involved"
     ],
     "during": [],
     "why": "Thymosin beta-4 has been studied in people only as eye drops and skin gel in trials, so no evidence-based monitoring exists for other uses."

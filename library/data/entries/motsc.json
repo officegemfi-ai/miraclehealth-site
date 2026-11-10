@@ -89,7 +89,7 @@
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
     "Under 18 (no safety data)",
-    "Diabetes or taking glucose-lowering medicine, unless a clinician is involved (it lowered blood sugar in mice)"
+    "Diabetes or taking glucose-lowering medicine, unless a doctor is involved (it lowered blood sugar in mice)"
   ],
   "interactions": [
     "Diabetes medicines: theoretical only, because MOTS-c lowered blood glucose in obese mice; not studied in people"

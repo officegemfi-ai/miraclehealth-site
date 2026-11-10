@@ -33,7 +33,7 @@
   "interactions": [ "None well documented" ],
   "labs": {
     "before": [ "LH and FSH", "Total testosterone (men) or estradiol (women)" ],
-    "during": [ "LH and testosterone or estradiol, if a clinician is supervising use" ],
+    "during": [ "LH and testosterone or estradiol, if a doctor is supervising use" ],
     "why": "No evidence-based monitoring exists for kisspeptin-10; these are the hormones it acts on in studies."
   },
   "studies": [

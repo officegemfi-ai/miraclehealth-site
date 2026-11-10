@@ -78,12 +78,12 @@
     }
   ],
   "avoid_if": [
-    "Taking warfarin (clinician first)",
-    "Taking insulin (clinician first)",
-    "Having cancer treatment (clinician first)"
+    "Taking warfarin (doctor first)",
+    "Taking insulin (doctor first)",
+    "Having cancer treatment (doctor first)"
   ],
   "interactions": [
-    "Warfarin (blood thinner): CoQ10 may interact with it, so warfarin users need a clinician's input first",
+    "Warfarin (blood thinner): CoQ10 may interact with it, so warfarin users need a doctor's input first",
     "Insulin: CoQ10 may interact with it",
     "Some cancer treatments: CoQ10 may not be compatible"
   ],

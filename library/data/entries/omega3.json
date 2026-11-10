@@ -54,7 +54,7 @@
       ]
     },
     {
-      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent; any change to prescribed drugs is for the treating clinician",
+      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent; any change to prescribed drugs is for the treating doctor",
       "evidence": "moderate",
       "sources": [
         1
@@ -108,9 +108,9 @@
     }
   ],
   "avoid_if": [
-    "Taking blood thinners or antiplatelet drugs such as warfarin, aspirin or clopidogrel (clinician first)",
-    "History of atrial fibrillation or atrial flutter (clinician first; don't stop a prescribed omega-3 on your own)",
-    "Fish or shellfish allergy (clinician first)"
+    "Taking blood thinners or antiplatelet drugs such as warfarin, aspirin or clopidogrel (doctor first)",
+    "History of atrial fibrillation or atrial flutter (doctor first; don't stop a prescribed omega-3 on your own)",
+    "Fish or shellfish allergy (doctor first)"
   ],
   "interactions": [
     "Warfarin and other anticoagulants: fish oil might prolong clotting time, and NIH advises periodic INR checks",

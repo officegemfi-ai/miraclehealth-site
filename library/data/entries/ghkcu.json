@@ -89,14 +89,14 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
-    "Wilson disease or another copper-handling disorder (it carries copper; ask a clinician first)"
+    "Wilson disease or another copper-handling disorder (it carries copper; ask a doctor first)"
   ],
   "interactions": [
     "None well documented"
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for GHK-Cu by any route."

@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "In men with ED and testosterone deficiency confirmed by a clinician, the AUA says treating the deficiency may improve results (low-certainty evidence)",
+      "claim": "In men with ED and testosterone deficiency confirmed by a doctor, the AUA says treating the deficiency may improve results (low-certainty evidence)",
       "evidence": "limited",
       "sources": [
         2
@@ -100,7 +100,7 @@
   "avoid_if": [
     "Taking nitrates or other nitric oxide donors in any form, including the street drugs called \"poppers\" (contraindicated)",
     "Taking riociguat or another guanylate cyclase stimulator (contraindicated)",
-    "Recent heart attack, stroke or life-threatening arrhythmia, or other serious heart disease, unless a clinician confirms sexual activity is safe",
+    "Recent heart attack, stroke or life-threatening arrhythmia, or other serious heart disease, unless a doctor confirms sexual activity is safe",
     "Already taking Revatio or another PDE5 inhibitor",
     "Past allergic reaction to sildenafil"
   ],

@@ -83,7 +83,7 @@
   "avoid_if": [
     "Active cancer",
     "Pregnant or breastfeeding",
-    "Diabetes or prediabetes (clinician first: drugs that raise growth hormone can raise blood sugar)",
+    "Diabetes or prediabetes (doctor first: drugs that raise growth hormone can raise blood sugar)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [

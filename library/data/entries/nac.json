@@ -96,9 +96,9 @@
   ],
   "avoid_if": [
     "Possible acetaminophen (Tylenol) overdose: get emergency care rather than self-treating",
-    "Asthma (clinician first)",
-    "Taking nitroglycerin or another nitrate for the heart (clinician first)",
-    "Pregnant or breastfeeding (clinician first; not well studied in pregnancy)"
+    "Asthma (doctor first)",
+    "Taking nitroglycerin or another nitrate for the heart (doctor first)",
+    "Pregnant or breastfeeding (doctor first; not well studied in pregnancy)"
   ],
   "interactions": [
     "Nitroglycerin: NAC can strengthen its blood-pressure-lowering effect; symptomatic low blood pressure was more common with the combination in a hospital trial",

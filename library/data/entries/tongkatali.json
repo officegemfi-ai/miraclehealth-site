@@ -95,8 +95,8 @@
   "avoid_if": [
     "Pregnant or breastfeeding",
     "Prostate cancer",
-    "Liver disease (clinician first)",
-    "Taking propranolol (clinician first)"
+    "Liver disease (doctor first)",
+    "Taking propranolol (doctor first)"
   ],
   "interactions": [
     "Propranolol (a beta-blocker): tongkat ali may lower its blood levels"

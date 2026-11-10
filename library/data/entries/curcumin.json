@@ -103,9 +103,9 @@
   "avoid_if": [
     "Pregnant or breastfeeding",
     "Gallstones or a blocked bile duct",
-    "Liver disease or past liver injury from a supplement (clinician first)",
-    "Bleeding disorder, upcoming surgery, or taking a blood thinner (clinician first)",
-    "Taking other prescription medicines (clinician first)"
+    "Liver disease or past liver injury from a supplement (doctor first)",
+    "Bleeding disorder, upcoming surgery, or taking a blood thinner (doctor first)",
+    "Taking other prescription medicines (doctor first)"
   ],
   "interactions": [
     "Blood thinners, antiplatelet drugs and NSAIDs (such as warfarin, apixaban, aspirin or ibuprofen): possible added bleeding risk",
@@ -115,7 +115,7 @@
   "labs": {
     "before": [],
     "during": [],
-    "why": "No routine tests are needed, but tiredness, dark urine or yellow skin or eyes should prompt stopping it and calling a clinician, who may check liver tests."
+    "why": "No routine tests are needed, but tiredness, dark urine or yellow skin or eyes should prompt stopping it and calling a doctor, who may check liver tests."
   },
   "studies": [
     {

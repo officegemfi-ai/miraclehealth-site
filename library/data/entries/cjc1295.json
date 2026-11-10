@@ -100,7 +100,7 @@
     "Active cancer or a history of pituitary tumors",
     "Heart disease or heart rhythm problems",
     "Pregnant or breastfeeding (no full reproductive studies)",
-    "Diabetes or prediabetes (clinician first)",
+    "Diabetes or prediabetes (doctor first)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [
@@ -108,7 +108,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician",
+      "General health check with a doctor",
       "IGF-1",
       "Fasting glucose or HbA1c"
     ],

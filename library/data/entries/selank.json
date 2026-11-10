@@ -74,15 +74,15 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
-    "Taking benzodiazepines or other sedatives, unless a clinician advises (it is thought to act on the same GABA system)",
-    "Autoimmune disease or a weakened immune system, unless a clinician advises (it may affect immune function)"
+    "Taking benzodiazepines or other sedatives, unless a doctor advises (it is thought to act on the same GABA system)",
+    "Autoimmune disease or a weakened immune system, unless a doctor advises (it may affect immune function)"
   ],
   "interactions": [
-    "Benzodiazepines and other sedatives: it is thought to act on the same GABA system, so check with a clinician"
+    "Benzodiazepines and other sedatives: it is thought to act on the same GABA system, so check with a doctor"
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for selank."

@@ -88,7 +88,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (not studied in people)",
-    "Current or past cancer, unless a clinician advises otherwise (linked to blood vessel growth in lab work; no cancer studies)",
+    "Current or past cancer, unless a doctor advises otherwise (linked to blood vessel growth in lab work; no cancer studies)",
     "Athletes subject to anti-doping rules (TB-500 is banned by WADA)"
   ],
   "interactions": [
@@ -96,7 +96,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+      "General health check (complete blood count and metabolic panel) if a doctor is involved"
     ],
     "during": [],
     "why": "TB-500 has not been studied in people, so no evidence-based monitoring exists."

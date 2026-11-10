@@ -30,7 +30,7 @@
   ],
   "avoid_if": [
     "Critical illness (deaths were reported in critically ill study subjects)",
-    "Diabetes or insulin use (clinician first: higher insulin needs reported)",
+    "Diabetes or insulin use (doctor first: higher insulin needs reported)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
@@ -38,7 +38,7 @@
     "Insulin and other diabetes medicines: FDA has reports of increased insulin requirements in people given GHRP-2"
   ],
   "labs": {
-    "before": [ "General health check with a clinician", "Fasting glucose or HbA1c", "IGF-1" ],
+    "before": [ "General health check with a doctor", "Fasting glucose or HbA1c", "IGF-1" ],
     "during": [ "Fasting glucose or HbA1c", "IGF-1" ],
     "why": "No evidence-based monitoring exists for GHRP-2; a review of growth hormone secretagogues advises tracking IGF-1, blood sugar and HbA1c, and FDA has reports of rising insulin needs."
   },

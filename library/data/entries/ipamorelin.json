@@ -27,12 +27,12 @@
   "avoid_if": [
     "Pregnant or breastfeeding (no reproductive studies)",
     "Active cancer",
-    "Diabetes or prediabetes (clinician first: higher blood sugar was seen in a trial)",
+    "Diabetes or prediabetes (doctor first: higher blood sugar was seen in a trial)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [ "None well documented" ],
   "labs": {
-    "before": [ "General health check with a clinician", "IGF-1", "Fasting glucose or HbA1c" ],
+    "before": [ "General health check with a doctor", "IGF-1", "Fasting glucose or HbA1c" ],
     "during": [ "IGF-1", "Fasting glucose or HbA1c" ],
     "why": "No evidence-based monitoring exists for ipamorelin; a review of growth hormone secretagogues advises tracking IGF-1 and blood sugar, and high blood sugar was seen in the surgery trial."
   },

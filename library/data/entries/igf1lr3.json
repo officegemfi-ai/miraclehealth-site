@@ -87,7 +87,7 @@
   ],
   "avoid_if": [
     "Current or past cancer",
-    "Diabetes or insulin use (clinician first)",
+    "Diabetes or insulin use (doctor first)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
@@ -96,7 +96,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for this research chemical, because it has not been studied in people."

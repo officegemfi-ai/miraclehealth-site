@@ -89,7 +89,7 @@
     }
   ],
   "avoid_if": [
-    "Autoimmune disease, an organ transplant, or taking immune-suppressing medicines, unless a clinician is involved",
+    "Autoimmune disease, an organ transplant, or taking immune-suppressing medicines, unless a doctor is involved",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
@@ -102,7 +102,7 @@
       "Complete blood count with a white-cell breakdown"
     ],
     "during": [],
-    "why": "No evidence-based monitoring exists for Crystagen; the developers judged its effects with immune blood tests, which a clinician could repeat if there is a reason to."
+    "why": "No evidence-based monitoring exists for Crystagen; the developers judged its effects with immune blood tests, which a doctor could repeat if there is a reason to."
   },
   "studies": [
     {

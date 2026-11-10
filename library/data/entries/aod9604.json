@@ -34,7 +34,7 @@
     "None well documented"
   ],
   "labs": {
-    "before": [ "General health check with a clinician" ],
+    "before": [ "General health check with a doctor" ],
     "during": [],
     "why": "No evidence-based monitoring exists for AOD-9604; human trials found no change in IGF-1 or glucose tolerance."
   },

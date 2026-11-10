@@ -95,9 +95,9 @@
   "avoid_if": [
     "Pregnant or breastfeeding",
     "Liver disease or past liver injury from a supplement",
-    "Thyroid disease or taking thyroid hormone (clinician first)",
+    "Thyroid disease or taking thyroid hormone (doctor first)",
     "Hormone-sensitive prostate cancer",
-    "Taking sedatives, immunosuppressants, or diabetes or blood pressure medicines (clinician first)"
+    "Taking sedatives, immunosuppressants, or diabetes or blood pressure medicines (doctor first)"
   ],
   "interactions": [
     "Thyroid hormone medicines: it might interact with them, given its effects on thyroid levels",

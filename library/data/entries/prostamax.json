@@ -75,7 +75,7 @@
     }
   ],
   "avoid_if": [
-    "Prostate cancer, or a raised PSA that a clinician has not yet assessed",
+    "Prostate cancer, or a raised PSA that a doctor has not yet assessed",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
@@ -84,7 +84,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for Prostamax; urinary or prostate symptoms deserve a standard medical evaluation in their own right."

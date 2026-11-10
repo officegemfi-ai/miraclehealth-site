@@ -96,7 +96,7 @@
   "avoid_if": [
     "Heart failure or other heart disease (heart-failure safety signal in older adults)",
     "Diabetes or prediabetes (it raises fasting glucose and lowers insulin sensitivity)",
-    "Current or past cancer, unless a clinician advises otherwise (it raises IGF-1, a growth signal)",
+    "Current or past cancer, unless a doctor advises otherwise (it raises IGF-1, a growth signal)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA)"
   ],
@@ -105,7 +105,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician, including fasting glucose"
+      "General health check with a doctor, including fasting glucose"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for MK-677; trials found raised IGF-1, higher fasting glucose and a heart-failure signal."

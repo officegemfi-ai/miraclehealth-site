@@ -90,7 +90,7 @@
   "avoid_if": [
     "Active cancer or a history of pituitary tumors",
     "Pregnant or breastfeeding (no safety data)",
-    "Diabetes or prediabetes (clinician first)",
+    "Diabetes or prediabetes (doctor first)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [
@@ -98,7 +98,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician",
+      "General health check with a doctor",
       "IGF-1",
       "Fasting glucose or HbA1c"
     ],

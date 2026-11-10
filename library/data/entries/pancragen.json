@@ -97,8 +97,8 @@
     }
   ],
   "avoid_if": [
-    "Diabetes treated with insulin or other glucose-lowering medicines, unless your clinician is involved",
-    "Pancreatitis or other pancreas disease, unless a clinician is involved",
+    "Diabetes treated with insulin or other glucose-lowering medicines, unless your doctor is involved",
+    "Pancreatitis or other pancreas disease, unless a doctor is involved",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],

@@ -90,7 +90,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+      "General health check (complete blood count and metabolic panel) if a doctor is involved"
     ],
     "during": [],
     "why": "SLU-PP-332 has not been studied in people, so no evidence-based monitoring exists."

@@ -99,8 +99,8 @@
   "avoid_if": [
     "Pregnant or planning pregnancy (animal data suggest harm, and fetal growth restriction and miscarriage have been reported)",
     "Allergy to modafinil or armodafinil",
-    "History of left ventricular hypertrophy or other heart disease (needs a clinician first)",
-    "History of psychosis, depression or mania (needs a clinician first)",
+    "History of left ventricular hypertrophy or other heart disease (needs a doctor first)",
+    "History of psychosis, depression or mania (needs a doctor first)",
     "Athletes in tested sports (WADA bans modafinil in competition)"
   ],
   "interactions": [

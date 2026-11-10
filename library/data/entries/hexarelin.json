@@ -81,7 +81,7 @@
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
     "Active cancer (no cancer safety data)",
-    "Diabetes or prediabetes (clinician first: this drug class can raise blood sugar)",
+    "Diabetes or prediabetes (doctor first: this drug class can raise blood sugar)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [
@@ -89,7 +89,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician",
+      "General health check with a doctor",
       "Fasting glucose or HbA1c",
       "IGF-1"
     ],

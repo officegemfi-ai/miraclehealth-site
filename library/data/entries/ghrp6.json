@@ -27,14 +27,14 @@
     { "risk": "Black-market supply: a review reports ghrelin mimetics are sold on the black market, so identity and purity are uncertain", "how_common": "unknown", "sources": [8] }
   ],
   "avoid_if": [
-    "Diabetes or prediabetes (clinician first: may reduce insulin sensitivity)",
+    "Diabetes or prediabetes (doctor first: may reduce insulin sensitivity)",
     "Active cancer (no cancer safety data)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [ "None well documented" ],
   "labs": {
-    "before": [ "General health check with a clinician", "Fasting glucose or HbA1c", "IGF-1" ],
+    "before": [ "General health check with a doctor", "Fasting glucose or HbA1c", "IGF-1" ],
     "during": [ "Fasting glucose or HbA1c", "IGF-1" ],
     "why": "No evidence-based monitoring exists for GHRP-6; a review of growth hormone secretagogues advises tracking IGF-1 and blood sugar, and FDA flags effects on blood sugar and cortisol."
   },

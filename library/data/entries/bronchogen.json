@@ -24,13 +24,13 @@
     { "risk": "No FDA-approved or pharmacy-compounded version exists, so the identity and purity of products are unverified", "how_common": "unknown", "sources": [1, 3] }
   ],
   "avoid_if": [
-    "Asthma, COPD or other lung disease: do not replace prescribed treatment, and talk to a clinician first",
+    "Asthma, COPD or other lung disease: do not replace prescribed treatment, and talk to a doctor first",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
   "interactions": [ "None well documented" ],
   "labs": {
-    "before": [ "General health check with a clinician" ],
+    "before": [ "General health check with a doctor" ],
     "during": [],
     "why": "No evidence-based monitoring exists for Bronchogen because it has not been studied in people."
   },

@@ -100,8 +100,8 @@
   ],
   "avoid_if": [
     "Anyone considering zinc nasal gels, swabs or sprays",
-    "Taking penicillamine, whose absorption and action zinc can reduce (clinician first)",
-    "Planning long-term use above NIH's upper limit, which applies to people not under medical treatment with zinc (clinician first)"
+    "Taking penicillamine, whose absorption and action zinc can reduce (doctor first)",
+    "Planning long-term use above NIH's upper limit, which applies to people not under medical treatment with zinc (doctor first)"
   ],
   "interactions": [
     "Quinolone antibiotics such as ciprofloxacin (Cipro) and tetracycline antibiotics: zinc can reduce absorption of both",
