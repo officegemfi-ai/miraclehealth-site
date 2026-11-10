@@ -994,7 +994,7 @@ front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img"
 // Its one script, by its version
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
 // Its Sigs are the kit's, drawn on the dark hero and the "Sig reads it" step
-const SIGS = [[50, 'idle', 'hsig1'], [104, 'watching', 'hsig2']];
+const SIGS = [[50, 'idle', 'hsig1'], [36, 'watching', 'hsig2']];
 let sigN = 0;
 front = front.replace(/<svg class="sig[ a-z]*"[\s\S]*?<\/svg>/g, (m) => {
   const spec = SIGS[sigN++];
