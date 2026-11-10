@@ -9,7 +9,7 @@
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
-import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=3153dc9b83';
+import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=d966f02403';
 import { h } from '/lib/dom.js?v=cef2a56736';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
@@ -494,11 +494,11 @@ const C = {
   line: 'rgba(240,236,224,.16)', bone: '#F0ECE0', lime: '#D8FF3D', amber: '#E8B75A',
 };
 const F = {
-  brand: '500 31px Newsreader, Georgia, serif', label: '500 19px "IBM Plex Mono", ui-monospace, monospace',
-  title: '500 60px Newsreader, Georgia, serif', hero: '500 44px Newsreader, Georgia, serif',
-  name: '500 28px Newsreader, Georgia, serif', pillar: '500 31px Newsreader, Georgia, serif',
-  body: '400 25px "Plus Jakarta Sans", system-ui, sans-serif', bodyB: '700 25px "Plus Jakarta Sans", system-ui, sans-serif',
-  small: '400 21px "Plus Jakarta Sans", system-ui, sans-serif', pill: '600 20px "Plus Jakarta Sans", system-ui, sans-serif',
+  brand: '700 28px "Mona Sans Display", "Mona Sans", system-ui, sans-serif', label: '500 18px "Monaspace Neon", ui-monospace, monospace',
+  title: '700 52px "Mona Sans Display", "Mona Sans", system-ui, sans-serif', hero: '700 40px "Mona Sans Display", "Mona Sans", system-ui, sans-serif',
+  name: '700 25px "Mona Sans Display", "Mona Sans", system-ui, sans-serif', pillar: '700 27px "Mona Sans Display", "Mona Sans", system-ui, sans-serif',
+  body: '400 25px "Mona Sans", system-ui, sans-serif', bodyB: '700 25px "Mona Sans", system-ui, sans-serif',
+  small: '400 21px "Mona Sans", system-ui, sans-serif', pill: '600 20px "Mona Sans", system-ui, sans-serif',
 };
 function lines(ctx, text, max) {
   const out = [];

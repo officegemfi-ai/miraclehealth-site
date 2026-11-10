@@ -6,7 +6,7 @@
    inside it, and inside its dialog, the colours and the headline face are the plain ones. */
 .pk-dialog,.packet-root{--ink:#121E1D;--paper:#FCFCFC;--white:#FFFFFF;--text:#121E1D;--text-2:#3A4644;--muted:#6A6F6E;
   --line:rgba(18,30,29,.12);--line-2:rgba(18,30,29,.32);--bone:#121E1D;--on-bone:#FCFCFC;--card:#FFFFFF;
-  --head:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+  --head:'Mona Sans',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
 .packet-root{color:var(--text)}
 body.packet-page main{background:#EEF1EB}
 
