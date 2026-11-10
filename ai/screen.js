@@ -396,7 +396,7 @@ function codeSection(ids, f, animate) {
   if (!S.file) S.file = L ? 'evidence' : many ? 'together' : ids[0];
   if (S.file === 'evidence' && !L) S.file = '';
   if (!S.file || (S.file !== 'evidence' && S.file !== 'together' && !ids.includes(S.file)) || (S.file === 'together' && !many)) S.file = many ? 'together' : ids[0];
-  const keys = [...(L ? [['evidence', `evidence · ${mainOf(L)}`, 'var(--lime)']] : []), ...(many ? [['together', 'together', 'var(--lime)']] : []), ...ids.map((id) => [id, tokOf(id), colorOf(id)])];
+  const keys = [...(L ? [['evidence', `evidence · ${mainOf(L)}`, 'var(--bone)']] : []), ...(many ? [['together', 'together', 'var(--bone)']] : []), ...ids.map((id) => [id, tokOf(id), colorOf(id)])];
   const note = S.file === 'together' ? 'by place, head to toe' : S.file === 'evidence' ? 'strongest rung first' : '';
   const tabs = keys.length > 1 ? h('div', { class: 'sc-files', role: 'group', 'aria-label': L ? 'The evidence, or how they work' : 'Together, or one at a time' },
     keys.map(([k, label, c]) => colored(h('button', {

@@ -488,14 +488,15 @@ export function checkIn(card, done) {
 // ---------------------------------------------------------------------------
 // As an image: the same plan, drawn on a canvas in the browser, for a post (4:5) or a story (9:16)
 // ---------------------------------------------------------------------------
+// Plate: bone on ink. Lime is only the Signal's ring and dot beside the name.
 const C = {
-  bg: '#0C1413', ink: '#121E1D', text: '#FCFCFC', text2: 'rgba(252,252,252,.76)', text3: 'rgba(252,252,252,.54)',
-  line: 'rgba(255,255,255,.14)', lime: '#D8FF3D', amber: '#F2C46B',
+  bg: '#0A100F', ink: '#121E1D', text: '#F0ECE0', text2: 'rgba(240,236,224,.76)', text3: 'rgba(240,236,224,.56)',
+  line: 'rgba(240,236,224,.16)', bone: '#F0ECE0', lime: '#D8FF3D', amber: '#E8B75A',
 };
 const F = {
-  brand: '600 30px Inter, system-ui, sans-serif', label: '500 19px "IBM Plex Mono", ui-monospace, monospace',
-  title: '600 56px Inter, system-ui, sans-serif', hero: '600 42px Inter, system-ui, sans-serif',
-  name: '600 27px Inter, system-ui, sans-serif', pillar: '600 30px Inter, system-ui, sans-serif',
+  brand: '500 31px Newsreader, Georgia, serif', label: '500 19px "IBM Plex Mono", ui-monospace, monospace',
+  title: '500 60px Newsreader, Georgia, serif', hero: '500 44px Newsreader, Georgia, serif',
+  name: '500 28px Newsreader, Georgia, serif', pillar: '500 31px Newsreader, Georgia, serif',
   body: '400 25px "Plus Jakarta Sans", system-ui, sans-serif', bodyB: '700 25px "Plus Jakarta Sans", system-ui, sans-serif',
   small: '400 21px "Plus Jakarta Sans", system-ui, sans-serif', pill: '600 20px "Plus Jakarta Sans", system-ui, sans-serif',
 };
@@ -559,13 +560,16 @@ function paint(ctx, raw, W, top, draw) {
   };
   const bars = (grade, x, yy, color) => {
     if (!draw || !(grade in BARS)) return;
-    for (let i = 0; i < 4; i++) { ctx.fillStyle = i < BARS[grade] ? color : 'rgba(255,255,255,.18)'; rrect(ctx, x + i * 15, yy, 12, 9, 2); ctx.fill(); }
+    for (let i = 0; i < 4; i++) { ctx.fillStyle = i < BARS[grade] ? color : 'rgba(240,236,224,.18)'; rrect(ctx, x + i * 15, yy, 12, 9, 2); ctx.fill(); }
   };
 
   // The brand, and whose plan this is
-  if (draw) { ctx.fillStyle = C.lime; ctx.beginPath(); ctx.arc(P + 9, y + 20, 9, 0, Math.PI * 2); ctx.fill(); }
-  text('Miracle Health', P + 30, y + 31, F.brand, C.text);
-  label('My Miracle Plan', W - P, y + 29, C.lime, 'right');
+  if (draw) {
+    ctx.strokeStyle = C.lime; ctx.lineWidth = 3.4; ctx.beginPath(); ctx.arc(P + 12, y + 20, 10.5, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = C.lime; ctx.beginPath(); ctx.arc(P + 12, y + 20, 3.8, 0, Math.PI * 2); ctx.fill();
+  }
+  text('Miracle Health', P + 36, y + 31, F.brand, C.text);
+  label('My Miracle Plan', W - P, y + 29, C.text3, 'right');
   y += 84;
   y += para(card.title, P, y, inner, F.title, C.text, 64) + 26;
 
@@ -576,10 +580,10 @@ function paint(ctx, raw, W, top, draw) {
     const tl = lines(ctx, card.first.step, inner - 2 * pad - 106).slice(0, 2);
     const hh = pad + 28 + tl.length * 50 + pad - 6;
     if (draw) {
-      rrect(ctx, P, y, inner, hh, 22); ctx.fillStyle = C.lime; ctx.fill();
+      rrect(ctx, P, y, inner, hh, 10); ctx.fillStyle = C.bone; ctx.fill();
       ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(P + pad + 36, y + hh / 2, 36, 0, Math.PI * 2); ctx.fill();
     }
-    drawIcon(card.first.pillar, P + pad + 18, y + hh / 2 - 18, 36, C.lime, 2.2);
+    drawIcon(card.first.pillar, P + pad + 18, y + hh / 2 - 18, 36, C.bone, 2.2);
     label(`Start here: ${PILLAR[card.first.pillar]}`, P + pad + 98, y + pad + 14, 'rgba(18,30,29,.72)');
     tl.forEach((l, i) => text(l, P + pad + 98, y + pad + 28 + 50 * (i + 1) - 12, F.hero, C.ink));
     y += hh + 30;
@@ -587,7 +591,7 @@ function paint(ctx, raw, W, top, draw) {
 
   // A row of the building: a label, then names (three to a line) or lines of words
   const rowOf = (name, body) => {
-    label(name, P, y + 20, name === 'Wellbeing & community' ? C.lime : C.text3);
+    label(name, P, y + 20, name === 'Wellbeing & community' ? C.bone : C.text3);
     y += 36;
     y += body(P, y, inner);
     y += 22;
@@ -612,9 +616,9 @@ function paint(ctx, raw, W, top, draw) {
     let lineH = 0;
     for (const c of sized) {
       if (lx > x && lx + c.cw > x + w) { top += lineH + gap; lx = x; lineH = 0; }
-      if (draw) { rrect(ctx, lx, top, c.cw, c.ch, 14); ctx.fillStyle = 'rgba(255,255,255,.07)'; ctx.fill(); }
+      if (draw) { rrect(ctx, lx, top, c.cw, c.ch, 8); ctx.fillStyle = 'rgba(240,236,224,.07)'; ctx.fill(); }
       text(fit(c.it.name, c.cw - 36 - (c.graded ? 76 : 0), F.name), lx + 18, top + 43, F.name, C.text);
-      bars(evidenceOf(c.it), lx + c.cw - 76, top + 28, C.lime);
+      bars(evidenceOf(c.it), lx + c.cw - 76, top + 28, C.bone);
       if (c.warn) text(fit(c.it.tag, c.cw - 36, F.pill), lx + 18, top + 78, F.pill, C.amber);
       lx += c.cw + gap;
       lineH = Math.max(lineH, c.ch);
@@ -626,7 +630,7 @@ function paint(ctx, raw, W, top, draw) {
     rowOf('Wellbeing & community', (x, yy, w) => {
       let used = 0;
       for (const t of wl) {
-        if (draw) { ctx.fillStyle = C.lime; ctx.beginPath(); ctx.arc(x + 6, yy + used + 18, 5, 0, Math.PI * 2); ctx.fill(); }
+        if (draw) { ctx.fillStyle = C.bone; ctx.beginPath(); ctx.arc(x + 6, yy + used + 18, 5, 0, Math.PI * 2); ctx.fill(); }
         text(fit(t, w - 26, F.body), x + 26, yy + used + 26, F.body, C.text);
         used += 38;
       }
@@ -638,7 +642,7 @@ function paint(ctx, raw, W, top, draw) {
   rowOf('Peptides & medicines', card.hidden ? (x, yy) => { text('Kept private', x, yy + 28, F.body, C.text3); return 36; } : chipsOf(card.peptides, 'None right now: the pillars do the work'));
   y -= 24;
   // The beam the floors rest on
-  if (draw) { ctx.fillStyle = 'rgba(255,255,255,.34)'; ctx.fillRect(P, y, inner, 4); }
+  if (draw) { ctx.fillStyle = 'rgba(240,236,224,.34)'; ctx.fillRect(P, y, inner, 4); }
   y += 20;
 
   // The pillars: tall, each with its drawing, name and state
@@ -648,36 +652,36 @@ function paint(ctx, raw, W, top, draw) {
   card.foundations.forEach((f, i) => {
     const x = P + i * (pw + gap);
     if (draw) {
-      rrect(ctx, x, y, pw, ph, 16);
-      if (f.state === 'start') { ctx.fillStyle = C.lime; ctx.fill(); }
+      rrect(ctx, x, y, pw, ph, 10);
+      if (f.state === 'start') { ctx.fillStyle = C.bone; ctx.fill(); }
       else if (f.state === 'next') {
-        ctx.fillStyle = 'rgba(216,255,61,.06)'; ctx.fill();
-        ctx.save(); rrect(ctx, x, y, pw, ph, 16); ctx.clip();
-        ctx.strokeStyle = 'rgba(216,255,61,.13)'; ctx.lineWidth = 5;
+        ctx.fillStyle = 'rgba(240,236,224,.05)'; ctx.fill();
+        ctx.save(); rrect(ctx, x, y, pw, ph, 10); ctx.clip();
+        ctx.strokeStyle = 'rgba(240,236,224,.12)'; ctx.lineWidth = 5;
         for (let k = -ph; k < pw + ph; k += 22) { ctx.beginPath(); ctx.moveTo(x + k, y + ph); ctx.lineTo(x + k + ph, y); ctx.stroke(); }
         ctx.restore();
-        rrect(ctx, x, y, pw, ph, 16); ctx.lineWidth = 3; ctx.strokeStyle = C.lime; ctx.stroke();
+        rrect(ctx, x, y, pw, ph, 10); ctx.lineWidth = 3; ctx.strokeStyle = C.bone; ctx.stroke();
       } else if (f.state === 'strong') {
-        ctx.fillStyle = 'rgba(255,255,255,.085)'; ctx.fill();
+        ctx.fillStyle = 'rgba(240,236,224,.085)'; ctx.fill();
       } else {
-        ctx.setLineDash([10, 9]); ctx.lineWidth = 2.5; ctx.strokeStyle = 'rgba(255,255,255,.4)'; ctx.stroke(); ctx.setLineDash([]);
+        ctx.setLineDash([10, 9]); ctx.lineWidth = 2.5; ctx.strokeStyle = 'rgba(240,236,224,.4)'; ctx.stroke(); ctx.setLineDash([]);
       }
     }
-    drawIcon(f.pillar, x + 24, y + 24, 46, f.state === 'start' ? C.ink : f.state === 'unknown' ? C.text3 : C.lime, 2);
+    drawIcon(f.pillar, x + 24, y + 24, 46, f.state === 'start' ? C.ink : f.state === 'unknown' ? C.text3 : C.bone, 2);
     text(PILLAR[f.pillar], x + 24, y + ph - 70, F.pillar, f.state === 'start' ? C.ink : C.text);
     ctx.font = F.pill;
     const st = STATE[f.state];
     const sw = ctx.measureText(st).width + 30;
     if (draw) {
-      rrect(ctx, x + 24, y + ph - 54, sw, 36, 18);
+      rrect(ctx, x + 24, y + ph - 54, sw, 36, 6);
       if (f.state === 'start') { ctx.fillStyle = C.ink; ctx.fill(); }
-      else { ctx.lineWidth = 2; ctx.strokeStyle = f.state === 'unknown' ? 'rgba(255,255,255,.4)' : C.lime; ctx.stroke(); }
+      else { ctx.lineWidth = 2; ctx.strokeStyle = f.state === 'unknown' ? 'rgba(240,236,224,.4)' : C.bone; ctx.stroke(); }
     }
-    text(st, x + 39, y + ph - 29, F.pill, f.state === 'start' ? C.lime : f.state === 'unknown' ? C.text2 : C.lime);
+    text(st, x + 39, y + ph - 29, F.pill, f.state === 'start' ? C.bone : f.state === 'unknown' ? C.text2 : C.bone);
   });
   y += ph;
   // The ground they stand on
-  if (draw) { ctx.fillStyle = C.lime; rrect(ctx, P - 12, y + 10, inner + 24, 14, 7); ctx.fill(); }
+  if (draw) { ctx.fillStyle = C.bone; rrect(ctx, P - 12, y + 10, inner + 24, 14, 2); ctx.fill(); }
   y += 24 + 48;
 
   // Then: the rest, numbered, one line each
@@ -690,7 +694,7 @@ function paint(ctx, raw, W, top, draw) {
       const lead = s.state === 'strong' ? 'Keep it up: ' : s.state === 'unknown' ? 'Not sure yet' : '';
       const body = s.state === 'unknown' ? lead : `${lead}${s.step}`;
       if (draw) {
-        ctx.lineWidth = 2; ctx.strokeStyle = s.state === 'strong' ? C.lime : 'rgba(255,255,255,.4)';
+        ctx.lineWidth = 2; ctx.strokeStyle = s.state === 'strong' ? C.bone : 'rgba(240,236,224,.4)';
         ctx.beginPath(); ctx.arc(P + 20, y + 28, 20, 0, Math.PI * 2); ctx.stroke();
       }
       text(String(n), P + 20, y + 35, F.pill, C.text, 'center');
@@ -706,7 +710,7 @@ function paint(ctx, raw, W, top, draw) {
   }
   const graded = [...card.supplements, ...(card.hidden ? [] : card.peptides)].some((it) => evidenceOf(it) in BARS);
   if (graded) {
-    bars('moderate', P, y + 3, C.lime);
+    bars('moderate', P, y + 3, C.bone);
     text('How strong the evidence is, from the Library', P + 76, y + 13, F.small, C.text3);
     y += 40;
   }
