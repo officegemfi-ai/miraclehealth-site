@@ -2,10 +2,10 @@
   "id": "pegmgf",
   "name": "PEG-MGF",
   "summary": "A lab-made version of a short peptide from the IGF-1 gene, with a PEG chain attached. Promoted for muscle growth and repair. Never studied in people.",
-  "what_it_is": "MGF (mechano growth factor) is the name given to a synthetic 24-amino-acid peptide that matches the tail end of one form of IGF-1, a growth signal whose gene activity rises in muscle after exercise or injury. PEG-MGF is that peptide with a polyethylene glycol (PEG) chain attached. Researchers have not shown that this peptide exists on its own in the body or that it does anything beyond full-length IGF-1, and lab results conflict.",
+  "what_it_is": "MGF (mechano growth factor) is the name given to a lab-made peptide of 24 amino acids. It matches the tail end of one form of IGF-1, a growth signal whose gene activity rises in muscle after exercise or injury. PEG-MGF is that peptide with a polyethylene glycol (PEG) chain attached. Researchers have not shown that this peptide exists on its own in the body, or that it does anything beyond full-length IGF-1. Lab results conflict.",
   "evidence": {
     "grade": "preclinical",
-    "why": "There are no human studies; the case for it rests on cell and rodent studies of the unmodified MGF peptide, and those results conflict."
+    "why": "There are no human studies. The case for it rests on cell and rodent studies of the unmodified MGF peptide, and those results conflict."
   },
   "status_us": {
     "key": "under_review",
@@ -89,7 +89,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+      "General health check (complete blood count and metabolic panel) if a doctor is involved"
     ],
     "during": [],
     "why": "PEG-MGF has never been studied in people, so no evidence-based monitoring exists."

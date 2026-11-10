@@ -2,10 +2,10 @@
   "id": "bronchogen",
   "name": "Bronchogen",
   "summary": "A tiny peptide from Russian 'bioregulator' research, promoted for the lungs and airways. So far the evidence is limited to studies in cells and rats.",
-  "what_it_is": "Bronchogen is a lab-made chain of four amino acids, alanine, glutamic acid, aspartic acid and leucine, developed by Vladimir Khavinson's group in Russia, where it is listed as a dietary supplement. The developer's patent gives the order as Ala-Glu-Asp-Leu (AEDL), while some of the group's papers write Ala-Asp-Glu-Leu. In lab studies it switched on genes used by the cells lining the airways, including genes for mucus and surfactant, the film that keeps the lungs' air sacs open.",
+  "what_it_is": "Bronchogen is a lab-made chain of four amino acids: alanine, glutamic acid, aspartic acid and leucine. It was developed by Vladimir Khavinson's group in Russia, where it is listed as a dietary supplement. The developer's patent gives the order as Ala-Glu-Asp-Leu (AEDL), while some of the group's papers write Ala-Asp-Glu-Leu. In lab studies it switched on genes used by the cells lining the airways. These include genes for mucus and for surfactant, the film that keeps the lungs' air sacs open.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Only cell-culture and rat studies were found, almost all from the developer's group; no human trials have been published."
+    "why": "Only cell-culture and rat studies were found, and almost all come from the developer's group. No human trials have been published."
   },
   "status_us": {
     "key": "not_approved",
@@ -24,13 +24,13 @@
     { "risk": "No FDA-approved or pharmacy-compounded version exists, so the identity and purity of products are unverified", "how_common": "unknown", "sources": [1, 3] }
   ],
   "avoid_if": [
-    "Asthma, COPD or other lung disease: do not replace prescribed treatment, and talk to a clinician first",
+    "Asthma, COPD or other lung disease: do not replace prescribed treatment, and talk to a doctor first",
     "Pregnant or breastfeeding (never studied)",
     "Under 18 (never studied)"
   ],
   "interactions": [ "None well documented" ],
   "labs": {
-    "before": [ "General health check with a clinician" ],
+    "before": [ "General health check with a doctor" ],
     "during": [],
     "why": "No evidence-based monitoring exists for Bronchogen because it has not been studied in people."
   },

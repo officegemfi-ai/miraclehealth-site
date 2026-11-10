@@ -2,10 +2,10 @@
   "id": "glutathione",
   "name": "Glutathione",
   "summary": "An antioxidant your body makes. Taken by mouth or by IV for liver health, detox and skin lightening. Studies in people are small, and IV use has caused serious reactions.",
-  "what_it_is": "Glutathione is a small peptide the body makes and keeps in blood and tissues, where it acts as an antioxidant that helps limit oxidative stress. It is sold as an oral supplement, including liposomal forms, and some clinics give it by IV infusion or injection. In a 6-month trial, taking it by mouth raised the body's glutathione stores, but whether this improves health has not been shown.",
+  "what_it_is": "Glutathione is a small peptide the body makes and keeps in blood and tissues. There it acts as an antioxidant that helps limit oxidative stress. It is sold as an oral supplement, including liposomal forms, and some clinics give it by IV infusion or injection. In a 6-month trial, taking it by mouth raised the body's glutathione stores. Whether this improves health has not been shown.",
   "evidence": {
     "grade": "limited",
-    "why": "One good randomized trial showed oral glutathione raises the body's stores; evidence for liver disease and skin lightening comes from small or uncontrolled studies."
+    "why": "One good randomized trial showed that oral glutathione raises the body's stores. The evidence for liver disease and skin lightening comes from small or uncontrolled studies."
   },
   "status_us": {
     "key": "compounded",
@@ -93,7 +93,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (not studied)",
-    "Liver disease, unless supervised by a clinician (liver injury has been reported with IV use)",
+    "Liver disease, unless supervised by a doctor (liver injury has been reported with IV use)",
     "People considering IV use outside a closely supervised clinical setting"
   ],
   "interactions": [

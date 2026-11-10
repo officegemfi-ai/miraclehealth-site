@@ -2,10 +2,10 @@
   "id": "igf1des",
   "name": "IGF-1 DES",
   "summary": "A shortened, stronger form of IGF-1, missing its first three amino acids. Sold as a 'research chemical' for muscle growth. The evidence is limited to lab studies.",
-  "what_it_is": "IGF-1 DES, or des(1-3)IGF-1, is insulin-like growth factor 1 with its first three amino acids removed. That change makes it bind poorly to the IGF-binding proteins that normally hold IGF-1 in check, so it acts more strongly in lab tests. IGF-1 carries out some of growth hormone's effects, including on muscle. Natural IGF-1 (mecasermin) is sold as a medicine for rare conditions, but this truncated form is not approved for human use.",
+  "what_it_is": "IGF-1 DES, or des(1-3)IGF-1, is insulin-like growth factor 1 with its first three amino acids removed. That change makes it bind poorly to the IGF-binding proteins that normally hold IGF-1 in check, so it acts more strongly in lab tests. IGF-1 carries out some of growth hormone's effects, including on muscle. Natural IGF-1 (mecasermin) is sold as a medicine for rare conditions. This shortened form is not approved for human use.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Its extra potency comes from lab studies; no human studies were identified, and a review notes little evidence that IGF-1 improves performance in healthy people."
+    "why": "Its extra potency comes from lab studies. No human studies were identified. A review notes little evidence that IGF-1 improves performance in healthy people."
   },
   "status_us": {
     "key": "not_approved",
@@ -87,7 +87,7 @@
   ],
   "avoid_if": [
     "Current or past cancer",
-    "Diabetes or insulin use (clinician first)",
+    "Diabetes or insulin use (doctor first)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
@@ -96,7 +96,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for this research chemical, because it has not been studied in people."

@@ -2,10 +2,10 @@
   "id": "anastrozole",
   "name": "Anastrozole",
   "summary": "A prescription pill that stops the body making estrogen. Approved for hormone-sensitive breast cancer after menopause. Also studied in men with low testosterone, which it isn't approved for.",
-  "what_it_is": "Anastrozole is a nonsteroidal aromatase inhibitor: it blocks aromatase, the enzyme that converts androgens into estrogen. In postmenopausal women it lowers estradiol by about 70% within a day and about 80% after two weeks, without affecting cortisol or aldosterone. In men it raises testosterone and lowers estradiol.",
+  "what_it_is": "Anastrozole is a nonsteroidal aromatase inhibitor. It blocks aromatase, the enzyme that turns androgens into estrogen. In women after menopause it lowers estradiol by about 70% within a day and about 80% after two weeks. It does not affect cortisol or aldosterone. In men it raises testosterone and lowers estradiol.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for hormone receptor-positive breast cancer after menopause; the evidence in men comes from a few small randomized trials that showed rises in testosterone but no bone benefit."
+    "why": "It is FDA-approved for hormone receptor-positive breast cancer after menopause. The evidence in men comes from a few small randomized trials. They showed testosterone rising but no benefit for bone."
   },
   "status_us": {
     "key": "approved",

@@ -2,10 +2,10 @@
   "id": "dutasteride",
   "name": "Dutasteride",
   "summary": "A prescription capsule that stops the body making the hormone DHT. Approved in the US for an enlarged prostate. Also used for male pattern hair loss, which it isn't approved for.",
-  "what_it_is": "Dutasteride is a 5-alpha-reductase inhibitor that blocks both the type 1 and type 2 enzymes that convert testosterone into DHT, cutting blood DHT by about 85% to 95%. It lasts a long time in the body: its half-life is about 5 weeks, and it can be detected for 4 to 6 months after stopping. It lowers PSA by about half within 3 to 6 months.",
+  "what_it_is": "Dutasteride is a 5-alpha-reductase inhibitor. It blocks both the type 1 and type 2 enzymes that turn testosterone into DHT, cutting DHT in the blood by about 85% to 95%. It lasts a long time in the body: its half-life is about 5 weeks, and it can be detected for 4 to 6 months after stopping. It lowers PSA by about half within 3 to 6 months.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for a symptomatic enlarged prostate; for hair loss (off-label in the US), a meta-analysis of 3 short randomized trials in 576 men found more hair growth than with finasteride."
+    "why": "It is FDA-approved for an enlarged prostate that causes symptoms. For hair loss (off-label in the US), a meta-analysis of 3 short randomized trials in 576 men found more hair growth than with finasteride."
   },
   "status_us": {
     "key": "approved",

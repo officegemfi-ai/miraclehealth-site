@@ -2,10 +2,10 @@
   "id": "tretinoin",
   "name": "Tretinoin",
   "summary": "A prescription skin medicine for acne. One cream version is also approved to soften fine wrinkles, blotchy pigment and roughness on the face.",
-  "what_it_is": "Tretinoin, also called retinoic acid, is a prescription skin medicine sold as creams, gels and a liquid under names such as Retin-A. It is approved to treat acne, and a cream version (Renova) was approved to lessen fine wrinkles, blotchy pigment and roughness of facial skin in people who also follow a skin-care and sun-avoidance program. Given by mouth in animal studies, tretinoin caused fetal malformations and death, so pregnancy is a key concern even with skin use.",
+  "what_it_is": "Tretinoin, also called retinoic acid, is a prescription skin medicine sold as creams, gels and a liquid under names such as Retin-A. It is approved to treat acne. A cream version (Renova) was approved to lessen fine wrinkles, blotchy pigment and roughness of facial skin in people who also follow a skin-care and sun-avoidance program. Given by mouth in animal studies, tretinoin caused fetal malformations and death. So pregnancy is a key concern even with skin use.",
   "evidence": {
     "grade": "strong",
-    "why": "It is FDA-approved for acne, and a cream version was approved for fine wrinkles and sun-related skin changes based on two 24-week trials in 315 people under 50; the wrinkle benefits were modest."
+    "why": "It is FDA-approved for acne. A cream version was approved for fine wrinkles and sun-related skin changes, based on two 24-week trials in 315 people under 50. The wrinkle benefits were modest."
   },
   "status_us": {
     "key": "approved",
@@ -100,7 +100,7 @@
     "Pregnant or trying to conceive (the Renova label says not to use it in pregnancy)",
     "Eczema, or sunburned skin until it has healed (severe irritation)",
     "Allergy to any ingredient",
-    "Breastfeeding (no data on passage into milk; a clinician can advise)"
+    "Breastfeeding (no data on passage into milk; a doctor can advise)"
   ],
   "interactions": [
     "Medicated or abrasive soaps and cleansers, and products with a lot of alcohol, astringents, spices or lime: more irritation",

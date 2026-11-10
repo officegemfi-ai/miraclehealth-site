@@ -2,10 +2,10 @@
   "id": "slupp332",
   "name": "SLU-PP-332",
   "summary": "An experimental compound that copies some effects of exercise in mice by switching on estrogen-related receptors (ERRs). No studies in people have been published.",
-  "what_it_is": "SLU-PP-332 is a synthetic experimental compound developed by academic researchers as an 'exercise mimetic'. It activates all three estrogen-related receptors (ERR alpha, beta and gamma), proteins that control genes linked to exercise capacity and energy use, with the strongest effect on ERR alpha. In mice it raised endurance and energy use and reduced fat gain. It is not approved anywhere, and anti-doping scientists consider it relevant to sports drug testing.",
+  "what_it_is": "SLU-PP-332 is a lab-made experimental compound developed by academic researchers as an 'exercise mimetic'. It activates all three estrogen-related receptors (ERR alpha, beta and gamma), with the strongest effect on ERR alpha. These proteins control genes linked to exercise capacity and energy use. In mice it raised endurance and energy use and reduced fat gain. It is not approved anywhere, and anti-doping scientists consider it relevant to sports drug testing.",
   "evidence": {
     "grade": "preclinical",
-    "why": "All published evidence comes from mice and lab cells: it raised endurance and reduced fat gain in mice, and no human studies have been published."
+    "why": "All the published evidence comes from mice and lab cells. In mice it raised endurance and reduced fat gain. No human studies have been published."
   },
   "status_us": {
     "key": "not_approved",
@@ -90,7 +90,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+      "General health check (complete blood count and metabolic panel) if a doctor is involved"
     ],
     "during": [],
     "why": "SLU-PP-332 has not been studied in people, so no evidence-based monitoring exists."

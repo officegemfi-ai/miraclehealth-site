@@ -2,10 +2,10 @@
   "id": "testagen",
   "name": "Testagen",
   "summary": "A Russian supplement peptide from Khavinson's 'bioregulator' research, promoted for male reproductive health and testosterone. The evidence in people is one small study by its developers.",
-  "what_it_is": "Testagen is a short synthetic peptide developed at Vladimir Khavinson's institute in St. Petersburg and listed in Russia as a dietary supplement for men. Its Russian listing describes a peptide complex made from four amino acids: lysine, glutamic acid, aspartic acid and glycine. Its developers say it acts specifically on testicular tissue, supporting sperm production and testosterone, but this rests on their own rat and human studies.",
+  "what_it_is": "Testagen is a short lab-made peptide developed at Vladimir Khavinson's institute in St. Petersburg. In Russia it is listed as a dietary supplement for men. Its Russian listing describes a peptide complex made from four amino acids: lysine, glutamic acid, aspartic acid and glycine. Its developers say it acts specifically on testicular tissue, supporting sperm production and testosterone. This rests on their own rat and human studies.",
   "evidence": {
     "grade": "limited",
-    "why": "Rat studies and one small randomized study in 48 older men, all reported by the developers in a Russian drug-reference article rather than a peer-reviewed journal."
+    "why": "The evidence is rat studies and one small randomized study in 48 older men. All were reported by the developers, in a Russian drug-reference article rather than a peer-reviewed journal."
   },
   "status_us": {
     "key": "not_approved",

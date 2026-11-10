@@ -2,10 +2,10 @@
   "id": "hexarelin",
   "name": "Hexarelin",
   "summary": "A lab-made relative of GHRP-6 that makes the body release growth hormone by acting on the ghrelin receptor. Sold as a 'research chemical'. The data in people come from a few small studies.",
-  "what_it_is": "Hexarelin (examorelin) is a synthetic peptide of six amino acids, nearly identical to GHRP-6 except that one tryptophan carries an extra methyl group (2-methyl-D-tryptophan). It belongs to the growth hormone-releasing peptides, originally derived from enkephalin, and acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone. It is not an approved medicine in the US.",
+  "what_it_is": "Hexarelin (examorelin) is a lab-made peptide of six amino acids. It is nearly identical to GHRP-6, except that one tryptophan carries an extra methyl group (2-methyl-D-tryptophan). It belongs to the growth hormone-releasing peptides, originally derived from enkephalin. It acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone. It is not an approved medicine in the US.",
   "evidence": {
     "grade": "limited",
-    "why": "Human data found here are a small study in 8 short children and a sleep study in 7 healthy men; there are no controlled trials of health outcomes."
+    "why": "The human data found here are a small study in 8 short children and a sleep study in 7 healthy men. There are no controlled trials of health outcomes."
   },
   "status_us": {
     "key": "not_approved",
@@ -81,7 +81,7 @@
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
     "Active cancer (no cancer safety data)",
-    "Diabetes or prediabetes (clinician first: this drug class can raise blood sugar)",
+    "Diabetes or prediabetes (doctor first: this drug class can raise blood sugar)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [
@@ -89,7 +89,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician",
+      "General health check with a doctor",
       "Fasting glucose or HbA1c",
       "IGF-1"
     ],

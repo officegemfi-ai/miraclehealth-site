@@ -2,10 +2,10 @@
   "id": "estradiol",
   "name": "Estradiol",
   "summary": "The body's strongest estrogen. Prescribed mainly to ease hot flashes and vaginal symptoms of menopause, and to prevent bone loss after it.",
-  "what_it_is": "Estradiol (17-beta-estradiol) is the main estrogen made by the ovaries before menopause and the most potent of the body's estrogens. Prescription estradiol is the same molecule and comes in several forms, including tablets, skin gels and patches, and vaginal products. It works through estrogen receptors in tissues such as the uterus, breast and bone, and after menopause it lowers the high LH and FSH levels.",
+  "what_it_is": "Estradiol (17-beta-estradiol) is the main estrogen the ovaries make before menopause, and the most potent of the body's estrogens. Prescription estradiol is the same molecule. It comes in several forms, including tablets, skin gels and patches, and vaginal products. It works through estrogen receptors in tissues such as the uterus, breast and bone. After menopause it lowers the high LH and FSH levels.",
   "evidence": {
     "grade": "strong",
-    "why": "Many randomized trials, pooled in a Cochrane review, support hormone therapy for hot flashes, and estradiol is FDA-approved for menopausal symptoms, vaginal atrophy, low-estrogen states and osteoporosis prevention."
+    "why": "Many randomized trials, pooled in a Cochrane review, support hormone therapy for hot flashes. Estradiol is FDA-approved for menopausal symptoms, vaginal atrophy, low-estrogen states and preventing osteoporosis."
   },
   "status_us": {
     "key": "approved",

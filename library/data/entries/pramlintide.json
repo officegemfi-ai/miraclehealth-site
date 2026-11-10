@@ -2,10 +2,10 @@
   "id": "pramlintide",
   "name": "Pramlintide",
   "summary": "A lab-made form of the hormone amylin. Approved as Symlin for adults with type 1 or type 2 diabetes who use mealtime insulin. Reported discontinued in the US.",
-  "what_it_is": "Pramlintide is a synthetic version of amylin, a hormone that the pancreas's beta cells release along with insulin after meals; it differs from human amylin at three amino acid positions. It slows stomach emptying, blunts the rise in glucagon after meals and increases fullness, which lowers after-meal blood sugar and food intake. It acts briefly, with a half-life of about 48 minutes, and was given as an injection under the skin.",
+  "what_it_is": "Pramlintide is a lab-made version of amylin, a hormone that the beta cells of the pancreas release along with insulin after meals. It differs from human amylin at three amino acid positions. It slows stomach emptying, blunts the rise in glucagon after meals and increases fullness. That lowers blood sugar after meals and lowers food intake. It acts briefly, with a half-life of about 48 minutes, and was given as an injection under the skin.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA approval as an add-on to mealtime insulin, based on placebo-controlled trials in adults with type 1 and type 2 diabetes; the A1C improvement over placebo was modest, about 0.3 points."
+    "why": "FDA approved it as an add-on to mealtime insulin, based on placebo-controlled trials in adults with type 1 and type 2 diabetes. The improvement in A1C over placebo was modest, about 0.3 points."
   },
   "status_us": {
     "key": "approved",

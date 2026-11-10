@@ -2,10 +2,10 @@
   "id": "exenatide",
   "name": "Exenatide",
   "summary": "A prescription GLP-1 medicine, first approved as Byetta in 2005, that lowers blood sugar in type 2 diabetes. The brand-name versions were discontinued in the US in 2024.",
-  "what_it_is": "Exenatide is a lab-made 39-amino-acid peptide first found in a lizard, Heloderma suspectum (the Gila monster); its sequence partly overlaps that of human GLP-1. It switches on GLP-1 receptors, which raises insulin release when blood sugar is high, lowers excess glucagon and slows stomach emptying. Byetta is a short-acting form with a half-life of about 2.4 hours, and Bydureon BCise is an extended-release form; both are injected under the skin.",
+  "what_it_is": "Exenatide is a lab-made peptide of 39 amino acids. It was first found in a lizard, Heloderma suspectum (the Gila monster), and its sequence partly overlaps that of human GLP-1. It switches on GLP-1 receptors. That raises insulin release when blood sugar is high, lowers excess glucagon and slows stomach emptying. Byetta is a short-acting form with a half-life of about 2.4 hours. Bydureon BCise is an extended-release form. Both are injected under the skin.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA approval for blood sugar control in type 2 diabetes based on randomized trials; a heart-safety trial of 14,752 adults (EXSCEL) found no increase in heart events, and a phase 3 trial in 194 people found no benefit in Parkinson's disease."
+    "why": "FDA approved it for blood sugar control in type 2 diabetes, based on randomized trials. A heart-safety trial of 14,752 adults (EXSCEL) found no increase in heart events. A phase 3 trial in 194 people found no benefit in Parkinson's disease."
   },
   "status_us": {
     "key": "approved",

@@ -2,10 +2,10 @@
   "id": "enclomiphene",
   "name": "Enclomiphene",
   "summary": "One of the two forms that make up the fertility drug clomiphene. Studied as a pill to raise men's own testosterone. Not approved in the US or Europe.",
-  "what_it_is": "Enclomiphene is the trans isomer of clomiphene; clomiphene tablets are a mix of enclomiphene and zuclomiphene. It is a selective estrogen receptor modulator (SERM) that acts as an estrogen blocker, and in men it raises the pituitary hormones LH and FSH, which signal the testes to make testosterone and sperm. A drug company sought US approval to treat secondary hypogonadism (low testosterone because the pituitary sends too little LH), but FDA declined to approve it in 2015 (a complete response letter), and the European Medicines Agency refused approval in 2018.",
+  "what_it_is": "Enclomiphene is the trans isomer of clomiphene: clomiphene tablets are a mix of enclomiphene and zuclomiphene. It is a selective estrogen receptor modulator (SERM) that acts as an estrogen blocker. In men it raises the pituitary hormones LH and FSH, which signal the testes to make testosterone and sperm. A drug company sought US approval to treat secondary hypogonadism (low testosterone because the pituitary sends too little LH). FDA declined to approve it in 2015 (a complete response letter), and the European Medicines Agency refused approval in 2018.",
   "evidence": {
     "grade": "moderate",
-    "why": "Several randomized trials, the largest in 256 men, show it raises testosterone, LH and FSH, but FDA concluded the trials did not show a clinically meaningful improvement in symptoms or signs of low testosterone."
+    "why": "Several randomized trials, the largest in 256 men, show it raises testosterone, LH and FSH. But FDA concluded the trials did not show a clinically meaningful improvement in the symptoms or signs of low testosterone."
   },
   "status_us": {
     "key": "compounded",

@@ -2,10 +2,10 @@
   "id": "minoxidil",
   "name": "Minoxidil",
   "summary": "Sold over the counter as a scalp treatment for hereditary hair loss, and by prescription as a tablet for severe high blood pressure. Low-dose tablets are also used for hair, which they aren't approved for.",
-  "what_it_is": "Minoxidil comes in two forms. As a scalp product (Rogaine) it is sold over the counter to regrow hair on the top of the scalp in men and women with hereditary hair loss. As a tablet (Loniten) it is a powerful prescription blood pressure drug reserved for severe high blood pressure that other drugs have not controlled, and it often causes extra hair growth on the body. Low-dose tablets are now prescribed off-label for hair loss.",
+  "what_it_is": "Minoxidil comes in two forms. As a scalp product (Rogaine) it is sold over the counter to regrow hair on the top of the scalp in men and women with hereditary hair loss. As a tablet (Loniten) it is a powerful prescription blood pressure drug. It is reserved for severe high blood pressure that other drugs have not controlled, and it often causes extra hair growth on the body. Low-dose tablets are now prescribed off-label for hair loss.",
   "evidence": {
     "grade": "strong",
-    "why": "The scalp product is FDA-approved for hereditary hair loss; for low-dose tablets, one randomized trial in 90 men found them no better than the scalp form, and safety data come mainly from a large study without a comparison group."
+    "why": "The scalp product is FDA-approved for hereditary hair loss. For low-dose tablets, one randomized trial in 90 men found them no better than the scalp form. Safety data come mainly from a large study without a comparison group."
   },
   "status_us": {
     "key": "otc",
@@ -99,7 +99,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (scalp products may be harmful, and hair growth in newborns has been reported after exposure to the tablets in pregnancy)",
-    "Heart disease, including angina or a recent heart attack (needs a clinician first)",
+    "Heart disease, including angina or a recent heart attack (needs a doctor first)",
     "Pheochromocytoma, a hormone-releasing tumor (the tablets are contraindicated)",
     "Under 18 (scalp products are not for children)",
     "Hair loss that is sudden, patchy, linked to childbirth or of unknown cause (needs a diagnosis first)"

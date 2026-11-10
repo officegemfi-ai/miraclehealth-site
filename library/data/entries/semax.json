@@ -2,10 +2,10 @@
   "id": "semax",
   "name": "Semax",
   "summary": "A lab-made peptide based on a piece of the hormone ACTH. Registered in Russia as nasal drops, and taken for focus, memory and stroke recovery.",
-  "what_it_is": "Semax is a synthetic chain of seven amino acids modeled on a fragment of ACTH, a pituitary hormone. It is a registered drug in Russia, sold there as nasal drops, but it is not approved in the US. In rats it raises brain levels of growth factors such as BDNF, which support nerve cells. FDA reviewers note that its mechanisms are poorly understood.",
+  "what_it_is": "Semax is a lab-made chain of seven amino acids, modeled on a fragment of ACTH, a pituitary hormone. It is a registered drug in Russia, sold there as nasal drops. It is not approved in the US. In rats it raises brain levels of growth factors such as BDNF, which support nerve cells. FDA reviewers note that how it works is poorly understood.",
   "evidence": {
     "grade": "limited",
-    "why": "Rat studies show effects on brain growth factors, but human data are a few small Russian studies, and FDA judged the evidence insufficient for stroke, migraine and nerve pain."
+    "why": "Rat studies show effects on brain growth factors. But the human data are a few small Russian studies, and FDA judged the evidence insufficient for stroke, migraine and nerve pain."
   },
   "status_us": {
     "key": "under_review",
@@ -105,7 +105,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician, including a review of bleeding risk"
+      "General health check with a doctor, including a review of bleeding risk"
     ],
     "during": [],
     "why": "No evidence-based lab monitoring exists for semax; any testing is a general health check."

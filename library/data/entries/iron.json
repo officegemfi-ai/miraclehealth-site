@@ -2,10 +2,10 @@
   "id": "iron",
   "name": "Iron",
   "summary": "An essential mineral the body needs to make hemoglobin. Taken to prevent or treat iron deficiency and the anemia and tiredness it can cause.",
-  "what_it_is": "Iron is an essential part of hemoglobin, the protein in red blood cells that carries oxygen, and of myoglobin, which supplies oxygen to muscles. Food contains heme iron, from meat, seafood and poultry, and nonheme iron, the only form in plants and fortified foods. Deficiency develops in stages, from depleted stores to iron-poor red blood cell production and finally iron deficiency anemia.",
+  "what_it_is": "Iron is an essential part of hemoglobin, the protein in red blood cells that carries oxygen. It is also part of myoglobin, which supplies oxygen to muscles. Food contains heme iron, from meat, seafood and poultry, and nonheme iron, the only form in plants and fortified foods. Deficiency develops in stages: first depleted stores, then iron-poor production of red blood cells, and finally iron deficiency anemia.",
   "evidence": {
     "grade": "strong",
-    "why": "Dozens of randomized trials show iron supplements raise hemoglobin and iron stores and reduce anemia, and oral iron is first-line treatment for iron deficiency."
+    "why": "Dozens of randomized trials show that iron supplements raise hemoglobin and iron stores and reduce anemia. Oral iron is the first-line treatment for iron deficiency."
   },
   "status_us": {
     "key": "supplement",
@@ -93,7 +93,7 @@
   ],
   "avoid_if": [
     "Hemochromatosis or other iron overload",
-    "Anemia of chronic disease or inflammation (clinician first)",
+    "Anemia of chronic disease or inflammation (doctor first)",
     "Unexplained iron deficiency, which can come from blood loss in the gut or from colon cancer (get evaluated first)"
   ],
   "interactions": [

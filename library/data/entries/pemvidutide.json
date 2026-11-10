@@ -2,10 +2,10 @@
   "id": "pemvidutide",
   "name": "Pemvidutide",
   "summary": "An experimental drug that acts on two hormone receptors, glucagon and GLP-1. Tested for weight loss, and now mainly for fatty-liver disease (MASH) and alcohol use disorder. Not FDA-approved.",
-  "what_it_is": "Pemvidutide is a lab-made drug that switches on glucagon and GLP-1 receptors in equal measure; its developer, Altimmune, calls it a balanced 1:1 dual agonist. Altimmune tested it for obesity, but its development now focuses on MASH (fatty-liver inflammation with scarring), alcohol use disorder and alcohol-associated liver disease. It is investigational and not approved.",
+  "what_it_is": "Pemvidutide is a lab-made drug that switches on glucagon and GLP-1 receptors in equal measure. Its developer, Altimmune, calls it a balanced 1:1 dual agonist. Altimmune tested it for obesity. Its development now focuses on MASH (fatty-liver inflammation with scarring), alcohol use disorder and alcohol-associated liver disease. It is investigational and not approved.",
   "evidence": {
     "grade": "limited",
-    "why": "Company-reported phase 2 randomized trials: IMPACT (212 adults with MASH, liver biopsies at 24 weeks), MOMENTUM (391 adults with obesity, 48 weeks) and RECLAIM (about 100 adults with alcohol use disorder, 24 weeks); no phase 3 results yet. All results so far come from company announcements and filings."
+    "why": "The evidence is three phase 2 randomized trials reported by the company. IMPACT had 212 adults with MASH, with liver biopsies at 24 weeks. MOMENTUM had 391 adults with obesity, over 48 weeks. RECLAIM had about 100 adults with alcohol use disorder, over 24 weeks. There are no phase 3 results yet. All results so far come from company announcements and filings."
   },
   "status_us": {
     "key": "investigational",

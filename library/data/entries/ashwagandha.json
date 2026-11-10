@@ -2,10 +2,10 @@
   "id": "ashwagandha",
   "name": "Ashwagandha",
   "summary": "An herb from Ayurvedic medicine (Withania somnifera). Extracts of its root are taken mainly to ease stress and anxiety and to sleep better.",
-  "what_it_is": "Ashwagandha (Withania somnifera) is an evergreen shrub long used in Ayurvedic and Unani medicine, where it is classed as an adaptogen. Most supplements contain root extracts; some use the root only, others root and leaf. Its effects are thought to come mainly from steroidal lactones called withanolides, with alkaloids and other components possibly contributing.",
+  "what_it_is": "Ashwagandha (Withania somnifera) is an evergreen shrub long used in Ayurvedic and Unani medicine, where it is classed as an adaptogen. Most supplements contain extracts of the root. Some use the root only, others root and leaf. Its effects are thought to come mainly from compounds called withanolides (steroidal lactones). Alkaloids and other components may add to them.",
   "evidence": {
     "grade": "limited",
-    "why": "Several small, short placebo-controlled trials, mostly in India, report less stress, anxiety and sleeplessness, but results vary widely and a 2026 meta-analysis rated the certainty very low."
+    "why": "Several small, short placebo-controlled trials, mostly in India, report less stress, anxiety and sleeplessness. But results vary widely, and a 2026 meta-analysis rated the certainty very low."
   },
   "status_us": {
     "key": "supplement",
@@ -95,9 +95,9 @@
   "avoid_if": [
     "Pregnant or breastfeeding",
     "Liver disease or past liver injury from a supplement",
-    "Thyroid disease or taking thyroid hormone (clinician first)",
+    "Thyroid disease or taking thyroid hormone (doctor first)",
     "Hormone-sensitive prostate cancer",
-    "Taking sedatives, immunosuppressants, or diabetes or blood pressure medicines (clinician first)"
+    "Taking sedatives, immunosuppressants, or diabetes or blood pressure medicines (doctor first)"
   ],
   "interactions": [
     "Thyroid hormone medicines: it might interact with them, given its effects on thyroid levels",

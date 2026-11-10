@@ -2,10 +2,10 @@
   "id": "exemestane",
   "name": "Exemestane",
   "summary": "A prescription pill that permanently blocks aromatase, the enzyme that makes estrogen. Approved for hormone-sensitive breast cancer after menopause. Studies in men are few and brief.",
-  "what_it_is": "Exemestane is a steroidal aromatase inactivator: it acts as a false substrate, and its metabolite binds the enzyme's active site and inactivates it irreversibly. It lowers circulating estrogens by 85% to 95% at peak effect and cuts the body's estrogen production by 98%, without affecting cortisol or aldosterone. In a small 10-day study of young men, it raised testosterone while lowering estradiol.",
+  "what_it_is": "Exemestane is a steroidal aromatase inactivator. It acts as a false substrate: its metabolite binds the enzyme's active site and switches the enzyme off irreversibly. It lowers estrogens in the blood by 85% to 95% at peak effect and cuts the body's estrogen production by 98%. It does not affect cortisol or aldosterone. In a small 10-day study of young men, it raised testosterone while lowering estradiol.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for breast cancer after menopause, and a trial in 4,560 women found it lowered breast cancer risk over about 3 years (off-label); in men, the main data come from a 10-day study of 12 young men."
+    "why": "It is FDA-approved for breast cancer after menopause. A trial in 4,560 women found it lowered breast cancer risk over about 3 years (an off-label use). In men, the main data come from a 10-day study of 12 young men."
   },
   "status_us": {
     "key": "approved",

@@ -880,7 +880,7 @@
         { "at": "pituitary", "op": "up", "say": "LH rises fast in healthy men, and in women near ovulation (small studies)", "markers": ["lh"], "src": [5, 6] },
         { "at": "pituitary", "op": "is", "say": "no LH rise in women earlier in the menstrual cycle (small study)", "src": [6] },
         { "at": "testes", "op": "up", "say": "testosterone rose over hours of infusion in healthy men (small studies)", "markers": ["testosterone"], "src": [5] },
-        { "at": "pituitary", "op": "watch", "say": "LH, FSH and testosterone or estradiol checked if a clinician supervises use", "markers": ["lh", "fsh", "testosterone", "estradiol"], "src": [5, 6] },
+        { "at": "pituitary", "op": "watch", "say": "LH, FSH and testosterone or estradiol checked if a doctor supervises use", "markers": ["lh", "fsh", "testosterone", "estradiol"], "src": [5, 6] },
         { "at": "immune system", "op": "warn", "say": "possible immune reactions; FDA lists it as a significant safety risk", "risk": "immune reactions", "src": [1] },
         { "at": "whole body", "op": "warn", "say": "raises sex hormones, which could matter in hormone-sensitive cancers", "risk": "hormone-sensitive cancer", "src": [5] }
       ],

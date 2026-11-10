@@ -2,10 +2,10 @@
   "id": "progesterone",
   "name": "Progesterone (micronized)",
   "summary": "A prescription form of the natural hormone progesterone. Used mainly to protect the lining of the uterus in women taking estrogen after menopause, and to treat periods that have stopped.",
-  "what_it_is": "Progesterone is a female sex hormone made by the ovaries. In women taking estrogen after menopause, it counters estrogen's growth effect on the lining of the uterus. Prometrium is micronized progesterone, made from a plant-derived starting material and chemically identical to the hormone the ovaries make. It differs from synthetic progestins such as medroxyprogesterone acetate, the progestin used in the WHI trial.",
+  "what_it_is": "Progesterone is a female sex hormone made by the ovaries. In women taking estrogen after menopause, it counters estrogen's growth effect on the lining of the uterus. Prometrium is micronized progesterone. It is made from a plant-derived starting material and is chemically identical to the hormone the ovaries make. It differs from synthetic progestins such as medroxyprogesterone acetate, the progestin used in the WHI trial.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved to protect the uterine lining during estrogen therapy and to treat secondary amenorrhea, based on randomized trials; evidence for hot flashes and sleep with progesterone alone is limited and mixed."
+    "why": "It is FDA-approved to protect the uterine lining during estrogen therapy and to treat secondary amenorrhea, based on randomized trials. The evidence for hot flashes and sleep with progesterone alone is limited and mixed."
   },
   "status_us": {
     "key": "approved",

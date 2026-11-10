@@ -2,10 +2,10 @@
   "id": "tb4",
   "name": "Thymosin beta-4",
   "summary": "A natural protein promoted for injury recovery, based on animal studies. In people it has been tested as eye drops and a skin gel, with mixed results. Not approved, and not the same thing as TB-500.",
-  "what_it_is": "Thymosin beta-4 is a 43-amino-acid protein first isolated from calf thymus and found in blood, saliva, tears and wound fluid. Inside cells it binds actin, a building block of the cell skeleton, and in several animal models it speeds skin repair. A drug company has tested it in people as eye drops (RGN-259) and as a skin gel (RGN-137). FDA stresses that TB-500, a short synthetic peptide based on one part of it, is not the same substance.",
+  "what_it_is": "Thymosin beta-4 is a protein of 43 amino acids, first isolated from calf thymus and found in blood, saliva, tears and wound fluid. Inside cells it binds actin, a building block of the cell skeleton. In several animal models it speeds skin repair. A drug company has tested it in people as eye drops (RGN-259) and as a skin gel (RGN-137). FDA stresses that TB-500, a short lab-made peptide based on one part of it, is not the same substance.",
   "evidence": {
     "grade": "limited",
-    "why": "Human evidence is mixed: the eye drops did not reach statistical significance in an 18-person cornea trial and missed their main goals in larger dry-eye and cornea trials, skin-gel wound trials gave inconsistent reports, and the evidence for injury recovery comes from animal studies."
+    "why": "The human evidence is mixed. The eye drops did not reach statistical significance in an 18-person cornea trial and missed their main goals in larger dry-eye and cornea trials. Wound trials of the skin gel gave inconsistent reports. The evidence for injury recovery comes from animal studies."
   },
   "status_us": {
     "key": "investigational",
@@ -121,7 +121,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved"
+      "General health check (complete blood count and metabolic panel) if a doctor is involved"
     ],
     "during": [],
     "why": "Thymosin beta-4 has been studied in people only as eye drops and skin gel in trials, so no evidence-based monitoring exists for other uses."

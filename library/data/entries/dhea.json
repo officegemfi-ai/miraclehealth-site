@@ -2,10 +2,10 @@
   "id": "dhea",
   "name": "DHEA",
   "summary": "A hormone your adrenal glands make, which the body turns into testosterone and estrogen. Sold as a supplement for libido, well-being and aging. The evidence is weak.",
-  "what_it_is": "DHEA (dehydroepiandrosterone) is a steroid hormone made by the adrenal glands. The body converts it into androgens such as testosterone and into estrogens such as estradiol. Oral DHEA is sold in the US as a dietary supplement, and the same molecule, called prasterone, is FDA-approved as a vaginal insert (Intrarosa) for painful sex caused by menopause.",
+  "what_it_is": "DHEA (dehydroepiandrosterone) is a steroid hormone made by the adrenal glands. The body turns it into androgens such as testosterone and into estrogens such as estradiol. DHEA taken by mouth is sold in the US as a dietary supplement. The same molecule, called prasterone, is FDA-approved as a vaginal insert (Intrarosa) for painful sex caused by menopause.",
   "evidence": {
     "grade": "limited",
-    "why": "A Cochrane review of 28 randomized trials in menopausal women found no quality-of-life benefit and at most a slight effect on sexual function, two small trials in men found no strength or muscle gain, and guidelines advise against routine use; only the vaginal form is approved, for one use."
+    "why": "A Cochrane review of 28 randomized trials in menopausal women found no quality-of-life benefit and at most a slight effect on sexual function. Two small trials in men found no gain in strength or muscle. Guidelines advise against routine use. Only the vaginal form is approved, and for one use."
   },
   "status_us": {
     "key": "supplement",
@@ -107,7 +107,7 @@
     "Competitive athletes (banned by WADA)"
   ],
   "interactions": [
-    "Not well studied. The body converts DHEA into testosterone and estrogen, so anyone on hormone therapy or hormone-blocking treatment should check with a clinician first"
+    "Not well studied. The body converts DHEA into testosterone and estrogen, so anyone on hormone therapy or hormone-blocking treatment should check with a doctor first"
   ],
   "labs": {
     "before": [

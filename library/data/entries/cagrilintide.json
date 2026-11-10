@@ -2,10 +2,10 @@
   "id": "cagrilintide",
   "name": "Cagrilintide",
   "summary": "An experimental, long-acting version of the hormone amylin. Tested for weight loss on its own and with semaglutide (as CagriSema). Not FDA-approved.",
-  "what_it_is": "Cagrilintide is a lab-made, long-acting analog of the hormone amylin, developed by Novo Nordisk. In its main trials it is combined with semaglutide, a GLP-1 drug, as CagriSema, and Novo Nordisk asked FDA in December 2025 to approve CagriSema for weight management. No product containing cagrilintide is approved in the US, and FDA says it cannot be used in compounding.",
+  "what_it_is": "Cagrilintide is a lab-made, long-acting analog of the hormone amylin, developed by Novo Nordisk. In its main trials it is combined with semaglutide, a GLP-1 drug, as CagriSema. Novo Nordisk asked FDA in December 2025 to approve CagriSema for weight management. No product containing cagrilintide is approved in the US, and FDA says it cannot be used in compounding.",
   "evidence": {
     "grade": "moderate",
-    "why": "Two large published phase 3 trials (3,417 and 1,206 adults) support cagrilintide combined with semaglutide; evidence for cagrilintide alone rests mainly on one 26-week phase 2 trial, and long-term safety is unknown."
+    "why": "Two large published phase 3 trials (3,417 and 1,206 adults) support cagrilintide combined with semaglutide. The evidence for cagrilintide alone rests mainly on one 26-week phase 2 trial. Long-term safety is unknown."
   },
   "status_us": {
     "key": "investigational",

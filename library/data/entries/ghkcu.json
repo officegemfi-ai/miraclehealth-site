@@ -2,10 +2,10 @@
   "id": "ghkcu",
   "name": "GHK-Cu",
   "summary": "A small peptide that binds copper, found naturally in human blood. Used in skin creams and injected for skin, hair and healing. That rests mostly on small cosmetic studies and animal studies.",
-  "what_it_is": "GHK-Cu is the tripeptide GHK (glycine, histidine and lysine) bound to copper. GHK occurs naturally in human plasma, saliva and urine, and its plasma level falls with age. In laboratory and animal research it increases collagen and elastin production and speeds wound repair. It is used in cosmetic skin products and is not an FDA-approved drug.",
+  "what_it_is": "GHK-Cu is the tripeptide GHK (glycine, histidine and lysine) bound to copper. GHK occurs naturally in human plasma, saliva and urine, and its level in plasma falls with age. In laboratory and animal research it increases the production of collagen and elastin and speeds wound repair. It is used in cosmetic skin products. It is not an FDA-approved drug.",
   "evidence": {
     "grade": "limited",
-    "why": "Skin benefits come from small cosmetic studies of copper-peptide creams in women, mostly presented at meetings by researchers tied to the developer; healing benefits come from animal studies, and FDA says human data on injections are limited."
+    "why": "The skin benefits come from small cosmetic studies of copper-peptide creams in women, mostly presented at meetings by researchers tied to the developer. The healing benefits come from animal studies. FDA says human data on injections are limited."
   },
   "status_us": {
     "key": "under_review",
@@ -89,14 +89,14 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (no safety data)",
-    "Wilson disease or another copper-handling disorder (it carries copper; ask a clinician first)"
+    "Wilson disease or another copper-handling disorder (it carries copper; ask a doctor first)"
   ],
   "interactions": [
     "None well documented"
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for GHK-Cu by any route."

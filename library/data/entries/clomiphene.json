@@ -2,10 +2,10 @@
   "id": "clomiphene",
   "name": "Clomiphene",
   "summary": "A prescription fertility pill that triggers ovulation in women who don't ovulate regularly. Men also take it to raise their own testosterone, which it isn't approved for.",
-  "what_it_is": "Clomiphene is a selective estrogen receptor modulator (SERM) taken as a tablet. It raises the pituitary hormones LH and FSH, which in women leads to ovulation and in men stimulates the testes to make testosterone. It is a mix of two forms, enclomiphene and zuclomiphene (30% to 50% of the mix); zuclomiphene stays in the body for more than a month.",
+  "what_it_is": "Clomiphene is a selective estrogen receptor modulator (SERM) taken as a tablet. It raises the pituitary hormones LH and FSH. In women that leads to ovulation, and in men it stimulates the testes to make testosterone. It is a mix of two forms, enclomiphene and zuclomiphene (30% to 50% of the mix). Zuclomiphene stays in the body for more than a month.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for ovulation induction; in men, a 2025 meta-analysis of 10 randomized trials (819 men) found it raises testosterone, with mixed effects on symptoms."
+    "why": "It is FDA-approved for ovulation induction. In men, a 2025 meta-analysis of 10 randomized trials (819 men) found it raises testosterone, with mixed effects on symptoms."
   },
   "status_us": {
     "key": "approved",

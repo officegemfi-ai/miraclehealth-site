@@ -2,10 +2,10 @@
   "id": "hghfrag",
   "name": "HGH Fragment 176-191",
   "summary": "A lab-made piece of the tail end of human growth hormone, sold as a 'research chemical' for fat loss. The evidence comes from animal studies of a related peptide.",
-  "what_it_is": "HGH Fragment 176-191 is a 16-amino-acid synthetic peptide matching the tail end (amino acids 176 to 191) of human growth hormone, the region tied to fat breakdown in lab studies. It differs from the better-studied AOD-9604 by a single amino acid at the start (phenylalanine instead of the tyrosine that AOD-9604 carries to make it more stable). In mice, AOD-9604 increased fat burning without binding the growth hormone receptor or causing cell growth, unlike full growth hormone. It is not an FDA-approved medicine.",
+  "what_it_is": "HGH Fragment 176-191 is a lab-made peptide of 16 amino acids. It matches the tail end (amino acids 176 to 191) of human growth hormone, the region tied to fat breakdown in lab studies. It differs from the better-studied AOD-9604 by a single amino acid at the start: phenylalanine instead of the tyrosine that AOD-9604 carries to make it more stable. In mice, AOD-9604 increased fat burning without binding the growth hormone receptor or causing cell growth, unlike full growth hormone. It is not an FDA-approved medicine.",
   "evidence": {
     "grade": "preclinical",
-    "why": "Fat-loss effects come from short studies in obese mice and rats of the closely related AOD-9604. In people, AOD-9604's main obesity trial (502 adults randomized) found no significant difference in weight loss from placebo, and its development for obesity ended in 2007."
+    "why": "Its fat-loss effects come from short studies, in obese mice and rats, of the closely related AOD-9604. In people, AOD-9604's main obesity trial (502 adults randomized) found no significant difference in weight loss from placebo. Its development for obesity ended in 2007."
   },
   "status_us": {
     "key": "not_approved",
@@ -89,7 +89,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician"
+      "General health check with a doctor"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for this research peptide, and there is no lab test specific to it."

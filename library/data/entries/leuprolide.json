@@ -2,10 +2,10 @@
   "id": "leuprolide",
   "name": "Leuprolide",
   "summary": "A prescription injection that switches off the body's sex hormones. Used for prostate cancer, endometriosis, fibroids and puberty that starts too early in children.",
-  "what_it_is": "Leuprolide is a lab-made drug that acts like gonadotropin-releasing hormone (GnRH), the signal that drives the pituitary gland's control of the testes and ovaries. Given continuously as a long-acting injection, it first causes a short rise in testosterone or estrogen, which can briefly worsen symptoms, and then shuts their production down to very low levels. The effect is meant to reverse after stopping; the label says normal function usually returns within three months.",
+  "what_it_is": "Leuprolide is a lab-made drug that acts like gonadotropin-releasing hormone (GnRH), the signal that drives the pituitary gland's control of the testes and ovaries. It is given continuously, as a long-acting injection. At first it causes a short rise in testosterone or estrogen, which can briefly worsen symptoms. Then it shuts their production down to very low levels. The effect is meant to reverse after stopping. The label says normal function usually returns within three months.",
   "evidence": {
     "grade": "strong",
-    "why": "It is FDA-approved for advanced prostate cancer, endometriosis, fibroid-related anemia before surgery and central precocious puberty, based on the clinical trials reviewed for its labels."
+    "why": "It is FDA-approved for advanced prostate cancer, endometriosis, fibroid-related anemia before surgery and central precocious puberty. That is based on the clinical trials reviewed for its labels."
   },
   "status_us": {
     "key": "approved",
@@ -143,8 +143,8 @@
     "Pregnancy: it can harm a developing baby",
     "Unexplained abnormal vaginal bleeding",
     "Known allergy to leuprolide or other GnRH drugs",
-    "Osteoporosis or strong risk factors for bone loss (needs a clinician's review first)",
-    "Heart disease, long QT syndrome, diabetes or a seizure history (needs a clinician's review first)"
+    "Osteoporosis or strong risk factors for bone loss (needs a doctor's review first)",
+    "Heart disease, long QT syndrome, diabetes or a seizure history (needs a doctor's review first)"
   ],
   "interactions": [
     "Other drugs that prolong the QT interval: the label advises weighing the risks first",

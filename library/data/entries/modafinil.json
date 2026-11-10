@@ -2,10 +2,10 @@
   "id": "modafinil",
   "name": "Modafinil",
   "summary": "A prescription drug that keeps people awake, for narcolepsy, sleep apnea and shift-work sleepiness. Also taken for focus, which it isn't approved for. In rested, healthy people its effects are small.",
-  "what_it_is": "Modafinil, sold as Provigil, is a prescription drug that promotes wakefulness. It is approved for adults with excessive sleepiness from narcolepsy, obstructive sleep apnea or shift work disorder. How it works is not known. It is a Schedule IV controlled substance, and prescribers are told to watch for misuse.",
+  "what_it_is": "Modafinil, sold as Provigil, is a prescription drug that helps people stay awake. It is approved for adults with excessive sleepiness from narcolepsy, obstructive sleep apnea or shift work disorder. How it works is not known. It is a Schedule IV controlled substance, and prescribers are told to watch for misuse.",
   "evidence": {
     "grade": "moderate",
-    "why": "It is approved for sleepiness from three sleep disorders; for focus in rested healthy people, meta-analyses of small placebo-controlled trials found only small effects on a few kinds of thinking tests."
+    "why": "It is approved for sleepiness from three sleep disorders. For focus in rested, healthy people, meta-analyses of small placebo-controlled trials found only small effects, on a few kinds of thinking tests."
   },
   "status_us": {
     "key": "approved",
@@ -99,8 +99,8 @@
   "avoid_if": [
     "Pregnant or planning pregnancy (animal data suggest harm, and fetal growth restriction and miscarriage have been reported)",
     "Allergy to modafinil or armodafinil",
-    "History of left ventricular hypertrophy or other heart disease (needs a clinician first)",
-    "History of psychosis, depression or mania (needs a clinician first)",
+    "History of left ventricular hypertrophy or other heart disease (needs a doctor first)",
+    "History of psychosis, depression or mania (needs a doctor first)",
     "Athletes in tested sports (WADA bans modafinil in competition)"
   ],
   "interactions": [

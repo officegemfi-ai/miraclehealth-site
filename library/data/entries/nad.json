@@ -2,10 +2,10 @@
   "id": "nad",
   "name": "NAD+",
   "summary": "A molecule your cells use to make energy. Given by IV drip or injection, or taken by mouth, by people hoping for more energy and slower aging. The evidence in people is minimal.",
-  "what_it_is": "NAD+ (nicotinamide adenine dinucleotide) is a molecule in the body's cells that takes part in energy metabolism. People try to raise their levels with NAD+ itself, given by IV infusion or injection, or with precursors taken by mouth such as nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN). In a small study, infused NAD+ was rapidly removed from the blood, probably broken down by enzymes such as CD38, with some passed in urine.",
+  "what_it_is": "NAD+ (nicotinamide adenine dinucleotide) is a molecule in the body's cells that takes part in energy metabolism. People try to raise their levels in two ways: with NAD+ itself, given by IV infusion or injection, or with precursors taken by mouth, such as nicotinamide riboside (NR) and nicotinamide mononucleotide (NMN). In a small study, infused NAD+ was rapidly removed from the blood. It was probably broken down by enzymes such as CD38, with some passed in urine.",
   "evidence": {
     "grade": "limited",
-    "why": "Human data on NAD+ itself are a pilot infusion study of 11 men and a small clinic chart review with no health outcomes; trials of oral precursors show higher NAD+ levels but unclear benefits."
+    "why": "The human data on NAD+ itself are a pilot infusion study of 11 men and a small clinic chart review with no health outcomes. Trials of oral precursors show higher NAD+ levels but unclear benefits."
   },
   "status_us": {
     "key": "compounded",
@@ -68,7 +68,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (not studied)",
-    "Liver or kidney disease (excluded from the infusion study; ask a clinician)"
+    "Liver or kidney disease (excluded from the infusion study; ask a doctor)"
   ],
   "interactions": [
     "None well documented"

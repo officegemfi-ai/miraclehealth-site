@@ -2,10 +2,10 @@
   "id": "rapamycin",
   "name": "Rapamycin",
   "summary": "A transplant drug (sirolimus) that holds back the immune system. It extends lifespan in mice, and is being studied in people as a possible way to slow aging.",
-  "what_it_is": "Rapamycin, also called sirolimus and sold as Rapamune, is a prescription drug that suppresses the immune system. It blocks a signaling pathway called mTOR, which mouse studies have linked to lifespan. It is approved to prevent kidney transplant rejection and to treat lymphangioleiomyomatosis (LAM), a rare lung disease, and it is being tested in small human trials for aging.",
+  "what_it_is": "Rapamycin, also called sirolimus and sold as Rapamune, is a prescription drug that suppresses the immune system. It blocks a signaling pathway called mTOR, which mouse studies have linked to lifespan. It is approved to prevent rejection of a kidney transplant and to treat lymphangioleiomyomatosis (LAM), a rare lung disease. It is being tested in small human trials for aging.",
   "evidence": {
     "grade": "limited",
-    "why": "It is an approved transplant and LAM drug, but for aging the evidence is mouse lifespan studies plus small, short human trials of aging markers rather than lifespan or disease outcomes."
+    "why": "It is an approved transplant and LAM drug. For aging, the evidence is mouse lifespan studies plus small, short human trials. Those trials measured markers of aging, not lifespan or disease outcomes."
   },
   "status_us": {
     "key": "approved",

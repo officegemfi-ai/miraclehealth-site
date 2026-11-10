@@ -2,10 +2,10 @@
   "id": "glycine",
   "name": "Glycine",
   "summary": "An amino acid taken mainly to sleep better. The evidence is three small, very short trials in healthy adults.",
-  "what_it_is": "Glycine is an amino acid. Researchers suggest it may aid sleep by acting on NMDA receptors in the brain's body-clock center (the suprachiasmatic nucleus), lowering core body temperature and widening blood vessels, though this needs more study. It has also been studied in schizophrenia and in type 2 diabetes.",
+  "what_it_is": "Glycine is an amino acid. Researchers suggest it may aid sleep by acting on NMDA receptors in the brain's body-clock center (the suprachiasmatic nucleus), lowering core body temperature and widening blood vessels. This needs more study. It has also been studied in schizophrenia and in type 2 diabetes.",
   "evidence": {
     "grade": "limited",
-    "why": "Three small trials of 2 to 4 nights in healthy adults reported better sleep quality and less daytime sleepiness, but a systematic review rated them at high risk of bias."
+    "why": "Three small trials of 2 to 4 nights in healthy adults reported better sleep quality and less daytime sleepiness. But a systematic review rated them at high risk of bias."
   },
   "status_us": {
     "key": "supplement",
@@ -64,7 +64,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (not studied in the sleep trials)",
-    "Taking medicines for schizophrenia or another psychiatric condition (clinician first)"
+    "Taking medicines for schizophrenia or another psychiatric condition (doctor first)"
   ],
   "interactions": [
     "None well documented; people taking medicines for schizophrenia or another psychiatric condition should check with their prescriber first"

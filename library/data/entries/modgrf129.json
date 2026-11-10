@@ -2,10 +2,10 @@
   "id": "modgrf129",
   "name": "CJC-1295 no DAC (Mod GRF 1-29)",
   "summary": "A modified copy of the hormone that triggers the release of growth hormone. Sold as a 'research chemical' to raise growth hormone. The only evidence comes from related peptides.",
-  "what_it_is": "Mod GRF 1-29 is a synthetic peptide matching the first 29 amino acids of growth hormone-releasing hormone (GHRH), the same stretch as sermorelin, with four amino acids swapped (at positions 2, 8, 15 and 27). FDA's review calls this 29-amino-acid peptide 'CJC-1295 (free base)' and treats it as a different active ingredient from CJC-1295 with DAC, which carries an extra unit that makes it last for days. Like natural GHRH, it is meant to signal the pituitary gland to release growth hormone. It is not an approved medicine.",
+  "what_it_is": "Mod GRF 1-29 is a lab-made peptide that matches the first 29 amino acids of growth hormone-releasing hormone (GHRH). That is the same stretch as sermorelin, with four amino acids swapped (at positions 2, 8, 15 and 27). FDA's review calls this 29-amino-acid peptide 'CJC-1295 (free base)'. FDA treats it as a different active ingredient from CJC-1295 with DAC, which carries an extra unit that makes it last for days. Like natural GHRH, it is meant to signal the pituitary gland to release growth hormone. It is not an approved medicine.",
   "evidence": {
     "grade": "anecdotal",
-    "why": "No studies of this exact peptide were identified; the only human data FDA cited for 'CJC-1295' are two small studies of the long-acting form, with no effectiveness endpoints."
+    "why": "No studies of this exact peptide were identified. The only human data FDA cited for 'CJC-1295' are two small studies of the long-acting form, and they had no effectiveness endpoints."
   },
   "status_us": {
     "key": "not_approved",
@@ -90,7 +90,7 @@
   "avoid_if": [
     "Active cancer or a history of pituitary tumors",
     "Pregnant or breastfeeding (no safety data)",
-    "Diabetes or prediabetes (clinician first)",
+    "Diabetes or prediabetes (doctor first)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [
@@ -98,7 +98,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician",
+      "General health check with a doctor",
       "IGF-1",
       "Fasting glucose or HbA1c"
     ],

@@ -2,10 +2,10 @@
   "id": "lions",
   "name": "Lion’s mane",
   "summary": "An edible mushroom (Hericium erinaceus) taken for memory, focus and mood. Small trials in people show mixed results, and most of the evidence comes from lab and animal studies.",
-  "what_it_is": "Lion's mane (Hericium erinaceus) is an edible mushroom native to North America, Europe and Asia, with deep roots in traditional Chinese medicine. It contains compounds called hericenones and, in its mycelium (the root-like threads), erinacines, which stimulated nerve growth factor in lab studies. It is eaten as food and taken in supplements; trials have used capsules, powders and baked goods containing it.",
+  "what_it_is": "Lion's mane (Hericium erinaceus) is an edible mushroom native to North America, Europe and Asia, with deep roots in traditional Chinese medicine. It contains compounds called hericenones and, in its mycelium (the root-like threads), erinacines. These stimulated nerve growth factor in lab studies. It is eaten as food and taken in supplements. Trials have used capsules, powders and baked goods containing it.",
   "evidence": {
     "grade": "limited",
-    "why": "A 2025 systematic review found 9 small human studies (about 325 people) with mixed effects on memory and some improvement in mood scores; most support for brain benefits comes from lab and animal work."
+    "why": "A 2025 systematic review found 9 small human studies (about 325 people). They showed mixed effects on memory and some improvement in mood scores. Most support for brain benefits comes from lab and animal work."
   },
   "status_us": {
     "key": "supplement",

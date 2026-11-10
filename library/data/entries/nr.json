@@ -2,10 +2,10 @@
   "id": "nr",
   "name": "NR (nicotinamide riboside)",
   "summary": "A form of vitamin B3 that raises NAD+, a molecule cells use for energy. Taken in hopes of healthier aging. Trials show few clear health effects.",
-  "what_it_is": "Nicotinamide riboside (NR) is a form of vitamin B3 that the body can convert into NAD+, a molecule involved in energy metabolism whose levels decline with age and in many diseases. Taken by mouth, it reliably raises NAD+ in the blood, but there is no sign that it raises NAD+ in muscle; rises in its breakdown products there suggest much of the excess is simply cleared. Some trials have tested it combined with another compound, pterostilbene.",
+  "what_it_is": "Nicotinamide riboside (NR) is a form of vitamin B3 that the body can turn into NAD+. NAD+ is a molecule involved in energy metabolism, and its levels decline with age and in many diseases. Taken by mouth, NR reliably raises NAD+ in the blood. But there is no sign that it raises NAD+ in muscle: rises in its breakdown products there suggest much of the excess is simply cleared. Some trials have tested it combined with another compound, pterostilbene.",
   "evidence": {
     "grade": "limited",
-    "why": "About 25 mostly small human trials show NR raises blood NAD+ and appears safe in the short term, but a 2023 critical review found few clinically relevant effects."
+    "why": "About 25 mostly small human trials show NR raises blood NAD+ and appears safe in the short term. But a 2023 critical review found few clinically relevant effects."
   },
   "status_us": {
     "key": "supplement",
@@ -87,7 +87,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (not studied)",
-    "High cholesterol or triglycerides (clinician first, especially for products combined with pterostilbene)"
+    "High cholesterol or triglycerides (doctor first, especially for products combined with pterostilbene)"
   ],
   "interactions": [
     "Pterostilbene: the NR-plus-pterostilbene combination raised LDL cholesterol versus placebo in one trial"

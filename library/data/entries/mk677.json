@@ -2,10 +2,10 @@
   "id": "mk677",
   "name": "MK-677",
   "summary": "An experimental drug taken by mouth that acts like the hormone ghrelin to raise growth hormone and IGF-1. Taken for muscle, sleep and recovery. FDA bars pharmacies from making it over a heart-failure risk.",
-  "what_it_is": "MK-677, or ibutamoren, is an experimental drug taken by mouth that mimics ghrelin, a natural hormone that triggers growth hormone release. In trials it raised growth hormone and IGF-1 in older adults to levels typical of young adults. It was studied in the 1990s and 2000s for age-related muscle loss and recovery after hip fracture.",
+  "what_it_is": "MK-677, or ibutamoren, is an experimental drug taken by mouth. It mimics ghrelin, a natural hormone that triggers the release of growth hormone. In trials it raised growth hormone and IGF-1 in older adults to levels typical of young adults. It was studied in the 1990s and 2000s for age-related muscle loss and for recovery after hip fracture.",
   "evidence": {
     "grade": "moderate",
-    "why": "Randomized trials in older adults show it raises growth hormone, IGF-1 and lean mass but not strength or function, sleep data come from two tiny studies, and a hip-fracture trial was stopped early over heart failure."
+    "why": "Randomized trials in older adults show it raises growth hormone, IGF-1 and lean mass, but not strength or function. The sleep data come from two tiny studies. A hip-fracture trial was stopped early over heart failure."
   },
   "status_us": {
     "key": "category2",
@@ -96,7 +96,7 @@
   "avoid_if": [
     "Heart failure or other heart disease (heart-failure safety signal in older adults)",
     "Diabetes or prediabetes (it raises fasting glucose and lowers insulin sensitivity)",
-    "Current or past cancer, unless a clinician advises otherwise (it raises IGF-1, a growth signal)",
+    "Current or past cancer, unless a doctor advises otherwise (it raises IGF-1, a growth signal)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA)"
   ],
@@ -105,7 +105,7 @@
   ],
   "labs": {
     "before": [
-      "General health check with a clinician, including fasting glucose"
+      "General health check with a doctor, including fasting glucose"
     ],
     "during": [],
     "why": "No evidence-based monitoring exists for MK-677; trials found raised IGF-1, higher fasting glucose and a heart-failure signal."

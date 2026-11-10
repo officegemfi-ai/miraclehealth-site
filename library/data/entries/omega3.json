@@ -2,10 +2,10 @@
   "id": "omega3",
   "name": "Omega-3 fish oil",
   "summary": "Oils from fish, krill or algae that supply the omega-3 fats EPA and DHA. Taken mainly for heart health and to lower triglycerides.",
-  "what_it_is": "Omega-3s are polyunsaturated fats. The plant form, ALA, comes from flaxseed, soybean and canola oils, chia seeds and walnuts, while the long-chain forms EPA and DHA come mainly from fish and are first made by microalgae. Supplements include fish oil, krill oil, cod liver oil and algal oil, and separate prescription products such as icosapent ethyl (Vascepa, a purified form of EPA) are FDA-approved drugs.",
+  "what_it_is": "Omega-3s are polyunsaturated fats. The plant form, ALA, comes from flaxseed, soybean and canola oils, chia seeds and walnuts. The long-chain forms, EPA and DHA, come mainly from fish and are first made by microalgae. Supplements include fish oil, krill oil, cod liver oil and algal oil. Separate prescription products, such as icosapent ethyl (Vascepa, a purified form of EPA), are FDA-approved drugs.",
   "evidence": {
     "grade": "strong",
-    "why": "Large randomized trials show omega-3s lower triglycerides and that a prescription EPA drug cut heart events, but trials of standard fish oil gave mixed heart results and found no benefit for dry eye, memory in healthy older adults or macular degeneration."
+    "why": "Large randomized trials show omega-3s lower triglycerides, and that a prescription EPA drug cut heart events. But trials of standard fish oil gave mixed heart results. They found no benefit for dry eye, memory in healthy older adults or macular degeneration."
   },
   "status_us": {
     "key": "supplement",
@@ -54,7 +54,7 @@
       ]
     },
     {
-      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent; any change to prescribed drugs is for the treating clinician",
+      "claim": "In rheumatoid arthritis, may reduce the need for anti-inflammatory drugs, though effects on joint symptoms are inconsistent; any change to prescribed drugs is for the treating doctor",
       "evidence": "moderate",
       "sources": [
         1
@@ -108,9 +108,9 @@
     }
   ],
   "avoid_if": [
-    "Taking blood thinners or antiplatelet drugs such as warfarin, aspirin or clopidogrel (clinician first)",
-    "History of atrial fibrillation or atrial flutter (clinician first; don't stop a prescribed omega-3 on your own)",
-    "Fish or shellfish allergy (clinician first)"
+    "Taking blood thinners or antiplatelet drugs such as warfarin, aspirin or clopidogrel (doctor first)",
+    "History of atrial fibrillation or atrial flutter (doctor first; don't stop a prescribed omega-3 on your own)",
+    "Fish or shellfish allergy (doctor first)"
   ],
   "interactions": [
     "Warfarin and other anticoagulants: fish oil might prolong clotting time, and NIH advises periodic INR checks",

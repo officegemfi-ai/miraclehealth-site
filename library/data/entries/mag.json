@@ -2,10 +2,10 @@
   "id": "mag",
   "name": "Magnesium glycinate",
   "summary": "The mineral magnesium bound to the amino acid glycine. Taken mainly for sleep and relaxation, and to top up magnesium intake.",
-  "what_it_is": "Magnesium is a mineral that acts as a cofactor in more than 300 enzyme systems and is involved in energy production, bone structure, DNA and RNA synthesis, and moving calcium and potassium across cell membranes. Magnesium glycinate, also called bisglycinate, is a chelated form that combines magnesium with glycine. It may be slightly better absorbed than inorganic forms, but direct comparisons are limited, and glycine itself has been studied for sleep with inconclusive results.",
+  "what_it_is": "Magnesium is a mineral that acts as a cofactor in more than 300 enzyme systems. It is involved in energy production, bone structure, making DNA and RNA, and moving calcium and potassium across cell membranes. Magnesium glycinate, also called bisglycinate, is a chelated form that combines magnesium with glycine. It may be slightly better absorbed than inorganic forms, but direct comparisons are limited. Glycine itself has been studied for sleep, with inconclusive results.",
   "evidence": {
     "grade": "limited",
-    "why": "Sleep evidence for the glycinate form rests on one four-week trial with a small effect; other magnesium trials show marginal blood pressure lowering and mixed results for migraine and blood sugar."
+    "why": "The sleep evidence for the glycinate form rests on one four-week trial with a small effect. Other magnesium trials show marginal lowering of blood pressure and mixed results for migraine and blood sugar."
   },
   "status_us": {
     "key": "supplement",
@@ -89,7 +89,7 @@
   "avoid_if": [
     "Kidney disease or reduced kidney function",
     "Anyone hoping to prevent migraines with it (NIH advises doing so under a health care provider's supervision)",
-    "Taking osteoporosis drugs (bisphosphonates), tetracycline or quinolone antibiotics, or diuretics (check with a clinician first)"
+    "Taking osteoporosis drugs (bisphosphonates), tetracycline or quinolone antibiotics, or diuretics (check with a doctor first)"
   ],
   "interactions": [
     "Bisphosphonates (osteoporosis drugs): magnesium-rich products can reduce their absorption",

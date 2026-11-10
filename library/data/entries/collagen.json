@@ -2,10 +2,10 @@
   "id": "collagen",
   "name": "Collagen peptides",
   "summary": "Collagen broken down into small pieces of protein. Taken by mouth, mainly for skin hydration, elasticity and wrinkles, and sometimes for joint symptoms.",
-  "what_it_is": "Collagen is a structural protein of skin, cartilage and other connective tissue. Collagen peptide supplements (hydrolyzed collagen) contain collagen broken down into small fragments, often made from fish skin or scales or other animal sources, and are taken by mouth. They have been tested mainly for skin aging and for osteoarthritis symptoms.",
+  "what_it_is": "Collagen is a structural protein of skin, cartilage and other connective tissue. Collagen peptide supplements (hydrolyzed collagen) contain collagen broken down into small fragments. They are often made from fish skin or scales or from other animal sources, and are taken by mouth. They have been tested mainly for skin aging and for osteoarthritis symptoms.",
   "evidence": {
     "grade": "limited",
-    "why": "Many randomized trials report better skin hydration and elasticity, but a 2025 meta-analysis found the benefit only in industry-funded or lower-quality trials, not in independent or high-quality ones; joint evidence is a meta-analysis with mixed results."
+    "why": "Many randomized trials report better skin hydration and elasticity. But a 2025 meta-analysis found the benefit only in industry-funded or lower-quality trials, not in independent or high-quality ones. The joint evidence is a meta-analysis with mixed results."
   },
   "status_us": {
     "key": "supplement",

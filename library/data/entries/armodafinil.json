@@ -2,10 +2,10 @@
   "id": "armodafinil",
   "name": "Armodafinil",
   "summary": "One of the two mirror-image forms of modafinil, a prescription drug that keeps people with sleep disorders awake. Also taken for focus, an unapproved use with little direct evidence in healthy people.",
-  "what_it_is": "Armodafinil, sold as Nuvigil, is a prescription drug that promotes wakefulness. Modafinil is a 50-50 mix of two mirror-image forms of the same molecule; armodafinil is one of them, the R-form. It is approved for adults with excessive sleepiness from obstructive sleep apnea, narcolepsy or shift work disorder, and it is a Schedule IV controlled substance.",
+  "what_it_is": "Armodafinil, sold as Nuvigil, is a prescription drug that helps people stay awake. Modafinil is a 50-50 mix of two mirror-image forms of the same molecule. Armodafinil is one of them, the R-form. It is approved for adults with excessive sleepiness from obstructive sleep apnea, narcolepsy or shift work disorder. It is a Schedule IV controlled substance.",
   "evidence": {
     "grade": "limited",
-    "why": "It is approved for sleepiness from three sleep disorders; for focus in rested healthy people, the evidence comes from studies of modafinil, which found only small effects on a few kinds of thinking tests."
+    "why": "It is approved for sleepiness from three sleep disorders. For focus in rested, healthy people, the evidence comes from studies of modafinil. Those found only small effects, on a few kinds of thinking tests."
   },
   "status_us": {
     "key": "approved",
@@ -93,8 +93,8 @@
   "avoid_if": [
     "Pregnant or planning pregnancy (animal data suggest harm, and fetal growth restriction and miscarriage have been reported)",
     "Allergy to armodafinil or modafinil",
-    "Heart disease, left ventricular hypertrophy, or mitral valve prolapse that caused symptoms on stimulants (needs a clinician first)",
-    "History of psychosis, depression or mania (needs a clinician first)",
+    "Heart disease, left ventricular hypertrophy, or mitral valve prolapse that caused symptoms on stimulants (needs a doctor first)",
+    "History of psychosis, depression or mania (needs a doctor first)",
     "Athletes in tested sports: WADA bans modafinil in competition and covers all optical isomers of stimulants, and armodafinil is one of the two mirror-image forms of modafinil"
   ],
   "interactions": [

@@ -2,10 +2,10 @@
   "id": "sildenafil",
   "name": "Sildenafil",
   "summary": "The prescription pill in Viagra (a PDE5 inhibitor), for erectile dysfunction. The same drug is also sold as Revatio for pulmonary arterial hypertension (high blood pressure in the lungs).",
-  "what_it_is": "Sildenafil is a phosphodiesterase type 5 (PDE5) inhibitor, the same drug class as tadalafil, which improves erections by strengthening the blood-flow signal released during sexual stimulation. As Viagra, it was tested in 21 placebo-controlled trials in more than 3,000 men aged 19 to 87 with erectile dysfunction. Viagra is not indicated for women or children.",
+  "what_it_is": "Sildenafil is a phosphodiesterase type 5 (PDE5) inhibitor, the same drug class as tadalafil. It improves erections by strengthening the blood-flow signal released during sexual stimulation. As Viagra, it was tested in 21 placebo-controlled trials in more than 3,000 men aged 19 to 87 with erectile dysfunction. Viagra is not indicated for women or children.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for erectile dysfunction after 21 randomized trials in more than 3,000 men; the AUA recommends telling men with ED about PDE5 inhibitors and finds the drugs in the class similarly effective."
+    "why": "It was FDA-approved for erectile dysfunction after 21 randomized trials in more than 3,000 men. The AUA recommends telling men with ED about PDE5 inhibitors, and finds the drugs in the class similarly effective."
   },
   "status_us": {
     "key": "approved",
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "claim": "In men with ED and testosterone deficiency confirmed by a clinician, the AUA says treating the deficiency may improve results (low-certainty evidence)",
+      "claim": "In men with ED and testosterone deficiency confirmed by a doctor, the AUA says treating the deficiency may improve results (low-certainty evidence)",
       "evidence": "limited",
       "sources": [
         2
@@ -100,7 +100,7 @@
   "avoid_if": [
     "Taking nitrates or other nitric oxide donors in any form, including the street drugs called \"poppers\" (contraindicated)",
     "Taking riociguat or another guanylate cyclase stimulator (contraindicated)",
-    "Recent heart attack, stroke or life-threatening arrhythmia, or other serious heart disease, unless a clinician confirms sexual activity is safe",
+    "Recent heart attack, stroke or life-threatening arrhythmia, or other serious heart disease, unless a doctor confirms sexual activity is safe",
     "Already taking Revatio or another PDE5 inhibitor",
     "Past allergic reaction to sildenafil"
   ],

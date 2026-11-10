@@ -2,10 +2,10 @@
   "id": "phentermine",
   "name": "Phentermine",
   "summary": "A prescription appetite suppressant related to amphetamine. Approved for short-term use alongside a weight-loss program. A Schedule IV controlled substance.",
-  "what_it_is": "Phentermine, sold under brand names including Adipex-P, is a prescription appetite suppressant. Its label describes it as a sympathomimetic amine, chemically and pharmacologically related to amphetamine. It is approved only for short-term use (a few weeks) as an add-on to a weight-reduction program in people with a body mass index (BMI) of 30 or more, or 27 or more with other risk factors.",
+  "what_it_is": "Phentermine, sold under brand names including Adipex-P, is a prescription appetite suppressant. Its label describes it as a sympathomimetic amine, related to amphetamine in its chemistry and in how it acts. It is approved only for short-term use (a few weeks), as an add-on to a weight-reduction program. That is for people with a body mass index (BMI) of 30 or more, or 27 or more with other risk factors.",
   "evidence": {
     "grade": "strong",
-    "why": "It is FDA-approved for short-term weight loss; evidence on longer use comes mainly from observational health-record studies, not long-term randomized trials."
+    "why": "It is FDA-approved for short-term weight loss. The evidence on longer use comes mainly from observational health-record studies, not long-term randomized trials."
   },
   "status_us": {
     "key": "approved",

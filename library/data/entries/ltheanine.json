@@ -2,10 +2,10 @@
   "id": "ltheanine",
   "name": "L-theanine",
   "summary": "An amino acid from tea leaves. Taken to feel calm without getting drowsy, to ease stress, and to improve sleep quality and focus.",
-  "what_it_is": "L-theanine is an amino acid that is not used to build proteins, found in the tea plant (Camellia sinensis) and some mushrooms, and it adds to tea's savory taste. It resembles glutamate and glutamine, can cross into the brain, and is reported to affect GABA, dopamine, serotonin and glutamate and to increase alpha brain waves linked to a relaxed but alert state. How it works is not fully established.",
+  "what_it_is": "L-theanine is an amino acid that is not used to build proteins. It is found in the tea plant (Camellia sinensis) and some mushrooms, and it adds to tea's savory taste. It resembles glutamate and glutamine and can cross into the brain. It is reported to affect GABA, dopamine, serotonin and glutamate, and to increase alpha brain waves linked to a relaxed but alert state. How it works is not fully established.",
   "evidence": {
     "grade": "limited",
-    "why": "Small, short randomized trials suggest modest effects on acute stress, sleep quality and attention, often studied together with caffeine; larger independent trials are lacking."
+    "why": "Small, short randomized trials suggest modest effects on acute stress, sleep quality and attention. It was often studied together with caffeine. Larger independent trials are lacking."
   },
   "status_us": {
     "key": "supplement",
@@ -72,7 +72,7 @@
     }
   ],
   "avoid_if": [
-    "Anxiety, depression or another mental health condition (clinician first; evidence in these groups is limited)",
+    "Anxiety, depression or another mental health condition (doctor first; evidence in these groups is limited)",
     "Ongoing insomnia (evidence in clinical insomnia is limited, so seek an evaluation)"
   ],
   "interactions": [

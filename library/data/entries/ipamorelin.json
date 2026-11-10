@@ -2,10 +2,10 @@
   "id": "ipamorelin",
   "name": "Ipamorelin",
   "summary": "A small lab-made peptide taken to raise growth hormone, acting on the ghrelin receptor. Its only treatment trial, for bowel recovery after surgery, missed its main goal.",
-  "what_it_is": "Ipamorelin is a synthetic peptide of five amino acids, some of them not found in nature. It switches on the ghrelin receptor, the target of a natural gut hormone, which prompts the pituitary gland to release growth hormone and stimulates stomach and gut movement. It was developed as a drug and tested in hospital patients recovering from bowel surgery, but development was discontinued and it is not an approved medicine.",
+  "what_it_is": "Ipamorelin is a lab-made peptide of five amino acids, some of them not found in nature. It switches on the ghrelin receptor, the target of a natural gut hormone. That prompts the pituitary gland to release growth hormone and stimulates movement of the stomach and gut. It was developed as a drug and tested in hospital patients recovering from bowel surgery. Development was discontinued, and it is not an approved medicine.",
   "evidence": {
     "grade": "limited",
-    "why": "Human data are one pharmacology study in 48 healthy men and one 117-patient surgery trial that missed its main goal; there are no human studies of the under-the-skin use common today."
+    "why": "The human data are one pharmacology study in 48 healthy men and one surgery trial in 117 patients that missed its main goal. There are no human studies of the under-the-skin use that is common today."
   },
   "status_us": {
     "key": "category2",
@@ -27,12 +27,12 @@
   "avoid_if": [
     "Pregnant or breastfeeding (no reproductive studies)",
     "Active cancer",
-    "Diabetes or prediabetes (clinician first: higher blood sugar was seen in a trial)",
+    "Diabetes or prediabetes (doctor first: higher blood sugar was seen in a trial)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [ "None well documented" ],
   "labs": {
-    "before": [ "General health check with a clinician", "IGF-1", "Fasting glucose or HbA1c" ],
+    "before": [ "General health check with a doctor", "IGF-1", "Fasting glucose or HbA1c" ],
     "during": [ "IGF-1", "Fasting glucose or HbA1c" ],
     "why": "No evidence-based monitoring exists for ipamorelin; a review of growth hormone secretagogues advises tracking IGF-1 and blood sugar, and high blood sugar was seen in the surgery trial."
   },

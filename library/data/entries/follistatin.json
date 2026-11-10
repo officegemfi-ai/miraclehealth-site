@@ -5,7 +5,7 @@
   "what_it_is": "Follistatin is a protein the body makes. It blocks myostatin, a muscle protein that limits muscle growth, and it also binds activins. FS344 is one of its naturally occurring forms, made by alternative splicing of the follistatin gene. Researchers picked FS344 for gene-therapy trials because it has minimal effects on the hormone system that controls reproduction.",
   "evidence": {
     "grade": "preclinical",
-    "why": "No human studies of injected follistatin exist. The only human data come from two small gene-therapy studies (12 patients with muscle diseases) in which the body was made to produce it; the rest is animal research."
+    "why": "There are no human studies of injected follistatin. The only human data come from two small gene-therapy studies (12 patients with muscle diseases) in which the body was made to produce it. The rest is animal research."
   },
   "status_us": {
     "key": "not_approved",
@@ -96,7 +96,7 @@
   ],
   "labs": {
     "before": [
-      "General health check (complete blood count and metabolic panel) if a clinician is involved",
+      "General health check (complete blood count and metabolic panel) if a doctor is involved",
       "Pituitary and sex hormone levels, which the gene-therapy trial monitored"
     ],
     "during": [],

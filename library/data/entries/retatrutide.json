@@ -2,10 +2,10 @@
   "id": "retatrutide",
   "name": "Retatrutide",
   "summary": "An experimental Eli Lilly drug that acts on three hormone receptors (GIP, GLP-1 and glucagon). It is in late-stage obesity trials. Not FDA-approved.",
-  "what_it_is": "Retatrutide (LY3437943) is a lab-made peptide that switches on the receptors for three hormones: GIP, GLP-1 and glucagon. Tirzepatide acts on the first two of these; retatrutide adds glucagon. It is being tested in phase 3 trials in people with obesity, including people with type 2 diabetes or heart disease, and it is not approved in the US.",
+  "what_it_is": "Retatrutide (LY3437943) is a lab-made peptide that switches on the receptors for three hormones: GIP, GLP-1 and glucagon. Tirzepatide acts on the first two of these; retatrutide adds glucagon. It is being tested in phase 3 trials in people with obesity, including people with type 2 diabetes or heart disease. It is not approved in the US.",
   "evidence": {
     "grade": "moderate",
-    "why": "One published phase 2 randomized trial (338 adults) plus large phase 3 trials whose results so far come only from Lilly's press release; long-term safety is not yet known."
+    "why": "The evidence is one published phase 2 randomized trial (338 adults), plus large phase 3 trials whose results so far come only from Lilly's press release. Long-term safety is not yet known."
   },
   "status_us": {
     "key": "investigational",

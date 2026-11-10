@@ -2,10 +2,10 @@
   "id": "fsh",
   "name": "FSH",
   "summary": "A prescription fertility hormone, made in the lab and given by injection. Approved to trigger ovulation and for IVF in women and, with hCG, to start sperm production in men.",
-  "what_it_is": "Follicle-stimulating hormone (FSH) is a pituitary hormone that drives egg development in women and sperm production in men. Follitropin alfa (Gonal-f) and follitropin beta (Follistim AQ) are recombinant human FSH made in Chinese hamster ovary cells. In men, it is approved, together with hCG, only to start sperm production when the pituitary or hypothalamus fails to drive the testes (hypogonadotropic hypogonadism). Both products' approvals were converted to biologics licenses on March 23, 2020.",
+  "what_it_is": "Follicle-stimulating hormone (FSH) is a pituitary hormone that drives egg development in women and sperm production in men. Follitropin alfa (Gonal-f) and follitropin beta (Follistim AQ) are recombinant human FSH made in Chinese hamster ovary cells. In men it is approved for one thing only, together with hCG: to start sperm production when the pituitary or hypothalamus fails to drive the testes (hypogonadotropic hypogonadism). Both products' approvals were converted to biologics licenses on March 23, 2020.",
   "evidence": {
     "grade": "strong",
-    "why": "FDA-approved for female infertility and, with hCG, for starting sperm production in men with hypogonadotropic hypogonadism, though the male trials were small and open-label; for unexplained male infertility (off-label), a Cochrane review rated much of the evidence very low quality."
+    "why": "It is FDA-approved for female infertility. With hCG, it is also approved for starting sperm production in men with hypogonadotropic hypogonadism, though the trials in men were small and open-label. For unexplained male infertility (off-label), a Cochrane review rated much of the evidence as very low quality."
   },
   "status_us": {
     "key": "approved",

@@ -2,10 +2,10 @@
   "id": "probiotic",
   "name": "Probiotics",
   "summary": "Live microorganisms, such as Lactobacillus, Bifidobacterium and Saccharomyces boulardii. Taken mainly to prevent diarrhea from antibiotics and to ease gut symptoms.",
-  "what_it_is": "Probiotics are live microorganisms that, when given in adequate amounts, provide a health benefit. Common ones include Bifidobacterium, members of the Lactobacillaceae family such as Lactobacillus rhamnosus GG, and the yeast Saccharomyces boulardii. Effects are specific to the strain, and products are measured in colony-forming units (CFUs), though a higher count does not mean a product works better.",
+  "what_it_is": "Probiotics are live microorganisms that provide a health benefit when given in adequate amounts. Common ones include Bifidobacterium, members of the Lactobacillaceae family such as Lactobacillus rhamnosus GG, and the yeast Saccharomyces boulardii. Effects are specific to the strain. Products are measured in colony-forming units (CFUs), though a higher count does not mean a product works better.",
   "evidence": {
     "grade": "moderate",
-    "why": "Cochrane reviews of dozens of randomized trials give moderate-certainty evidence that probiotics prevent antibiotic-associated and C. difficile diarrhea; evidence for IBS and other uses is weaker and depends on the strain."
+    "why": "Cochrane reviews of dozens of randomized trials give moderate-certainty evidence that probiotics prevent antibiotic-associated and C. difficile diarrhea. The evidence for IBS and other uses is weaker and depends on the strain."
   },
   "status_us": {
     "key": "supplement",
@@ -100,7 +100,7 @@
     }
   ],
   "avoid_if": [
-    "Weakened immune system or serious illness (clinician first)",
+    "Weakened immune system or serious illness (doctor first)",
     "Central venous catheter",
     "Critically ill patients in intensive care",
     "Preterm infants"

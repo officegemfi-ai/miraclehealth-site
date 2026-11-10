@@ -2,10 +2,10 @@
   "id": "creatine",
   "name": "Creatine monohydrate",
   "summary": "A compound your body makes and also gets from animal foods. Taken as a supplement to add strength and power for short, intense exercise.",
-  "what_it_is": "Creatine is made in the body by the liver and kidneys from the amino acids glycine, arginine and methionine, and small amounts also come from animal foods. Most of it is stored in skeletal and heart muscle, partly as phosphocreatine, which muscles use to regenerate ATP, the cell's energy molecule, at the start of intense effort. Supplements raise the amount of creatine stored in muscle.",
+  "what_it_is": "The liver and kidneys make creatine from the amino acids glycine, arginine and methionine. Small amounts also come from animal foods. Most of it is stored in skeletal and heart muscle, partly as phosphocreatine. Muscles use phosphocreatine to rebuild ATP, the cell's energy molecule, at the start of intense effort. Supplements raise the amount of creatine stored in muscle.",
   "evidence": {
     "grade": "strong",
-    "why": "Meta-analyses of dozens of randomized trials show greater strength and lean-mass gains when creatine is added to resistance training, in both younger and older adults."
+    "why": "Meta-analyses of dozens of randomized trials show greater gains in strength and lean mass when creatine is added to resistance training. That holds in both younger and older adults."
   },
   "status_us": {
     "key": "supplement",
@@ -94,7 +94,7 @@
   "avoid_if": [
     "Kidney disease or reduced kidney function",
     "Teenagers: pediatric and high-school professional associations advise against performance supplements",
-    "Older adults or people with chronic medical conditions planning long-term use (have kidney function checked with a clinician first)"
+    "Older adults or people with chronic medical conditions planning long-term use (have kidney function checked with a doctor first)"
   ],
   "interactions": [
     "None well documented"
@@ -106,7 +106,7 @@
     "during": [
       "Periodic kidney function checks in those higher-risk groups during long-term use; cystatin C or a measured GFR avoids the creatinine effect"
     ],
-    "why": "Creatine raises blood creatinine without harming healthy kidneys, so creatinine-based kidney estimates can look worse than they are; tell your clinician and the lab that you take it."
+    "why": "Creatine raises blood creatinine without harming healthy kidneys, so creatinine-based kidney estimates can look worse than they are; tell your doctor and the lab that you take it."
   },
   "studies": [
     {

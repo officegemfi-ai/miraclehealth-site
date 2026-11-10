@@ -2,10 +2,10 @@
   "id": "ghrp6",
   "name": "GHRP-6",
   "summary": "An early lab-made peptide that makes the body release growth hormone by acting on the ghrelin receptor. Sold as a 'research chemical'. Studies in people are small and short.",
-  "what_it_is": "GHRP-6 is a synthetic peptide of six amino acids, including two mirror-image (D-form) amino acids. It came out of 1977 work on enkephalin-like (opioid-like) peptides and was the first growth hormone-releasing peptide with significant activity in the body. It acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone, and it can briefly raise cortisol. It is not FDA-approved.",
+  "what_it_is": "GHRP-6 is a lab-made peptide of six amino acids, two of them in mirror-image form (D-form). It came out of 1977 work on enkephalin-like (opioid-like) peptides and was the first growth hormone-releasing peptide with significant activity in the body. It acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone, and it can briefly raise cortisol. It is not FDA-approved.",
   "evidence": {
     "grade": "limited",
-    "why": "Small, short human studies show growth hormone release (weaker in obesity), brief cortisol rises and sleep changes; there are no trials of health outcomes."
+    "why": "Small, short human studies show growth hormone release (weaker in obesity), brief rises in cortisol and changes in sleep. There are no trials of health outcomes."
   },
   "status_us": {
     "key": "category2",
@@ -27,14 +27,14 @@
     { "risk": "Black-market supply: a review reports ghrelin mimetics are sold on the black market, so identity and purity are uncertain", "how_common": "unknown", "sources": [8] }
   ],
   "avoid_if": [
-    "Diabetes or prediabetes (clinician first: may reduce insulin sensitivity)",
+    "Diabetes or prediabetes (doctor first: may reduce insulin sensitivity)",
     "Active cancer (no cancer safety data)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
   "interactions": [ "None well documented" ],
   "labs": {
-    "before": [ "General health check with a clinician", "Fasting glucose or HbA1c", "IGF-1" ],
+    "before": [ "General health check with a doctor", "Fasting glucose or HbA1c", "IGF-1" ],
     "during": [ "Fasting glucose or HbA1c", "IGF-1" ],
     "why": "No evidence-based monitoring exists for GHRP-6; a review of growth hormone secretagogues advises tracking IGF-1 and blood sugar, and FDA flags effects on blood sugar and cortisol."
   },

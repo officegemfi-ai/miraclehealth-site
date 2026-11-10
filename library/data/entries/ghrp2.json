@@ -2,10 +2,10 @@
   "id": "ghrp2",
   "name": "GHRP-2",
   "summary": "A lab-made peptide that makes the body release growth hormone and raises appetite. Used in Japan as a diagnostic test, and sold elsewhere as a 'research chemical'.",
-  "what_it_is": "GHRP-2 (pralmorelin) is a synthetic peptide of six amino acids, including one not found in nature, from a family of growth hormone-releasing peptides originally derived from enkephalin, a natural opioid-like peptide. It acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone, and it also raises appetite and cortisol. In Japan it is used clinically as a diagnostic agent for growth hormone deficiency; it has no approved use in the US.",
+  "what_it_is": "GHRP-2 (pralmorelin) is a lab-made peptide of six amino acids, including one not found in nature. It comes from a family of growth hormone-releasing peptides originally derived from enkephalin, a natural opioid-like peptide. It acts on the ghrelin receptor to prompt the pituitary gland to release growth hormone. It also raises appetite and cortisol. In Japan it is used clinically as a diagnostic agent for growth hormone deficiency. It has no approved use in the US.",
   "evidence": {
     "grade": "limited",
-    "why": "Small, short human studies show growth hormone release, more appetite and normal growth rates in children with growth hormone deficiency; a 5-day course in nine healthy men did not raise IGF-1, and there are no long-term trials."
+    "why": "Small, short human studies show growth hormone release, more appetite and normal growth rates in children with growth hormone deficiency. A 5-day course in nine healthy men did not raise IGF-1. There are no long-term trials."
   },
   "status_us": {
     "key": "category2",
@@ -30,7 +30,7 @@
   ],
   "avoid_if": [
     "Critical illness (deaths were reported in critically ill study subjects)",
-    "Diabetes or insulin use (clinician first: higher insulin needs reported)",
+    "Diabetes or insulin use (doctor first: higher insulin needs reported)",
     "Pregnant or breastfeeding (no safety data)",
     "Competitive athletes (prohibited by WADA at all times)"
   ],
@@ -38,7 +38,7 @@
     "Insulin and other diabetes medicines: FDA has reports of increased insulin requirements in people given GHRP-2"
   ],
   "labs": {
-    "before": [ "General health check with a clinician", "Fasting glucose or HbA1c", "IGF-1" ],
+    "before": [ "General health check with a doctor", "Fasting glucose or HbA1c", "IGF-1" ],
     "during": [ "Fasting glucose or HbA1c", "IGF-1" ],
     "why": "No evidence-based monitoring exists for GHRP-2; a review of growth hormone secretagogues advises tracking IGF-1, blood sugar and HbA1c, and FDA has reports of rising insulin needs."
   },

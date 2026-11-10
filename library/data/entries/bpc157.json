@@ -2,10 +2,10 @@
   "id": "bpc157",
   "name": "BPC-157",
   "summary": "A small piece of a protein first found in human stomach juice. People take it to heal tendons, muscles and the gut. Most of the evidence comes from rodents.",
-  "what_it_is": "BPC-157 is a 15-amino-acid peptide, a fragment of a protein called body protection compound that was first isolated from human gastric juice. In rodents it has helped injured tendons, gut lining and other tissues heal; researchers suspect it works partly by encouraging new blood vessels and nitric oxide signaling, but FDA says its mechanisms remain poorly understood. No country has approved a medicine containing it.",
+  "what_it_is": "BPC-157 is a peptide of 15 amino acids. It is a fragment of a protein called body protection compound, first isolated from human gastric juice. In rodents it has helped injured tendons, gut lining and other tissues heal. Researchers suspect it works partly by encouraging new blood vessels and nitric oxide signaling, but FDA says how it works remains poorly understood. No country has approved a medicine containing it.",
   "evidence": {
     "grade": "limited",
-    "why": "Most data come from rodent studies; the handful of human studies are tiny, uncontrolled or published only as meeting abstracts, and FDA judged them insufficient to establish safety or effectiveness. The tendon, muscle and other tissue benefits come only from animal studies."
+    "why": "Most of the data come from rodent studies. The handful of studies in people are tiny, uncontrolled or published only as meeting abstracts, and FDA judged them not enough to establish that it is safe or that it works. The benefits for tendon, muscle and other tissue come only from animal studies."
   },
   "status_us": {
     "key": "under_review",
@@ -102,7 +102,7 @@
   ],
   "avoid_if": [
     "Pregnant or breastfeeding (not studied in people)",
-    "Current or past cancer, unless a clinician advises otherwise (possible blood vessel growth effects; no cancer studies)",
+    "Current or past cancer, unless a doctor advises otherwise (possible blood vessel growth effects; no cancer studies)",
     "Bleeding or clotting disorders, or taking blood thinners (clotting tests changed in animal studies)",
     "Athletes subject to anti-doping rules (BPC-157 is banned by WADA)"
   ],
