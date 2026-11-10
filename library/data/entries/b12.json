@@ -1,7 +1,7 @@
 {
   "id": "b12",
   "name": "Vitamin B12",
-  "summary": "An essential vitamin for nerves, red blood cells and DNA, taken to prevent or treat deficiency, which is more likely with age, vegan diets and some medicines.",
+  "summary": "An essential vitamin for nerves, red blood cells and DNA. Taken to prevent or treat deficiency, which is more likely with age, vegan diets and some medicines.",
   "what_it_is": "Vitamin B12 (cobalamin) is required for healthy red blood cell formation, DNA synthesis, and the development, myelination and function of the central nervous system. Stomach acid and enzymes release it from food, after which it combines with intrinsic factor and is absorbed in the last part of the small intestine (the ileum). Cyanocobalamin is the most common supplement form, and no evidence shows that absorption differs between forms such as methylcobalamin.",
   "evidence": {
     "grade": "strong",

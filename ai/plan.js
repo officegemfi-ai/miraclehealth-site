@@ -304,8 +304,8 @@ function foot(raw, card, opts) {
     incl ? h('label', { class: 'plan-incl' }, incl, h('span', { text: 'Include my peptides and medicines' })) : null,
     actions,
     h('p', { class: 'plan-note', text: opts.share
-      ? 'A shared plan travels inside its link, and a kept plan stays in this browser: Miracle Health never receives either. Talk any change through with your clinician.'
-      : 'Talk any change through with your own clinician.' }));
+      ? 'A shared plan travels inside its link, and a kept plan stays in this browser: Miracle Health never receives either. Talk any change through with your doctor.'
+      : 'Talk any change through with your own doctor.' }));
   el.redrawKeep = drawKeep;
   return el;
 }
@@ -711,7 +711,7 @@ function paint(ctx, raw, W, top, draw) {
     y += 40;
   }
   y += 4;
-  y += para('Made with Sig, Miracle Health’s AI, at miraclehealth.us/ai. Education, not medical advice: talk any change through with your clinician.', P, y, inner, F.small, C.text3, 30);
+  y += para('Made with Sig, Miracle Health’s AI, at miraclehealth.us/ai. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
   return y + 48;
 }
 

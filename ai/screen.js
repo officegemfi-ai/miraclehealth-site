@@ -243,7 +243,7 @@ function cmdNode(ids) {
     ids.length ? ids.map((id, i) => [i ? ' + ' : '', colored(h('span', { class: 'tk-who', text: tokOf(id) }), colorOf(id))]) : h('span', { class: 'sc-caret' }));
 }
 function barNode(ids, sub) {
-  const copy = h('button', { class: 'sc-btn line', type: 'button', 'data-key': 'bar-copy' }, h('span', { text: 'Copy for my clinician' }));
+  const copy = h('button', { class: 'sc-btn line', type: 'button', 'data-key': 'bar-copy' }, h('span', { text: 'Copy for my doctor' }));
   copy.addEventListener('click', () => copyText(clinicianText(ids, S.f, sub), copy));
   const close = h('button', { class: 'sc-close', type: 'button', 'aria-label': 'Back to the chat', 'data-key': 'close' }, icon('M6 6l12 12M18 6 6 18', 20));
   close.addEventListener('click', () => S.onClose?.());
@@ -619,7 +619,7 @@ function markersNode(ids, f) {
       chips.length ? h('ul', { class: 'mk-list' }, chips) : null), colorOf(id)));
   }
   box.append(h('p', { class: 'mk-def', 'data-at': 'panel', 'aria-live': 'polite', hidden: true }),
-    h('p', { class: 'sc-small', text: '▲ may rise · ◆ worth checking. Your clinician decides what to test, and when.' }));
+    h('p', { class: 'sc-small', text: '▲ may rise · ◆ worth checking. Your doctor decides what to test, and when.' }));
   return box;
 }
 function logNode(sub) {
@@ -728,8 +728,8 @@ function clinicianText(ids, f, sub) {
     cm.push(sig ? `${nameOf(id)}: Community Signal ${sig.score}, ${lower(sig.summary_label || '')}, ${FROM(sig)}.` : `${nameOf(id)}: no Community Signal yet.`);
   }
   L.push('', 'What the community reports (experience, not evidence):', ...cm.map((x) => `- ${x}`));
-  L.push('', 'Questions for my clinician:', ...questions(ids, f, sub).map((q) => `- ${q}`));
-  L.push('', `From Ask Sig at miraclehealth.us/ai, ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Education, not medical advice: no doses. My clinician decides.`);
+  L.push('', 'Questions for my doctor:', ...questions(ids, f, sub).map((q) => `- ${q}`));
+  L.push('', `From Ask Sig at miraclehealth.us/ai, ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Education, not medical advice: no doses. My doctor decides.`);
   return L.join('\n');
 }
 async function copyText(text, btn) {
@@ -767,7 +767,7 @@ function clinicianNode(ids, f, sub) {
     if (saved) acts.append(h('a', { class: 'sc-btn ghost clin-open', href: '/my/', text: 'Open My Miracle' }));
   }
   return h('section', { class: 'sc-clin', 'aria-labelledby': 'sc-clin-h' },
-    h('div', { class: 'clin-top' }, h('h3', { id: 'sc-clin-h', text: 'Take this to your clinician' }), acts),
+    h('div', { class: 'clin-top' }, h('h3', { id: 'sc-clin-h', text: 'Take this to your doctor' }), acts),
     h('ul', { class: 'clin-qs' }, qs.map((q) => h('li', { text: q }))),
     h('p', { class: 'sc-small', text: `Copy brings these questions with ${f.count ? `the ${plural(f.count, 'blood marker')}, ` : ''}each line’s source and the checks. My Miracle keeps the stack on this device only. Nothing here reads your own results.` }));
 }
@@ -887,7 +887,7 @@ function draw(fresh) {
     h('span', { class: 'sc-handle', 'aria-hidden': 'true' }),
     barNode(ids, sub), headNode(ids, S.f, sub), codeSection(ids, S.f, animate),
     panelsNode(ids, S.f, sub), clinicianNode(ids, S.f, sub), buildLine(sub),
-    h('p', { class: 'sc-fine', text: 'From the Library’s fact sheets, each line with its source, and the community’s public totals. Education, not medical advice: no doses, and your clinician has the final say.' }),
+    h('p', { class: 'sc-fine', text: 'From the Library’s fact sheets, each line with its source, and the community’s public totals. Education, not medical advice: no doses, and your doctor has the final say.' }),
   ].filter(Boolean));
   applyMarker();
   if (!refocus(was) && onWait) refocus('close');

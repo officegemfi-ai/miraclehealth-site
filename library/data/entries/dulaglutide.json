@@ -1,7 +1,7 @@
 {
   "id": "dulaglutide",
   "name": "Dulaglutide",
-  "summary": "A prescription injection, sold as Trulicity, that activates GLP-1 receptors to lower blood sugar in type 2 diabetes and reduce the risk of heart attack and stroke.",
+  "summary": "A prescription GLP-1 injection, sold as Trulicity. It lowers blood sugar in type 2 diabetes and reduces the risk of heart attack and stroke.",
   "what_it_is": "Dulaglutide is a lab-made protein built from two identical chains, each joining a GLP-1-like peptide (90% the same as natural human GLP-1) to part of an antibody, the Fc portion of human IgG4. It switches on GLP-1 receptors, which raises insulin release when blood sugar is high, lowers glucagon and slows stomach emptying. Its half-life is about 5 days, and it is given as an injection under the skin. It is approved for type 2 diabetes, not for weight management.",
   "evidence": {
     "grade": "strong",

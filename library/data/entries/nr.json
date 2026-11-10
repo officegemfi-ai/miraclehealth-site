@@ -1,7 +1,7 @@
 {
   "id": "nr",
   "name": "NR (nicotinamide riboside)",
-  "summary": "A form of vitamin B3 that raises NAD+, a molecule cells use for energy, taken in hopes of healthier aging; trials show few clear health effects.",
+  "summary": "A form of vitamin B3 that raises NAD+, a molecule cells use for energy. Taken in hopes of healthier aging. Trials show few clear health effects.",
   "what_it_is": "Nicotinamide riboside (NR) is a form of vitamin B3 that the body can convert into NAD+, a molecule involved in energy metabolism whose levels decline with age and in many diseases. Taken by mouth, it reliably raises NAD+ in the blood, but there is no sign that it raises NAD+ in muscle; rises in its breakdown products there suggest much of the excess is simply cleared. Some trials have tested it combined with another compound, pterostilbene.",
   "evidence": {
     "grade": "limited",

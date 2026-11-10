@@ -1,7 +1,7 @@
 {
   "id": "letrozole",
   "name": "Letrozole",
-  "summary": "A prescription pill that blocks estrogen production, approved for hormone-sensitive breast cancer after menopause; it is also used off-label to trigger ovulation and in men with low testosterone.",
+  "summary": "A prescription pill that stops the body making estrogen. Approved for hormone-sensitive breast cancer after menopause. Also used to trigger ovulation and in men with low testosterone, both unapproved uses.",
   "what_it_is": "Letrozole is a nonsteroidal aromatase inhibitor: it blocks aromatase, the enzyme that makes estrogens. In postmenopausal women with advanced breast cancer it lowers estradiol, estrone and estrone sulfate by 75% to 95% within two to three days, without significantly affecting cortisol, aldosterone or thyroid hormones. Because high estradiol can suppress LH and FSH, it is used off-label to raise testosterone and sperm production in some infertile men.",
   "evidence": {
     "grade": "strong",

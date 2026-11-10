@@ -1,7 +1,7 @@
 {
   "id": "snap8",
   "name": "SNAP-8 (acetyl octapeptide-3)",
-  "summary": "A lab-made eight-amino-acid peptide used in anti-wrinkle skin products, marketed as a topical alternative to Botox for expression lines.",
+  "summary": "A small lab-made peptide used in anti-wrinkle skin products. Marketed as a skin-applied alternative to Botox for expression lines.",
   "what_it_is": "SNAP-8 is a synthetic chain of eight amino acids (acetyl octapeptide-3) added to creams and serums. It copies the end of SNAP-25, a protein that nerve endings use to release signaling chemicals, and in lab tests it partly blocked the protein complex involved in that release. It is a slightly longer version of argireline (acetyl hexapeptide-3). Peptides in general cross the skin's outer layer poorly, which limits how much of a topical peptide gets through.",
   "evidence": {
     "grade": "limited",

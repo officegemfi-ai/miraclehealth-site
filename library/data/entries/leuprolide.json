@@ -1,7 +1,7 @@
 {
   "id": "leuprolide",
   "name": "Leuprolide",
-  "summary": "A prescription hormone-blocking injection that switches off the body's sex-hormone production, used for prostate cancer, endometriosis, fibroids and early puberty in children.",
+  "summary": "A prescription injection that switches off the body's sex hormones. Used for prostate cancer, endometriosis, fibroids and puberty that starts too early in children.",
   "what_it_is": "Leuprolide is a lab-made drug that acts like gonadotropin-releasing hormone (GnRH), the signal that drives the pituitary gland's control of the testes and ovaries. Given continuously as a long-acting injection, it first causes a short rise in testosterone or estrogen, which can briefly worsen symptoms, and then shuts their production down to very low levels. The effect is meant to reverse after stopping; the label says normal function usually returns within three months.",
   "evidence": {
     "grade": "strong",

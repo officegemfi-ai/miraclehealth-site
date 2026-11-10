@@ -105,7 +105,7 @@ export function buildPages(ctx) {
     <ul>
       <li>No doses, amounts, schedules or how to take or inject anything, for any compound.</li>
       <li>No sellers, brands, prices or where to get something.</li>
-      <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your clinician.</li>
+      <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your doctor.</li>
       <li>No health records: Sig keeps nothing you write, and the community holds only what members choose to post.</li>
     </ul>
 
@@ -275,7 +275,7 @@ export function buildPages(ctx) {
         ['Mostly taken for', (f) => `<p>${goalsOf(f).length ? e(goalsOf(f).join(', ')) : '–'}</p>`],
         ['What it may do', (f) => ul(top(byEvidence(f.benefits), 4), (x) => `<li>${evPill(x.evidence)}<span>${e(x.claim)}</span></li>`)],
         ['Risks and side effects', (f) => ul(top(f.risks, 4), (x) => `<li><span class="hc hc-${e(x.how_common)}">${e({ common: 'Common', uncommon: 'Uncommon', rare: 'Rare', theoretical: 'In theory', unknown: 'Not known' }[x.how_common] || x.how_common)}</span><span>${e(x.risk)}</span></li>`)],
-        ['Avoid it, or check with a clinician first, if', (f) => ul(top(f.avoid_if, 4), (x) => `<li><span>${e(x)}</span></li>`)],
+        ['Skip it, or ask a doctor first, if', (f) => ul(top(f.avoid_if, 4), (x) => `<li><span>${e(x)}</span></li>`)],
         ['Interactions', (f) => ul(top(f.interactions, 4), (x) => `<li><span>${e(x)}</span></li>`)],
         ['Community Signal', (f) => `<p class="cmp-sig">${sig(f.id)}<span class="cmp-sig-none" data-sig-none="${e(f.id)}" hidden>No Signal yet</span></p><p class="cmp-why"><a href="/library/${e(f.id)}/#voices">What people report</a></p>`],
       ];
@@ -288,7 +288,7 @@ export function buildPages(ctx) {
   </div>
 
   <div class="wrap pg-wrap">
-    <p class="pg-intro">What each one is, its status, what the studies show, its risks and what people who took it report, from their fact sheets, each claim checked against its source. It isn’t a recommendation: which one fits, if either, is for you and your clinician.</p>
+    <p class="pg-intro">What each one is, its status, what the studies show, its risks and what people who took it report, from their fact sheets, each claim checked against its source. It isn’t a recommendation: which one fits, if either, is for you and your doctor.</p>
     <div class="cmp">
       <div class="cmp-row cmp-names" aria-hidden="true">
         <span class="cmp-k"></span>
@@ -419,7 +419,7 @@ ${i.close ? `<p style="${P};margin-top:26px">${link(i.close.lead)}</p>
 <p style="margin:0 0 8px"><a href="${e(abs(i.close.url))}" style="display:inline-block;padding:14px 24px;border-radius:40px;background:#D8FF3D;color:#121E1D;text-decoration:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase">${e(i.close.label)}</a></p>` : ''}
 </td></tr>
 <tr><td style="padding:20px 32px 28px;border-top:1px solid #E3E5E4">
-<p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything.</p>
+<p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
 <p style="margin:0;font-size:13px;line-height:1.5;color:#6A6F6E">You get this because you signed up at miraclehealth.us and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#6A6F6E">Read it on the web</a> · <a href="{{unsubscribe}}" style="color:#6A6F6E">Unsubscribe</a></p>
 ${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Miracle Health · ${e(about.mailing_address)}</p>` : ''}
 </td></tr>

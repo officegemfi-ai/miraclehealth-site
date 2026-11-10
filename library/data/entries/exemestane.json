@@ -1,7 +1,7 @@
 {
   "id": "exemestane",
   "name": "Exemestane",
-  "summary": "A prescription pill that irreversibly blocks aromatase, the enzyme that makes estrogen, approved for hormone-sensitive breast cancer after menopause; studies in men are few and brief.",
+  "summary": "A prescription pill that permanently blocks aromatase, the enzyme that makes estrogen. Approved for hormone-sensitive breast cancer after menopause. Studies in men are few and brief.",
   "what_it_is": "Exemestane is a steroidal aromatase inactivator: it acts as a false substrate, and its metabolite binds the enzyme's active site and inactivates it irreversibly. It lowers circulating estrogens by 85% to 95% at peak effect and cuts the body's estrogen production by 98%, without affecting cortisol or aldosterone. In a small 10-day study of young men, it raised testosterone while lowering estradiol.",
   "evidence": {
     "grade": "strong",

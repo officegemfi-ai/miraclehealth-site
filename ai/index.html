@@ -25,9 +25,9 @@
 <link rel="stylesheet" href="/ai/ai.css?v=c066f18f87">
 <link rel="stylesheet" href="/ai/plan.css?v=43d72f6261">
 <link rel="stylesheet" href="/ai/screen.css?v=fe57d2e2c6">
-<script type="module" src="/ai/plan.js?v=d3eb712a3d"></script>
-<script type="module" src="/ai/screen.js?v=9012e690d4"></script>
-<script type="module" src="/ai/ai.js?v=c22d2dda9f"></script>
+<script type="module" src="/ai/plan.js?v=96f24aee2b"></script>
+<script type="module" src="/ai/screen.js?v=0c78027dbe"></script>
+<script type="module" src="/ai/ai.js?v=f01842606b"></script>
 </head>
 <body class="ai">
 <a class="skip" href="#main">Skip to content</a>
@@ -66,8 +66,8 @@
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with the whole community.</h2></div>
-        <p class="ai-lede">I’m Sig, Miracle Health’s AI. I answer with what studies show and what members and the public forums report, and say which is which. Where the studies run out, the community’s reports lead. Your own clinician has the final say.</p>
+        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
+        <p class="ai-lede">I’m Sig, Miracle Health’s AI. Ask me about a goal, something you take, or something you’re thinking about. I’ll tell you what the studies show and what people report, and I’ll always say which is which. No doses, no sellers, no diagnosis. Your doctor has the final say.</p>
         <p class="ai-crowd" id="ai-crowd" hidden></p>
       </div>
     </div>
@@ -75,7 +75,7 @@
       <div class="ai-peek" id="ai-peek" hidden></div>
       <div class="ai-composer">
         <label class="sr" for="ai-input">Message Sig</label>
-        <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, a compound or a combination" data-short="Ask about a goal or a compound"></textarea>
+        <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
       </div>
@@ -83,17 +83,17 @@
     <div class="ai-begin" id="ai-begin">
       <div class="ai-saved" id="ai-saved" hidden></div>
       <div class="ai-starts" role="group" aria-label="Start with">
-        <button type="button" class="ai-start" data-prefill="I take " data-goal="stack"><span class="start-ico" aria-hidden="true"></span>Check my stack</button>
+        <button type="button" class="ai-start" data-prefill="I take " data-goal="stack"><span class="start-ico" aria-hidden="true"></span>Check what I take together</button>
         <button type="button" class="ai-start" data-ask="I keep straining a tendon. What could help it heal, and what does the evidence say?" data-goal="recovery"><span class="start-ico" aria-hidden="true"></span>Recover from an injury</button>
         <button type="button" class="ai-start" data-ask="I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence?" data-goal="weight"><span class="start-ico" aria-hidden="true"></span>Lose fat</button>
         <button type="button" class="ai-start" data-ask="I want to sleep better. What has good evidence, and what is mostly hype?" data-goal="sleep"><span class="start-ico" aria-hidden="true"></span>Sleep better</button>
       </div>
       <details class="ai-who">
         <summary>Who answers</summary>
-        <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Screens your message first, and checks every reply before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="planner"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Planner</b><span class="agent-what">Turns what you want into what studies measure: fat loss is body fat, waist and lean mass.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then reads the studies: the Library’s fact sheets.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="evidence"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Evidence librarian</b><span class="agent-what">Finds every finding on exactly that, how strong it is and who was studied.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="relatives"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Relatives agent</b><span class="agent-what">Finds what works through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="mechanism"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Mechanism agent</b><span class="agent-what">Reads how each one could bear on your goal, from its fact sheet, as expected, not tested.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="community"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>The community</b><span class="agent-what">What members report first-hand and the public forums say, in totals. It leads where the studies run out.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="combination"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Combination agent</b><span class="agent-what">Says whether what you take together overlaps or works through different pathways.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="markers"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Markers agent</b><span class="agent-what">Flags blood markers two compounds push opposite ways, like IGF-1 with HGH and enclomiphene.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks compounds together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out your stack and options to discuss. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
+        <ol class="agent-list"><li class="agent" data-agent="safety"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Safety agent</b><span class="agent-what">Reads your message first, and checks every answer before you see it.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="planner"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Planner</b><span class="agent-what">Turns your goal into what studies measure. “Lose fat” becomes body fat, waist and lean mass.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="recommender"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Recommender</b><span class="agent-what">Asks what it needs to know, then reads the fact sheets in the Library.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="evidence"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Evidence librarian</b><span class="agent-what">Finds every study result on exactly that: how strong it is, and who was studied.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="relatives"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Relatives agent</b><span class="agent-what">Finds things that work through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="mechanism"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Mechanism agent</b><span class="agent-what">Explains how each one could affect your goal, from its fact sheet. That is theory, not a test result, and it says so.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="community"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>The community</b><span class="agent-what">What members report first-hand and what public forums say, as totals. It leads where the studies run out.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="combination"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Combination agent</b><span class="agent-what">Says whether the things you take together overlap or work in different ways.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="markers"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Markers agent</b><span class="agent-what">Flags blood tests that two things push in opposite directions, like IGF-1 with HGH and enclomiphene.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="synergy"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Synergy auditor</b><span class="agent-what">Checks everything together with your medicines and conditions.</span><span class="agent-now" aria-live="off"></span></span></li><li class="agent" data-agent="builder"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>Stack builder</b><span class="agent-what">Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.</span><span class="agent-now" aria-live="off"></span></span></li></ol>
       </details>
     </div>
-    <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
+    <p class="ai-fine">For adults 18 and over. Sig is an AI. It explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab. Messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="The screen: what Sig is talking about">
@@ -105,7 +105,7 @@
 <footer class="foot">
   <div class="wrap foot-in">
     <div class="foot-news">
-      <p><b>The Signal, weekly.</b> What moved, new studies and FDA news, once a week.</p>
+      <p><b>The Signal, weekly.</b> What changed, new studies and FDA news. One email a week.</p>
       <form class="news-form " action="https://nerfymdslkhopsomwriv.supabase.co/functions/v1/newsletter" method="post">
     <label class="mh-sr" for="foot-email">Your email address</label>
     <div class="nf-row"><input id="foot-email" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn lime" type="submit">Get it weekly</button></div>
@@ -119,7 +119,7 @@
       <nav class="foot-links" aria-label="Site"><a href="/library/">Library</a><a href="/ai/">Ask Sig</a><a href="https://community.miraclehealth.us/">Community</a><a href="/my/">My Miracle</a><a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>
     </div>
     <div class="foot-row">
-      <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
+      <p>Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
       <p class="copy">© 2026 Miracle Health</p>
     </div>
   </div>

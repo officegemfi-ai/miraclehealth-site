@@ -1,7 +1,7 @@
 {
   "id": "gonadorelin",
   "name": "Gonadorelin",
-  "summary": "A lab-made copy of the brain hormone GnRH, which tells the pituitary to release LH and FSH; men take it to support testicular function, with little evidence.",
+  "summary": "A lab-made copy of GnRH, the brain hormone that tells the pituitary gland to release LH and FSH. Men take it to support the testicles. There is little evidence behind that.",
   "what_it_is": "Gonadorelin is a synthetic version of gonadotropin-releasing hormone (GnRH), a 10-amino-acid hormone from the hypothalamus that tells the pituitary gland to release LH and, to a lesser degree, FSH, which drive the testes and ovaries. The body releases GnRH in pulses, and the pulse pattern is what keeps the system working; gonadorelin lasts only minutes in the blood. In medicine it has been used to test pituitary function and, given in pulses by a pump, to start ovulation or sperm production in people who make too little GnRH.",
   "evidence": {
     "grade": "limited",

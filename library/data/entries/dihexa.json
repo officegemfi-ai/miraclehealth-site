@@ -1,7 +1,7 @@
 {
   "id": "dihexa",
   "name": "Dihexa",
-  "summary": "A lab-made compound based on the peptide angiotensin IV, used to try to boost memory; it improved learning in rodents, and FDA found no human data on it.",
+  "summary": "A lab-made compound based on the peptide angiotensin IV, used to try to boost memory. It improved learning in rodents. FDA found no data on it in people.",
   "what_it_is": "Dihexa (PNB-0408) is a small, lab-made molecule derived from angiotensin IV, a peptide fragment that has shown memory effects in animal research. In rats it was active when given by mouth and reached the brain. It binds hepatocyte growth factor (HGF) and strengthens signaling through HGF's receptor, c-Met, which in lab studies led to new connections (synapses) between nerve cells.",
   "evidence": {
     "grade": "preclinical",

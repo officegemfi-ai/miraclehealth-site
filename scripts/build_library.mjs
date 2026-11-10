@@ -166,7 +166,7 @@ function shellTop(current = '', home = false) {
 const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
 // The weekly email's sign-up at the foot of every page but the weekly email's own
 const footNews = () => `<div class="foot-news">
-      <p><b>The Signal, weekly.</b> What moved, new studies and FDA news, once a week.</p>
+      <p><b>The Signal, weekly.</b> What changed, new studies and FDA news. One email a week.</p>
       ${signupForm(e, { source: 'footer', id: 'foot-email' })}
     </div>`;
 // The hand-written pages (the front page, privacy, terms, 404) get the same top, menu, footer
@@ -236,7 +236,7 @@ ${body}
       ${footLinks()}
     </div>
     <div class="foot-row">
-      <p>Experiences and published evidence, not medical advice. Talk to a clinician before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
+      <p>Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
       <p class="copy">© 2026 Miracle Health</p>
     </div>
   </div>
@@ -276,15 +276,15 @@ function indexPage() {
   <div class="wrap lib-hero-in">
     <div>
       <p class="kick lime live"><i aria-hidden="true"></i>The Library · live community data</p>
-      <h1>Every compound,<br> checked.</h1>
-      <p class="lede">What each peptide, hormone, supplement and medication is, what the studies actually show, the risks and the blood markers to watch, checked against FDA labels, NIH fact sheets and published trials. Next to it, the Community Signal: what people who took it report.</p>
+      <h1>Look it up<br> before you take it.</h1>
+      <p class="lede">${catalog.length} peptides, hormones, supplements and medications. For each one: what it is, what the studies show, the risks and the blood tests to watch, checked against FDA labels, NIH fact sheets and published trials. Next to it, the Community Signal: how it went for people who took it.</p>
       <p class="lib-guides">Guide: <a href="/library/lab-reports/">How to read a lab report (certificate of analysis)</a></p>
     </div>
     <dl class="lib-stats">
-      <div><dt>Compounds</dt><dd>${catalog.length}</dd></div>
-      <div><dt>Fact sheets checked</dt><dd>${checked}</dd></div>
-      <div><dt>Community Signals</dt><dd data-live="signals">–</dd></div>
-      <div><dt>First-hand reports</dt><dd data-live="reports">–</dd></div>
+      <div><dt>In the Library</dt><dd>${catalog.length}</dd></div>
+      <div><dt>Fully checked</dt><dd>${checked}</dd></div>
+      <div><dt>With a Signal</dt><dd data-live="signals">–</dd></div>
+      <div><dt>Member reports</dt><dd data-live="reports">–</dd></div>
     </dl>
   </div>
 </section>
@@ -298,7 +298,7 @@ function indexPage() {
 <section class="wrap lib-tools" aria-label="Find a compound">
   <div class="lib-search">
     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-    <input type="search" id="q" placeholder="Search compounds, brands and nicknames" aria-label="Search the library" autocomplete="off">
+    <input type="search" id="q" placeholder="Search by name, brand or nickname" aria-label="Search the library" autocomplete="off">
   </div>
   <div class="lib-chips" role="group" aria-label="Family">
     <button type="button" data-family="" aria-pressed="true">All <span>${catalog.length}</span></button>
@@ -307,7 +307,7 @@ function indexPage() {
   <div class="lib-filters">
     <label><span>Goal</span><select id="goal"><option value="">Any goal</option>${uses.goals.map((g) => `<option value="${g.id}">${e(g.label)}</option>`).join('')}</select></label>
     <label><span>Evidence</span><select id="ev"><option value="">Any evidence</option>${Object.entries(GRADE).filter(([k]) => k !== 'anecdotal').map(([k, [l]]) => `<option value="${k}">${e(l)}</option>`).join('')}</select></label>
-    <label><span>Sort</span><select id="sort"><option value="checked">Fact sheets first</option><option value="name">A to Z</option><option value="signal">Community Signal</option><option value="evidence">Strongest evidence</option></select></label>
+    <label><span>Sort</span><select id="sort"><option value="checked">Fully checked first</option><option value="name">A to Z</option><option value="signal">Best rated by people</option><option value="evidence">Strongest evidence</option></select></label>
     <p class="lib-count" id="count" aria-live="polite">${catalog.length} compounds</p>
   </div>
 </section>
@@ -349,7 +349,7 @@ function indexPage() {
 </section>`;
   return page({
     title: 'The Library · Peptides, hormones and supplements, checked · Miracle Health',
-    description: `${catalog.length} peptides, hormones, supplements and medications: what each is, the evidence, risks and blood markers to watch, checked against primary sources, next to what people who took it report.`,
+    description: `${catalog.length} peptides, hormones, supplements and medications: what each one is, what the studies show, the risks and the blood tests to watch, checked against primary sources, next to how it went for people who took it.`,
     url: '/library/',
     body,
     preload: `<link rel="preload" as="image" href="${BANNER.src}" imagesrcset="${BANNER.srcset}" imagesizes="100vw" fetchpriority="high">`,
@@ -381,7 +381,7 @@ function factSheet(c, f) {
     </section>
 
 ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
-      <h2>How it works in the body</h2>
+      <h2>Where it acts in the body</h2>
       ${bodyMapHtml({ items: [{ id: c.id, name: c.name, entry: BODY.compounds[c.id] }], places: BODY.places, markers: BODY.markers, sourceHref: (id, n) => `#src-${n}`, id: 'body-map' })}
     </section>
 ` : ''}
@@ -394,14 +394,14 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
       <h2>Risks and side effects</h2>
       <ul class="claims risks">${(f.risks || []).map((r) => `<li><span class="hc hc-${r.how_common}">${e(HOW_COMMON[r.how_common] || r.how_common)}</span><p>${e(r.risk)} ${refs(r.sources)}</p></li>`).join('')}</ul>
       <div class="two">
-        <div><h3>Who should avoid it or check with a clinician first</h3>${list(f.avoid_if, 'dots')}</div>
-        <div><h3>Interactions</h3>${list(f.interactions, 'dots')}</div>
+        <div><h3>Who should skip it, or ask a doctor first</h3>${list(f.avoid_if, 'dots')}</div>
+        <div><h3>What it can clash with</h3>${list(f.interactions, 'dots')}</div>
       </div>
     </section>
 
     <section class="le-sec" id="labs">
-      <h2>Blood markers to watch</h2>
-      ${UNAPPROVED.has(f.status_us.key) && ((labs.before || []).length || (labs.during || []).length) ? '<p class="lab-note">Not an approved medicine. These are checks a clinician or a clinical trial would use, not a plan for taking it on your own.</p>' : ''}
+      <h2>Blood tests to watch</h2>
+      ${UNAPPROVED.has(f.status_us.key) && ((labs.before || []).length || (labs.during || []).length) ? '<p class="lab-note">Not an approved medicine. These are checks a doctor or a clinical trial would use, not a plan for taking it on your own.</p>' : ''}
       <div class="labs">
         <div class="lab-col"><p class="mono">Before starting</p>${(labs.before || []).length ? list(labs.before, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
         <div class="lab-col"><p class="mono">While taking it</p>${(labs.during || []).length ? list(labs.during, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
@@ -410,17 +410,17 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
     </section>
 
     ${studies ? `<section class="le-sec" id="studies">
-      <h2>Key studies</h2>
+      <h2>The main studies</h2>
       <ol class="studies">${studies}</ol>
     </section>` : ''}
 
     <section class="le-sec" id="ask">
-      <h2>Questions for your clinician</h2>
+      <h2>Questions to ask your doctor</h2>
       ${list(f.ask_your_clinician, 'asks')}
     </section>
 
     <section class="le-sec" id="status">
-      <h2>Status in the US</h2>
+      <h2>Where it stands in the US</h2>
       <p><span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span> <b>${e(f.status_us.label)}.</b> ${e(f.status_us.note)} ${refs(f.status_us.sources)}</p>
       ${UNAPPROVED.has(f.status_us.key) ? '<p class="guide-link">Products sold outside approved medicines vary in what they contain. If you already have one, here’s <a href="/library/lab-reports/">how to read its lab report</a>, and what even a good one can’t tell you.</p>' : ''}
     </section>
@@ -471,7 +471,7 @@ function bottomLine(c, f) {
   return `<div class="wrap le-bl-wrap">
     <article class="vs le-bl" id="voices" data-live="voices" data-claims="${e(JSON.stringify(claims))}" aria-labelledby="bl-h">
       <header class="bl-head">
-        <h2 class="bl-k" id="bl-h">Bottom line</h2>
+        <h2 class="bl-k" id="bl-h">The bottom line</h2>
         <p class="bl-why">${e(f.evidence.why)}</p>
         <p class="bl-tags">${evPill(f.evidence.grade)}<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span><span class="bl-status">${e(f.status_us.label)}</span></p>
       </header>
@@ -480,7 +480,7 @@ function bottomLine(c, f) {
         <div class="vs-rows"></div>
       </div>
       <footer class="vs-foot">
-        <p>What people report isn’t proof, and many problems ease on their own. Use this to decide what to ask your clinician, not what to take.</p>
+        <p>What people report isn’t proof, and many problems ease on their own. Use this to decide what to ask your doctor, not what to take.</p>
         <div class="vs-act"><a class="btn lime" href="${shareLink(c.id)}">Share how it went</a><a class="bl-how" href="/method/">How these are made</a></div>
       </footer>
     </article>
@@ -502,13 +502,13 @@ function entryPage(c) {
     ['US status', `<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span> ${e(f.status_us.label)}`],
     ['Evidence', evPill(f.evidence.grade)],
     mainGoals.length ? ['Mostly used for', e(mainGoals.join(', '))] : null,
-    ['Blood markers', (f.labs?.before || []).length || (f.labs?.during || []).length
+    ['Blood tests', (f.labs?.before || []).length || (f.labs?.during || []).length
       ? `<a href="#labs">${[(f.labs.before || []).length ? `${f.labs.before.length} before starting` : null, (f.labs.during || []).length ? `${f.labs.during.length} while taking it` : null].filter(Boolean).join(' · ')}</a>`
       : 'None routinely needed'],
     ['Checked', `${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a>`],
   ].filter(Boolean) : [];
-  const toc = f ? [['voices', 'Bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood markers'], ...(f.studies?.length ? [['studies', 'Key studies']] : []), ['ask', 'Ask your clinician'], ['status', 'US status'], ['sources', 'Sources']] : [];
-  const desc = f ? `${f.summary} Evidence, risks, blood markers to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
+  const toc = f ? [['voices', 'The bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood tests'], ...(f.studies?.length ? [['studies', 'The main studies']] : []), ['ask', 'Ask your doctor'], ['status', 'US status'], ['sources', 'Sources']] : [];
+  const desc = f ? `${f.summary} Evidence, risks, blood tests to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero">
   <div class="wrap">
@@ -524,7 +524,7 @@ function entryPage(c) {
     </div>
     <div class="le-actions">
       <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
-      <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it with my saved stack</a>
+      <a class="btn line sm" href="/ai/" data-with-stack="${c.id}" hidden>Check it against what I take</a>
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
     </div>
@@ -560,14 +560,14 @@ function entryPage(c) {
     ${toc.length ? `<nav class="toc" aria-label="On this page"><p class="mono">On this page</p>${toc.map(([id, l]) => `<a href="#${id}">${l}</a>`).join('')}</nav>` : ''}
     <div class="side-card">
       <p class="mono">Took it?</p>
-      <p>Your first-hand report moves the ${e(c.name)} Signal, whether it worked or not.</p>
+      <p>Your report moves the ${e(c.name)} Signal, whether it worked or not.</p>
       <a class="btn lime sm" href="${shareLink(c.id)}">Share how it went</a>
     </div>
     <p class="side-note">Experiences and published evidence, not medical advice. No doses, no sellers.</p>
   </aside>
 </div>
 </div>`;
-  return page({ title: `${c.name}: evidence, risks, blood markers · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`, body });
+  return page({ title: `${c.name}: evidence, risks, blood tests · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`, body });
 }
 
 // ---------------------------------------------------------------------------
@@ -670,21 +670,21 @@ function guidePage(g) {
 // member's own clinician last
 // ---------------------------------------------------------------------------
 const AGENTS = [
-  ['safety', 'Safety agent', 'Screens your message first, and checks every reply before you see it.'],
-  ['planner', 'Planner', 'Turns what you want into what studies measure: fat loss is body fat, waist and lean mass.'],
-  ['recommender', 'Recommender', 'Asks what it needs to know, then reads the studies: the Library’s fact sheets.'],
-  ['evidence', 'Evidence librarian', 'Finds every finding on exactly that, how strong it is and who was studied.'],
-  ['relatives', 'Relatives agent', 'Finds what works through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.'],
-  ['mechanism', 'Mechanism agent', 'Reads how each one could bear on your goal, from its fact sheet, as expected, not tested.'],
-  ['community', 'The community', 'What members report first-hand and the public forums say, in totals. It leads where the studies run out.'],
-  ['combination', 'Combination agent', 'Says whether what you take together overlaps or works through different pathways.'],
-  ['markers', 'Markers agent', 'Flags blood markers two compounds push opposite ways, like IGF-1 with HGH and enclomiphene.'],
-  ['synergy', 'Synergy auditor', 'Checks compounds together with your medicines and conditions.'],
-  ['builder', 'Stack builder', 'Lays out your stack and options to discuss. Never doses, never sellers.'],
+  ['safety', 'Safety agent', 'Reads your message first, and checks every answer before you see it.'],
+  ['planner', 'Planner', 'Turns your goal into what studies measure. “Lose fat” becomes body fat, waist and lean mass.'],
+  ['recommender', 'Recommender', 'Asks what it needs to know, then reads the fact sheets in the Library.'],
+  ['evidence', 'Evidence librarian', 'Finds every study result on exactly that: how strong it is, and who was studied.'],
+  ['relatives', 'Relatives agent', 'Finds things that work through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.'],
+  ['mechanism', 'Mechanism agent', 'Explains how each one could affect your goal, from its fact sheet. That is theory, not a test result, and it says so.'],
+  ['community', 'The community', 'What members report first-hand and what public forums say, as totals. It leads where the studies run out.'],
+  ['combination', 'Combination agent', 'Says whether the things you take together overlap or work in different ways.'],
+  ['markers', 'Markers agent', 'Flags blood tests that two things push in opposite directions, like IGF-1 with HGH and enclomiphene.'],
+  ['synergy', 'Synergy auditor', 'Checks everything together with your medicines and conditions.'],
+  ['builder', 'Stack builder', 'Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.'],
 ];
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
-  ['stack', 'Check my stack', '', 'I take '],
+  ['stack', 'Check what I take together', '', 'I take '],
   ['recovery', 'Recover from an injury', 'I keep straining a tendon. What could help it heal, and what does the evidence say?', ''],
   ['weight', 'Lose fat', 'I want to lose fat. What are the options, from supplements to prescription medicines, and how strong is the evidence?', ''],
   ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?', ''],
@@ -702,8 +702,8 @@ function aiPage() {
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
       <div class="ai-empty" id="ai-empty">
-        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Talk it through with the whole community.</h2></div>
-        <p class="ai-lede">I’m Sig, Miracle Health’s AI. I answer with what studies show and what members and the public forums report, and say which is which. Where the studies run out, the community’s reports lead. Your own clinician has the final say.</p>
+        <div class="ai-hi"><span class="ai-hello" data-sig="56" aria-hidden="true"></span><h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
+        <p class="ai-lede">I’m Sig, Miracle Health’s AI. Ask me about a goal, something you take, or something you’re thinking about. I’ll tell you what the studies show and what people report, and I’ll always say which is which. No doses, no sellers, no diagnosis. Your doctor has the final say.</p>
         <p class="ai-crowd" id="ai-crowd" hidden></p>
       </div>
     </div>
@@ -711,7 +711,7 @@ function aiPage() {
       <div class="ai-peek" id="ai-peek" hidden></div>
       <div class="ai-composer">
         <label class="sr" for="ai-input">Message Sig</label>
-        <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, a compound or a combination" data-short="Ask about a goal or a compound"></textarea>
+        <textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg></button>
       </div>
@@ -726,7 +726,7 @@ function aiPage() {
         ${agentList('agent-list')}
       </details>
     </div>
-    <p class="ai-fine">For adults 18 and over. Sig is an AI: it explains evidence, and it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab; messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
+    <p class="ai-fine">For adults 18 and over. Sig is an AI. It explains evidence; it doesn’t diagnose, give doses or name sellers. Your chat stays in this browser tab. Messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
     <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="The screen: what Sig is talking about">
@@ -780,7 +780,7 @@ function planPage() {
     <p>Tell Sig your goal and what you take. It asks about your nutrition, sleep and training, finds the pillar that will make the biggest difference, and builds your plan around it.</p>
     <a class="btn lime" href="/ai/">Start with Sig</a>
   </section>
-  <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own clinician.</p>
+  <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own doctor.</p>
 </div>`;
   return page({
     title: 'A Miracle Plan, shared with you · Miracle Health',
@@ -808,7 +808,7 @@ function myPage() {
 </div>`;
   return page({
     title: 'My Miracle · Miracle Health',
-    description: 'Your Miracle Plan, how it’s going, your saved stack and your places in the community, together. Kept on your device; Miracle Health never receives them.',
+    description: 'Your Miracle Plan, how it’s going, what you take and your places in the community, in one place. It all stays on your device; Miracle Health never receives it.',
     url: '/my/', body, current: 'my', bodyClass: 'my-page',
     styles: [`/ai/plan.css?v=${V.plCss}`, `/my/my.css?v=${V.myCss}`],
     scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/my/my.js?v=${V.myJs}`],
@@ -907,7 +907,7 @@ function methodPage() {
     <ul>
       <li>No doses, amounts, schedules or how to take or inject anything, for any compound.</li>
       <li>No sellers, brands, prices, pharmacies or where to get something or have it tested.</li>
-      <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your clinician.</li>
+      <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your doctor.</li>
       <li>No health records: Sig keeps nothing you write, and the community holds only what members choose to post.</li>
     </ul>
     <p>Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=Method">Tell us</a>.</p>

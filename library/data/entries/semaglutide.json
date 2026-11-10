@@ -1,7 +1,7 @@
 {
   "id": "semaglutide",
   "name": "Semaglutide",
-  "summary": "A prescription GLP-1 medicine, sold as Ozempic, Rybelsus and Wegovy, used to lower blood sugar in type 2 diabetes and to lose weight.",
+  "summary": "The prescription GLP-1 medicine sold as Ozempic, Rybelsus and Wegovy. Used to lower blood sugar in type 2 diabetes and to lose weight.",
   "what_it_is": "Semaglutide is a lab-made, long-lasting version of GLP-1, a natural hormone that helps regulate appetite and food intake; it shares 94% of its sequence with human GLP-1. It switches on GLP-1 receptors, which lowers calorie intake, slows stomach emptying, and raises insulin while lowering glucagon when blood sugar is high. Binding to the blood protein albumin makes it long-acting, with a half-life of about a week. It comes as an injection and as a tablet.",
   "evidence": {
     "grade": "strong",

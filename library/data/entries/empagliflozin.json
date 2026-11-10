@@ -1,7 +1,7 @@
 {
   "id": "empagliflozin",
   "name": "Empagliflozin",
-  "summary": "A prescription pill, sold as Jardiance, that makes the kidneys pass extra sugar into the urine; it treats type 2 diabetes and lowers heart failure and kidney risks.",
+  "summary": "A prescription pill, sold as Jardiance, that makes the kidneys pass extra sugar out in the urine. It treats type 2 diabetes and lowers heart failure and kidney risks.",
   "what_it_is": "Empagliflozin is an SGLT2 inhibitor. It blocks SGLT2, the main protein in the kidneys that takes filtered sugar back into the blood, so more sugar leaves in the urine and blood sugar falls. Beyond type 2 diabetes, it is approved to lower risks in heart failure and chronic kidney disease, and those uses do not require diabetes. Its half-life is about 12 hours.",
   "evidence": {
     "grade": "strong",
