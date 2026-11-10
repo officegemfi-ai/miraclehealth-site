@@ -57,15 +57,12 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 @keyframes tm-spin{to{transform:rotate(360deg)}}
 
 /* ---------------------------------------------------------------- the window */
-.tm.ai-app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:0;width:calc(100% - 80px);max-width:1400px;margin:calc(var(--top-h) + var(--tm-g)) auto 0;padding:0}
+.tm.ai-app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:0;width:calc(100% - 2 * var(--tm-g));max-width:none;margin:calc(var(--top-h) + var(--tm-g)) auto 0;padding:0}
 .tm .tm-title{grid-column:1/-1;grid-row:1}
 .tm .ai-chat{grid-column:1;grid-row:2}
 .tm .tm-status{grid-column:1/-1;grid-row:3}
 @media (min-width:1101px){
-  .tm.ai-app{grid-template-columns:minmax(340px,min(500px,38%)) minmax(0,1fr)}
-}
-@media (min-width:701px) and (max-width:1100px){
-  .tm.ai-app{width:calc(100% - 56px);max-width:880px}
+  .tm.ai-app{grid-template-columns:minmax(0,1fr) clamp(380px,32%,560px)}
 }
 /* the panes: the conversation on the window's own dark, the side pane a shade lighter */
 .tm .ai-chat{max-width:none;width:auto;justify-self:stretch;min-height:var(--tm-h);background:var(--tm-win);border-left:1px solid var(--tm-line);border-right:1px solid var(--tm-line)}
@@ -82,7 +79,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-brand b{font:650 14px/1 var(--body);letter-spacing:-.01em;color:var(--tm-tx)}
 .tm-dim{font:400 11.5px/1 var(--mono);color:var(--tm-t3)}
 /* the tab: the question Sig is on, joined to the conversation below it */
-.tm-tab{position:relative;z-index:1;display:flex;align-items:center;gap:9px;min-width:0;max-width:min(340px,40%);height:31px;margin-bottom:-1px;padding:0 14px;border:1px solid var(--tm-line);border-bottom:0;border-radius:8px 8px 0 0;background:var(--tm-win);font:500 12px/1 var(--mono);color:var(--tm-tx);white-space:nowrap}
+.tm-tab{position:relative;z-index:1;display:flex;align-items:center;gap:9px;min-width:0;max-width:min(460px,42%);height:31px;margin-bottom:-1px;padding:0 14px;border:1px solid var(--tm-line);border-bottom:0;border-radius:8px 8px 0 0;background:var(--tm-win);font:500 12px/1 var(--mono);color:var(--tm-tx);white-space:nowrap}
 .tm-tab i{flex:none;width:7px;height:7px;border-radius:50%;background:var(--a-community);box-shadow:0 0 8px rgba(216,255,61,.8)}
 .tm-topic{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--tm-t3)}
 .tm-online{display:flex;align-items:center;gap:12px;margin-left:auto;align-self:center;padding-left:16px;font:500 11.5px/1 var(--mono);color:var(--tm-t2);white-space:nowrap}
@@ -145,6 +142,16 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-fine{padding:4px var(--tm-px) 18px;font-size:12px;color:var(--tm-t3)}
 .tm .ai-chat:not(.is-empty) .ai-fine{padding-top:10px;font-size:11.5px}
 .tm .ai-who{border-top-color:var(--tm-line)}
+
+/* In a wide pane the answer keeps a readable line and the first screen a readable block, and the
+   log lines get their columns: the agent, then what it did */
+@media (min-width:701px){
+  .tm .ai-thread>*{max-width:900px}
+  .tm .ai-empty,.tm .ai-begin>*,.tm .ai-fine,.tm .ai-chat.is-empty .ai-composer{max-width:760px}
+  .tm .ts-text{display:grid;grid-template-columns:150px minmax(0,1fr);column-gap:10px}
+  .tm .ts-text .tstep-who{margin-right:0}
+  .tm .ts-text .tstep-chips{grid-column:2}
+}
 
 /* ---------------------------------------------------------------- the prompt */
 /* At the foot of the pane, above the status bar, while the conversation scrolls under it */
@@ -295,12 +302,8 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm-team{display:block;padding:4px 18px 28px}
   .tm-team[hidden]{display:none}
 }
-/* the agents: the ring of the eleven, and each one's latest line; side by side in a wide pane */
-@container sc (min-width:680px){
-  .tm-team{display:grid;grid-template-columns:236px minmax(0,1fr);align-items:start;column-gap:26px;padding:8px 22px 28px}
-  .tm-ringbox{margin:30px 12px 0}
-  .tm-roster{max-width:none;margin:22px 0 0}
-}
+/* the agents: the ring of the eleven over each one's latest line (before anyone asks, what each
+   one is for, in a few words) */
 .tm-ringbox{position:relative;width:212px;height:212px;margin:26px auto 20px}
 .tm-bigring{width:100%;height:100%}
 .tm-bigring .rg{opacity:.13;transition:opacity .45s}
@@ -312,7 +315,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-frac span{color:var(--tm-t3)}
 .tm-count-k{margin-top:8px;font:600 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tm-t3)}
 .tm-roster{display:grid;gap:2px;max-width:700px;margin:0 auto;padding:0;list-style:none}
-.tm-who{position:relative;display:grid;grid-template-columns:14px 8px 150px minmax(0,1fr);align-items:baseline;column-gap:9px;padding:6px 10px;border-radius:5px;font:400 11.5px/1.5 var(--mono);transition:background-color .25s,box-shadow .25s}
+.tm-who{position:relative;display:grid;grid-template-columns:14px 8px 136px minmax(0,1fr);align-items:baseline;column-gap:9px;padding:6px 10px;border-radius:5px;font:400 11.5px/1.5 var(--mono);transition:background-color .25s,box-shadow .25s}
 .tm-st{align-self:start;height:17px;color:var(--ac)}
 .tm-st::before{content:'·';color:var(--tm-t3)}
 .tm-who.is-run .tm-st::before{content:'';display:block;width:8px;height:8px;margin-top:4px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
@@ -322,7 +325,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-sq{align-self:start;width:8px;height:8px;margin-top:5px;border-radius:2px;background:var(--ac);box-shadow:0 0 8px color-mix(in srgb,var(--ac) 70%,transparent)}
 .tm-who b{font-weight:600;color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 35%,transparent);white-space:nowrap;transition:opacity .3s}
 .tm-now{min-width:0;overflow:hidden;color:var(--tm-t2);white-space:nowrap;text-overflow:ellipsis}
-.tm-team[data-state="idle"] .tm-now{white-space:normal;color:var(--tm-t3)}
+.tm-team[data-state="idle"] .tm-now{color:var(--tm-t3)}
 .tm-who.is-run{background:color-mix(in srgb,var(--ac) 10%,transparent);box-shadow:inset 2px 0 0 var(--ac)}
 .tm-who.is-wait b,.tm-who.is-skip b{opacity:.42}
 .tm-who.is-wait .tm-now,.tm-who.is-skip .tm-now{color:var(--tm-t3)}
