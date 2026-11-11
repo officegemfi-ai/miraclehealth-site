@@ -1,12 +1,15 @@
 /* Ask Sig as Sig's health terminal (miraclehealth.us/ai). Loads after ai.css, plan.css and
    screen.css and dresses the same page: a window under the site's bar with a title bar (Sig's ring,
    a tab for the question it's on, the twelve who answer) and a status bar that stay put while the
-   conversation scrolls between them; the conversation on the left, with each agent's steps as log
-   lines and the box to write in as its prompt; the agents and the screen beside it, as two tabs.
-   Every agent keeps one colour (Eleven), and so does every part of an answer: a rule beside it
-   and a line over it say which agent it comes from and what kind of part it is (good to know,
-   the studies, the forums, blood tests…). Safety notes inform; they never shout. On a phone it is the conversation alone, edge to edge, with
-   the ring and the count in its title bar; the screen still pulls up as a sheet. */
+   conversation scrolls between them; the conversation on the left, as a shell: the question at
+   the prompt (sig@miracle ~/chats › ask "…"), the run as numbered log lines (01 safety ✓ …), then
+   the answer under the Safety agent's check, and the box to write in as the same prompt; the
+   agents and the screen beside it, as two tabs. Every agent keeps one colour (Eleven), and so does
+   every part of an answer: numbered in the gutter, a rule beside it in its agent's colour, and a
+   line over it saying what kind of part it is (// the studies, // blood tests…) and, on the right,
+   which agent signed it. Safety notes inform; they never shout. On a phone it is the conversation
+   alone, edge to edge, with the ring and the count in its title bar; the screen still pulls up as
+   a sheet. */
 
 .ai{
   --a-safety:#FF6B5B;--a-planner:#FF9F4A;--a-recommender:#F2C94C;--a-community:#D8FF3D;--a-combination:#5FE08A;--a-markers:#3FE0C5;
@@ -138,9 +141,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 
 /* ---------------------------------------------------------------- the conversation's pane */
 .tm .ai-bar{min-height:var(--tm-ph);padding:0 10px 0 var(--tm-px);border-bottom:1px solid var(--tm-line);gap:12px}
-.tm .ai-id{gap:12px;min-width:0}
-.tm .ai-id h1{font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-tx);white-space:nowrap}
-.tm-what{overflow:hidden;font:600 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);white-space:nowrap;text-overflow:ellipsis}
+.tm .ai-id{gap:10px;min-width:0}
+/* the bar: the open chat as a path, then what Sig is, all lower case like a shell */
+.tm-path{flex:none;font:400 12.5px/1 var(--mono);color:var(--tm-t3);white-space:nowrap}
+.tm-path b{font-weight:500;color:var(--tm-tx)}
+.tm .ai-id h1{font:400 12px/1 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--tm-t3);white-space:nowrap}
+.tm-what{overflow:hidden;font:400 12px/1 var(--mono);letter-spacing:0;text-transform:none;color:var(--tm-t3);white-space:nowrap;text-overflow:ellipsis}
+.tm-what::before{content:'·';margin-right:8px}
 /* the pane's header stays under the title bar, like the agents' tabs beside it */
 @media (min-width:701px){
   .tm .ai-bar{position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));z-index:7;background:var(--tm-win)}
@@ -166,14 +173,10 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-chat:not(.is-empty) .ai-fine{padding-top:10px;font-size:11.5px}
 .tm .ai-who{border-top-color:var(--tm-line)}
 
-/* In a wide pane the answer keeps a readable line and the first screen a readable block, and the
-   log lines get their columns: the agent, then what it did */
+/* In a wide pane the answer keeps a readable line and the first screen a readable block */
 @media (min-width:701px){
   .tm .ai-thread>*{max-width:900px}
   .tm .ai-empty,.tm .ai-begin>*,.tm .ai-fine,.tm .ai-chat.is-empty .ai-composer{max-width:760px}
-  .tm .ts-text{display:grid;grid-template-columns:150px minmax(0,1fr);column-gap:10px}
-  .tm .ts-text .tstep-who{margin-right:0}
-  .tm .ts-text .tstep-chips{grid-column:2}
 }
 
 /* ---------------------------------------------------------------- the prompt */
@@ -186,7 +189,10 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-chat.is-empty .ai-dock{position:static;margin:0;padding:0 var(--tm-px);background:none}
 .tm .ai-chat.is-empty .ai-composer{padding-left:16px;border:1px solid var(--tm-line2);border-radius:8px;background:rgba(0,0,0,.28)}
 .tm .ai-chat.is-empty .ai-composer:focus-within{border-color:rgba(238,236,230,.5)}
-.tm-ps1{flex:none;padding-top:9px;font:600 16px/22px var(--mono);color:var(--tm-tx);text-shadow:none}
+.tm-ps1{flex:none;padding-top:9px;font:400 13px/22px var(--mono);color:var(--tm-t2);white-space:nowrap}
+.tm-ps1 b,.echo-ps1 b{font-weight:600;color:var(--tm-tx)}
+.ps-path{color:var(--tm-t3)}
+.ps-verb{color:var(--tm-t2)}
 .tm-field{position:relative;display:flex;flex:1;min-width:0}
 .tm .ai-composer textarea{padding:9px 0;font:500 15px/22px var(--mono);color:var(--tm-tx);caret-color:var(--tm-tx)}
 .tm .ai-composer textarea::placeholder{font-weight:400;color:var(--tm-t3)}
@@ -218,9 +224,10 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 
 /* ---------------------------------------------------------------- the log */
 /* their question, as typed at the prompt */
-.tm .msg.me{display:flex;justify-content:flex-start;align-items:baseline;gap:10px}
-.tm .echo-ps1{flex:none;font:600 14px/1.5 var(--mono);color:var(--tm-tx);text-shadow:none}
-.tm .bubble{max-width:none;padding:0;border:0;border-radius:0;background:none;font:500 14px/1.5 var(--mono);color:var(--tm-tx)}
+.tm .msg.me{display:block;font:500 13.5px/1.6 var(--mono)}
+.tm .echo-ps1{display:inline;margin-right:8px;font:400 13.5px/1.6 var(--mono);color:var(--tm-t2);white-space:nowrap}
+.tm .msg.me .bubble{display:inline;max-width:none;padding:0;border:0;border-radius:0;background:none;font:500 13.5px/1.6 var(--mono);color:var(--tm-tx)}
+.tm .msg.me .bubble::before,.tm .msg.me .bubble::after{content:'"';color:var(--tm-t2)}
 .tm .msg.ai{display:block}
 .tm .msg.ai .sheet{margin:0;padding:0}
 .tm .waiting{display:none}
@@ -238,24 +245,29 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .ts-busy{width:9px;height:9px;border-radius:50%;border:1.6px solid rgba(238,236,230,.25);border-top-color:var(--tm-tx);animation:tm-spin .8s linear infinite}
 .tm .trace .trace-steps,.tm .trace.done .trace-steps{display:none}
 .tm .trace.open .trace-steps,.tm .trace.done.open .trace-steps{display:grid;gap:0;margin-top:2px}
-.tm .tstep{display:grid;grid-template-columns:24px 8px minmax(0,1fr) 14px;column-gap:8px;align-items:start;padding:2px 0;font:400 12.5px/1.5 var(--mono)}
+.tm .tstep{display:grid;grid-template-columns:22px 15ch 12px minmax(0,1fr);column-gap:10px;align-items:start;padding:1px 0;font:400 12.5px/1.6 var(--mono)}
 .ts-n{color:var(--tm-t3);font-variant-numeric:tabular-nums}
-.ts-dot{width:7px;height:7px;margin-top:6px;border-radius:50%;background:var(--ac);box-shadow:none}
-.tm .tstep-who{margin-right:8px;font:600 12.5px/1.5 var(--mono);letter-spacing:0;text-transform:none;color:var(--ac);text-shadow:none}
+.ts-who{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;color:var(--ac)}
 .tm .tstep-what{color:var(--tm-t2)}
-.ts-st{position:relative;height:18px;text-align:right;color:var(--ac)}
+.ts-st{position:relative;height:20px;text-align:center;color:var(--ac)}
 .tstep.done .ts-st::before{content:'✓';text-shadow:none}
-.tstep.run .ts-st::before{content:'';position:absolute;right:1px;top:5px;width:8px;height:8px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
+.tstep.run .ts-st::before{content:'';position:absolute;left:1px;top:6px;width:8px;height:8px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
 .tstep.flag .ts-st::before{content:'!';color:#F2BE4B;text-shadow:none}
 .tm .tstep-chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 3px}
 .tm .tstep-chips a,.tm .tstep-chips span{padding:2px 8px;border-radius:4px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11.5px/1.5 var(--mono);text-decoration:none}
 .tm .tstep-chips a:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
 /* the answer's head */
-.tm-ahead{display:flex;align-items:center;gap:8px;margin:6px 0 2px;font:600 12.5px/1.5 var(--mono);color:var(--tm-tx)}
-.tm .tm-ahead .msg-sig{display:block;width:13px;height:13px;margin:0}
-.tm-ahead i{font-style:normal;font-weight:400;color:var(--tm-t3)}
+.tm-ahead{display:flex;align-items:center;gap:10px;margin:10px 0 4px;font:400 12.5px/1.5 var(--mono);color:var(--tm-t2)}
+.tm .tm-ahead .msg-sig{display:block;flex:none;width:13px;height:13px;margin:0}
+.tm-ahead>b{font-weight:600;color:var(--tm-tx)}
+.ah-rule{flex:1 1 24px;min-width:24px;height:1px;background:var(--tm-line2)}
+.ah-check{flex:0 1 auto;min-width:0}
+.tm .ah-check .cleared{display:inline-flex;align-items:center;gap:7px}
+.tm .ah-check .cleared svg{width:14px;height:14px;margin:0;color:var(--a-safety)}
+.tm .ah-check .cleared.edited svg{color:#F2BE4B}
 
 /* ---------------------------------------------------------------- the answer, part by part */
+.tm .sheet-body{counter-reset:apart;padding-left:30px}
 .tm .sheet-body>.prose{padding-left:0}
 .tm .sheet-body>details.more{margin-left:0}
 .tm .sheet-body>.answer-src,.tm .sheet-body>.waiting{padding-left:0}
@@ -263,22 +275,26 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .prose>*+*{margin-top:6px}
 .tm .prose ul{gap:6px}
 .tm .prose ul+p,.tm .prose p+ul{margin-top:6px}
-.tm .prose .apart{position:relative;padding:7px 0 9px 17px}
+.tm .prose .apart{position:relative;padding:7px 0 9px 17px;counter-increment:apart}
 .tm .prose .apart::before,.tm .prose ul li.apart::before{content:'';display:block;position:absolute;left:0;top:9px;bottom:10px;width:3px;height:auto;border:0;border-radius:2px;background:var(--ac1);box-shadow:none}
 .tm .prose .apart[data-a2]::before,.tm .prose ul li.apart[data-a2]::before{background:linear-gradient(180deg,var(--ac1) 0 50%,var(--ac2) 50% 100%)}
 .tm .prose .apart.is-live::before,.tm .prose ul li.apart.is-live::before{background:var(--tm-line2);box-shadow:none}
 .tm .prose ul li:not(.apart){padding-left:17px}
 .tm .prose ul li:not(.apart)::before{left:3px;top:.68em;width:5px;height:5px;background:var(--tm-t3)}
-.ptag{display:block;margin:0 0 4px;font:600 10.5px/1.45 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
-.ptag b{font-weight:600;color:var(--ac);text-shadow:none}
+.ptag,.ctag{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 16px;margin:0 0 4px;font:400 12px/1.5 var(--mono);letter-spacing:0;text-transform:none;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
+.ptag b,.ctag b{font-weight:500;color:var(--ac);text-transform:lowercase}
+.pt-by{color:var(--tm-t3)}
+/* the part's number, in the gutter */
+.tm .prose .apart>.ptag::before,.tm .sheet-body>.ctag::before{content:counter(apart);position:absolute;left:-30px;top:7px;width:20px;text-align:right;font:400 12px/1.5 var(--mono);color:var(--tm-t3);font-variant-numeric:tabular-nums}
+.tm .prose .apart.is-live>.ptag::before{content:'·'}
 .tm .prose h2{margin-top:14px;font:600 16px/1.35 var(--body)}
 .tm .prose ol li::before{font-family:var(--mono)}
 .tm .prose.streaming>p:last-child::after,.tm .prose.streaming>h2:last-child::after,.tm .prose.streaming>ul:last-child>li:last-child::after,.tm .prose.streaming>ol:last-child>li:last-child::after{width:.6em;height:1.1em;border-radius:1px;background:var(--tm-tx);animation:tm-blink 1.06s steps(1) infinite}
 .tm details.more{margin:8px 0 4px;border-top:1px dashed var(--tm-line2)}
 .tm details.more>summary{min-height:36px;font:500 12px/1 var(--mono);color:var(--tm-t2)}
 /* the cards keep their own layout, with the agent that made them over each and its colour down its side */
-.ctag{display:block;margin:16px 0 0;font:600 10.5px/1.45 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
-.ctag b{font-weight:600;color:var(--ac);text-shadow:none}
+.tm .sheet-body>.ctag{position:relative;margin:16px 0 0;padding-left:17px;counter-increment:apart}
+.tm .sheet-body>.ctag::before{top:0}
 .tm .sheet-body>.ctag+.card,.tm .sheet-body>.ctag+.ai-pointer{margin-top:6px}
 .tm .sheet-body>.card[data-agent]{border-left:3px solid var(--ac)}
 .tm .ai-pointer{border-color:var(--tm-line2);background:rgba(0,0,0,.2);font:500 12.5px/1.4 var(--mono)}
@@ -290,17 +306,15 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ip-verdict{border-top-color:var(--tm-line)}
 .tm .ip-dot{color:var(--a-interpretation);box-shadow:none}
 /* where it came from: the studies in the Evidence librarian's blue, the community in its lime */
-.tm .answer-src{gap:4px 14px;margin-top:12px;font:500 11.5px/1.45 var(--mono);color:var(--tm-t3)}
+.tm .answer-src{gap:4px 14px;margin-top:12px;font:400 12px/1.5 var(--mono);color:var(--tm-t3)}
+.tm .answer-src .src-k{text-transform:lowercase;letter-spacing:0;font-weight:400}
 .tm .src-part{color:var(--tm-t2)}
 .tm .v-dot{width:8px;height:8px;border:0;border-radius:2px}
 .tm .v-dot.v-studies{background:var(--a-evidence);box-shadow:none}
 .tm .v-dot.v-community{background:var(--a-community);box-shadow:none}
 /* the foot: the Safety agent's check, then the screen and copying */
 .tm .sheet-foot{margin-top:10px;font:500 12px/1.45 var(--mono);color:var(--tm-t2)}
-.tm .cleared{display:block;flex:1 1 260px}
-.tm .cleared svg{display:inline-block;margin-right:7px;color:var(--a-safety);vertical-align:-3px}
-.tm .cleared b{font-weight:600;color:var(--a-safety);text-shadow:none}
-.tm .cleared.edited svg{color:#F2BE4B}
+.tm .sheet-foot{justify-content:flex-end}
 .tm .ai-toscreen{display:inline-flex}
 .tm .sheet-foot .mini,.tm .ai-toscreen{min-height:30px;margin:0;padding:0 10px;border-radius:5px;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11.5px/1 var(--mono)}
 .tm .sheet-foot .mini:hover,.tm .ai-toscreen:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
@@ -396,9 +410,10 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm .ai-thread{padding-top:12px}
   .tm .prose{font-size:15px}
   .ptag,.ctag{font-size:10px}
-  .tm .tstep{grid-template-columns:22px 7px minmax(0,1fr) 13px;column-gap:6px;font-size:11.5px}
-  .tm .tstep-who{font-size:11.5px}
-  .ts-dot{width:6px;height:6px;margin-top:6px}
+  .tm .tstep{grid-template-columns:18px 11ch 10px minmax(0,1fr);column-gap:7px;font-size:11.5px}
+  .tm-ps1 .ps-host,.tm-ps1 .ps-path,.echo-ps1 .ps-host,.echo-ps1 .ps-path{display:none}
+  .tm .sheet-body{padding-left:22px}
+  .tm .prose .apart>.ptag::before,.tm .sheet-body>.ctag::before{left:-22px;width:14px}
   .tm .trace-sum{font-size:11.5px}
 }
 @media (max-width:480px){
@@ -517,7 +532,8 @@ html:has(body.sigapp){--top-h:0px}
   .sg-item.busy .sg-dot{animation:none!important}
 }
 @media print{
-  .tm-title,.tm-status,.tm-boot,.tm-tabs,.tm-team,.tm-ahead,.ai-composer,.ts-sw,.sg-side,.sg-scrim{display:none!important}
+  .tm-title,.tm-status,.tm-boot,.tm-tabs,.tm-team,.tm-ahead .msg-sig,.ah-rule,.ai-composer,.ts-sw,.sg-side,.sg-scrim{display:none!important}
+  .tm-ahead{color:#444444!important}
   .sg{display:block!important}
   body.sigapp{overflow:visible!important}
   .sigapp .tm.ai-app,.sigapp .tm .ai-chat{height:auto!important;overflow:visible!important}

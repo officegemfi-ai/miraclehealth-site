@@ -213,13 +213,13 @@ function tagPart(el, text, ctx) {
   const who = partOf(text, ctx);
   if (!who) {
     el.classList.add('apart', 'is-live');
-    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true', text: 'writing…' }));
+    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true' }, h('span', { class: 'pt-k', text: '// writing…' })));
   } else if (who.length) {
     el.classList.add('apart');
     el.dataset.a1 = who[0][0];
     if (who[1]) el.dataset.a2 = who[1][0];
-    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true' }, who.map(([a], i) => [i ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]),
-      ` · ${[...new Set(who.map(([, label]) => label))].join(' + ')}`));
+    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true' }, h('span', { class: 'pt-k', text: `// ${[...new Set(who.map(([, label]) => label))].join(' + ')}` }),
+      h('span', { class: 'pt-by' }, who.map(([a], i) => [i ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]))));
   }
   return el;
 }
@@ -400,9 +400,12 @@ addEventListener('wheel', (e) => { if (e.deltaY < 0) following = false; }, { pas
 addEventListener('touchstart', () => { following = false; }, { passive: true });
 addEventListener('keydown', (e) => { if (/^(?:PageUp|ArrowUp|Home)$/.test(e.key) && !e.target.closest?.('textarea, input')) following = false; });
 
-// Their question, as typed at the prompt
+// The prompt: who is asking, where, and the arrow (the composer has the same one)
+const ps1 = (cls, verb = '') => h('span', { class: cls, 'aria-hidden': 'true' }, h('span', { class: 'ps-host', text: 'sig@miracle' }), ' ',
+  h('span', { class: 'ps-path', text: '~/chats' }), ' ', h('b', { text: '›' }), verb ? h('span', { class: 'ps-verb', text: ` ${verb}` }) : null);
+// Their question, as typed at the prompt: sig@miracle ~/chats › ask "…"
 function userNode(text) {
-  return h('div', { class: 'msg me' }, h('span', { class: 'echo-ps1', 'aria-hidden': 'true', text: '›' }), h('div', { class: 'bubble', text }));
+  return h('div', { class: 'msg me' }, ps1('echo-ps1', 'ask'), h('div', { class: 'bubble', text }));
 }
 
 // A view: the DOM for one answer, kept in step with its message. The run (each agent's steps, as
@@ -417,7 +420,8 @@ function assistantNode(msg) {
     view.open = !traceOpen(msg);
     drawTrace(msg);
   });
-  const head = h('p', { class: 'tm-ahead', 'aria-hidden': 'true', hidden: true }, sigEl, h('b', { text: 'sig' }), h('i', { text: '· answer' }));
+  const head = h('p', { class: 'tm-ahead', hidden: true }, sigEl, h('b', { 'aria-hidden': 'true', text: 'answer' }), h('span', { class: 'ah-rule', 'aria-hidden': 'true' }),
+    h('span', { class: 'ah-check' }));
   const body = h('div', { class: 'sheet-body' });
   const foot = h('div', { class: 'sheet-foot', hidden: true });
   const sheet = h('div', { class: 'sheet' }, trace, head, body, foot);
@@ -430,19 +434,19 @@ function assistantNode(msg) {
   else drawTrace(msg);
   return node;
 }
-// The run stays open while the agents work and folds into one line once the answer is being
-// written, unless they opened or closed it themselves
+// The run stays open, as a terminal shows what ran, on a screen wide enough to keep it above the
+// answer; on a phone it folds into one line once the answer is being written. Either way, unless
+// they opened or closed it themselves
 const hasBody = (m) => (m.parts || []).some((p) => (p.t === 'text' && p.s.trim()) || p.t === 'card');
-const traceOpen = (m) => (m.view?.open ?? (!m.state && !hasBody(m)));
+const WIDE = matchMedia('(min-width: 1100px)');
+const traceOpen = (m) => (m.view?.open ?? (WIDE.matches || (!m.state && !hasBody(m))));
 function drawTrace(m) {
   const view = m.view;
   if (!view) return;
   const open = traceOpen(m);
   const steps = m.steps || [];
   const ran = ranOf(m);
-  const agents = ran.filter((a) => a !== 'community').length;
-  const heard = ran.includes('community');
-  const bits = steps.length ? [plural(steps.length, 'step'), `${agents} agent${agents === 1 ? '' : 's'}${heard ? ' + the community' : ''}`] : ['starting'];
+  const bits = steps.length ? [plural(steps.length, 'step'), plural(ran.length, 'agent')] : ['starting'];
   if (m.state && m.ms) bits.push(`${(m.ms / 1000).toFixed(1)} s`);
   view.trace.classList.toggle('open', open);
   view.sum.setAttribute('aria-expanded', String(open));
@@ -453,26 +457,31 @@ function drawTrace(m) {
     m.state ? h('span', { class: 'ts-act', 'aria-hidden': 'true', text: open ? 'hide steps' : 'show steps' }) : open ? null : h('span', { class: 'ts-busy', 'aria-hidden': 'true' }),
   ].filter(Boolean));
   view.trace.hidden = !steps.length && !!m.state;
-  // Sig's ring over the answer, lit by the agents who've reported so far
+  // Sig's ring over the answer, lit by the agents who've reported so far; until the end, the
+  // Safety agent is still checking each part as it's written
   view.head.hidden = !hasBody(m);
+  if (!m.state) view.head.querySelector('.ah-check').replaceChildren(h('span', { text: 'the safety agent checks each part as it’s written' }));
   setSig(view.sigEl, m.state ? moodOf(m) : 'idle', ran);
 }
 const moodOf = (msg) => ((msg.flag && msg.flag !== 'none') || msg.state === 'error' ? 'concerned' : msg.state === 'done' ? 'happy' : 'idle');
 
-// A step as a log line: its number, the agent in its colour, what it did, and a spinner until it's done
+// A step as a log line: its number, the agent by its short name in its colour, a spinner until
+// it's done (then ✓, or ! where it flagged something), and what it did
 function drawStep(view, s) {
   let el = view.stepEls.get(s.id);
   if (!el) {
     el = h('li', { class: 'tstep' }, h('span', { class: 'ts-n', 'aria-hidden': 'true', text: String(view.stepEls.size + 1).padStart(2, '0') }),
-      h('span', { class: 'ts-dot', 'aria-hidden': 'true' }), h('span', { class: 'ts-text' }), h('span', { class: 'ts-st', 'aria-hidden': 'true' }));
+      h('span', { class: 'ts-who' }), h('span', { class: 'ts-st', 'aria-hidden': 'true' }), h('span', { class: 'ts-text' }));
     view.stepEls.set(s.id, el);
     view.steps.append(el);
   }
   const flagged = (s.flag && s.flag !== 'none') || s.fixed;
+  const a = agentOf(s.agent);
   el.className = `tstep ${s.status || 'done'}${flagged ? ' flag' : ''}`;
-  el.dataset.agent = agentOf(s.agent);
+  el.dataset.agent = a;
+  el.querySelector('.ts-who').replaceChildren(h('span', { 'aria-hidden': 'true', text: AGENT_NAME[a] ? a : s.agent }), h('span', { class: 'sr', text: `${AGENT_NAME[s.agent] || s.agent}: ` }));
   const text = el.querySelector('.ts-text');
-  text.replaceChildren(h('span', { class: 'tstep-who', text: AGENT_NAME[s.agent] || s.agent }), h('span', { class: 'tstep-what', text: s.title || '' }));
+  text.replaceChildren(h('span', { class: 'tstep-what', text: s.title || '' }));
   if (s.chips?.length) {
     text.append(h('span', { class: 'tstep-chips' }, s.chips.slice(0, 8).map((c) => (isLib(c.id) ? h('a', { href: `/library/${c.id}/`, text: c.name }) : h('span', { text: c.name })))));
   }
@@ -551,7 +560,8 @@ function drawParts(msg) {
         const who = cardWho(p.card);
         if (who) {
           if (el.classList.contains('card')) el.dataset.agent = who[0][0];
-          view.cardTags.set(p, h('p', { class: 'ctag', 'aria-hidden': 'true' }, who[0].map((a, j) => [j ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]), ` · ${who[1]}`));
+          view.cardTags.set(p, h('p', { class: 'ctag', 'aria-hidden': 'true' }, h('span', { class: 'pt-k', text: `// ${who[1]}` }),
+            h('span', { class: 'pt-by' }, who[0].map((a, j) => [j ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]))));
         }
       }
       const tag = view.cardTags.get(p);
@@ -1735,11 +1745,11 @@ function finish(am, live) {
     }
   }
   drawParts(am);
-  // The run, folded into one line: its steps, the agents who worked on it (the visitor's own
-  // clinician isn't one of them, and the community is people, not an agent) and how long it took
+  // The run's line: its steps, the agents who worked on it (the visitor's own clinician isn't one
+  // of them) and how long it took
   view.trace.classList.add('done');
   drawTrace(am);
-  // The foot: whether the Safety agent cleared it or edited it, and copying the answer
+  // The head says whether the Safety agent cleared it or edited it; the foot copies it
   view.foot.replaceChildren();
   if (am.state === 'done' || am.state === 'stopped') {
     const edited = am.review && am.review.ok === false;
@@ -1755,9 +1765,10 @@ function finish(am, live) {
     const go = sub && !pointed ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
     go?.addEventListener('click', () => { SCREEN.show(sub); openScreen(); });
     const checked = am.review || am.state === 'stopped';
-    view.foot.append(h('span', { class: `cleared${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check),
-      checked ? h('b', { text: 'Safety agent' }) : null, checked ? ' ' : null, h('span', { text: checked ? said : 'Answered' })),
-      h('span', { class: 'foot-actions' }, go, btn));
+    const line = !checked ? 'answered' : am.state === 'stopped' ? said : edited ? `the safety agent ${said}` : 'checked by the safety agent';
+    view.head.querySelector('.ah-check').replaceChildren(h('span', { class: `cleared${edited ? ' edited' : ''}` }, h('span', { text: line }), svg(edited ? ICON.edit : ICON.check)));
+    view.head.hidden = false;
+    view.foot.append(h('span', { class: 'foot-actions' }, go, btn));
     view.foot.hidden = false;
   }
   helpPin();
@@ -2015,6 +2026,11 @@ const tabsNav = $('tm-chats');
 const plusBtn = $('tm-plus');
 const tabStrip = $('tm-tabstrip');
 const chatName = (t) => titleOf(t.chat);
+// The open chat as a path in the terminal's bar: ~/chats/hgh-enclomiphene-fat-loss
+const slugEl = $('tm-slug');
+const SLUG_SKIP = new Set('a an and any are about be can could did do does for good bad how i in is it me my of on or plus should that the their there this to vs was were what when which will with would you your'.split(' '));
+const slugOf = (title) => String(title || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, ' ').trim().split(' ')
+  .filter((w) => w && !SLUG_SKIP.has(w)).slice(0, 4).join('-') || 'chat';
 function drawTabs() {
   if (!tabsNav) return;
   const was = document.activeElement?.closest?.('.tm-tab');
@@ -2032,6 +2048,10 @@ function drawTabs() {
     shut.addEventListener('click', () => closeTab(t.id));
     return h('div', { class: `tm-tab${on ? ' on' : ''}${busy?.sid === t.id ? ' busy' : ''}${lone ? ' lone' : ''}`, 'data-id': t.id }, open, shut);
   }));
+  if (slugEl) {
+    const t = sessions.find((x) => x.id === activeId);
+    slugEl.textContent = t && t.chat.length ? slugOf(chatName(t)) : 'new';
+  }
   if (plusBtn) {
     plusBtn.disabled = sessions.length >= MAX_TABS;
     plusBtn.title = plusBtn.disabled ? 'Close a chat to open another' : 'New chat';
