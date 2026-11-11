@@ -744,15 +744,15 @@ function aiPage() {
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
       <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
     </div>
-    <span class="tm-online" aria-hidden="true"><span class="tm-dots">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>11 agents + the community</span></span>
+    <span class="tm-online" aria-hidden="true"><span class="tm-dots">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>${AGENTS.length} agents online</span></span>
     <span class="tm-count-sm" id="tm-count-sm" aria-hidden="true"><b>${AGENTS.length}</b>/${AGENTS.length} ready</span>
   </div>
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
-      <div class="ai-id"><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">every answer checked · efficacy reasoned last</span></div>
+      <div class="ai-id"><span class="tm-path" aria-hidden="true">~/chats/<b id="tm-slug">new</b></span><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">every answer checked · efficacy reasoned last</span></div>
     </div>
     <div class="tm-boot">
-      <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · 11 agents + the community ready ·</span> <span class="tm-nw">Library updated ${libDate}</span></p>
+      <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · ${AGENTS.length} agents online · library: ${entries.size} fact sheets ·</span> <span class="tm-nw">updated ${libDate}</span></p>
       <p class="tm-boot-2">No doses. No sellers. No diagnosis. The Safety agent checks every answer before you see it.</p>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
@@ -765,7 +765,7 @@ function aiPage() {
     <form class="ai-dock" id="ai-form" novalidate>
       <div class="ai-peek" id="ai-peek" hidden></div>
       <div class="ai-composer">
-        <span class="tm-ps1" aria-hidden="true">›</span>
+        <span class="tm-ps1" aria-hidden="true"><span class="ps-host">sig@miracle</span> <span class="ps-path">~/chats</span> <b>›</b></span>
         <label class="sr" for="ai-input">Message Sig</label>
         <span class="tm-field"><textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea><span class="tm-caret" aria-hidden="true"></span></span>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
