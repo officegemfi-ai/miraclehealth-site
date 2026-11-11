@@ -1109,6 +1109,7 @@ function storyPage() {
     title: 'The story: one app, twelve agents, every answer checked · Miracle Health',
     description: 'Miracle Health is now one app: the Library, Ask Sig, the community and My Miracle as windows in Sig’s terminal, twelve agents behind every answer, and a print for every compound.',
     url: '/story/', body, current: '', bodyClass: 'story-page',
+    ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'story.jpg')) ? '/img/og/story.jpg' : '/og.jpg',
   });
 }
 
