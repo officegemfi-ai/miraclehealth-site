@@ -275,7 +275,7 @@ export function render(p, { level = 2 } = {}) {
       h('span', { class: `pk-lvl pk-lvl-${f.level}`, text: LEVEL[f.level] || 'Note' }),
       h('span', {}, h('b', { text: f.names.join(' + ') }), `: ${f.note}`))))));
   }
-  if (p.questions.length) art.append(sec('My questions for you', h('ol', { class: 'pk-qs' }, p.questions.map((q) => h('li', { text: q })))));
+  if (p.questions.length) art.append(sec('What I’d like to discuss', h('ol', { class: 'pk-qs' }, p.questions.map((q) => h('li', { text: q })))));
   art.append(h('section', { class: 'pk-review' },
     h(S, { text: 'Clinician notes (not an endorsement)' }),
     h('div', { class: 'pk-lines' }, ['Reviewed by', 'Credentials', 'Date'].map((t) => h('div', { class: 'pk-line' }, h('span', { text: t }))),
@@ -310,7 +310,7 @@ export function text(p) {
   items('What I take now, or am weighing up:', p.stack, false);
   items('Options I’d like to discuss:', p.options, true);
   if (p.findings.length) out.push('Checked together by the Synergy auditor:', ...p.findings.map((f) => `- [${LEVEL[f.level]}] ${f.names.join(' + ')}: ${f.note}`), '');
-  if (p.questions.length) out.push('My questions for you:', ...p.questions.map((q, i) => `${i + 1}. ${q}`), '');
+  if (p.questions.length) out.push('What I’d like to discuss:', ...p.questions.map((q, i) => `${i + 1}. ${q}`), '');
   out.push('Clinician notes (not an endorsement): reviewed by ____  credentials ____  date ____', 'Notes:', '');
   if (refs.length) out.push('References:', ...refs.map((r, i) => `${i + 1}. ${r.title}${r.year ? ` (${r.year})` : ''}. ${r.url}`), '');
   out.push('Made in my own browser with Sig (miraclehealth.us/ai). Miracle Health doesn’t receive or keep this packet.');

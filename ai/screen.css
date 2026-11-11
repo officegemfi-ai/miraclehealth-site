@@ -3,8 +3,8 @@
    sheet that pulls up over the chat, with a bar above the box to write in. Each compound keeps
    its Library colour (the kit's category colour) through the code, the markers and the
    community (quiet tints of bone); the only other colours are meanings: brighter bone for where
-   they meet and for what you picked, amber for what's worth checking, coral for cautions and
-   "avoid". Lime is Sig's alone: the prompt, the caret and "working". The pathway is set in the
+   they meet and for what you picked, amber for what's worth checking, coral for "avoid" and, as
+   a small mark only, for safety notes (they inform; they never shout). Lime is Sig's alone: the prompt, the caret and "working". The pathway is set in the
    mono face, like code. */
 
 .sc{--sc-code:#0A1211;--sc-line:rgba(255,255,255,.1);--sc-rule:rgba(255,255,255,.08);--sc-avoid:#FF6B5B;--sc-caution:#F2BE4B;--sc-cmt:#86948A;--c:var(--bone)}
@@ -37,7 +37,7 @@
 .sc-chip{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:var(--on-ink);font:500 13px/1 var(--mono);cursor:pointer;transition:border-color .15s,background-color .15s}
 .sc-chip:hover{border-color:rgba(255,255,255,.34)}
 .sc-chip-mark{color:var(--on-ink-2)}
-.sc-chip.t-warn,.sc-chip.t-avoid{border-color:rgba(255,107,91,.45);background:rgba(255,107,91,.08);color:#FFB4A9}
+.sc-chip.t-avoid{border-color:rgba(255,107,91,.45);background:rgba(255,107,91,.08);color:#FFB4A9}
 .sc-chip.t-warn .sc-chip-mark,.sc-chip.t-avoid .sc-chip-mark{color:var(--sc-avoid);font-weight:600}
 .sc-chip.t-avoid{border-color:var(--sc-avoid);background:rgba(255,107,91,.16);color:#FFD2CB}
 .sc-chip.t-caution{border-color:rgba(242,190,75,.45);background:rgba(242,190,75,.08);color:#F7D58A}
@@ -74,7 +74,7 @@
 .tk-say{color:rgba(252,252,252,.8)}
 .op-watch .tk-tree{color:var(--sc-caution)}
 .op-warn .tk-tree{color:var(--sc-avoid);font-weight:600}
-.op-warn .tk-say{color:#FFB4A9}
+.op-warn .tk-say{color:var(--on-ink)}
 .tk-cmt{color:var(--sc-cmt)}
 a.tk-cmt{white-space:nowrap;text-decoration:underline dotted rgba(134,148,138,.7);text-underline-offset:3px}
 a.tk-cmt:hover{color:var(--bone);text-decoration:underline solid var(--bone)}

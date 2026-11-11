@@ -25,13 +25,13 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 // Narrow windows: the screen is a sheet over the chat, and it opens on the rows that matter
 const narrow = matchMedia('(max-width: 1100px)');
 const OP = {
-  is: ['─▶', 'is'], up: ['─▲', 'raises'], down: ['─▼', 'lowers'], block: ['─┤', 'blocks'], watch: ['─◆', 'check'], warn: ['─!', 'caution'],
+  is: ['─▶', 'is'], up: ['─▲', 'raises'], down: ['─▼', 'lowers'], block: ['─┤', 'blocks'], watch: ['─◆', 'check'], warn: ['─○', 'safety note'],
 };
 const DIR = { up: ['▲', 'may rise'], down: ['▼', 'may fall'], watch: ['◆', 'worth checking'] };
-const LEVEL = { avoid: 'Avoid together', caution: 'Caution', info: 'Good to know' };
+const LEVEL = { avoid: 'Avoid together', caution: 'Worth checking', info: 'Good to know' };
 const RANK = { avoid: 3, caution: 2, info: 1 };
 const GRADE = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'limited evidence', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
-const AGENT = { safety: 'Safety agent', review: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent', mechanism: 'Mechanism agent', markers: 'Markers agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder' };
+const AGENT = { safety: 'Safety agent', review: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent', mechanism: 'Mechanism agent', markers: 'Markers agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder', interpretation: 'Interpretation agent' };
 // Not approved in the US for anything, or not yet: worth asking a clinician about an approved option.
 // Not 'restricted': the Library's special case (today NAC) is an approved drug
 const UNAPPROVED = new Set(['not_approved', 'compounded', 'investigational', 'category2', 'under_review', 'unclear']);
@@ -270,11 +270,11 @@ function chipsNode(ids, f, sub) {
   if (S.checking && sub.ok == null) add('check', '…', 'Checking together', 'busy');
   else if (sub.ok === false) add('check', '○', 'Couldn’t check just now');
   else if (top === 'avoid') add('check', '✕', 'Auditor: avoid together', 'avoid');
-  else if (top === 'caution') add('check', '!', 'Auditor: caution', 'caution');
+  else if (top === 'caution') add('check', '◆', 'Auditor: worth checking', 'caution');
   else if (sub.ok) add('check', '✓', ids.length > 1 ? 'No clash found' : 'Checked for you');
   else if (sub.asked) add('check', '○', 'Check comes with the answer');
   else if (ids.length > 1) add('check', '○', 'Not checked together');
-  if (f.cautions.length) add('caution', '!', plural(f.cautions.length, 'caution'), 'warn');
+  if (f.cautions.length) add('caution', '○', plural(f.cautions.length, 'safety note'), 'warn');
   if (f.count) add('markers', '', plural(f.count, 'marker'));
   if (ids.length > 1 && f.all) add('meet', '∩', f.meet.length ? `Meet: ${f.meet.map((r) => r.at).join(', ')}` : 'No place in common', f.meet.length ? 'meet' : '');
   if (f.opposed.length) add('both', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))}: pushed both ways`, 'caution');
@@ -631,7 +631,7 @@ function logNode(sub) {
   }
   const flagged = (s) => s.flag && s.flag !== 'none';
   box.append(h('ol', { class: 'lg-list' }, steps.map((s) => h('li', { class: flagged(s) ? 'flag' : '' },
-    h('span', { class: 'lg-mark', 'aria-hidden': 'true', text: flagged(s) ? '!' : '✓' }),
+    h('span', { class: 'lg-mark', 'aria-hidden': 'true', text: flagged(s) ? '◆' : '✓' }),
     h('span', {}, h('b', { text: AGENT[s.agent] || clean(s.agent, 30) }), ` ${clean(s.title, 180)}`)))));
   if (sub.ms) box.append(h('p', { class: 'sc-small', text: `${(sub.ms / 1000).toFixed(1)} seconds from your message to the checked answer.` }));
   return box;
@@ -672,7 +672,7 @@ function questions(ids, f, sub) {
   for (const o of f.opposed || []) qs.push(`${cap(listOf(o.up.map((id) => mid(shortOf(id)))))} ${o.up.length === 1 ? 'raises' : 'raise'} ${markerName(o.m)} and ${listOf(o.down.map((id) => mid(shortOf(id))))} may lower it. How would we read ${markerName(o.m)} if I took both?`);
   const top = topFinding(sub);
   if (top === 'avoid') qs.push('Sig’s Synergy auditor says to avoid taking these together. Does that apply to me?');
-  else if (top === 'caution') qs.push('Sig’s Synergy auditor found a caution for taking these together. Does it apply to me?');
+  else if (top === 'caution') qs.push('Sig’s Synergy auditor found something worth checking about taking these together. Does it apply to me?');
   if (ids.some((id) => UNAPPROVED.has(item(id).status))) qs.push('Is there an approved option for what I’m hoping to address?');
   // Each compound's own question from its fact sheet, when it has one drawn
   for (const id of ids) {
@@ -706,7 +706,7 @@ function clinicianText(ids, f, sub) {
   for (const id of ids) if (!drawn(id)) L.push(`- ${nameOf(id)}: ${linesOf(id)[0].say}`);
   for (const r of f.rows) {
     for (const [id, lines] of r.cells) {
-      for (const ln of lines) L.push(`- ${r.at}, ${nameOf(id)}: ${ln.op === 'warn' ? 'caution, ' : ''}${ln.say}${(ln.src || []).length ? ` [${ln.src.join(', ')}]` : ''}`);
+      for (const ln of lines) L.push(`- ${r.at}, ${nameOf(id)}: ${ln.op === 'warn' ? 'safety note, ' : ''}${ln.say}${(ln.src || []).length ? ` [${ln.src.join(', ')}]` : ''}`);
     }
   }
   if (ids.length > 1) L.push(`${cap(sumLine(ids, f))}.`);
@@ -970,9 +970,9 @@ function drawPeek(isNew) {
   const top = topFinding(sub);
   if (f && ids.length > 1 && f.all) chips.push(['meet', '∩', f.meet.length ? f.meet.map((r) => r.at).join(', ') : 'no place in common']);
   if (top === 'avoid') chips.push(['avoid', '✕', 'avoid together']);
-  else if (top === 'caution') chips.push(['caution', '!', 'auditor: caution']);
+  else if (top === 'caution') chips.push(['caution', '◆', 'auditor: worth checking']);
   if (f?.opposed.length) chips.push(['caution', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))} both ways`]);
-  if (f?.cautions.length) chips.push(['warn', '!', plural(f.cautions.length, 'caution')]);
+  if (f?.cautions.length) chips.push(['warn', '○', plural(f.cautions.length, 'safety note')]);
   if (f?.count) chips.push(['', '', plural(f.count, 'marker')]);
   const btn = h('button', { class: `sc-peek${isNew && !motionOff() ? ' new' : ''}`, type: 'button', 'aria-label': `Open the screen. ${f ? headline(ids, f, sub) : 'Drawing it…'}` },
     h('span', { class: 'pk-grip', 'aria-hidden': 'true' }),

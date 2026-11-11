@@ -18,11 +18,12 @@ const CHECKINS = 'mh-my-checkins-v1';
 const PILLARS = ['nutrition', 'sleep', 'exercise'];
 const PILLAR = { nutrition: 'Nutrition', sleep: 'Sleep', exercise: 'Exercise' };
 const STATE = { start: 'Start here', next: 'Next', strong: 'Strong', unknown: 'Not sure yet' };
-// Answering a pillar that's "not sure yet": the same questions Sig asks
-const ASK = {
-  nutrition: { q: 'Most days, do you get about 0.7 to 1 g of protein per pound of lean body mass?', options: ['Yes', 'Not quite', 'No'] },
-  sleep: { q: 'How’s your sleep most nights?', options: ['7+ hours, solid', 'Short or broken'] },
-  exercise: { q: 'Do you strength train?', options: ['3+ times a week', '1 to 2 times a week', 'Not yet'] },
+// A pillar that's "not sure yet": where they are, theirs to tap if they'd like the plan to fit them
+// (Sig asks no questions: these are statements they can send, like typing them)
+const SAY = {
+  nutrition: { label: 'My protein, most days (about 0.7 to 1 g per pound of lean body mass):', options: ['Enough', 'Not quite', 'Not much'] },
+  sleep: { label: 'My sleep, most nights:', options: ['7+ hours, solid', 'Short or broken'] },
+  exercise: { label: 'My strength training:', options: ['3+ times a week', '1 to 2 times a week', 'Not yet'] },
 };
 // How strong the evidence is: the design kit's grades (the Library's), as four bars
 const BARS = Object.fromEntries(Object.entries(GRADES).map(([k, [n]]) => [k, n]));
@@ -204,16 +205,16 @@ export function node(raw, opts = {}) {
         h('span', { class: 'pstep-text' }, name, h('span', { text: ` Keep it up${s.step ? `: ${s.step}` : '.'}` })));
     }
     if (s.state === 'unknown') {
-      const ask = ASK[s.pillar];
+      const say = SAY[s.pillar];
       const li = h('li', { class: 'pstep is-unknown', 'data-step': s.key }, h('span', { class: 'pdash', 'aria-hidden': 'true' }),
         h('span', { class: 'pstep-text' }, name, h('span', { text: ' Not sure yet.' }), s.step ? h('span', { class: 'pstep-hint', text: ` ${s.step}` }) : null));
-      if (opts.onAnswer && ask) {
+      if (opts.onAnswer && say) {
         const qid = `${raw.id || 'plan'}-${s.pillar}-q`;
         li.append(h('div', { class: 'pask', role: 'group', 'aria-labelledby': qid },
-          h('p', { class: 'pask-q', id: qid, text: ask.q }),
-          h('div', { class: 'pask-opts' }, ask.options.map((o) => {
+          h('p', { class: 'pask-q', id: qid, text: say.label }),
+          h('div', { class: 'pask-opts' }, say.options.map((o) => {
             const b = h('button', { class: 'pask-opt', type: 'button', text: o });
-            b.addEventListener('click', () => opts.onAnswer(`${ask.q} ${o}. Please update my plan.`));
+            b.addEventListener('click', () => opts.onAnswer(`${say.label.replace(/\s*\([^)]*\)/, '').replace(/:$/, '')}: ${o}. Please update my plan.`));
             return b;
           }))));
       }
