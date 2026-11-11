@@ -374,6 +374,13 @@ function entryPage(root) {
     }
     const x = snap.signals[id];
     signalPanel(box, id, name, x, snap.spaces?.[id], uses, snap, baselines);
+    // the status line at the foot: the Signal, once it's here
+    const sb = document.querySelector('[data-live="sb-signal"]');
+    if (sb && x && Number.isFinite(x.signal)) {
+      sb.querySelector('b').textContent = x.signal.toFixed(1);
+      sb.querySelector('.ls-lvl').textContent = ` · ${levelOf(x.certification || 'forum').name.toLowerCase()}`;
+      sb.hidden = false;
+    }
     const radarBox = document.querySelector('[data-live="radar"]');
     if (radarBox && x) radarLayers(radarBox, x, uses);
   });

@@ -40,7 +40,7 @@ const fold = (s) => String(s || '').toLowerCase().normalize('NFKD').replace(/[̀
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const fmt = (n) => Number(n).toLocaleString('en-US');
 
-export function buildGraph({ body, catalog }) {
+export function buildGraph({ body, catalog, grades = new Map() }) {
   const byId = new Map(catalog.map((c) => [c.id, c]));
   let seed = 20261109;
   const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
@@ -223,6 +223,9 @@ export function buildGraph({ body, catalog }) {
     // what the search box matches, folded as the Library's search folds it (name, other names,
     // category and family)
     find: ids.map((id) => { const c = byId.get(id); return fold([c.name, ...(c.aliases || []), c.category, c.family].join(' ')); }),
+    // each sheet's evidence grade, for the matches under the front page's prompt: 0 anecdotal,
+    // 1 animal and lab studies, 2 limited, 3 moderate, 4 strong (-1: not graded)
+    grade: ids.map((id) => ['anecdotal', 'preclinical', 'limited', 'moderate', 'strong'].indexOf(grades.get(id) || '')),
     stacks, tour,
   };
   const json = JSON.stringify(data) + '\n';

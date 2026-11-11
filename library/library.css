@@ -382,3 +382,51 @@
 .bl-why{font:400 20px/1.5 var(--body);}
 @media (min-width:901px){.claims li{grid-template-columns:216px minmax(0,1fr)}}
 @media (max-width:600px){.ev-box{grid-template-columns:1fr}}
+
+/* ---------------------------------------------------------------- the Library as a repository */
+/* A fact sheet is a file in the Library: its path over it (library › peptides › bpc157.md), its
+   family's sheets as files beside it on a wide screen (the other families as folders that open the
+   Library on them), each section signed on the right by the agent of Sig's who reads that part for
+   an answer, in the agent's colour, and a status line at the foot with the sheet's facts */
+.le-path{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;font:400 12.5px/1.5 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.le-path a{color:var(--text-2)}
+.le-path .lp-file{color:var(--text)}
+.lp-checked{margin-left:auto;color:var(--muted)}
+.le-tree{display:none}
+.h-by{flex:none;font:400 12px/1.5 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.h-by b{font-weight:500}
+.h-by b[data-agent="evidence"]{color:var(--sig-evidence)}
+.h-by b[data-agent="safety"]{color:var(--sig-safety)}
+.h-by b[data-agent="markers"]{color:#3FE0C5}
+.h-by b[data-agent="mechanism"]{color:#B98CFF}
+.h-by b[data-agent="community"]{color:var(--lime)}
+.le-sec h2,.bl-head .bl-k{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px}
+.toc .mono,.side-card .mono{font:400 12.5px/1.4 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.le-status{display:none}
+@media (min-width:1280px){
+  .lib-entry .le-body.wrap{max-width:1440px}
+  .le-body{grid-template-columns:196px minmax(0,1fr) 260px;gap:44px}
+  .le-tree{position:sticky;top:calc(var(--top-h) + 24px);align-self:start;display:block;max-height:calc(100vh - var(--top-h) - 72px);overflow:auto;font:400 13px/1.5 var(--mono);color:var(--text-2);scrollbar-width:thin}
+  .lt-root{display:flex;justify-content:space-between;gap:8px;margin:0 0 8px;padding:0 8px;color:var(--text)}
+  .lt-root a{color:var(--text);text-decoration:none}
+  .lt-root span,.lt-n{color:var(--muted)}
+  .lt-dir{display:flex;gap:2px;padding:4px 8px;border-radius:6px;color:var(--text-2);text-decoration:none}
+  .lt-dir .lt-n{margin-left:auto}
+  a.lt-dir:hover{background:rgba(238,236,230,.05);color:var(--text)}
+  .lt-dir.on{margin:4px 0 2px;color:var(--text)}
+  .lt-files{margin:0 0 6px;padding:0;list-style:none}
+  .lt-files a{display:block;overflow:hidden;padding:3px 8px 3px 22px;border-radius:6px;color:var(--text-2);text-decoration:none;white-space:nowrap;text-overflow:ellipsis}
+  .lt-files a:hover{background:rgba(238,236,230,.05);color:var(--text)}
+  .lt-files a[aria-current="page"]{background:var(--raised);box-shadow:inset 2px 0 0 var(--accent);color:var(--text)}
+  .lt-more{margin:12px 8px 0;font-size:12px;line-height:1.5;color:var(--muted)}
+}
+@media (min-width:900px){
+  .le-status{position:sticky;bottom:0;z-index:6;display:flex;flex-wrap:wrap;border-top:1px solid var(--line);background:var(--band);font:400 12px/34px var(--mono);color:var(--muted)}
+  .le-status>span{display:inline-flex;align-items:center;gap:7px;padding:0 16px;border-right:1px solid var(--line)}
+  .le-status>span:first-child{padding-left:max(16px,calc((100vw - 1440px) / 2 + 40px))}
+  .le-status>span[hidden]{display:none}
+  .le-status i{width:6px;height:6px;border-radius:50%}
+  .ls-ev i{background:var(--sig-evidence)}
+  .ls-sig i{background:var(--lime)}
+  .ls-sig b{font-weight:500;color:var(--text)}
+}

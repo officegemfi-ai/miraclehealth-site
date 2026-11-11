@@ -24,8 +24,8 @@
 <link rel="preload" href="fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/img/library-graph.svg?v=36c08b4877" fetchpriority="high">
 <link rel="stylesheet" href="/kit/kit.css?v=70428c0d53">
-<link rel="stylesheet" href="styles.css?v=297dd90749">
-<script type="module" src="/home.js?v=e06c2225ab"></script>
+<link rel="stylesheet" href="styles.css?v=336c90d77c">
+<script type="module" src="/home.js?v=acdb175634"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -56,7 +56,7 @@
 
 <main id="main">
   <section class="hero" aria-labelledby="hero-h">
-    <figure class="net" data-graph="/library/data/graph.json?v=ffc0f29916">
+    <figure class="net" data-graph="/library/data/graph.json?v=37729bddbe">
       <img class="net-poster" src="/img/library-graph.svg?v=36c08b4877" alt="" width="1600" height="1600" fetchpriority="high">
       <div class="net-fade" aria-hidden="true"></div>
       <div class="net-bar" aria-hidden="true"><span class="net-n">Plate 01</span><b>The Library, one graph</b><span class="net-sub">every fact sheet, connected. Pick any dot to trace it.</span><span class="net-size"><!-- graph:size --><span>1,183 nodes</span><span>2,260 links</span><!-- /graph:size --></span><span class="net-found" hidden></span></div>
@@ -68,16 +68,25 @@
     </figure>
     <div class="wrap hero-in">
       <div class="hero-copy">
-        <p class="kick">Independent and free, for adults 18+</p>
+        <p class="kick"><span class="hp-path" aria-hidden="true">~/miracle-health ·</span> Independent and free, for adults 18+</p>
         <h1 id="hero-h">Peptides,<br> <em>without the<br> sales pitch.</em></h1>
         <p class="lede">Look it up before you take it. What the studies show and how it went for people who took it, side by side. <!-- count:compounds -->300<!-- /count:compounds --> peptides, hormones, supplements and medications. Nothing for sale.</p>
-        <form class="hero-search" action="/library/" method="get" role="search">
-          <label class="mh-sr" for="hero-q">Search the Library</label>
-          <input id="hero-q" name="q" type="search" placeholder="Try BPC-157 or TB-500" autocomplete="off" enterkeyhint="search">
-          <button class="btn bone" type="submit">Search</button>
+        <!-- The Library at a prompt: what's typed is matched as the Library's search matches it, and
+             the first few fact sheets and blends show under it (home.js); without the script it's
+             a plain search that opens the Library -->
+        <form class="hero-search hp" action="/library/" method="get" role="search">
+          <div class="hp-line">
+            <span class="hp-ps1" aria-hidden="true">› look up</span>
+            <label class="mh-sr" for="hero-q">Search the Library</label>
+            <input id="hero-q" name="q" type="search" placeholder="BPC-157, semaglutide, sleep…" autocomplete="off" enterkeyhint="search" spellcheck="false">
+            <span class="hp-n" id="hp-n" aria-live="polite"></span>
+            <button class="hp-go" type="submit"><span class="mh-sr">Search</span><span aria-hidden="true">⏎</span></button>
+          </div>
+          <ul class="hp-list" id="hp-list" aria-label="Matching fact sheets" hidden></ul>
+          <p class="hp-keys" id="hp-keys" aria-hidden="true" hidden><span>⏎ open the first</span><span>↑↓ move</span><span>esc clear</span></p>
         </form>
-        <nav class="hero-try" aria-label="Jump to a compound"><span>Jump to</span><a href="/library/bpc157/">BPC-157</a><a href="/library/semaglutide/">Semaglutide</a><a href="/library/tirzepatide/">Tirzepatide</a><a href="/library/tb500/">TB-500</a><a href="/library/ghkcu/">GHK-Cu</a></nav>
-        <p class="hero-ask">Rather ask a question? <a href="/sig/">Ask Sig, our AI</a></p>
+        <nav class="hero-try" aria-label="Jump to a compound"><span>jump to</span><a href="/library/bpc157/">BPC-157</a><a href="/library/semaglutide/">Semaglutide</a><a href="/library/tirzepatide/">Tirzepatide</a><a href="/library/tb500/">TB-500</a><a href="/library/ghkcu/">GHK-Cu</a></nav>
+        <p class="hero-ask"><span class="ha-ring" aria-hidden="true"><!-- ring:ask --><svg class="ring" width="16" height="16" viewBox="-8 -8 16 16" aria-hidden="true" focusable="false"><circle class="rg on" data-a="safety" r="6.14" fill="none" stroke="#FF6B5B" color="#FF6B5B" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-85.5)"/><circle class="rg on" data-a="planner" r="6.14" fill="none" stroke="#FF9F4A" color="#FF9F4A" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-52.77)"/><circle class="rg on" data-a="recommender" r="6.14" fill="none" stroke="#F2C94C" color="#F2C94C" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-20.05)"/><circle class="rg on" data-a="community" r="6.14" fill="none" stroke="#D8FF3D" color="#D8FF3D" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(12.68)"/><circle class="rg on" data-a="combination" r="6.14" fill="none" stroke="#5FE08A" color="#5FE08A" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(45.41)"/><circle class="rg on" data-a="markers" r="6.14" fill="none" stroke="#3FE0C5" color="#3FE0C5" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(78.14)"/><circle class="rg on" data-a="synergy" r="6.14" fill="none" stroke="#55D3FF" color="#55D3FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(110.86)"/><circle class="rg on" data-a="evidence" r="6.14" fill="none" stroke="#6FA8FF" color="#6FA8FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(143.59)"/><circle class="rg on" data-a="relatives" r="6.14" fill="none" stroke="#8F95FF" color="#8F95FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(176.32)"/><circle class="rg on" data-a="mechanism" r="6.14" fill="none" stroke="#B98CFF" color="#B98CFF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(209.05)"/><circle class="rg on" data-a="builder" r="6.14" fill="none" stroke="#FF7FC8" color="#FF7FC8" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(241.77)"/></svg><!-- /ring:ask --></span>rather ask? <a href="/sig/#ask=SXMgQlBDLTE1NyBwcm92ZW4_"><span aria-hidden="true">sig ask </span>“Is BPC-157 proven?”</a></p>
       </div>
     </div>
     <div class="hero-card">
@@ -102,11 +111,11 @@
 
   <div class="strip" aria-label="Miracle Health in short">
     <div class="wrap strip-in">
-      <span><!-- count:compounds -->300<!-- /count:compounds --> compounds</span>
-      <span><!-- count:sheets -->122<!-- /count:sheets --> fact sheets, every claim sourced</span>
-      <span>Studies and reports never mixed</span>
-      <span>No sellers, ads or affiliate links</span>
-      <span>Never a dose</span>
+      <span><b><!-- count:compounds -->300<!-- /count:compounds --></b> compounds</span>
+      <span><b><!-- count:sheets -->122<!-- /count:sheets --></b> fact sheets, every claim sourced</span>
+      <span class="strip-live" hidden><b id="strip-live-n"></b> live Signals</span>
+      <span>studies and reports never mixed</span>
+      <span><b>0</b> ads · <b>0</b> sellers · <b>0</b> doses</span>
     </div>
   </div>
 
@@ -121,9 +130,9 @@
       </div>
       <div class="steps">
         <article class="step">
-          <p class="step-n">The Library</p>
+          <p class="step-n"><i class="sn-dot sn-ev" aria-hidden="true"></i><span aria-hidden="true">$ </span>open library</p>
           <h3>What the studies show</h3>
-          <p>A fact sheet for each one: what it is, what it has been shown to do, the risks, and how strong the proof is, from animal studies to full trials in people. Every claim links to its source. <!-- count:sheets -->122<!-- /count:sheets --> are done, and the rest of the <!-- count:compounds -->300<!-- /count:compounds --> are being checked.</p>
+          <p>A fact sheet for each one, every claim linked to its source, from animal studies to full trials in people. <!-- count:sheets -->122<!-- /count:sheets --> are done, and the rest of the <!-- count:compounds -->300<!-- /count:compounds --> are being checked.</p>
           <a class="step-link" href="/library/">Open the Library</a>
         </article>
         <article class="step ai">
@@ -133,15 +142,15 @@
             <p class="read-label">How one report is read</p>
             <div class="chips"><span class="ok">First-hand ✓</span><span>For joint pain</span><span>Better</span><span>8 weeks</span><span>No side effects</span></div>
           </div>
-          <p class="step-n">The Community Signal</p>
+          <p class="step-n"><i class="sn-dot sn-co" aria-hidden="true"></i><span aria-hidden="true">$ </span>open signal</p>
           <h3>What people report</h3>
           <p>One score from 0 to 100 for how it went for the people who took it. “It did nothing” counts just as much as “it worked.” For now the scores are read from public forums. Members’ own reports take over as they come in.</p>
           <a class="step-link" href="/method/">How the numbers are made</a>
         </article>
         <article class="step">
-          <p class="step-n">Ask Sig</p>
+          <p class="step-n"><span class="sn-ring" aria-hidden="true"><!-- ring:ask --><svg class="ring" width="16" height="16" viewBox="-8 -8 16 16" aria-hidden="true" focusable="false"><circle class="rg on" data-a="safety" r="6.14" fill="none" stroke="#FF6B5B" color="#FF6B5B" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-85.5)"/><circle class="rg on" data-a="planner" r="6.14" fill="none" stroke="#FF9F4A" color="#FF9F4A" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-52.77)"/><circle class="rg on" data-a="recommender" r="6.14" fill="none" stroke="#F2C94C" color="#F2C94C" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-20.05)"/><circle class="rg on" data-a="community" r="6.14" fill="none" stroke="#D8FF3D" color="#D8FF3D" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(12.68)"/><circle class="rg on" data-a="combination" r="6.14" fill="none" stroke="#5FE08A" color="#5FE08A" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(45.41)"/><circle class="rg on" data-a="markers" r="6.14" fill="none" stroke="#3FE0C5" color="#3FE0C5" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(78.14)"/><circle class="rg on" data-a="synergy" r="6.14" fill="none" stroke="#55D3FF" color="#55D3FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(110.86)"/><circle class="rg on" data-a="evidence" r="6.14" fill="none" stroke="#6FA8FF" color="#6FA8FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(143.59)"/><circle class="rg on" data-a="relatives" r="6.14" fill="none" stroke="#8F95FF" color="#8F95FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(176.32)"/><circle class="rg on" data-a="mechanism" r="6.14" fill="none" stroke="#B98CFF" color="#B98CFF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(209.05)"/><circle class="rg on" data-a="builder" r="6.14" fill="none" stroke="#FF7FC8" color="#FF7FC8" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(241.77)"/></svg><!-- /ring:ask --></span><span aria-hidden="true">$ </span>sig ask</p>
           <h3>Ask, and get both</h3>
-          <p>Sig is our AI. Ask about a goal, something you’re thinking of taking, or a mix. You get what the studies show and what people report, kept apart, plus questions to take to your doctor. Every answer is safety-checked before you see it.</p>
+          <p>Sig is our AI. Eleven agents read the studies and what people report, kept apart, and the Safety agent checks every answer before you see it; a twelfth, the Interpretation agent, reasons it all through for efficacy.</p>
           <a class="step-link" href="/sig/">Ask Sig</a>
         </article>
       </div>

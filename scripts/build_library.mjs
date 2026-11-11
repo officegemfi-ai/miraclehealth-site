@@ -366,6 +366,12 @@ function list(items, cls = '') {
   return items && items.length ? `<ul class="${cls}">${items.map((x) => `<li>${e(x)}</li>`).join('')}</ul>` : '';
 }
 
+// A section of a fact sheet signed, on the right of its heading, by the agent of Sig's who reads
+// that part of it for an answer: the Evidence librarian the evidence, the Safety agent the risks
+// and where it stands, the Markers agent the blood tests, the Mechanism agent the body map
+const SIGNER = { evidence: 'evidence librarian', safety: 'safety agent', markers: 'markers agent', mechanism: 'mechanism agent', community: 'the community' };
+const by = (...as) => `<span class="h-by" aria-hidden="true">${as.map((a) => `<b data-agent="${a}">${SIGNER[a]}</b>`).join(' · ')}</span>`;
+
 function factSheet(c, f) {
   const g = GRADE[f.evidence.grade] || [f.evidence.grade, ''];
   const studies = (f.studies || []).map((s) => {
@@ -378,23 +384,23 @@ function factSheet(c, f) {
   }).join('');
   const labs = f.labs || {};
   return `<section class="le-sec" id="what">
-      <h2>What it is</h2>
+      <h2>What it is${by('evidence')}</h2>
       <p class="big">${e(f.what_it_is)}</p>
       <div class="ev-box">${evPill(f.evidence.grade, g[0])}<p>${e(f.evidence.why)}</p></div>
     </section>
 
 ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
-      <h2>Where it acts in the body</h2>
+      <h2>Where it acts in the body${by('mechanism')}</h2>
       ${bodyMapHtml({ items: [{ id: c.id, name: c.name, entry: BODY.compounds[c.id] }], places: BODY.places, markers: BODY.markers, sourceHref: (id, n) => `#src-${n}`, id: 'body-map' })}
     </section>
 ` : ''}
     <section class="le-sec" id="benefits">
-      <h2>What it may do</h2>
+      <h2>What it may do${by('evidence')}</h2>
       <ul class="claims">${(f.benefits || []).map((b) => `<li>${evPill(b.evidence)}<p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
     </section>
 
     <section class="le-sec" id="risks">
-      <h2>Risks and side effects</h2>
+      <h2>Risks and side effects${by('safety')}</h2>
       <ul class="claims risks">${(f.risks || []).map((r) => `<li><span class="hc hc-${r.how_common}">${e(HOW_COMMON[r.how_common] || r.how_common)}</span><p>${e(r.risk)} ${refs(r.sources)}</p></li>`).join('')}</ul>
       <div class="two">
         <div><h3>Who should skip it, or ask a doctor first</h3>${list(f.avoid_if, 'dots')}</div>
@@ -403,7 +409,7 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
     </section>
 
     <section class="le-sec" id="labs">
-      <h2>Blood tests to watch</h2>
+      <h2>Blood tests to watch${by('markers')}</h2>
       ${UNAPPROVED.has(f.status_us.key) && ((labs.before || []).length || (labs.during || []).length) ? '<p class="lab-note">Not an approved medicine. These are checks a doctor or a clinical trial would use, not a plan for taking it on your own.</p>' : ''}
       <div class="labs">
         <div class="lab-col"><p class="mono">Before starting</p>${(labs.before || []).length ? list(labs.before, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
@@ -413,7 +419,7 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
     </section>
 
     ${studies ? `<section class="le-sec" id="studies">
-      <h2>The main studies</h2>
+      <h2>The main studies${by('evidence')}</h2>
       <ol class="studies">${studies}</ol>
     </section>` : ''}
 
@@ -423,13 +429,13 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
     </section>
 
     <section class="le-sec" id="status">
-      <h2>Where it stands in the US</h2>
+      <h2>Where it stands in the US${by('safety')}</h2>
       <p><span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span> <b>${e(f.status_us.label)}.</b> ${e(f.status_us.note)} ${refs(f.status_us.sources)}</p>
       ${UNAPPROVED.has(f.status_us.key) ? '<p class="guide-link">Products sold outside approved medicines vary in what they contain. If you already have one, here’s <a href="/library/lab-reports/">how to read its lab report</a>, and what even a good one can’t tell you.</p>' : ''}
     </section>
 
     <section class="le-sec" id="sources">
-      <h2>Sources</h2>
+      <h2>Sources${by('evidence')}</h2>
       <ol class="sources">${(f.sources || []).map((s) => `<li id="src-${s.n}"><a href="${e(s.url)}" rel="noopener" target="_blank">${e(s.title)}</a><span>${e(s.publisher)}${s.year ? `, ${e(s.year)}` : ''}</span></li>`).join('')}</ol>
       <p class="checked">Fact-checked against these sources on ${date(f.checked)}.${reviewedBy(f) ? ` ${ReviewWords(f)}.` : ''} Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
     </section>`;
@@ -474,7 +480,7 @@ function bottomLine(c, f) {
   return `<div class="wrap le-bl-wrap">
     <article class="vs le-bl" id="voices" data-live="voices" data-claims="${e(JSON.stringify(claims))}" aria-labelledby="bl-h">
       <header class="bl-head">
-        <h2 class="bl-k" id="bl-h">The bottom line</h2>
+        <h2 class="bl-k" id="bl-h">The bottom line${by('evidence', 'community')}</h2>
         <p class="bl-why">${e(f.evidence.why)}</p>
         <p class="bl-tags">${evPill(f.evidence.grade)}<span class="st st-${f.status_us.key}">${e(STATUS[f.status_us.key] || f.status_us.key)}</span><span class="bl-status">${e(f.status_us.label)}</span></p>
       </header>
@@ -512,10 +518,33 @@ function entryPage(c) {
   ].filter(Boolean) : [];
   const toc = f ? [['voices', 'The bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood tests'], ...(f.studies?.length ? [['studies', 'The main studies']] : []), ['ask', 'Ask your doctor'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood tests to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
+  // The Library as a repository: its path (library › peptides › bpc157.md), the family's sheets as
+  // files beside the sheet (the other families as folders that open the Library on them), and a
+  // status line at the foot with the sheet's facts and, once it loads, its Signal
+  const dir = (fam) => fam.toLowerCase();
+  const file = f ? `${c.id}.md` : c.id;
+  const listed = (x) => entries.has(x.id) || x.kind === 'blend';
+  const famFiles = catalog.filter((x) => x.family === c.family && (listed(x) || x.id === c.id)).sort((a, b) => a.id.localeCompare(b.id));
+  const famCount = (fam) => catalog.filter((x) => x.family === fam && listed(x)).length;
+  const tree = `<nav class="le-tree" aria-label="Fact sheets in the Library">
+    <p class="lt-root"><a href="/library/">library/</a><span>${entries.size} sheets</span></p>
+    ${FAMILIES.map((fam) => (fam === c.family
+      ? `<p class="lt-dir on"><span aria-hidden="true">▾ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></p>
+    <ul class="lt-files">${famFiles.map((x) => `<li><a href="/library/${x.id}/"${x.id === c.id ? ' aria-current="page"' : ''}>${e(entries.has(x.id) ? `${x.id}.md` : x.id)}</a></li>`).join('')}</ul>`
+      : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
+    <p class="lt-more">${catalog.filter((x) => !listed(x)).length} more compounds are listed and waiting for their sheets.</p>
+  </nav>`;
+  const status = f ? `<div class="le-status" aria-label="This fact sheet">
+  <span>fact sheet · ${e((SINGULAR[c.family] || c.family).toLowerCase())}</span>
+  <span class="ls-ev"><i aria-hidden="true"></i>${e((GRADE[f.evidence.grade]?.[0] || f.evidence.grade).toLowerCase())}</span>
+  <span>${(f.sources || []).length} sources</span>
+  <span>checked ${e(date(f.checked).toLowerCase())}</span>
+  <span class="ls-sig" data-live="sb-signal" hidden><i aria-hidden="true"></i>signal <b></b><span class="ls-lvl"></span></span>
+</div>` : '';
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero">
   <div class="wrap">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/library/">Library</a><span aria-hidden="true">/</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(c.family)}</a></nav>
+    <nav class="crumbs le-path" aria-label="Breadcrumb"><a href="/library/">library</a><span aria-hidden="true">›</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(dir(c.family))}</a><span aria-hidden="true">›</span><span class="lp-file" aria-current="page">${e(file)}</span>${f ? `<span class="lp-checked">checked ${e(date(f.checked).toLowerCase())} against ${(f.sources || []).length} sources</span>` : ''}</nav>
     <p class="kick lime">${e(familyLine(c))}</p>
     <h1${c.name.length > 22 ? ' class="long"' : ''}>${e(c.name)}</h1>
     ${shownAliases(c).length ? `<p class="aka">Also called ${shownAliases(c).map(e).join(', ')}</p>` : ''}
@@ -555,20 +584,22 @@ function entryPage(c) {
 </section>
 
 <div class="wrap le-body">
+  ${tree}
   <article class="le-main">
     ${f ? factSheet(c, f) : pendingSheet(c)}
     ${parentBlends.length ? `<section class="le-sec" id="blends"><h2>Also sold in blends</h2><div class="parts">${parentBlends.map((b) => `<a class="part" href="/library/${b.id}/"><span class="lc-fam">Blend</span><b>${e(b.name)}</b></a>`).join('')}</div></section>` : ''}
   </article>
   <aside class="le-side">
-    ${toc.length ? `<nav class="toc" aria-label="On this page"><p class="mono">On this page</p>${toc.map(([id, l]) => `<a href="#${id}">${l}</a>`).join('')}</nav>` : ''}
+    ${toc.length ? `<nav class="toc" aria-label="On this page"><p class="mono">// on this page</p>${toc.map(([id, l]) => `<a href="#${id}">${l}</a>`).join('')}</nav>` : ''}
     <div class="side-card">
-      <p class="mono">Took it?</p>
+      <p class="mono">// took it?</p>
       <p>Your report moves the ${e(c.name)} Signal, whether it worked or not.</p>
       <a class="btn lime sm" href="${shareLink(c.id)}">Share how it went</a>
     </div>
     <p class="side-note">Experiences and published evidence, not medical advice. No doses, no sellers.</p>
   </aside>
 </div>
+${status}
 </div>`;
   return page({ title: `${c.name}: evidence, risks, blood tests · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`, body });
 }
@@ -1059,7 +1090,7 @@ for (const c of catalog) out.set(path.join(LIB, c.id, 'index.html'), entryPage(c
 out.set(path.join(DATA, 'index.json'), aiIndex());
 // The Library as one graph, for the front page's hero (scripts/graph.mjs): laid out again whenever
 // the Library changes, with its still picture
-const GRAPH = buildGraph({ body: BODY, catalog });
+const GRAPH = buildGraph({ body: BODY, catalog, grades: new Map([...entries].map(([id, f]) => [id, f.evidence?.grade || ''])) });
 out.set(path.join(DATA, 'graph.json'), GRAPH.json);
 out.set(path.join(ROOT, 'img', 'library-graph.svg'), GRAPH.svg);
 for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g));
@@ -1090,6 +1121,8 @@ const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'count:compounds', String(catalog.length));
 front = fill(front, 'count:sheets', String(entries.size));
+// Sig's ring beside "rather ask?" under the prompt
+front = fill(front, 'ring:ask', ringSvg(16));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
 // count of what its lines say, and the graph as text
 const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
