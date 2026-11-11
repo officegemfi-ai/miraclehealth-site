@@ -30,6 +30,8 @@ import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
 // at its centre (lib/ring.js, shared with ai/ai.js)
 import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
+import { glyphSvg } from '../lib/glyphs.js';
+import { printSvg } from '../lib/print.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -117,7 +119,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -136,51 +138,126 @@ const V = {
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
   scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'),
-  myCss: version('my/my.css'), myJs: version('my/my.js'),
+  myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
   home: version('home.js'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
 };
 
 
-// The top of every page: the logo, the four places (the design kit's bar, the same one the
-// community shows), and joining the community; on phones, a menu with the same places. home: the
-// front page, whose own sections the menu lists too.
-function shellTop(current = '', home = false) {
-  const more = [['/#signal', 'The Signal'], ['/#how', 'How it works'], ...(home ? [['/#rules', 'House rules']] : []), ['/weekly/', 'The weekly email'], ['/about/', 'About']];
-  return `<header class="top">
-  <div class="wrap top-in">
-    <a class="logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
-    ${barHtml(current, { site: '', cls: 'top-nav', label: 'Main' })}
-    <a class="top-link" href="${COMMUNITY}/">Sign in</a>
-    <a class="btn lime sm" href="${COMMUNITY}/">Join</a>
-    <a class="menu-btn" href="#menu" aria-label="Open the menu"><span aria-hidden="true"></span></a>
+// ---------------------------------------------------------------------------
+// The window every page opens in
+// ---------------------------------------------------------------------------
+// One app: every page is a window in Sig's terminal, as Ask Sig is. Beside it the side panel
+// (Sig, the four places with what's in each, what's in this window, the rest of the site, joining,
+// the legal); on it the title bar (Sig's ring, the window's name, its tabs, the twelve agents
+// online), the window's path, the page, its foot (the weekly email, the links, the disclaimer) and
+// the status bar (Sig, safety on, no doses, no sellers, no diagnosis, the Library's date). The
+// panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a phone.
+const ICO = {
+  menu: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  fold: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+};
+const libDateOf = () => date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
+const PLACE_ICON = { library: () => glyphSvg('evidence', { size: 16 }), ai: () => ringSvg(16), community: () => glyphSvg('community', { size: 16 }), my: () => glyphSvg('builder', { size: 16 }) };
+const PLACE_META = { library: () => `${entries.size} sheets`, ai: () => `${AGENTS.length} agents`, community: () => '<i class="op-live" aria-hidden="true"></i>live', my: () => 'this device' };
+const MORE = [['/#signal', 'The Signal'], ['/#how', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
+  ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/weekly/', 'The weekly email'], ['/founders/', 'Founding reporters'], ['/story/', 'The story'], ['/about/', 'About']];
+function osSide(current, ctx = '', url = '') {
+  return `<aside class="os-side" id="os-side" aria-label="Miracle Health">
+  <div class="os-head"><a class="os-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a><button class="os-fold" id="os-fold" type="button" aria-label="Hide the side panel" aria-controls="os-side" aria-expanded="true">${ICO.fold}</button></div>
+  <a class="os-ask" href="/sig/">${ringSvg(16)}<span>Ask Sig a question</span></a>
+  <nav class="os-places" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
+  ${ctx ? `<div class="os-ctx">${ctx}</div>` : ''}
+  <nav class="os-more" aria-label="More of the site"><p class="os-k">more</p>${MORE.map(([href, label]) => `<a href="${href}"${href === url ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+  <div class="os-foot">
+    <div class="os-acct"><a class="os-signin" href="${COMMUNITY}/">Sign in</a><a class="btn lime sm" href="${COMMUNITY}/">Join</a></div>
+    <p class="os-legal"><a href="/privacy">Privacy</a><span aria-hidden="true"> · </span><a href="/terms">Terms</a><span aria-hidden="true"> · </span><span>© 2026</span></p>
   </div>
-</header>
-<nav class="menu-panel" id="menu" aria-label="Menu">
-  <a class="menu-close" href="#_" aria-label="Close the menu"><span aria-hidden="true"></span></a>
-  ${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}>${label}</a>`).join('\n  ')}
-  ${more.map(([href, label]) => `<a class="menu-more" href="${href}">${label}</a>`).join('\n  ')}
-  <a class="menu-more" href="${COMMUNITY}/">Sign in</a>
-  <a class="btn lime" href="${COMMUNITY}/">Join the community</a>
-</nav>`;
+</aside>`;
 }
-const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
+// What a window is called, by its address: its name in the title bar, the tab it opens on, and
+// its path, as a terminal would show it
+function winOf(url) {
+  const segs = url.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+  const top = segs[0] || '';
+  const NAMES = {
+    '': ['Home', 'home'], library: ['Library', 'index'], method: ['Method', 'method.md'], status: ['FDA status tracker', 'status.log'],
+    about: ['About', 'about.md'], founders: ['Founding reporters', 'founders.md'], weekly: ['The Signal, weekly', 'issues'], goals: ['By goal', 'goals'],
+    compare: ['Compare', 'compare'], my: ['My Miracle', 'my-miracle'], plan: ['A Miracle Plan', 'plan.md'], story: ['The story', 'story.md'],
+    privacy: ['Privacy', 'privacy.md'], terms: ['Terms', 'terms.md'], ai: ['Ask Sig', 'packet'], 404: ['Not found', '404'],
+  };
+  const [name, tab0] = NAMES[top] || [top || 'Miracle Health', top || 'home'];
+  const leaf = segs[1] || '';
+  const tab = !leaf ? tab0 : top === 'compare' ? `${leaf}.diff` : top === 'weekly' ? `issue-${leaf}.eml` : top === 'goals' ? leaf : leaf;
+  const crumbs = ['<a href="/">~</a>', ...segs.map((x, i) => (i === segs.length - 1 ? `<b>${e(x)}</b>` : `<a href="/${segs.slice(0, i + 1).join('/')}/">${e(x)}</a>`))];
+  const meta = top === '' ? `${catalog.length} compounds · ${entries.size} fact sheets · nothing for sale` : '';
+  return { name, tab, path: `<span class="wp-crumbs">${crumbs.join('<span aria-hidden="true">/</span>')}</span>`, meta };
+}
+function osOpen({ current = '', url = '/', win = null, side = '' }) {
+  const w = { ...winOf(url), ...(win || {}) };
+  const tabsData = w.kind ? ` data-kind="${w.kind}"${w.sheet ? ` data-sheet="${e(w.sheet)}" data-file="${e(w.tab)}"` : ''}` : '';
+  return `<div class="os" id="os">
+${osSide(current, side, url)}
+<div class="os-scrim" id="os-scrim" hidden></div>
+<div class="os-main">
+<div class="win" data-win="${e(current || 'site')}">
+  <div class="win-title">
+    <button class="win-menu" id="os-menu" type="button" aria-label="Show the side panel" aria-controls="os-side" aria-expanded="true">${ICO.menu}</button>
+    <span class="win-brand"><span class="win-ring" aria-hidden="true">${ringSvg(18)}</span><b>${e(w.name)}</b><span class="win-dim">miraclehealth.us</span></span>
+    <nav class="win-tabs" id="win-tabs" aria-label="Open in this window"${tabsData}><a class="win-tab on" href="${e(url)}" aria-current="page"><i aria-hidden="true"></i><span class="win-tabname">${e(w.tab)}</span></a></nav>
+    <a class="win-online" href="/sig/"><span class="win-dots" aria-hidden="true">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>${AGENTS.length} agents online</span></a>
+  </div>
+  ${w.path === null ? '' : `<div class="win-path">${w.path}${w.meta ? `<span class="wp-meta">${w.meta}</span>` : ''}</div>`}`;
+}
+function osClose({ url = '/', status = '' }) {
+  return `  <footer class="foot win-foot">
+    <div class="wrap foot-in">
+    ${url.startsWith('/weekly/') ? '' : footNews()}
+    <div class="foot-row">
+      ${footLinks()}
+    </div>
+    <div class="foot-row">
+      <p>Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
+      <p class="copy">© 2026 Miracle Health</p>
+    </div>
+    </div>
+  </footer>
+  <div class="win-status" aria-label="Status">
+    <span class="ws ws-sig" aria-hidden="true">${ringSvg(12)}SIG</span>
+    <span class="ws ws-state"><i aria-hidden="true"></i>online</span>
+    <span class="ws ws-safe"><i aria-hidden="true"></i>safety on</span>
+    ${status}
+    <span class="ws ws-rules">no doses · no sellers · no diagnosis</span>
+    <span class="ws ws-lib">Library · ${libDateOf()}</span>
+  </div>
+</div>
+</div>
+</div>`;
+}
+const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/story/">The story</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
 // The weekly email's sign-up at the foot of every page but the weekly email's own
 const footNews = () => `<div class="foot-news">
       <p><b>The Signal, weekly.</b> What changed, new studies and FDA news. One email a week.</p>
       ${signupForm(e, { source: 'footer', id: 'foot-email' })}
     </div>`;
-// The hand-written pages (the front page, privacy, terms, 404) get the same top, menu, footer
-// links, sign-up and kit as every built page, and their policy lets the sign-up form send (and
-// come back)
-function stampShell(html, file, { current = '', home = false } = {}) {
-  const top = /<header class="top">[\s\S]*?<\/header>\s*<nav class="menu-panel"[\s\S]*?<\/nav>/;
-  const foot = /<nav class="foot-links" aria-label="Site">[\s\S]*?<\/nav>/;
-  const news = /(<div class="wrap foot-in">)\s*(?:<div class="foot-news">[\s\S]*?<\/form>\s*<\/div>\s*)?/;
-  if (!top.test(html) || !foot.test(html) || !news.test(html)) throw new Error(`${file} has no top bar, menu or footer to update`);
+// The hand-written pages (the front page, privacy, terms, 404) open in the same window as every
+// built page: the build writes it between their markers (the first time, in place of the site's
+// old bar, menu and footer), and their policy lets the sign-up form send (and come back)
+function stampShell(html, file, { current = '', home = false, url = '/' } = {}) {
+  const open = /<!-- os:open -->[\s\S]*?<!-- \/os:open -->/;
+  const close = /<!-- os:close -->[\s\S]*?<!-- \/os:close -->/;
+  const oldTop = /<header class="top">[\s\S]*?<\/header>\s*<nav class="menu-panel"[\s\S]*?<\/nav>/;
+  const oldFoot = /<footer class="foot">[\s\S]*?<\/footer>/;
+  if (!(open.test(html) || oldTop.test(html)) || !(close.test(html) || oldFoot.test(html))) throw new Error(`${file} has no window (or old bar and footer) to update`);
   if (!/href="\/?styles\.css(\?v=[0-9a-f]+)?"/.test(html)) throw new Error(`${file} has no styles.css link`);
-  return html.replace(top, shellTop(current, home)).replace(foot, footLinks())
-    .replace(news, `$1\n    ${footNews()}\n    `)
+  const o = `<!-- os:open -->\n${osOpen({ current, url })}\n<!-- /os:open -->`;
+  const c = `<!-- os:close -->\n${osClose({ url })}\n<!-- /os:close -->`;
+  let out = open.test(html) ? html.replace(open, () => o) : html.replace(oldTop, () => o);
+  out = close.test(out) ? out.replace(close, () => c) : out.replace(oldFoot, () => c);
+  // the window's script, by its version
+  out = out.replace(/\n<script type="module" src="\/lib\/os\.js(?:\?v=[0-9a-f]+)?"><\/script>/, '');
+  out = out.replace('</head>', `<script type="module" src="/lib/os.js?v=${V.os}"></script>\n</head>`);
+  return out
     // The sign-up goes to the newsletter function, which sends the browser back here: both allowed
     .replace(/form-action ([^;"]*)/, `form-action 'self' ${NEWSLETTER_ORIGIN}`)
     // A page that reads the community's numbers (the front page) may read them from the Signal API
@@ -192,7 +269,7 @@ function stampShell(html, file, { current = '', home = false } = {}) {
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
   styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = READS_SIGNAL, head = '',
-  ogImage = '/og.jpg', app = false,
+  ogImage = '/og.jpg', app = false, win = null, side = '', status = '',
 }) {
   return `<!doctype html>
 <html lang="en">
@@ -218,7 +295,7 @@ function page({
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
-${scripts.map((src) => `<script type="module" src="${src}"></script>`).join('\n')}
+${(app ? scripts : [...scripts, `/lib/os.js?v=${V.os}`]).map((src) => `<script type="module" src="${src}"></script>`).join('\n')}
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#main">Skip to content</a>
@@ -227,25 +304,11 @@ ${body}
 </body>
 </html>
 ` : `
-${shellTop(current)}
-
-<main id="main">
+${osOpen({ current, url, win, side })}
+<main id="main" class="win-body">
 ${body}
 </main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    ${url.startsWith('/weekly/') ? '' : footNews()}
-    <div class="foot-row">
-      <img src="/logo.webp" alt="Miracle Health" width="69" height="24">
-      ${footLinks()}
-    </div>
-    <div class="foot-row">
-      <p>Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
-      <p class="copy">© 2026 Miracle Health</p>
-    </div>
-  </div>
-</footer>
+${osClose({ url, status })}
 </body>
 </html>
 `}`;
@@ -356,6 +419,14 @@ function indexPage() {
     description: `${catalog.length} peptides, hormones, supplements and medications: what each one is, what the studies show, the risks and the blood tests to watch, checked against primary sources, next to how it went for people who took it.`,
     url: '/library/',
     body,
+    // the Library's folders in the side panel: each family, with how many it holds and how many
+    // have a sheet; the filter opens on it
+    win: { name: 'Library', tab: 'index', kind: 'library', meta: `${catalog.length} compounds · ${entries.size} fact sheets` },
+    side: `<nav class="le-tree" aria-label="The Library's families">
+    <p class="lt-root"><a href="/library/" aria-current="page">library/</a><span>${catalog.length}</span></p>
+    ${FAMILIES.map((fam) => `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(fam.toLowerCase())}/<span class="lt-n">${catalog.filter((x) => x.family === fam).length}</span></a>`).join('\n    ')}
+    <p class="lt-more">${entries.size} have a full fact sheet; the rest are being checked.</p>
+  </nav>`,
   });
 }
 
@@ -534,17 +605,20 @@ function entryPage(c) {
       : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
     <p class="lt-more">${catalog.filter((x) => !listed(x)).length} more compounds are listed and waiting for their sheets.</p>
   </nav>`;
-  const status = f ? `<div class="le-status" aria-label="This fact sheet">
-  <span>fact sheet · ${e((SINGULAR[c.family] || c.family).toLowerCase())}</span>
-  <span class="ls-ev"><i aria-hidden="true"></i>${e((GRADE[f.evidence.grade]?.[0] || f.evidence.grade).toLowerCase())}</span>
-  <span>${(f.sources || []).length} sources</span>
-  <span>checked ${e(date(f.checked).toLowerCase())}</span>
-  <span class="ls-sig" data-live="sb-signal" hidden><i aria-hidden="true"></i>signal <b></b><span class="ls-lvl"></span></span>
-</div>` : '';
+  const status = f ? `<span class="ws ws-sheet">fact sheet · ${e((SINGULAR[c.family] || c.family).toLowerCase())}</span>
+    <span class="ws ls-ev"><i aria-hidden="true"></i>${e((GRADE[f.evidence.grade]?.[0] || f.evidence.grade).toLowerCase())}</span>
+    <span class="ws">${(f.sources || []).length} sources</span>
+    <span class="ws ls-sig" data-live="sb-signal" hidden><i aria-hidden="true"></i>signal <b></b><span class="ls-lvl"></span></span>` : '';
+  // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
+  const print = f && BODY.compounds[c.id] ? `<figure class="le-print" aria-labelledby="le-print-cap">
+      ${printSvg({ id: c.id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[c.id].lines || [], places: BODY.places.map((x) => x.at) }, { size: 232 })}
+      <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the lime arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
+    </figure>` : '';
+  const pathLine = `<span class="wp-crumbs"><a href="/">~</a><span aria-hidden="true">/</span><a href="/library/">library</a><span aria-hidden="true">/</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(dir(c.family))}</a><span aria-hidden="true">/</span><b>${e(file)}</b></span>`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
-<section class="le-hero">
+<section class="le-hero${print ? ' has-print' : ''}">
   <div class="wrap">
-    <nav class="crumbs le-path" aria-label="Breadcrumb"><a href="/library/">library</a><span aria-hidden="true">›</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(dir(c.family))}</a><span aria-hidden="true">›</span><span class="lp-file" aria-current="page">${e(file)}</span>${f ? `<span class="lp-checked">checked ${e(date(f.checked).toLowerCase())} against ${(f.sources || []).length} sources</span>` : ''}</nav>
+    ${print}
     <p class="kick lime">${e(familyLine(c))}</p>
     <h1${c.name.length > 22 ? ' class="long"' : ''}>${e(c.name)}</h1>
     ${shownAliases(c).length ? `<p class="aka">Also called ${shownAliases(c).map(e).join(', ')}</p>` : ''}
@@ -584,7 +658,6 @@ function entryPage(c) {
 </section>
 
 <div class="wrap le-body">
-  ${tree}
   <article class="le-main">
     ${f ? factSheet(c, f) : pendingSheet(c)}
     ${parentBlends.length ? `<section class="le-sec" id="blends"><h2>Also sold in blends</h2><div class="parts">${parentBlends.map((b) => `<a class="part" href="/library/${b.id}/"><span class="lc-fam">Blend</span><b>${e(b.name)}</b></a>`).join('')}</div></section>` : ''}
@@ -599,9 +672,9 @@ function entryPage(c) {
     <p class="side-note">Experiences and published evidence, not medical advice. No doses, no sellers.</p>
   </aside>
 </div>
-${status}
 </div>`;
-  return page({ title: `${c.name}: evidence, risks, blood tests · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`, body });
+  return page({ title: `${c.name}: evidence, risks, blood tests · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`,
+    win: { name: 'Library', tab: file, kind: 'library', sheet: c.id, path: pathLine, meta: f ? `checked ${e(date(f.checked).toLowerCase())} against ${(f.sources || []).length} sources` : '' }, side: tree, status, body });
 }
 
 // ---------------------------------------------------------------------------
@@ -735,7 +808,7 @@ function aiPage() {
   // The Library's newest change: a fact sheet checked, the body map or a guide
   const libDate = date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
   const ring = (size, cls = '', opts = {}) => `<span${cls ? ` class="${cls}"` : ''} data-sig="${size}" aria-hidden="true">${ringSvg(size, opts)}</span>`;
-  const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq" aria-hidden="true"></span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
+  const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq tm-gl" aria-hidden="true">${glyphSvg(key, { size: 14 })}</span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title">
     <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
@@ -821,7 +894,7 @@ function aiPage() {
     <p class="sg-none" id="sg-none">Your chats show here. They stay on this device, never on our servers.</p>
   </section>
   <div class="sg-foot">
-    <nav class="sg-site" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+    <nav class="sg-site os-places" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
     <div class="sg-acct"><a class="sg-signin" href="${COMMUNITY}/">Sign in</a><a class="btn lime sm" href="${COMMUNITY}/">Join</a></div>
     <div class="sg-wipe-row" id="sg-wipe-row">
       <button class="sg-wipe" id="sg-wipe" type="button">${ico('M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5')}<span>Delete all chats</span></button>
@@ -925,6 +998,120 @@ function myPage() {
 // How the numbers are made: the methodology, in plain words, with the references for "how many
 // improve anyway" and their sources
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// The story: the new Miracle Health, told in its own windows
+// ---------------------------------------------------------------------------
+// One page that tells what changed and why: one app, the twelve agents and what each does, how an
+// answer is made (a real run, step by step), every compound's print, and the rules that don't
+// move. Everything on it is drawn from the Library and Sig as they are: the agents' own words, a
+// run as Sig logs it, the prints from the fact sheets.
+const STORY_PRINTS = ['semaglutide', 'tirzepatide', 'bpc157', 'testosterone', 'creatine', 'melatonin', 'ashwagandha', 'metformin'];
+const STORY_RUN = [
+  ['safety', 'No red flags'], ['planner', 'Looking for evidence on body fat, body weight and lean mass'], ['recommender', 'Opened 2 fact sheets'],
+  ['evidence', 'Found 2 findings in 1 of 2 fact sheets'], ['relatives', 'Found evidence through Tesamorelin and Testosterone'], ['mechanism', 'Read how each could bear on body fat'],
+  ['combination', 'Different pathways: growth hormone and testosterone'], ['markers', 'IGF-1: pushed both ways'], ['community', 'Read the forum data on Somatropin (HGH)'],
+  ['synergy', '1 pair checked · no known clashes (absence of data, not a green light)'], ['builder', 'Laid out your stack of 2'],
+  ['interpretation', 'Reasoned it all through for efficacy: plausible, unproven'], ['safety', 'Every part checked before you saw it: no doses, no sellers'],
+];
+function storyPage() {
+  const places = BODY.places.map((x) => x.at);
+  const prints = STORY_PRINTS.filter((id) => entries.has(id) && BODY.compounds[id] && byId.has(id)).map((id) => {
+    const c = byId.get(id), f = entries.get(id);
+    return `<a class="sy-print" href="/library/${id}/">${printSvg({ id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[id].lines || [], places }, { size: 168 })}<span class="sy-pn">${e(c.name)}</span><span class="sy-pf">${e(`${id}.md`)} · ${(BODY.compounds[id].lines || []).length} lines</span></a>`;
+  }).join('');
+  const short = (k) => (k === 'community' ? 'community' : k);
+  const body = `<article class="sy">
+  <section class="sy-hero">
+    <div class="wrap sy-hero-in">
+      <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26, centerY: 0 })}<span class="sy-ring-n"><b>12</b>agents</span></div>
+      <div class="sy-hero-copy">
+        <p class="sy-k">~/story · the new Miracle Health</p>
+        <h1>One app.<br> Twelve agents.<br> <em>Every answer, checked.</em></h1>
+        <p class="lede">Miracle Health is now one app. The Library, Ask Sig, the community and My Miracle each open as a window in Sig’s terminal, side by side, the same everywhere. Behind every answer are twelve agents, each with one job, each signing what it made.</p>
+        <div class="sy-acts"><a class="btn lime" href="/sig/">Ask Sig a question</a><a class="btn line" href="/library/">Open the Library</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sy-sec" id="twelve" aria-labelledby="sy-twelve">
+    <div class="wrap">
+      <p class="sy-k">01 · the twelve</p>
+      <h2 id="sy-twelve">Meet the twelve.</h2>
+      <p class="sy-lede">Eleven gather what’s known, each in its own colour round Sig’s ring. The twelfth sits at its centre and reasons it all through, last, strictly for efficacy. Colour on Miracle Health is a signature: wherever you see one, that agent made it.</p>
+      <ol class="sy-twelve">${AGENTS.map(([key, name, what], i) => `<li class="sy-agent" data-agent="${key}"><span class="sy-an" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>${glyphSvg(key, { size: 34 })}<h3>${e(name)}</h3><p>${e(what)}</p></li>`).join('')}</ol>
+    </div>
+  </section>
+
+  <section class="sy-sec" id="run" aria-labelledby="sy-run">
+    <div class="wrap sy-split">
+      <div>
+        <p class="sy-k">02 · how an answer is made</p>
+        <h2 id="sy-run">Watch it work.</h2>
+        <p class="sy-lede">Every question runs as a log you can read: each agent’s step, numbered, in its colour, as it happens. The answer comes under the Safety agent’s check, each part numbered and signed by the agent that made it. Nothing is a black box.</p>
+        <p class="sy-note">A real run, as Sig logged it, for “Is HGH plus enclomiphene good for fat loss?”</p>
+      </div>
+      <div class="sy-term" aria-label="A run, as Sig logs it">
+        <p class="sy-ps"><span>sig@miracle ~/chats ›</span> ask “Is HGH plus enclomiphene good for fat loss?”</p>
+        <p class="sy-sum">▾ run · ${STORY_RUN.length} steps · ${AGENTS.length} agents</p>
+        <ol class="sy-log">${STORY_RUN.map(([a, t], i) => `<li data-agent="${a}"><span class="sl-n">${String(i + 1).padStart(2, '0')}</span><span class="sl-who">${short(a)}</span><span class="sl-st" aria-hidden="true">✓</span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
+        <p class="sy-ah"><b>answer</b><span class="sy-rule" aria-hidden="true"></span><span>checked by the safety agent <span class="sy-ok">✓</span></span></p>
+        <div class="sy-part" data-agent="recommender"><span class="sp-n">1</span><p class="sp-k"><span>// the bottom line</span><b>recommender</b></p><p>No trial has tested the two together for fat loss. They act on different hormone systems, so any effect would come from each one separately.</p></div>
+        <div class="sy-part" data-agent="interpretation"><span class="sp-n">8</span><p class="sp-k"><span>// efficacy, reasoned last</span><b>interpretation agent</b></p><p>Plausible, unproven. A small combined effect is possible; nothing has measured the pair.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sy-sec" id="prints" aria-labelledby="sy-prints">
+    <div class="wrap">
+      <p class="sy-k">03 · prints</p>
+      <h2 id="sy-prints">Every compound has a print.</h2>
+      <p class="sy-lede">A print is a fact sheet drawn as one mark, so you can tell two compounds apart, and compare them, at a glance. Nothing in it is decoration.</p>
+      <ul class="sy-legend">
+        <li><b>Spokes</b> run to the places in the body the sheet names: the body’s ${places.length} places, head to toe, clockwise from the top.</li>
+        <li><b>Beads</b> are its lines there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">worth a blood test</span> <span class="pk pk-warn">a caution</span>, cautions outermost.</li>
+        <li><b>The core</b> is the family’s shape (peptide, hormone, medication, supplement) and the evidence inside it, ring by ring, in the Evidence librarian’s blue.</li>
+        <li><b>The edge</b> carries the Community Signal in lime, once it’s known.</li>
+      </ul>
+      <div class="sy-prints">${prints}</div>
+    </div>
+  </section>
+
+  <section class="sy-sec" id="windows" aria-labelledby="sy-windows">
+    <div class="wrap">
+      <p class="sy-k">04 · one app</p>
+      <h2 id="sy-windows">Four places. One window.</h2>
+      <div class="sy-wins">
+        <a class="sy-win" href="/library/">${glyphSvg('evidence', { size: 22 })}<b>Library</b><span>~/library/peptides/bpc157.md</span><p>Every compound is a file: its path, its family’s sheets beside it, each section signed by the agent that reads it, its facts on the status line.</p></a>
+        <a class="sy-win" href="/sig/">${ringSvg(22)}<b>Ask Sig</b><span>sig@miracle ~/chats ›</span><p>Ask at the prompt. The run shows as a log; the answer comes checked and signed.</p></a>
+        <a class="sy-win" href="${COMMUNITY}/">${glyphSvg('community', { size: 22 })}<b>Community</b><span>log --all-spaces</span><p>The feed is a log: each report a commit, Sig’s read its check. The Signal is a live table, like top.</p></a>
+        <a class="sy-win" href="/my/">${glyphSvg('builder', { size: 22 })}<b>My Miracle</b><span>this device only</span><p>Your plan, how it’s going and your stack, kept in your browser. Miracle Health never receives it.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sy-sec sy-rules" id="rules" aria-labelledby="sy-rules">
+    <div class="wrap">
+      <p class="sy-k">05 · what never changes</p>
+      <h2 id="sy-rules">The rules are in the status bar.</h2>
+      <p class="sy-lede">At the foot of every window, always: safety on; no doses, no sellers, no diagnosis. They aren’t settings. They’re how it’s built.</p>
+      <div class="sy-status" aria-hidden="true"><span class="ss-sig">${ringSvg(12)}SIG</span><span><i class="ss-on"></i>online</span><span><i class="ss-safe"></i>safety on</span><span class="ss-r">no doses · no sellers · no diagnosis</span></div>
+      <ul class="sy-promises">
+        <li><b>No doses.</b> Ever, for anything. The right amount is a conversation with your doctor.</li>
+        <li><b>No sellers.</b> No shop, no ads, no affiliate links. Nobody pays to be in the Library.</li>
+        <li><b>No diagnosis.</b> Sig explains evidence. It doesn’t tell you what you have or what to take.</li>
+        <li><b>Your chats stay with you.</b> On this device until you delete them, never on our servers.</li>
+      </ul>
+      <div class="sy-acts"><a class="btn lime" href="/sig/">Ask Sig a question</a><a class="btn line" href="${COMMUNITY}/">Join the community</a></div>
+    </div>
+  </section>
+</article>`;
+  return page({
+    title: 'The story: one app, twelve agents, every answer checked · Miracle Health',
+    description: 'Miracle Health is now one app: the Library, Ask Sig, the community and My Miracle as windows in Sig’s terminal, twelve agents behind every answer, and a print for every compound.',
+    url: '/story/', body, current: '', bodyClass: 'story-page',
+  });
+}
+
 function methodPage() {
   const pct = (b) => `${b.placebo_pct}%${b.low != null && b.high != null && (b.low !== b.placebo_pct || b.high !== b.placebo_pct) ? ` <span class="rng">(${b.low}–${b.high}%)</span>` : ''}`;
   const label = (id) => uses.uses.find((u) => u.id === id)?.label || id;
@@ -1099,6 +1286,7 @@ out.set(path.join(ROOT, 'sig', 'index.html'), aiPage());
 out.set(path.join(ROOT, 'ai', 'packet', 'index.html'), packetPage());
 out.set(path.join(ROOT, 'plan', 'index.html'), planPage());
 out.set(path.join(ROOT, 'my', 'index.html'), myPage());
+out.set(path.join(ROOT, 'story', 'index.html'), storyPage());
 out.set(path.join(ROOT, 'method', 'index.html'), methodPage());
 const more = buildPages({
   ROOT, SITE, COMMUNITY, V, page, e, catalog, entries, byId, uses, baselines, STATUS, GRADE, GRADE_ORDER, GOAL_SHORT,
@@ -1106,7 +1294,7 @@ const more = buildPages({
 });
 for (const [file, html] of more.files) out.set(file, html);
 const urls = ['/', '/sig/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/',
-  ...more.urls, '/privacy', '/terms'];
+  ...more.urls, '/story/', '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}
@@ -1148,11 +1336,11 @@ front = front.replace(/<svg class="sig[ a-z]*"[\s\S]*?<\/svg>/g, (m) => {
   return sigSvg(spec[0], spec[1], { dark: true, id: spec[2] });
 });
 if (sigN !== SIGS.length) throw new Error(`index.html has ${sigN} Sigs; the build draws ${SIGS.length}`);
-out.set(frontFile, stampShell(front, 'index.html', { home: true }));
+out.set(frontFile, stampShell(front, 'index.html', { home: true, url: '/' }));
 // The other hand-written pages: the same top, menu, footer and stylesheets
 for (const f of ['privacy.html', 'terms.html', '404.html']) {
   const file = path.join(ROOT, f);
-  out.set(file, stampShell(fs.readFileSync(file, 'utf8'), f));
+  out.set(file, stampShell(fs.readFileSync(file, 'utf8'), f, { url: f === '404.html' ? '/404' : `/${f.replace(/\.html$/, '')}` }));
 }
 
 let stale = 0;
