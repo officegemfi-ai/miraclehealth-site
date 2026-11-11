@@ -27,8 +27,9 @@ import { bodyMapHtml } from '../kit/bodymap.js';
 import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
 import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
-// Sig's mark on Ask Sig: the eleven who answer as one ring (lib/ring.js, shared with ai/ai.js)
-import { ringSvg, WHEEL } from '../lib/ring.js';
+// Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
+// at its centre (lib/ring.js, shared with ai/ai.js)
+import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -675,7 +676,7 @@ function guidePage(g) {
 const AGENTS = [
   ['safety', 'Safety agent', 'Reads your message first, and checks every answer before you see it.', 'First to read, last to check'],
   ['planner', 'Planner', 'Turns your goal into what studies measure. “Lose fat” becomes body fat, waist and lean mass.', 'Turns goals into measures'],
-  ['recommender', 'Recommender', 'Asks what it needs to know, then reads the fact sheets in the Library.', 'Asks, then reads fact sheets'],
+  ['recommender', 'Recommender', 'Finds the options in the Library and reads their fact sheets, with what you’ve told it. It never asks you questions.', 'Finds and reads the fact sheets'],
   ['evidence', 'Evidence librarian', 'Finds every study result on exactly that: how strong it is, and who was studied.', 'Finds every study result'],
   ['relatives', 'Relatives agent', 'Finds things that work through the same hormone or receptor, like testosterone for enclomiphene, and says whose evidence it is.', 'Evidence from close relatives'],
   ['mechanism', 'Mechanism agent', 'Explains how each one could affect your goal, from its fact sheet. That is theory, not a test result, and it says so.', 'How each one could work'],
@@ -684,6 +685,7 @@ const AGENTS = [
   ['markers', 'Markers agent', 'Flags blood tests that two things push in opposite directions, like IGF-1 with HGH and enclomiphene.', 'Blood tests pushed two ways'],
   ['synergy', 'Synergy auditor', 'Checks everything together with your medicines and conditions.', 'Checks it all with your meds'],
   ['builder', 'Stack builder', 'Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.', 'Lays out options to discuss'],
+  ['interpretation', 'Interpretation agent', 'Runs last. Reasons through everything the others found, strictly about efficacy: how likely it is to work for what you asked, how big the effect could be, and how sure anyone can be.', 'Efficacy, reasoned last'],
 ];
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
@@ -694,7 +696,7 @@ const STARTERS = [
 ];
 
 // Ask Sig is Sig's health terminal: a window under the site's bar with a title bar (Sig's ring, the
-// question it's on and the eleven who answer), the conversation on the left with the box to write
+// question it's on and the twelve who answer), the conversation on the left with the box to write
 // in as its prompt, the agents and the screen beside it as two tabs, and a status bar. On a phone it
 // is the conversation alone, with the ring in its title bar; the screen pulls up as a sheet.
 function aiPage() {
@@ -711,15 +713,15 @@ function aiPage() {
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
       <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
     </div>
-    <span class="tm-online" aria-hidden="true"><span class="tm-dots">${WHEEL.map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>10 agents + the community</span></span>
-    <span class="tm-count-sm" id="tm-count-sm" aria-hidden="true"><b>11</b>/11 ready</span>
+    <span class="tm-online" aria-hidden="true"><span class="tm-dots">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>11 agents + the community</span></span>
+    <span class="tm-count-sm" id="tm-count-sm" aria-hidden="true"><b>${AGENTS.length}</b>/${AGENTS.length} ready</span>
   </div>
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
-      <div class="ai-id"><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">one question · every answer checked</span></div>
+      <div class="ai-id"><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">every answer checked · efficacy reasoned last</span></div>
     </div>
     <div class="tm-boot">
-      <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · 10 agents + the community ready ·</span> <span class="tm-nw">Library updated ${libDate}</span></p>
+      <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · 11 agents + the community ready ·</span> <span class="tm-nw">Library updated ${libDate}</span></p>
       <p class="tm-boot-2">No doses. No sellers. No diagnosis. The Safety agent checks every answer before you see it.</p>
     </div>
     <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
@@ -759,7 +761,7 @@ function aiPage() {
       <span class="tm-live" id="tm-live">${ring(12)}<span id="tm-live-t">ready</span></span>
     </div>
     <div class="tm-team" id="tm-team" role="tabpanel" aria-labelledby="tm-t-agents" data-state="idle">
-      <div class="tm-ringbox">${ring(212, 'tm-bigring', { sw: 20 })}<p class="tm-count"><span class="tm-frac"><b id="tm-n">11</b><span>/11</span></span><span class="tm-count-k" id="tm-k">ready</span></p></div>
+      <div class="tm-ringbox">${ring(212, 'tm-bigring', { sw: 20, centerY: -44 })}<p class="tm-count"><span class="tm-frac"><b id="tm-n">${AGENTS.length}</b><span>/${AGENTS.length}</span></span><span class="tm-count-k" id="tm-k">ready</span></p></div>
       ${roster}
     </div>
     <div id="sc-root" role="tabpanel" aria-labelledby="tm-t-screen" hidden><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>

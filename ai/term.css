@@ -1,16 +1,18 @@
 /* Ask Sig as Sig's health terminal (miraclehealth.us/ai). Loads after ai.css, plan.css and
    screen.css and dresses the same page: a window under the site's bar with a title bar (Sig's ring,
-   a tab for the question it's on, the eleven who answer) and a status bar that stay put while the
+   a tab for the question it's on, the twelve who answer) and a status bar that stay put while the
    conversation scrolls between them; the conversation on the left, with each agent's steps as log
    lines and the box to write in as its prompt; the agents and the screen beside it, as two tabs.
    Every agent keeps one colour (Eleven), and so does every part of an answer: a rule beside it
-   and a line over it say which agent it comes from and what kind of part it is (caution, the
-   studies, the forums, blood tests…). On a phone it is the conversation alone, edge to edge, with
+   and a line over it say which agent it comes from and what kind of part it is (good to know,
+   the studies, the forums, blood tests…). Safety notes inform; they never shout. On a phone it is the conversation alone, edge to edge, with
    the ring and the count in its title bar; the screen still pulls up as a sheet. */
 
 .ai{
   --a-safety:#FF6B5B;--a-planner:#FF9F4A;--a-recommender:#F2C94C;--a-community:#D8FF3D;--a-combination:#5FE08A;--a-markers:#3FE0C5;
   --a-synergy:#55D3FF;--a-evidence:#6FA8FF;--a-relatives:#8F95FF;--a-mechanism:#B98CFF;--a-builder:#FF7FC8;
+  /* the Interpretation agent, last of all and at the ring's centre: white, every colour at once */
+  --a-interpretation:#EEECE6;
   --tm-page:var(--darker);--tm-win:#0B0F11;--tm-bar:#12171A;--tm-pane2:#0E1316;--tm-stat:#07090A;
   --tm-tx:#EEECE6;--tm-t2:rgba(238,236,230,.74);--tm-t3:rgba(238,236,230,.6);--tm-line:rgba(238,236,230,.1);--tm-line2:rgba(238,236,230,.2);
   /* the gap around the window, the title bar, the pane's header, the status bar, the pane's padding */
@@ -29,6 +31,7 @@
 .ai [data-agent="relatives"]{--ac:var(--a-relatives)}
 .ai [data-agent="mechanism"]{--ac:var(--a-mechanism)}
 .ai [data-agent="builder"]{--ac:var(--a-builder)}
+.ai [data-agent="interpretation"]{--ac:var(--a-interpretation)}
 .ai [data-a1="safety"]{--ac1:var(--a-safety)}.ai [data-a2="safety"]{--ac2:var(--a-safety)}
 .ai [data-a1="planner"]{--ac1:var(--a-planner)}.ai [data-a2="planner"]{--ac2:var(--a-planner)}
 .ai [data-a1="recommender"]{--ac1:var(--a-recommender)}.ai [data-a2="recommender"]{--ac2:var(--a-recommender)}
@@ -40,6 +43,7 @@
 .ai [data-a1="relatives"]{--ac1:var(--a-relatives)}.ai [data-a2="relatives"]{--ac2:var(--a-relatives)}
 .ai [data-a1="mechanism"]{--ac1:var(--a-mechanism)}.ai [data-a2="mechanism"]{--ac2:var(--a-mechanism)}
 .ai [data-a1="builder"]{--ac1:var(--a-builder)}.ai [data-a2="builder"]{--ac2:var(--a-builder)}
+.ai [data-a1="interpretation"]{--ac1:var(--a-interpretation)}.ai [data-a2="interpretation"]{--ac2:var(--a-interpretation)}
 html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(--tm-tb,42px) + 12px);scroll-padding-bottom:120px}
 
 /* ---------------------------------------------------------------- Sig's ring */
@@ -278,6 +282,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .sheet-body>.ctag+.card,.tm .sheet-body>.ctag+.ai-pointer{margin-top:6px}
 .tm .sheet-body>.card[data-agent]{border-left:3px solid var(--ac)}
 .tm .ai-pointer{border-color:var(--tm-line2);background:rgba(0,0,0,.2);font:500 12.5px/1.4 var(--mono)}
+/* the efficacy read: the Interpretation agent's derivation, on the terminal's own panel */
+.tm .card.interp{border-color:var(--tm-line);background:var(--tm-pane2);color:var(--tm-tx)}
+.tm .card.interp p.sub,.tm .ip-row dt,.tm .ip-rung{color:var(--tm-t3)}
+.tm .ip-row dd{color:var(--tm-t2)}
+.tm .ip-main dd,.tm .ip-sum{color:var(--tm-tx)}
+.tm .ip-verdict{border-top-color:var(--tm-line)}
+.tm .ip-dot{color:var(--a-interpretation);box-shadow:0 0 6px rgba(238,236,230,.35)}
 /* where it came from: the studies in the Evidence librarian's blue, the community in its lime */
 .tm .answer-src{gap:4px 14px;margin-top:12px;font:500 11.5px/1.45 var(--mono);color:var(--tm-t3)}
 .tm .src-part{color:var(--tm-t2)}
@@ -321,7 +332,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm-team{display:block;padding:4px 18px 28px}
   .tm-team[hidden]{display:none}
 }
-/* the agents: the ring of the eleven over each one's latest line (before anyone asks, what each
+/* the agents: the ring of the eleven, the Interpretation agent at its centre, over each one's latest line (before anyone asks, what each
    one is for, in a few words) */
 .tm-ringbox{position:relative;width:212px;height:212px;margin:26px auto 20px}
 .tm-bigring{width:100%;height:100%}
@@ -334,12 +345,12 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-frac span{color:var(--tm-t3)}
 .tm-count-k{margin-top:8px;font:600 10px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tm-t3)}
 .tm-roster{display:grid;gap:2px;max-width:700px;margin:0 auto;padding:0;list-style:none}
-.tm-who{position:relative;display:grid;grid-template-columns:14px 8px 136px minmax(0,1fr);align-items:baseline;column-gap:9px;padding:6px 10px;border-radius:5px;font:400 11.5px/1.5 var(--mono);transition:background-color .25s,box-shadow .25s}
+.tm-who{position:relative;display:grid;grid-template-columns:14px 8px 152px minmax(0,1fr);align-items:baseline;column-gap:9px;padding:6px 10px;border-radius:5px;font:400 11.5px/1.5 var(--mono);transition:background-color .25s,box-shadow .25s}
 .tm-st{align-self:start;height:17px;color:var(--ac)}
 .tm-st::before{content:'·';color:var(--tm-t3)}
 .tm-who.is-run .tm-st::before{content:'';display:block;width:8px;height:8px;margin-top:4px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
 .tm-who.is-done .tm-st::before{content:'✓';color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 60%,transparent)}
-.tm-who.is-flag .tm-st::before{content:'!';color:#F2BE4B;text-shadow:none}
+.tm-who.is-flag .tm-st::before{content:'◆';color:#F2BE4B;text-shadow:none}
 .tm-who.is-skip .tm-st::before{content:'–'}
 .tm-sq{align-self:start;width:8px;height:8px;margin-top:5px;border-radius:2px;background:var(--ac);box-shadow:0 0 8px color-mix(in srgb,var(--ac) 70%,transparent)}
 .tm-who b{font-weight:600;color:var(--ac);text-shadow:0 0 8px color-mix(in srgb,var(--ac) 35%,transparent);white-space:nowrap;transition:opacity .3s}

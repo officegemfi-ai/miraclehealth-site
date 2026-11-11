@@ -3,8 +3,8 @@
 // the list of them in the side panel. Each message goes to the ask function (the community's Supabase
 // project), which streams back each agent's steps, the answer, the cards, where the answer came
 // from and the final check as server-sent events. The page is Sig's health terminal (ai/term.css):
-// each agent keeps one colour, its steps are log lines, the ring of the eleven who answer lights
-// as each reports, and every part of an answer says which agent it comes from and what kind of
+// each agent keeps one colour, its steps are log lines, the ring of the twelve who answer lights
+// as each reports (the Interpretation agent, last, at its centre), and every part of an answer says which agent it comes from and what kind of
 // part it is, so the two voices stay apart: the studies in the Evidence librarian's blue, the
 // community in its lime. Nothing here uses innerHTML for anything the AI or the visitor wrote:
 // text is placed with textContent, and the small amount of formatting the AI uses (bold, lists,
@@ -12,7 +12,7 @@
 import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=d966f02403';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=51b1ee6555';
 import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
-import { ringSvg } from '/lib/ring.js?v=b9eb24e4e4';
+import { ringSvg } from '/lib/ring.js?v=888932edd8';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -35,6 +35,7 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 const AGENT_NAME = {
   safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', evidence: 'Evidence librarian', relatives: 'Relatives agent',
   mechanism: 'Mechanism agent', markers: 'Markers agent', community: 'The community', combination: 'Combination agent', synergy: 'Synergy auditor', builder: 'Stack builder', review: 'Safety agent',
+  interpretation: 'Interpretation agent',
 };
 // Words that may mean someone is in crisis: if an answer can't come through, help still does
 const CRISIS_WORDS = /\b(?:kill(?:ing)?\s+my\s?self|kms|suicid\w*|end(?:ing)?\s+my\s+(?:own\s+)?life|end(?:ing)?\s+it\s+all|want(?:ing)?\s+to\s+die|better\s+off\s+dead|no\s+reason\s+to\s+live|don'?t\s+want\s+to\s+(?:live|be\s+alive|wake\s+up)|self[- ]?harm\w*|cut(?:ting)?\s+myself|overdos(?:e|ing))\b/i;
@@ -99,7 +100,8 @@ const store = {
 };
 
 // ---------------------------------------------------------------------------
-// Sig on this page: the ring of the eleven who answer, each in its own colour (lib/ring.js). Every
+// Sig on this page: the ring of the eleven who gather what's known, each in its own colour, with the
+// Interpretation agent's dot at its centre (lib/ring.js). Every
 // piece lit while Sig is idle, turning while the agents work, the Safety agent's piece beating when
 // something was flagged; beside an answer, lit piece by piece as each one reports (lit: who did)
 // ---------------------------------------------------------------------------
@@ -163,12 +165,12 @@ function saidOf(text) {
 const SAID_SR = { studies: ' (from the studies)', community: ' (from the community)', both: ' (from the studies and the community)' };
 
 // Every part of an answer says who it comes from: a rule beside it in that agent's colour, and a
-// line over it naming the agent and the kind of part (caution, next step, the studies, the forums,
-// blood tests…). Read from the words, in this order: a caution or a next step stands alone; the
+// line over it naming the agent and the kind of part (good to know, next step, the studies, the
+// forums, blood tests…). Read from the words, in this order: a safety note or a next step stands alone; the
 // first words are the bottom line; a closing question is the Recommender's; then an agent the part
 // names, the voices it draws on, and what it's about. Two at most. A part still being written
 // says so, and who it's from once it's whole.
-const LEAD_CAUTION = /^(?:caution|warning|be careful|safety first)\b/i;
+const LEAD_NOTE = /^(?:good to know|safety notes?|caution|warning|be careful|safety first)\b/i;
 const LEAD_NEXT = /^next steps?\b/i;
 const NAMED = [['synergy', /\bsynergy auditor\b/i], ['markers', /\bmarkers agent\b/i], ['combination', /\bcombination agent\b/i], ['mechanism', /\bmechanism agent\b/i],
   ['relatives', /\brelatives agent\b/i], ['evidence', /\bevidence librarian\b/i], ['builder', /\bstack builder\b/i]];
@@ -185,7 +187,7 @@ function crowdLabel(t) {
 }
 function partOf(text, { lead = false, live = false } = {}) {
   const t = plainOf(text);
-  if (LEAD_CAUTION.test(t)) return [['safety', 'caution']];
+  if (LEAD_NOTE.test(t)) return [['safety', 'good to know']];
   if (LEAD_NEXT.test(t)) return [['recommender', 'next step']];
   if (lead && live) return [['recommender', 'bottom line']];
   if (live) return null;
@@ -584,7 +586,8 @@ function cardWho(card) {
     case 'voices': return [['evidence', 'community'], 'the studies and the community'];
     case 'community': return [['community'], 'what people report'];
     case 'compare': return [['evidence'], 'side by side'];
-    case 'questions': return [['recommender'], 'for your doctor'];
+    case 'questions': return [['recommender'], 'to discuss with your clinician'];
+    case 'interpretation': return [['interpretation'], 'efficacy, reasoned last'];
     case 'intake': return [['recommender'], 'a few questions first'];
     case 'audit': return [['synergy'], 'checked together'];
     case 'warn': return [['safety'], 'when to get help'];
@@ -634,6 +637,7 @@ function cardNode(card, msg) {
   if (card.type === 'compare') return compareNode(card);
   if (card.type === 'plan') return planNode(card, msg);
   if (card.type === 'questions') return questionsNode(card);
+  if (card.type === 'interpretation') return interpretationNode(card);
   if (card.type === 'intake') return intakeNode(card);
   if (card.type === 'audit') return auditNode(card);
   if (card.type === 'warn') {
@@ -703,9 +707,9 @@ function pointerText(card) {
   const check = !a ? (ids.length > 1 ? 'The Synergy auditor is checking them together' : '')
     : a.skipped ? '' : a.ok === false ? 'The Synergy auditor couldn’t check these just now'
       : top === 'avoid' ? 'The Synergy auditor says not to take these together'
-        : top === 'caution' ? 'The Synergy auditor found a caution' : ids.length > 1 ? 'No clash found' : 'Checked for you';
+        : top === 'caution' ? 'The Synergy auditor found something worth checking' : ids.length > 1 ? 'No clash found' : 'Checked for you';
   const n = SCREEN?.sum?.(ids);
-  const bits = n ? [n.cautions ? plural(n.cautions, 'caution') : '', n.markers ? plural(n.markers, 'blood marker') : ''].filter(Boolean) : [];
+  const bits = n ? [n.cautions ? plural(n.cautions, 'safety note') : '', n.markers ? plural(n.markers, 'blood marker') : ''].filter(Boolean) : [];
   const where = bits.length ? `${listOf(bits)} on the screen` : 'How they work, on the screen';
   return { text: check ? `${check}. ${where}` : where, tone: a && !a.skipped && a.ok !== false ? top : '' };
 }
@@ -1061,7 +1065,7 @@ function sourcesNode(src) {
   return bits.length ? h('p', { class: 'answer-src' }, h('span', { class: 'src-k', text: 'Drawn from' }), ...bits) : null;
 }
 
-const AUDIT_LEVEL = { avoid: 'Avoid', caution: 'Caution', unknown: 'Unknown', info: 'Good to know' };
+const AUDIT_LEVEL = { avoid: 'Avoid', caution: 'Worth checking', unknown: 'Unknown', info: 'Good to know' };
 function fillAudit(box, card) {
   if (card.skipped) {
     box.replaceChildren(h('div', { class: 'audit-head', text: 'Synergy auditor: one option, nothing to check together' }));
@@ -1141,11 +1145,40 @@ function screenSync() {
 }
 function questionsNode(card) {
   const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
-  btn.addEventListener('click', () => copy(['Questions for my doctor:', ...card.items.map((q) => `- ${q}`)].join('\n'), btn));
+  btn.addEventListener('click', () => copy(['To discuss with my clinician:', ...card.items.map((q) => `- ${q}`)].join('\n'), btn));
   return h('div', { class: 'card qs' },
-    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'Questions to ask your doctor' }), h('p', { class: 'sub', text: 'Bring these to your next visit.' })), btn),
+    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'To discuss with your clinician' }), h('p', { class: 'sub', text: 'Points to bring to your next visit.' })), btn),
     h('ul', {}, card.items.map((q) => h('li', { text: q }))));
 }
+
+// The Interpretation agent's read, last in an answer: strictly efficacy, reasoned through from what
+// the other agents found. Each step of the reasoning (strongest evidence first, and which rung it
+// stands on), then the verdict, how big the effect could be, how sure anyone can be and what would
+// change that, then the read in plain words. Everything in it went through the Safety agent's check.
+const VERDICT = ['likely', 'plausible', 'unlikely', 'unclear'];
+const RUNG = { together: 'tested together', own: 'its own studies', relative: 'a close relative', mechanism: 'how it works', community: 'what people report', none: 'nothing yet' };
+function interpretationNode(card) {
+  const v = VERDICT.includes(card.verdict) ? card.verdict : 'unclear';
+  const line = (k, val, cls = '') => (val ? h('div', { class: `ip-row${cls ? ` ${cls}` : ''}` }, h('dt', { text: k }), h('dd', {}, val)) : null);
+  const steps = (Array.isArray(card.steps) ? card.steps : []).slice(0, 6).filter((x) => x && x.link && x.read);
+  return h('div', { class: 'card interp', role: 'group', 'aria-labelledby': `${card.id || 'interp'}-h` },
+    h('div', { class: 'card-head' }, h('div', {},
+      h('h2', { id: `${card.id || 'interp'}-h`, text: card.subject ? `Efficacy: ${card.subject}` : 'Efficacy' }),
+      h('p', { class: 'sub', text: 'Reasoned through by the Interpretation agent, from what the other agents found. Efficacy only.' }))),
+    h('dl', { class: 'ip-steps' }, steps.map((x) => h('div', { class: 'ip-row' }, h('dt', { text: x.link }),
+      h('dd', {}, x.read, RUNG[x.rung] ? h('span', { class: 'ip-rung', text: RUNG[x.rung] }) : null)))),
+    h('dl', { class: 'ip-verdict' },
+      line('efficacy', [h('i', { class: `ip-dot v-${v}`, 'aria-hidden': 'true' }), card.label || v], 'ip-main'),
+      line('likely size', [card.size, card.size_note].filter(Boolean).join(': ')),
+      line('confidence', [card.confidence, card.confidence_note].filter(Boolean).join(': ')),
+      line('what would change it', card.would_change || '')),
+    card.summary ? h('p', { class: 'ip-sum' }, h('b', { text: 'In plain words: ' }), card.summary) : null);
+}
+// An answer as text to copy: its words, then the efficacy read when there is one
+const copyOf = (m) => {
+  const read = (m.parts || []).find((p) => p.t === 'card' && p.card.type === 'interpretation')?.card;
+  return [textOf(m), read ? `Efficacy (Interpretation agent): ${read.label || read.verdict}. ${read.summary || ''}`.trim() : ''].filter(Boolean).join('\n\n');
+};
 
 // Questions for the visitor, the way a clinician takes a history: tap an answer, type one, or
 // both. The answers go back as the visitor's next message; nothing is kept anywhere else.
@@ -1716,7 +1749,7 @@ function finish(am, live) {
       : edited ? `${changes || 'edited this'} before you saw it`
       : am.review ? 'every part checked before you saw it' : '';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
-    btn.addEventListener('click', () => copy(textOf(am), btn));
+    btn.addEventListener('click', () => copy(copyOf(am), btn));
     const sub = SCREEN ? subjectIn(am, chatOf(am).indexOf(am)) : null;
     const pointed = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'shortlist' && p.card.kind === 'yours');
     const go = sub && !pointed ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
@@ -1873,7 +1906,7 @@ function closeSheet() {
   sheetFrom = null;
   back?.focus({ preventScroll: true });
 }
-// Beside the chat on wide screens, two tabs: the agents (the ring of the eleven, and what each is
+// Beside the chat on wide screens, two tabs: the agents (the ring of the twelve, and what each is
 // doing or did) and the screen. The agents' tab while they work, the screen once an answer about
 // something is done; a tab picked by hand during an answer stays picked. On narrower screens the
 // screen alone, as the sheet.
@@ -1954,7 +1987,8 @@ function drawTeam(m) {
     const now = li.querySelector('.tm-now');
     if (now && now.textContent !== text) now.textContent = text;
   }
-  const n = state === 'idle' ? 11 : last.size;
+  const all = team.rows.size;
+  const n = state === 'idle' ? all : last.size;
   if (team.ring) {
     setSig(team.ring, 'idle', state === 'idle' ? null : [...last.keys()]);
     for (const p of team.ring.querySelectorAll('.rg')) p.classList.toggle('is-now', running.has(p.dataset.a));
@@ -1962,11 +1996,11 @@ function drawTeam(m) {
   if (team.n) team.n.textContent = String(n);
   if (team.k) team.k.textContent = state === 'idle' ? 'ready' : state === 'run' ? 'reporting' : 'reported';
   team.live?.classList.toggle('on', state === 'run');
-  if (team.liveT) team.liveT.textContent = state === 'run' ? 'live' : state === 'done' ? `${n}/11 reported` : 'ready';
+  if (team.liveT) team.liveT.textContent = state === 'run' ? 'live' : state === 'done' ? `${n}/${all} reported` : 'ready';
   // On a phone, in the title bar: how many have reported
   if (team.small) {
     team.small.classList.toggle('on', state === 'run');
-    team.small.replaceChildren(h('b', { text: String(n) }), state === 'idle' ? '/11 ready' : '/11 agents');
+    team.small.replaceChildren(h('b', { text: String(n) }), state === 'idle' ? `/${all} ready` : `/${all} agents`);
   }
   const logo = document.querySelector('.tm-logo');
   if (logo && narrowMq.matches) setSig(logo, busy ? 'think' : 'idle', state === 'idle' ? null : [...last.keys()]);
@@ -2322,7 +2356,7 @@ if (SCREEN) {
   narrowMq.addEventListener('change', () => { if (!narrowMq.matches) closeSheet(); });
 }
 // A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller
-// window); after an answer that ends on a question, an invitation to answer it
+// window); after an answer, an invitation to follow it up
 let ruler = null;
 const widthOf = (t) => {
   ruler ||= document.createElement('canvas').getContext('2d');
@@ -2333,8 +2367,8 @@ const widthOf = (t) => {
 };
 function fitPlaceholder() {
   const last = chat[chat.length - 1];
-  const back = last?.role === 'assistant' && last.state === 'done' && /\?\W*$/.test(textOf(last));
-  const hints = back ? ['Answer Sig, or ask something else', 'Answer Sig, or ask more', 'Answer Sig']
+  const after = last?.role === 'assistant' && last.state === 'done';
+  const hints = after ? ['Ask a follow-up, or something new', 'Ask a follow-up', 'Ask Sig']
     : ['Ask about a goal, something you take, or a mix', input.dataset.short, 'Ask about what you take', 'Ask Sig'];
   // the longest hint that fits on the prompt's one line, after the cursor
   const room = input.clientWidth;
