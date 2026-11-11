@@ -542,3 +542,8 @@ html:has(body.sigapp){--top-h:0px}
   .tm .bubble,.tm .echo-ps1,.tm .prose,.tm .prose p,.tm .prose li,.tm .prose strong,.tm .prose a,.tm .prose h2,.tm .answer-src,.tm .src-part,.tm .sheet,.tm .cleared{color:#111111!important;text-shadow:none!important}
   .ptag,.ctag,.ptag b,.ctag b{color:#444444!important;text-shadow:none!important}
 }
+
+/* each agent's glyph, in its colour (lib/glyphs.js), where its coloured square was */
+.tm-who{grid-template-columns:14px 16px 152px minmax(0,1fr)}
+.tm-sq.tm-gl{display:grid;place-items:center;align-self:center;width:16px;height:16px;margin-top:0;border-radius:0;background:none}
+.tm-sq.tm-gl svg{display:block;width:14px;height:14px}

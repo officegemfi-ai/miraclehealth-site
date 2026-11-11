@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Makes the share images (1200 x 630), in Graphite like the site: the one every page falls back to
-// (og.jpg), the shared plan's (img/og-plan.jpg), and one each for the pages
+// Makes the share images (1200 x 630), each a window in Sig's terminal like every page of the site
+// (Sig's ring, the window's name and tab, the status bar with the rules): the one every page falls
+// back to (og.jpg), the shared plan's (img/og-plan.jpg), the story page's, and one each for the pages
 // scripts/build_pages.mjs builds (About, the FDA status tracker, each goal, each comparison, the
 // weekly email, the founding reporters) into img/og/<slug>.jpg. The pages use an image once it's
 // there (run the library build after).
@@ -12,7 +13,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PAIRS, slugOf } from './build_pages.mjs';
-import { sigSvg } from '../kit/kit.js';
+import { ringSvg, WHEEL, CENTER, AGENT_COLOR } from '../lib/ring.js';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
@@ -33,22 +34,24 @@ const BARS = { strong: 4, moderate: 3, limited: 2, preclinical: 1, anecdotal: 0 
 const PLAN_ART = `<div class="plan"><div class="p-start"><span>Start here</span><b>One step, this week</b></div>
 <div class="p-pillars"><i class="on">Nutrition</i><i class="next">Sleep</i><i>Exercise</i></div><div class="p-ground"></div></div>`;
 const cards = [
-  { slug: 'home', file: path.join(ROOT, 'og.jpg'), kick: 'Independent and free, for adults 18+', title: 'Peptides,<br><em>without the sales pitch.</em>',
+  { slug: 'home', name: 'Miracle Health', tab: 'home', file: path.join(ROOT, 'og.jpg'), kick: 'Independent and free, for adults 18+', title: 'Peptides,<br><em>without the sales pitch.</em>',
     sub: 'What the studies show and how it went for people who took it, side by side. Nothing for sale.' },
-  { slug: 'plan', file: path.join(ROOT, 'img', 'og-plan.jpg'), kick: 'A Miracle Plan', title: 'A plan built from the ground up, <em>shared with you</em>',
+  { slug: 'plan', name: 'A Miracle Plan', tab: 'plan.md', file: path.join(ROOT, 'img', 'og-plan.jpg'), kick: 'A Miracle Plan', title: 'A plan built from the ground up, <em>shared with you</em>',
     sub: 'Nutrition, sleep and exercise first, then what rests on them. Made with Sig.', art: PLAN_ART },
-  { slug: 'ask-sig', kick: 'Ask Sig', title: 'The studies and the whole community, <em>in one answer.</em>', sub: 'Sig is Miracle Health’s AI. It says which is which, and never gives doses or names sellers.', art: sigSvg(260, 'happy', { dark: true }) },
-  { slug: 'about', kick: 'About', title: 'No miracles.<br><em>Just what happened.</em>', sub: 'Who runs Miracle Health, how it’s paid for, and how every fact sheet is checked.' },
-  { slug: 'status', kick: 'FDA status tracker', title: 'Where each compound stands with the FDA', sub: `${entries.size} peptides, hormones, supplements and medications, each checked against FDA’s own documents.` },
-  { slug: 'goals', kick: 'By goal', title: 'What people take, and what the studies show', sub: 'Weight, muscle, recovery, sleep, focus, skin, aging and more.' },
-  ...uses.goals.map((g) => ({ slug: `goal-${g.id}`, kick: 'Goals', title: e(g.label), sub: 'What the studies show for each compound people take for it, and what people who took it report.' })),
-  { slug: 'compare', kick: 'Side by side', title: 'Compare two compounds', sub: 'Evidence, risks, FDA status and what people report, side by side.' },
+  { slug: 'story', name: 'The story', tab: 'story.md', kick: '~/story · the new Miracle Health', title: 'One app. Twelve agents.<br><em>Every answer, checked.</em>',
+    sub: 'The Library, Ask Sig, the community and My Miracle, as one app.', art: ringSvg(260) },
+  { slug: 'ask-sig', name: 'Ask Sig', tab: 'chats/new', kick: 'Ask Sig', title: 'The studies and the whole community, <em>in one answer.</em>', sub: 'Sig is Miracle Health’s AI. It says which is which, and never gives doses or names sellers.', art: ringSvg(260) },
+  { slug: 'about', name: 'About', tab: 'about.md', kick: 'About', title: 'No miracles.<br><em>Just what happened.</em>', sub: 'Who runs Miracle Health, how it’s paid for, and how every fact sheet is checked.' },
+  { slug: 'status', name: 'FDA status tracker', tab: 'status.log', kick: 'FDA status tracker', title: 'Where each compound stands with the FDA', sub: `${entries.size} peptides, hormones, supplements and medications, each checked against FDA’s own documents.` },
+  { slug: 'goals', name: 'By goal', tab: 'goals', kick: 'By goal', title: 'What people take, and what the studies show', sub: 'Weight, muscle, recovery, sleep, focus, skin, aging and more.' },
+  ...uses.goals.map((g) => ({ slug: `goal-${g.id}`, name: 'By goal', tab: `goals/${g.id}`, kick: 'Goals', title: e(g.label), sub: 'What the studies show for each compound people take for it, and what people who took it report.' })),
+  { slug: 'compare', name: 'Compare', tab: 'compare', kick: 'Side by side', title: 'Compare two compounds', sub: 'Evidence, risks, FDA status and what people report, side by side.' },
   ...PAIRS.map(([a, b, slug]) => ({
-    slug: `compare-${slug || `${slugOf(nameOf(a))}-vs-${slugOf(nameOf(b))}`}`, kick: 'Side by side',
+    slug: `compare-${slug || `${slugOf(nameOf(a))}-vs-${slugOf(nameOf(b))}`}`, name: 'Compare', tab: `${slug || `${slugOf(nameOf(a))}-vs-${slugOf(nameOf(b))}`}.diff`, kick: 'Side by side',
     title: `${e(nameOf(a))} <span class="vs">vs</span> ${e(nameOf(b))}`, pair: [a, b],
   })),
-  { slug: 'weekly', kick: 'The Signal, weekly', title: 'What moved, once a week', sub: 'The Community Signal, new studies and FDA news. Free, no ads.' },
-  { slug: 'founders', kick: 'Founding reporters', title: 'Be one of the first 100.', sub: 'Share a first-hand report on what you took, and how it went.' },
+  { slug: 'weekly', name: 'The Signal, weekly', tab: 'issues', kick: 'The Signal, weekly', title: 'What moved, once a week', sub: 'The Community Signal, new studies and FDA news. Free, no ads.' },
+  { slug: 'founders', name: 'Founding reporters', tab: 'founders.md', kick: 'Founding reporters', title: 'Be one of the first 100.', sub: 'Share a first-hand report on what you took, and how it went.' },
 ];
 
 const meter = (g) => `<span class="meter">${[0, 1, 2, 3].map((i) => `<i class="${i < BARS[g] ? 'on' : ''}"></i>`).join('')}</span>`;
@@ -58,27 +61,33 @@ const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Neon;src:url('${font('monaspace-neon-400.woff2')}') format('woff2');font-weight:100 549}
 @font-face{font-family:Neon;src:url('${font('monaspace-neon-700.woff2')}') format('woff2');font-weight:550 900}
 *{box-sizing:border-box;margin:0}
-body{width:1200px;height:630px;overflow:hidden;background:#0B0F11;color:#EEECE6;font-family:Mona,sans-serif;position:relative}
-/* the plate: a hairline frame with a tick in each corner */
-.frame{position:absolute;inset:26px;border:1px solid rgba(238,236,230,.16)}
-.frame i{position:absolute;width:14px;height:14px;border:0 solid rgba(238,236,230,.6)}
-.frame i:nth-child(1){left:-1px;top:-1px;border-left-width:1px;border-top-width:1px}
-.frame i:nth-child(2){right:-1px;top:-1px;border-right-width:1px;border-top-width:1px}
-.frame i:nth-child(3){left:-1px;bottom:-1px;border-left-width:1px;border-bottom-width:1px}
-.frame i:nth-child(4){right:-1px;bottom:-1px;border-right-width:1px;border-bottom-width:1px}
-.in{position:relative;height:100%;padding:70px 78px 66px;display:flex;flex-direction:column}
-.logo{height:40px;width:auto;align-self:flex-start}
-.url{position:absolute;right:78px;top:80px;font:500 16px/1 Neon,monospace;letter-spacing:.12em;color:rgba(238,236,230,.56)}
-.kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 19px/1 Neon,monospace;letter-spacing:.12em;text-transform:uppercase;color:rgba(238,236,230,.6)}
+body{width:1200px;height:630px;overflow:hidden;background:#07090A;color:#EEECE6;font-family:Mona,sans-serif;position:relative}
+/* the window: Sig's title bar with the ring, the window's name and tab, the twelve online; the page; the status bar with the rules */
+.win{position:absolute;inset:22px;display:flex;flex-direction:column;border:1.5px solid rgba(238,236,230,.12);border-radius:16px;background:#0B0F11;overflow:hidden}
+.wt{display:flex;align-items:flex-end;flex:none;height:60px;padding:0 22px 0 22px;border-bottom:1.5px solid rgba(238,236,230,.10);background:#12171A}
+.brand{display:flex;align-items:center;gap:12px;align-self:center;padding-right:22px}
+.brand svg{display:block}.brand b{font:650 19px/1 Mona,sans-serif;letter-spacing:-.01em;white-space:nowrap}.brand span{font:400 15px/1 Neon,monospace;color:#868C8A}
+.tab{display:flex;align-items:center;gap:10px;height:42px;margin-bottom:-1.5px;padding:0 22px 0 16px;border:1.5px solid rgba(238,236,230,.10);border-bottom:0;border-radius:10px 10px 0 0;background:#0B0F11;font:500 15px/1 Neon,monospace;white-space:nowrap}
+.tab i{width:8px;height:8px;border-radius:50%;background:#EEECE6}
+.online{display:flex;align-items:center;gap:12px;margin-left:auto;align-self:center;font:500 15px/1 Neon,monospace;color:#A4A9A6;white-space:nowrap}
+.dots{display:flex;gap:4px}.dots i{width:7px;height:7px;border-radius:50%}
+.in{position:relative;flex:1;min-height:0;padding:0 48px 34px;display:flex;flex-direction:column}
+.st{display:flex;align-items:stretch;flex:none;height:38px;border-top:1.5px solid rgba(238,236,230,.10);background:#07090A;font:500 15px/1 Neon,monospace;color:#868C8A;white-space:nowrap}
+.st span{display:inline-flex;align-items:center;gap:9px;padding:0 16px;border-right:1.5px solid rgba(238,236,230,.08)}
+.st i{width:7px;height:7px;border-radius:50%}
+.st .sig{background:#EEECE6;color:#0B0F11;letter-spacing:.04em}.st .sig svg{display:block}
+.st .on{color:#EEECE6}.st .on i{background:#EEECE6}.st .safe i{background:#FF6B5B}
+.st .rules{margin-left:auto;border-left:1.5px solid rgba(238,236,230,.08);border-right:0}
+.logo{display:block;width:auto;height:30px;margin-top:30px;align-self:flex-start}
+.kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 18px/1 Neon,monospace;letter-spacing:.12em;text-transform:uppercase;color:rgba(238,236,230,.6)}
 .kick::before{content:'';width:40px;height:1px;background:currentColor}
-h1{margin-top:22px;font:700 ${c.pair ? 66 : 64}px/1.03 MonaDisplay,sans-serif;letter-spacing:-.03em;max-width:${c.art ? 700 : 1010}px}
+.kick.lower{letter-spacing:0;text-transform:none}.kick.lower::before{display:none}
+h1{margin-top:20px;font:700 ${c.pair ? 62 : 60}px/1.03 MonaDisplay,sans-serif;letter-spacing:-.03em;max-width:${c.art ? 720 : 1010}px}
 h1 em,.vs{font-style:normal;font-weight:inherit}
 .vs{color:rgba(238,236,230,.6)}
-.sub{margin-top:24px;max-width:${c.art ? 680 : 880}px;font-size:27px;line-height:1.42;color:rgba(238,236,230,.74)}
-.art{position:absolute;right:86px;bottom:74px;width:300px;display:grid;place-items:center}
+.sub{margin-top:20px;max-width:${c.art ? 680 : 880}px;font-size:25px;line-height:1.42;color:rgba(238,236,230,.74)}
+.art{position:absolute;right:56px;bottom:40px;width:300px;display:grid;place-items:center}
 .art svg{width:260px;height:260px}
-/* the Signal's ring and dot, on every picture */
-.mark{position:absolute;right:78px;bottom:66px;width:44px;height:44px}
 .pills{display:flex;gap:14px;margin-top:30px}
 .pill{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px;border:1px solid rgba(238,236,230,.32);font:500 16px/1 Neon,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(238,236,230,.78)}
 .pill b{font:700 21px/1 MonaDisplay,sans-serif;letter-spacing:-.01em;text-transform:none;color:#EEECE6}
@@ -94,14 +103,18 @@ h1 em,.vs{font-style:normal;font-weight:inherit}
 .p-pillars .on{border-color:#EEECE6;background:#EEECE6;color:#0B0F11}
 .p-pillars .next{background:repeating-linear-gradient(135deg,rgba(238,236,230,.12) 0 5px,rgba(238,236,230,.03) 5px 12px)}
 .p-ground{height:8px;margin-top:-12px;border-radius:2px;background:#EEECE6}
-</style></head><body><div class="frame"><i></i><i></i><i></i><i></i></div><div class="in">
+</style></head><body><div class="win">
+<div class="wt"><span class="brand">${ringSvg(24)}<b>${e(c.name)}</b><span>miraclehealth.us</span></span><span class="tab"><i></i>${e(c.tab)}</span>
+<span class="online"><span class="dots">${[...WHEEL, CENTER].map((k) => `<i style="background:${AGENT_COLOR[k]}"></i>`).join('')}</span>12 agents online</span></div>
+<div class="in">
 <img class="logo" src="${pathToFileURL(path.join(ROOT, 'logo.webp')).href}" alt="">
-<span class="url">MIRACLEHEALTH.US</span>
-<p class="kick">${e(c.kick)}</p>
+<p class="kick${c.kick.startsWith('~') ? ' lower' : ''}">${e(c.kick)}</p>
 <h1>${c.title}</h1>
 ${c.sub ? `<p class="sub">${e(c.sub)}</p>` : ''}
-${c.art ? `<div class="art">${c.art}</div>` : `<div class="mark">${sigSvg(44, 'idle', { dark: true })}</div>`}
+${c.art ? `<div class="art">${c.art}</div>` : ''}
 ${c.pair ? `<div class="pills">${c.pair.map((id) => { const f = entries.get(id); return `<span class="pill"><b>${e(f.name)}</b>${meter(f.evidence.grade)}${e(GRADE[f.evidence.grade])}</span>`; }).join('')}</div>` : ''}
+</div>
+<div class="st"><span class="sig">${ringSvg(14)}SIG</span><span class="on"><i></i>online</span><span class="safe"><i></i>safety on</span><span class="rules">no doses · no sellers · no diagnosis</span></div>
 </div></body></html>`;
 
 fs.mkdirSync(OUT, { recursive: true });
