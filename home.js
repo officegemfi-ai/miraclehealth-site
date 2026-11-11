@@ -136,6 +136,7 @@ const net = document.querySelector('.net[data-graph]');
 if (net) startNet(net);
 async function startNet(net) {
   const [mod, data] = await Promise.all([import('/lib/graph.js?v=ca18438127').catch(() => null), getJson(net.dataset.graph)]);
+  if (data && data.counts) promptFrom(data);
   if (!mod || !data || !data.counts) return;
   const css = () => {
     const cs = getComputedStyle(net);
@@ -227,6 +228,77 @@ async function startNet(net) {
   };
   q.addEventListener('input', typed);
   if (q.value) typed();
+}
+
+// The prompt under the headline: › look up, and as they type, the first few fact sheets and
+// blends that match, as the Library's own search matches them (name, other names, category and
+// family). Each row is the sheet's file name, its name and family, its evidence (the Evidence
+// librarian's blue) and its Signal (the community's lime). ↑↓ move through them, Enter opens the
+// first, Escape clears; with nothing matched, Enter searches the Library as before.
+function promptFrom(data) {
+  const form = document.querySelector('form.hp'), q = document.getElementById('hero-q');
+  const list = document.getElementById('hp-list'), count = document.getElementById('hp-n'), keys = document.getElementById('hp-keys');
+  if (!form || !q || !list || !data.names?.c || !data.find) return;
+  const fold = (x) => String(x || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '');
+  const FAM = ['peptide', 'hormone', 'medication', 'supplement'];
+  const GRADE = ['anecdotal', 'animal and lab', 'limited', 'moderate', 'strong'];
+  const names = data.names.c, ids = data.ids, finds = data.find, stacks = data.stacks || [], grades = data.grade || [];
+  let snap = null;
+  getSignal().then((x) => { snap = x; if (!list.hidden) draw(); }, () => {});
+  const rank = (name, t) => { const f = fold(name); return f.startsWith(t) ? 0 : f.includes(t) ? 1 : 2; };
+  const row = (href, file, name, kind, facts) => h('li', {}, h('a', { class: 'hp-row', href },
+    h('span', { class: 'hp-file', text: file }), h('span', { class: 'hp-name' }, name, h('span', { class: 'hp-kind', text: ` · ${kind}` })),
+    h('span', { class: 'hp-facts' }, ...facts)));
+  const fact = (cls, text, label) => h('span', { class: `hp-fact ${cls}`, title: label }, h('i', { 'aria-hidden': 'true' }), h('span', { class: 'mh-sr', text: `${label}: ` }), text);
+  let shown = [];
+  function draw() {
+    const terms = q.value.split(/\s+/).map(fold).filter(Boolean);
+    const t = terms.join('');
+    if (t.length < 2) { list.hidden = true; keys.hidden = true; count.textContent = ''; shown = []; return; }
+    const hits = [];
+    stacks.forEach((st, k) => { if (terms.every((x) => st.find.includes(x))) hits.push({ k, r: rank(st.name, t), n: st.name }); });
+    for (let c = 0; c < names.length; c++) if (terms.every((x) => finds[c].includes(x))) hits.push({ c, r: rank(names[c], t), n: names[c] });
+    hits.sort((a, b) => a.r - b.r || a.n.localeCompare(b.n));
+    count.textContent = hits.length ? `${hits.length} match${hits.length === 1 ? '' : 'es'}` : 'no fact sheet matches: Enter searches all 300';
+    shown = hits.slice(0, 5).map((m) => {
+      if (m.k != null) {
+        const st = stacks[m.k];
+        return row(`/library/${st.id}/`, st.id, st.name, 'blend', [h('span', { class: 'hp-parts', text: st.parts.map((c) => names[c]).join(', ') })]);
+      }
+      const id = ids[m.c], g = grades[m.c], sig = snap?.signals?.[id]?.signal;
+      return row(`/library/${id}/`, `${id}.md`, names[m.c], FAM[data.famOf[m.c]] || 'compound', [
+        g >= 0 ? fact('hp-ev', GRADE[g], 'Evidence') : null,
+        Number.isFinite(sig) ? fact('hp-sig', sig.toFixed(1), 'Community Signal') : null,
+      ].filter(Boolean));
+    });
+    list.replaceChildren(...shown);
+    list.hidden = !shown.length;
+    keys.hidden = !shown.length;
+  }
+  q.addEventListener('input', draw);
+  const links = () => [...list.querySelectorAll('a')];
+  q.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' && !list.hidden) { e.preventDefault(); links()[0]?.focus(); }
+    else if (e.key === 'Escape' && q.value) { q.value = ''; q.dispatchEvent(new Event('input')); }
+  });
+  list.addEventListener('keydown', (e) => {
+    const all = links(), i = all.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); all[Math.min(all.length - 1, i + 1)]?.focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); if (i <= 0) q.focus(); else all[i - 1].focus(); }
+    else if (e.key === 'Escape') { e.preventDefault(); q.focus(); }
+  });
+  // Enter opens the first match; with none, the form searches the whole Library
+  form.addEventListener('submit', (e) => {
+    const first = links()[0];
+    if (first && !list.hidden) { e.preventDefault(); location.assign(first.href); }
+  });
+  if (q.value) draw();
+  // the strip under the hero: how many Signals are live, once they've loaded
+  const live = document.querySelector('.strip-live'), liveN = document.getElementById('strip-live-n');
+  getSignal().then((x) => {
+    const n = x?.signals ? Object.keys(x.signals).length : 0;
+    if (live && liveN && n) { liveN.textContent = String(n); live.hidden = false; }
+  }, () => {});
 }
 
 // The drawings that move without end (Sig, the takeover line's pulse, the flow) only move while
