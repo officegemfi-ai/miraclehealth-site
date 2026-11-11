@@ -91,7 +91,7 @@ export function flowSvg({ sources = [], share = 0, reports = 0, sames = 0, signa
 
   // An input: a slim row with an initial tile, the name, how many Signals use it, and a port
   const chip = (x, y, w, name, n, portX, portY) => `<g>
-      <rect x="${x}" y="${y}" width="${w}" height="40" rx="11" fill="#121B19"/>
+      <rect x="${x}" y="${y}" width="${w}" height="40" rx="11" fill="#12171A"/>
       <rect x="${x}" y="${y}" width="${w}" height="40" rx="11" fill="${WHITE}" fill-opacity=".035" stroke="${WHITE}" stroke-opacity=".1"/>
       <rect x="${x + 8}" y="${y + 8}" width="24" height="24" rx="7" fill="${FORUM}" fill-opacity=".14"/>
       <text x="${x + 20}" y="${y + 24}" text-anchor="middle" class="t-mono" font-size="11" font-weight="600" fill="${FORUM}">${esc((name || ' ')[0])}</text>
@@ -100,7 +100,7 @@ export function flowSvg({ sources = [], share = 0, reports = 0, sames = 0, signa
       <circle cx="${portX}" cy="${portY}" r="3" fill="#0B0F11" stroke="${FORUM}" stroke-width="1.4"/>
     </g>`;
   const member = (x, y, w, portX, portY) => `<g>
-      <rect x="${x}" y="${y}" width="${w}" height="48" rx="13" fill="#121B19"/>
+      <rect x="${x}" y="${y}" width="${w}" height="48" rx="13" fill="#12171A"/>
       <rect x="${x}" y="${y}" width="${w}" height="48" rx="13" fill="${LIME}" fill-opacity=".07" stroke="${LIME}" stroke-opacity=".5"/>
       <circle cx="${x + 24}" cy="${y + 24}" r="11" fill="none" stroke="${LIME}" stroke-width="1.6"/>
       <circle cx="${x + 24}" cy="${y + 24}" r="4.2" fill="${LIME}"/>
