@@ -3,7 +3,7 @@
 // names): the Community Signal on cards and comparisons, how many founding-reporter spots are
 // taken, how far the first pairs are, and the method page's check of the Signal against the
 // studies. Every page reads fine without it.
-import { sealSvg, levelOf } from '/library/signalviz.js?v=51b1ee6555';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=a15fe0a155';
 import { h, svg, getJson, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const COMMUNITY = 'https://community.miraclehealth.us';

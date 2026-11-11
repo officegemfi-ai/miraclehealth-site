@@ -4,8 +4,8 @@
 // public files (totals only: no posts, no names): the Community Signal, what people report for
 // each use and the placebo figures beside them. Then the bars are drawn in once, as the card comes
 // into view. If the files can't load, the page keeps what it was published with.
-import { sealSvg, levelOf } from '/library/signalviz.js?v=51b1ee6555';
-import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=d966f02403';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=a15fe0a155';
+import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=34d9695824';
 import { h, getJson, getSignal, calm } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -135,7 +135,7 @@ if (card) {
 const net = document.querySelector('.net[data-graph]');
 if (net) startNet(net);
 async function startNet(net) {
-  const [mod, data] = await Promise.all([import('/lib/graph.js?v=1ad994ae87').catch(() => null), getJson(net.dataset.graph)]);
+  const [mod, data] = await Promise.all([import('/lib/graph.js?v=ca18438127').catch(() => null), getJson(net.dataset.graph)]);
   if (!mod || !data || !data.counts) return;
   const css = () => {
     const cs = getComputedStyle(net);
@@ -196,7 +196,7 @@ async function startNet(net) {
     g = mod.startGraph(net, data, {
       onTrace: traced,
       ...css(), layout: css, avoid: over, poster: net.querySelector('.net-poster'), ask,
-      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#111B19', '#0E1615', '#0C1312'] },
+      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#151B1E', '#0E1316', '#0A0E10'] },
       links: { sheet: (id) => `/library/${id}/`, ask: (s) => askLink(question(s), { site: '' }) },
     });
   } catch { return; }

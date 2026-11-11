@@ -16,8 +16,8 @@
 // they're placed as text, never markup. Beside the chat on wide screens; on phones and narrow
 // windows it's a sheet that pulls up over the chat (ai.js opens and closes it), and a bar above
 // the box to write in says what's on it. window.MHScreen is the whole interface.
-import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=d966f02403';
-import { sealSvg } from '/library/signalviz.js?v=51b1ee6555';
+import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=34d9695824';
+import { sealSvg } from '/library/signalviz.js?v=a15fe0a155';
 import { h, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;

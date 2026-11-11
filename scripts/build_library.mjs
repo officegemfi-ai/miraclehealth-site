@@ -202,7 +202,7 @@ function page({
 <title>${e(title)}</title>
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#0C1413">
+<meta name="theme-color" content="#0B0F11">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
@@ -332,7 +332,7 @@ function indexPage() {
     </div>
     <div class="explain-grid">
       <div class="glass deep">
-        <p class="mono lime">// The fact sheet</p>
+        <p class="mono evid">// The fact sheet</p>
         <h3>Checked against the sources</h3>
         <p>Every claim links to the FDA label, NIH fact sheet, trial or review it came from. Each benefit says what kind of evidence backs it, from randomized trials in people to studies in rats. No doses, no sellers.</p>
         <ul class="grade-key">${Object.entries(GRADE).filter(([k]) => k !== 'anecdotal').map(([k, [l, d]]) => `<li>${evPill(k, l)}<span>${e(d)}</span></li>`).join('')}</ul>
@@ -871,7 +871,7 @@ function planPage() {
 function myPage() {
   const body = `<div class="my-wrap" id="my-root" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <section class="my-intro">
-    ${sigSvg(64, 'happy', { dark: true, id: 'mysig' })}
+    ${ringSvg(64, { cls: 'sig' })}
     <div>
       <h1>My Miracle</h1>
       <p>Your plan, how it’s going, your stack and your places in the community, together. They’re kept on this device; Miracle Health never receives them.</p>

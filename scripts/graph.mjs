@@ -250,11 +250,11 @@ function posterSvg(g) {
   const xy = (i) => `${n(o.x[i])} ${n(o.y[i])}`;
   const near = (i) => Math.max(0.28, Math.min(1, 0.66 - o.z[i] * 0.42));
   const col = (c) => `rgb(${c[0]},${c[1]},${c[2]})`;
-  const BODY = [240, 236, 224], AMBER = [232, 183, 90], LIME = [216, 255, 61], WHITE = [250, 247, 238];
+  const BODY = [238, 236, 230], AMBER = [232, 183, 90], SIGC = [255, 255, 255], WHITE = [255, 255, 255];
   const GROUP = [...FAM, BODY, AMBER];
   const glow = (id, c) => `<radialGradient id="${id}"><stop offset="0" stop-color="${col(c)}"/><stop offset=".16" stop-color="${col(c)}" stop-opacity=".6"/><stop offset=".42" stop-color="${col(c)}" stop-opacity=".13"/><stop offset="1" stop-color="${col(c)}" stop-opacity="0"/></radialGradient>`;
   const haze = (id, c) => `<radialGradient id="${id}"><stop offset="0" stop-color="${col(c)}" stop-opacity=".5"/><stop offset=".5" stop-color="${col(c)}" stop-opacity=".16"/><stop offset="1" stop-color="${col(c)}" stop-opacity="0"/></radialGradient>`;
-  const defs = [...FAM.map((c, f) => glow('g' + f, c)), glow('gb', BODY), glow('ga', AMBER), glow('gl', LIME), glow('gw', WHITE), ...GROUP.map((c, k) => haze('h' + k, c))].join('');
+  const defs = [...FAM.map((c, f) => glow('g' + f, c)), glow('gb', BODY), glow('ga', AMBER), glow('gl', SIGC), glow('gw', WHITE), ...GROUP.map((c, k) => haze('h' + k, c))].join('');
   const out = [];
   const thin = (d, c, a, w) => { if (d) out.push(`<path d="${d}" stroke="${col(c)}" stroke-opacity="${n(a)}" stroke-width="${w}" vector-effect="non-scaling-stroke"/>`); };
   // the haze behind each group
@@ -285,7 +285,7 @@ function posterSvg(g) {
   for (let p = 1; p < nP; p++) axis += `L${xy(P0 + p)}`;
   thin(axis, BODY, 0.05, 4);
   thin(axis, BODY, 0.32, 1.1);
-  thin(`M${xy(SIG)}L${xy(P0)}`, LIME, 0.45, 1);
+  thin(`M${xy(SIG)}L${xy(P0)}`, SIGC, 0.45, 1);
   // the lines' dots, nearer ones brighter
   for (let f = 0; f < 4; f++) for (const front of [true, false]) {
     let d = '';
@@ -303,8 +303,8 @@ function posterSvg(g) {
   for (let c = 0; c < nC; c++) node(c, (2 + wC[c] * 0.2) * o.s[c] * PX, 'g' + g.famOf[c], 0.85 * near(c), 0.55);
   const hr = 6 * o.s[SIG] * PX;
   out.push(`<circle cx="${n(o.x[SIG])}" cy="${n(o.y[SIG])}" r="${n(hr * 4)}" fill="url(#gl)" opacity=".9"/>`);
-  out.push(`<circle cx="${n(o.x[SIG])}" cy="${n(o.y[SIG])}" r="${n(hr * 1.5)}" fill="none" stroke="${col(LIME)}" stroke-opacity=".95" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`);
-  out.push(`<circle cx="${n(o.x[SIG])}" cy="${n(o.y[SIG])}" r="${n(hr * 0.7)}" fill="${col(LIME)}"/>`);
+  out.push(`<circle cx="${n(o.x[SIG])}" cy="${n(o.y[SIG])}" r="${n(hr * 1.5)}" fill="none" stroke="${col(SIGC)}" stroke-opacity=".95" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`);
+  out.push(`<circle cx="${n(o.x[SIG])}" cy="${n(o.y[SIG])}" r="${n(hr * 0.7)}" fill="${col(SIGC)}"/>`);
   const R = POSTER_R;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-R} ${-R} ${2 * R} ${2 * R}" width="1600" height="1600">`
     + `<style>.l{isolation:isolate}.l>*{mix-blend-mode:plus-lighter}path{fill:none}</style><defs>${defs}</defs><g class="l">${out.join('')}</g></svg>\n`;
