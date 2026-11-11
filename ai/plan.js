@@ -489,10 +489,10 @@ export function checkIn(card, done) {
 // ---------------------------------------------------------------------------
 // As an image: the same plan, drawn on a canvas in the browser, for a post (4:5) or a story (9:16)
 // ---------------------------------------------------------------------------
-// Plate: bone on ink. Lime is only the Signal's ring and dot beside the name.
+// Graphite: near-white on graphite. Lime is only the ring and dot of the mark beside the name.
 const C = {
-  bg: '#0A100F', ink: '#121E1D', text: '#F0ECE0', text2: 'rgba(240,236,224,.76)', text3: 'rgba(240,236,224,.56)',
-  line: 'rgba(240,236,224,.16)', bone: '#F0ECE0', lime: '#D8FF3D', amber: '#E8B75A',
+  bg: '#0B0F11', ink: '#0B0F11', text: '#EEECE6', text2: '#A4A9A6', text3: '#868C8A',
+  line: 'rgba(238,236,230,.14)', bone: '#EEECE6', lime: '#D8FF3D', amber: '#E8B75A',
 };
 const F = {
   brand: '700 28px "Mona Sans Display", "Mona Sans", system-ui, sans-serif', label: '500 18px "Monaspace Neon", ui-monospace, monospace',
@@ -561,7 +561,7 @@ function paint(ctx, raw, W, top, draw) {
   };
   const bars = (grade, x, yy, color) => {
     if (!draw || !(grade in BARS)) return;
-    for (let i = 0; i < 4; i++) { ctx.fillStyle = i < BARS[grade] ? color : 'rgba(240,236,224,.18)'; rrect(ctx, x + i * 15, yy, 12, 9, 2); ctx.fill(); }
+    for (let i = 0; i < 4; i++) { ctx.fillStyle = i < BARS[grade] ? color : 'rgba(238,236,230,.18)'; rrect(ctx, x + i * 15, yy, 12, 9, 2); ctx.fill(); }
   };
 
   // The brand, and whose plan this is
@@ -585,7 +585,7 @@ function paint(ctx, raw, W, top, draw) {
       ctx.fillStyle = C.ink; ctx.beginPath(); ctx.arc(P + pad + 36, y + hh / 2, 36, 0, Math.PI * 2); ctx.fill();
     }
     drawIcon(card.first.pillar, P + pad + 18, y + hh / 2 - 18, 36, C.bone, 2.2);
-    label(`Start here: ${PILLAR[card.first.pillar]}`, P + pad + 98, y + pad + 14, 'rgba(18,30,29,.72)');
+    label(`Start here: ${PILLAR[card.first.pillar]}`, P + pad + 98, y + pad + 14, 'rgba(11,15,17,.72)');
     tl.forEach((l, i) => text(l, P + pad + 98, y + pad + 28 + 50 * (i + 1) - 12, F.hero, C.ink));
     y += hh + 30;
   }
@@ -617,7 +617,7 @@ function paint(ctx, raw, W, top, draw) {
     let lineH = 0;
     for (const c of sized) {
       if (lx > x && lx + c.cw > x + w) { top += lineH + gap; lx = x; lineH = 0; }
-      if (draw) { rrect(ctx, lx, top, c.cw, c.ch, 8); ctx.fillStyle = 'rgba(240,236,224,.07)'; ctx.fill(); }
+      if (draw) { rrect(ctx, lx, top, c.cw, c.ch, 8); ctx.fillStyle = 'rgba(238,236,230,.07)'; ctx.fill(); }
       text(fit(c.it.name, c.cw - 36 - (c.graded ? 76 : 0), F.name), lx + 18, top + 43, F.name, C.text);
       bars(evidenceOf(c.it), lx + c.cw - 76, top + 28, C.bone);
       if (c.warn) text(fit(c.it.tag, c.cw - 36, F.pill), lx + 18, top + 78, F.pill, C.amber);
@@ -643,7 +643,7 @@ function paint(ctx, raw, W, top, draw) {
   rowOf('Peptides & medicines', card.hidden ? (x, yy) => { text('Kept private', x, yy + 28, F.body, C.text3); return 36; } : chipsOf(card.peptides, 'None right now: the pillars do the work'));
   y -= 24;
   // The beam the floors rest on
-  if (draw) { ctx.fillStyle = 'rgba(240,236,224,.34)'; ctx.fillRect(P, y, inner, 4); }
+  if (draw) { ctx.fillStyle = 'rgba(238,236,230,.34)'; ctx.fillRect(P, y, inner, 4); }
   y += 20;
 
   // The pillars: tall, each with its drawing, name and state
@@ -656,16 +656,16 @@ function paint(ctx, raw, W, top, draw) {
       rrect(ctx, x, y, pw, ph, 10);
       if (f.state === 'start') { ctx.fillStyle = C.bone; ctx.fill(); }
       else if (f.state === 'next') {
-        ctx.fillStyle = 'rgba(240,236,224,.05)'; ctx.fill();
+        ctx.fillStyle = 'rgba(238,236,230,.05)'; ctx.fill();
         ctx.save(); rrect(ctx, x, y, pw, ph, 10); ctx.clip();
-        ctx.strokeStyle = 'rgba(240,236,224,.12)'; ctx.lineWidth = 5;
+        ctx.strokeStyle = 'rgba(238,236,230,.12)'; ctx.lineWidth = 5;
         for (let k = -ph; k < pw + ph; k += 22) { ctx.beginPath(); ctx.moveTo(x + k, y + ph); ctx.lineTo(x + k + ph, y); ctx.stroke(); }
         ctx.restore();
         rrect(ctx, x, y, pw, ph, 10); ctx.lineWidth = 3; ctx.strokeStyle = C.bone; ctx.stroke();
       } else if (f.state === 'strong') {
-        ctx.fillStyle = 'rgba(240,236,224,.085)'; ctx.fill();
+        ctx.fillStyle = 'rgba(238,236,230,.085)'; ctx.fill();
       } else {
-        ctx.setLineDash([10, 9]); ctx.lineWidth = 2.5; ctx.strokeStyle = 'rgba(240,236,224,.4)'; ctx.stroke(); ctx.setLineDash([]);
+        ctx.setLineDash([10, 9]); ctx.lineWidth = 2.5; ctx.strokeStyle = 'rgba(238,236,230,.4)'; ctx.stroke(); ctx.setLineDash([]);
       }
     }
     drawIcon(f.pillar, x + 24, y + 24, 46, f.state === 'start' ? C.ink : f.state === 'unknown' ? C.text3 : C.bone, 2);
@@ -676,7 +676,7 @@ function paint(ctx, raw, W, top, draw) {
     if (draw) {
       rrect(ctx, x + 24, y + ph - 54, sw, 36, 6);
       if (f.state === 'start') { ctx.fillStyle = C.ink; ctx.fill(); }
-      else { ctx.lineWidth = 2; ctx.strokeStyle = f.state === 'unknown' ? 'rgba(240,236,224,.4)' : C.bone; ctx.stroke(); }
+      else { ctx.lineWidth = 2; ctx.strokeStyle = f.state === 'unknown' ? 'rgba(238,236,230,.4)' : C.bone; ctx.stroke(); }
     }
     text(st, x + 39, y + ph - 29, F.pill, f.state === 'start' ? C.bone : f.state === 'unknown' ? C.text2 : C.bone);
   });
@@ -695,7 +695,7 @@ function paint(ctx, raw, W, top, draw) {
       const lead = s.state === 'strong' ? 'Keep it up: ' : s.state === 'unknown' ? 'Not sure yet' : '';
       const body = s.state === 'unknown' ? lead : `${lead}${s.step}`;
       if (draw) {
-        ctx.lineWidth = 2; ctx.strokeStyle = s.state === 'strong' ? C.bone : 'rgba(240,236,224,.4)';
+        ctx.lineWidth = 2; ctx.strokeStyle = s.state === 'strong' ? C.bone : 'rgba(238,236,230,.4)';
         ctx.beginPath(); ctx.arc(P + 20, y + 28, 20, 0, Math.PI * 2); ctx.stroke();
       }
       text(String(n), P + 20, y + 35, F.pill, C.text, 'center');

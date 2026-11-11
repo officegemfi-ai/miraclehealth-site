@@ -6,7 +6,7 @@
   "start_url": "/sig/",
   "scope": "/sig/",
   "display": "standalone",
-  "background_color": "#0A100F",
+  "background_color": "#0B0F11",
   "theme_color": "#0B0F11",
   "icons": [
     { "src": "/sig/icon-192.png", "sizes": "192x192", "type": "image/png" },

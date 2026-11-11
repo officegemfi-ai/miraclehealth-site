@@ -5,10 +5,11 @@ lives at https://community.miraclehealth.us (the `miracle-health-community` repo
 
 Static pages with no tracking and no cookies, served by GitHub Pages from the `main`
 branch: the front page (no scripts), the Library at /library, Ask Sig, the chat with Sig (Miracle Health's AI) that
-speaks for the studies and the whole community, on its own page at /sig (the old address /ai goes on to it), and My Miracle, what a member keeps on their device, at /my. The look is Plate: deep ink pages, bone type, Mona Sans
+speaks for the studies and the whole community, on its own page at /sig (the old address /ai goes on to it), and My Miracle, what a member keeps on their device, at /my. The look is Graphite: graphite pages (the same as Sig's terminal), near-white type with two quiet greys, Mona Sans
 for the words (headlines set wide and heavy), Monaspace Neon for labels and everything measured,
-plates (cards and figures) with hairline frames, and lime kept for the Community Signal and the
-one main action on a page. No photographs: the Library's graph is the picture. The colors stay the
+plates (cards and figures) with hairline frames, and the one main action on a page in white. Colour is a
+signature: it shows only where one of Sig's agents signs what it made, lime for the community and its
+Signal, blue for the Evidence librarian's grades, each other agent in its own colour on Ask Sig. No photographs: the Library's graph is the picture. The colors stay the
 same whatever the visitor's device is set to. On phones the links sit behind a Menu button, which
 works without scripts.
 
@@ -26,7 +27,7 @@ works without scripts.
 | `my/` | My Miracle, at /my (written by the library build, with `my.css` and `my.js`): what a member keeps on a device, together. Their Miracle Plan and its ticks, how it's going (one-tap check-ins, which can become a community post they edit and post there), their saved stack with each compound's evidence and Signal, their spaces in the community, a link and QR code that move it all to another device after "#", and a way to forget it. All of it lives in the browser's own storage |
 | `privacy.html`, `terms.html` | The privacy notice and terms of use, at /privacy and /terms (the community app links to the privacy notice at sign-up) |
 | `about/`, `status/`, `goals/`, `compare/`, `weekly/`, `founders/` | Written by the library build (`scripts/build_pages.mjs`): who runs Miracle Health, how it's paid for, reviewers and corrections (`library/data/about.json`); where each compound stands with the FDA, from the fact sheets; the compounds people take for each of the twelve goals; two compounds side by side; The Signal, the weekly email: signing up and each issue (`library/data/weekly/<n>.json`, with the email itself at `weekly/<n>/email.html`); and the first 100 founding reporters. `pages/pages.css` and `pages/pages.js` (live Signals, the founders' count and the method page's check of the Signal against the studies) |
-| `img/og/`, `img/og-plan.jpg` | Share images for those pages and for a shared plan, in Plate like the site, made by `scripts/og_images.mjs` (needs Playwright; run it by hand, then the library build) |
+| `img/og/`, `img/og-plan.jpg` | Share images for those pages and for a shared plan, in Graphite like the site, made by `scripts/og_images.mjs` (needs Playwright; run it by hand, then the library build) |
 | `404.html` | Shown for any address that doesn't exist |
 | `img/` | The share images and the graph's still picture. Plate uses no photographs: the photos the site had (`hero-*`, `report-*`, `move-*`, `library-*`, `join-*`, as WebP in a few widths) are kept, unused, in case they're wanted back |
 | `og.jpg` | The picture shown when someone shares the link (made by `scripts/og_images.mjs`, with the others) |
