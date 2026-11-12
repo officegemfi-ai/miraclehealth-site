@@ -325,6 +325,9 @@ function signalBoard(board) {
   const said = (k) => load.querySelector(`[data-load="${k}"]`);
   const S = (k) => board.querySelector(`[data-s="${k}"]`);
   const fmtN = (n) => Number(n || 0).toLocaleString('en-US');
+  // the labels under the totals: "1 member", "2 members"
+  const ONE = { signals: 'live signal', reports: 'first-hand report', moves: 'move today', members: 'member' };
+  const MANY = { signals: 'live signals', reports: 'first-hand reports', moves: 'moves today', members: 'members' };
   const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
   const stamp = (iso, withDate = true) => {
     const d = new Date(iso);
@@ -338,7 +341,7 @@ function signalBoard(board) {
     spin = setInterval(() => {
       tick = (tick + 1) % (wheel.length + 1);
       wheel.forEach((p, i) => p.classList.toggle('on', i < tick));
-      said('agents').textContent = `${tick}/11 …`;
+      said('agents').textContent = `${tick}/12 …`;
     }, 140);
   }
   let shown = null, version = null, seenOnce = false;
@@ -400,7 +403,11 @@ function signalBoard(board) {
     }
     const share = Math.max(0, Math.min(100, Number(c.community_share) || 0));
     const totals = { signals: c.signals ?? all.length, reports: c.reports ?? 0, moves: c.moves_today ?? 0, members: c.members ?? 0 };
-    for (const [k, n] of Object.entries(totals)) { S(k).dataset.to = String(n); if (seenOnce || reduceMotion) S(k).textContent = fmtN(n); }
+    for (const [k, n] of Object.entries(totals)) {
+      S(k).dataset.to = String(n);
+      S(k).nextElementSibling.textContent = Number(n) === 1 ? ONE[k] : MANY[k];
+      if (seenOnce || reduceMotion) S(k).textContent = fmtN(n);
+    }
     S('share').textContent = `members ${share}%`;
     S('forums').textContent = `forums ${100 - share}%`;
     S('bar').style.width = `${share}%`;
@@ -431,9 +438,10 @@ function signalBoard(board) {
   }
   getSignal().then((snap) => {
     if (!snap || !snap.signals) throw new Error('no snapshot');
+    clearInterval(spin); // stop the spinner first, so the full ring and 12/12 stay up until the board shows
     const n = snap.community?.signals ?? Object.keys(snap.signals).length;
     said('signal').replaceChildren(`${fmtN(n)} `, ck());
-    said('agents').replaceChildren('11/11 ', ck());
+    said('agents').replaceChildren('12/12 ', ck());
     wheel.forEach((p) => p.classList.add('on'));
     if (centre) centre.classList.add('on');
     render(snap);
