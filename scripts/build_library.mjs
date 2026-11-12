@@ -154,8 +154,8 @@ const V = {
 // the status bar (Sig, safety on, no doses, no sellers, no diagnosis, the Library's date). The
 // panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a phone.
 const ICO = {
-  menu: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
-  fold: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  menu: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+  fold: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 };
 const libDateOf = () => date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
 const PLACE_ICON = { library: () => glyphSvg('evidence', { size: 16 }), ai: () => ringSvg(16), community: () => glyphSvg('community', { size: 16 }), my: () => glyphSvg('builder', { size: 16 }) };
@@ -170,7 +170,7 @@ function osSide(current, ctx = '', url = '') {
   ${ctx ? `<div class="os-ctx">${ctx}</div>` : ''}
   <nav class="os-more" aria-label="More of the site"><p class="os-k">more</p>${MORE.map(([href, label]) => `<a href="${href}"${href === url ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
   <div class="os-foot">
-    <div class="os-acct"><a class="os-signin" href="${COMMUNITY}/">Sign in</a><a class="btn lime sm" href="${COMMUNITY}/">Join</a></div>
+    <div class="os-acct"><a class="os-signin" href="${COMMUNITY}/">Sign in</a><a class="btn line sm" href="${COMMUNITY}/">Join</a></div>
     <p class="os-legal"><a href="/privacy">Privacy</a><span aria-hidden="true"> · </span><a href="/terms">Terms</a><span aria-hidden="true"> · </span><span>© 2026</span></p>
   </div>
 </aside>`;
@@ -217,6 +217,7 @@ function osClose({ url = '/', status = '' }) {
       ${footLinks()}
     </div>
     <div class="foot-row">
+      <a class="foot-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="69" height="24"></a>
       <p>Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
       <p class="copy">© 2026 Miracle Health</p>
     </div>
@@ -278,8 +279,8 @@ function page({
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${e(title)}</title>
 <meta name="description" content="${e(description)}">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#0B0F11">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#12171A">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
@@ -561,7 +562,7 @@ function bottomLine(c, f) {
       </div>
       <footer class="vs-foot">
         <p>What people report isn’t proof, and many problems ease on their own. Use this to decide what to ask your doctor, not what to take.</p>
-        <div class="vs-act"><a class="btn lime" href="${shareLink(c.id)}">Share how it went</a><a class="bl-how" href="/method/">How these are made</a></div>
+        <div class="vs-act"><a class="btn line" href="${shareLink(c.id)}">Share how it went</a><a class="bl-how" href="/method/">How these are made</a></div>
       </footer>
     </article>
   </div>`;
@@ -585,7 +586,7 @@ function entryPage(c) {
     ['Blood tests', (f.labs?.before || []).length || (f.labs?.during || []).length
       ? `<a href="#labs">${[(f.labs.before || []).length ? `${f.labs.before.length} before starting` : null, (f.labs.during || []).length ? `${f.labs.during.length} while taking it` : null].filter(Boolean).join(' · ')}</a>`
       : 'None routinely needed'],
-    ['Checked', `${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a>`],
+    ['Checked', `<span class="dd-log">${date(f.checked)} against <a href="#sources">${(f.sources || []).length} sources</a></span>`],
   ].filter(Boolean) : [];
   const toc = f ? [['voices', 'The bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood tests'], ...(f.studies?.length ? [['studies', 'The main studies']] : []), ['ask', 'Ask your doctor'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood tests to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
@@ -607,7 +608,7 @@ function entryPage(c) {
   </nav>`;
   const status = f ? `<span class="ws ws-sheet">fact sheet · ${e((SINGULAR[c.family] || c.family).toLowerCase())}</span>
     <span class="ws ls-ev"><i aria-hidden="true"></i>${e((GRADE[f.evidence.grade]?.[0] || f.evidence.grade).toLowerCase())}</span>
-    <span class="ws">${(f.sources || []).length} sources</span>
+    <span class="ws ws-src">${(f.sources || []).length} sources</span>
     <span class="ws ls-sig" data-live="sb-signal" hidden><i aria-hidden="true"></i>signal <b></b><span class="ls-lvl"></span></span>` : '';
   // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
   const print = f && BODY.compounds[c.id] ? `<figure class="le-print" aria-labelledby="le-print-cap">
@@ -620,7 +621,7 @@ function entryPage(c) {
   <div class="wrap">
     ${print}
     <p class="kick lime">${e(familyLine(c))}</p>
-    <h1${c.name.length > 22 ? ' class="long"' : ''}>${e(c.name)}</h1>
+    <h1>${e(c.name)}.</h1>
     ${shownAliases(c).length ? `<p class="aka">Also called ${shownAliases(c).map(e).join(', ')}</p>` : ''}
     ${f ? `<p class="lede">${e(f.summary)}</p>` : ''}
     <div class="le-badges">
@@ -652,7 +653,7 @@ function entryPage(c) {
       <div class="gc-head"><span>Community Signal</span><span class="live lime"><i aria-hidden="true"></i>Live</span></div>
       <p class="sig-wait">Loading what members report…</p>
       <noscript><p>The Community Signal needs JavaScript. You can see it in the community.</p></noscript>
-      <a class="btn lime sm sig-cta" href="${shareLink(c.id)}">Share how it went</a>
+      <a class="btn line sm sig-cta" href="${shareLink(c.id)}">Share how it went</a>
     </div>
   </div>
 </section>
@@ -667,7 +668,7 @@ function entryPage(c) {
     <div class="side-card">
       <p class="mono">// took it?</p>
       <p>Your report moves the ${e(c.name)} Signal, whether it worked or not.</p>
-      <a class="btn lime sm" href="${shareLink(c.id)}">Share how it went</a>
+      <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
     </div>
     <p class="side-note">Experiences and published evidence, not medical advice. No doses, no sellers.</p>
   </aside>
@@ -811,11 +812,11 @@ function aiPage() {
   const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq tm-gl" aria-hidden="true">${glyphSvg(key, { size: 14 })}</span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title">
-    <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
     <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
     <div class="tm-tabstrip" id="tm-tabstrip">
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
-      <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+      <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
     </div>
     <span class="tm-online" aria-hidden="true"><span class="tm-dots">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>${AGENTS.length} agents online</span></span>
     <span class="tm-count-sm" id="tm-count-sm" aria-hidden="true"><b>${AGENTS.length}</b>/${AGENTS.length} ready</span>
@@ -842,7 +843,7 @@ function aiPage() {
         <label class="sr" for="ai-input">Message Sig</label>
         <span class="tm-field"><textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea><span class="tm-caret" aria-hidden="true"></span></span>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
-        <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg><span class="tm-key k-send" aria-hidden="true">↵ send</span><span class="tm-key k-stop" aria-hidden="true">■ stop</span></button>
+        <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg><span class="tm-key k-send" aria-hidden="true">↩ send</span><span class="tm-key k-stop" aria-hidden="true">stop</span></button>
       </div>
     </form>
     <div class="ai-begin" id="ai-begin">
@@ -880,7 +881,7 @@ function aiPage() {
 </div>`;
   // Sig's own page: the window fills the browser beside a side panel with the chats kept on this
   // device and the site's own links (the site's bar and footer give way to it)
-  const ico = (d) => `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const ico = (d) => `<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const shell = `<div class="sg" id="sg">
 <aside class="sg-side" id="sg-side" aria-label="Your chats and the site">
   <div class="sg-head">
@@ -888,14 +889,15 @@ function aiPage() {
     <button class="sg-fold" id="sg-fold" type="button" aria-label="Hide the side panel" aria-controls="sg-side" aria-expanded="true">${ico('M10 3.5 5.5 8l4.5 4.5')}</button>
   </div>
   <button class="sg-new" id="sg-new" type="button">${ico('M8 2.5v11M2.5 8h11')}<span>New chat</span></button>
+  <nav class="sg-site os-places" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
   <section class="sg-chats" aria-labelledby="sg-chats-h">
     <h2 class="sg-k" id="sg-chats-h">Chats on this device</h2>
     <ol class="sg-list" id="sg-list"></ol>
     <p class="sg-none" id="sg-none">Your chats show here. They stay on this device, never on our servers.</p>
   </section>
+  <nav class="os-more sg-more" aria-label="More of the site"><p class="os-k">more</p>${MORE.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</nav>
   <div class="sg-foot">
-    <nav class="sg-site os-places" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
-    <div class="sg-acct"><a class="sg-signin" href="${COMMUNITY}/">Sign in</a><a class="btn lime sm" href="${COMMUNITY}/">Join</a></div>
+    <div class="sg-acct"><a class="sg-signin" href="${COMMUNITY}/">Sign in</a><a class="btn line sm" href="${COMMUNITY}/">Join</a></div>
     <div class="sg-wipe-row" id="sg-wipe-row">
       <button class="sg-wipe" id="sg-wipe" type="button">${ico('M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5')}<span>Delete all chats</span></button>
     </div>
@@ -948,7 +950,7 @@ function planPage() {
   const body = `<div class="plan-wrap">
   <div class="plan-root" id="plan-root">
     <section class="plan-intro">
-      <h1>A Miracle Plan, shared with you</h1>
+      <h1>A Miracle Plan, shared with you.</h1>
       <p>Someone built this plan with Sig and wanted you to see it: the three foundations everything rests on, what they’ve built on top, and the pillar they’re working on. It travels inside the link you opened, so Miracle Health never receives it.</p>
     </section>
     <noscript><p class="plan-oops-p">Opening a plan needs JavaScript.</p></noscript>
@@ -975,9 +977,9 @@ function planPage() {
 function myPage() {
   const body = `<div class="my-wrap" id="my-root" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <section class="my-intro">
-    ${ringSvg(64, { cls: 'sig' })}
+    ${glyphSvg('builder', { size: 48 })}
     <div>
-      <h1>My Miracle</h1>
+      <h1>My Miracle.</h1>
       <p>Your plan, how it’s going, your stack and your places in the community, together. They’re kept on this device; Miracle Health never receives them.</p>
     </div>
   </section>
@@ -1023,7 +1025,7 @@ function storyPage() {
   const body = `<article class="sy">
   <section class="sy-hero">
     <div class="wrap sy-hero-in">
-      <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26, centerY: 0 })}<span class="sy-ring-n"><b>12</b>agents</span></div>
+      <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26, centerY: -66 })}<span class="sy-ring-n"><b>12</b>agents</span></div>
       <div class="sy-hero-copy">
         <p class="sy-k">~/story · the new Miracle Health</p>
         <h1>One app.<br> Twelve agents.<br> <em>Every answer, checked.</em></h1>
@@ -1053,8 +1055,8 @@ function storyPage() {
       <div class="sy-term" aria-label="A run, as Sig logs it">
         <p class="sy-ps"><span>sig@miracle ~/chats ›</span> ask “Is HGH plus enclomiphene good for fat loss?”</p>
         <p class="sy-sum">▾ run · ${STORY_RUN.length} steps · ${AGENTS.length} agents</p>
-        <ol class="sy-log">${STORY_RUN.map(([a, t], i) => `<li data-agent="${a}"><span class="sl-n">${String(i + 1).padStart(2, '0')}</span><span class="sl-who">${short(a)}</span><span class="sl-st" aria-hidden="true">✓</span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
-        <p class="sy-ah"><b>answer</b><span class="sy-rule" aria-hidden="true"></span><span>checked by the safety agent <span class="sy-ok">✓</span></span></p>
+        <ol class="sy-log">${STORY_RUN.map(([a, t], i) => `<li data-agent="${a}"><span class="sl-n">${String(i + 1).padStart(2, '0')}</span><span class="sl-who">${short(a)}</span><span class="sl-st" aria-hidden="true"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
+        <p class="sy-ah"><b>answer</b><span class="sy-rule" aria-hidden="true"></span><span>checked by the safety agent <span class="sy-ok"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></p>
         <div class="sy-part" data-agent="recommender"><span class="sp-n">1</span><p class="sp-k"><span>// the bottom line</span><b>recommender</b></p><p>No trial has tested the two together for fat loss. They act on different hormone systems, so any effect would come from each one separately.</p></div>
         <div class="sy-part" data-agent="interpretation"><span class="sp-n">8</span><p class="sp-k"><span>// efficacy, reasoned last</span><b>interpretation agent</b></p><p>Plausible, unproven. A small combined effect is possible; nothing has measured the pair.</p></div>
       </div>
@@ -1126,7 +1128,7 @@ function methodPage() {
   const body = `<div class="doc-head">
     <div class="wrap">
       <p class="kick">Method</p>
-      <h1>How the numbers are made</h1>
+      <h1>How the numbers are made.</h1>
       <p>Updated ${date(baselines.checked)}</p>
     </div>
   </div>
@@ -1154,17 +1156,17 @@ function methodPage() {
     <p>Two, six and twelve weeks later, the author is asked <b>“How is it now?”</b>: better, about the same or worse; still taking it or not; and if not, why (it worked, it didn’t help, side effects, cost or hassle). The latest answer is the one that counts, and why people stop is counted too.</p>
 
     <h2 id="weights">Reports are weighted, never people</h2>
-    <table class="mtable">
+    <div class="mtable-wrap"><table class="mtable">
       <thead><tr><th scope="col">What</th><th scope="col">Counts as</th></tr></thead>
       <tbody>
-        <tr><th scope="row">A first-hand report</th><td>1</td></tr>
-        <tr><th scope="row">…that its author confirmed or fixed</th><td>× 1.25</td></tr>
-        <tr><th scope="row">…by how long they took it</th><td>under a week × 0.6 · 1–4 weeks × 0.9 · 1–3 months × 1 · 3 months or more × 1.15 · not said × 0.85</td></tr>
-        <tr><th scope="row">…for each check-in, up to three</th><td>× 1.1</td></tr>
-        <tr><th scope="row">A “same for me” on someone’s report</th><td>half a report</td></tr>
-        <tr><th scope="row">From an account in its first days</th><td>half</td></tr>
+        <tr><th scope="row">A first-hand report</th><td class="d">1</td></tr>
+        <tr><th scope="row">…that its author confirmed or fixed</th><td class="d">× 1.25</td></tr>
+        <tr><th scope="row">…by how long they took it</th><td class="d">under a week × 0.6 · 1–4 weeks × 0.9 · 1–3 months × 1 · 3 months or more × 1.15 · not said × 0.85</td></tr>
+        <tr><th scope="row">…for each check-in, up to three</th><td class="d">× 1.1</td></tr>
+        <tr><th scope="row">A “same for me” on someone’s report</th><td class="d">half a report</td></tr>
+        <tr><th scope="row">From an account in its first days</th><td class="d">half</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <ul>
       <li>Each account counts once per compound: its latest report.</li>
       <li>A “same for me” from someone whose own report already counts adds nothing more.</li>
@@ -1176,10 +1178,10 @@ function methodPage() {
     <h2 id="signal">The Community Signal</h2>
     <p>One number from 0 to 100 per compound, blend and stack. It has four parts:</p>
     <ul>
-      <li><b>65%</b> how reports went (better 1, about the same ½, worse 0)</li>
-      <li><b>15%</b> how much they agree</li>
-      <li><b>10%</b> how many independent voices there are</li>
-      <li><b>10%</b> how much there is to go on</li>
+      <li><b class="num">65%</b> how reports went (better 1, about the same ½, worse 0)</li>
+      <li><b class="num">15%</b> how much they agree</li>
+      <li><b class="num">10%</b> how many independent voices there are</li>
+      <li><b class="num">10%</b> how much there is to go on</li>
     </ul>
     <p>Every Signal starts from Miracle Health’s reading of public forums, which counts as 50 reports; every first-hand report here shifts the balance toward members’ own experience.</p>
     <p>Each Signal earns a level for how far along that line it is:</p>

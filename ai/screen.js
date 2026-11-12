@@ -17,7 +17,7 @@
 // windows it's a sheet that pulls up over the chat (ai.js opens and closes it), and a bar above
 // the box to write in says what's on it. window.MHScreen is the whole interface.
 import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=34d9695824';
-import { sealSvg } from '/library/signalviz.js?v=a15fe0a155';
+import { sealSvg } from '/library/signalviz.js?v=f388629295';
 import { h, getSignal } from '/lib/dom.js?v=cef2a56736';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -25,9 +25,9 @@ const coarse = matchMedia('(pointer: coarse)').matches;
 // Narrow windows: the screen is a sheet over the chat, and it opens on the rows that matter
 const narrow = matchMedia('(max-width: 1100px)');
 const OP = {
-  is: ['─▶', 'is'], up: ['─▲', 'raises'], down: ['─▼', 'lowers'], block: ['─┤', 'blocks'], watch: ['─◆', 'check'], warn: ['─○', 'safety note'],
+  is: ['─▶', 'is'], up: ['─▲', 'raises'], down: ['─▼', 'lowers'], block: ['─┤', 'blocks'], watch: ['─◊', 'check'], warn: ['─○', 'safety note'],
 };
-const DIR = { up: ['▲', 'may rise'], down: ['▼', 'may fall'], watch: ['◆', 'worth checking'] };
+const DIR = { up: ['▲', 'may rise'], down: ['▼', 'may fall'], watch: ['◊', 'worth checking'] };
 const LEVEL = { avoid: 'Avoid together', caution: 'Worth checking', info: 'Good to know' };
 const RANK = { avoid: 3, caution: 2, info: 1 };
 const GRADE = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'limited evidence', preclinical: 'animal and lab studies only', anecdotal: 'user reports only' };
@@ -270,7 +270,7 @@ function chipsNode(ids, f, sub) {
   if (S.checking && sub.ok == null) add('check', '…', 'Checking together', 'busy');
   else if (sub.ok === false) add('check', '○', 'Couldn’t check just now');
   else if (top === 'avoid') add('check', '✕', 'Auditor: avoid together', 'avoid');
-  else if (top === 'caution') add('check', '◆', 'Auditor: worth checking', 'caution');
+  else if (top === 'caution') add('check', '◊', 'Auditor: worth checking', 'caution');
   else if (sub.ok) add('check', '✓', ids.length > 1 ? 'No clash found' : 'Checked for you');
   else if (sub.asked) add('check', '○', 'Check comes with the answer');
   else if (ids.length > 1) add('check', '○', 'Not checked together');
@@ -619,7 +619,7 @@ function markersNode(ids, f) {
       chips.length ? h('ul', { class: 'mk-list' }, chips) : null), colorOf(id)));
   }
   box.append(h('p', { class: 'mk-def', 'data-at': 'panel', 'aria-live': 'polite', hidden: true }),
-    h('p', { class: 'sc-small', text: '▲ may rise · ◆ worth checking. Your doctor decides what to test, and when.' }));
+    h('p', { class: 'sc-small', text: '▲ may rise · ◊ worth checking. Your doctor decides what to test, and when.' }));
   return box;
 }
 function logNode(sub) {
@@ -631,7 +631,7 @@ function logNode(sub) {
   }
   const flagged = (s) => s.flag && s.flag !== 'none';
   box.append(h('ol', { class: 'lg-list' }, steps.map((s) => h('li', { class: flagged(s) ? 'flag' : '' },
-    h('span', { class: 'lg-mark', 'aria-hidden': 'true', text: flagged(s) ? '◆' : '✓' }),
+    h('span', { class: 'lg-mark', 'aria-hidden': 'true', text: flagged(s) ? '◊' : '✓' }),
     h('span', {}, h('b', { text: AGENT[s.agent] || clean(s.agent, 30) }), ` ${clean(s.title, 180)}`)))));
   if (sub.ms) box.append(h('p', { class: 'sc-small', text: `${(sub.ms / 1000).toFixed(1)} seconds from your message to the checked answer.` }));
   return box;
@@ -970,7 +970,7 @@ function drawPeek(isNew) {
   const top = topFinding(sub);
   if (f && ids.length > 1 && f.all) chips.push(['meet', '∩', f.meet.length ? f.meet.map((r) => r.at).join(', ') : 'no place in common']);
   if (top === 'avoid') chips.push(['avoid', '✕', 'avoid together']);
-  else if (top === 'caution') chips.push(['caution', '◆', 'auditor: worth checking']);
+  else if (top === 'caution') chips.push(['caution', '◊', 'auditor: worth checking']);
   if (f?.opposed.length) chips.push(['caution', '⇅', `${listOf(f.opposed.map((o) => markerName(o.m)))} both ways`]);
   if (f?.cautions.length) chips.push(['warn', '○', plural(f.cautions.length, 'safety note')]);
   if (f?.count) chips.push(['', '', plural(f.count, 'marker')]);
