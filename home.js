@@ -7,6 +7,7 @@
 // what it was published with.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d5d77d9d2d';
 import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=00c2752062';
+import { startHow } from '/lib/how.js?v=b5712a2ea7';
 import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -572,3 +573,6 @@ if (askForm) askForm.addEventListener('submit', (e) => {
 
 // The drawings that move without end only move while they're on screen
 document.querySelectorAll('svg.sig, svg.takeover, svg.flowviz').forEach(calm);
+
+// How it works: the system behind one honest number, on the live Signal
+startHow(document.getElementById('how'), getSignal);

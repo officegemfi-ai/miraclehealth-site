@@ -433,3 +433,66 @@
   .fp-top tr.flash-up,.fp-top tr.flash-down{animation:none}
   .log li,.signed,.roster button,.fp-bigring .rg,.fp-mix-bar i,.fp-bar>span:first-child i{transition:none}
 }
+
+/* how:system: "The system behind one honest number", the homepage's How it works (page 18 of the design canvas).
+   A spine you scroll down, six numbered cards that draw themselves in, and the Signal written in what people report. */
+.hs{position:relative;margin:40px 0 0;padding:0 0 40px;container-type:inline-size}
+.hs svg{display:block;overflow:visible}
+.hs-wide{font-stretch:125%;letter-spacing:-.02em}
+.hs-intro{position:relative;padding:120px 24px 140px;text-align:center}
+.hs-kick{display:inline-flex;align-items:center;gap:10px;margin:0;font:400 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--lime)}
+.hs-kick i{width:7px;height:7px;border-radius:50%;background:var(--lime)}
+.hs-head{margin:22px 0 0;font:800 expanded clamp(32px,4.2cqi,56px)/1 var(--head);letter-spacing:-.022em;text-transform:uppercase;color:var(--text)}
+.hs-head.hs-small{font-size:clamp(30px,3.6cqi,48px)}
+.hs-lede{max-width:34em;margin:22px auto 0;font:400 18px/1.55 var(--body);color:var(--text-2)}
+.hs-spine{position:absolute;left:50%;top:0;width:2px;margin-left:-1px;background:repeating-linear-gradient(to bottom,var(--line-2) 0 2px,transparent 2px 10px)}
+.hs-fill{position:absolute;left:0;top:0;width:2px;height:0;background:var(--lime)}
+.hs-marker{position:absolute;left:50%;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;background:var(--text);z-index:3}
+.hs-steps{margin:0;padding:0;list-style:none}
+.hs-step{position:relative;height:880px;display:flex;align-items:center}
+.hs-card{position:relative;flex:none;width:min(560px,calc(50% - 96px));display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line-2);z-index:2}
+.hs-r .hs-card{margin-left:calc(50% + 64px)}
+.hs-l .hs-card{margin-left:auto;margin-right:calc(50% + 64px)}
+.hs-h{position:relative;display:flex;align-items:center;gap:20px;height:92px;padding:0 24px}
+.hs-h::after,.hs-ill::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--line) 0 40px,transparent 40px 60px,var(--line) 60px)}
+.hs-num{flex:none;display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);font:400 20px/1 var(--mono);color:var(--text)}
+.hs-title{min-width:0;font:400 17.5px/1.25 var(--mono);letter-spacing:.02em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:clip}
+.hs-ill{position:relative;aspect-ratio:560/380}
+.hs-ill .hs-svg{width:100%;height:100%}
+.hs-f{display:flex;align-items:center;gap:16px;height:96px;padding:0 24px 0 84px}
+.hs-tile{flex:none;display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);background:var(--ink)}
+.hs-who{font:500 24px/1 var(--body);letter-spacing:-.01em;color:var(--text-2)}
+.hs-sub{margin-left:auto;font:400 11px/1.3 var(--mono);color:var(--muted);text-align:right}
+.hs-tree-v{position:absolute;left:49px;top:72px;bottom:48px;width:1px;background:var(--line-2)}
+.hs-tree-h{position:absolute;left:49px;bottom:48px;width:34px;height:1px;background:var(--line-2)}
+.hs-cap{position:absolute;top:50%;width:min(380px,calc(50% - 120px));transform:translateY(-50%);z-index:2}
+.hs-r .hs-cap{right:calc(50% + 64px);text-align:right}
+.hs-l .hs-cap{left:calc(50% + 64px)}
+.hs-cap p{margin:14px 0 0;font:400 17.5px/1.6 var(--body);color:var(--text-2)}
+.hs-cap .hs-cap-k{margin:0;font:400 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--lime)}
+.hs-finale{position:relative;height:1600px}
+.hs-ringc{position:absolute;left:50%;top:80px;width:980px;max-width:100%;aspect-ratio:1;transform:translateX(-50%)}
+.hs-mid{position:absolute;left:50%;top:570px;transform:translate(-50%,-50%);text-align:center}
+.hs-n{font:800 expanded clamp(56px,7cqi,96px)/1 var(--head);letter-spacing:-.03em;color:var(--text)}
+.hs-s{margin-top:12px;font:400 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--text-2)}
+.hs-close{position:absolute;left:0;right:0;top:1120px;padding:0 24px;text-align:center}
+.hs-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:30px 0 0}
+@container (max-width:900px){
+  .hs-spine,.hs-marker{left:20px}
+  .hs-intro{padding:72px 20px 60px 44px;text-align:left}
+  .hs-lede{margin-left:0}
+  .hs-step{display:block;height:auto;padding:28px 0 28px 44px}
+  .hs-card{width:100%;margin:0!important}
+  .hs-cap{position:relative;top:auto;left:auto!important;right:auto!important;width:100%;transform:none}
+  .hs-cap{margin:0 0 16px;text-align:left!important}
+  .hs-title{font-size:14px;line-height:1.35;white-space:normal}
+  .hs-f{padding-left:74px}
+  .hs-who{font-size:20px}
+  .hs-sub{display:none}
+  .hs-finale{height:auto;padding:40px 0 0 44px}
+  .hs-ringc{position:relative;top:auto;left:auto;transform:none;width:100%}
+  .hs-mid{top:calc(40px + 50cqi);left:calc(44px + (100cqi - 44px) / 2)}
+  .hs-close{position:relative;top:auto;padding:40px 0 0;text-align:left}
+  .hs-ctas{justify-content:flex-start}
+}
+/* /how:system */
