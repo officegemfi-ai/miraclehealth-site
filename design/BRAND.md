@@ -6,13 +6,13 @@ Miracle Health is an independent, free place for adults 18+ to look up what they
 
 Build every page from this system: the window and its parts (`components/`), the tokens (`tokens.json`), the twelve agents' glyphs, Sig's ring and the compound prints (`assets/`). The illustration rules are in *The illustration system*; the launch rules are in *The launch campaign*.
 
-The look is the **Sig system**, page 9 ("9 Sig system") of the Miracle Health design canvas: graphite pages, signed in Sig's colours. When this book and that page disagree, the page wins and this book is corrected. *The Sig system*, below, says what it asks of every page.
+The look is **black and electric blue**, pages 15 to 18 of the Miracle Health design canvas ("15 Black and electric blue", "16 Website, every page", "17 Community, every screen", "18 The system, animated"): black pages under a faint grid, wide capital headlines, one electric blue main action, signed in Sig's colours. It keeps the Sig system's window (page 9). When this book and those pages disagree, the pages win and this book is corrected. *The Sig system*, below, says what it asks of every page.
 
 ## Principles
 
 1. **Every answer, checked.** The design shows the checking: the run log of each agent's step, the Safety agent first and last, the read strip under a report, "safety on" in every status bar.
 2. **Measured, not sold.** Every number comes with its source and how sure anyone can be ("checked oct 28, 2026 against 10 sources", "strong evidence"). It is set in mono. Never show a price, a seller, a brand, a lab or an amount.
-3. **Colour is a signature.** Pages are graphite and near-white. Colour shows who is speaking or what is being measured: `lime` for the community and its Signal, `evidence` for the evidence, and each agent's own `agent-*` hue for that agent. Never use colour as decoration.
+3. **Colour is a signature.** Pages are black and near-white. Colour shows who is speaking or what is being measured: Signal blue (`lime` in code) for the community and its Signal, mint (`evidence`) for the studies, and each agent's own `agent-*` hue for that agent. Never use colour as decoration.
 4. **One window, everywhere.** The same side panel, title bar, path and status bar on every page and every surface. The side panel is never removed: it folds away or slides in.
 5. **Everything is a file.** Things are named the way a terminal names them: a fact sheet is `semaglutide.md`, the feed is `home.feed`, the Signal is `signal.top`, a run is a log. People should be able to read the system, not just look at it.
 
@@ -53,27 +53,27 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
   - `bar` is the title bar and anything that floats (search results, menus).
   - `surface-raised` is cards, plates, fields and the read strip.
 - **Words:** `text` for words and headlines, `text-2` for ledes and secondary lines, `muted` for labels, meta and the path. Each reads at 5:1 or better on every ground.
-- **One main action per view:** the white button, `accent` with `on-accent` words. Every other button is a hairline: `line-2` border, `text` words.
+- **One main action per view:** the electric blue button, `accent` lit from the top by `accent-hi`, with white `on-accent` words and a soft glow. A white button is the second choice; every other button is a hairline: `line-2` border, `text` words.
 - **Signatures:**
-  - `lime` only for the community and its Signal: the live dot, scores, moves up, points, the community's place mark and tab.
-  - `evidence` only for evidence: grades, the evidence meter, a print's rungs, the Library's mark.
+  - Signal blue (`lime`) only for the community and its Signal: the live dot, scores, moves up, points, the community's place mark and tab.
+  - Mint (`evidence`) only for the studies: grades, the evidence meter, a print's rungs, the Library's mark.
   - `safety` only for the Safety agent and "safety on".
   - `agent-*` only where that agent is named, speaks or made something.
   - Never fill a button with a signature colour.
-- **Moves:** `lime` ▲ up, `down` ▼ down. The arrow always carries the direction too.
+- **Moves:** Signal blue ▲ up, `down` ▼ down. The arrow always carries the direction too.
 - **Hairlines:** `line` frames windows and cards; `line-2` borders controls. Neither carries meaning alone.
-- **No** gradients except the Signal's scale bar, no glows and no blue-purple washes. One set of colours, Graphite, whatever a device is set to.
+- **Gradients and glows** only for the Signal's scale bar, the main action (electric blue, lit from the top, with its glow) and the window's ground (an ultramarine wash at the top over a faint 64px grid). One set of colours, black and electric blue, whatever a device is set to.
 
 ## Type
 
 - **Words: Mona Sans.**
   - `body` on the site, `body-app` in the community, `lede` under a headline.
   - `h3` for card and post titles, `nav` for side panel rows, `button` for buttons.
-- **Headlines: Mona Sans,** at its normal width and semibold (600), tracked tight (-0.02 to -0.03em). No wide or heavy cut.
+- **Headlines: Mona Sans,** wide (125%), heavy (800) and in capitals, tracked tight (-0.022em), set at about 0.86 of the old sizes so a line keeps its length. Headings inside an answer or a card stay semibold and in sentence case.
   - `hero` (64px) for the one headline of Home and the story page, `section` (42px) for section heads, `page` (38px) for a page's h1, `h2` (22px) inside a page.
   - A page's h1 ends in a full stop: "Your feed.", "The Signal."
 - **Anything measured or labelled: Monaspace Neon.**
-  - `kicker` (`// a comment`, lowercase, 13px, no capitals and no rule) and `label` (lowercase, 12px).
+  - `kicker` (`// a comment`, in capitals, 11px, spaced .09em, no rule) and `label` (lowercase, 12px).
   - `data` for tables and numbers, with tabular figures.
   - `log` for paths, read strips, run logs and prompts; `status` for the status bar and tabs.
 - **Fonts:** both are open fonts (SIL OFL, in `licenses/`), served from `fonts/`. Never substitute Inter, Roboto or a system serif.
@@ -109,7 +109,7 @@ Build every page as a window:
   - The live dot pulses, fading on opacity only.
   - While something loads, Sig's ring is the spinner: its pieces light one by one, with three lines saying what's happening. No grey skeleton boxes.
   - A run plays line by line, each agent lighting its piece of the ring as it reports, the centre last.
-  - A row of the Signal that moved flashes once, lime up, coral down.
+  - A row of the Signal that moved flashes once, blue up, coral down.
   - The Signal's tape runs, and pauses on hover.
   - A Signal counts from its last value to its new one.
   - Sig's ring lights each agent's arc as it reports.
@@ -128,7 +128,7 @@ Build every page as a window:
 
 - **The twelve's glyphs** (`assets/Glyphs/`, the AgentGlyph component): a 24-unit grid, one 1.6 stroke, round caps and joins, no fills, each in its agent's colour. Each one means its agent and nothing else.
 - **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig and every title bar.
-- **Sig in the community** is the lime ring and dot (`assets/Logos/sig-mark.svg`), also the favicon. It is the community's own character, with moods. Don't confuse it with the ring.
+- **Sig in the community** is the blue ring and dot (`assets/Logos/sig-mark.svg`), also the favicon. It is the community's own character, with moods. Don't confuse it with the ring.
 - **Compound prints** (`assets/Prints/`, the CompoundPrint component): one mark per fact sheet, drawn from its data. Never use a print that isn't that compound's own.
 - **Interface icons:** the community's stroke set, 1.8 stroke on a 24 grid, round caps, drawn at 16–20px in `currentColor`: home, flame, pulse, compass, layers, comment, vote arrows, check.
 - **No emoji, ever.**
@@ -142,9 +142,9 @@ Build every page as a window:
 
 ## The Sig system
 
-Page 9 of the design canvas, as built. Every page is graphite; colour shows up only when one of Sig's agents signs something it made. What people write stays white.
+Page 9 of the design canvas, as built. Every page is black; colour shows up only when one of Sig's agents signs something it made. What people write stays white.
 
-**Who signs what.** Each agent has one colour (`agent-*`) and signs only its own work: the Safety agent's notes in coral, the Planner in orange, the Recommender in yellow, the community and its Signal in lime, the Combination agent in green, the Markers agent's blood tests in teal, the Synergy auditor in cyan, the Evidence librarian's grades and sources in blue, the Relatives agent in indigo, the Mechanism agent in purple, the Stack builder in pink, and the Interpretation agent, at the ring's centre, in white.
+**Who signs what.** Each agent has one colour (`agent-*`) and signs only its own work: the Safety agent's notes in coral, the Planner in orange, the Recommender in yellow, the community and its Signal in Signal blue, the Combination agent in green, the Markers agent's blood tests in teal, the Synergy auditor in cyan, the Evidence librarian in its own blue (its grades and sources in mint), the Relatives agent in indigo, the Mechanism agent in purple, the Stack builder in pink, and the Interpretation agent, at the ring's centre, in white.
 
 **The four ways a signature shows:**
 1. **The pip:** a 7px dot in the signer's colour, on anything an agent made: "● Limited evidence", "● Signal 91.9", "● 4 safety notes".

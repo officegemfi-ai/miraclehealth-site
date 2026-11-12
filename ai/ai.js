@@ -9,10 +9,10 @@
 // community in its lime. Nothing here uses innerHTML for anything the AI or the visitor wrote:
 // text is placed with textContent, and the small amount of formatting the AI uses (bold, lists,
 // Library links) is built node by node.
-import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=34d9695824';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=f388629295';
+import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=00c2752062';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=d5d77d9d2d';
 import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
-import { ringSvg } from '/lib/ring.js?v=888932edd8';
+import { ringSvg } from '/lib/ring.js?v=59d3289bb7';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -832,7 +832,7 @@ function foundList(benefits, name) {
 
 // ---------------------------------------------------------------------------
 // The two voices: what the studies show (on paper, as in the Library) and what the community
-// reports (in ink and lime, as in the community), side by side. The one that leads for what was
+// reports (in black and blue, as in the community), side by side. The one that leads for what was
 // asked comes first and says so: the studies when there are studies in people for it, the
 // community's reports when there aren't.
 // ---------------------------------------------------------------------------

@@ -5,8 +5,8 @@
 // community's public files (totals only: no posts, no names): the Community Signal, what people
 // report for each use and the placebo figures beside them. If the files can't load, the page keeps
 // what it was published with.
-import { sealSvg, levelOf } from '/library/signalviz.js?v=f388629295';
-import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=34d9695824';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=d5d77d9d2d';
+import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=00c2752062';
 import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -139,7 +139,7 @@ const net = document.querySelector('.fp .net[data-graph]');
 const fig = net && net.closest('.fp-fig');
 if (net) startNet(net);
 async function startNet(net) {
-  const [mod, data] = await Promise.all([import('/lib/graph.js?v=342f35b5c5').catch(() => null), getJson(net.dataset.graph)]);
+  const [mod, data] = await Promise.all([import('/lib/graph.js?v=af91b7eb64').catch(() => null), getJson(net.dataset.graph)]);
   if (data && data.counts) promptFrom(data);
   if (!mod || !data || !data.counts) return;
   const css = () => {
@@ -182,7 +182,7 @@ async function startNet(net) {
     g = mod.startGraph(net, data, {
       onTrace: traced,
       ...css(), layout: css, avoid: () => [], poster: net.querySelector('.net-poster'), ask,
-      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#080B0C', '#080B0C', '#080B0C'] },
+      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#000000', '#000000', '#000000'] },
       links: { sheet: (id) => `/library/${id}/`, ask: (s) => askLink(question(s), { site: '' }) },
     });
   } catch { return; }
@@ -275,7 +275,7 @@ function promptFrom(data) {
     // and Sig, a keystroke away
     const said = q.value.trim().slice(0, 120);
     rows.push(row(askLink(`What does the evidence say about ${said}, and what do people report?`, { site: '' }),
-      [node('<svg class="ring" width="12" height="12" viewBox="-6 -6 12 12" aria-hidden="true" focusable="false"><circle r="4.3" fill="none" stroke="#FF6B5B" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-85.5)"/><circle r="4.3" fill="none" stroke="#F2C94C" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-20.05)"/><circle r="4.3" fill="none" stroke="#D8FF3D" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(12.68)"/><circle r="4.3" fill="none" stroke="#3FE0C5" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(78.14)"/><circle r="4.3" fill="none" stroke="#6FA8FF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(143.59)"/><circle r="4.3" fill="none" stroke="#B98CFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(209.05)"/><circle r="4.3" fill="none" stroke="#FF7FC8" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(241.77)"/></svg>'), 'sig ask'],
+      [node('<svg class="ring" width="12" height="12" viewBox="-6 -6 12 12" aria-hidden="true" focusable="false"><circle r="4.3" fill="none" stroke="#FF6B5B" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-85.5)"/><circle r="4.3" fill="none" stroke="#F2C94C" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-20.05)"/><circle r="4.3" fill="none" stroke="#3D8BFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(12.68)"/><circle r="4.3" fill="none" stroke="#3FE0C5" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(78.14)"/><circle r="4.3" fill="none" stroke="#14ECC3" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(143.59)"/><circle r="4.3" fill="none" stroke="#B98CFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(209.05)"/><circle r="4.3" fill="none" stroke="#FF7FC8" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(241.77)"/></svg>'), 'sig ask'],
       `“${said}”`, '', [], ' hp-ask'));
     list.replaceChildren(...rows);
     head.hidden = true;

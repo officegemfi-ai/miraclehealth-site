@@ -68,3 +68,7 @@ The founder pointed at page 9 of the design canvas ("9 Sig system") and asked wh
 
 - **The community app** keeps its own look until it takes the Sig system: SysCommunity ("every report is a commit", Sig's read under each report) and its status bar. The shared kit (the body map's "!" and its corners) changes there, then is copied here.
 - **My Miracle as a file** (`~/my-miracle/stack.yml`), **the weekly email as a changelog** and **share cards with the three pips** (SysEverywhere) aren't built yet.
+
+## 2026-11-12 · Black and electric blue
+
+The site takes page 15's look (pages 15 to 18 of the design canvas): the grounds go from graphite to black, the window gets a faint 64px grid under an ultramarine wash, headlines are wide, heavy and in capitals, kickers are capitals, and the one main action is electric blue (#1A04FF, lit from #3A2BFF) with white words. The community and its Signal go from lime to Signal blue (#3D8BFF; the code keeps the name `lime`), the studies' grades go from blue to mint (#14ECC3), and the Evidence librarian keeps its own blue (#6FA8FE) in Sig's ring. The design check's baseline was rewritten for the new gradients and glow, which the brand book now allows.

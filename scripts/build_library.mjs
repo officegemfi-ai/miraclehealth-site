@@ -280,7 +280,7 @@ function page({
 <title>${e(title)}</title>
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#12171A">
+<meta name="theme-color" content="#17171A">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
@@ -613,7 +613,7 @@ function entryPage(c) {
   // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
   const print = f && BODY.compounds[c.id] ? `<figure class="le-print" aria-labelledby="le-print-cap">
       ${printSvg({ id: c.id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[c.id].lines || [], places: BODY.places.map((x) => x.at) }, { size: 232 })}
-      <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the lime arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
+      <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the blue arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
     </figure>` : '';
   const pathLine = `<span class="wp-crumbs"><a href="/">~</a><span aria-hidden="true">/</span><a href="/library/">library</a><span aria-hidden="true">/</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(dir(c.family))}</a><span aria-hidden="true">/</span><b>${e(file)}</b></span>`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
@@ -1073,7 +1073,7 @@ function storyPage() {
         <li><b>Spokes</b> run to the places in the body the sheet names: the body’s ${places.length} places, head to toe, clockwise from the top.</li>
         <li><b>Beads</b> are its lines there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">worth a blood test</span> <span class="pk pk-warn">a caution</span>, cautions outermost.</li>
         <li><b>The core</b> is the family’s shape (peptide, hormone, medication, supplement) and the evidence inside it, ring by ring, in the Evidence librarian’s blue.</li>
-        <li><b>The edge</b> carries the Community Signal in lime, once it’s known.</li>
+        <li><b>The edge</b> carries the Community Signal in blue, once it’s known.</li>
       </ul>
       <div class="sy-prints">${prints}</div>
     </div>
