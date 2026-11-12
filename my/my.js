@@ -7,7 +7,7 @@
 // they open on their phone (it travels in the link after "#", which no server receives).
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
 import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=34d9695824';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=a15fe0a155';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=f388629295';
 import { h, getSignal } from '/lib/dom.js?v=cef2a56736';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 

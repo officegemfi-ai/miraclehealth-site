@@ -11,7 +11,7 @@
 .sc .sr,.sc-who,.tk-meet-say{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ---------------------------------------------------------------- the editor's frame */
-.ai-rail.sc{padding:0;border-radius:6px;border:1px solid var(--line-ink);background:var(--sc-code);overscroll-behavior:contain;container:sc/inline-size}
+.ai-rail.sc{padding:0;border-radius:12px;border:1px solid var(--line-ink);background:var(--sc-code);overscroll-behavior:contain;container:sc/inline-size}
 .sc-handle{display:none}
 .sc-bar{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;min-height:60px;padding:8px 12px 8px 18px;border-bottom:1px solid var(--sc-rule)}
 .sc-cmd{min-width:0;font:500 14.5px/1.4 var(--mono);color:var(--on-ink);overflow-wrap:anywhere}
@@ -20,7 +20,7 @@
 .sc-busy{display:inline-flex;align-items:center;gap:7px;font:500 12.5px/1 var(--body);color:var(--text-2)}
 .sc-busy i{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:live 1.4s ease-out infinite}
 .sc-acts{display:flex;align-items:center;gap:8px;margin-left:auto}
-.sc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 17px;border-radius:8px;font:500 13.5px/1 var(--body);white-space:nowrap;text-decoration:none;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
+.sc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 17px;border-radius:10px;font:500 13.5px/1 var(--body);white-space:nowrap;text-decoration:none;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s}
 .sc-btn.line{border:1px solid rgba(238,236,230,.5);background:transparent;color:var(--bone)}
 .sc-btn.line:hover{border-color:var(--bone);background:rgba(238,236,230,.08)}
 .sc-btn.lime{border:0;background:var(--bone);color:var(--ink);font-weight:600}
@@ -32,9 +32,9 @@
 
 /* ---------------------------------------------------------------- the sentence, and the checks */
 .sc-head{padding:18px 18px 16px;border-bottom:1px solid var(--sc-rule)}
-.sc-headline{max-width:34ch;font:700 23px/1.25 var(--head);letter-spacing:-.02em;color:var(--on-ink);text-wrap:balance}
+.sc-headline{max-width:34ch;font:600 23px/1.25 var(--head);letter-spacing:-.02em;color:var(--on-ink);text-wrap:balance}
 .sc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.sc-chip{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 12px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:var(--on-ink);font:500 13px/1 var(--mono);cursor:pointer;transition:border-color .15s,background-color .15s}
+.sc-chip{display:inline-flex;align-items:center;gap:7px;min-height:34px;padding:0 12px;border-radius:7px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);color:var(--on-ink);font:500 13px/1 var(--mono);cursor:pointer;transition:border-color .15s,background-color .15s}
 .sc-chip:hover{border-color:rgba(255,255,255,.34)}
 .sc-chip-mark{color:var(--on-ink-2)}
 .sc-chip.t-avoid{border-color:rgba(255,107,91,.45);background:rgba(255,107,91,.08);color:#FFB4A9}
@@ -110,7 +110,7 @@ a.tk-name.tk-rel:hover{color:var(--bone);text-decoration:underline solid var(--b
 .sc-map i{position:absolute;left:0;right:0;min-height:3px;border-radius:3px;background:var(--bone)}
 .sc-map i.m-watch{background:var(--sc-caution)}
 .sc-map i.m-warn{background:var(--sc-avoid)}
-.sc-more{display:none;align-items:center;min-height:44px;margin:10px 0 2px calc(2.9em + 10px);padding:0 16px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--on-ink);font:500 13.5px/1 var(--body);cursor:pointer}
+.sc-more{display:none;align-items:center;min-height:44px;margin:10px 0 2px calc(2.9em + 10px);padding:0 16px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:var(--on-ink);font:500 13.5px/1 var(--body);cursor:pointer}
 .sc-more:hover{border-color:var(--bone);color:var(--bone)}
 /* one compound on its own, and the empty screen's ghost: lines of code */
 .sc-one{padding:10px 18px 14px 0}
@@ -154,11 +154,11 @@ a.tk-name.tk-rel:hover{color:var(--bone);text-decoration:underline solid var(--b
 .cm-first:hover{text-decoration-color:var(--accent)}
 /* the check */
 .ck-list{display:grid;gap:8px}
-.ck-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:11px 12px;border-radius:6px;border:1px solid var(--sc-line);background:rgba(255,255,255,.03);font-size:14px;line-height:1.5;color:var(--on-ink-2)}
+.ck-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:11px 12px;border-radius:9px;border:1px solid var(--sc-line);background:rgba(255,255,255,.03);font-size:14px;line-height:1.5;color:var(--on-ink-2)}
 .ck-list li.lvl-avoid{border-color:rgba(255,107,91,.5);background:linear-gradient(135deg,rgba(255,107,91,.12),rgba(255,107,91,.02))}
 .ck-list li.lvl-caution{border-color:rgba(242,190,75,.4)}
 .ck-list b{color:var(--on-ink);font-weight:600}
-.ck-pill{display:inline-flex;align-items:center;min-height:22px;padding:0 9px;border-radius:8px;font:600 11.5px/1 var(--body);white-space:nowrap}
+.ck-pill{display:inline-flex;align-items:center;min-height:22px;padding:0 9px;border-radius:7px;font:600 11.5px/1 var(--body);white-space:nowrap}
 .ck-pill.lvl-avoid{background:var(--sc-avoid);color:#2A0B07}
 .ck-pill.lvl-caution{background:var(--sc-caution);color:#2B2005}
 .ck-pill.lvl-info{background:var(--bone);color:var(--ink)}
@@ -187,7 +187,7 @@ a.tk-name.tk-rel:hover{color:var(--bone);text-decoration:underline solid var(--b
 .lg-list b{font-weight:600;color:var(--on-ink)}
 
 /* ---------------------------------------------------------------- to a clinician */
-.sc-clin{margin:0 18px 18px;padding:18px 20px;border-radius:6px;border:1px solid var(--sc-line);background:var(--ink)}
+.sc-clin{margin:0 18px 18px;padding:18px 20px;border-radius:12px;border:1px solid var(--sc-line);background:var(--ink)}
 .clin-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .clin-top h3{font:600 16.5px/1.3 var(--body);color:var(--on-ink)}
 .clin-acts{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
@@ -206,7 +206,7 @@ a.tk-name.tk-rel:hover{color:var(--bone);text-decoration:underline solid var(--b
 /* ---------------------------------------------------------------- empty */
 .sc-empty .sc-lede{margin-top:8px;max-width:56ch;font-size:15px;line-height:1.55;color:var(--on-ink-2)}
 .sc-wait{padding:18px}
-.sc-ghost{position:relative;margin:16px 18px 0;padding:10px 0;border-radius:6px;border:1px solid var(--sc-line);font:500 12.5px/1.7 var(--mono);color:var(--on-ink-2);overflow:hidden;-webkit-mask:linear-gradient(180deg,#000 45%,transparent);mask:linear-gradient(180deg,#000 45%,transparent)}
+.sc-ghost{position:relative;margin:16px 18px 0;padding:10px 0;border-radius:12px;border:1px solid var(--sc-line);font:500 12.5px/1.7 var(--mono);color:var(--on-ink-2);overflow:hidden;-webkit-mask:linear-gradient(180deg,#000 45%,transparent);mask:linear-gradient(180deg,#000 45%,transparent)}
 .sc-ghost .cl{grid-template-columns:2.6em minmax(0,1fr)}
 .sc-ghost .cl .cx{padding-left:0;text-indent:0;white-space:pre;overflow:hidden}
 .sc-go{padding:14px 18px 20px}
@@ -244,7 +244,7 @@ a.tk-name.tk-rel:hover{color:var(--bone);text-decoration:underline solid var(--b
 .sc-grid.many .sc-who::after{content:' '}
 
 /* ---------------------------------------------------------------- under an answer, and on a phone */
-.ai-toscreen{display:none;align-items:center;gap:8px;margin-top:14px;min-height:40px;padding:0 15px;border-radius:8px;border:1px solid var(--ink);background:var(--ink);color:var(--bone);font:500 14px/1 var(--body);cursor:pointer}
+.ai-toscreen{display:none;align-items:center;gap:8px;margin-top:14px;min-height:40px;padding:0 15px;border-radius:10px;border:1px solid var(--ink);background:var(--ink);color:var(--bone);font:500 14px/1 var(--body);cursor:pointer}
 .ai-peek{display:none}
 .sc-backdrop{display:none}
 @media (max-width:1100px){
@@ -258,7 +258,7 @@ a.tk-name.tk-rel:hover{color:var(--bone);text-decoration:underline solid var(--b
   .pk-top .sc-cmd{font-size:14px}
   .pk-hint{margin-left:auto;font:500 12.5px/1 var(--body);color:var(--on-ink-2);white-space:nowrap}
   .pk-chips{display:flex;flex-wrap:wrap;gap:6px}
-  .pk-chip{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 10px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);font:500 12px/1 var(--mono);color:var(--on-ink)}
+  .pk-chip{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.03);font:500 12px/1 var(--mono);color:var(--on-ink)}
   .pk-chip.t-meet{border-color:rgba(238,236,230,.5);background:rgba(238,236,230,.07);color:var(--bone)}
   .pk-chip.t-warn,.pk-chip.t-avoid{border-color:rgba(255,107,91,.45);background:rgba(255,107,91,.08);color:#FFB4A9}
   .pk-chip.t-warn .pk-mark,.pk-chip.t-avoid .pk-mark{color:var(--sc-avoid);font-weight:600}

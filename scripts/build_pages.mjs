@@ -25,7 +25,7 @@ export const NEWSLETTER_ORIGIN = new URL(NEWSLETTER_URL).origin;
 export function signupForm(e, { source, id, cls = '', button = 'Get it weekly', label = '' }) {
   return `<form class="news-form ${cls}" action="${NEWSLETTER_URL}" method="post">
     ${label ? `<label class="nf-label" for="${id}">${label}</label>` : `<label class="mh-sr" for="${id}">Your email address</label>`}
-    <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn bone" type="submit">${e(button)}</button></div>
+    <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn ${cls.includes('on-paper') ? 'bone' : 'line'}" type="submit">${e(button)}</button></div>
     <input type="hidden" name="source" value="${e(source)}">
     <span class="nf-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
     <p class="nf-note">Free, once a week. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
@@ -66,10 +66,11 @@ export function buildPages(ctx) {
   const fill = (t) => String(t).replaceAll('{{sheets}}', String(entries.size)).replaceAll('{{compounds}}', String(catalog.length));
   // An issue's headline: its subject without "The Signal #n: "
   const headline = (i) => { const t = i.subject.replace(/^The Signal #\d+:\s*/, ''); return t.charAt(0).toUpperCase() + t.slice(1); };
+  const stop = (t) => (/[.!?…]\s*(<\/[a-z]+>\s*)*$/i.test(t) ? t : `${t}.`);
   const docHead = (kick, title, sub = '') => `<div class="doc-head">
     <div class="wrap">
       <p class="kick">${e(kick)}</p>
-      <h1>${title}</h1>
+      <h1>${stop(title)}</h1>
       ${sub ? `<p>${sub}</p>` : ''}
     </div>
   </div>`;
@@ -208,7 +209,7 @@ export function buildPages(ctx) {
     <p class="pg-intro">What the studies show for each compound people take for ${e(lower(g.label))}, strongest evidence first, next to its Community Signal: what people who took it report. It isn’t a ranking of what to take: the evidence grade is for the compound as a whole, and each fact sheet says what it was studied for.</p>
     <div class="pg-acts">
       <a class="btn ink" href="${e(askLink(`What does the evidence say about compounds for ${lower(g.label)}?`, { site: '' }))}">Ask Sig about it</a>
-      <a class="btn ghost-ink" href="/library/?goal=${e(g.id)}">Search the Library</a>
+      <a class="btn line" href="/library/?goal=${e(g.id)}">Search the Library</a>
     </div>
 
     <section class="pg-sec" aria-labelledby="g-main">
@@ -282,7 +283,7 @@ export function buildPages(ctx) {
       const body = `<div class="doc-head cmp-head">
     <div class="wrap">
       <p class="kick">Side by side</p>
-      <h1>${e(a.name)} <span class="cmp-vs">vs</span> ${e(b.name)}</h1>
+      <h1>${e(a.name)} <span class="cmp-vs">vs</span> ${e(b.name)}.</h1>
       <p>From each fact sheet · checked ${date([a.checked, b.checked].sort()[0])}</p>
     </div>
   </div>
@@ -298,8 +299,8 @@ export function buildPages(ctx) {
     </div>
     <div class="pg-acts">
       <a class="btn ink" href="${e(askLink(`How do ${a.name} and ${b.name} compare?`, { site: '' }))}">Ask Sig to compare them</a>
-      <a class="btn ghost-ink" href="/library/${e(a.id)}/">${e(a.name)}’s fact sheet</a>
-      <a class="btn ghost-ink" href="/library/${e(b.id)}/">${e(b.name)}’s fact sheet</a>
+      <a class="btn line" href="/library/${e(a.id)}/">${e(a.name)}’s fact sheet</a>
+      <a class="btn line" href="/library/${e(b.id)}/">${e(b.name)}’s fact sheet</a>
     </div>
     <p class="pg-foot">Took one of them? <a href="${COMMUNITY}/#/new?c=${e(a.id)}">Share how ${e(a.name)} went</a> or <a href="${COMMUNITY}/#/new?c=${e(b.id)}">how ${e(b.name)} went</a>. <a href="/compare/">More comparisons</a>.</p>
   </div>`;
@@ -372,7 +373,7 @@ export function buildPages(ctx) {
     ${s.p.map((p) => `<p>${inline(fill(p))}</p>`).join('\n    ')}
     ${s.more ? `<p class="wk-more"><a href="${e(s.more[1])}">${e(s.more[0])}</a></p>` : ''}`).join('\n    ')}
     ${i.close ? `<p class="wk-close-lead">${inline(fill(i.close.lead))}</p>
-    <p class="wk-close"><a class="btn lime" href="${e(i.close.url)}">${e(i.close.label)}</a></p>` : ''}
+    <p class="wk-close"><a class="btn line" href="${e(i.close.url)}">${e(i.close.label)}</a></p>` : ''}
     <div class="wk-get">
       <h2>Get The Signal every week</h2>
       ${signupForm(e, { source: `issue${i.n}`, id: `wk-email-${i.n}`, cls: 'on-paper' })}
@@ -459,7 +460,7 @@ ${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1
       </ul>
     </section>
 
-    <div class="pg-acts"><a class="btn lime" href="${COMMUNITY}/#/new">Share how it went</a><a class="btn ghost-ink" href="/method/#reports">How a report is read</a></div>
+    <div class="pg-acts"><a class="btn lime" href="${COMMUNITY}/#/new">Share how it went</a><a class="btn line" href="/method/#reports">How a report is read</a></div>
     <p class="pg-foot">One badge per member, by when your first report was read. A report removed for breaking the <a href="${COMMUNITY}/#/rules">house rules</a> doesn’t count. No doses, no sellers.</p>
   </div>`;
     add('/founders/', page({
