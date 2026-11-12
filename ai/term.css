@@ -563,8 +563,9 @@ html:has(body.sigapp){--top-h:0px}
 .sg-side{overflow-y:auto;scrollbar-width:none}
 .sg-side>:not(.sg-chats){flex-shrink:0}
 .sg-site{margin:8px 0 4px}
-.sg-chats{min-height:min(160px,22dvh);padding-top:8px;border-top:1px solid var(--tm-line)}
+.sg-chats{min-height:min(120px,15dvh);padding-top:8px;border-top:1px solid var(--tm-line)}
 .sg-more{margin-top:8px}
+@media (min-width:901px){.sg-foot{position:sticky;bottom:-12px;z-index:1;margin-bottom:-12px;padding-bottom:12px;background:inherit}}
 :root:has(#sg.drawer){overflow:hidden}
 /* the status bar drops segments as the site's does: the Library's date first, then on small phones
    the SIG word (the ring stays), then the SIG segment */

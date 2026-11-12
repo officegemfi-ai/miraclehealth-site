@@ -30,3 +30,4 @@ Your area, across every page in `design/pages.json` at 1440, 1024, 768 and 390 w
    - empty sides;
    - grids collapsing oddly;
    - pages far taller than at 1440.
+10. **Screen height:** the side panel (and Ask Sig's) at 1440×900, 1440×790 and 1280×720. At 900 tall it fits whole: nothing scrolls, all ten "more" links show and the foot sits at the bottom. Shorter, only the folder tree gives way (to 120px), and Sign in, Join and the legal line stay in view while the panel scrolls.
