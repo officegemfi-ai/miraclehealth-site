@@ -4,6 +4,8 @@
 #     and the scripts' own tests pass (tests/)
 #   - no link between the site's own pages is broken, nor any #part it points to
 #   - every page has its security policy, a title and a description, and every script parses
+#   - the stylesheets keep to the brand book: no new off-brand colours, faces, radii or sizes
+#     (scripts/design_check.mjs against design/baseline.json)
 # GitHub emails you when a run fails.
 name: Check the site
 on:
@@ -30,6 +32,8 @@ jobs:
         run: node --test tests/*.test.mjs
       - name: No broken links between the site's pages
         run: node scripts/check_links.mjs
+      - name: The design keeps to the brand book
+        run: node scripts/design_check.mjs
       - name: Every page has its security policy, a title and a description
         run: |
           bad=0
