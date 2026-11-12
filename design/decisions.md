@@ -12,7 +12,7 @@ Five agents audited 23 page templates at 1440, 1024, 768 and 390 wide and report
 | Text set in Arial | 142 elements | 0 |
 | Corner radii outside the brand's set | 1,445 | 0 |
 | Distinct type sizes | 63 | 39 |
-| Off-palette computed colours | 292 (17 distinct) | 92 (6 distinct: the hidden spam-trap field and three accepted plate details) |
+| Off-palette computed colours | 292 (17 distinct) | 93 (6 distinct: the hidden spam-trap field and three accepted plate details) |
 | White main buttons in one view | up to 4 | 1 |
 | `design_check.mjs` (colour · radius · size · gradient · shadow) | 224 · 66 · 83 · 42 · 38 | 161 · 23 · 34 · 30 · 28 |
 
