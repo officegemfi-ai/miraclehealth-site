@@ -325,7 +325,7 @@ function legendHtml(g, catalog) {
     + `<ul>${row('body', 'body places, head to toe', g.counts.places)}${row('mark', `blood markers, ${PANELS.length} panels`, g.counts.markers)}`
     + `${row('sig', 'Sig, tracing one sheet')}${row('thread', 'bright threads: 2+ sources')}${row('signal', 'Community Signal, 0–100')}</ul>`;
 }
-const SAYS = [['up', '▲', 'raise'], ['down', '▼', 'lower'], ['block', '×', 'block'], ['is', '▶', 'act'], ['watch', '◊', 'to check'], ['warn', '!', 'caution']];
+const SAYS = [['up', '▲', 'raise'], ['down', '▼', 'lower'], ['block', '×', 'block'], ['is', '▶', 'act'], ['watch', '◊', 'to check'], ['warn', '•', 'caution']];
 function footHtml(g) {
   return `<span>What the ${fmt(g.counts.lines)} lines say:</span>`
     + SAYS.map(([k, mark, label]) => `<span><i>${mark}</i> <b>${fmt(g.ops[k])}</b> ${label}</span>`).join('')

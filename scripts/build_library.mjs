@@ -24,7 +24,7 @@ import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompoun
 import { bodyMapHtml } from '../kit/bodymap.js';
 // The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
 // and the founding reporters (scripts/build_pages.mjs)
-import { buildPages, signupForm, NEWSLETTER_ORIGIN } from './build_pages.mjs';
+import { buildPages, signupForm, NEWSLETTER_ORIGIN, PAIRS, slugOf } from './build_pages.mjs';
 import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
@@ -119,8 +119,8 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js'].map((f) => [f, version(f)]);
-const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js'];
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js'].map((f) => [f, version(f)]);
+const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
@@ -139,7 +139,7 @@ const V = {
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
   scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'),
   myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
-  home: version('home.js'),
+  home: version('home.js'), homeCss: version('home.css'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
 };
 
@@ -151,7 +151,8 @@ const V = {
 // (Sig, the four places with what's in each, what's in this window, the rest of the site, joining,
 // the legal); on it the title bar (Sig's ring, the window's name, its tabs, the twelve agents
 // online), the window's path, the page, its foot (the weekly email, the links, the disclaimer) and
-// the status bar (Sig, safety on, no doses, no sellers, no diagnosis, the Library's date). The
+// the status bar (Sig, safety on, what you're looking at and how fresh it is, no doses, no sellers,
+// no diagnosis, and ⌘K to go anywhere). The
 // panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a phone.
 const ICO = {
   menu: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
@@ -225,11 +226,10 @@ function osClose({ url = '/', status = '' }) {
   </footer>
   <div class="win-status" aria-label="Status">
     <span class="ws ws-sig" aria-hidden="true">${ringSvg(12)}SIG</span>
-    <span class="ws ws-state"><i aria-hidden="true"></i>online</span>
     <span class="ws ws-safe"><i aria-hidden="true"></i>safety on</span>
-    ${status}
+    ${status || `<span class="ws ws-lib">library · ${entries.size} sheets</span><span class="ws ws-when">updated ${libDateOf().replace(/, \d{4}$/, '').toLowerCase()}</span>`}
     <span class="ws ws-rules">no doses · no sellers · no diagnosis</span>
-    <span class="ws ws-lib">Library · ${libDateOf()}</span>
+    <button class="ws ws-k" type="button" data-cmdk aria-label="Go anywhere (⌘K)">⌘K</button>
   </div>
 </div>
 </div>
@@ -468,13 +468,13 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
 ` : ''}
     <section class="le-sec" id="benefits">
       <h2>What it may do${by('evidence')}</h2>
-      <ul class="claims">${(f.benefits || []).map((b) => `<li>${evPill(b.evidence)}<p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
+      <ul class="claims" data-agent="evidence">${(f.benefits || []).map((b) => `<li>${evPill(b.evidence)}<p>${e(b.claim)} ${refs(b.sources)}</p></li>`).join('')}</ul>
     </section>
 
     <section class="le-sec" id="risks">
       <h2>Risks and side effects${by('safety')}</h2>
-      <ul class="claims risks">${(f.risks || []).map((r) => `<li><span class="hc hc-${r.how_common}">${e(HOW_COMMON[r.how_common] || r.how_common)}</span><p>${e(r.risk)} ${refs(r.sources)}</p></li>`).join('')}</ul>
-      <div class="two">
+      <ul class="claims risks" data-agent="safety">${(f.risks || []).map((r) => `<li><span class="hc hc-${r.how_common}">${e(HOW_COMMON[r.how_common] || r.how_common)}</span><p>${e(r.risk)} ${refs(r.sources)}</p></li>`).join('')}</ul>
+      <div class="two" data-agent="safety">
         <div><h3>Who should skip it, or ask a doctor first</h3>${list(f.avoid_if, 'dots')}</div>
         <div><h3>What it can clash with</h3>${list(f.interactions, 'dots')}</div>
       </div>
@@ -483,7 +483,7 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
     <section class="le-sec" id="labs">
       <h2>Blood tests to watch${by('markers')}</h2>
       ${UNAPPROVED.has(f.status_us.key) && ((labs.before || []).length || (labs.during || []).length) ? '<p class="lab-note">Not an approved medicine. These are checks a doctor or a clinical trial would use, not a plan for taking it on your own.</p>' : ''}
-      <div class="labs">
+      <div class="labs" data-agent="markers">
         <div class="lab-col"><p class="mono">Before starting</p>${(labs.before || []).length ? list(labs.before, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
         <div class="lab-col"><p class="mono">While taking it</p>${(labs.during || []).length ? list(labs.during, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
       </div>
@@ -492,7 +492,7 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
 
     ${studies ? `<section class="le-sec" id="studies">
       <h2>The main studies${by('evidence')}</h2>
-      <ol class="studies">${studies}</ol>
+      <ol class="studies" data-agent="evidence">${studies}</ol>
     </section>` : ''}
 
     <section class="le-sec" id="ask">
@@ -876,7 +876,8 @@ function aiPage() {
     <span class="tm-sb tm-sb-state" id="tm-state" data-state="ready"><i class="tm-ico" aria-hidden="true"></i><span id="ai-status">ready</span></span>
     <span class="tm-sb tm-sb-safe"><i aria-hidden="true"></i>safety on</span>
     <span class="tm-sb tm-sb-rules">no doses · no sellers · no diagnosis</span>
-    <span class="tm-sb tm-sb-lib">Library · ${libDate}</span>
+    <span class="tm-sb tm-sb-lib">library · ${libDate.toLowerCase()}</span>
+    <button class="tm-sb tm-sb-k" type="button" data-cmdk aria-label="Go anywhere (⌘K)">⌘K</button>
   </div>
 </div>`;
   // Sig's own page: the window fills the browser beside a side panel with the chats kept on this
@@ -1283,6 +1284,25 @@ out.set(path.join(DATA, 'index.json'), aiIndex());
 const GRAPH = buildGraph({ body: BODY, catalog, grades: new Map([...entries].map(([id, f]) => [id, f.evidence?.grade || ''])) });
 out.set(path.join(DATA, 'graph.json'), GRAPH.json);
 out.set(path.join(ROOT, 'img', 'library-graph.svg'), GRAPH.svg);
+// ⌘K's data (lib/cmdk.js): every page, every compound (id, name, family, whether it has a sheet, the
+// evidence grade the graph draws, and the words it's found by) and the pairs with a comparison
+{
+  const fold = (x) => String(x || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '');
+  const gradeOf = new Map(GRAPH.data.ids.map((id, i) => [id, GRAPH.data.grade[i]]));
+  const famShort = (f) => String(f || '').toLowerCase().replace(/s$/, '');
+  const PAGES = [['/library/', 'Library', 'every compound and its fact sheet'], ['/sig/', 'Ask Sig', 'twelve agents, every answer checked'],
+    [`${COMMUNITY}/`, 'Community', 'say how it went'], ['/my/', 'My Miracle', 'your stack, on this device'],
+    ...MORE.map(([href, label]) => [href, label, href.startsWith('/#') ? 'on the front page' : '']),
+    [`${COMMUNITY}/#/signal`, 'The Signal, the whole board', 'in the community'], ['/privacy', 'Privacy', ''], ['/terms', 'Terms', '']];
+  const cmdk = {
+    v: 1,
+    pages: PAGES,
+    c: catalog.map((c) => [c.id, c.name, famShort(c.family), entries.has(c.id) ? 1 : 0, gradeOf.has(c.id) ? gradeOf.get(c.id) : -1,
+      fold([c.name, ...(c.aliases || []), c.category, c.family, c.id].join(' '))]),
+    pairs: PAIRS.map(([a, b, slug]) => [a, b, `/compare/${slug || `${slugOf(byId.get(a)?.name || a)}-vs-${slugOf(byId.get(b)?.name || b)}`}/`]),
+  };
+  out.set(path.join(DATA, 'cmdk.json'), `${JSON.stringify(cmdk)}\n`);
+}
 for (const g of GUIDES) out.set(path.join(LIB, g.id, 'index.html'), guidePage(g));
 // Sig's own page is /sig/; /ai/ (and every link made before) goes on to it (the pages build)
 out.set(path.join(ROOT, 'sig', 'index.html'), aiPage());
@@ -1312,8 +1332,12 @@ const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'count:compounds', String(catalog.length));
 front = fill(front, 'count:sheets', String(entries.size));
-// Sig's ring beside "rather ask?" under the prompt
+// Sig's ring beside "rather ask?" under the prompt and on the third way in; the ring that is the
+// Signal board's loading spinner (dark until home.js lights it piece by piece); and the big ring
+// beside the example run, every piece lit (home.js dims it and lights each agent as it reports)
 front = fill(front, 'ring:ask', ringSvg(16));
+front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
+front = fill(front, 'ring:big', ringSvg(196, { center: false, cls: 'fp-bigring' }));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
 // count of what its lines say, and the graph as text
 const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
@@ -1330,8 +1354,10 @@ front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key,
 front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true"'));
 // Its one script, by its version
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
-// Its Sigs are the kit's, drawn on the dark hero and the "Sig reads it" step
-const SIGS = [[50, 'idle', 'hsig1'], [36, 'watching', 'hsig2']];
+front = front.replace(/<link rel="stylesheet" href="\/home\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/home.css?v=${V.homeCss}">`);
+// Any Sig (the community's lime character) it draws is the kit's; the front page now shows Sig as
+// its ring, so it draws none
+const SIGS = [];
 let sigN = 0;
 front = front.replace(/<svg class="sig[ a-z]*"[\s\S]*?<\/svg>/g, (m) => {
   const spec = SIGS[sigN++];

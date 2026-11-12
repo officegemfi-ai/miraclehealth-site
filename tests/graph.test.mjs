@@ -83,7 +83,9 @@ test('the front page gets the legend, the count of what the lines say, and the t
   assert.match(graph.text, /^<p>The Library as one graph/);
   assert.ok(!/<a /.test(graph.text), 'the text version has no links to tab through');
   const front = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  for (const key of ['graph:legend', 'graph:foot', 'graph:text', 'graph:size', 'graph:lines']) assert.ok(front.includes(`<!-- ${key} -->`), key);
+  // the Sig system's front page (design canvas, page 9) shows the graph in a pane: its size in the bar,
+  // its legend under it and the whole graph as text for screen readers; what the lines say is in that text
+  for (const key of ['graph:legend', 'graph:text', 'graph:size']) assert.ok(front.includes(`<!-- ${key} -->`), key);
 });
 
 test('places read naturally in a question', () => {

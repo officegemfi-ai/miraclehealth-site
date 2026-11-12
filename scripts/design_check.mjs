@@ -49,7 +49,9 @@ PALETTE.set('255,255,255', 'white (the main button on hover)');
 PALETTE.set('0,0,0', 'black (shadows and scrims, never a ground)');
 const FAMILIES = new Set(['mona sans', 'mona sans display', 'monaspace neon', 'mona', 'monadisplay', 'neon',
   'system-ui', '-apple-system', 'blinkmacsystemfont', 'segoe ui', 'sans-serif', 'ui-monospace', 'sfmono-regular', 'menlo', 'consolas', 'monospace', 'inherit', 'initial', 'unset']);
-const RADII = new Set(['0', '0px', '6px', '7px', '8px', '9px', '10px', '11px', '12px', '50%', 'inherit']);
+// The Sig system's corners (design/tokens.json): tags 7, tabs 8, rows 9, controls 10, cards 12, panes 14;
+// 6 is left for focus rings and the wordmark, 11 for the masks that round the window's inner corners
+const RADII = new Set(['0', '0px', '6px', '7px', '8px', '9px', '10px', '11px', '12px', '14px', '50%', 'inherit']);
 const SMALL_RADIUS = (v) => /^(\d*\.?\d+)px$/.test(v) && parseFloat(v) <= 3;          // the ends of thin bars and meters
 const SIZES = new Set(TOKENS.type.groups.flatMap((g) => g.styles.map((s) => s.fontSize)).concat(
   ['10.5px', '11px', '14px', '17.5px', '20px', '22px', '24px', '28px', '32px', '40px', '1em', 'inherit', 'smaller', '100%']));
@@ -120,7 +122,7 @@ for (const file of FILES) {
     if (/^border(-(top|bottom)-(left|right))?-radius$/.test(prop)) {
       for (const v of splitTop(value.replace(/\s*\/\s*/g, ' '))) {
         if (RADII.has(v) || SMALL_RADIUS(v) || v.startsWith('var(') || v.startsWith('calc(')) continue;
-        add('radius', file, line, `${prop}: ${value}`, `${v} isn't in the radius set (6, 7, 8, 9, 10, 12, 50%)`);
+        add('radius', file, line, `${prop}: ${value}`, `${v} isn't in the radius set (7, 8, 9, 10, 12, 14, 50%)`);
       }
     }
     // type sizes

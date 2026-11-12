@@ -6,8 +6,7 @@
       "ai/packet.css": 66,
       "ai/screen.css": 28,
       "ai/term.css": 8,
-      "kit/kit.css": 2,
-      "styles.css": 12
+      "kit/kit.css": 2
     },
     "font-family": {},
     "radius": {
@@ -19,14 +18,13 @@
       "styles.css": 4
     },
     "font-size": {
-      "ai/ai.css": 8,
-      "ai/packet.css": 3,
+      "ai/ai.css": 6,
       "ai/plan.css": 2,
       "ai/screen.css": 4,
-      "ai/term.css": 3,
-      "library/library.css": 3,
+      "ai/term.css": 2,
+      "library/library.css": 2,
       "pages/pages.css": 2,
-      "styles.css": 9
+      "styles.css": 7
     },
     "gradient": {
       "ai/ai.css": 14,
@@ -34,7 +32,7 @@
       "ai/term.css": 6,
       "kit/kit.css": 1,
       "library/library.css": 1,
-      "styles.css": 5
+      "styles.css": 4
     },
     "shadow": {
       "ai/ai.css": 10,

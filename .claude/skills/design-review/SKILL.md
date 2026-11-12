@@ -12,7 +12,7 @@ You are the art director. The department is five agents defined in `.claude/agen
 - `design-components`
 - `design-responsive`
 
-The rules they hold the site to are `design/BRAND.md` and `design/tokens.json`. Every page is a window in Sig's terminal, and navigation panels are never removed.
+The look is page 9 of the founder's design canvas, "9 Sig system" (the "Miracle Health hero: the Library as a network" artifact): graphite pages, signed in Sig's colours. Open it before anything else and keep it beside the captures; the boards to hold each page against are SysHome (the front page), SysLibrary (a fact sheet), SysSignal (the Signal), SysAskSig (Ask Sig), SysCommunity (the community), SysEverywhere (⌘K, status bars, loading, the 404, My Miracle, share cards, the weekly email) and SysRule (who signs what). `design/BRAND.md` and `design/tokens.json` write that page down; where they disagree with it, the page wins and the book is corrected. Every page is a window in Sig's terminal, and navigation panels are never removed.
 
 1. **Branch.** Work on a branch, never on main (main is the live site).
 2. **Capture.** Run `python3 scripts/design_capture.py`. It serves the site on 127.0.0.1:8765 and writes `.design/shots` and `.design/data` for every page in `design/pages.json` at four widths. Add a new page template to `design/pages.json` first.

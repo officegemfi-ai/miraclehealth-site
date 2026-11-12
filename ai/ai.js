@@ -2473,3 +2473,17 @@ fitPlaceholder();
 addEventListener('resize', fitPlaceholder);
 document.fonts?.ready.then(fitPlaceholder);
 updateSend();
+
+// ⌘K (Ctrl+K elsewhere), or the status bar's ⌘K: go anywhere, as on every other page (lib/cmdk.js,
+// loaded the first time it's asked for)
+{
+  let cmdk = null;
+  const cmdkOpen = (from) => {
+    (cmdk ||= import('/lib/cmdk.js?v=9c92a8758f')).then((m) => (m.isOpen() ? m.close() : m.openCmdk(from))).catch(() => { location.assign('/library/'); });
+  };
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); cmdkOpen(document.activeElement); }
+  });
+  for (const b of document.querySelectorAll('[data-cmdk]')) b.addEventListener('click', (e) => { e.preventDefault(); cmdkOpen(b); });
+  if (!/Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent || '')) for (const k of document.querySelectorAll('.tm-sb-k')) k.textContent = 'Ctrl K';
+}

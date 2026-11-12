@@ -46,3 +46,25 @@ What remains in `design_check.mjs` is mostly inside Ask Sig, in states the captu
 - Audit Ask Sig in conversation: the captures show its empty state only, so its answers, cards, screen pane and packet weren't reviewed. Drive a few questions through it (a stack check, a crisis word, a plan) and capture each state.
 - Ask Sig's screen pane uses ○, ↳ and box-drawing characters that neither font has; they fall back to the system's mono face.
 - The Library's "How the Signal is made" figure: its smallest labels render 6 to 7px at tablet width (RESP-15). Raising them means re-spacing the drawing.
+
+## 2026-11-12: the Sig system, page 9
+
+The founder pointed at page 9 of the design canvas ("9 Sig system") and asked why the site didn't look like it. The first review had checked the site against this brand book and never opened the canvas, so it made the older Plate look consistent instead of building page 9. From now on the canvas is the source of truth: `.claude/skills/design-review/SKILL.md` and `BRIEF.md` hold every page against its board, and `BRAND.md` ends with *The Sig system*.
+
+### The calls
+
+1. **Headlines in Mona Sans at its normal width, semibold.** The wide, heavy Display cut is gone. `hero` 64px (58px in the window), `section` 42px, `page` 38px, `h2` 22px. Supersedes the sizes and the Display face in call 2.
+2. **Kickers are comments:** `// the community signal`, lowercase mono at 13px, no rule, no capitals. Labels and column heads are lowercase mono. Supersedes "mono capitals" in call 3.
+3. **Tags are words, not code:** Mona Sans in sentence case at 12.5px, 7px corners, with the signer's pip where an agent made the thing. Supersedes "one tag" in mono capitals (call 3).
+4. **Corners on the boards' scale:** tags 7px, tab tops 8px, rows 9px, buttons, fields and terminal blocks 10px, cards and the window 12px, the front page's panes 14px. Replaces `radius-plate` 6px and `radius-control` 8px.
+5. **Signed, not boxed.** On a fact sheet the findings, studies, safety notes and blood tests carry their signer's 2px mark in the gutter (Evidence librarian blue, Safety agent coral, Markers agent teal) instead of a box round each.
+6. **The front page is a prompt, then the Signal, then Sig's twelve agents.** "› look up" with live results and pips, the Library's graph tracing what's typed ("trace semaglutide · 9 places · 5 safety notes"), the numbers, three ways in, the Community Signal running like `top` (totals, members against forums, the board, `tail -f signal.log`), an example run where all twelve agents light the ring and sign their lines (pick one to light up what it wrote), the real BPC-157 example, how a report becomes a commit, the house rules as a file and the questions. The Signal board reads the live public snapshot and asks for a newer one each minute while it's on screen.
+7. **Everywhere:** ⌘K (Ctrl K off Apple devices) on every page and in Ask Sig (`lib/cmdk.js`, `library/data/cmdk.json`); the status bar says what you're looking at and how fresh it is, then the rules, then ⌘K ("online" is gone); the ring is the Signal board's spinner; the 404 is "command not found" with "did you mean".
+8. **No "!" for safety.** A place with a safety note carries the Safety agent's pip on the graph. (The body map in the shared kit still draws "!"; see below.)
+9. **Two more greys from the boards:** `text-read` (#DCDAD4) for an answer's words and anything an agent signed, `hover` (#161C20) for the row under the pointer or picked.
+10. **A bug on the way:** privacy, terms and the 404 had no `script-src` in their policy, so their own script was blocked and the side panel couldn't fold or open as a drawer there. Fixed.
+
+### Next, not in this change
+
+- **The community app** keeps its own look until it takes the Sig system: SysCommunity ("every report is a commit", Sig's read under each report) and its status bar. The shared kit (the body map's "!" and its corners) changes there, then is copied here.
+- **My Miracle as a file** (`~/my-miracle/stack.yml`), **the weekly email as a changelog** and **share cards with the three pips** (SysEverywhere) aren't built yet.

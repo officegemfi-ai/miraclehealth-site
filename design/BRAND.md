@@ -6,6 +6,8 @@ Miracle Health is an independent, free place for adults 18+ to look up what they
 
 Build every page from this system: the window and its parts (`components/`), the tokens (`tokens.json`), the twelve agents' glyphs, Sig's ring and the compound prints (`assets/`). The illustration rules are in *The illustration system*; the launch rules are in *The launch campaign*.
 
+The look is the **Sig system**, page 9 ("9 Sig system") of the Miracle Health design canvas: graphite pages, signed in Sig's colours. When this book and that page disagree, the page wins and this book is corrected. *The Sig system*, below, says what it asks of every page.
+
 ## Principles
 
 1. **Every answer, checked.** The design shows the checking: the run log of each agent's step, the Safety agent first and last, the read strip under a report, "safety on" in every status bar.
@@ -16,7 +18,7 @@ Build every page from this system: the window and its parts (`components/`), the
 
 ## Voice
 
-Plain, calm and exact, like a careful friend who has read the studies. Short sentences. Talk to "you" and say what happens. Write "we" rarely and never in place of the agents: Sig and its agents speak for themselves. Use sentence case everywhere. Kickers are mono capitals (`kicker`). Labels in the side panel and status bar are mono lowercase (`label`, `status`).
+Plain, calm and exact, like a careful friend who has read the studies. Short sentences. Talk to "you" and say what happens. Write "we" rarely and never in place of the agents: Sig and its agents speak for themselves. Use sentence case everywhere. Kickers are comments in the code: `// the community signal`, lowercase mono (`kicker`). Labels, a table's column heads and the status bar are mono lowercase (`label`, `status`).
 
 **Real copy to learn from:**
 - "One app. Twelve agents. Every answer, checked."
@@ -67,11 +69,11 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
 - **Words: Mona Sans.**
   - `body` on the site, `body-app` in the community, `lede` under a headline.
   - `h3` for card and post titles, `nav` for side panel rows, `button` for buttons.
-- **Headlines: Mona Sans Display,** the same file wider (from 112.5%) and heavier (from weight 640). Track it tight.
-  - `hero` for the one headline of Home and the story page, `section` for section heads, `page` for a page's h1, `h2` inside a page.
+- **Headlines: Mona Sans,** at its normal width and semibold (600), tracked tight (-0.02 to -0.03em). No wide or heavy cut.
+  - `hero` (64px) for the one headline of Home and the story page, `section` (42px) for section heads, `page` (38px) for a page's h1, `h2` (22px) inside a page.
   - A page's h1 ends in a full stop: "Your feed.", "The Signal."
 - **Anything measured or labelled: Monaspace Neon.**
-  - `kicker` (capitals, 0.12em, led by a 28px rule) and `label` (lowercase).
+  - `kicker` (`// a comment`, lowercase, 13px, no capitals and no rule) and `label` (lowercase, 12px).
   - `data` for tables and numbers, with tabular figures.
   - `log` for paths, read strips, run logs and prompts; `status` for the status bar and tabs.
 - **Fonts:** both are open fonts (SIL OFL, in `licenses/`), served from `fonts/`. Never substitute Inter, Roboto or a system serif.
@@ -97,14 +99,17 @@ Build every page as a window:
 
 ## Shape and depth
 
-- **Corners:** `radius-plate` for cards and tables, `radius-row` for side panel rows, `radius-control` for buttons, fields and tabs, `radius-strip` for the read strip, `radius-shell` for terminal blocks, `radius-window` for the window. No pills.
-- **Plates:** a plate (a page's head) carries a 10px tick in each corner, like crop marks.
+- **Corners:** `radius-tag` (7px) for tags and chips, `radius-tab` (8px) for a tab's top corners, `radius-row` (9px) for rows, `radius-control` (10px) for buttons, fields and terminal blocks, `radius-card` (12px) for cards, tables and the window, `radius-pane` (14px) for the front page's big panes. No pills.
+- **Panes:** a pane is a framed block with a bar naming its file (`signal.top`, `house-rules.md`, `~/chats/…`), mono in the bar, the content under it.
 - **Shadows:** nothing casts one except what floats (`shadow-float`) and the phone drawer (`shadow-drawer`). Depth comes from the four grounds, not from shadows.
 
 ## Motion
 
 - **What moves:**
-  - The live dot pulses every 1.8s, growing and fading on transform and opacity only.
+  - The live dot pulses, fading on opacity only.
+  - While something loads, Sig's ring is the spinner: its pieces light one by one, with three lines saying what's happening. No grey skeleton boxes.
+  - A run plays line by line, each agent lighting its piece of the ring as it reports, the centre last.
+  - A row of the Signal that moved flashes once, lime up, coral down.
   - The Signal's tape runs, and pauses on hover.
   - A Signal counts from its last value to its new one.
   - Sig's ring lights each agent's arc as it reports.
@@ -114,8 +119,8 @@ Build every page as a window:
 ## States and focus
 
 - **Focus:** every focusable thing gets a solid 2px `text` ring, 2–3px out. It contrasts at 15:1 or more on every ground.
-- **Hover:** hairlines brighten to `text`, and rows take a 5% `text` fill.
-- **Current:** the current place, row or tab takes an 8% `text` fill and `aria-current`.
+- **Hover:** hairlines brighten to `text`, and rows take the `hover` ground.
+- **Current:** the current place, row or tab takes the `hover` ground (or an 8% `text` fill) and `aria-current`.
 - **Disabled:** controls drop to half opacity and keep their words.
 - **Empty:** an empty state says what will appear and how to make it appear: "None yet. Every first-hand report moves a Signal up the line."
 
@@ -134,3 +139,23 @@ Build every page as a window:
 - Set it 22px tall in the side panel and 24px in a foot. Don't set it smaller than 20px.
 - Never recolour, outline, stretch or rotate it, and never set it on a photo or a colour.
 - In the community it sits beside a "COMMUNITY" tag (mono capitals in a `line-2` frame).
+
+## The Sig system
+
+Page 9 of the design canvas, as built. Every page is graphite; colour shows up only when one of Sig's agents signs something it made. What people write stays white.
+
+**Who signs what.** Each agent has one colour (`agent-*`) and signs only its own work: the Safety agent's notes in coral, the Planner in orange, the Recommender in yellow, the community and its Signal in lime, the Combination agent in green, the Markers agent's blood tests in teal, the Synergy auditor in cyan, the Evidence librarian's grades and sources in blue, the Relatives agent in indigo, the Mechanism agent in purple, the Stack builder in pink, and the Interpretation agent, at the ring's centre, in white.
+
+**The four ways a signature shows:**
+1. **The pip:** a 7px dot in the signer's colour, on anything an agent made: "● Limited evidence", "● Signal 91.9", "● 4 safety notes".
+2. **The log line:** step · agent · ✓ · what it did, the agent's name in its colour (`log`).
+3. **The gutter:** a 2px mark in the signer's colour beside what it wrote, with its name on the right of the heading ("The bottom line · evidence librarian"). Never a box round it.
+4. **The ring:** Sig's face everywhere: the title bar, Ask Sig, the loading spinner. Each agent's piece lights as it reports; the centre lights last.
+
+**Everywhere:**
+- **⌘K** (Ctrl+K), from any page: open a fact sheet, ask Sig, trace a compound in the body, compare it, go to its space in the community, or any page (`lib/cmdk.js`). The status bar ends in ⌘K.
+- **The status bar** says what you're looking at and how fresh it is ("library · 122 sheets · updated nov 7"; on a fact sheet its kind, evidence and sources), then "no doses · no sellers · no diagnosis", then ⌘K. SIG and "safety on" lead it on every page.
+- **Loading:** the ring is the spinner and three lines say what's happening ("loading the library · reading the signal · waking sig's agents").
+- **The 404** is a shell: "command not found: /library/bpc-175", then "did you mean bpc157.md?"
+
+**The front page is a prompt:** "› look up" with live results (file name, name, the evidence pip, the Signal pip), the Library's graph tracing what's typed or pointed at, the strip of numbers, then the Community Signal running like `top` (`signal.top`: totals, where the numbers come from, the board, `tail -f signal.log`), then Ask Sig's twelve agents in a run that plays as it comes into view, then the real example, how a report becomes a commit, the house rules as a file, and the questions.
