@@ -9,8 +9,8 @@
 // community in its lime. Nothing here uses innerHTML for anything the AI or the visitor wrote:
 // text is placed with textContent, and the small amount of formatting the AI uses (bold, lists,
 // Library links) is built node by node.
-import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=00c2752062';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=d5d77d9d2d';
+import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=9eee17d93b';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
 import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { sigRing3d } from '/lib/ring3d.js?v=899677ad8c';

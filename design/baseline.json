@@ -9,14 +9,7 @@
       "kit/kit.css": 1
     },
     "font-family": {},
-    "radius": {
-      "ai/ai.css": 6,
-      "ai/packet.css": 7,
-      "ai/plan.css": 3,
-      "ai/screen.css": 1,
-      "library/library.css": 2,
-      "styles.css": 3
-    },
+    "radius": {},
     "font-size": {
       "ai/ai.css": 6,
       "ai/plan.css": 2,

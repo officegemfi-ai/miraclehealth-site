@@ -80,20 +80,20 @@ h1 em,.vs{font-style:normal;font-weight:inherit}
 .art{position:absolute;right:64px;bottom:116px;width:300px;display:grid;place-items:center}
 .art svg{width:260px;height:260px}
 .pills{display:flex;gap:14px;margin-top:30px}
-.pill{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px;border:1px solid rgba(255,255,255,.32);font:500 16px/1 Neon,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.pill{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid rgba(255,255,255,.32);font:500 16px/1 Neon,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78)}
 .pill b{font:700 21px/1 MonaDisplay,sans-serif;letter-spacing:-.01em;text-transform:none;color:#F7F8FA}
 .meter{display:inline-grid;grid-template-columns:repeat(4,14px);gap:3px}
-.meter i{height:10px;border-radius:2px;background:#14ECC3;opacity:.22}
+.meter i{height:10px;background:#14ECC3;opacity:.22}
 .meter i.on{opacity:1}
 .plan{width:300px;display:grid;gap:12px}
-.p-start{display:grid;gap:6px;padding:16px 18px;border-radius:6px;background:#F7F8FA;color:#000000}
+.p-start{display:grid;gap:6px;padding:16px 18px;background:#F7F8FA;color:#000000}
 .p-start span{font:500 12px/1 Neon,monospace;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
 .p-start b{font:700 21px/1.1 MonaDisplay,sans-serif;letter-spacing:-.01em}
 .p-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;height:150px;margin-top:6px;padding:0 10px}
-.p-pillars i{display:flex;align-items:flex-end;padding:10px;border:1px solid rgba(255,255,255,.32);border-radius:6px;font:600 15px/1 Mona,sans-serif;font-style:normal}
+.p-pillars i{display:flex;align-items:flex-end;padding:10px;border:1px solid rgba(255,255,255,.32);font:600 15px/1 Mona,sans-serif;font-style:normal}
 .p-pillars .on{border-color:#F7F8FA;background:#F7F8FA;color:#000000}
 .p-pillars .next{background:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 5px,rgba(255,255,255,.03) 5px 12px)}
-.p-ground{height:8px;margin-top:-12px;border-radius:2px;background:#F7F8FA}
+.p-ground{height:8px;margin-top:-12px;background:#F7F8FA}
 </style></head><body>
 <div class="in">
 <div class="top"><img class="logo" src="${pathToFileURL(path.join(ROOT, 'logo.webp')).href}" alt=""><span class="addr">miraclehealth.us</span></div>
