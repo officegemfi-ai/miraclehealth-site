@@ -24,8 +24,8 @@
 <link rel="preload" href="fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=d2b1fbcbe6">
 <link rel="stylesheet" href="styles.css?v=42105e3324">
-<link rel="stylesheet" href="/home.css?v=d92f150813">
-<script type="module" src="/home.js?v=e098b648e5"></script>
+<link rel="stylesheet" href="/home.css?v=5cc8a45dc8">
+<script type="module" src="/home.js?v=8f1da5e2f9"></script>
 <script type="module" src="/lib/os.js?v=0f4264f171"></script>
 </head>
 <body>
@@ -101,30 +101,34 @@
         </ul>
       </div>
 
-      <figure class="sx" aria-busy="true" aria-labelledby="sx-cap">
+      <figure class="sx hs-card" aria-busy="true" aria-labelledby="sx-cap">
         <figcaption class="mh-sr" id="sx-cap">The Community Signal, one compound at a time</figcaption>
-        <div class="sx-dial" role="img" aria-label="The Community Signal, loading" data-sx="ring">
-          <div class="sx-glow" aria-hidden="true"></div>
-          <div class="sx-sweep" aria-hidden="true"></div>
+        <span class="hs-tree-v" aria-hidden="true"></span><span class="hs-tree-h" aria-hidden="true"></span>
+        <div class="hs-h sx-h">
+          <span class="hs-num" data-sx="rank" aria-hidden="true">--</span>
+          <div class="sx-h-in" aria-live="polite">
+            <p class="hs-title" data-sx="name">The Community Signal</p>
+            <p class="sx-meta" data-sx="meta">one honest score from 0 to 100</p>
+          </div>
+          <button class="sx-nav" type="button" data-sx="prev" aria-label="Previous compound"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14.5 6-6 6 6 6"/></svg></button>
+          <button class="sx-nav" type="button" data-sx="next" aria-label="Next compound"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9.5 6 6 6-6 6"/></svg></button>
+        </div>
+        <div class="hs-ill sx-ill" role="img" aria-label="The Community Signal, loading" data-sx="ring">
           <div class="sx-mid" aria-hidden="true">
             <p class="sx-score"><span data-sx="whole">–</span><span class="sx-dec" data-sx="dec"></span></p>
             <p class="sx-of">out of 100</p>
             <p class="sx-sum" data-sx="summary">loading the live Signal</p>
           </div>
         </div>
-        <div class="sx-name">
-          <button class="sx-nav" type="button" data-sx="prev" aria-label="Previous compound"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14.5 6-6 6 6 6"/></svg></button>
-          <div class="sx-name-in" aria-live="polite">
-            <p class="sx-nm" data-sx="name">The Community Signal</p>
-            <p class="sx-meta" data-sx="meta">one honest score from 0 to 100</p>
-          </div>
-          <button class="sx-nav" type="button" data-sx="next" aria-label="Next compound"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9.5 6 6 6-6 6"/></svg></button>
+        <div class="sx-tb">
+          <ul class="sx-parts" data-sx="parts" aria-hidden="true"></ul>
+          <p class="sx-k" data-sx="themes-k" hidden>what people report most</p>
+          <ul class="sx-themes" data-sx="themes" hidden></ul>
         </div>
-        <p class="sx-k" data-sx="themes-k" hidden>what people report most</p>
-        <ul class="sx-themes" data-sx="themes" hidden></ul>
-        <div class="sx-foot">
-          <p class="sx-level" data-sx="level"></p>
-          <a class="sx-studies" data-sx="studies" href="/library/"><span>the fact sheets</span></a>
+        <div class="hs-f sx-f">
+          <span class="hs-tile"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" focusable="false" stroke-linecap="round"><line x1="7" y1="27" x2="7" y2="17" stroke="rgba(255,255,255,0.5)" stroke-width="1.6"/><line x1="13.7" y1="27" x2="13.7" y2="7" stroke="#3D8BFF" stroke-width="1.6"/><line x1="20.3" y1="27" x2="20.3" y2="13" stroke="rgba(255,255,255,0.92)" stroke-width="1.6"/><line x1="27" y1="27" x2="27" y2="20" stroke="rgba(255,255,255,0.26)" stroke-width="1.6"/></svg></span>
+          <span class="hs-who">Signal</span>
+          <span class="hs-sub sx-sub"><span data-sx="level"></span><a class="sx-studies" data-sx="studies" href="/library/"><span>the fact sheets</span></a></span>
         </div>
       </figure>
 
