@@ -99,7 +99,8 @@
 .sx-nm{margin:0;font:650 expanded 26px/1.1 var(--head);letter-spacing:-.03em;color:var(--text);overflow-wrap:anywhere}
 .sx-meta{margin:7px 0 0;font:400 11px/1.3 var(--mono);color:var(--muted)}
 .sx-k{position:relative;margin:22px 0 4px;font:400 11px/1 var(--mono);color:var(--lime)}
-.sx-themes{position:relative;margin:0;padding:0;list-style:none}
+.sx-themes{position:relative;min-height:148px;margin:0;padding:0;list-style:none}
+.sx-themes .sx-none{font:400 14px/1.35 var(--body);color:var(--muted)}
 .sx-themes li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
 .sx-th{font:400 14px/1.35 var(--body);color:var(--text-read)}
 .sx-fq{font:400 11px/1 var(--mono);color:var(--text-2);white-space:nowrap}
