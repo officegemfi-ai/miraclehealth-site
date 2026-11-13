@@ -80,3 +80,9 @@ The front page takes page 15's top. The Library's graph gives way to the Signal 
 1. **The bars are as tall as the score.** The published score isn't always the four rounded parts added up (the parts are shown whole), so each bar's height is the score and its parts keep their shares. Page 15's equation ("= 91.9, exactly") isn't built for the same reason: for most compounds the parts on show wouldn't add up to the number.
 2. **On a phone the Signal comes first**, then the spectrum, then the search and the actions, as page 15's phone board has it.
 3. **New glow, counted:** the ring's halo and sweep, the spectrum's floor and the picked bar's cap, the Signal card's wash and the open search's panel. The design check's baseline was rewritten for them.
+
+## 2026-11-12 · A plain frame
+
+Every page loses the app window round it: no rounded window box, no title bar with Sig's ring, the window's name, tabs and "12 agents online", no `~` path line, no status bar. The side panel stays, unchanged (its places, what's on this page, the rest of the site, joining). Beside it the page runs full width under a plain top bar that stays at the top: a search box that opens ⌘K, Ask Sig, and Join. The Library's tabs of recently opened sheets went with the title bar; the Library tree in the side panel still shows where a sheet sits. The share images drop their window frame the same way. Ask Sig's own page keeps its chat window, since its tabs are its chats.
+
+The front page gets page 15's "Three steps, one honest number" cards back, under the top, before Three ways in and the animated How it works.

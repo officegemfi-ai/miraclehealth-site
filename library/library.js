@@ -377,13 +377,6 @@ function entryPage(root) {
     signalPanel(box, id, name, x, snap.spaces?.[id], uses, snap, baselines);
     // the sheet's print: the Signal's blue arc round its edge, once it's here
     if (x && Number.isFinite(x.signal)) setPrintSignal(document.querySelector('.le-print .print'), x.signal);
-    // the status line at the foot: the Signal, once it's here
-    const sb = document.querySelector('[data-live="sb-signal"]');
-    if (sb && x && Number.isFinite(x.signal)) {
-      sb.querySelector('b').textContent = x.signal.toFixed(1);
-      sb.querySelector('.ls-lvl').textContent = ` · ${levelOf(x.certification || 'forum').name.toLowerCase()}`;
-      sb.hidden = false;
-    }
     const radarBox = document.querySelector('[data-live="radar"]');
     if (radarBox && x) radarLayers(radarBox, x, uses);
   });

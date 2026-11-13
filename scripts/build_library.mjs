@@ -149,14 +149,13 @@ const V = {
 // ---------------------------------------------------------------------------
 // The window every page opens in
 // ---------------------------------------------------------------------------
-// One app: every page is a window in Sig's terminal, as Ask Sig is. Beside it the side panel
-// (Sig, the Signal and the four places with what's in each, what's in this window, the rest of the site, joining,
-// the legal); on it the title bar (Sig's ring, the window's name, its tabs, the twelve agents
-// online), the window's path, the page, its foot (the weekly email, the links, the disclaimer) and
-// the status bar (Sig, safety on, what you're looking at and how fresh it is, no doses, no sellers,
-// no diagnosis, and ⌘K to go anywhere). The
-// panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a phone.
+// Every page opens beside the side panel (the Signal and the four places with what's in each, what's
+// in this window, the rest of the site, joining, the legal), under a plain top bar: search (⌘K goes
+// anywhere), Ask Sig and joining. Then the page and its foot (the weekly email, the links, the
+// disclaimer). The panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a
+// phone.
 const ICO = {
+  search: '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   // the Signal's own mark: its spectrum, four bars in the community's blue
   signal: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 13.5v-4M6.5 13.5v-9M10 13.5v-6.5M13.5 13.5v-3" fill="none" stroke="#3D8BFF" stroke-width="1.8" stroke-linecap="round"/></svg>',
   menu: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
@@ -183,41 +182,21 @@ function osSide(current, ctx = '', url = '') {
   </div>
 </aside>`;
 }
-// What a window is called, by its address: its name in the title bar, the tab it opens on, and
-// its path, as a terminal would show it
-function winOf(url) {
-  const segs = url.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
-  const top = segs[0] || '';
-  const NAMES = {
-    '': ['Home', 'home'], library: ['Library', 'index'], method: ['Method', 'method.md'], status: ['FDA status tracker', 'status.log'],
-    about: ['About', 'about.md'], founders: ['Founding reporters', 'founders.md'], weekly: ['The Signal, weekly', 'issues'], goals: ['By goal', 'goals'],
-    compare: ['Compare', 'compare'], my: ['My Miracle', 'my-miracle'], plan: ['A Miracle Plan', 'plan.md'], story: ['The story', 'story.md'],
-    privacy: ['Privacy', 'privacy.md'], terms: ['Terms', 'terms.md'], ai: ['Ask Sig', 'packet'], 404: ['Not found', '404'],
-  };
-  const [name, tab0] = NAMES[top] || [top || 'Miracle Health', top || 'home'];
-  const leaf = segs[1] || '';
-  const tab = !leaf ? tab0 : top === 'compare' ? `${leaf}.diff` : top === 'weekly' ? `issue-${leaf}.eml` : top === 'goals' ? leaf : leaf;
-  const crumbs = ['<a href="/">~</a>', ...segs.map((x, i) => (i === segs.length - 1 ? `<b>${e(x)}</b>` : `<a href="/${segs.slice(0, i + 1).join('/')}/">${e(x)}</a>`))];
-  const meta = top === '' ? `${catalog.length} compounds · ${entries.size} fact sheets · nothing for sale` : '';
-  return { name, tab, path: `<span class="wp-crumbs">${crumbs.join('<span aria-hidden="true">/</span>')}</span>`, meta };
-}
-function osOpen({ current = '', url = '/', win = null, side = '' }) {
-  const w = { ...winOf(url), ...(win || {}) };
-  const tabsData = w.kind ? ` data-kind="${w.kind}"${w.sheet ? ` data-sheet="${e(w.sheet)}" data-file="${e(w.tab)}"` : ''}` : '';
+function osOpen({ current = '', url = '/', side = '' }) {
   return `<div class="os" id="os">
 ${osSide(current, side, url)}
 <div class="os-scrim" id="os-scrim" hidden></div>
 <div class="os-main">
 <div class="win" data-win="${e(current || 'site')}">
-  <div class="win-title">
-    <button class="win-menu" id="os-menu" type="button" aria-label="Show the side panel" aria-controls="os-side" aria-expanded="true">${ICO.menu}</button>
-    <span class="win-brand"><span class="win-ring" aria-hidden="true">${ringSvg(18)}</span><b>${e(w.name)}</b><span class="win-dim">miraclehealth.us</span></span>
-    <nav class="win-tabs" id="win-tabs" aria-label="Open in this window"${tabsData}><a class="win-tab on" href="${e(url)}" aria-current="page"><i aria-hidden="true"></i><span class="win-tabname">${e(w.tab)}</span></a></nav>
-    <a class="win-online" href="/sig/"><span class="win-dots" aria-hidden="true">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>${AGENTS.length} agents online</span></a>
-  </div>
-  ${w.path === null ? '' : `<div class="win-path">${w.path}${w.meta ? `<span class="wp-meta">${w.meta}</span>` : ''}</div>`}`;
+  <header class="os-top">
+    <button class="os-menu" id="os-menu" type="button" aria-label="Show the side panel" aria-controls="os-side" aria-expanded="true">${ICO.menu}</button>
+    <a class="os-top-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <button class="os-search" type="button" data-cmdk aria-label="Search the Library and the site (⌘K)">${ICO.search}<span class="os-search-t">Search the Library…</span><kbd class="kbd-k" aria-hidden="true">⌘K</kbd></button>
+    <a class="os-top-sig" href="/sig/"><span aria-hidden="true">${ringSvg(16)}</span><span class="os-top-sig-t">Ask Sig</span></a>
+    <a class="btn bone sm os-top-join" href="${COMMUNITY}/">Join</a>
+  </header>`;
 }
-function osClose({ url = '/', status = '' }) {
+function osClose({ url = '/' }) {
   return `  <footer class="foot win-foot">
     <div class="wrap foot-in">
     ${url.startsWith('/weekly/') ? '' : footNews()}
@@ -231,13 +210,6 @@ function osClose({ url = '/', status = '' }) {
     </div>
     </div>
   </footer>
-  <div class="win-status" aria-label="Status">
-    <span class="ws ws-sig" aria-hidden="true">${ringSvg(12)}SIG</span>
-    <span class="ws ws-safe"><i aria-hidden="true"></i>safety on</span>
-    ${status || `<span class="ws ws-lib">library · ${entries.size} sheets</span><span class="ws ws-when">updated ${libDateOf().replace(/, \d{4}$/, '').toLowerCase()}</span>`}
-    <span class="ws ws-rules">no doses · no sellers · no diagnosis</span>
-    <button class="ws ws-k" type="button" data-cmdk aria-label="Go anywhere (⌘K)">⌘K</button>
-  </div>
 </div>
 </div>
 </div>`;
@@ -277,7 +249,7 @@ function stampShell(html, file, { current = '', home = false, url = '/' } = {}) 
 function page({
   title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
   styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = READS_SIGNAL, head = '',
-  ogImage = '/og.jpg', app = false, win = null, side = '', status = '',
+  ogImage = '/og.jpg', app = false, side = '',
 }) {
   return `<!doctype html>
 <html lang="en">
@@ -312,11 +284,11 @@ ${body}
 </body>
 </html>
 ` : `
-${osOpen({ current, url, win, side })}
+${osOpen({ current, url, side })}
 <main id="main" class="win-body">
 ${body}
 </main>
-${osClose({ url, status })}
+${osClose({ url })}
 </body>
 </html>
 `}`;
@@ -429,7 +401,6 @@ function indexPage() {
     body,
     // the Library's folders in the side panel: each family, with how many it holds and how many
     // have a sheet; the filter opens on it
-    win: { name: 'Library', tab: 'index', kind: 'library', meta: `${catalog.length} compounds · ${entries.size} fact sheets` },
     side: `<nav class="le-tree" aria-label="The Library's families">
     <p class="lt-root"><a href="/library/" aria-current="page">library/</a><span>${catalog.length}</span></p>
     ${FAMILIES.map((fam) => `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(fam.toLowerCase())}/<span class="lt-n">${catalog.filter((x) => x.family === fam).length}</span></a>`).join('\n    ')}
@@ -597,11 +568,9 @@ function entryPage(c) {
   ].filter(Boolean) : [];
   const toc = f ? [['voices', 'The bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood tests'], ...(f.studies?.length ? [['studies', 'The main studies']] : []), ['ask', 'Ask your doctor'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood tests to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
-  // The Library as a repository: its path (library › peptides › bpc157.md), the family's sheets as
-  // files beside the sheet (the other families as folders that open the Library on them), and a
-  // status line at the foot with the sheet's facts and, once it loads, its Signal
+  // The Library beside the sheet: the family's sheets as files in the side panel (the other families
+  // as folders that open the Library on them)
   const dir = (fam) => fam.toLowerCase();
-  const file = f ? `${c.id}.md` : c.id;
   const listed = (x) => entries.has(x.id) || x.kind === 'blend';
   const famFiles = catalog.filter((x) => x.family === c.family && (listed(x) || x.id === c.id)).sort((a, b) => a.id.localeCompare(b.id));
   const famCount = (fam) => catalog.filter((x) => x.family === fam && listed(x)).length;
@@ -613,16 +582,11 @@ function entryPage(c) {
       : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
     <p class="lt-more">${catalog.filter((x) => !listed(x)).length} more compounds are listed and waiting for their sheets.</p>
   </nav>`;
-  const status = f ? `<span class="ws ws-sheet">fact sheet · ${e((SINGULAR[c.family] || c.family).toLowerCase())}</span>
-    <span class="ws ls-ev"><i aria-hidden="true"></i>${e((GRADE[f.evidence.grade]?.[0] || f.evidence.grade).toLowerCase())}</span>
-    <span class="ws ws-src">${(f.sources || []).length} sources</span>
-    <span class="ws ls-sig" data-live="sb-signal" hidden><i aria-hidden="true"></i>signal <b></b><span class="ls-lvl"></span></span>` : '';
   // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
   const print = f && BODY.compounds[c.id] ? `<figure class="le-print" aria-labelledby="le-print-cap">
       ${printSvg({ id: c.id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[c.id].lines || [], places: BODY.places.map((x) => x.at) }, { size: 232 })}
       <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the blue arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
     </figure>` : '';
-  const pathLine = `<span class="wp-crumbs"><a href="/">~</a><span aria-hidden="true">/</span><a href="/library/">library</a><span aria-hidden="true">/</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(dir(c.family))}</a><span aria-hidden="true">/</span><b>${e(file)}</b></span>`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
 <section class="le-hero${print ? ' has-print' : ''}">
   <div class="wrap">
@@ -682,7 +646,7 @@ function entryPage(c) {
 </div>
 </div>`;
   return page({ title: `${c.name}: evidence, risks, blood tests · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`,
-    win: { name: 'Library', tab: file, kind: 'library', sheet: c.id, path: pathLine, meta: f ? `checked ${e(date(f.checked).toLowerCase())} against ${(f.sources || []).length} sources` : '' }, side: tree, status, body });
+    side: tree, body });
 }
 
 // ---------------------------------------------------------------------------
