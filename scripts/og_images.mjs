@@ -63,7 +63,7 @@ const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
 *{box-sizing:border-box;margin:0}
 body{width:1200px;height:630px;overflow:hidden;background:#000000;color:#F7F8FA;font-family:Mona,sans-serif;position:relative}
 /* the window: Sig's title bar with the ring, the window's name and tab, the twelve online; the page; the status bar with the rules */
-.win{position:absolute;inset:22px;display:flex;flex-direction:column;border:1.5px solid rgba(255,255,255,.12);border-radius:16px;background:#000000;overflow:hidden}
+.win{position:absolute;inset:22px;display:flex;flex-direction:column;border:1.5px solid rgba(255,255,255,.12);border-radius:16px;background:radial-gradient(90% 640px at 50% -160px,rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,#000000;overflow:hidden}
 .wt{display:flex;align-items:flex-end;flex:none;height:60px;padding:0 22px 0 22px;border-bottom:1.5px solid rgba(255,255,255,.10);background:#17171A}
 .brand{display:flex;align-items:center;gap:12px;align-self:center;padding-right:22px}
 .brand svg{display:block}.brand b{font:650 19px/1 Mona,sans-serif;letter-spacing:-.01em;white-space:nowrap}.brand span{font:400 15px/1 Neon,monospace;color:#7F8796}
@@ -79,10 +79,10 @@ body{width:1200px;height:630px;overflow:hidden;background:#000000;color:#F7F8FA;
 .st .on{color:#F7F8FA}.st .on i{background:#F7F8FA}.st .safe i{background:#FF6B5B}
 .st .rules{margin-left:auto;border-left:1.5px solid rgba(255,255,255,.08);border-right:0}
 .logo{display:block;width:auto;height:30px;margin-top:30px;align-self:flex-start}
-.kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 18px/1 Neon,monospace;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 18px/1 Neon,monospace;letter-spacing:.09em;text-transform:uppercase;color:#3D8BFF}
 .kick::before{content:'';width:40px;height:1px;background:currentColor}
 .kick.lower{letter-spacing:0;text-transform:none}.kick.lower::before{display:none}
-h1{margin-top:20px;font:700 ${c.pair ? 62 : 60}px/1.03 MonaDisplay,sans-serif;letter-spacing:-.03em;max-width:${c.art ? 720 : 1010}px}
+h1{margin-top:20px;font:800 ${c.pair ? 53 : 52}px/1 MonaDisplay,sans-serif;font-stretch:125%;letter-spacing:-.022em;text-transform:uppercase;max-width:${c.art ? 720 : 1010}px}
 h1 em,.vs{font-style:normal;font-weight:inherit}
 .vs{color:rgba(255,255,255,.6)}
 .sub{margin-top:20px;max-width:${c.art ? 680 : 880}px;font-size:25px;line-height:1.42;color:rgba(255,255,255,.74)}
