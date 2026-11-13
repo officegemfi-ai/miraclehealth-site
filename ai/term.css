@@ -158,11 +158,11 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-thread{gap:16px;padding:20px var(--tm-px) 24px}
 .tm .ai-chat.is-empty .ai-thread{padding:24px var(--tm-px) 8px}
 .tm .ai-empty{padding:0}
-.tm .ai-hello{width:52px;height:52px}
+.tm .ai-hello{width:40px;height:40px}
 .tm .ai-begin{padding:8px var(--tm-px) 24px}
 .tm .ai-start{border-color:var(--tm-line2);background:transparent}
 .tm .ai-start:hover{border-color:var(--tm-tx);background:transparent}
-.tm .ai-who{border-top-color:var(--tm-line)}
+.tm .ai-who,.tm .ai-pulse{border-top-color:var(--tm-line)}
 
 /* In a wide pane the answer keeps a readable line and the first screen a readable block */
 @media (min-width:701px){
@@ -591,5 +591,3 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 @media (max-width:374px){.tm-sb-sig{display:none}}
 /* the stop key's square is drawn: neither font has one */
 .tm .ai-send .k-stop::before{content:'';display:inline-block;width:.6em;height:.6em;margin-right:.5em;background:currentColor;vertical-align:.02em}
-/* on a phone the greeting's ring sits over its headline, so the headline has the width */
-@media (max-width:700px){.tm .ai-hi{flex-direction:column;align-items:flex-start;gap:12px}}
