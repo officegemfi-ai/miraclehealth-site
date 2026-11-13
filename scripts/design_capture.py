@@ -5,17 +5,31 @@
 #   python3 scripts/design_capture.py story      only the pages whose name contains "story"
 # Needs Playwright for Python and Chrome (CHROMIUM_PATH, default /usr/bin/google-chrome). It
 # serves the site itself on port 8765 if nothing is there yet.
+#   SIGNAL_FIXTURE=<file>  answer the live Signal (and the community's snapshot) from a saved copy, and
+#                          keep every other outside request off the network, for a machine that can't
+#                          reach them (the pages then look as they do with the live numbers)
+#   BASE=<url> PAGES_FILE=<json> SETTLE_MS=<ms>  capture another app, e.g. the community's preview
 import asyncio, json, sys, os, subprocess, time, urllib.request
 from playwright.async_api import async_playwright
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT=os.path.join(ROOT,'.design')
-BASE='http://127.0.0.1:8765'
-PAGES=[p for p in json.load(open(os.path.join(ROOT,'design','pages.json'))) if not sys.argv[1:] or any(a in p[0] for a in sys.argv[1:])]
+BASE=os.environ.get('BASE','http://127.0.0.1:8765')
+FIXTURE=os.environ.get('SIGNAL_FIXTURE')
+SETTLE=int(os.environ.get('SETTLE_MS','900'))
+PAGES=[p for p in json.load(open(os.environ.get('PAGES_FILE') or os.path.join(ROOT,'design','pages.json'))) if not sys.argv[1:] or any(a in p[0] for a in sys.argv[1:])]
 try:
     urllib.request.urlopen(BASE+'/', timeout=2)
 except Exception:
-    subprocess.Popen([sys.executable,'-m','http.server','8765','--bind','127.0.0.1'],cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-    time.sleep(1.5)
+    if BASE.endswith(':8765'):
+        subprocess.Popen([sys.executable,'-m','http.server','8765','--bind','127.0.0.1'],cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        time.sleep(1.5)
+async def offline(route):
+    u = route.request.url
+    if FIXTURE and ('functions/v1/signal' in u or 'snapshot.json' in u):
+        return await route.fulfill(status=200, body=open(FIXTURE, encoding='utf-8').read(), headers={'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
+    if u.startswith(BASE) or u.startswith('data:') or u.startswith('blob:'):
+        return await route.continue_()
+    return await route.abort()
 os.makedirs(os.path.join(OUT,'data'),exist_ok=True); os.makedirs(os.path.join(OUT,'shots'),exist_ok=True)
 WIDTHS=[1440,1024,768,390]
 JS = r"""
@@ -55,6 +69,7 @@ JS = r"""
 """
 async def one(b, name, url, w):
     ctx = await b.new_context(viewport={'width': w, 'height': 900 if w > 500 else 844}, device_scale_factor=1)
+    if FIXTURE: await ctx.route('**/*', offline)
     pg = await ctx.new_page()
     errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)))
@@ -62,7 +77,7 @@ async def one(b, name, url, w):
         await pg.goto(BASE + url, wait_until='networkidle', timeout=45000)
     except Exception as e:
         errs.append('goto: ' + str(e)[:120])
-    await pg.wait_for_timeout(900)
+    await pg.wait_for_timeout(SETTLE)
     data = await pg.evaluate(JS)
     data['errors'] = errs
     data['width'] = w
