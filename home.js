@@ -8,7 +8,7 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=d5d77d9d2d';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=00c2752062';
 import { startHow } from '/lib/how.js?v=b5712a2ea7';
-import { startSigHero } from '/lib/sighero.js?v=065170b3fc';
+import { startSigHero } from '/lib/sighero.js?v=8757fd6eb7';
 import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -141,7 +141,10 @@ const library = prompt ? getJson(prompt.dataset.graph) : Promise.resolve(null);
 library.then((data) => { if (data && data.counts) promptFrom(data); });
 startSigHero(document.querySelector('.sx-hero'), {
   getSignal,
-  studies: library.then((d) => new Map((d?.ids || []).map((id, c) => [id, d.grade?.[c]]).filter(([, g]) => Number.isInteger(g) && g >= 0))),
+  library: library.then((d) => d && {
+    grades: new Map((d.ids || []).map((id, c) => [id, d.grade?.[c]]).filter(([, g]) => Number.isInteger(g) && g >= 0)),
+    kinds: new Map((d.ids || []).map((id, c) => [id, ['peptide', 'hormone', 'medication', 'supplement'][d.famOf?.[c]]]).filter(([, k]) => k)),
+  }),
   meter: (grade) => meterHtml(grade, { bare: true }),
   levels: LEVELS,
 });

@@ -152,8 +152,8 @@ const V = {
 // Every page opens beside the side panel (the Signal and the four places with what's in each, what's
 // in this window, the rest of the site, joining, the legal), under a plain top bar: search (⌘K goes
 // anywhere), Ask Sig and joining. Then the page and its foot (the weekly email, the links, the
-// disclaimer). The panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a
-// phone.
+// disclaimer). The panel is never taken away: it starts closed, and the top bar's menu button slides it
+// in over the page (lib/os.js).
 const ICO = {
   search: '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
   // the Signal's own mark: its spectrum, four bars in the community's blue
@@ -171,7 +171,7 @@ const MORE = [['/#how', 'How it works'], ['/method/', 'How the numbers are made'
   ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/weekly/', 'The weekly email'], ['/founders/', 'Founding reporters'], ['/story/', 'The story'], ['/about/', 'About']];
 function osSide(current, ctx = '', url = '') {
   return `<aside class="os-side" id="os-side" aria-label="Miracle Health">
-  <div class="os-head"><a class="os-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a><button class="os-fold" id="os-fold" type="button" aria-label="Hide the side panel" aria-controls="os-side" aria-expanded="true">${ICO.fold}</button></div>
+  <div class="os-head"><a class="os-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a><button class="os-fold" id="os-fold" type="button" aria-label="Close the menu" aria-controls="os-side" aria-expanded="false">${ICO.fold}</button></div>
   <a class="os-ask" href="/sig/">${ringSvg(16)}<span>Ask Sig a question</span></a>
   <nav class="os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
   ${ctx ? `<div class="os-ctx">${ctx}</div>` : ''}
@@ -189,7 +189,7 @@ ${osSide(current, side, url)}
 <div class="os-main">
 <div class="win" data-win="${e(current || 'site')}">
   <header class="os-top">
-    <button class="os-menu" id="os-menu" type="button" aria-label="Show the side panel" aria-controls="os-side" aria-expanded="true">${ICO.menu}</button>
+    <button class="os-menu" id="os-menu" type="button" aria-label="Open the menu" aria-controls="os-side" aria-expanded="false">${ICO.menu}</button>
     <a class="os-top-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
     <button class="os-search" type="button" data-cmdk aria-label="Search the Library and the site (⌘K)">${ICO.search}<span class="os-search-t">Search the Library…</span><kbd class="kbd-k" aria-hidden="true">⌘K</kbd></button>
     <a class="os-top-sig" href="/sig/"><span aria-hidden="true">${ringSvg(16)}</span><span class="os-top-sig-t">Ask Sig</span></a>
