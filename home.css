@@ -159,6 +159,18 @@
 .sx-gline b{font-weight:400;color:var(--text)}
 .is-off .sx-band{display:none}
 
+/* ---------- three steps, one honest number (page 15 of the design canvas): how a report becomes
+   the Signal, in three cards with their line drawings ---------- */
+.st-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px}
+.st-head .fp-head{max-width:640px}
+.st-note{max-width:340px;margin:0;font-size:15.5px;line-height:1.55;color:var(--text-2)}
+.st-cards{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin:40px 0 0;padding:0;list-style:none}
+.st-card{position:relative;display:flex;flex-direction:column;min-width:0;padding:40px 36px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.st-n{position:absolute;top:22px;right:24px;font:400 11px/1 var(--mono);letter-spacing:.08em;color:var(--muted)}
+.st-ico{display:block;flex:none;width:112px;height:112px;overflow:visible}
+.fp .st-card h3{margin:144px 0 0;font:800 expanded 24px/1.02 var(--head);letter-spacing:-.02em;text-transform:uppercase;color:var(--text)}
+.st-card p{margin:16px 0 0;font-size:16px;line-height:1.55;color:var(--text-2)}
+
 /* ---------- signal, not noise (page 15 of the design canvas): what a forum thread or a star rating
    usually does, beside what the Community Signal does, rule for rule ---------- */
 .sn-cols{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:40px}
@@ -464,6 +476,8 @@
 }
 @container fp (min-width:760px){
   .fp-ways{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .st-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .st-card{min-height:400px}
   .sn-cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .sn-sig{display:grid}
 }
@@ -517,6 +531,9 @@
 }
 @container fp (max-width:560px){
   .fp-wrap{padding:0 16px}
+  .st-card{padding:32px 24px}
+  .fp .st-card h3{margin-top:48px}
+  .st-ico{width:104px;height:104px}
   .sn-top{padding:22px 18px 18px}
   .sn-list li{min-height:0;padding:14px 18px}
   .fp .sn-name{font-size:32px}

@@ -78,9 +78,9 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
   - `log` for paths, read strips, run logs and prompts; `status` for the status bar and tabs.
 - **Fonts:** both are open fonts (SIL OFL, in `licenses/`), served from `fonts/`. Never substitute Inter, Roboto or a system serif.
 
-## The window
+## The frame
 
-Build every page as a window:
+Every page opens the same way:
 - **Side panel** (`side-panel` wide, on `side`): the logo, then the Signal and the four places, each with its mark and meta:
   - The Signal: its spectrum, four bars in Signal blue, with a live dot ("51 live" on the front page, which has the count).
   - Library: the Evidence librarian's ladder, "122 sheets".
@@ -88,15 +88,13 @@ Build every page as a window:
   - Community: the community's glyph, with a live dot.
   - My Miracle: the Stack builder's glyph, "this device".
   
-  Under them comes what is in this window, then the rest and the legal.
-- **Title bar** (`title-bar`, on `bar`): Sig's ring at 18px, the window's name, its domain in `muted` mono, the tabs, and what's live on the right.
-- **Path line** (`path-line`): `~ / library / peptides / semaglutide.md`.
-- **Page,** then the foot (on `side`).
-- **Status bar** (`status-bar`, on `page`): the white SIG segment, what's on, and the rules.
+  Under them comes what is on this page, then the rest and the legal.
+- **Top bar** (60px, sticky): a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button. When the side panel is folded, or on a phone, the menu button and the logo lead it.
+- **Page,** full width beside the panel on the faint grid under the ultramarine wash, then the foot: the weekly email, the links, the disclaimer.
 
-**On a desktop:** the window sits `window-gap` in from the screen, with `radius-window` corners. The title bar stays at the top and the status bar at the bottom. The gap above and below them is painted in `page`, so nothing shows through while the page scrolls.
+No window box, tabs, path line or status bar: the frame is a plain website's (decision log, November 12).
 
-**On a phone:** the window fills the screen and the side panel slides in from the menu button (`shadow-drawer`). Escape or a tap outside closes it.
+**On a phone:** the side panel slides in from the top bar's menu button (`shadow-drawer`). Escape or a tap outside closes it. The top bar keeps the search and Ask Sig as icons, and Join.
 
 ## Shape and depth
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-// Makes the share images (1200 x 630), each a window in Sig's terminal like every page of the site
-// (Sig's ring, the window's name and tab, the status bar with the rules): the one every page falls
-// back to (og.jpg), the shared plan's (img/og-plan.jpg), the story page's, and one each for the pages
+// Makes the share images (1200 x 630), each like a page of the site: the logo and the address along
+// the top, the words, and the rules along the foot: the one every page falls back to (og.jpg), the shared plan's (img/og-plan.jpg), the story page's, and one each for the pages
 // scripts/build_pages.mjs builds (About, the FDA status tracker, each goal, each comparison, the
 // weekly email, the founding reporters) into img/og/<slug>.jpg. The pages use an image once it's
 // there (run the library build after).
@@ -13,7 +12,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PAIRS, slugOf } from './build_pages.mjs';
-import { ringSvg, WHEEL, CENTER, AGENT_COLOR } from '../lib/ring.js';
+import { ringSvg } from '../lib/ring.js';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
@@ -62,23 +61,15 @@ const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Neon;src:url('${font('monaspace-neon-700.woff2')}') format('woff2');font-weight:550 900}
 *{box-sizing:border-box;margin:0}
 body{width:1200px;height:630px;overflow:hidden;background:#000000;color:#F7F8FA;font-family:Mona,sans-serif;position:relative}
-/* the window: Sig's title bar with the ring, the window's name and tab, the twelve online; the page; the status bar with the rules */
-.win{position:absolute;inset:22px;display:flex;flex-direction:column;border:1.5px solid rgba(255,255,255,.12);border-radius:16px;background:radial-gradient(90% 640px at 50% -160px,rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,#000000;overflow:hidden}
-.wt{display:flex;align-items:flex-end;flex:none;height:60px;padding:0 22px 0 22px;border-bottom:1.5px solid rgba(255,255,255,.10);background:#17171A}
-.brand{display:flex;align-items:center;gap:12px;align-self:center;padding-right:22px}
-.brand svg{display:block}.brand b{font:650 19px/1 Mona,sans-serif;letter-spacing:-.01em;white-space:nowrap}.brand span{font:400 15px/1 Neon,monospace;color:#7F8796}
-.tab{display:flex;align-items:center;gap:10px;height:42px;margin-bottom:-1.5px;padding:0 22px 0 16px;border:1.5px solid rgba(255,255,255,.10);border-bottom:0;border-radius:10px 10px 0 0;background:#000000;font:500 15px/1 Neon,monospace;white-space:nowrap}
-.tab i{width:8px;height:8px;border-radius:50%;background:#F7F8FA}
-.online{display:flex;align-items:center;gap:12px;margin-left:auto;align-self:center;font:500 15px/1 Neon,monospace;color:#A1A7B2;white-space:nowrap}
-.dots{display:flex;gap:4px}.dots i{width:7px;height:7px;border-radius:50%}
-.in{position:relative;flex:1;min-height:0;padding:0 48px 34px;display:flex;flex-direction:column}
-.st{display:flex;align-items:stretch;flex:none;height:38px;border-top:1.5px solid rgba(255,255,255,.10);background:#000000;font:500 15px/1 Neon,monospace;color:#7F8796;white-space:nowrap}
-.st span{display:inline-flex;align-items:center;gap:9px;padding:0 16px;border-right:1.5px solid rgba(255,255,255,.08)}
-.st i{width:7px;height:7px;border-radius:50%}
-.st .sig{background:#F7F8FA;color:#000000;letter-spacing:.04em}.st .sig svg{display:block}
-.st .on{color:#F7F8FA}.st .on i{background:#F7F8FA}.st .safe i{background:#FF6B5B}
-.st .rules{margin-left:auto;border-left:1.5px solid rgba(255,255,255,.08);border-right:0}
-.logo{display:block;width:auto;height:30px;margin-top:30px;align-self:flex-start}
+/* the page itself: the logo and the address along the top, the words, the rules along the foot, on the
+   faint grid under the ultramarine wash */
+body{background:radial-gradient(90% 640px at 50% -160px,rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,#000000}
+.in{position:absolute;inset:0;display:flex;flex-direction:column;padding:52px 64px 48px}
+.top{display:flex;align-items:center;justify-content:space-between}
+.addr{font:500 17px/1 Neon,monospace;color:#A1A7B2}
+.foot{display:flex;align-items:center;gap:14px;margin-top:34px;padding-top:22px;border-top:1.5px solid rgba(255,255,255,.10);font:500 16px/1 Neon,monospace;color:#7F8796;white-space:nowrap}
+.foot svg{display:block}
+.logo{display:block;width:auto;height:32px}
 .kick{display:flex;align-items:center;gap:16px;margin-top:auto;font:500 18px/1 Neon,monospace;letter-spacing:.09em;text-transform:uppercase;color:#3D8BFF}
 .kick::before{content:'';width:40px;height:1px;background:currentColor}
 .kick.lower{letter-spacing:0;text-transform:none}.kick.lower::before{display:none}
@@ -86,7 +77,7 @@ h1{margin-top:20px;font:800 ${c.pair ? 53 : 52}px/1 MonaDisplay,sans-serif;font-
 h1 em,.vs{font-style:normal;font-weight:inherit}
 .vs{color:rgba(255,255,255,.6)}
 .sub{margin-top:20px;max-width:${c.art ? 680 : 880}px;font-size:25px;line-height:1.42;color:rgba(255,255,255,.74)}
-.art{position:absolute;right:56px;bottom:40px;width:300px;display:grid;place-items:center}
+.art{position:absolute;right:64px;bottom:116px;width:300px;display:grid;place-items:center}
 .art svg{width:260px;height:260px}
 .pills{display:flex;gap:14px;margin-top:30px}
 .pill{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border-radius:6px;border:1px solid rgba(255,255,255,.32);font:500 16px/1 Neon,monospace;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.78)}
@@ -103,18 +94,15 @@ h1 em,.vs{font-style:normal;font-weight:inherit}
 .p-pillars .on{border-color:#F7F8FA;background:#F7F8FA;color:#000000}
 .p-pillars .next{background:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 5px,rgba(255,255,255,.03) 5px 12px)}
 .p-ground{height:8px;margin-top:-12px;border-radius:2px;background:#F7F8FA}
-</style></head><body><div class="win">
-<div class="wt"><span class="brand">${ringSvg(24)}<b>${e(c.name)}</b><span>miraclehealth.us</span></span><span class="tab"><i></i>${e(c.tab)}</span>
-<span class="online"><span class="dots">${[...WHEEL, CENTER].map((k) => `<i style="background:${AGENT_COLOR[k]}"></i>`).join('')}</span>12 agents online</span></div>
+</style></head><body>
 <div class="in">
-<img class="logo" src="${pathToFileURL(path.join(ROOT, 'logo.webp')).href}" alt="">
+<div class="top"><img class="logo" src="${pathToFileURL(path.join(ROOT, 'logo.webp')).href}" alt=""><span class="addr">miraclehealth.us</span></div>
 <p class="kick${c.kick.startsWith('~') ? ' lower' : ''}">${e(c.kick)}</p>
 <h1>${c.title}</h1>
 ${c.sub ? `<p class="sub">${e(c.sub)}</p>` : ''}
 ${c.art ? `<div class="art">${c.art}</div>` : ''}
 ${c.pair ? `<div class="pills">${c.pair.map((id) => { const f = entries.get(id); return `<span class="pill"><b>${e(f.name)}</b>${meter(f.evidence.grade)}${e(GRADE[f.evidence.grade])}</span>`; }).join('')}</div>` : ''}
-</div>
-<div class="st"><span class="sig">${ringSvg(14)}SIG</span><span class="on"><i></i>online</span><span class="safe"><i></i>safety on</span><span class="rules">no doses · no sellers · no diagnosis</span></div>
+<div class="foot">${ringSvg(16)}<span>independent and free · no doses · no sellers · no diagnosis</span></div>
 </div></body></html>`;
 
 fs.mkdirSync(OUT, { recursive: true });

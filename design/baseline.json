@@ -15,7 +15,7 @@
       "ai/plan.css": 3,
       "ai/screen.css": 1,
       "library/library.css": 2,
-      "styles.css": 4
+      "styles.css": 3
     },
     "font-size": {
       "ai/ai.css": 6,
@@ -24,7 +24,7 @@
       "ai/term.css": 2,
       "library/library.css": 2,
       "pages/pages.css": 2,
-      "styles.css": 7
+      "styles.css": 6
     },
     "gradient": {
       "ai/ai.css": 14,
@@ -33,7 +33,7 @@
       "home.css": 6,
       "kit/kit.css": 1,
       "library/library.css": 1,
-      "styles.css": 6
+      "styles.css": 4
     },
     "shadow": {
       "ai/ai.css": 10,
