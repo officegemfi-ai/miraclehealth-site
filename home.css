@@ -21,7 +21,8 @@
 .sx-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "inst" "band" "do";row-gap:44px}
 .sx-head{grid-area:head;min-width:0}
 .sx-do{grid-area:do;min-width:0}
-.sx-kick{display:flex;align-items:center;gap:10px;margin:0;font:400 12px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--lime)}
+.sx-kick{display:flex;align-items:center;gap:12px;margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.sx-kick::before,.hs-kick::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
 .sx-live{position:relative;flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime)}
 .sx-live::after{content:'';position:absolute;inset:0;border-radius:50%;background:rgba(61,139,255,.55);animation:live 1.8s ease-out infinite}
 .sx-hero h1{max-width:none;margin:22px 0 0;font:800 expanded clamp(30px,3.2cqi + 12px,48px)/.98 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--text)}
@@ -30,7 +31,7 @@
 /* the prompt: a search box with its button; what it finds opens under it while you're in it */
 .fp-prompt.sx-find{position:relative;max-width:none;margin:0;border:0;border-radius:0;background:none;overflow:visible}
 .sx-find .hp-line{position:relative;display:flex;align-items:center;gap:12px;height:64px;min-height:0;padding:0 8px 0 20px;border:1px solid var(--line-2);border-radius:0;background:var(--ink)}
-.sx-find:focus-within .hp-line{border-color:rgba(255,255,255,.36)}
+.sx-find:focus-within .hp-line{border-color:var(--text)}
 .sx-box{display:flex;flex:1;align-items:center;gap:12px;min-width:0;height:100%}
 .sx-find-i{flex:none;color:var(--muted)}
 .fp-prompt.sx-find input{flex:1;min-width:0;height:40px;padding:0;border:0;border-radius:0;background:transparent;color:var(--text);font:400 16px/1 var(--body);outline:none;-webkit-appearance:none;appearance:none}
@@ -38,7 +39,7 @@
 .sx-find input::-webkit-search-cancel-button{display:none}
 .sx-find .hp-n{flex:none}
 .sx-find .hp-line:has(input:focus-visible){outline:2px solid var(--text);outline-offset:2px}
-.sx-go{flex:none;min-height:48px;padding:0 22px;font-size:15px}
+.sx-go{flex:none}
 .sx-find .hp-drop{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:6;display:none;border:1px solid var(--line-2);border-radius:0;background:var(--raised);box-shadow:0 24px 48px rgba(0,0,0,.6);overflow:hidden}
 .sx-find:focus-within .hp-drop{display:block}
 .sx-find .hp-list{border-top:0}
@@ -67,8 +68,8 @@
 .fp-ring{display:inline-flex}
 .fp-ring svg{display:block}
 .sx-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin:16px 0 0}
-.sx-acts .btn{min-height:50px;padding:0 24px;font-size:15.5px}
-.sx-howto{font:500 15px/1.3 var(--body);color:var(--text);text-decoration:underline;text-underline-offset:4px}
+.sx-howto{font:600 15px/1.3 var(--body);color:var(--text);text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+.sx-howto:hover{text-decoration-color:currentColor}
 .sx-howto:hover{color:#FFFFFF}
 .sx-read{display:flex;gap:32px;margin:38px 0 0;padding:22px 0 0;border-top:1px solid var(--line);list-style:none}
 .sx-read li{display:flex;flex-direction:column;gap:8px}
@@ -198,7 +199,7 @@
 /* ---------- three ways in ---------- */
 .fp-ways{scroll-margin-top:24px;display:grid;grid-template-columns:minmax(0,1fr);gap:18px;padding-top:48px;padding-bottom:64px}
 .fp-way{display:block;padding:22px 24px 24px;border:1px solid var(--line);border-radius:0;background:var(--card);color:var(--text);text-decoration:none;transition:border-color .2s,background-color .2s}
-.fp-way:hover{border-color:var(--line-2)}
+.fp-way:hover{border-color:var(--text)}
 .fp-way:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .fp-way-k{display:flex;align-items:center;gap:10px;font:400 13px/1 var(--mono);color:var(--text-2)}
 .fp-way-h{display:block;margin-top:14px;font:600 22px/1.2 var(--body);letter-spacing:-.01em}
@@ -208,9 +209,9 @@
 .fp-sec{padding:88px 0;border-top:1px solid var(--line)}
 .fp-head{max-width:780px}
 .fp-head h2,.fp-join-copy h2{margin:14px 0 0;font:800 expanded clamp(26px,1.89cqi + 13px,36px)/1.04 var(--body);letter-spacing:var(--head-ls);color:var(--text)}
-.fp-sub{margin:16px 0 0;max-width:64ch;font-size:17.5px;line-height:1.6;color:var(--text-2)}
+.fp-sub{margin:16px 0 0;max-width:50ch;font-size:18px;line-height:1.6;color:var(--text-2)}
 .fp-sub a{color:var(--text)}
-.fp-fine{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--muted)}
+.fp-fine{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:52ch}
 .fp-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
 .fp-more{font:400 13px/1.4 var(--mono);color:var(--text-2)}
 .fp-more:hover{color:var(--text)}
@@ -272,7 +273,7 @@
 .fp-top .down{color:#FF9A8E}
 .fp-top .flat{color:var(--muted)}
 .fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted);white-space:normal}
-.fp-top .more a{color:var(--text-2)}
+.fp-top .more a{color:var(--text-2);font-weight:400}
 .fp-top tr.flash-up{animation:fp-up 1.6s ease-out}
 .fp-top tr.flash-down{animation:fp-down 1.6s ease-out}
 @keyframes fp-up{from{background:rgba(61,139,255,.16)}}
@@ -318,7 +319,7 @@
 .signed>.g{border-radius:0;background:var(--ac)}
 .signed-k{display:flex;justify-content:space-between;gap:12px;margin:0;font:400 12px/1.9 var(--mono);color:var(--muted)}
 .signed-k .who{color:var(--ac)}
-.signed-t{margin:2px 0 0;font-size:15.5px;line-height:1.55;color:var(--fp-read)}
+.signed-t{margin:2px 0 0;font-size:15.5px;line-height:1.55;color:var(--fp-read);max-width:52ch}
 .signed-t strong{font-weight:600;color:var(--text)}
 .signed-t .num{font-weight:500;color:var(--text)}
 .fp-ev{margin:4px 0 0;padding:0;list-style:none}
@@ -358,7 +359,7 @@
 .roster{display:grid;gap:1px;margin:0;padding:0;list-style:none}
 .roster button{display:grid;grid-template-columns:10px minmax(0,1fr) auto;column-gap:12px;align-items:center;width:100%;padding:6px 8px;border:0;border-radius:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background-color .2s,opacity .35s}
 .roster button:hover,.roster button[aria-pressed="true"]{background:var(--fp-hover)}
-.roster button:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
+.roster button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .roster .pip{width:8px;height:8px}
 .roster .who-t b{display:block;font:500 13px/1.35 var(--mono);color:var(--ac)}
 .roster .who-t span{display:block;font-size:12.5px;line-height:1.35;color:var(--muted)}
@@ -378,12 +379,12 @@
 .fp-run.has-pick .fp-bigring .rg:not(.is-lit){opacity:.12}
 
 .fp-askbox{display:flex;align-items:center;gap:12px;max-width:880px;min-height:58px;margin-top:22px;padding:7px 7px 7px 16px;border:1px solid var(--line-2);border-radius:0;background:var(--raised)}
-.fp-askbox:focus-within{border-color:rgba(255,255,255,.36);outline:2px solid var(--text);outline-offset:2px}
+.fp-askbox:focus-within{border-color:var(--text);outline:2px solid var(--text);outline-offset:2px}
 .fp-askbox .ps1{flex:none;font:400 13px/1 var(--mono);color:var(--text-2)}
 .fp-askbox .ps1 span{color:var(--muted)}
 .fp-askbox input{flex:1;min-width:0;height:42px;padding:0;border:0;background:transparent;color:var(--text);font:400 14.5px/1 var(--mono);outline:none}
 .fp-askbox input::placeholder{color:var(--muted);opacity:1}
-.fp-askbox .btn{flex:none;min-height:42px;padding:0 18px}
+.fp-askbox .btn{flex:none;min-height:40px;padding:0 16px}
 
 /* ---------- one real example: studies, people, placebo ---------- */
 .fp-vs{margin-top:36px;border:1px solid var(--line);border-radius:0;background:var(--paper);overflow:hidden}
@@ -407,7 +408,7 @@
 .fp-vs .vs-use{grid-column:auto;margin:0;font:600 15.5px/1.35 var(--body);color:var(--text)}
 .fp-vs .vs-lbl{display:none}
 .fp-vs .vs-v{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;font:600 15px/1.35 var(--body);color:var(--text)}
-.fp-vs .vs-sub{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--text-2)}
+.fp-vs .vs-sub{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--text-2);max-width:52ch}
 .fp-vs .vs-sub a{color:var(--text)}
 .fp-vs .vs-cell.pl .vs-v b{font:500 26px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
 .fp-vs .vs-cell .vs-bar{max-width:220px;margin-top:10px}
@@ -443,9 +444,9 @@
 .fp-rule-list li:first-child{border-top:0}
 .fp-rule-list li::before{content:counter(rule);counter-increment:rule;font:400 12px/1 var(--mono);color:var(--muted);text-align:right}
 .fp-rule-list h3{margin:0;font:600 16px/1.35 var(--body);letter-spacing:-.01em;color:var(--text)}
-.fp-rule-list p{margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
+.fp-rule-list p{margin:0;font-size:15px;line-height:1.55;color:var(--text-2);max-width:52ch}
 .fp-rule-list a{color:var(--text)}
-.fp-members{margin:0;padding:16px 22px 18px 70px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.55;color:var(--text-2)}
+.fp-members{margin:0;padding:16px 22px 18px 70px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.55;color:var(--text-2);padding-right:max(22px,calc(100% - 70px - 52ch))}
 .fp-members b{font-weight:600;color:var(--text)}
 
 /* ---------- questions ---------- */
@@ -457,7 +458,7 @@
 .fp-faq summary::after{content:'+';position:absolute;right:6px;top:17px;font:400 16px/1.2 var(--mono);color:var(--muted)}
 .fp-faq details[open] summary::after{content:'−'}
 .fp-faq summary:focus-visible{outline:2px solid var(--text);outline-offset:2px}
-.fp-faq details p{max-width:64ch;margin:0;padding:0 0 20px;font-size:15.5px;line-height:1.6;color:var(--text-2)}
+.fp-faq details p{max-width:52ch;margin:0;padding:0 0 20px;font-size:16px;line-height:1.6;color:var(--text-2)}
 .fp-faq details a{color:var(--text)}
 
 /* ---------- by the window's width ---------- */
@@ -568,10 +569,10 @@
   .sx .hs-who{display:none}
   .sx-find .hp-line{display:block;height:auto;padding:0;border:0;background:none}
   .sx-box{position:relative;height:56px;padding:0 16px;border:1px solid var(--line-2);border-radius:0;background:var(--ink)}
-  .sx-find:focus-within .sx-box{border-color:rgba(255,255,255,.36)}
+  .sx-find:focus-within .sx-box{border-color:var(--text)}
   .sx-find .hp-line:has(input:focus-visible){outline:0}
   .sx-box:has(input:focus-visible){outline:2px solid var(--text);outline-offset:2px}
-  .sx-go{width:100%;min-height:52px;margin-top:12px}
+  .sx-go{width:100%;margin-top:12px}
   .sx-acts .btn{flex:1 1 100%}
   .sx-read{justify-content:space-between;gap:16px}
   .fp-top .c-sig{width:auto}
@@ -584,7 +585,7 @@
   .fp-vs .vs-act,.fp-vs .vs-act .btn{width:100%}
   .fp-acts .btn{flex:1 1 100%}
   .fp-askbox{flex-wrap:wrap;padding:7px}
-  .fp-askbox input{flex:1 1 100%;padding:0 9px}
+  .fp-askbox input{flex:1 1 100%;padding:0 9px;font-size:16px}
   .fp-askbox .btn{flex:1 1 100%}
 }
 
@@ -600,7 +601,7 @@
 .hs svg{display:block;overflow:visible}
 .hs-wide{font-stretch:125%;letter-spacing:var(--head-ls)}
 .hs-intro{position:relative;padding:120px 24px 140px;text-align:center}
-.hs-kick{display:inline-flex;align-items:center;gap:10px;margin:0;font:400 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--lime)}
+.hs-kick{display:inline-flex;align-items:center;gap:12px;margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
 .hs-kick i{width:7px;height:7px;border-radius:50%;background:var(--lime)}
 .hs-head{margin:22px 0 0;font:800 expanded clamp(32px,4.2cqi,56px)/1 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--text)}
 .hs-head.hs-small{font-size:clamp(30px,3.6cqi,48px)}
@@ -639,7 +640,7 @@
 .hs-cap{position:absolute;top:50%;width:min(380px,calc(50% - 120px));transform:translateY(-50%);z-index:2}
 .hs-r .hs-cap{right:calc(50% + 64px);text-align:right}
 .hs-l .hs-cap{left:calc(50% + 64px)}
-.hs-cap p{margin:14px 0 0;font:400 17.5px/1.6 var(--body);color:var(--text-2)}
+.hs-cap p{margin:14px 0 0;font:400 17.5px/1.6 var(--body);color:var(--text-2);max-width:50ch}
 .hs-cap .hs-cap-k{margin:0;font:400 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--lime)}
 .hs-finale{position:relative;height:1600px}
 .hs-ringc{position:absolute;left:50%;top:80px;width:980px;max-width:100%;aspect-ratio:1;transform:translateX(-50%)}
@@ -667,3 +668,6 @@
   .hs-ctas{justify-content:flex-start}
 }
 /* /how:system */
+
+/* phone floors: running copy 15px, notes 14px */
+@media (max-width:700px){.fp-vs .vs-sub,.fp-c-s{font-size:15px}.fp-fine{font-size:14px}}

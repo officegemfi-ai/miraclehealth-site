@@ -57,6 +57,10 @@ button,input,select,textarea{font:inherit}
 img{display:block;max-width:100%;height:auto}
 svg{display:block;flex:none}
 a{color:inherit;text-underline-offset:3px}
+/* One inline link in running text: the words in text at 600, a 1px underline at half white, 3px under,
+   solid on hover. Context rules (small print in text-2 at 400, names, buttons) outrank it */
+:where(main) :where(p,li,dd,figcaption,td) a:where(:not([class])){color:var(--text);font-weight:600;text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+:where(main) :where(p,li,dd,figcaption,td) a:where(:not([class])):hover{text-decoration-color:currentColor}
 h1,h2,h3{margin:0;font-family:var(--head);text-wrap:balance}
 /* One rule per headline role (design/tokens.json): page for a page's h1, h2 inside a page, h3 for card and
    row titles in Mona Sans. Home and the story set hero, section heads set section; nothing else sets a size */
@@ -70,8 +74,10 @@ ul,ol{list-style:none;margin:0;padding:0}
 .wrap{width:100%;max-width:var(--page-max);margin:0 auto;padding:0 var(--page-pad)}
 .skip{position:absolute;left:-999px;top:10px;z-index:60;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:0;background:var(--act);color:var(--on-accent);font:600 14px/1 var(--body);text-decoration:none}
 .skip:focus{left:12px}
-/* a kicker is a comment in the code: // what this is (page 9: lowercase mono, no rule, no capitals) */
-.kick{font:400 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+/* a kicker: mono capitals at .12em, led by a 28px rule (one treatment in both apps, the story's
+   included; the decision of Nov 12 made kickers capitals) */
+.kick{display:flex;align-items:center;gap:12px;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.kick::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
 .mono{font:500 12px/1.5 var(--mono);letter-spacing:.04em}
 .kick{color:var(--muted)}
 .kick.lime{color:var(--text-2)}
@@ -280,7 +286,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .foot-logo{display:block;flex:none;border-radius:0}
 /* the last row: the wordmark, the disclaimer, then the copyright, one under the other at every width */
 .foot-row:last-child{flex-direction:column;align-items:flex-start;gap:12px}
-.foot-row>p:not(.copy){font-size:15px;line-height:1.55}
+.foot-row>p:not(.copy){font-size:15px;line-height:1.55;max-width:52ch}
 .foot-links{display:flex;flex-wrap:wrap;gap:8px 24px;font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:lowercase}
 .foot-links a{color:var(--on-ink);text-decoration:none;transition:color .15s}
 .foot-links a:hover{color:var(--accent)}
@@ -301,7 +307,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .nf-row .btn{flex:none}
 .nf-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .nf-note{max-width:52ch;margin-top:10px;font-size:13px;line-height:1.5;color:var(--on-ink-3)}
-.nf-note a{color:var(--on-ink-2);text-decoration-color:rgba(255,255,255,.5);text-decoration-thickness:1px}
+.nf-note a{color:var(--on-ink-2);font-weight:400;text-decoration-color:rgba(255,255,255,.5);text-decoration-thickness:1px}
 .news-form.on-paper .nf-row input{color:var(--text)}
 .news-form.on-paper .nf-row input::placeholder{color:var(--muted)}
 .news-form.on-paper .nf-note{color:var(--muted)}
@@ -408,7 +414,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .method .mtable.baselines thead th:nth-child(2){text-align:right}
 .method li>b.num{font:500 13px/1.4 var(--mono);font-variant-numeric:tabular-nums}
 .method .mtable .rng{font:500 12px var(--mono);color:var(--muted)}
-.method .cell-sub{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+.method .cell-sub{display:block;margin-top:4px;font-size:13px;color:var(--muted);max-width:52ch}
 .method .cell-note{font-size:14px}
 /* confidence is a tag like every other: a hairline, its words say how sure */
 .method .conf{display:inline-block;padding:5px 10px;border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text);font:500 12.5px/1.2 var(--body);letter-spacing:0;text-transform:none;white-space:nowrap}
@@ -420,17 +426,16 @@ ul,ol{list-style:none;margin:0;padding:0}
 h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 ::selection{background:var(--act);color:var(--on-accent)}
 :focus-visible{outline-color:var(--bone)}
-.kick{display:block}
-.kick::before{content:'// '}
 /* the kit's pieces on the Sig system's corners: tags 7px, rows 9px, controls 10px (the kit itself is
    shared with the community app and keeps its own until that app takes the Sig system too) */
 .mh-chip,.mh-bm-route,.mh-bm-mk{border-radius:0}
 .mh-bm-scroll{border-radius:0}
 .mh-bm-retry{border-radius:0}
 .kick.lime,.hero .kick,.doc-head .kick{color:var(--muted)}
-.btn{min-height:42px;padding:0 18px;border-radius:0;font:600 14.5px/1 var(--body);letter-spacing:0;text-transform:none}
-.btn.sm{min-height:36px;padding:0 14px;border-radius:0;font-size:14px}
-@media (pointer:coarse){.btn{min-height:44px}.btn.sm{min-height:40px}}
+/* one button in both apps: 48px (40px small, 44px small on touch), Mona Sans 600 at 14.5px (14px small) */
+.btn{min-height:48px;padding:0 18px;border-radius:0;font:600 14.5px/1 var(--body);letter-spacing:0;text-transform:none}
+.btn.sm{min-height:40px;padding:0 14px;border-radius:0;font-size:14px}
+@media (pointer:coarse){.btn.sm{min-height:44px}}
 .btn.lime{color:var(--on-accent)}
 .btn.bone,.btn.ink{background:var(--bone);border-color:var(--bone);color:var(--on-bone)}
 .btn.bone:hover,.btn.ink:hover{background:#FFFFFF;border-color:#FFFFFF}
@@ -503,7 +508,7 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 
 .hp-list{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
 .hp-row{display:grid;grid-template-columns:120px minmax(0,1fr) auto;column-gap:14px;align-items:center;min-height:44px;padding:0 18px;color:var(--text);text-decoration:none}
-.hp-list li:first-child .hp-row,.hp-row:hover{background:rgba(255,255,255,.05)}
+.hp-list li:first-child .hp-row,.hp-row:hover{background:var(--hover)}
 .hp-row:focus-visible{outline:2px solid var(--text);outline-offset:-2px;background:rgba(255,255,255,.05);box-shadow:none}
 .hp-file{overflow:hidden;font:400 12.5px/1 var(--mono);color:var(--text-2);white-space:nowrap;text-overflow:ellipsis}
 .hp-name{overflow:hidden;font:600 15px/1.3 var(--body);white-space:nowrap;text-overflow:ellipsis}
@@ -554,14 +559,14 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .os-logo{display:block;padding:4px 0}
 .os-logo img{display:block;width:auto;height:22px}
 .os-fold,.os-menu{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:0;background:none;color:var(--text-2);cursor:pointer}
-.os-fold:hover,.os-menu:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.os-fold:hover,.os-menu:hover{background:var(--hover);color:var(--text)}
 .os-fold:focus-visible,.os-menu:focus-visible,.os-side a:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .os-ask{display:flex;align-items:center;gap:10px;min-height:40px;margin:4px 0 6px;padding:0 12px;border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text);font:600 14px/1 var(--body);text-decoration:none}
 .os-ask:hover{border-color:var(--text);background:transparent}
 .os-ask svg{flex:none}
 .os-places{display:grid;gap:1px}
 .os-places a,.sg-site.os-places a{display:grid;grid-template-columns:20px minmax(0,1fr) auto;align-items:center;column-gap:10px;min-height:36px;padding:0 10px;border-radius:0;color:var(--text-2);font:500 13.5px/1 var(--body);text-decoration:none}
-.os-places a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.os-places a:hover{background:var(--hover);color:var(--text)}
 .os-places a[aria-current="page"]{background:rgba(255,255,255,.08);color:var(--text)}
 .os-places a[aria-current="page"] .op-k{color:var(--text-2)}
 .op-g{display:grid;place-items:center;width:20px;height:20px}
@@ -574,7 +579,7 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .os-more{display:grid;gap:0;padding-top:8px;border-top:1px solid rgba(255,255,255,.09)}
 .os-side:not(:has(.os-ctx)) .os-more{margin-top:auto}
 .os-more a{display:flex;align-items:center;min-height:28px;padding:0 10px;border-radius:0;color:var(--text-2);font:500 13.5px/1.2 var(--body);text-decoration:none}
-.os-more a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.os-more a:hover{background:var(--hover);color:var(--text)}
 .os-more a[aria-current="page"]{background:rgba(255,255,255,.08);color:var(--text)}
 .os-foot{display:grid;gap:10px;padding:10px 0 0;border-top:1px solid rgba(255,255,255,.09)}
 /* On a short screen the panel scrolls under its foot: Sign in, Join and the legal line stay in view */
@@ -594,11 +599,11 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .os-ctx .lt-root span,.os-ctx .lt-n{color:var(--muted)}
 .os-ctx .lt-dir{display:flex;gap:2px;padding:3px 10px;border-radius:0;color:var(--text-2);text-decoration:none}
 .os-ctx .lt-dir .lt-n{margin-left:auto}
-.os-ctx a.lt-dir:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.os-ctx a.lt-dir:hover{background:var(--hover);color:var(--text)}
 .os-ctx .lt-dir.on{margin:4px 0 2px;color:var(--text)}
 .os-ctx .lt-files{margin:0 0 6px;padding:0;list-style:none}
 .os-ctx .lt-files a{display:block;overflow:hidden;padding:2px 10px 2px 24px;border-radius:0;color:var(--text-2);text-decoration:none;white-space:nowrap;text-overflow:ellipsis}
-.os-ctx .lt-files a:hover{background:rgba(255,255,255,.05);color:var(--text)}
+.os-ctx .lt-files a:hover{background:var(--hover);color:var(--text)}
 .os-ctx .lt-files a[aria-current="page"]{background:rgba(255,255,255,.08);color:var(--text)}
 .os-ctx .lt-more{margin:10px 10px 6px;font-size:11.5px;line-height:1.5;color:var(--muted)}
 
@@ -607,17 +612,17 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
    ultramarine wash */
 .win{position:relative;min-height:100dvh;background:radial-gradient(90% 640px at 50% -160px,rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,var(--os-win)}
 .os-top{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:14px;height:var(--os-tb);padding:0 24px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.84);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-.os-top-logo{display:block;flex:none}
+.os-top-logo{display:flex;align-items:center;flex:none;min-height:40px}
 .os-top-logo img{display:block;width:auto;height:22px}
 .os-search{display:flex;align-items:center;gap:10px;flex:0 1 420px;min-width:0;height:40px;padding:0 10px 0 14px;border:1px solid var(--line-2);border-radius:0;background:rgba(255,255,255,.03);color:var(--muted);font:400 14.5px/1 var(--body);text-align:left;cursor:pointer;transition:border-color .2s,color .2s}
-.os-search:hover{border-color:rgba(255,255,255,.36);color:var(--text-2)}
+.os-search:hover{border-color:var(--text);color:var(--text-2)}
 .os-search:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .os-search svg{flex:none}
 .os-search-t{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .os-search kbd{flex:none;padding:4px 6px;border:1px solid var(--line-2);border-radius:0;font:400 11px/1 var(--mono);color:var(--text-2)}
 .os-top-sig{display:flex;align-items:center;gap:8px;flex:none;min-height:40px;margin-left:auto;padding:0 8px;border-radius:0;color:var(--text);font:500 14px/1 var(--body);text-decoration:none;white-space:nowrap}
 .os-top-sig svg{display:block}
-.os-top-sig:hover{background:rgba(255,255,255,.05)}
+.os-top-sig:hover{background:var(--hover)}
 .os-top-sig:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .os-top-join{flex:none}
 .win-body{display:block;min-width:0}
@@ -704,7 +709,7 @@ kbd{font:inherit}
    as Sig logs it, the prints, the four windows, the rules in the status bar */
 .sy{--sy-w:1320px}
 .sy .wrap{max-width:var(--sy-w)}
-.sy-k{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;color:var(--muted)}
+.sy-k{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:500 12px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .sy-k::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
 .sy h2{margin:0;font:800 expanded clamp(26px,1.89vw + 8.5px,36px)/1.04 var(--head);letter-spacing:var(--head-ls)}
 .sy-lede{max-width:50ch;margin:18px 0 0;font-size:18px;line-height:1.6;color:var(--text-2)}
@@ -745,7 +750,7 @@ kbd{font:inherit}
 .sp-n{position:absolute;left:-28px;top:4px;width:16px;text-align:right;color:var(--muted)}
 .sp-k{display:flex;justify-content:space-between;gap:12px;margin:0 0 2px;color:var(--muted)}
 .sp-k b{font-weight:500;color:var(--ac)}
-.sy-part p:last-child{margin:0;font:400 15px/1.55 var(--body);color:var(--text)}
+.sy-part p:last-child{margin:0;font:400 15px/1.55 var(--body);color:var(--text);max-width:52ch}
 .sy-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 36px;max-width:980px;margin:28px 0 0;padding:0;list-style:none;font-size:15px;line-height:1.6;color:var(--text-2)}
 .sy-legend b{color:var(--text)}
 .sy-prints{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:48px}
@@ -808,4 +813,14 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
   .method .mtable-wrap tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:16px;border:1px solid var(--line);border-radius:0;background:var(--white)}
   .method .mtable-wrap th,.method .mtable-wrap td{padding:0;border:0}
   .method .mtable-wrap td:nth-child(3),.method .mtable-wrap td:nth-child(5){grid-column:1/-1}
+}
+
+/* ================================================================ phone floors
+   On a phone, running copy is 15px or more and a note 14px or more; the frame's own links are
+   40px targets (the audit of Nov 13, PT-11 and PT-12) */
+@media (max-width:700px){
+  .nf-note,.method .cell-sub{font-size:14px}
+  .method .mtable{font-size:15px}
+  .foot-logo{display:inline-flex;align-items:center;min-height:40px}
+  .foot-links a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}
 }

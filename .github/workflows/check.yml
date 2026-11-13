@@ -8,6 +8,8 @@
 #     (scripts/design_check.mjs against design/baseline.json)
 #   - no page scrolls sideways or cuts text off, at the widths where layouts switch, phones to wide screens
 #     (scripts/check_layout.mjs, in Chromium)
+#   - every focus shows a 2px ring, one electric blue action shows per view and phone fields are 16px
+#     (scripts/check_states.mjs, in Chromium); the brand check also counts tracked mono and capitals
 # GitHub emails you when a run fails.
 name: Check the site
 on:
@@ -66,3 +68,5 @@ jobs:
           npx playwright install --with-deps chromium
       - name: No page scrolls sideways or cuts text off
         run: node scripts/check_layout.mjs
+      - name: Every focus shows its ring, one blue action per view, phone fields at 16px
+        run: node scripts/check_states.mjs

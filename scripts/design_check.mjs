@@ -4,6 +4,7 @@
 // - type families other than Mona Sans, Mona Sans Display and Monaspace Neon;
 // - corner radii outside the set;
 // - type sizes off the scale;
+// - mono that is tracked outside a kicker, and capitals outside headlines, kickers and the COMMUNITY tag;
 // - gradients and shadows, which are counted.
 // What's there today is written down in design/baseline.json. The check fails when any of these
 // grows, so a change can't bring drift back. Once drift is fixed, `--update` lowers the baseline.
@@ -138,6 +139,25 @@ for (const file of FILES) {
     if (prop === 'box-shadow' && value !== 'none') add('shadow', file, line, `box-shadow: ${value.slice(0, 80)}`, 'shadows: floating panels and the phone drawer only');
   }
 }
+// Type, rule by rule: mono is untracked except in kickers; capitals are for headlines, kickers and the
+// COMMUNITY tag (labels, tags, tabs and the status bar are lowercase or sentence case)
+const KICKER = /kick|(^|[^a-z])sy-k\b|\.tag\b|tick-sig/;
+const HEADLINE = /(^|[\s,>+~(])h[12](?![\w-])|-head\b|hero|ai-title/;
+const zero = (v) => /^(0|0px|0em|normal|-?0\.0+em)$/.test(v.trim());
+for (const file of FILES) {
+  const text = fs.readFileSync(path.join(ROOT, file), 'utf8').replace(/\/\*[\s\S]*?\*\//g, (c) => c.replace(/[^\n]/g, ' '));
+  const re = /([^{}]+)\{([^{}]*)\}/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const sel = m[1].trim().replace(/\s+/g, ' '), body = m[2];
+    if (sel.startsWith('@')) continue;
+    const line = text.slice(0, m.index + m[0].indexOf('{')).split('\n').length;
+    const mono = /font(-family)?\s*:[^;]*var\(--mono\)/.test(body);
+    const ls = /letter-spacing\s*:\s*([^;]+)/.exec(body);
+    if (mono && ls && !zero(ls[1]) && !KICKER.test(sel)) add('mono-tracking', file, line, `${sel.slice(0, 70)} { letter-spacing: ${ls[1].trim()} }`, 'mono is untracked outside kickers');
+    if (/text-transform\s*:\s*uppercase/.test(body) && !KICKER.test(sel) && !HEADLINE.test(sel)) add('capitals', file, line, `${sel.slice(0, 70)} { text-transform: uppercase }`, 'capitals are for headlines, kickers and the COMMUNITY tag');
+  }
+}
 // inline styles never apply under the site's policy (style-src 'self'): none in any page
 const HTML = fs.readdirSync(ROOT, { recursive: true }).filter((f) => f.endsWith('.html') && !/(^|\/)(node_modules|vendor|\.git)\//.test(f) && !f.endsWith('email.html'));
 for (const f of HTML) {
@@ -147,7 +167,7 @@ for (const f of HTML) {
 }
 
 // ---------------------------------------------------------------- against the baseline
-const RULES = ['colour', 'font-family', 'radius', 'font-size', 'gradient', 'shadow', 'inline-style'];
+const RULES = ['colour', 'font-family', 'radius', 'font-size', 'mono-tracking', 'capitals', 'gradient', 'shadow', 'inline-style'];
 const counts = Object.fromEntries(RULES.map((r) => [r, {}]));
 for (const f of findings) counts[f.rule][f.file] = (counts[f.rule][f.file] || 0) + 1;
 if (args.has('--list')) {

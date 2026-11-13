@@ -21,7 +21,7 @@
 .ai-status{display:flex;align-items:center;gap:8px;margin-top:3px;font-size:13px;color:var(--on-ink-3)}
 .ai-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--act)}
 .ai-status.busy::before{animation:live 1.4s ease-out infinite}
-.ai-new{min-height:36px;padding:0 16px;border-radius:0;border:1px solid rgba(255,255,255,.22);background:transparent;color:var(--on-ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,color .15s}
+.ai-new{min-height:40px;padding:0 16px;border-radius:0;border:1px solid rgba(255,255,255,.22);background:transparent;color:var(--on-ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,color .15s}
 .ai-new:hover{border-color:var(--bone);color:var(--bone)}
 
 /* ---------------------------------------------------------------- the first screen */
@@ -35,10 +35,10 @@
 .ai-begin{margin-bottom:auto;padding:6px 0 28px}
 .ai-empty{display:flex;flex-direction:column;align-items:flex-start;padding:24px 0 0}
 /* Sig's ring over the headline, so the ring, the headline, the line under it and the four ways in
-   share one left edge. The headline is the site's: wide, heavy capitals, balanced over two lines */
+   share one left edge. The headline is a page's h1 (the page role): wide, heavy capitals, balanced */
 .ai-hi{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
 .ai-hello{display:block;flex:none;width:40px;height:40px}
-.ai-title{font:800 expanded clamp(25px,1.1vw + 17px,34px)/1.06 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;text-wrap:balance;color:var(--on-ink)}
+.ai-title{font:800 expanded clamp(26px,1.2vw + 15.5px,34.5px)/1.04 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;text-wrap:balance;color:var(--on-ink)}
 .ai-lede{margin-top:14px;max-width:62ch;font-size:16px;line-height:1.6;text-wrap:pretty;color:var(--on-ink-2)}
 .ai-starts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;margin-top:14px}
 .ai-start{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 16px;border-radius:0;border:1px solid var(--line-ink);background:transparent;color:var(--on-ink);font:600 14.5px/1.3 var(--body);text-align:left;cursor:pointer;transition:border-color .15s,background-color .15s}
@@ -57,7 +57,8 @@
 .saved-box{margin-bottom:14px;padding:16px 18px;border-radius:0;border:1px solid rgba(255,255,255,.35);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));color:var(--on-ink)}
 .saved-box h2{font-size:16px;letter-spacing:-.01em;font-weight:600;font-stretch:100%;text-transform:none}
 .saved-names{margin-top:6px;font:500 15.5px/1.5 var(--body);color:var(--on-ink)}
-.saved-names a{color:var(--on-ink);text-decoration:underline;text-decoration-color:rgba(255,255,255,.6);text-underline-offset:3px}
+.saved-names a{color:var(--on-ink);text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+.saved-names a:hover{text-decoration-color:currentColor}
 .saved-meds{margin-top:3px;font-size:14px;color:var(--on-ink-2)}
 .saved-changes{margin-top:10px;font-size:13.5px;line-height:1.5;color:var(--on-ink-2)}
 .saved-changes:empty{display:none}
@@ -93,7 +94,7 @@
 /* the fibre between the nodes: two thin strands, lit as each agent finishes */
 .agent:not(:last-child)::before{content:'';position:absolute;left:12px;top:27px;bottom:-7px;width:4px;background:linear-gradient(90deg,color-mix(in srgb,var(--ac,var(--accent)) 22%,transparent) 0 1px,transparent 1px 3px,color-mix(in srgb,var(--ac,var(--accent)) 22%,transparent) 3px 4px);transition:background .4s}
 .agent b{display:block;font:600 15px/1.3 var(--body);color:var(--on-ink)}
-.agent-what{display:block;margin-top:3px;font-size:15px;line-height:1.5;color:var(--on-ink-3)}
+.agent-what{display:block;margin-top:3px;font-size:15px;line-height:1.5;color:var(--on-ink-3);max-width:52ch}
 .agent-now{display:block;margin-top:5px;font-size:13.5px;line-height:1.45;color:var(--ac,var(--accent))}
 .agent-now:empty{display:none}
 /* once the agents have worked, the rail shows what each did instead of what each is for */
@@ -164,8 +165,8 @@
 .prose ol li{position:relative;padding-left:28px;counter-increment:n}
 .prose ol li::before{content:counter(n);position:absolute;left:0;top:.18em;display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:rgba(255,255,255,.14);color:var(--on-ink);font:700 10.5px/1 var(--mono);font-variant-numeric:tabular-nums}
 .prose strong{font-weight:650;color:var(--on-ink)}
-.prose a{color:var(--on-ink);font-weight:600;text-decoration:underline;text-decoration-color:rgba(255,255,255,.6);text-decoration-thickness:2px;text-underline-offset:3px}
-.prose a:hover{color:var(--bone);text-decoration-color:var(--bone)}
+.prose a{color:var(--on-ink);font-weight:600;text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+.prose a:hover{text-decoration-color:currentColor}
 /* the voice each paragraph and bullet comes from: hollow for the studies, lime for the community */
 .prose p.v{position:relative}
 .prose p.v::before,.prose ul li.v::before,.v-dot{content:'';position:absolute;left:-19px;top:.6em;width:8px;height:8px;box-sizing:border-box;border-radius:50%}
@@ -223,7 +224,7 @@
 .pick{padding:14px 16px;border-top:1px solid var(--line)}
 .pick-name{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px}
 .pick-name a{font:600 16px/1.3 var(--body);color:var(--text);text-decoration:none;letter-spacing:-.01em}
-.pick-name a:hover{text-decoration:underline;text-decoration-color:rgba(255,255,255,.6);text-decoration-thickness:2px}
+.pick-name a:hover{text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
 .pick-role{font:400 12px/1.5 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--muted)}
 /* the headline: how strong the evidence is for what was asked, in words and four bars */
 .pick-ev{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:4px 11px;border-radius:0;background:rgba(255,255,255,.07);color:var(--text-2)}
@@ -239,7 +240,8 @@
 .pick-found li::before{content:'';position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--muted)}
 .found-ev{display:inline-block;padding:1px 7px;border-radius:0;background:rgba(255,255,255,.05);font:500 10.5px/1.6 var(--body);color:var(--muted);white-space:nowrap}
 .found-strong,.found-moderate{background:rgba(255,255,255,.09);color:var(--text)}
-.found-src{margin-left:6px;font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+.found-src{margin-left:6px;font-size:12px;color:var(--muted);text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+.found-src:hover{text-decoration-color:currentColor}
 .found-src:hover{color:var(--text)}
 .pick-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .pick-pills .ev,.pick-pills .st{font-size:9.5px;padding:4px 8px}
@@ -328,7 +330,7 @@
 .iq-other{border-style:dashed}
 .iq-other[aria-expanded="true"]{border-style:solid;border-color:var(--bone);color:var(--text)}
 .iq-opts{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-.iq-opt{min-height:38px;padding:0 15px;border-radius:0;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,background-color .15s,color .15s}
+.iq-opt{min-height:40px;padding:0 15px;border-radius:0;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,background-color .15s,color .15s}
 @media (hover:hover){.iq-opt:not(:disabled):hover{border-color:var(--bone);color:var(--text)}}
 .iq-opt[aria-pressed="true"]{border-color:var(--bone);background:var(--bone);color:var(--on-bone)}
 .iq-opt:disabled{cursor:default}
@@ -336,7 +338,7 @@
 .iq-text::placeholder{color:var(--muted)}
 .iq-text:focus{border-color:var(--bone);background:var(--white)}
 .intake-foot{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;padding:12px 16px 14px;border-top:1px solid var(--line);background:rgba(255,255,255,.04)}
-.btn-answers{min-height:42px;padding:0 20px;border-radius:0;border:0;background:var(--bone);color:var(--ink);font:600 15px/1 var(--body);cursor:pointer}
+.btn-answers{min-height:48px;padding:0 20px;border-radius:0;border:0;background:var(--bone);color:var(--ink);font:600 14.5px/1 var(--body);cursor:pointer}
 .btn-answers:disabled{opacity:.5;cursor:default}
 .intake-or{font-size:13px;color:var(--muted)}
 .card.intake.closed .iq-opt:not([aria-pressed="true"]){opacity:.5}
@@ -364,7 +366,7 @@
 .gate h2{font-size:19px;letter-spacing:-.01em;font-weight:600;font-stretch:100%;text-transform:none}
 .gate p{margin-top:8px;max-width:62ch;font-size:15px;line-height:1.6;color:var(--on-ink-2)}
 .gate-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.gate-actions button{min-height:46px;padding:0 20px;border-radius:0;font:600 15px/1 var(--body);cursor:pointer}
+.gate-actions button{min-height:48px;padding:0 20px;border-radius:0;font:600 14.5px/1 var(--body);cursor:pointer}
 .gate-yes{border:0;background:var(--act);color:var(--on-accent)}
 .gate-yes:hover{background:var(--act-2)}
 .gate-no{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:0;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--on-ink);font:600 15px/1 var(--body);text-decoration:none}
@@ -389,7 +391,8 @@
 .ai-send.stop .i-stop{display:inline}
 .ai-send.stop{background:var(--on-ink);color:var(--ink)}
 .ai-fine{padding:2px 4px 18px;font-size:12.5px;line-height:1.55;color:var(--on-ink-3)}
-.ai-fine a{color:var(--on-ink-2);text-decoration-color:rgba(255,255,255,.5);text-decoration-thickness:1px}
+.ai-fine a{color:var(--on-ink-2);font-weight:400;text-decoration-color:rgba(255,255,255,.5);text-decoration-thickness:1px}
+.ai-fine a:hover{text-decoration-color:currentColor}
 .ai-nojs{margin-bottom:18px;padding:14px 16px;border-radius:0;background:rgba(232,183,90,.12);color:#F2C46B}
 .ai-nojs a{color:inherit}
 
@@ -438,7 +441,8 @@
 .vx-act.add{border-color:var(--line-2)}
 .vx-act.add:hover{border-color:var(--bone)}
 .vx-foot{padding:11px 16px 12px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.5;color:var(--muted)}
-.vx-foot a{color:var(--text-2);text-decoration:underline;text-underline-offset:2px}
+.vx-foot a{color:var(--text-2);text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+.vx-foot a:hover{text-decoration-color:currentColor}
 /* what the community reports most for one use: in the community's own ink */
 .card.crowd{background:var(--ink);color:var(--on-ink);--focus:var(--bone)}
 .card.crowd .card-head h2{color:var(--on-ink)}
@@ -476,8 +480,8 @@
 .ai-pulse dd+dt{margin-top:16px}
 .ai-crowd{font-size:14px;line-height:1.5;color:var(--on-ink-2)}
 .ai-crowd b{font:500 13.5px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--on-ink)}
-.ai-crowd a{color:var(--on-ink);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-.ai-crowd a:hover{color:var(--bone)}
+.ai-crowd a{color:var(--on-ink);font-weight:600;text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px;white-space:nowrap}
+.ai-crowd a:hover{text-decoration-color:currentColor}
 .crowd-dot{flex:none;width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 3px rgba(61,139,255,.18)}
 /* each pair, and how many of its ten reports are in, at the right */
 .ai-focus{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}
@@ -507,7 +511,7 @@
   .ai-thread{gap:20px;padding-top:22px}
   .ai-hi{gap:16px}
   .ai-starts{gap:8px;margin-top:12px}
-  .ai-start{min-height:52px;padding:10px 12px;gap:10px;font-size:14.5px}
+  .ai-start{min-height:48px;padding:10px 12px;gap:10px;font-size:14.5px}
   .start-ico{width:26px;height:26px}
   .bubble{max-width:88%}
   .msg{gap:8px}
@@ -578,7 +582,8 @@ details.more>summary:hover{color:var(--bone)}
 .vx-dim{color:var(--muted)}
 .vx-watch{padding:8px 10px;border-radius:0;background:rgba(224,104,92,.12);color:#FFB4A9}
 .vx-watch b{color:#FFB4A9}
-.vx-watch a,.warn-note a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.vx-watch a,.warn-note a{color:inherit;font-weight:600;text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
+.vx-watch a:hover,.warn-note a:hover{text-decoration-color:currentColor}
 /* Compounds side by side */
 .card.compare{border:1px solid var(--line);background:var(--white)}
 .card.compare .card-head{background:rgba(255,255,255,.05)}

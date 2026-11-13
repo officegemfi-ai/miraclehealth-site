@@ -123,3 +123,31 @@ Waiting: the front page's length (call 3) and a card on the right of interior pa
 ## 2026-11-13 · Ask Sig's first screen, cleaner
 
 The owner asked for Ask Sig's first screen to be cleaner. Everything on it now starts at one left edge: Sig's ring sits over the headline instead of beside it, so the headline, the line under it, the four ways in and the community's lines line up. The headline takes the site's headline style (wide, heavy capitals tracked `--head-ls`, balanced over two lines on a laptop) instead of a semibold of its own, and it is smaller, so it takes two lines, not three. The line under it is two lines, not five: what to ask about is already in the four ways in and in the box, and the rules (no doses, no sellers, no diagnosis) are said once, under the typing bar and in the status bar; "Your doctor has the final say" stays. The community's line and the pairs it is filling first moved under the four ways in, after a hairline, each under a small mono label: the line is one sentence (the Signals and where they are read from, and "Add yours"), and the pairs sit on the same two columns as the four ways in, with how many of their ten reports are in at the right (the count had lost its space: "fat loss0 of 10"). It shows the first four pairs, three on a phone. On a phone, the four ways in are now on the first screen; before, they were under the fold, after the community's chips.
+
+## 2026-11-13 · The audit's second phase, part two: one set of pieces in both apps
+
+The update's second phase finishes here (`design/audits/2026-11-13`). The two apps now share one set of pieces.
+
+- **Kickers** are one style in both apps and on the story page: mono capitals at .12em, 12px, led by a 28px rule (TYPE-01). The `//` lead is gone. Everything else that is mono is a label, and labels are lowercase and untracked. That covers the community's rail heads, captions, tabs, the phone tab bar, form labels and its status bar (TYPE-04). "SIG" and the COMMUNITY tag keep their capitals.
+- **Headlines.** A page's h1 is the `page` size in both apps. That includes Ask Sig's greeting, the Library on a phone, and the community's screens, space and profile. The community's h2 inside a page takes the website's size (TYPE-02).
+- **Tags are words.** The community's tags are Mona Sans 12.5px in sentence case, 27px tall, with a hairline frame and no fill: Report, OP, moderator (COMP-11).
+- **Buttons** are 48px (40px small) in both apps, Mona Sans 600 at 14.5px (14px small) (COMP-07).
+- **Fields and focus.**
+  - Fields are 48px at 16px, and their placeholders are muted.
+  - On hover and on focus their frames turn white, and the focus ring is a solid 2px ring outside the control. Inside is used only in a strip that scrolls (the chat tabs, the community's left nav).
+  - The typing bar and the community's search and fields draw the ring too, which they didn't before (COMP-03, 10, 14, 15).
+  - On a phone, every field is at least 16px, so an iPhone no longer zooms the page when a field is tapped.
+- **Hover.** Hairline frames brighten to text white, and rows and quiet buttons take one hover ground, #1C1C20 (COMP-08, 09).
+- **One inline link:** the words in text at 600, with a 1px underline at half white, 3px under, that turns solid on hover. Small print keeps its grey at 400 (COMP-05).
+- **Line length.** Running text holds about 52 characters a line in both apps: the foot, the fact sheets, the front page, the story, method, the body map and the community's posts and cards (TYPE-03, 07, 13).
+- **Phone floors.** On a phone, copy is 15px or more, notes 14px or more and labels 11px or more. Every tap is 40px: the frame's logos and foot links, and the community's votes, actions, tabs, sorts and avatar (PT-06, 07, 08, 11, 12, 22).
+
+Two checks keep it this way. `scripts/check_states.mjs` runs on every pull request, beside the layout check. It walks each page with Tab at 1440 and 390 and fails on:
+
+- a focus without its ring, or a ring drawn inside with room outside;
+- two electric blue main actions in one view;
+- a phone field under 16px.
+
+On main before this update it found 14 such places. The brand check now also counts tracked mono outside kickers and capitals outside headlines, kickers and the COMMUNITY tag. Today's 15 and 3 are its baseline.
+
+The website's side panel turned out to move focus into itself when it opens, so it needed no change.
