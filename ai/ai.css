@@ -206,7 +206,7 @@
 .oops .mini{justify-self:start}
 
 /* ---------------------------------------------------------------- cards */
-.card{margin-top:16px;border-radius:12px;overflow:hidden}
+.card{margin-top:16px;border-radius:0;overflow:hidden}
 .card+.prose,.card+.card{margin-top:16px}
 .prose+.card{margin-top:18px}
 .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 16px 12px}
@@ -577,10 +577,11 @@ details.more>summary:hover{color:var(--bone)}
    The chat sits on the page like the rest of the site: bone on ink, plates for the answer cards,
    rectangular buttons and hairline labels. Lime is Sig's own (the agents at work, the send
    button) and the community's (its score and members' ratings); the studies speak in bone.
-   Warnings keep their colour as a tint and a rule, so they still stand out. */
-.ai-start{border-radius:10px}
-.start-ico{border:1px solid var(--line-2);border-radius:7px;background:transparent;color:var(--text)}
-.ai-composer{border-radius:12px;border-color:var(--line-2)}
+   Warnings keep their colour as a tint and a rule, so they still stand out. The ways to start,
+   the box to write in and the answer's cards are square, like How it works' cards. */
+.ai-start{border-radius:0}
+.start-ico{border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text)}
+.ai-composer{border-radius:0;border-color:var(--line-2)}
 .ai-send{border-radius:10px}
 .bubble{border-color:var(--line-2);background:rgba(255,255,255,.07)}
 .gate-q{border-color:var(--line-2)}

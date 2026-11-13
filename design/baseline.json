@@ -21,7 +21,7 @@
       "ai/ai.css": 6,
       "ai/plan.css": 2,
       "ai/screen.css": 4,
-      "ai/term.css": 2,
+      "ai/term.css": 1,
       "library/library.css": 2,
       "pages/pages.css": 2,
       "styles.css": 6
@@ -29,8 +29,8 @@
     "gradient": {
       "ai/ai.css": 14,
       "ai/screen.css": 3,
-      "ai/term.css": 6,
-      "home.css": 5,
+      "ai/term.css": 5,
+      "home.css": 4,
       "kit/kit.css": 1,
       "library/library.css": 1,
       "styles.css": 4

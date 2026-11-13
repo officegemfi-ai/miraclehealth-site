@@ -101,7 +101,6 @@
 .sx-of{margin-top:clamp(5px,calc(8 * var(--u)),9px)!important;font:400 clamp(9px,calc(10.5 * var(--u)),12px)/1 var(--mono);color:var(--text-2);white-space:nowrap}
 .sx-sum{margin-top:clamp(4px,calc(6 * var(--u)),7px)!important;font:400 clamp(9px,calc(10.5 * var(--u)),12px)/1.2 var(--mono);color:var(--lime);white-space:nowrap}
 .sx-tb{position:relative;padding:18px 24px 18px 84px}
-.sx-tb::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--line) 0 40px,transparent 40px 60px,var(--line) 60px)}
 .sx-k{margin:0 0 6px;font:400 11px/1 var(--mono);color:var(--lime)}
 .sx-parts{display:none;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:0;list-style:none}
 .sx-pt{padding:5px 8px;border:1px solid rgba(255,255,255,.22);border-radius:3px;background:var(--ink);font:400 11px/1 var(--mono);white-space:nowrap}
@@ -295,10 +294,10 @@
 .fp-signal-foot .who{font:400 14px/1 var(--mono)}
 
 /* ---------- Ask Sig, with all twelve agents ---------- */
-.fp-run{display:grid;grid-template-columns:minmax(0,1fr);margin-top:36px;border:1px solid var(--line);border-radius:14px;background:var(--paper);overflow:hidden}
-.fp-run .term.fp-run-term{border:0;border-radius:0}
+.fp-run{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;margin-top:36px}
+.fp-run .term.fp-run-term{border:1px solid var(--line-2);border-radius:0;background:var(--paper)}
 .fp-run-meta{display:inline-flex;align-items:center;gap:14px}
-.fp-replay{min-height:28px;padding:0 10px;border:1px solid var(--line-2);border-radius:7px;background:transparent;color:var(--text-2);font:400 11.5px/1 var(--mono);cursor:pointer}
+.fp-replay{min-height:28px;padding:0 10px;border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text-2);font:400 11.5px/1 var(--mono);cursor:pointer}
 .fp-replay:hover{border-color:var(--text);color:var(--text)}
 .fp-replay[hidden]{display:none}
 .fp-run-body{padding:18px 26px 26px}
@@ -327,7 +326,7 @@
 .fp-ev b{font-weight:600;color:var(--text)}
 .fp-ev .ev{display:inline-flex;align-items:center;gap:7px;font:400 12px/1.6 var(--mono);color:var(--text-2);white-space:nowrap}
 .fp-ev .mh-meter{color:#14ECC3}
-.fp-interp{margin:6px 0 0;padding:14px 18px 12px;border:1px solid var(--line-2);border-radius:12px;background:var(--card);font:400 12.5px/1.85 var(--mono)}
+.fp-interp{margin:6px 0 0;padding:14px 18px 12px;border:1px solid var(--line-2);border-radius:0;background:var(--card);font:400 12.5px/1.85 var(--mono)}
 .fp-interp div{display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:12px}
 .fp-interp dt{color:var(--muted)}
 .fp-interp dd{margin:0;color:var(--text-2)}
@@ -335,20 +334,29 @@
 .fp-interp .hr{margin-top:8px;padding-top:8px;border-top:1px solid var(--line-2)}
 .fp-interp .pip{width:8px;height:8px;margin-right:8px;vertical-align:0;--ac:var(--text)}
 
-.fp-team{display:flex;flex-direction:column;padding:24px 14px 20px;border-top:1px solid var(--line)}
-.fp-ringbox{position:relative;width:196px;height:196px;margin:4px auto 20px}
-.fp-ringbox svg{display:block}
+/* Sig's twelve agents: a card in How it works' language beside the run, like the Signal's at the top: the
+   number in its box with the title, Sig's ring in 3D (lib/ring3d.js; a wall for each agent, the count in
+   its middle under the Interpretation agent's light), who's who, and at the foot Sig's mark */
+.fp-team.hs-card{justify-self:center;width:100%;max-width:560px;margin:0;z-index:auto}
+.fp-team-h{gap:16px}
+.fp-team-hd{flex:1;min-width:0}
+.fp .fp-team .hs-title{display:block;margin:0;font-family:var(--mono)}
+.fp-team-meta{margin:7px 0 0;font:400 11px/1.3 var(--mono);color:var(--muted)}
+.fp-ringbox{aspect-ratio:400/300;container-type:inline-size;--u:calc(100cqw / 400)}
+.fp-ring3{position:absolute;inset:0}
+.fp-ring3 svg{display:block;width:100%;height:100%}
 .fp-bigring .rg{transition:opacity .45s}
-.fp-run.is-armed .fp-bigring .rg{opacity:.14}
+.fp-run.is-armed .fp-bigring .rg{opacity:.3}
 .fp-run.is-armed .fp-bigring .rg.on{opacity:1}
-.fp-ring-mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0}
-.fp-ring-mid .fp-center{width:14px;height:14px;transition:opacity .45s}
+.fp-ring-mid{position:absolute;left:50%;top:44%;display:flex;flex-direction:column;align-items:center;margin:0;transform:translate(-50%,-50%);pointer-events:none}
+.fp-ring-mid .fp-center{width:clamp(8px,calc(11 * var(--u)),13px);height:clamp(8px,calc(11 * var(--u)),13px);outline:calc(6 * var(--u)) solid rgba(255,255,255,.1);transition:opacity .45s}
 .fp-run.is-armed:not(.is-centre) .fp-ring-mid .fp-center{opacity:.14}
-.fp-ring-n{margin-top:10px;font:500 26px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
+.fp-ring-n{margin-top:clamp(8px,calc(14 * var(--u)),16px);font:500 clamp(20px,calc(28 * var(--u)),32px)/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
 .fp-ring-n span{color:var(--muted)}
-.fp-ring-l{margin-top:6px;font:400 11px/1 var(--mono);color:var(--muted)}
+.fp-ring-l{margin-top:6px;font:400 clamp(9px,calc(11 * var(--u)),12px)/1 var(--mono);color:var(--muted)}
+.fp-team-tb{position:relative;padding:14px 18px 18px 74px}
 .roster{display:grid;gap:1px;margin:0;padding:0;list-style:none}
-.roster button{display:grid;grid-template-columns:10px minmax(0,1fr) auto;column-gap:12px;align-items:center;width:100%;padding:6px 8px;border:0;border-radius:8px;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background-color .2s,opacity .35s}
+.roster button{display:grid;grid-template-columns:10px minmax(0,1fr) auto;column-gap:12px;align-items:center;width:100%;padding:6px 8px;border:0;border-radius:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:background-color .2s,opacity .35s}
 .roster button:hover,.roster button[aria-pressed="true"]{background:var(--fp-hover)}
 .roster button:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
 .roster .pip{width:8px;height:8px}
@@ -356,10 +364,11 @@
 .roster .who-t span{display:block;font-size:12.5px;line-height:1.35;color:var(--muted)}
 .roster .ct{font:400 11.5px/1 var(--mono);color:var(--muted);white-space:nowrap}
 .roster li.center{margin-top:6px}
-.roster li.center button{padding:8px;border:1px solid var(--line-2);background:var(--card)}
+.roster li.center button{padding:8px;border:1px solid var(--line-2);background:var(--ink)}
 .fp-run.is-armed .roster li:not(.done) button{opacity:.42}
 .fp-run.is-armed .roster li:not(.done) .ct{visibility:hidden}
-.fp-team-note{margin:14px 10px 0;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.fp-team-note{margin:14px 8px 0;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.fp-team-f .hs-sub{display:block;line-height:1.5}
 
 /* while the run plays: each line, then each part of the answer, comes in as its agent reports */
 .fp-run.is-armed .fp-steps li:not(.in){opacity:0;transform:translateY(4px)}
@@ -494,15 +503,10 @@
   .sn-sig{display:grid}
 }
 @container fp (min-width:1000px){
-  .fp-run{grid-template-columns:minmax(0,1fr) 330px}
-  .fp-team{border-top:0;border-left:1px solid var(--line)}
+  .fp-run{grid-template-columns:minmax(0,1fr) minmax(360px,420px)}
+  .fp-team.hs-card{position:sticky;top:calc(var(--os-tb,60px) + 24px);max-width:none}
   .fp-join-in{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px}
   .fp-faq-in{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);align-items:start}
-}
-@container fp (max-width:999px){
-  .fp-team{display:grid;grid-template-columns:196px minmax(0,1fr);column-gap:28px;align-items:start}
-  .fp-ringbox{margin:4px 0 0}
-  .fp-team-note{grid-column:2}
 }
 @container fp (max-width:1060px){
   .fp-top .c-x{display:none}
@@ -520,11 +524,8 @@
   .fp-members{padding-left:58px}
 }
 @container fp (max-width:640px){
-  .fp-team{display:flex}
-  .fp-ringbox{width:160px;height:160px;margin:0 auto 16px}
-  .fp-ringbox svg{width:160px;height:160px}
-  .fp-ring-n{font-size:22px}
-  .roster{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fp-team-tb{padding:14px 12px 16px 70px}
+  .fp-team .hs-who{display:none}
   .roster .who-t span{display:none}
   .roster .who-t b{font-size:12px}
   .roster li.center{grid-column:1/-1}
@@ -613,7 +614,9 @@
 .hs-r .hs-card{margin-left:calc(50% + 64px)}
 .hs-l .hs-card{margin-left:auto;margin-right:calc(50% + 64px)}
 .hs-h{position:relative;display:flex;align-items:center;gap:20px;height:92px;padding:0 24px}
-.hs-h::after,.hs-ill::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--line) 0 40px,transparent 40px 60px,var(--line) 60px)}
+/* the dividers, with their gap by the tree: under a card's header, its drawing and (on the Signal's and Sig's
+   cards) what's under the drawing */
+.hs-h::after,.hs-ill::after,.sx-tb::after,.fp-team-tb::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--line) 0 40px,transparent 40px 60px,var(--line) 60px)}
 .hs-num{flex:none;display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);font:400 20px/1 var(--mono);color:var(--text)}
 .hs-title{min-width:0;font:400 17.5px/1.25 var(--mono);letter-spacing:.02em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:clip}
 .hs-ill{position:relative;aspect-ratio:560/380}
