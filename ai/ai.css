@@ -17,9 +17,9 @@
 /* ---------------------------------------------------------------- the bar */
 .ai-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px 0 14px;border-bottom:1px solid var(--line-ink)}
 .ai-id{display:flex;align-items:center;gap:12px;min-width:0}
-.ai-id h1{display:block;font:600 16px/1.2 var(--body);letter-spacing:-.01em;color:var(--on-ink)}
+.ai-id h1{display:block;font:600 16px/1.2 var(--body);letter-spacing:-.01em;color:var(--on-ink);font-weight:600;font-stretch:100%;text-transform:none}
 .ai-status{display:flex;align-items:center;gap:8px;margin-top:3px;font-size:13px;color:var(--on-ink-3)}
-.ai-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.ai-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--act)}
 .ai-status.busy::before{animation:live 1.4s ease-out infinite}
 .ai-new{min-height:36px;padding:0 16px;border-radius:10px;border:1px solid rgba(255,255,255,.22);background:transparent;color:var(--on-ink);font:500 14px/1 var(--body);cursor:pointer;transition:border-color .15s,color .15s}
 .ai-new:hover{border-color:var(--bone);color:var(--bone)}
@@ -40,8 +40,8 @@
 .ai-lede{margin-top:12px;max-width:50ch;font-size:18px;line-height:1.6;color:var(--on-ink-2)}
 .ai-starts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;margin-top:14px}
 .ai-start{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 16px;border-radius:10px;border:1px solid var(--line-ink);background:transparent;color:var(--on-ink);font:600 14.5px/1.3 var(--body);text-align:left;cursor:pointer;transition:border-color .15s,background-color .15s}
-.ai-start:hover{border-color:rgba(238,236,230,.55);background:rgba(238,236,230,.06)}
-.start-ico{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:9px;background:rgba(238,236,230,.12);color:var(--bone)}
+.ai-start:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.06)}
+.start-ico{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.12);color:var(--bone)}
 .ai-who{display:none;width:100%;margin-top:18px;border-top:1px solid var(--line-ink)}
 .ai-who summary{display:flex;align-items:center;gap:8px;min-height:44px;padding:10px 0 4px;font:600 15px/1.3 var(--body);color:var(--on-ink);cursor:pointer;list-style:none}
 .ai-who summary::-webkit-details-marker{display:none}
@@ -52,10 +52,10 @@
 /* their saved stack: on the first screen, and beside the chat on wide screens */
 .ai-incoming{margin:20px 0 4px}
 .ai-incoming .saved-box{margin:0}
-.saved-box{margin-bottom:14px;padding:16px 18px;border-radius:12px;border:1px solid rgba(238,236,230,.35);background:linear-gradient(180deg,rgba(238,236,230,.07),rgba(238,236,230,.02));color:var(--on-ink)}
-.saved-box h2{font-size:16px;letter-spacing:-.01em}
+.saved-box{margin-bottom:14px;padding:16px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.35);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));color:var(--on-ink)}
+.saved-box h2{font-size:16px;letter-spacing:-.01em;font-weight:600;font-stretch:100%;text-transform:none}
 .saved-names{margin-top:6px;font:500 15.5px/1.5 var(--body);color:var(--on-ink)}
-.saved-names a{color:var(--on-ink);text-decoration:underline;text-decoration-color:rgba(238,236,230,.6);text-underline-offset:3px}
+.saved-names a{color:var(--on-ink);text-decoration:underline;text-decoration-color:rgba(255,255,255,.6);text-underline-offset:3px}
 .saved-meds{margin-top:3px;font-size:14px;color:var(--on-ink-2)}
 .saved-changes{margin-top:10px;font-size:13.5px;line-height:1.5;color:var(--on-ink-2)}
 .saved-changes:empty{display:none}
@@ -80,9 +80,9 @@
 .my-part:first-of-type{margin-top:8px;padding-top:0;border-top:0}
 .my-kind{font:600 12px/1.4 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--bone)}
 .my-part .saved-names{margin-top:4px}
-.my-due{display:block;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(238,236,230,.12);color:var(--on-ink);font-size:14px;line-height:1.45;text-decoration:none}
+.my-due{display:block;margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.12);color:var(--on-ink);font-size:14px;line-height:1.45;text-decoration:none}
 .my-due b{color:var(--bone)}
-.my-due:hover{background:rgba(238,236,230,.18)}
+.my-due:hover{background:rgba(255,255,255,.18)}
 
 /* The five agents, in the empty state on narrow screens and beside the chat on wide ones */
 .agent-list{position:relative;display:grid;gap:0}
@@ -116,7 +116,7 @@
 /* ---------------------------------------------------------------- messages */
 .msg{display:flex;gap:12px;min-width:0}
 .msg.me{justify-content:flex-end}
-.bubble{max-width:min(80%,620px);padding:12px 16px;border-radius:12px 6px 2px 6px;border:1px solid rgba(238,236,230,.28);background:rgba(238,236,230,.1);color:var(--on-ink);font-size:16px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.bubble{max-width:min(80%,620px);padding:12px 16px;border-radius:12px 6px 2px 6px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:var(--on-ink);font-size:16px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
 .msg-sig{flex:none;width:36px;height:36px;margin-top:2px}
 .sheet{flex:1;min-width:0;padding:4px 0 0;color:var(--on-ink-2);--focus:var(--bone)}
 /* cards keep their own paper (or ink) inside the quiet answer */
@@ -150,7 +150,7 @@
 /* the answer */
 .prose{font-size:16px;line-height:1.65;color:rgba(252,252,252,.86);overflow-wrap:anywhere}
 .prose>*+*{margin-top:12px}
-.prose h2{margin-top:20px;font-size:17px;letter-spacing:-.01em;color:var(--on-ink)}
+.prose h2{margin-top:20px;font-size:17px;letter-spacing:-.01em;color:var(--on-ink);font-weight:600;font-stretch:100%;text-transform:none}
 /* the words sit 20px in, so the dot beside each paragraph and bullet has the gutter to itself */
 .sheet-body>.prose{padding-left:20px}
 .sheet-body>details.more{margin-left:20px}
@@ -162,7 +162,7 @@
 .prose ol li{position:relative;padding-left:28px;counter-increment:n}
 .prose ol li::before{content:counter(n);position:absolute;left:0;top:.18em;display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:rgba(255,255,255,.14);color:var(--on-ink);font:700 10.5px/1 var(--mono);font-variant-numeric:tabular-nums}
 .prose strong{font-weight:650;color:var(--on-ink)}
-.prose a{color:var(--on-ink);font-weight:600;text-decoration:underline;text-decoration-color:rgba(238,236,230,.6);text-decoration-thickness:2px;text-underline-offset:3px}
+.prose a{color:var(--on-ink);font-weight:600;text-decoration:underline;text-decoration-color:rgba(255,255,255,.6);text-decoration-thickness:2px;text-underline-offset:3px}
 .prose a:hover{color:var(--bone);text-decoration-color:var(--bone)}
 /* the voice each paragraph and bullet comes from: hollow for the studies, lime for the community */
 .prose p.v{position:relative}
@@ -171,11 +171,11 @@
 .prose .v-community::before,.v-dot.v-community{border:0;background:var(--lime)}
 .prose .v-both::before{border:1.5px solid var(--lime);background:linear-gradient(90deg,var(--lime) 50%,transparent 50%)}
 .v-dot{position:static;display:inline-block;flex:none}
-.prose.streaming>p:last-child::after,.prose.streaming>h2:last-child::after,.prose.streaming>ul:last-child>li:last-child::after,.prose.streaming>ol:last-child>li:last-child::after{content:'';display:inline-block;width:8px;height:1.05em;margin-left:3px;border-radius:2px;background:var(--accent);vertical-align:-3px;animation:caret 1s steps(2,start) infinite}
+.prose.streaming>p:last-child::after,.prose.streaming>h2:last-child::after,.prose.streaming>ul:last-child>li:last-child::after,.prose.streaming>ol:last-child>li:last-child::after{content:'';display:inline-block;width:8px;height:1.05em;margin-left:3px;border-radius:2px;background:var(--act);vertical-align:-3px;animation:caret 1s steps(2,start) infinite}
 @keyframes caret{to{visibility:hidden}}
 .prose.edited{position:relative}
 .waiting{display:flex;align-items:center;gap:10px;color:var(--on-ink-3);font-size:14.5px}
-.waiting i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:sig-dot 1.2s ease-in-out infinite}
+.waiting i{width:6px;height:6px;border-radius:50%;background:var(--act);animation:sig-dot 1.2s ease-in-out infinite}
 .waiting i:nth-child(2){animation-delay:.2s}.waiting i:nth-child(3){animation-delay:.4s}
 .msg-sig .sig *{animation:none}
 .ai-sig svg,.ai-hello svg,.msg-sig svg{width:100%;height:100%}
@@ -188,7 +188,7 @@
 .foot-actions{display:flex;gap:6px}
 .mini{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:0 12px;white-space:nowrap;border-radius:9px;border:1px solid var(--line);background:var(--white);color:var(--text-2);font:500 13px/1 var(--body);cursor:pointer}
 .mini:hover{border-color:var(--bone);color:var(--text)}
-.mini.done{border-color:rgba(238,236,230,.6);color:var(--text)}
+.mini.done{border-color:rgba(255,255,255,.6);color:var(--text)}
 .sheet-foot .mini{border-color:rgba(255,255,255,.2);background:transparent;color:var(--on-ink-2)}
 .sheet-foot .mini:hover{border-color:var(--bone);color:var(--bone)}
 .sheet-foot .mini.done{border-color:var(--bone);color:var(--bone)}
@@ -210,33 +210,33 @@
 .card+.prose,.card+.card{margin-top:16px}
 .prose+.card{margin-top:18px}
 .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:14px 16px 12px}
-.card-head h2{margin:0;font:600 15.5px/1.3 var(--body);letter-spacing:-.01em}
+.card-head h2{margin:0;font:600 15.5px/1.3 var(--body);letter-spacing:-.01em;font-weight:600;font-stretch:100%;text-transform:none}
 .card-head p{margin-top:3px;font-size:13px;color:var(--muted)}
 
 /* shortlist: built by the Stack builder, checked by the Synergy auditor */
 .card.short{border:1px solid var(--line);background:var(--white)}
-.card.short .card-head{background:rgba(238,236,230,.05)}
+.card.short .card-head{background:rgba(255,255,255,.05)}
 .short-note{display:flex;gap:7px;padding:9px 16px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.45;color:var(--muted)}
 .short-note svg{flex:none;margin-top:2px}
 .pick{padding:14px 16px;border-top:1px solid var(--line)}
 .pick-name{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px}
 .pick-name a{font:600 16px/1.3 var(--body);color:var(--text);text-decoration:none;letter-spacing:-.01em}
-.pick-name a:hover{text-decoration:underline;text-decoration-color:rgba(238,236,230,.6);text-decoration-thickness:2px}
+.pick-name a:hover{text-decoration:underline;text-decoration-color:rgba(255,255,255,.6);text-decoration-thickness:2px}
 .pick-role{font:400 12px/1.5 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--muted)}
 /* the headline: how strong the evidence is for what was asked, in words and four bars */
-.pick-ev{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:4px 11px;border-radius:7px;background:rgba(238,236,230,.07);color:var(--text-2)}
+.pick-ev{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:4px 11px;border-radius:7px;background:rgba(255,255,255,.07);color:var(--text-2)}
 .pick-ev-label{font:600 12.5px/1.3 var(--body);white-space:nowrap}
-.pick-ev.ev-strong{background:rgba(238,236,230,.10);color:var(--text)}
-.pick-ev.ev-moderate{background:rgba(238,236,230,.09);color:var(--text)}
-.pick-ev.ev-limited{background:rgba(238,236,230,.08);color:var(--text)}
+.pick-ev.ev-strong{background:rgba(255,255,255,.10);color:var(--text)}
+.pick-ev.ev-moderate{background:rgba(255,255,255,.09);color:var(--text)}
+.pick-ev.ev-limited{background:rgba(255,255,255,.08);color:var(--text)}
 .pick-ev.ev-preclinical{background:rgba(232,183,90,.12);color:#F2C46B}
 .pick-why{margin-top:5px;font-size:14.5px;line-height:1.5;color:var(--text-2)}
 .pick-other{margin-top:8px;font-size:13px;color:var(--muted)}
 .pick-found{display:grid;gap:5px;margin:9px 0 0;padding:0;list-style:none}
 .pick-found li{position:relative;padding-left:16px;font-size:14px;line-height:1.45;color:var(--text)}
 .pick-found li::before{content:'';position:absolute;left:2px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--muted)}
-.found-ev{display:inline-block;padding:1px 7px;border-radius:7px;background:rgba(238,236,230,.05);font:500 10.5px/1.6 var(--body);color:var(--muted);white-space:nowrap}
-.found-strong,.found-moderate{background:rgba(238,236,230,.09);color:var(--text)}
+.found-ev{display:inline-block;padding:1px 7px;border-radius:7px;background:rgba(255,255,255,.05);font:500 10.5px/1.6 var(--body);color:var(--muted);white-space:nowrap}
+.found-strong,.found-moderate{background:rgba(255,255,255,.09);color:var(--text)}
 .found-src{margin-left:6px;font-size:12px;color:var(--muted);text-decoration:underline;text-underline-offset:2px}
 .found-src:hover{color:var(--text)}
 .pick-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
@@ -244,7 +244,7 @@
 .pick-signal{margin-top:7px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 .pick-warn{display:flex;gap:6px;margin-top:6px;font-size:12.5px;line-height:1.45;color:var(--muted)}
 .pick-warn svg{flex:none;margin-top:2px}
-.audit{padding:12px 16px 14px;border-top:1px solid var(--line);background:rgba(238,236,230,.04)}
+.audit{padding:12px 16px 14px;border-top:1px solid var(--line);background:rgba(255,255,255,.04)}
 .audit-head{display:flex;align-items:center;gap:8px;font:600 13.5px/1.3 var(--body);color:var(--text)}
 .audit-head.busy::before{content:'';width:10px;height:10px;border-radius:50%;border:2px solid var(--line-2);border-top-color:var(--bone);animation:spin .8s linear infinite}
 .audit ul{display:grid;gap:8px;margin-top:9px}
@@ -253,7 +253,7 @@
 .lvl{display:inline-flex;padding:3px 8px;border-radius:7px;font:500 9.5px/1.3 var(--mono);letter-spacing:0;text-transform:lowercase}
 .lvl-avoid{background:rgba(224,104,92,.14);color:#FFB4A9}
 .lvl-caution{background:rgba(232,183,90,.12);color:#F2C46B}
-.lvl-info{background:rgba(238,236,230,.07);color:var(--text-2)}
+.lvl-info{background:rgba(255,255,255,.07);color:var(--text-2)}
 .lvl-unknown{background:transparent;border:1px dashed var(--line-2);color:var(--text-2)}
 .short-meds{padding:9px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--text-2)}
 .stack-save{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:11px 16px;border-top:1px solid var(--line);font-size:13px;line-height:1.45;color:var(--text-2)}
@@ -265,7 +265,7 @@
 
 /* when to get help: fixed levels from Miracle Health's table, most urgent first */
 .card.warn{padding:16px 18px;border:1px solid rgba(232,183,90,.45);background:rgba(232,183,90,.07)}
-.card.warn h2{font:600 16px/1.3 var(--body);letter-spacing:-.01em;color:var(--text)}
+.card.warn h2{font:600 16px/1.3 var(--body);letter-spacing:-.01em;color:var(--text);font-weight:600;font-stretch:100%;text-transform:none}
 .inject-points{display:grid;gap:7px;margin-top:10px}
 .inject-points li{position:relative;padding-left:18px;font-size:15px;line-height:1.5;color:var(--text)}
 .inject-points li::before{content:'';position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--ink)}
@@ -317,7 +317,7 @@
 
 /* questions for the visitor: a clinician's history, answered by tapping or typing */
 .card.intake{border:1px solid var(--line);background:var(--white)}
-.card.intake .card-head{background:rgba(238,236,230,.05)}
+.card.intake .card-head{background:rgba(255,255,255,.05)}
 .card.intake .card-head p.sub{color:var(--muted)}
 .intake-qs{display:grid;margin:0;padding:0;list-style:none}
 .iq{padding:13px 16px 15px;border-top:1px solid var(--line)}
@@ -330,10 +330,10 @@
 @media (hover:hover){.iq-opt:not(:disabled):hover{border-color:var(--bone);color:var(--text)}}
 .iq-opt[aria-pressed="true"]{border-color:var(--bone);background:var(--bone);color:var(--on-bone)}
 .iq-opt:disabled{cursor:default}
-.iq-text{display:block;width:100%;margin-top:10px;min-height:42px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:rgba(238,236,230,.04);color:var(--text);font:400 16px/1.4 var(--body)}
+.iq-text{display:block;width:100%;margin-top:10px;min-height:42px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font:400 16px/1.4 var(--body)}
 .iq-text::placeholder{color:var(--muted)}
 .iq-text:focus{border-color:var(--bone);background:var(--white)}
-.intake-foot{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;padding:12px 16px 14px;border-top:1px solid var(--line);background:rgba(238,236,230,.04)}
+.intake-foot{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;padding:12px 16px 14px;border-top:1px solid var(--line);background:rgba(255,255,255,.04)}
 .btn-answers{min-height:42px;padding:0 20px;border-radius:10px;border:0;background:var(--bone);color:var(--ink);font:600 15px/1 var(--body);cursor:pointer}
 .btn-answers:disabled{opacity:.5;cursor:default}
 .intake-or{font-size:13px;color:var(--muted)}
@@ -349,7 +349,7 @@
 
 /* crisis and emergencies: first, and plain */
 .card.help{padding:18px;border:2px solid #B0453D;background:rgba(224,104,92,.10)}
-.card.help h2{font:600 17px/1.3 var(--body);color:#FFB4A9}
+.card.help h2{font:600 17px/1.3 var(--body);color:#FFB4A9;font-weight:600;font-stretch:100%;text-transform:none}
 .card.help p{margin-top:6px;font-size:15px;line-height:1.55;color:#FFB4A9}
 .help-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .help-actions a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:10px;background:#8E2F28;color:#FFFFFF;font:600 15px/1 var(--body);text-decoration:none}
@@ -357,29 +357,29 @@
 .help-actions a:hover{background:#6F211C;color:#FFFFFF}
 
 /* the 18+ check before the first message: the question waits above it */
-.gate{padding:20px 22px;border-radius:12px;border:1px solid rgba(238,236,230,.35);background:linear-gradient(180deg,rgba(238,236,230,.08),rgba(238,236,230,.02));color:var(--on-ink)}
-.gate-q{justify-self:end;max-width:100%;margin:0 0 16px auto;padding:10px 14px;border-radius:12px 6px 2px 6px;border:1px dashed rgba(238,236,230,.45);color:var(--on-ink-2);font-size:15px;line-height:1.5;width:fit-content;overflow-wrap:anywhere}
-.gate h2{font-size:19px;letter-spacing:-.01em}
+.gate{padding:20px 22px;border-radius:12px;border:1px solid rgba(255,255,255,.35);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));color:var(--on-ink)}
+.gate-q{justify-self:end;max-width:100%;margin:0 0 16px auto;padding:10px 14px;border-radius:12px 6px 2px 6px;border:1px dashed rgba(255,255,255,.45);color:var(--on-ink-2);font-size:15px;line-height:1.5;width:fit-content;overflow-wrap:anywhere}
+.gate h2{font-size:19px;letter-spacing:-.01em;font-weight:600;font-stretch:100%;text-transform:none}
 .gate p{margin-top:8px;max-width:62ch;font-size:15px;line-height:1.6;color:var(--on-ink-2)}
 .gate-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .gate-actions button{min-height:46px;padding:0 20px;border-radius:10px;font:600 15px/1 var(--body);cursor:pointer}
-.gate-yes{border:0;background:var(--accent);color:var(--on-accent)}
-.gate-yes:hover{background:var(--accent-2)}
+.gate-yes{border:0;background:var(--act);color:var(--on-accent)}
+.gate-yes:hover{background:var(--act-2)}
 .gate-no{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--on-ink);font:600 15px/1 var(--body);text-decoration:none}
 .gate-no:hover{border-color:var(--bone);color:var(--bone)}
 
 /* ---------------------------------------------------------------- composing */
 /* The dock stays at the bottom of the screen while the conversation scrolls under it */
 .ai-dock{position:sticky;bottom:0;z-index:5;margin-top:auto;padding:4px 0 12px;background:var(--darker)}
-.ai-dock::before{content:'';position:absolute;left:0;right:0;top:-22px;height:22px;background:linear-gradient(rgba(11,15,17,0),var(--darker));pointer-events:none}
+.ai-dock::before{content:'';position:absolute;left:0;right:0;top:-22px;height:22px;background:linear-gradient(rgba(0,0,0,0),var(--darker));pointer-events:none}
 .ai-composer{display:flex;align-items:flex-end;gap:10px;padding:8px 8px 8px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#18221F;transition:border-color .15s}
-.ai-composer:focus-within{border-color:rgba(238,236,230,.65)}
+.ai-composer:focus-within{border-color:rgba(255,255,255,.65)}
 .ai-composer textarea{flex:1;min-width:0;max-height:200px;padding:9px 0;border:0;outline:0;resize:none;background:transparent;color:var(--on-ink);font:16px/1.5 var(--body)}
 .ai-composer textarea::placeholder{color:var(--on-ink-3)}
 .ai-count{align-self:center;font:500 11px/1 var(--mono);color:var(--on-ink-3)}
 .ai-count.over{color:#FFB547}
-.ai-send{display:grid;place-items:center;flex:none;width:44px;height:44px;border:0;border-radius:50%;background:var(--accent);color:var(--on-accent);cursor:pointer;transition:background-color .15s,transform .1s}
-.ai-send:hover{background:var(--accent-2)}
+.ai-send{display:grid;place-items:center;flex:none;width:44px;height:44px;border:0;border-radius:50%;background:var(--act);color:var(--on-accent);cursor:pointer;transition:background-color .15s,transform .1s}
+.ai-send:hover{background:var(--act-2)}
 .ai-send:active{transform:scale(.96)}
 .ai-send:disabled{background:rgba(255,255,255,.1);color:var(--on-ink-3);cursor:default}
 .ai-send .i-stop{display:none}
@@ -387,7 +387,7 @@
 .ai-send.stop .i-stop{display:inline}
 .ai-send.stop{background:var(--on-ink);color:var(--ink)}
 .ai-fine{padding:2px 4px 18px;font-size:12.5px;line-height:1.55;color:var(--on-ink-3)}
-.ai-fine a{color:var(--on-ink-2);text-decoration-color:rgba(238,236,230,.5);text-decoration-thickness:1px}
+.ai-fine a{color:var(--on-ink-2);text-decoration-color:rgba(255,255,255,.5);text-decoration-thickness:1px}
 .ai-nojs{margin-bottom:18px;padding:14px 16px;border-radius:12px;background:rgba(232,183,90,.12);color:#F2C46B}
 .ai-nojs a{color:inherit}
 
@@ -399,13 +399,13 @@
    Signal's lime, as in the community. The voice that leads for what was asked comes first and says so. */
 .vx{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
 .vx-side{display:flex;flex-direction:column;gap:5px;min-width:0;padding:10px 12px 11px;border-radius:12px}
-.vx-studies{border:1px solid var(--line-2);background:rgba(238,236,230,.05);color:var(--text)}
+.vx-studies{border:1px solid var(--line-2);background:rgba(255,255,255,.05);color:var(--text)}
 .vx-community{border:1px solid var(--line-2);background:var(--ink);color:var(--on-ink)}
 .vx-k{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:19px;font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:lowercase}
 .vx-studies .vx-k{color:var(--muted)}
 .vx-community .vx-k{color:var(--on-ink-3)}
 .vx-lead{padding:1px 8px;border-radius:7px;background:var(--bone);color:var(--ink);font-weight:600;letter-spacing:.06em}
-.vx-studies.lead{border-color:var(--bone);background:rgba(238,236,230,.07)}
+.vx-studies.lead{border-color:var(--bone);background:rgba(255,255,255,.07)}
 .vx-community.lead{border-color:var(--lime)}
 .vx-main{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;font:600 14px/1.3 var(--body);letter-spacing:-.01em}
 .vx-studies .vx-main{color:var(--text)}
@@ -425,7 +425,7 @@
 .in-pick .vx-score{font-size:14px}
 /* the studies and the community on what they named */
 .card.voices{border:1px solid var(--line);background:var(--white)}
-.card.voices .card-head{background:rgba(238,236,230,.05)}
+.card.voices .card-head{background:rgba(255,255,255,.05)}
 .vx-item .pick-name{gap:6px 10px}
 .vx-item .pick-name .st,.vx-item .pick-name .ev{font-size:9.5px;padding:4px 8px}
 .vx-said{margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--text-2)}
@@ -469,10 +469,10 @@
 /* the community, live, on the first screen */
 .ai-crowd{display:flex;align-items:center;gap:11px;margin-top:14px;font-size:14px;line-height:1.45;color:var(--on-ink-2)}
 .ai-crowd b{font:600 14px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--on-ink)}
-.crowd-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(216,255,61,.14)}
+.crowd-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(61,139,255,.14)}
 .ai-crowd a{color:var(--bone);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 /* the community in the rail: a node like the Signal's seal */
-.agent[data-agent="community"] .agent-node{background:radial-gradient(circle,rgba(216,255,61,.75) 0 2px,transparent 2.5px),var(--darker)}
+.agent[data-agent="community"] .agent-node{background:radial-gradient(circle,rgba(61,139,255,.75) 0 2px,transparent 2.5px),var(--darker)}
 .agent[data-agent="community"].done .agent-node,.agent[data-agent="community"].run .agent-node{background:radial-gradient(circle,var(--ink) 0 2px,transparent 2.5px),var(--lime)}
 
 /* ---------------------------------------------------------------- smaller screens */
@@ -554,14 +554,14 @@ details.more>summary::before{content:'';width:8px;height:8px;border-right:2px so
 details.more[open]>summary::before{transform:rotate(45deg)}
 details.more>summary:hover{color:var(--bone)}
 /* Beside what people report: how many improve anyway, the side-effect watch */
-.vx-base{padding:8px 10px;border-radius:12px;background:rgba(238,236,230,.05)}
+.vx-base{padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.05)}
 .vx-dim{color:var(--muted)}
 .vx-watch{padding:8px 10px;border-radius:12px;background:rgba(224,104,92,.12);color:#FFB4A9}
 .vx-watch b{color:#FFB4A9}
 .vx-watch a,.warn-note a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px}
 /* Compounds side by side */
 .card.compare{border:1px solid var(--line);background:var(--white)}
-.card.compare .card-head{background:rgba(238,236,230,.05)}
+.card.compare .card-head{background:rgba(255,255,255,.05)}
 .cmp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line)}
 .cmp-col{display:flex;flex-direction:column;gap:8px;min-width:0;padding:14px 16px;background:var(--white)}
 .cmp-col .vx{grid-template-columns:1fr}
@@ -582,7 +582,7 @@ details.more>summary:hover{color:var(--bone)}
 .start-ico{border:1px solid var(--line-2);border-radius:7px;background:transparent;color:var(--text)}
 .ai-composer{border-radius:12px;border-color:var(--line-2)}
 .ai-send{border-radius:10px}
-.bubble{border-color:var(--line-2);background:rgba(238,236,230,.07)}
+.bubble{border-color:var(--line-2);background:rgba(255,255,255,.07)}
 .gate-q{border-color:var(--line-2)}
 /* labels: a hairline and the card's small corner */
 .vx-lead,.found-ev,.pick-ev,.lvl{border-radius:7px}

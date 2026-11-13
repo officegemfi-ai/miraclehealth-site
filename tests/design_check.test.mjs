@@ -24,7 +24,7 @@ test('drift is caught: an off-brand colour, face, radius and size', () => {
   fs.copyFileSync(path.join(ROOT, 'design', 'tokens.json'), path.join(dir, 'design', 'tokens.json'));
   fs.writeFileSync(path.join(dir, 'design', 'baseline.json'), JSON.stringify({ counts: {} }));
   fs.writeFileSync(path.join(dir, 'drift.css'), [
-    '.a{color:#EEECE6;background:#0B0F11;border:1px solid rgba(238,236,230,.1)}',   // on brand
+    '.a{color:#F7F8FA;background:#000000;border:1px solid rgba(255,255,255,.1)}',   // on brand
     '.b{color:#3B3B3B}',                                                              // off-brand grey
     '.c{font-family:Arial,sans-serif}',                                               // another face
     '.d{border-radius:40px}',                                                         // a pill

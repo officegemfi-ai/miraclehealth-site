@@ -119,7 +119,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -131,6 +131,8 @@ for (const f of IMPORTERS) {
   if (CHECK) { console.error(`out of date: ${f} imports an older shared script (run node scripts/build_library.mjs)`); process.exit(1); }
   fs.writeFileSync(file, now);
 }
+// A share image by its version too, so a new picture isn't hidden behind an old one in a share preview's cache
+const ogVersion = (p) => (fs.existsSync(path.join(ROOT, p)) ? `?v=${version(p.replace(/^\//, ''))}` : '');
 const V = {
   kitCss: version('kit/kit.css'),
   css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js'),
@@ -148,26 +150,31 @@ const V = {
 // The window every page opens in
 // ---------------------------------------------------------------------------
 // One app: every page is a window in Sig's terminal, as Ask Sig is. Beside it the side panel
-// (Sig, the four places with what's in each, what's in this window, the rest of the site, joining,
+// (Sig, the Signal and the four places with what's in each, what's in this window, the rest of the site, joining,
 // the legal); on it the title bar (Sig's ring, the window's name, its tabs, the twelve agents
 // online), the window's path, the page, its foot (the weekly email, the links, the disclaimer) and
 // the status bar (Sig, safety on, what you're looking at and how fresh it is, no doses, no sellers,
 // no diagnosis, and ⌘K to go anywhere). The
 // panel is never taken away: lib/os.js folds it on a wide screen and slides it in on a phone.
 const ICO = {
+  // the Signal's own mark: its spectrum, four bars in the community's blue
+  signal: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 13.5v-4M6.5 13.5v-9M10 13.5v-6.5M13.5 13.5v-3" fill="none" stroke="#3D8BFF" stroke-width="1.8" stroke-linecap="round"/></svg>',
   menu: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
   fold: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 };
 const libDateOf = () => date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
 const PLACE_ICON = { library: () => glyphSvg('evidence', { size: 16 }), ai: () => ringSvg(16), community: () => glyphSvg('community', { size: 16 }), my: () => glyphSvg('builder', { size: 16 }) };
 const PLACE_META = { library: () => `${entries.size} sheets`, ai: () => `${AGENTS.length} agents`, community: () => '<i class="op-live" aria-hidden="true"></i>live', my: () => 'this device' };
-const MORE = [['/#signal', 'The Signal'], ['/#how', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
+// The Signal leads the places (page 15 of the design canvas): the community's live score, its spectrum on
+// the front page; the front page writes in how many Signals are live
+const SIGNAL_PLACE = () => `<a href="/#signal"><span class="op-g" aria-hidden="true">${ICO.signal}</span><span class="op-n">The Signal</span><span class="op-k"><i class="op-live" aria-hidden="true"></i><span class="op-signal-n"></span>live</span></a>`;
+const MORE = [['/#how', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
   ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/weekly/', 'The weekly email'], ['/founders/', 'Founding reporters'], ['/story/', 'The story'], ['/about/', 'About']];
 function osSide(current, ctx = '', url = '') {
   return `<aside class="os-side" id="os-side" aria-label="Miracle Health">
   <div class="os-head"><a class="os-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a><button class="os-fold" id="os-fold" type="button" aria-label="Hide the side panel" aria-controls="os-side" aria-expanded="true">${ICO.fold}</button></div>
   <a class="os-ask" href="/sig/">${ringSvg(16)}<span>Ask Sig a question</span></a>
-  <nav class="os-places" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
+  <nav class="os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
   ${ctx ? `<div class="os-ctx">${ctx}</div>` : ''}
   <nav class="os-more" aria-label="More of the site"><p class="os-k">more</p>${MORE.map(([href, label]) => `<a href="${href}"${href === url ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
   <div class="os-foot">
@@ -280,7 +287,7 @@ function page({
 <title>${e(title)}</title>
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#12171A">
+<meta name="theme-color" content="#17171A">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
@@ -289,7 +296,7 @@ function page({
 <meta property="og:url" content="${SITE}${url}">
 <meta property="og:title" content="${e(title)}">
 <meta property="og:description" content="${e(description)}">
-<meta property="og:image" content="${SITE}${ogImage}">
+<meta property="og:image" content="${SITE}${ogImage}${ogVersion(ogImage)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
@@ -613,7 +620,7 @@ function entryPage(c) {
   // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
   const print = f && BODY.compounds[c.id] ? `<figure class="le-print" aria-labelledby="le-print-cap">
       ${printSvg({ id: c.id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[c.id].lines || [], places: BODY.places.map((x) => x.at) }, { size: 232 })}
-      <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the lime arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
+      <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the blue arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
     </figure>` : '';
   const pathLine = `<span class="wp-crumbs"><a href="/">~</a><span aria-hidden="true">/</span><a href="/library/">library</a><span aria-hidden="true">/</span><a href="/library/?family=${encodeURIComponent(c.family)}">${e(dir(c.family))}</a><span aria-hidden="true">/</span><b>${e(file)}</b></span>`;
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
@@ -890,7 +897,7 @@ function aiPage() {
     <button class="sg-fold" id="sg-fold" type="button" aria-label="Hide the side panel" aria-controls="sg-side" aria-expanded="true">${ico('M10 3.5 5.5 8l4.5 4.5')}</button>
   </div>
   <button class="sg-new" id="sg-new" type="button">${ico('M8 2.5v11M2.5 8h11')}<span>New chat</span></button>
-  <nav class="sg-site os-places" aria-label="Main">${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
+  <nav class="sg-site os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
   <section class="sg-chats" aria-labelledby="sg-chats-h">
     <h2 class="sg-k" id="sg-chats-h">Chats on this device</h2>
     <ol class="sg-list" id="sg-list"></ol>
@@ -1073,7 +1080,7 @@ function storyPage() {
         <li><b>Spokes</b> run to the places in the body the sheet names: the body’s ${places.length} places, head to toe, clockwise from the top.</li>
         <li><b>Beads</b> are its lines there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">worth a blood test</span> <span class="pk pk-warn">a caution</span>, cautions outermost.</li>
         <li><b>The core</b> is the family’s shape (peptide, hormone, medication, supplement) and the evidence inside it, ring by ring, in the Evidence librarian’s blue.</li>
-        <li><b>The edge</b> carries the Community Signal in lime, once it’s known.</li>
+        <li><b>The edge</b> carries the Community Signal in blue, once it’s known.</li>
       </ul>
       <div class="sy-prints">${prints}</div>
     </div>
@@ -1338,6 +1345,8 @@ front = fill(front, 'count:sheets', String(entries.size));
 front = fill(front, 'ring:ask', ringSvg(16));
 front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
 front = fill(front, 'ring:big', ringSvg(196, { center: false, cls: 'fp-bigring' }));
+// and between Noise and Signal, Sig's ring on its dark disc
+front = fill(front, 'ring:sn', ringSvg(30));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
 // count of what its lines say, and the graph as text
 const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
@@ -1353,6 +1362,7 @@ front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key,
 // The real example's level seal sits beside the level's name, so it's only a picture
 front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true"'));
 // Its one script, by its version
+front = front.replace(/(<meta property="og:image" content="https:\/\/miraclehealth\.us\/og\.jpg)(?:\?v=[0-9a-z]+)?"/, `$1${ogVersion('/og.jpg')}"`);
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
 front = front.replace(/<link rel="stylesheet" href="\/home\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/home.css?v=${V.homeCss}">`);
 // Any Sig (the community's lime character) it draws is the kit's; the front page now shows Sig as

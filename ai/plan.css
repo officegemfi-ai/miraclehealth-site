@@ -13,14 +13,14 @@
 .plan-title{margin-top:5px;font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
 
 /* start here */
-.plan-hero{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;margin-top:16px;padding:16px 18px;border-radius:12px;border:1px solid var(--line-2);background:rgba(238,236,230,.08);color:var(--text);--focus:var(--bone)}
+.plan-hero{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;margin-top:16px;padding:16px 18px;border-radius:12px;border:1px solid var(--line-2);background:rgba(255,255,255,.08);color:var(--text);--focus:var(--bone)}
 .phero-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--bone)}
 .phero-icon .picon{width:24px;height:24px}
 .phero-label{color:var(--text-2)}
 .phero-step{margin-top:3px;font:600 19px/1.3 var(--head);letter-spacing:-.015em;color:var(--text)}
 .phero-done{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid var(--line-2);border-radius:10px;background:transparent;font:600 14px/1 var(--body);color:var(--text);cursor:pointer}
 .phero-done .ptick{accent-color:var(--bone)}
-.plan-hero.is-done .phero-step{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(238,236,230,.45)}
+.plan-hero.is-done .phero-step{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(255,255,255,.45)}
 
 /* the building: on screen top to bottom, in reading order from the ground up */
 .plan-build{display:grid;grid-template-areas:"top" "sup" "pep" "base" "ground";margin-top:18px}
@@ -47,7 +47,7 @@ a.pchip-name:hover{color:var(--bone);text-decoration:underline;text-underline-of
 .pwell-community{margin-top:6px;font-size:14px;line-height:1.45;color:var(--on-ink-2)}
 .pwell+.pwell-community{margin-top:8px}
 .prow-body>.pwell-community:first-child{margin-top:2px}
-.pwell-community a{color:var(--on-ink);text-decoration:underline;text-decoration-color:rgba(238,236,230,.65);text-underline-offset:3px}
+.pwell-community a{color:var(--on-ink);text-decoration:underline;text-decoration-color:rgba(255,255,255,.65);text-underline-offset:3px}
 .pwell-community a:hover{color:var(--bone)}
 
 /* the pillars: tall, with their drawing at the top and their name and state at the foot */
@@ -57,7 +57,7 @@ a.pchip-name:hover{color:var(--bone);text-decoration:underline;text-underline-of
 .pillar-foot{display:grid;gap:7px;justify-items:start}
 .pillar-name{font:600 16.5px/1.2 var(--body);letter-spacing:-.01em}
 .pillar-state{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:7px;border:1px solid var(--line-2);font:600 12px/1.2 var(--body);white-space:nowrap}
-.pillar.is-start{border-color:var(--text);background:rgba(238,236,230,.08);color:var(--text)}
+.pillar.is-start{border-color:var(--text);background:rgba(255,255,255,.08);color:var(--text)}
 .pillar.is-start .picon{color:var(--text)}
 .pillar.is-start .pillar-state{border-color:var(--text);background:transparent;color:var(--text)}
 .pillar.is-next{border-color:var(--line-2);background:transparent}
@@ -82,7 +82,7 @@ a.pchip-name:hover{color:var(--bone);text-decoration:underline;text-underline-of
 .pstep-text{grid-column:3}
 .pstep-pillar{font-weight:700;color:var(--on-ink)}
 .pstep-hint{color:var(--on-ink-3)}
-.pstep.is-done .pstep-text{text-decoration:line-through;text-decoration-color:rgba(238,236,230,.4);color:var(--on-ink-3)}
+.pstep.is-done .pstep-text{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.4);color:var(--on-ink-3)}
 .pstep.is-done .pstep-pillar{color:var(--on-ink-3)}
 .ptick{width:18px;height:18px;margin:0;accent-color:var(--bone);cursor:pointer}
 .pdot{width:8px;height:8px;margin:7px 0 0 4px;border-radius:50%;background:var(--muted)}
@@ -118,7 +118,7 @@ a.pchip-name:hover{color:var(--bone);text-decoration:underline;text-underline-of
 .plan-save[open]>summary{border-color:var(--bone);color:var(--bone)}
 .plan-save-menu{position:absolute;z-index:3;left:0;bottom:calc(100% + 6px);display:grid;min-width:220px;padding:6px;border-radius:12px;border:1px solid var(--line-2);background:var(--raised);box-shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6)}
 .plan-save-menu button{min-height:42px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:var(--on-ink);font:500 14.5px/1 var(--body);text-align:left;cursor:pointer}
-.plan-save-menu button:hover{background:rgba(238,236,230,.05);color:var(--bone)}
+.plan-save-menu button:hover{background:rgba(255,255,255,.05);color:var(--bone)}
 .plan-save-menu button:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
 .plan-keep{display:inline-flex;align-items:center;gap:4px;font-size:14px;color:var(--on-ink-2)}
 .plan-keep .pcheck{margin-right:4px;color:var(--bone)}

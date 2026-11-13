@@ -6,7 +6,7 @@
       "ai/packet.css": 66,
       "ai/screen.css": 28,
       "ai/term.css": 8,
-      "kit/kit.css": 2
+      "kit/kit.css": 1
     },
     "font-family": {},
     "radius": {
@@ -30,9 +30,10 @@
       "ai/ai.css": 14,
       "ai/screen.css": 3,
       "ai/term.css": 6,
+      "home.css": 6,
       "kit/kit.css": 1,
       "library/library.css": 1,
-      "styles.css": 4
+      "styles.css": 6
     },
     "shadow": {
       "ai/ai.css": 10,
@@ -40,8 +41,9 @@
       "ai/plan.css": 1,
       "ai/screen.css": 5,
       "ai/term.css": 7,
+      "home.css": 3,
       "kit/kit.css": 1,
-      "styles.css": 2
+      "styles.css": 3
     },
     "inline-style": {}
   }

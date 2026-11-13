@@ -68,3 +68,15 @@ The founder pointed at page 9 of the design canvas ("9 Sig system") and asked wh
 
 - **The community app** keeps its own look until it takes the Sig system: SysCommunity ("every report is a commit", Sig's read under each report) and its status bar. The shared kit (the body map's "!" and its corners) changes there, then is copied here.
 - **My Miracle as a file** (`~/my-miracle/stack.yml`), **the weekly email as a changelog** and **share cards with the three pips** (SysEverywhere) aren't built yet.
+
+## 2026-11-12 · Black and electric blue
+
+The site takes page 15's look (pages 15 to 18 of the design canvas): the grounds go from graphite to black, the window gets a faint 64px grid under an ultramarine wash, headlines are wide, heavy and in capitals, kickers are capitals, and the one main action is electric blue (#1A04FF, lit from #3A2BFF) with white words. The community and its Signal go from lime to Signal blue (#3D8BFF; the code keeps the name `lime`), the studies' grades go from blue to mint (#14ECC3), and the Evidence librarian keeps its own blue (#6FA8FE) in Sig's ring. The design check's baseline was rewritten for the new gradients and glow, which the brand book now allows.
+
+## 2026-11-12 · The front page leads with the Community Signal
+
+The front page takes page 15's top. The Library's graph gives way to the Signal itself: a ring of its four parts (what happened 65, agreement 15, voices 10, volume 10) with the score in its middle, the compound's name with a way to step to the next, what people report most, the level its Signal has reached and how strong its studies are. Under it, the Signal spectrum: every live Signal as one bar, as tall as its score and split in the shares its four parts give it, grouped by kind; picking a bar opens it above. Both read the live Signal (`lib/sighero.js`, handed what it needs by `home.js`). The prompt stays, as a search box whose fact sheets open under it while you're in it, and still looks things up in the graph's data. "Signal, not noise" (page 15) follows How it works: what a forum thread or a star rating usually does, beside what the Signal does, rule for rule. The Signal leads the side panel's places on every page, with how many Signals are live on the front page.
+
+1. **The bars are as tall as the score.** The published score isn't always the four rounded parts added up (the parts are shown whole), so each bar's height is the score and its parts keep their shares. Page 15's equation ("= 91.9, exactly") isn't built for the same reason: for most compounds the parts on show wouldn't add up to the number.
+2. **On a phone the Signal comes first**, then the spectrum, then the search and the actions, as page 15's phone board has it.
+3. **New glow, counted:** the ring's halo and sweep, the spectrum's floor and the picked bar's cap, the Signal card's wash and the open search's panel. The design check's baseline was rewritten for them.

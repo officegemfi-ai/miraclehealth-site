@@ -1,12 +1,14 @@
-// The front page, in the Sig system: the prompt and the Library's graph (the hero), the Community
-// Signal like top, Ask Sig's twelve agents in an example run, and the real compound in "Popular
-// isn't the same as proven". What the studies show is published with the page, word for word from
+// The front page, in the Sig system: the Community Signal and its spectrum with the prompt beside
+// them (the top, page 15 of the design canvas), the Community Signal like top, Ask Sig's twelve
+// agents in an example run, and the real compound in "Popular isn't the same as proven". What the studies show is published with the page, word for word from
 // the compound's fact sheet (caveats included). What changes as reports come in is read here from the
 // community's public files (totals only: no posts, no names): the Community Signal, what people
 // report for each use and the placebo figures beside them. If the files can't load, the page keeps
 // what it was published with.
-import { sealSvg, levelOf } from '/library/signalviz.js?v=f388629295';
-import { COMMUNITY, node, askLink, askAboutCompound } from '/kit/kit.js?v=34d9695824';
+import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=d5d77d9d2d';
+import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=00c2752062';
+import { startHow } from '/lib/how.js?v=b5712a2ea7';
+import { startSigHero } from '/lib/sighero.js?v=065170b3fc';
 import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -130,94 +132,29 @@ if (card) {
 }
 
 // ---------------------------------------------------------------------------------------------
-// The hero: the Library as one graph (lib/graph.js; its data, and the still picture shown until it
-// starts, by scripts/graph.mjs), in its own pane beside the prompt. Its script and data load after
-// the page; if either can't, the still picture stays. Pointing at a dot traces it and clicking it
-// opens its fact sheet; pointing at a row under the prompt traces what it names; what's typed lights
-// up. The pane's bar says what's being traced.
-const net = document.querySelector('.fp .net[data-graph]');
-const fig = net && net.closest('.fp-fig');
-if (net) startNet(net);
-async function startNet(net) {
-  const [mod, data] = await Promise.all([import('/lib/graph.js?v=342f35b5c5').catch(() => null), getJson(net.dataset.graph)]);
-  if (data && data.counts) promptFrom(data);
-  if (!mod || !data || !data.counts) return;
-  const css = () => {
-    const cs = getComputedStyle(net);
-    const v = (k, d) => { const x = parseFloat(cs.getPropertyValue(k)); return Number.isFinite(x) ? x : d; };
-    return { cx: v('--gx', 0.5), cy: v('--gy', 0.5), unit: v('--gu', 0.22), unitH: v('--guh', 0), caption: v('--gcap', 0) > 0, callouts: 3, top: 6, bottom: 6 };
-  };
-  const ask = net.querySelector('.net-ask');
-  const question = (s) => (s.kind === 'c' ? askAboutCompound(s.name)
-    : s.kind === 's' ? `What may the ${s.name} blend (${s.parts.join(' + ')}) do for me? What does the evidence say about each part, and what do members report?`
-      : s.kind === 'p' ? `In the Library, which compounds act on ${s.label}, and what do their fact sheets say?`
-        : `In the Library, which compounds may change ${s.name} on a blood test, and what do their fact sheets say?`);
-  // the pane's bar: what's traced, and for a compound (or a blend, its parts together) how many
-  // places its sheet names and how many of its lines are the Safety agent's notes
-  const tracedEl = document.getElementById('fp-traced'), countEl = document.getElementById('fp-trace-n');
-  const WARN = Object.keys(data.ops || {}).indexOf('warn');
-  const idxOf = new Map((data.ids || []).map((id, i) => [id, i]));
-  const placesOf = new Map(), notesOf = new Map();
-  (data.lineC || []).forEach((c, k) => {
-    if (!placesOf.has(c)) placesOf.set(c, new Set());
-    placesOf.get(c).add(data.lineP[k]);
-    if (data.lineOp[k] === WARN) notesOf.set(c, (notesOf.get(c) || 0) + 1);
-  });
-  const plural = (n, one) => `${n} ${one}${n === 1 ? '' : 's'}`;
-  let typing = false, counts = '';
-  const bar = () => {
-    const sizeEl = fig.querySelector('.net-size'), foundEl = fig.querySelector('.net-found');
-    countEl.hidden = typing || !counts; countEl.textContent = counts;
-    sizeEl.hidden = typing || !!counts; foundEl.hidden = !typing;
-  };
-  const traced = (s) => {
-    if (tracedEl) tracedEl.textContent = s ? String(s.label || s.name).toLowerCase() : 'the library';
-    const cs = !s ? [] : s.kind === 'c' ? [idxOf.get(s.id)] : s.kind === 's' ? (data.stacks.find((x) => x.id === s.id)?.parts || []) : [];
-    const places = new Set(), notes = cs.reduce((n, c) => { for (const p of placesOf.get(c) || []) places.add(p); return n + (notesOf.get(c) || 0); }, 0);
-    counts = cs.length && places.size ? `${plural(places.size, 'place')}${notes ? ` · ${plural(notes, 'safety note')}` : ''}` : '';
-    bar();
-  };
-  let g;
-  try {
-    g = mod.startGraph(net, data, {
-      onTrace: traced,
-      ...css(), layout: css, avoid: () => [], poster: net.querySelector('.net-poster'), ask,
-      bg: { at: [css().cx, css().cy], size: [0.52, 0.62], stops: ['#080B0C', '#080B0C', '#080B0C'] },
-      links: { sheet: (id) => `/library/${id}/`, ask: (s) => askLink(question(s), { site: '' }) },
-    });
-  } catch { return; }
-  getSignal().then((snap) => g.setSignal(snap), () => {});
-  // pointing (a mouse or a pen) and clicking; a touch screen taps
-  let touch = false;
-  const at = (e) => { const r = net.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
-  net.addEventListener('pointerdown', (e) => { touch = e.pointerType === 'touch'; }, { passive: true });
-  net.addEventListener('pointermove', (e) => { if (e.pointerType !== 'touch') g.pointerAt(...at(e), e.target === g.surface); }, { passive: true });
-  net.addEventListener('pointerleave', () => g.pointerOut());
-  g.surface.addEventListener('click', (e) => { const url = g.activate(...at(e), touch); if (url) location.assign(url); });
-  ask.addEventListener('pointerenter', () => g.keep(true));
-  ask.addEventListener('pointerleave', () => g.keep(false));
-  // a row under the prompt traces what it names while it's pointed at or focused
-  const list = document.getElementById('hp-list');
-  const idOf = (el) => { const a = el && el.closest && el.closest('a.hp-row[href^="/library/"]'); return a ? a.getAttribute('href').split('/')[2] : null; };
-  if (list) {
-    list.addEventListener('pointerover', (e) => { const id = idOf(e.target); if (id) g.hold(id); });
-    list.addEventListener('pointerleave', () => g.release());
-    list.addEventListener('focusin', (e) => { const id = idOf(e.target); if (id) g.hold(id); });
-    list.addEventListener('focusout', () => g.release());
-  }
-  // what's typed lights up, as the Library's search would find it
-  const q = document.getElementById('hero-q'), found = fig.querySelector('.net-found');
-  const typed = () => {
-    const r = g.light(q.value), on = q.value.trim().length > 1;
-    found.textContent = !on ? '' : r.lit ? `${r.lit} of ${r.of} light up` : `none of the ${r.of} drawn`;
-    typing = on; bar();
-  };
-  q.addEventListener('input', typed);
-  if (q.value) typed();
-}
+// The top: the Community Signal, one compound at a time, and the spectrum of every live Signal
+// (lib/sighero.js), beside the prompt. The prompt looks things up in the Library's own data (its
+// graph's names, other names and families, by their version), which also says how strong each
+// compound's studies are.
+const prompt = document.querySelector('form.hp[data-graph]');
+const library = prompt ? getJson(prompt.dataset.graph) : Promise.resolve(null);
+library.then((data) => { if (data && data.counts) promptFrom(data); });
+startSigHero(document.querySelector('.sx-hero'), {
+  getSignal,
+  studies: library.then((d) => new Map((d?.ids || []).map((id, c) => [id, d.grade?.[c]]).filter(([, g]) => Number.isInteger(g) && g >= 0))),
+  meter: (grade) => meterHtml(grade, { bare: true }),
+  levels: LEVELS,
+});
+// the side panel says how many Signals are live
+getSignal().then((snap) => {
+  const n = snap?.signals ? Object.keys(snap.signals).length : 0;
+  const k = document.querySelector('.os-places .op-signal-n');
+  if (n && k) k.textContent = `${n} `;
+}, () => {});
 
 // ---------------------------------------------------------------------------------------------
-// The prompt: › look up. Empty, it lists the most talked-about fact sheets (by the live Signal). As
+// The prompt: look up a compound. It opens under the box while you're in it. Empty, it lists the
+// most talked-about fact sheets (by the live Signal). As
 // you type, the first few fact sheets and blends that match, as the Library's own search matches
 // them (name, other names, category and family), and last a row that asks Sig instead. Each row is
 // the sheet's file name, its name and family, its evidence (the Evidence librarian's blue) and its
@@ -275,7 +212,7 @@ function promptFrom(data) {
     // and Sig, a keystroke away
     const said = q.value.trim().slice(0, 120);
     rows.push(row(askLink(`What does the evidence say about ${said}, and what do people report?`, { site: '' }),
-      [node('<svg class="ring" width="12" height="12" viewBox="-6 -6 12 12" aria-hidden="true" focusable="false"><circle r="4.3" fill="none" stroke="#FF6B5B" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-85.5)"/><circle r="4.3" fill="none" stroke="#F2C94C" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-20.05)"/><circle r="4.3" fill="none" stroke="#D8FF3D" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(12.68)"/><circle r="4.3" fill="none" stroke="#3FE0C5" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(78.14)"/><circle r="4.3" fill="none" stroke="#6FA8FF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(143.59)"/><circle r="4.3" fill="none" stroke="#B98CFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(209.05)"/><circle r="4.3" fill="none" stroke="#FF7FC8" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(241.77)"/></svg>'), 'sig ask'],
+      [node('<svg class="ring" width="12" height="12" viewBox="-6 -6 12 12" aria-hidden="true" focusable="false"><circle r="4.3" fill="none" stroke="#FF6B5B" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-85.5)"/><circle r="4.3" fill="none" stroke="#F2C94C" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-20.05)"/><circle r="4.3" fill="none" stroke="#3D8BFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(12.68)"/><circle r="4.3" fill="none" stroke="#3FE0C5" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(78.14)"/><circle r="4.3" fill="none" stroke="#14ECC3" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(143.59)"/><circle r="4.3" fill="none" stroke="#B98CFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(209.05)"/><circle r="4.3" fill="none" stroke="#FF7FC8" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(241.77)"/></svg>'), 'sig ask'],
       `“${said}”`, '', [], ' hp-ask'));
     list.replaceChildren(...rows);
     head.hidden = true;
@@ -286,7 +223,11 @@ function promptFrom(data) {
   q.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown') { e.preventDefault(); links()[0]?.focus(); }
     else if (e.key === 'Escape' && q.value) { q.value = ''; q.dispatchEvent(new Event('input')); }
+    else if (e.key === 'Escape') q.blur();
   });
+  // the rows open under the box while you're in it; pressing one keeps you in the box until the
+  // click lands, so the row is still there to be clicked
+  form.querySelector('.hp-drop')?.addEventListener('mousedown', (e) => { if (e.target.closest('a')) e.preventDefault(); });
   list.addEventListener('keydown', (e) => {
     const all = links(), i = all.indexOf(document.activeElement);
     if (e.key === 'ArrowDown') { e.preventDefault(); all[Math.min(all.length - 1, i + 1)]?.focus(); }
@@ -299,12 +240,6 @@ function promptFrom(data) {
     if (first && q.value.trim().length > 1 && !first.classList.contains('hp-ask')) { e.preventDefault(); location.assign(first.href); }
   });
   draw();
-  // the strip under the hero: how many Signals are live, once they've loaded
-  const live = document.querySelector('.strip-live'), liveN = document.getElementById('strip-live-n');
-  getSignal().then((x) => {
-    const n = x?.signals ? Object.keys(x.signals).length : 0;
-    if (live && liveN && n) { liveN.textContent = String(n); live.hidden = false; }
-  }, () => {});
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -572,3 +507,6 @@ if (askForm) askForm.addEventListener('submit', (e) => {
 
 // The drawings that move without end only move while they're on screen
 document.querySelectorAll('svg.sig, svg.takeover, svg.flowviz').forEach(calm);
+
+// How it works: the system behind one honest number, on the live Signal
+startHow(document.getElementById('how'), getSignal);

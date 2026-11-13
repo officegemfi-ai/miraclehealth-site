@@ -77,15 +77,15 @@ test('the still picture is the graph at the live drawing\'s first pose', () => {
   assert.ok(graph.svg.includes(`cx="${cx}"`), 'Sig where the camera puts it');
 });
 
-test('the front page gets the legend, the count of what the lines say, and the text', () => {
+test('the graph has its legend, the count of what the lines say, and its text; the front page asks for its data', () => {
   assert.match(graph.legend, new RegExp(`${g.counts.compounds} of the ${catalog.length} have full fact sheets`));
   for (const k of ['up', 'down', 'block', 'is', 'watch', 'warn']) assert.ok(graph.foot.includes(`<b>${g.ops[k].toLocaleString('en-US')}</b>`), k);
   assert.match(graph.text, /^<p>The Library as one graph/);
   assert.ok(!/<a /.test(graph.text), 'the text version has no links to tab through');
   const front = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  // the Sig system's front page (design canvas, page 9) shows the graph in a pane: its size in the bar,
-  // its legend under it and the whole graph as text for screen readers; what the lines say is in that text
-  for (const key of ['graph:legend', 'graph:text', 'graph:size']) assert.ok(front.includes(`<!-- ${key} -->`), key);
+  // The front page (page 15 of the design canvas) leads with the Community Signal and no longer draws the
+  // graph; its prompt looks things up in the graph's data, asked for by its version
+  assert.match(front, /data-graph="\/library\/data\/graph\.json\?v=[0-9a-f]{10}"/);
 });
 
 test('places read naturally in a question', () => {
