@@ -25,7 +25,7 @@ export const NEWSLETTER_ORIGIN = new URL(NEWSLETTER_URL).origin;
 export function signupForm(e, { source, id, cls = '', button = 'Get it weekly', label = '' }) {
   return `<form class="news-form ${cls}" action="${NEWSLETTER_URL}" method="post">
     ${label ? `<label class="nf-label" for="${id}">${label}</label>` : `<label class="mh-sr" for="${id}">Your email address</label>`}
-    <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn ${cls.includes('on-paper') ? 'bone' : 'line'}" type="submit">${e(button)}</button></div>
+    <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn ${cls.includes('on-paper') ? 'lime' : 'line'}" type="submit">${e(button)}</button></div>
     <input type="hidden" name="source" value="${e(source)}">
     <span class="nf-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
     <p class="nf-note">Free, once a week. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
@@ -208,7 +208,7 @@ export function buildPages(ctx) {
   <div class="wrap pg-wrap">
     <p class="pg-intro">What the studies show for each compound people take for ${e(lower(g.label))}, strongest evidence first, next to its Community Signal: what people who took it report. It isn’t a ranking of what to take: the evidence grade is for the compound as a whole, and each fact sheet says what it was studied for.</p>
     <div class="pg-acts">
-      <a class="btn ink" href="${e(askLink(`What does the evidence say about compounds for ${lower(g.label)}?`, { site: '' }))}">Ask Sig about it</a>
+      <a class="btn lime" href="${e(askLink(`What does the evidence say about compounds for ${lower(g.label)}?`, { site: '' }))}">Ask Sig about it</a>
       <a class="btn line" href="/library/?goal=${e(g.id)}">Search the Library</a>
     </div>
 
@@ -298,7 +298,7 @@ export function buildPages(ctx) {
       ${rows.map(([k, fn]) => `<section class="cmp-row"><h2 class="cmp-k">${e(k)}</h2>${[a, b].map((f) => cell(f, fn(f))).join('')}</section>`).join('\n      ')}
     </div>
     <div class="pg-acts">
-      <a class="btn ink" href="${e(askLink(`How do ${a.name} and ${b.name} compare?`, { site: '' }))}">Ask Sig to compare them</a>
+      <a class="btn lime" href="${e(askLink(`How do ${a.name} and ${b.name} compare?`, { site: '' }))}">Ask Sig to compare them</a>
       <a class="btn line" href="/library/${e(a.id)}/">${e(a.name)}’s fact sheet</a>
       <a class="btn line" href="/library/${e(b.id)}/">${e(b.name)}’s fact sheet</a>
     </div>
@@ -314,7 +314,7 @@ export function buildPages(ctx) {
   <div class="wrap pg-wrap">
     <p class="pg-intro">Two compounds people often weigh against each other, side by side: status, evidence, risks and what people report. To compare any two others, ask Sig.</p>
     <div class="pg-goal-grid">${pairs.map(({ a, b, slug }) => `<a class="pg-goal" href="/compare/${e(slug)}/"><b>${e(a.name)} vs ${e(b.name)}</b><span>${evPill(a.evidence.grade)} ${evPill(b.evidence.grade)}</span></a>`).join('')}</div>
-    <div class="pg-acts"><a class="btn ink" href="${e(askLink('Can you compare two compounds for me?', { site: '' }))}">Compare others with Sig</a></div>
+    <div class="pg-acts"><a class="btn lime" href="${e(askLink('Can you compare two compounds for me?', { site: '' }))}">Compare others with Sig</a></div>
   </div>`;
     add('/compare/', page({
       title: 'Compare peptides and supplements side by side · Miracle Health',

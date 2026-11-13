@@ -271,7 +271,7 @@
 .fp-top .up{color:var(--lime)}
 .fp-top .down{color:#FF9A8E}
 .fp-top .flat{color:var(--muted)}
-.fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted)}
+.fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted);white-space:normal}
 .fp-top .more a{color:var(--text-2)}
 .fp-top tr.flash-up{animation:fp-up 1.6s ease-out}
 .fp-top tr.flash-down{animation:fp-down 1.6s ease-out}
@@ -404,7 +404,7 @@
 .fp-vs .vs-cols{align-items:center;min-height:40px;border-top:1px solid var(--line);background:var(--band);font:400 12px/1.3 var(--mono);text-transform:none;color:var(--muted)}
 .fp-vs .vs-cols span{display:inline-flex;align-items:center;gap:8px}
 .fp-vs .vs-row{padding-top:20px;padding-bottom:20px;border-top:1px solid rgba(255,255,255,.07)}
-.fp-vs .vs-use{margin:0;font:600 15.5px/1.35 var(--body);color:var(--text)}
+.fp-vs .vs-use{grid-column:auto;margin:0;font:600 15.5px/1.35 var(--body);color:var(--text)}
 .fp-vs .vs-lbl{display:none}
 .fp-vs .vs-v{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;font:600 15px/1.35 var(--body);color:var(--text)}
 .fp-vs .vs-sub{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--text-2)}
@@ -625,6 +625,15 @@
 .hs-tile{flex:none;display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);background:var(--ink)}
 .hs-who{font:500 24px/1 var(--body);letter-spacing:-.01em;color:var(--text-2)}
 .hs-sub{margin-left:auto;font:400 11px/1.3 var(--mono);color:var(--muted);text-align:right}
+/* 901 to 1279px the cards are 384 to 494px wide: titles wrap, and the foot's line goes under the name, as on
+   Sig's card */
+@container (min-width:901px) and (max-width:1279px){
+  .hs-step .hs-title{white-space:normal;font-size:15px;line-height:1.35}
+  .hs-step .hs-f{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:16px;align-content:center}
+  .hs-step .hs-tile{grid-row:span 2}
+  .hs-step .hs-who{font-size:20px}
+  .hs-step .hs-sub{margin:4px 0 0;text-align:left}
+}
 .hs-tree-v{position:absolute;left:49px;top:72px;bottom:48px;width:1px;background:var(--line-2)}
 .hs-tree-h{position:absolute;left:49px;bottom:48px;width:34px;height:1px;background:var(--line-2)}
 .hs-cap{position:absolute;top:50%;width:min(380px,calc(50% - 120px));transform:translateY(-50%);z-index:2}
