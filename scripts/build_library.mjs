@@ -131,6 +131,8 @@ for (const f of IMPORTERS) {
   if (CHECK) { console.error(`out of date: ${f} imports an older shared script (run node scripts/build_library.mjs)`); process.exit(1); }
   fs.writeFileSync(file, now);
 }
+// A share image by its version too, so a new picture isn't hidden behind an old one in a share preview's cache
+const ogVersion = (p) => (fs.existsSync(path.join(ROOT, p)) ? `?v=${version(p.replace(/^\//, ''))}` : '');
 const V = {
   kitCss: version('kit/kit.css'),
   css: version('styles.css'), lib: version('library/library.css'), js: version('library/library.js', 'library/signalviz.js'),
@@ -294,7 +296,7 @@ function page({
 <meta property="og:url" content="${SITE}${url}">
 <meta property="og:title" content="${e(title)}">
 <meta property="og:description" content="${e(description)}">
-<meta property="og:image" content="${SITE}${ogImage}">
+<meta property="og:image" content="${SITE}${ogImage}${ogVersion(ogImage)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
@@ -1360,6 +1362,7 @@ front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key,
 // The real example's level seal sits beside the level's name, so it's only a picture
 front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true"'));
 // Its one script, by its version
+front = front.replace(/(<meta property="og:image" content="https:\/\/miraclehealth\.us\/og\.jpg)(?:\?v=[0-9a-z]+)?"/, `$1${ogVersion('/og.jpg')}"`);
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
 front = front.replace(/<link rel="stylesheet" href="\/home\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/home.css?v=${V.homeCss}">`);
 // Any Sig (the community's lime character) it draws is the kit's; the front page now shows Sig as
