@@ -8,7 +8,7 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=d5d77d9d2d';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=00c2752062';
 import { startHow } from '/lib/how.js?v=b5712a2ea7';
-import { startSigHero } from '/lib/sighero.js?v=8757fd6eb7';
+import { startSigHero } from '/lib/sighero.js?v=bf6b703c0b';
 import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
