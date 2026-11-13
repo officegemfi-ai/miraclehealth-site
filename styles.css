@@ -564,6 +564,7 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .op-g svg{display:block}
 .op-k{display:inline-flex;align-items:center;gap:6px;font:400 11px/1 var(--mono);color:var(--muted);white-space:nowrap}
 .op-live{width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.op-signal-n:empty{display:none}
 .os-ctx{flex:1 1 auto;min-height:min(120px,15dvh);margin:8px -6px 0 -3px;padding:8px 6px 0 3px;border-top:1px solid rgba(255,255,255,.09);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
 .os-k{margin:0 10px 6px;font:400 11.5px/1 var(--mono);color:var(--muted)}
 .os-more{display:grid;gap:0;padding-top:8px;border-top:1px solid rgba(255,255,255,.09)}

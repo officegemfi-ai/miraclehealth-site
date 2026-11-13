@@ -81,7 +81,8 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
 ## The window
 
 Build every page as a window:
-- **Side panel** (`side-panel` wide, on `side`): the logo, then the four places, each with its mark and meta:
+- **Side panel** (`side-panel` wide, on `side`): the logo, then the Signal and the four places, each with its mark and meta:
+  - The Signal: its spectrum, four bars in Signal blue, with a live dot ("51 live" on the front page, which has the count).
   - Library: the Evidence librarian's ladder, "122 sheets".
   - Ask Sig: Sig's ring, "12 agents".
   - Community: the community's glyph, with a live dot.
