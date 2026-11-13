@@ -12,7 +12,8 @@
 import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=00c2752062';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=d5d77d9d2d';
 import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
-import { ringSvg } from '/lib/ring.js?v=59d3289bb7';
+import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
+import { sigRing3d } from '/lib/ring3d.js?v=899677ad8c';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -1964,12 +1965,14 @@ narrowMq.addEventListener('change', () => {
   if (!narrowMq.matches) setSig(document.querySelector('.tm-logo'), busy ? 'think' : 'idle');
   drawTeam(teamMsg());
 });
-// The agents' tab: the ring lights piece by piece as each one reports, and each one's line says
-// what it's doing, what it did, or (before anyone has asked) what it's for
+// The agents' tab: Sig's ring in 3D (lib/ring3d.js), a wall for each agent that stands up as it
+// reports, with a light going round while they work, and each one's line says what it's doing, what
+// it did, or (before anyone has asked) what it's for
 const team = {
   ring: document.querySelector('.tm-bigring'), n: $('tm-n'), k: $('tm-k'), live: $('tm-live'), liveT: $('tm-live-t'), small: $('tm-count-sm'),
   rows: new Map([...document.querySelectorAll('.tm-who')].map((li) => [li.dataset.agent, li])),
 };
+const team3d = sigRing3d(team.ring, { wheel: WHEEL, colors: AGENT_COLOR, center: CENTER });
 const JOBS = new Map([...team.rows].map(([k, li]) => [k, li.querySelector('.tm-now')?.textContent || '']));
 // The answer the agents' tab is about: the one being written, or the last one with steps
 function teamMsg() {
@@ -2003,6 +2006,7 @@ function drawTeam(m) {
   if (team.ring) {
     setSig(team.ring, 'idle', state === 'idle' ? null : [...last.keys()]);
     for (const p of team.ring.querySelectorAll('.rg')) p.classList.toggle('is-now', running.has(p.dataset.a));
+    team3d?.busy(state === 'run');
   }
   if (team.n) team.n.textContent = String(n);
   if (team.k) team.k.textContent = state === 'idle' ? 'ready' : state === 'run' ? 'reporting' : 'reported';

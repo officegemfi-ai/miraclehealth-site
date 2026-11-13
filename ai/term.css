@@ -75,12 +75,10 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-chat{max-width:none;width:auto;justify-self:stretch;min-height:var(--tm-h);background:var(--tm-win);border-left:1px solid var(--tm-line);border-right:1px solid var(--tm-line)}
 
 /* The title bar: stays under the site's bar while the conversation scrolls. Above it, the gap
-   keeps the page's colour; its round corners are painted in the page's colour too, so nothing
-   scrolling behind them shows. */
-.tm .tm-title{position:sticky;top:calc(var(--top-h) + var(--tm-g));z-index:9;display:flex;align-items:flex-end;height:var(--tm-tb);padding:0 14px 0 16px;border:1px solid var(--tm-line);border-radius:12px 12px 0 0;background:var(--tm-bar);color:var(--tm-tx)}
+   keeps the page's colour, so nothing scrolling behind it shows. The window is square, like How it
+   works' cards and the Signal's on the front page. */
+.tm .tm-title{position:sticky;top:calc(var(--top-h) + var(--tm-g));z-index:9;display:flex;align-items:flex-end;height:var(--tm-tb);padding:0 14px 0 16px;border:1px solid var(--tm-line);border-radius:0;background:var(--tm-bar);color:var(--tm-tx)}
 .tm .tm-title::before{content:'';position:absolute;left:-1px;right:-1px;bottom:calc(100% + 1px);height:calc(var(--tm-g) + 2px);background:var(--tm-page);pointer-events:none}
-.tm .tm-title::after{content:'';position:absolute;left:-1px;right:-1px;top:-1px;height:12px;pointer-events:none;
-  background:radial-gradient(circle at 100% 100%,transparent 11.9px,var(--tm-page) 12.4px) left top/12px 12px no-repeat,radial-gradient(circle at 0 100%,transparent 11.9px,var(--tm-page) 12.4px) right top/12px 12px no-repeat}
 .tm-brand{display:flex;align-items:center;gap:10px;flex:none;align-self:center;padding-right:18px}
 .tm-logo{width:18px;height:18px}
 .tm-brand b{font:650 14px/1 var(--body);letter-spacing:-.01em;color:var(--tm-tx)}
@@ -117,10 +115,8 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-count-sm{display:none}
 
 /* The status bar: stays at the foot of the window */
-.tm .tm-status{position:sticky;bottom:var(--tm-g);z-index:9;display:flex;align-items:stretch;height:var(--tm-sb);border:1px solid var(--tm-line);border-radius:0 0 12px 12px;background:var(--tm-stat);font:500 11.5px/1 var(--mono);color:var(--tm-t3)}
+.tm .tm-status{position:sticky;bottom:var(--tm-g);z-index:9;display:flex;align-items:stretch;height:var(--tm-sb);border:1px solid var(--tm-line);border-radius:0;background:var(--tm-stat);font:500 11.5px/1 var(--mono);color:var(--tm-t3)}
 .tm .tm-status::before{content:'';position:absolute;left:-1px;right:-1px;top:calc(100% + 1px);height:var(--tm-g);background:var(--tm-page);pointer-events:none}
-.tm .tm-status::after{content:'';position:absolute;left:-1px;right:-1px;bottom:-1px;height:12px;pointer-events:none;
-  background:radial-gradient(circle at 100% 0,transparent 11.9px,var(--tm-page) 12.4px) left bottom/12px 12px no-repeat,radial-gradient(circle at 0 0,transparent 11.9px,var(--tm-page) 12.4px) right bottom/12px 12px no-repeat}
 .tm-sb{display:inline-flex;align-items:center;gap:7px;padding:0 12px;white-space:nowrap}
 .tm-sb-sig{border-bottom-left-radius:11px;background:var(--tm-tx);color:#000000;letter-spacing:.04em}
 .tm-sb-sig [data-sig]{width:12px;height:12px;translate:0 -1px}
@@ -192,7 +188,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-composer:has(textarea:focus-visible){outline:2px solid var(--tm-tx);outline-offset:-2px}
 .tm .ai-composer:focus-within .tm-ps1{text-shadow:none}
 .tm .ai-chat.is-empty .ai-dock{position:static;margin:0;padding:0 var(--tm-px);background:none}
-.tm .ai-chat.is-empty .ai-composer{padding-left:16px;border:1px solid var(--tm-line2);border-radius:12px;background:var(--tm-bar)}
+.tm .ai-chat.is-empty .ai-composer{padding-left:16px;border:1px solid var(--tm-line2);border-radius:0;background:var(--tm-bar)}
 .tm .ai-chat.is-empty .ai-composer:focus-within{border-color:var(--tm-tx)}
 .tm .ai-chat.is-empty .ai-composer:has(textarea:focus-visible){outline:2px solid var(--tm-tx);outline-offset:3px}
 .tm-ps1{flex:none;padding-top:9px;font:400 13px/22px var(--mono);color:var(--tm-t2);white-space:nowrap}
@@ -352,18 +348,20 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm-team{display:block;padding:4px 18px 28px}
   .tm-team[hidden]{display:none}
 }
-/* the agents: the ring of the eleven, the Interpretation agent at its centre, over each one's latest line (before anyone asks, what each
-   one is for, in a few words) */
-.tm-ringbox{position:relative;width:212px;height:212px;margin:26px auto 20px}
-.tm-bigring{width:100%;height:100%}
-.tm-bigring .rg{opacity:.13;transition:opacity .45s}
+/* the agents: Sig's ring in 3D (lib/ring3d.js, drawn 400 by 300; --u is one of its units), a wall for each of
+   the eleven that stands up as it reports, the Interpretation agent's light over the middle and the count
+   under it, over each one's latest line (before anyone asks, what each one is for, in a few words) */
+.tm-ringbox{position:relative;width:100%;max-width:420px;aspect-ratio:400/300;margin:10px auto 14px;container-type:inline-size;--u:calc(100cqw / 400)}
+.tm-ringbox::after{content:'';position:absolute;left:-18px;right:-18px;bottom:-8px;height:1px;background:linear-gradient(90deg,var(--tm-line) 0 40px,transparent 40px 60px,var(--tm-line) 60px)}
+.tm-bigring{position:absolute;inset:0}
+[data-sig].tm-bigring.is-3d svg{overflow:visible;animation:none}
+.tm-bigring .rg{opacity:.3;transition:opacity .45s}
 .tm-bigring .rg.on{opacity:1}
-.tm-team[data-state="idle"] .tm-bigring .rg.on{opacity:.9;filter:none}
 .tm-bigring .rg.is-now{animation:tm-pulse 1.2s ease-in-out infinite}
-.tm-count{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0}
-.tm-frac{font:700 30px/1 var(--mono);color:var(--tm-tx);font-variant-numeric:tabular-nums}
+.tm-count{position:absolute;left:50%;top:51%;display:flex;flex-direction:column;align-items:center;margin:0;transform:translate(-50%,-50%);pointer-events:none}
+.tm-frac{font:700 clamp(22px,calc(30 * var(--u)),32px)/1 var(--mono);color:var(--tm-tx);font-variant-numeric:tabular-nums}
 .tm-frac span{color:var(--tm-t3)}
-.tm-count-k{margin-top:8px;font:400 12px/1 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--tm-t3)}
+.tm-count-k{margin-top:clamp(5px,calc(8 * var(--u)),9px);font:400 clamp(10px,calc(12 * var(--u)),12px)/1 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--tm-t3)}
 .tm-roster{display:grid;gap:2px;max-width:700px;margin:0 auto;padding:0;list-style:none}
 .tm-who{position:relative;display:grid;grid-template-columns:14px 8px 152px minmax(0,1fr);align-items:baseline;column-gap:9px;padding:6px 10px;border-radius:7px;font:400 11.5px/1.5 var(--mono);transition:background-color .25s,box-shadow .25s}
 .tm-st{align-self:start;height:17px;color:var(--ac)}

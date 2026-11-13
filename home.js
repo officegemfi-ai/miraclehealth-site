@@ -8,7 +8,9 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=d5d77d9d2d';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=00c2752062';
 import { startHow } from '/lib/how.js?v=b5712a2ea7';
-import { startSigHero } from '/lib/sighero.js?v=1df6aee7f4';
+import { startSigHero } from '/lib/sighero.js?v=5cf4ef2809';
+import { ring3d, sigRing3d } from '/lib/ring3d.js?v=899677ad8c';
+import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
 import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
 
 const card = document.querySelector('[data-live="example"]');
@@ -147,6 +149,7 @@ startSigHero(document.querySelector('.sx-hero'), {
   }),
   meter: (grade) => meterHtml(grade, { bare: true }),
   levels: LEVELS,
+  ring3d,
 });
 // the side panel says how many Signals are live
 getSignal().then((snap) => {
@@ -418,11 +421,13 @@ function signalBoard(board) {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Ask Sig, with all twelve agents: the example run plays once as it comes into view. Each step
-// lights its agent's piece of the ring and ticks it off in the list beside it; the Interpretation
-// agent lights the centre, last; then the answer comes in, part by part, each signed by the agent
-// that wrote it. Picking an agent lights up what it wrote. Reduced motion: the finished run.
+// Ask Sig, with all twelve agents: the example run plays once as it comes into view. Sig's ring stands
+// in 3D (lib/ring3d.js), a wall for each agent; each step stands its agent's wall up and ticks it off
+// in the list under it; the Interpretation agent lights the centre, last; then the answer comes in,
+// part by part, each signed by the agent that wrote it. Picking an agent lights up what it wrote and
+// stands its wall above the rest. Reduced motion: the finished run.
 const run = document.getElementById('fp-run');
+const sigRing = run && sigRing3d(run.querySelector('.fp-ring3'), { wheel: WHEEL, colors: AGENT_COLOR, cls: 'fp-bigring' });
 if (run) runDemo(run);
 // the check mark: neither font has one, so it's drawn (img/i-check.svg, as a mask in the words' colour)
 function ck() { return h('i', { class: 'ck', 'aria-hidden': 'true' }); }
@@ -483,11 +488,13 @@ function runDemo(run) {
   }
   function play() {
     arm();
+    sigRing?.busy(true);
     const gap = 230;
     steps.forEach((li, i) => timers.push(setTimeout(() => report(li, i), 350 + i * gap)));
     const t0 = 350 + steps.length * gap + 250;
     parts.forEach((el, i) => timers.push(setTimeout(() => el.classList.add('in'), t0 + i * 170)));
     timers.push(setTimeout(() => {
+      sigRing?.busy(false);
       state.replaceChildren(ck(), ` done · ${steps.length} steps · ${seen.size} agents`);
       replay.hidden = false;
       for (const li of roster) li.querySelector('.ct').replaceChildren(ck(), ` ${total[li.dataset.agent] || 0}`);
