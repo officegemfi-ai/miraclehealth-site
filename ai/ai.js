@@ -2437,31 +2437,34 @@ showState();
 if (/^#(?:ask|stack)=/.test(location.hash) && (chat.length || thread.querySelector(':scope > .gate'))) newTab();
 refreshStack();
 stackFromLink();
-// The community, live: how many members and first-hand reports Sig speaks for (totals from
-// the community's public snapshot; the line stays hidden if it can't load)
+// The community, live, under the four ways in: how many Signals Sig speaks for and where they come
+// from (totals from the community's public snapshot), then the pairs it is filling first, as the rows
+// of a list. The list stays hidden if the snapshot can't load.
 const FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': 'YouTube', 'Podcast / YouTube': 'podcasts' };
 getSignal().then((snap) => {
   const c = snap?.community;
-  const el = $('ai-crowd');
+  const el = $('ai-pulse');
   if (!el || !c || !(c.signals > 0)) return;
-  const dot = h('span', { class: 'crowd-dot', 'aria-hidden': 'true' });
+  const row = (k, dd) => [h('dt', {}, k === 'Community' ? h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }) : null, k), dd];
+  const rows = [];
   if (c.reports > 0) {
-    el.replaceChildren(dot, h('span', {}, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
-      h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`));
+    rows.push(...row('Community', h('dd', { class: 'ai-crowd' }, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
+      h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`)));
   } else {
     // Before members' reports start, the Signals are what the public forums say: said plainly
     const from = [...new Set(Object.values(snap.signals || {}).flatMap((x) => x?.source_families || []).map((f) => FAMILY[f]).filter(Boolean))];
-    el.replaceChildren(dot, h('span', {}, h('b', { text: fmt(c.signals) }), ` Community Signals so far, read from ${from.length ? listOf(from) : 'public forums'}. Members’ first-hand reports take over as they come in. `,
-      h('a', { href: `${COMMUNITY}/`, text: 'Add yours' })));
+    rows.push(...row('Community', h('dd', { class: 'ai-crowd' }, h('b', { text: fmt(c.signals) }), ` Community Signals so far, read from ${from.length ? listOf(from) : 'public forums'}. `,
+      h('a', { href: `${COMMUNITY}/`, text: 'Add yours' }))));
   }
-  el.hidden = false;
-  // The pairs the community is filling first, until each has its ten reports
-  const open = (Array.isArray(snap.focus) ? snap.focus : []).filter((f) => f && f.id && f.label && Number(f.reports) < Number(f.goal)).slice(0, 5);
+  // The first four pairs the community is filling, until each has its ten reports (three on a phone)
+  const open = (Array.isArray(snap.focus) ? snap.focus : []).filter((f) => f && f.id && f.label && Number(f.reports) < Number(f.goal)).slice(0, 4);
   if (open.length) {
-    el.after(h('p', { class: 'ai-focus' }, h('span', { class: 'kick-sm', text: 'Filling first' }),
+    rows.push(...row('Filling first', h('dd', { class: 'ai-focus' },
       ...open.map((f) => h('a', { href: draftLink([f.id], { title: `How ${cleanName(f.name, 40)} went for me: ${low(cleanName(f.label, 40))}`, body: '' }) },
-        `${cleanName(f.name, 40)} for ${low(cleanName(f.label, 40))}`, h('span', { class: 'n', text: ` ${fmt(f.reports)} of ${fmt(f.goal)}` })))));
+        `${cleanName(f.name, 40)} for ${low(cleanName(f.label, 40))}`, h('span', { class: 'n', text: ` ${fmt(f.reports)} of ${fmt(f.goal)}` }))))));
   }
+  el.replaceChildren(...rows);
+  el.hidden = false;
 }).catch(() => {});
 // A question typed in for them elsewhere (a Library page, a community space, My Miracle):
 // ready to read, change and send; never sent by itself

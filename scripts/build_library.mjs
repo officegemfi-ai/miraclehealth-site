@@ -800,8 +800,7 @@ function aiPage() {
       <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
         <div class="ai-empty" id="ai-empty">
           <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
-          <p class="ai-lede">I’m Sig, Miracle Health’s AI. Ask me about a goal, something you take, or something you’re thinking about. I’ll tell you what the studies show and what people report, and I’ll always say which is which. No doses, no sellers, no diagnosis. Your doctor has the final say.</p>
-          <p class="ai-crowd" id="ai-crowd" hidden></p>
+          <p class="ai-lede">I’m Sig, Miracle Health’s AI. I’ll tell you what the studies show and what people report, and I’ll always say which is which. Your doctor has the final say.</p>
         </div>
       </div>
       <div class="ai-begin" id="ai-begin">
@@ -809,6 +808,7 @@ function aiPage() {
         <div class="ai-starts" role="group" aria-label="Start with">
           ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
         </div>
+        <dl class="ai-pulse" id="ai-pulse" hidden></dl>
         <details class="ai-who">
           <summary>Who answers</summary>
           ${agentList('agent-list')}
