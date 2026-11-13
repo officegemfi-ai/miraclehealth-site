@@ -377,20 +377,21 @@ function setEmpty(on) {
   app.classList.toggle('is-empty', on);
 }
 
-// "The bottom" is where the conversation ends and the box to write in sits, with the window's
-// status bar and the gap under it, not the page's footer below it
+// "The bottom" is where the conversation ends, just over the typing bar
 const chatEl = document.querySelector('.ai-chat');
+// What scrolls: on Sig's own page, the conversation alone, between the title bar and the typing bar,
+// which stays put (the page itself never scrolls); elsewhere, the page
+const scrollEl = document.getElementById('ai-scroll') || chatEl;
 let gap = 0;
 const measureGap = () => { gap = parseFloat(getComputedStyle(app).getPropertyValue('--tm-g')) || 0; };
 measureGap();
 addEventListener('resize', measureGap);
-// On Sig's own page a wide screen scrolls the conversation in its pane (the window fills the
-// browser); a phone scrolls the page
-const paneMq = matchMedia('(min-width: 701px)');
-const inPane = () => paneMq.matches && document.body.classList.contains('sigapp');
-const scroller = () => (inPane() ? chatEl : window);
-const scrollPos = () => (inPane() ? chatEl.scrollTop : window.scrollY);
-const chatEnd = () => (inPane() ? chatEl.scrollHeight - chatEl.clientHeight : app.getBoundingClientRect().bottom + gap + window.scrollY - window.innerHeight);
+// On Sig's own page the window fills the browser, on a phone too, and the conversation scrolls in
+// its own pane
+const inPane = () => document.body.classList.contains('sigapp');
+const scroller = () => (inPane() ? scrollEl : window);
+const scrollPos = () => (inPane() ? scrollEl.scrollTop : window.scrollY);
+const chatEnd = () => (inPane() ? scrollEl.scrollHeight - scrollEl.clientHeight : app.getBoundingClientRect().bottom + gap + window.scrollY - window.innerHeight);
 function nearBottom() { return scrollPos() >= chatEnd() - 180; }
 // (at once: the page's smooth scrolling, started again every frame, would never catch up)
 function toBottom() { scroller().scrollTo({ top: Math.max(0, chatEnd()), behavior: 'instant' }); }
