@@ -255,7 +255,7 @@ function page({
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover${app ? ', interactive-widget=resizes-content' : ''}">
 <title>${e(title)}</title>
 <meta name="description" content="${e(description)}">
 <meta name="color-scheme" content="dark">
@@ -796,16 +796,25 @@ function aiPage() {
     <div class="ai-bar">
       <div class="ai-id"><span class="tm-path" aria-hidden="true">~/chats/<b id="tm-slug">new</b></span><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">every answer checked · efficacy reasoned last</span></div>
     </div>
-    <div class="tm-boot">
-      <p class="tm-boot-1">${ring(13)}<b>sig</b><span> · ${AGENTS.length} agents online · library: ${entries.size} fact sheets ·</span> <span class="tm-nw">updated ${libDate}</span></p>
-      <p class="tm-boot-2">No doses. No sellers. No diagnosis. The Safety agent checks every answer before you see it.</p>
-    </div>
-    <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
-      <div class="ai-empty" id="ai-empty">
-        <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
-        <p class="ai-lede">I’m Sig, Miracle Health’s AI. Ask me about a goal, something you take, or something you’re thinking about. I’ll tell you what the studies show and what people report, and I’ll always say which is which. No doses, no sellers, no diagnosis. Your doctor has the final say.</p>
-        <p class="ai-crowd" id="ai-crowd" hidden></p>
+    <div class="ai-scroll" id="ai-scroll">
+      <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
+        <div class="ai-empty" id="ai-empty">
+          <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
+          <p class="ai-lede">I’m Sig, Miracle Health’s AI. Ask me about a goal, something you take, or something you’re thinking about. I’ll tell you what the studies show and what people report, and I’ll always say which is which. No doses, no sellers, no diagnosis. Your doctor has the final say.</p>
+          <p class="ai-crowd" id="ai-crowd" hidden></p>
+        </div>
       </div>
+      <div class="ai-begin" id="ai-begin">
+        <div class="ai-saved" id="ai-saved" hidden></div>
+        <div class="ai-starts" role="group" aria-label="Start with">
+          ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
+        </div>
+        <details class="ai-who">
+          <summary>Who answers</summary>
+          ${agentList('agent-list')}
+        </details>
+      </div>
+      <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
       <div class="ai-peek" id="ai-peek" hidden></div>
@@ -816,19 +825,8 @@ function aiPage() {
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg><span class="tm-key k-send" aria-hidden="true">↩ send</span><span class="tm-key k-stop" aria-hidden="true">stop</span></button>
       </div>
+      <p class="ai-fine">Sig is an AI. No doses, sellers or diagnosis.<span class="ai-fine-x"> Your chats stay on this device.</span> <a href="/privacy#ai"><span class="ai-fine-x">How messages are handled</span><span class="ai-fine-s">Privacy</span></a></p>
     </form>
-    <div class="ai-begin" id="ai-begin">
-      <div class="ai-saved" id="ai-saved" hidden></div>
-      <div class="ai-starts" role="group" aria-label="Start with">
-        ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
-      </div>
-      <details class="ai-who">
-        <summary>Who answers</summary>
-        ${agentList('agent-list')}
-      </details>
-    </div>
-    <p class="ai-fine">For adults 18 and over. Sig is an AI. It explains evidence; it doesn’t diagnose, give doses or name sellers. Your chats stay on this device until you delete them. Messages go to our AI provider to write the answers and aren’t stored by Miracle Health. <a href="/privacy#ai">How messages are handled</a></p>
-    <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
   </section>
   <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="Beside the chat: the agents and the screen">
     <div class="tm-tabs" role="tablist" aria-label="Beside the chat">

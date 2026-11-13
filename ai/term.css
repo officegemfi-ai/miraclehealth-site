@@ -7,9 +7,10 @@
    agents and the screen beside it, as two tabs. Every agent keeps one colour (Eleven), and so does
    every part of an answer: numbered in the gutter, a rule beside it in its agent's colour, and a
    line over it saying what kind of part it is (// the studies, // blood tests…) and, on the right,
-   which agent signed it. Safety notes inform; they never shout. On a phone it is the conversation
-   alone, edge to edge, with the ring and the count in its title bar; the screen still pulls up as
-   a sheet. */
+   which agent signed it. Safety notes inform; they never shout. The typing bar has its own place
+   at the foot of the conversation and never moves; only the conversation scrolls. On a phone it is
+   the conversation alone, edge to edge, with the ring and the count in its title bar; the screen
+   still pulls up as a sheet. */
 
 .ai{
   --a-safety:#FF6B5B;--a-planner:#FF9F4A;--a-recommender:#F2C94C;--a-community:#3D8BFF;--a-combination:#5FE08A;--a-markers:#3FE0C5;
@@ -153,44 +154,40 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm .ai-bar{position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));z-index:7;background:var(--tm-win)}
   .tm .help-pin{top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb) + var(--tm-ph) + 8px)}
 }
-/* the lines Sig starts with */
-.tm-boot{padding:12px var(--tm-px) 0;font:500 12.5px/1.5 var(--mono);color:var(--tm-tx)}
-.tm-boot-1 [data-sig]{display:inline-block;width:13px;height:13px;margin-right:8px;vertical-align:-2px}
-.tm-boot-1>span{color:var(--tm-t3)}
-.tm-nw{white-space:nowrap}
-.tm-boot-2{margin-top:2px;font-weight:400;color:var(--tm-t3)}
-.tm .ai-chat.is-empty .tm-boot-2{display:none}
-
-/* the first screen: the greeting, the prompt as a box, four ways in */
-.tm .ai-thread{gap:16px;padding:14px var(--tm-px) 24px}
-.tm .ai-chat.is-empty .ai-thread{padding:0 var(--tm-px) 18px}
-.tm .ai-empty{padding:12px 0 0}
+/* the first screen: the greeting and four ways in, over the typing bar */
+.tm .ai-thread{gap:16px;padding:20px var(--tm-px) 24px}
+.tm .ai-chat.is-empty .ai-thread{padding:24px var(--tm-px) 8px}
+.tm .ai-empty{padding:0}
 .tm .ai-hello{width:52px;height:52px}
 .tm .ai-begin{padding:8px var(--tm-px) 24px}
 .tm .ai-start{border-color:var(--tm-line2);background:transparent}
 .tm .ai-start:hover{border-color:var(--tm-tx);background:transparent}
-.tm .ai-fine{max-width:calc(52ch + 2 * var(--tm-px));padding:4px var(--tm-px) 18px;font-size:13px;color:var(--tm-t3)}
-.tm .ai-chat:not(.is-empty) .ai-fine{padding-top:10px;font-size:13px}
 .tm .ai-who{border-top-color:var(--tm-line)}
 
 /* In a wide pane the answer keeps a readable line and the first screen a readable block */
 @media (min-width:701px){
   .tm .ai-thread>*{max-width:900px}
-  .tm .ai-empty,.tm .ai-begin>*,.tm .ai-fine,.tm .ai-chat.is-empty .ai-composer{max-width:760px}
+  .tm .ai-empty,.tm .ai-begin>*{max-width:760px}
 }
 
-/* ---------------------------------------------------------------- the prompt */
-/* At the foot of the pane, above the status bar, while the conversation scrolls under it */
-.tm .ai-dock{position:sticky;bottom:calc(var(--tm-g) + var(--tm-sb));z-index:5;margin:auto 0 0;padding:0;background:var(--tm-win)}
-.tm .ai-dock::before{top:-20px;height:20px;background:linear-gradient(rgba(0,0,0,0),var(--tm-win))}
-.tm .ai-composer{align-items:flex-start;gap:10px;min-height:58px;padding:7px 14px 7px var(--tm-px);border:0;border-top:1px solid var(--tm-line);border-radius:0;background:var(--tm-bar);transition:border-color .15s}
-.tm .ai-composer:focus-within{border-top-color:var(--tm-tx);background:var(--tm-bar)}
-.tm .ai-composer:has(textarea:focus-visible){outline:2px solid var(--tm-tx);outline-offset:-2px}
+/* ---------------------------------------------------------------- the typing bar */
+/* Its own place at the foot of the conversation, never over it: the box to write in (the same on
+   the first screen and in a chat) and one line of small print under it. Only the conversation
+   above it scrolls. */
+.tm .ai-dock{position:relative;flex:none;z-index:5;margin:0;padding:12px var(--tm-px) 10px;border-top:1px solid var(--tm-line);background:var(--tm-win)}
+.tm .ai-dock::before{top:-21px;height:20px;background:linear-gradient(rgba(0,0,0,0),var(--tm-win))}
+.tm .ai-composer{align-items:flex-start;gap:10px;max-width:900px;min-height:56px;padding:6px 10px 6px 16px;border:1px solid var(--tm-line2);border-radius:0;background:var(--tm-bar);transition:border-color .15s}
+.tm .ai-composer:focus-within{border-color:var(--tm-tx)}
+.tm .ai-composer:has(textarea:focus-visible){outline:0}
 .tm .ai-composer:focus-within .tm-ps1{text-shadow:none}
-.tm .ai-chat.is-empty .ai-dock{position:static;margin:0;padding:0 var(--tm-px);background:none}
-.tm .ai-chat.is-empty .ai-composer{padding-left:16px;border:1px solid var(--tm-line2);border-radius:0;background:var(--tm-bar)}
-.tm .ai-chat.is-empty .ai-composer:focus-within{border-color:var(--tm-tx)}
-.tm .ai-chat.is-empty .ai-composer:has(textarea:focus-visible){outline:2px solid var(--tm-tx);outline-offset:3px}
+.tm .ai-fine{max-width:900px;margin:8px 0 0;padding:0 2px;font-size:12px;line-height:1.45;color:var(--tm-t3)}
+.ai-fine-s{display:none}
+/* where the whole line won't fit on one line, the short one */
+.tm .ai-dock{container-type:inline-size}
+@container (max-width:680px){
+  .ai-fine-x{display:none}
+  .ai-fine-s{display:inline}
+}
 .tm-ps1{flex:none;padding-top:9px;font:400 13px/22px var(--mono);color:var(--tm-t2);white-space:nowrap}
 .tm-ps1 b,.echo-ps1 b{font-weight:600;color:var(--tm-tx)}
 .ps-path{color:var(--tm-t3)}
@@ -409,10 +406,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm-sb-sig{border-bottom-left-radius:0}
   .tm .ai-chat{min-height:calc(100svh - var(--top-h) - var(--tm-tb) - var(--tm-sb));border:0}
   .tm .help-pin{top:calc(var(--top-h) + var(--tm-tb) + 8px)}
-  .tm .ai-dock{bottom:var(--tm-sb);margin-left:0;margin-right:0;padding-left:0;padding-right:0}
+  .tm .ai-dock{padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
   .tm .ai-peek:not([hidden]){margin:0 0 8px}
-  .tm .ai-composer{min-height:52px;padding:6px 10px calc(6px + env(safe-area-inset-bottom)) var(--tm-px)}
-  .tm .ai-chat.is-empty .ai-composer{padding-bottom:6px}
+  /* what's on the screen, in one row that slides sideways, so the typing bar stays low */
+  .tm .pk-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .tm .pk-chip{flex:none}
+  .tm .ai-composer{min-height:50px;padding:4px 6px 4px 12px}
+  .tm .ai-fine{margin-top:6px;font-size:11px}
   .tm .ai-composer textarea,.tm-caret{font-size:16px}
   .tm-ps1{padding-top:10px}
   .tm .ai-thread{padding-top:12px}
@@ -431,12 +431,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 /* ---------------------------------------------------------------- Sig's own page (/sig) */
 /* No site bar over it: the window starts at the top, beside a side panel with the chats kept on
    this device and the site's own links (the site's bar and footer give way to it, nothing is
-   lost). On wide screens the window fills the browser and the conversation scrolls in its pane,
-   like an app; on a phone the page scrolls, as before, and the panel slides in from the left. */
+   lost). The window fills the browser, on a phone too, like an app: the page never scrolls, only
+   the conversation does, in its own pane between the title bar and the typing bar, which stays
+   put. On a narrow screen the panel slides in from the left. */
 html:has(body.sigapp){--top-h:0px}
 .sg{--sg-w:272px;display:grid;grid-template-columns:var(--sg-w) minmax(0,1fr);min-height:100dvh}
 .sg-main{min-width:0}
-.sg-side{position:sticky;top:0;z-index:30;display:flex;flex-direction:column;height:100dvh;padding:10px 10px 12px 12px;border-right:1px solid var(--tm-line);background:#000000;color:var(--tm-tx)}
+.sg-side{position:sticky;top:0;z-index:30;display:flex;flex-direction:column;height:100dvh;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;padding:10px 10px 12px 12px;border-right:1px solid var(--tm-line);background:#000000;color:var(--tm-tx)}
 .sg-head{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 0 0 6px}
 .sg-logo{display:block;padding:4px 0}
 .sg-logo img{display:block;width:auto;height:22px}
@@ -447,6 +448,8 @@ html:has(body.sigapp){--top-h:0px}
 .sg-new{display:flex;align-items:center;gap:10px;width:100%;min-height:40px;margin:10px 0 4px;padding:0 12px;border:1px solid var(--tm-line2);border-radius:10px;background:transparent;color:var(--tm-tx);font:600 14px/1 var(--body);cursor:pointer}
 .sg-new:hover{border-color:var(--tm-tx);background:transparent}
 .sg-new svg{color:var(--tm-tx)}
+/* on a short screen the panel scrolls as a whole rather than squeezing its links */
+.sg-side>:not(.sg-chats){flex-shrink:0}
 .sg-chats{flex:1;min-height:0;margin:12px -6px 0 -3px;padding-right:6px;padding-left:3px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
 .sg-k{margin:0 10px 6px;font:400 11.5px/1 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--tm-t3)}
 .sg-list{display:grid;grid-template-columns:minmax(0,1fr);gap:1px;margin:0;padding:0;list-style:none}
@@ -502,15 +505,17 @@ html:has(body.sigapp){--top-h:0px}
 .sg.folded .sg-side{display:none}
 .sg.folded .tm-menu{display:grid}
 .sigapp .tm.ai-app{margin:var(--tm-g) auto}
+html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavior:none}
+.sigapp .tm.ai-app{height:calc(100dvh - 2 * var(--tm-g))}
+.sigapp .tm .tm-title{position:relative;top:auto}
+.sigapp .tm .tm-status{position:relative;bottom:auto}
+.sigapp .tm .ai-chat{min-height:0;overflow:hidden}
+.sigapp .tm .ai-scroll{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;scroll-padding:12px 0 24px}
+.sigapp .tm .help-pin{position:relative;top:auto;margin-bottom:10px}
+/* on a wide screen the chat's name is on its tab, so the pane needs no header of its own (it stays
+   for screen readers, with the page's heading) */
 @media (min-width:701px){
-  body.sigapp{overflow:hidden}
-  .sigapp .tm.ai-app{height:calc(100dvh - 2 * var(--tm-g))}
-  .sigapp .tm .tm-title{position:relative;top:auto}
-  .sigapp .tm .tm-status{position:relative;bottom:auto}
-  .sigapp .tm .ai-chat{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;scroll-padding:calc(var(--tm-ph) + 12px) 0 96px}
-  .sigapp .tm .ai-bar{top:0}
-  .sigapp .tm .help-pin{top:calc(var(--tm-ph) + 8px)}
-  .sigapp .tm .ai-dock{bottom:0}
+  .sigapp .tm .ai-bar{position:absolute;width:1px;height:1px;min-height:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 }
 @media (min-width:1101px){
   .sigapp .tm .ai-rail.sc{position:relative;top:auto;align-self:stretch;height:auto;min-height:0}
@@ -530,7 +535,9 @@ html:has(body.sigapp){--top-h:0px}
   .sg-wipe{min-height:40px}
 }
 @media (max-width:700px){
-  .sigapp .tm.ai-app{margin:0}
+  .sigapp .tm.ai-app{height:100dvh;margin:0}
+  /* the small print under the typing bar says what the status bar would */
+  .sigapp .tm .tm-status{display:none}
   .tm-menu{margin-right:4px}
 }
 
