@@ -19,6 +19,15 @@
       "pages/pages.css": 2,
       "styles.css": 6
     },
+    "mono-tracking": {
+      "home.css": 5,
+      "library/library.css": 3,
+      "pages/pages.css": 2,
+      "styles.css": 5
+    },
+    "capitals": {
+      "home.css": 3
+    },
     "gradient": {
       "ai/ai.css": 14,
       "ai/screen.css": 3,
