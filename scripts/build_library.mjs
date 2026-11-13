@@ -601,7 +601,7 @@ function entryPage(c) {
       <span class="check${reviewedBy(f) ? ' reviewed' : ''}">Fact-checked ${date(f.checked)}${reviewedBy(f) ? ` · ${reviewWords(f)}` : ''}</span>` : c.kind === 'blend' ? '<span class="st st-blend">Blend</span>' : '<span class="ev ev-pending">Fact sheet in progress</span>'}
     </div>
     <div class="le-actions">
-      <a class="btn bone sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
+      <a class="btn lime sm" href="${e(askLink(askAboutCompound(c.name), { site: '' }))}">Ask Sig about ${e(c.name)}</a>
       <a class="btn line sm" href="/sig/" data-with-stack="${c.id}" hidden>Check it against what I take</a>
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>

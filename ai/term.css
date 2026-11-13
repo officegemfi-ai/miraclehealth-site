@@ -564,6 +564,14 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 .tm-who{grid-template-columns:14px 16px 152px minmax(0,1fr)}
 .tm-sq.tm-gl{display:grid;place-items:center;align-self:center;width:16px;height:16px;margin-top:0;border-radius:0;background:none}
 .tm-sq.tm-gl svg{display:block;width:14px;height:14px}
+/* a narrow agents pane (wide screens up to about 1700px): each agent's line goes under its name, as on the front
+   page's card, and the ring gives way so the pane still fits a 900px-tall screen */
+.tm-team{container-type:inline-size}
+@container (max-width:460px){
+  .tm-who{grid-template-columns:14px 16px minmax(0,1fr);padding:4px 10px;line-height:1.35}
+  .tm-who .tm-now{grid-column:3;white-space:normal}
+  .tm-ringbox{max-width:260px}
+}
 
 /* ---------------------------------------------------------------- the site's side panel, here too
    The same order as on every page: New chat, the four places, what's in this window (the chats), the

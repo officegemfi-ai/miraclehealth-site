@@ -6,6 +6,8 @@
 #   - every page has its security policy, a title and a description, and every script parses
 #   - the stylesheets keep to the brand book: no new off-brand colours, faces, radii or sizes
 #     (scripts/design_check.mjs against design/baseline.json)
+#   - no page scrolls sideways or cuts text off, at the widths where layouts switch, phones to wide screens
+#     (scripts/check_layout.mjs, in Chromium)
 # GitHub emails you when a run fails.
 name: Check the site
 on:
@@ -50,3 +52,17 @@ jobs:
             cp "$f" "$RUNNER_TEMP/check.mjs"
             node --check "$RUNNER_TEMP/check.mjs" || { echo "::error file=$f::Doesn't parse"; exit 1; }
           done
+  layout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Playwright and Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.65.0
+          npx playwright install --with-deps chromium
+      - name: No page scrolls sideways or cuts text off
+        run: node scripts/check_layout.mjs
