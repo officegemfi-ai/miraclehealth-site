@@ -43,6 +43,8 @@
   --body:'Mona Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --mono:'Monaspace Neon',ui-monospace,SFMono-Regular,Menlo,monospace;
   --top-h:68px;
+  /* the page runs the window's whole width, with a margin that grows with it */
+  --page-pad:clamp(16px,4vw,96px);--page-max:2400px;
   --focus:var(--bone);
   color-scheme:dark;
 }
@@ -64,7 +66,7 @@ p{margin:0;text-wrap:pretty}
 li,dd,td,th,figcaption{text-wrap:pretty}
 ul,ol{list-style:none;margin:0;padding:0}
 :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
-.wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 40px}
+.wrap{width:100%;max-width:var(--page-max);margin:0 auto;padding:0 var(--page-pad)}
 .skip{position:absolute;left:-999px;top:10px;z-index:60;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:10px;background:var(--act);color:var(--on-accent);font:600 14px/1 var(--body);text-decoration:none}
 .skip:focus{left:12px}
 /* a kicker is a comment in the code: // what this is (page 9: lowercase mono, no rule, no capitals) */
@@ -540,11 +542,12 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 /* the page behind an open drawer holds still */
 :root:has(#os.drawer){overflow:hidden}
 :root:has(#os) body{background:var(--os-page)}
-.os{--top-h:0px;--os-w:272px;display:grid;grid-template-columns:var(--os-w) minmax(0,1fr);min-height:100dvh}
+.os{--top-h:0px;--os-w:300px;display:grid;grid-template-columns:minmax(0,1fr);min-height:100dvh}
 .os-main{min-width:0;padding:var(--os-g)}
 
 /* the side panel */
-.os-side{position:sticky;top:0;z-index:30;display:flex;flex-direction:column;gap:6px;height:100dvh;padding:10px 10px 12px 12px;border-right:1px solid rgba(255,255,255,.09);background:var(--os-side);color:var(--text);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none}
+.os-side{position:fixed;top:0;bottom:0;left:0;z-index:60;display:flex;flex-direction:column;gap:6px;width:min(86vw,var(--os-w));height:100dvh;padding:10px 10px 12px 12px;border-right:1px solid rgba(255,255,255,.09);background:var(--os-side);color:var(--text);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;visibility:hidden;transform:translateX(-102%);transition:transform .22s ease,visibility 0s linear .22s;box-shadow:12px 0 40px rgba(0,0,0,.5)}
+.os.drawer .os-side{visibility:visible;transform:none;transition:transform .22s ease}
 .os-side>:not(.os-ctx){flex-shrink:0}
 .os-head{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 0 0 6px}
 .os-logo{display:block;padding:4px 0}
@@ -581,11 +584,8 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .os-legal{margin:0;padding:0 10px;font:400 11.5px/1.4 var(--body);color:var(--muted)}
 .os-legal a{color:inherit}
 .os-legal a:hover{color:var(--text)}
-.os-scrim{position:fixed;inset:0;z-index:29;background:rgba(0,0,0,.55)}
-.os.folded{grid-template-columns:minmax(0,1fr)}
-.os.folded .os-side{display:none}
-.os-menu{display:none;margin:0 0 0 -8px}
-.os.folded .os-menu{display:grid}
+.os-scrim{position:fixed;inset:0;z-index:59;background:rgba(0,0,0,.55)}
+.os-menu{margin:0 0 0 -8px}
 /* the Library's folders, in the side panel */
 .os-ctx .le-tree{display:block;font:400 12.5px/1.5 var(--mono);color:var(--text-2)}
 .os-ctx .lt-root{display:flex;justify-content:space-between;gap:8px;margin:0 0 6px;padding:0 10px;color:var(--text)}
@@ -606,9 +606,8 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
    ultramarine wash */
 .win{position:relative;min-height:100dvh;background:radial-gradient(90% 640px at 50% -160px,rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,var(--os-win)}
 .os-top{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:14px;height:var(--os-tb);padding:0 24px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.84);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-.os-top-logo{display:none;flex:none}
+.os-top-logo{display:block;flex:none}
 .os-top-logo img{display:block;width:auto;height:22px}
-.os.folded .os-top-logo{display:block}
 .os-search{display:flex;align-items:center;gap:10px;flex:0 1 420px;min-width:0;height:40px;padding:0 10px 0 14px;border:1px solid var(--line-2);border-radius:8px;background:rgba(255,255,255,.03);color:var(--muted);font:400 14.5px/1 var(--body);text-align:left;cursor:pointer;transition:border-color .2s,color .2s}
 .os-search:hover{border-color:rgba(255,255,255,.36);color:var(--text-2)}
 .os-search:focus-visible{outline:2px solid var(--text);outline-offset:2px}
@@ -623,13 +622,6 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .win-body{display:block;min-width:0}
 .win-foot{border-top:1px solid var(--line)}
 @media (max-width:900px){
-  .os,.os.folded{grid-template-columns:minmax(0,1fr)}
-  .os-side,.os.folded .os-side{position:fixed;top:0;bottom:0;left:0;display:flex;width:min(86vw,300px);height:100dvh;visibility:hidden;transform:translateX(-102%);transition:transform .22s ease,visibility 0s linear .22s;box-shadow:12px 0 40px rgba(0,0,0,.5)}
-  .os.drawer .os-side{visibility:visible;transform:none;transition:transform .22s ease}
-  .os-side,.os.folded .os-side{z-index:60}
-  .os-scrim{z-index:59}
-  .os-menu,.os.folded .os-menu{display:grid}
-  .os-top-logo,.os.folded .os-top-logo{display:block}
   .os-ctx{flex:0 0 auto;max-height:42dvh;min-height:0}
   .os-menu,.os-fold{width:40px;height:40px}
   .os-places a,.os-more a{min-height:40px}

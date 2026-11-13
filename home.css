@@ -7,7 +7,7 @@
    window's frame take part of a desktop screen. */
 
 .fp{container:fp/inline-size;--fp-read:var(--text-read);--fp-hover:var(--hover)}
-.fp-wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 40px}
+.fp-wrap{width:100%;max-width:var(--page-max);margin:0 auto;padding:0 var(--page-pad)}
 .fp a{text-underline-offset:3px}
 .fp h1,.fp h2,.fp h3{font-family:var(--body);text-wrap:balance}.fp h3{font-stretch:100%}
 .fp .pip{display:inline-block;flex:none;width:7px;height:7px;border-radius:50%;background:var(--ac,var(--text))}
@@ -454,6 +454,19 @@
   .sx-head,.sx-do{max-width:490px}
   .sx-do{margin-top:30px}
   .sx-band{margin-top:64px}
+}
+@container fp (min-width:1500px){
+  .sx-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:72px}
+  .sx-head,.sx-do{max-width:720px}
+  .sx-hero h1{font-size:clamp(48px,2.4cqi + 12px,76px)}
+  .sx-hero .fp-lede{max-width:600px;font-size:20px}
+  .sx{max-width:640px}
+  .sx-dial{width:420px;height:420px}
+  .sx-mid{width:186px}
+  .sx-score{font-size:clamp(64px,4cqi,80px)}
+  .sx-dec{font-size:32px}
+  .sx-plot{height:260px}
+  .sx-spec{min-height:324px}
 }
 @container fp (max-width:859px){
   .sx-head,.sx-do{max-width:620px}

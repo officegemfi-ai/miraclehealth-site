@@ -81,7 +81,7 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
 ## The frame
 
 Every page opens the same way:
-- **Side panel** (`side-panel` wide, on `side`): the logo, then the Signal and the four places, each with its mark and meta:
+- **Side panel** (`side-panel`, on `side`): it starts closed; the menu button at the left of the top bar slides it in over the page. In it, the logo, then the Signal and the four places, each with its mark and meta:
   - The Signal: its spectrum, four bars in Signal blue, with a live dot ("51 live" on the front page, which has the count).
   - Library: the Evidence librarian's ladder, "122 sheets".
   - Ask Sig: Sig's ring, "12 agents".
@@ -89,12 +89,14 @@ Every page opens the same way:
   - My Miracle: the Stack builder's glyph, "this device".
   
   Under them comes what is on this page, then the rest and the legal.
-- **Top bar** (60px, sticky): a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button. When the side panel is folded, or on a phone, the menu button and the logo lead it.
-- **Page,** full width beside the panel on the faint grid under the ultramarine wash, then the foot: the weekly email, the links, the disclaimer.
+- **Top bar** (60px, sticky): the menu button, the logo, a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button.
+- **Page,** across the window's whole width (up to 2400px, with a margin that grows from 16px to 96px) on the faint grid under the ultramarine wash, then the foot: the weekly email, the links, the disclaimer. Text keeps its own line lengths inside it; on a wide screen the front page's top grows with it.
 
 No window box, tabs, path line or status bar: the frame is a plain website's (decision log, November 12).
 
-**On a phone:** the side panel slides in from the top bar's menu button (`shadow-drawer`). Escape or a tap outside closes it. The top bar keeps the search and Ask Sig as icons, and Join.
+**Closing the panel:** its own button, Escape, a tap outside it or following one of its links (`shadow-drawer` under it).
+
+**On a phone:** the top bar keeps the search and Ask Sig as icons, and Join.
 
 ## Shape and depth
 
