@@ -69,7 +69,7 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
 - **Words: Mona Sans.**
   - `body` on the site, `body-app` in the community, `lede` under a headline.
   - `h3` for card and post titles, `nav` for side panel rows, `button` for buttons.
-- **Headlines: Mona Sans,** wide (125%), heavy (800) and in capitals, tracked tight (-0.022em), set at about 0.86 of the old sizes so a line keeps its length. Headings inside an answer or a card stay semibold and in sentence case.
+- **Headlines: Mona Sans,** wide (125%), heavy (800) and in capitals, tracked tight (-0.028em, one value for every headline: `--head-ls`), set at about 0.86 of the old sizes so a line keeps its length. Headings inside an answer or a card stay semibold and in sentence case.
   - `hero` (64px) for the one headline of Home and the story page, `section` (42px) for section heads, `page` (38px) for a page's h1, `h2` (22px) inside a page.
   - A page's h1 ends in a full stop: "Your feed.", "The Signal."
 - **Anything measured or labelled: Monaspace Neon.**
@@ -100,7 +100,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 
 ## Shape and depth
 
-- **Corners:** `radius-tag` (7px) for tags and chips, `radius-tab` (8px) for a tab's top corners, `radius-row` (9px) for rows, `radius-control` (10px) for buttons, fields and terminal blocks, `radius-card` (12px) for cards and tables, `radius-pane` (14px) for the front page's big panes. No pills.
+- **Corners:** square. Every card, plate, table, pane, button, field, tag, chip, tab, row, menu, dialog and meter has `radius-none` (0), in both apps and in the drawings' tags (decision, November 13). Only dots and rings are round (`radius-dot`, 50%): pips, live dots, agent dots, avatars and Sig's ring button. No pills.
 - **Square, in How it works' language:** How it works' six cards, the Signal's and Sig's cards on the front page, the example run beside Sig's, and on Ask Sig the window, its answer cards, its ways to start and its box to write in have no round corners: a 1px frame, the number in its box, the title in mono, dividers with a gap by the tree.
 - **Panes:** a pane is a framed block with a bar naming its file (`signal.top`, `house-rules.md`, `~/chats/…`), mono in the bar, the content under it.
 - **Shadows:** nothing casts one except what floats (`shadow-float`) and the phone drawer (`shadow-drawer`). Depth comes from the four grounds, not from shadows.

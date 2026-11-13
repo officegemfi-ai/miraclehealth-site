@@ -406,8 +406,8 @@ export function buildPages(ctx) {
 <body style="margin:0;padding:0;background:#F2F3F2">
 <span style="display:none;max-height:0;overflow:hidden;opacity:0">${e(i.preview)}</span>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2F3F2"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FCFCFC;border-radius:16px;font-family:Arial,Helvetica,sans-serif">
-<tr><td style="background:#000000;border-radius:16px 16px 0 0;padding:28px 32px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FCFCFC;font-family:Arial,Helvetica,sans-serif">
+<tr><td style="background:#000000;padding:28px 32px">
 <p style="margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#3D8BFF">The Signal #${i.n} · ${e(date(i.date))}</p>
 <h1 style="margin:0;font-size:26px;line-height:1.2;color:#FCFCFC">${e(headline(i))}</h1>
 </td></tr>
@@ -417,7 +417,7 @@ ${i.sections.map((s) => `<h2 style="margin:26px 0 10px;font-size:19px;line-heigh
 ${s.p.map((p) => `<p style="${P}">${link(p)}</p>`).join('\n')}
 ${s.more ? `<p style="${P}"><a style="${A}" href="${e(abs(s.more[1]))}">${e(s.more[0])}</a></p>` : ''}`).join('\n')}
 ${i.close ? `<p style="${P};margin-top:26px">${link(i.close.lead)}</p>
-<p style="margin:0 0 8px"><a href="${e(abs(i.close.url))}" style="display:inline-block;padding:14px 24px;border-radius:40px;background:#3D8BFF;color:#000000;text-decoration:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase">${e(i.close.label)}</a></p>` : ''}
+<p style="margin:0 0 8px"><a href="${e(abs(i.close.url))}" style="display:inline-block;padding:14px 24px;background:#3D8BFF;color:#000000;text-decoration:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase">${e(i.close.label)}</a></p>` : ''}
 </td></tr>
 <tr><td style="padding:20px 32px 28px;border-top:1px solid #E3E5E4">
 <p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
