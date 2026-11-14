@@ -2,7 +2,7 @@
   "note": "What the design check allows today. Lower it as drift is fixed (node scripts/design_check.mjs --update); never raise it to let drift in.",
   "counts": {
     "colour": {
-      "ai/ai.css": 45,
+      "ai/ai.css": 42,
       "ai/packet.css": 66,
       "ai/screen.css": 28,
       "ai/term.css": 8,
@@ -29,20 +29,20 @@
       "home.css": 3
     },
     "gradient": {
-      "ai/ai.css": 14,
+      "ai/ai.css": 7,
       "ai/screen.css": 3,
-      "ai/term.css": 5,
+      "ai/term.css": 2,
       "home.css": 4,
       "kit/kit.css": 1,
       "library/library.css": 1,
       "styles.css": 4
     },
     "shadow": {
-      "ai/ai.css": 10,
+      "ai/ai.css": 5,
       "ai/packet.css": 2,
       "ai/plan.css": 1,
       "ai/screen.css": 5,
-      "ai/term.css": 7,
+      "ai/term.css": 2,
       "home.css": 3,
       "kit/kit.css": 1,
       "styles.css": 3
