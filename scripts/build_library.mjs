@@ -119,7 +119,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/ring3d.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/ring3d.js', 'ai/who.js', 'ai/mind.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -139,7 +139,7 @@ const V = {
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
-  scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'),
+  scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'), mdCss: version('ai/mind.css'),
   myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
   home: version('home.js'), homeCss: version('home.css'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
@@ -775,16 +775,53 @@ const STARTERS = [
 // question it's on and the twelve who answer), the conversation on the left with the box to write
 // in as its prompt, the agents and the screen beside it as two tabs, and a status bar. On a phone it
 // is the conversation alone, with the ring in its title bar; the screen pulls up as a sheet.
+// Who answers, picked beside the box to write in (page 19 of the design canvas): the twelve in the
+// picker's order, each in a few words, and four ready-made teams. The Safety agent is always on.
+const WHO = [
+  ['safety', 'Reads every question first, checks every answer last'],
+  ['community', 'Every member report and forum Signal, as one voice'],
+  ['planner', 'Turns what you want into what can be measured'],
+  ['recommender', 'Finds the options and reads their fact sheets'],
+  ['evidence', 'Finds every study result, and who was studied'],
+  ['relatives', 'Evidence from close relatives'],
+  ['mechanism', 'How each one could work'],
+  ['combination', 'Overlap, or different paths'],
+  ['markers', 'Blood tests pushed two ways'],
+  ['synergy', 'Checks it all together, and with your medicines'],
+  ['builder', 'Lays out options and plans to discuss'],
+  ['interpretation', 'Reasons it all through, last'],
+];
+const TEAMS = [
+  ['all', 'Everyone', 'All twelve: the people, the studies, and how it fits you'],
+  ['crowd', 'The crowd', 'Just what people report, reasoned through'],
+  ['studies', 'The studies', 'Trials, close relatives and how each could work'],
+  ['stack', 'What I take', 'Overlaps, blood tests and clashes in your stack'],
+];
 function aiPage() {
-  const agentList = (cls) => `<ol class="${cls}">${AGENTS.map(([key, name, what]) => `<li class="agent" data-agent="${key}"><span class="agent-node" aria-hidden="true"></span><span class="agent-text"><b>${e(name)}</b><span class="agent-what">${e(what)}</span><span class="agent-now" aria-live="off"></span></span></li>`).join('')}</ol>`;
   // The Library's newest change: a fact sheet checked, the body map or a guide
   const libDate = date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
   const ring = (size, cls = '', opts = {}) => `<span${cls ? ` class="${cls}"` : ''} data-sig="${size}" aria-hidden="true">${ringSvg(size, opts)}</span>`;
-  const roster = `<ol class="tm-roster" id="tm-roster">${AGENTS.map(([key, name, what, short]) => `<li class="tm-who" data-agent="${key}"><span class="tm-st" aria-hidden="true"></span><span class="tm-sq tm-gl" aria-hidden="true">${glyphSvg(key, { size: 14 })}</span><b>${e(name)}</b><span class="tm-now" title="${e(what)}">${e(short)}</span></li>`).join('')}</ol>`;
+  const nameOf = (k) => AGENTS.find(([key]) => key === k)[1];
+  const tick = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.4 6.2 4.9 8.6 9.6 3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const whoRow = ([k, what]) => `<span class="who-box" aria-hidden="true">${tick}</span>${glyphSvg(k, { size: 18 })}<span class="who-t"><b>${e(nameOf(k))}</b><span>${e(what)}</span></span>`;
+  // The picker: a pill beside the send button, and over the box a panel (a sheet on a phone)
+  const picker = `<div class="who" id="ai-whobox">
+        <button class="who-pill" id="ai-who" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="ai-whopop">${ring(20, 'who-ring')}<span class="who-label" id="ai-who-label">All ${AGENTS.length} agents</span><svg class="who-car" viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2 6.5 5 3.5 8 6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>`;
+  const pickerPanel = `<div class="who-pop" id="ai-whopop" role="dialog" aria-labelledby="ai-who-h" hidden>
+        <div class="who-head">${ring(36, 'who-big')}<div class="who-hd"><h2 id="ai-who-h">Who answers</h2><p>Pick the agents for this chat, or keep all twelve.</p></div><button class="who-x" type="button" aria-label="Close"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
+        <div class="who-scroll">
+        <div class="who-teams" role="group" aria-label="Ready-made teams">${TEAMS.map(([k, name, what]) => `<button class="who-team" type="button" data-preset="${k}" aria-pressed="${k === 'all'}"><span class="wt-dot" aria-hidden="true"></span><span><b>${e(name)}</b><span>${e(what)}</span></span></button>`).join('')}</div>
+        <ul class="who-list" aria-label="The agents">${WHO.map((r) => (r[0] === 'safety'
+    ? `<li class="who-row is-locked" data-agent="safety">${whoRow(r)}<span class="who-lock"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><rect x="3.5" y="7" width="9" height="6.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>always on</span></li>`
+    : `<li><button class="who-row" type="button" data-agent="${r[0]}" aria-pressed="true">${whoRow(r)}</button></li>`)).join('')}</ul>
+        </div>
+        <p class="who-foot">Safety reads every question and checks every answer, and calls in the Synergy auditor when your medicines are involved. Fewer agents answer faster.</p>
+      </div>`;
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title">
     <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
-    <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">health terminal</span></span>
+    <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">the community’s mind</span></span>
     <div class="tm-tabstrip" id="tm-tabstrip">
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
       <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
@@ -794,7 +831,7 @@ function aiPage() {
   </div>
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
-      <div class="ai-id"><span class="tm-path" aria-hidden="true">~/chats/<b id="tm-slug">new</b></span><h1>Ask Sig</h1><span class="tm-what" aria-hidden="true">every answer checked · efficacy reasoned last</span></div>
+      <div class="ai-id"><span class="tm-path" aria-hidden="true">~/chats/<b id="tm-slug">new</b></span><h1>Ask Sig</h1><span class="tm-what" id="tm-what" aria-hidden="true">${entries.size} fact sheets</span></div>
     </div>
     <div class="ai-scroll" id="ai-scroll">
       <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
@@ -809,35 +846,35 @@ function aiPage() {
           ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
         </div>
         <dl class="ai-pulse" id="ai-pulse" hidden></dl>
-        <details class="ai-who">
-          <summary>Who answers</summary>
-          ${agentList('agent-list')}
-        </details>
       </div>
       <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
     </div>
     <form class="ai-dock" id="ai-form" novalidate>
       <div class="ai-peek" id="ai-peek" hidden></div>
+      ${pickerPanel}
       <div class="ai-composer">
         <span class="tm-ps1" aria-hidden="true"><span class="ps-host">sig@miracle</span> <span class="ps-path">~/chats</span> <b>›</b></span>
         <label class="sr" for="ai-input">Message Sig</label>
         <span class="tm-field"><textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea><span class="tm-caret" aria-hidden="true"></span></span>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
+        ${picker}
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg><span class="tm-key k-send" aria-hidden="true">↩ send</span><span class="tm-key k-stop" aria-hidden="true">stop</span></button>
       </div>
       <p class="ai-fine">Sig is an AI. No doses, sellers or diagnosis.<span class="ai-fine-x"> Your chats stay on this device.</span> <a href="/privacy#ai"><span class="ai-fine-x">How messages are handled</span><span class="ai-fine-s">Privacy</span></a></p>
     </form>
   </section>
-  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="Beside the chat: the agents and the screen">
-    <div class="tm-tabs" role="tablist" aria-label="Beside the chat">
-      <button class="tm-tabbtn" type="button" role="tab" id="tm-t-agents" aria-controls="tm-team" aria-selected="true">Agents</button>
-      <button class="tm-tabbtn" type="button" role="tab" id="tm-t-screen" aria-controls="sc-root" aria-selected="false" tabindex="-1">Screen</button>
-      <span class="tm-live" id="tm-live">${ring(12)}<span id="tm-live-t">ready</span></span>
+  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="Beside the chat: blood markers, Sig’s mind and the screen">
+    <div class="rl-bar">
+      <span class="rl-title" id="rl-title"><span class="rl-name">Sig’s mind</span><span class="rl-sub">every Signal, one memory</span></span>
+      <div class="rl-tabs" role="tablist" aria-label="Beside the chat">
+        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-markers" data-railtab="markers" aria-controls="rl-markers" aria-selected="false" tabindex="-1">markers</button>
+        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-mind" data-railtab="mind" aria-controls="rl-mind" aria-selected="true">mind</button>
+        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-screen" data-railtab="screen" aria-controls="sc-root" aria-selected="false" tabindex="-1">screen</button>
+      </div>
+      <button class="rl-close" id="rl-close" type="button" aria-label="Close"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
-    <div class="tm-team" id="tm-team" role="tabpanel" aria-labelledby="tm-t-agents" data-state="idle">
-      <div class="tm-ringbox">${ring(212, 'tm-bigring', { sw: 20, centerY: -44 })}<p class="tm-count"><span class="tm-frac"><b id="tm-n">${AGENTS.length}</b><span>/${AGENTS.length}</span></span><span class="tm-count-k" id="tm-k">ready</span></p></div>
-      ${roster}
-    </div>
+    <div class="rl-panel" id="rl-markers" role="tabpanel" aria-labelledby="tm-t-markers" hidden></div>
+    <div class="rl-panel" id="rl-mind" role="tabpanel" aria-labelledby="tm-t-mind"><noscript><p class="rl-note">Sig’s mind needs JavaScript.</p></noscript></div>
     <div id="sc-root" role="tabpanel" aria-labelledby="tm-t-screen" hidden><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
   </section>
   <div class="tm-status">
@@ -888,7 +925,7 @@ ${body}
 <link rel="apple-touch-icon" href="/sig/icon-180.png">
 <meta name="apple-mobile-web-app-title" content="Sig">
 <meta name="mobile-web-app-capable" content="yes">`,
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`, `/ai/term.css?v=${V.tmCss}`],
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`, `/ai/term.css?v=${V.tmCss}`, `/ai/mind.css?v=${V.mdCss}`],
     scripts: [`/ai/plan.js?v=${V.plJs}`, `/ai/screen.js?v=${V.scJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
   });

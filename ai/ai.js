@@ -1,19 +1,24 @@
 // Sig's own page (miraclehealth.us/sig): the chat with Sig, Miracle Health's AI, filling the browser
 // window. The chats are kept on this device until they're deleted (see "The conversation"), with
 // the list of them in the side panel. Each message goes to the ask function (the community's Supabase
-// project), which streams back each agent's steps, the answer, the cards, where the answer came
-// from and the final check as server-sent events. The page is Sig's health terminal (ai/term.css):
-// each agent keeps one colour, its steps are log lines, the ring of the twelve who answer lights
-// as each reports (the Interpretation agent, last, at its centre), and every part of an answer says which agent it comes from and what kind of
-// part it is, so the two voices stay apart: the studies in the Evidence librarian's blue, the
-// community in its lime. Nothing here uses innerHTML for anything the AI or the visitor wrote:
-// text is placed with textContent, and the small amount of formatting the AI uses (bold, lists,
-// Library links) is built node by node.
+// project), with the agents the member picked to answer (ai/who.js; the Safety agent always does),
+// and it streams back who answers, each agent's steps, the answer, the cards, where the answer came
+// from and the final check as server-sent events. Sig speaks as the community's mind (page 19 of the
+// design canvas): its answer opens with a headline, each compound it names carries its Community
+// Signal, and the studies, the safety line and what to take to a doctor stand apart in labelled
+// rows, so the two voices never blur. How it got there (each agent's steps) folds away under the
+// answer's first line. Beside the chat (ai/mind.js, ai/screen.js): the blood markers what it's
+// about may move, Sig's mind (every Signal as one map, the ones it read lit) and the screen.
+// Nothing here uses innerHTML for anything the AI or the visitor wrote: text is placed with
+// textContent, and the small amount of formatting the AI uses (bold, lists, Library links) is
+// built node by node.
 import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=9eee17d93b';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
 import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
-import { sigRing3d } from '/lib/ring3d.js?v=899677ad8c';
+import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
+import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
+import { makeRail } from '/ai/mind.js?v=8c2c22060a';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -126,26 +131,40 @@ const ranOf = (m) => [...new Set((m?.steps || []).map((s) => agentOf(s.agent)).f
 // [Name](lib:id) links to the Library. Anything else stays plain text.
 // ---------------------------------------------------------------------------
 let LIB_IDS = null;
-fetch('/library/data/catalog.json').then((r) => (r.ok ? r.json() : [])).then((c) => { LIB_IDS = new Set(c.map((x) => x.id)); }).catch(() => {});
+const CATALOG = fetch('/library/data/catalog.json').then((r) => (r.ok ? r.json() : [])).catch(() => []);
+const NAMES = new Map();
+CATALOG.then((c) => { LIB_IDS = new Set(c.map((x) => x.id)); for (const x of c) NAMES.set(x.id, x.name); }).catch(() => {});
 const isLib = (id) => /^[a-z0-9]{1,40}$/.test(id) && (!LIB_IDS || LIB_IDS.has(id));
 // The Library's guides, which aren't compounds
 const GUIDES = { 'lab-reports': '/library/lab-reports/' };
 
 const INLINE = /\*\*([^*]+?)\*\*|\[([^\]]+)\]\(([^)\s]+)\)|`([^`]+)`|(?<![\w*])\*([^*\s][^*]*?)\*(?![\w*])/g;
+// Names like BPC-157, SS-31 or IGF-1 never break at their hyphen
+const WHOLE = /\b[A-Za-z][A-Za-z0-9]{0,6}-[A-Za-z0-9]{1,6}\b/g;
+function words(el, t) {
+  let at = 0;
+  for (const m of t.matchAll(WHOLE)) {
+    if (m.index > at) el.append(t.slice(at, m.index));
+    el.append(h('span', { class: 'nw', text: m[0] }));
+    at = m.index + m[0].length;
+  }
+  if (at < t.length) el.append(t.slice(at));
+}
 function inline(el, s) {
   let last = 0;
   for (const m of s.matchAll(INLINE)) {
-    if (m.index > last) el.append(s.slice(last, m.index));
+    if (m.index > last) words(el, s.slice(last, m.index));
     if (m[1] != null) { const b = h('strong'); inline(b, m[1]); el.append(b); }
     else if (m[2] != null) {
       const id = /^lib:([a-z0-9-]+)$/.exec(m[3])?.[1];
+      const short = m[2].length <= 24 ? 'nw' : null;
       el.append(id && GUIDES[id] ? h('a', { href: GUIDES[id], text: m[2] })
-        : id && isLib(id) ? h('a', { href: `/library/${id}/`, text: m[2] }) : m[2]);
+        : id && isLib(id) ? h('a', { href: `/library/${id}/`, class: short, text: m[2] }) : m[2]);
     } else if (m[4] != null) el.append(m[4]);
     else if (m[5] != null) el.append(h('em', { text: m[5] }));
     last = m.index + m[0].length;
   }
-  if (last < s.length) el.append(s.slice(last));
+  if (last < s.length) words(el, s.slice(last));
 }
 const BLOCK = /^\s*(#{1,6}\s|[-*•]\s|\d+[.)]\s)/;
 // Which voice a paragraph or bullet draws on, from its words: the studies, the community, or both.
@@ -165,68 +184,83 @@ function saidOf(text) {
 }
 const SAID_SR = { studies: ' (from the studies)', community: ' (from the community)', both: ' (from the studies and the community)' };
 
-// Every part of an answer says who it comes from: a rule beside it in that agent's colour, and a
-// line over it naming the agent and the kind of part (good to know, next step, the studies, the
-// forums, blood tests…). Read from the words, in this order: a safety note or a next step stands alone; the
-// first words are the bottom line; a closing question is the Recommender's; then an agent the part
-// names, the voices it draws on, and what it's about. Two at most. A part still being written
-// says so, and who it's from once it's whole.
-const LEAD_NOTE = /^(?:good to know|safety notes?|caution|warning|be careful|safety first)\b/i;
-const LEAD_NEXT = /^next steps?\b/i;
-const NAMED = [['synergy', /\bsynergy auditor\b/i], ['markers', /\bmarkers agent\b/i], ['combination', /\bcombination agent\b/i], ['mechanism', /\bmechanism agent\b/i],
-  ['relatives', /\brelatives agent\b/i], ['evidence', /\bevidence librarian\b/i], ['builder', /\bstack builder\b/i]];
-const BLOOD = /\b(?:igf-?1|hba1c|a1c|hematocrit|haematocrit|hemoglobin|estradiol|psa|shbg|tsh|ferritin|prolactin|ldl|hdl|triglycerides?|cholesterol|creatinine|egfr|fasting (?:glucose|insulin)|blood (?:tests?|work|markers?|sugar|levels?|counts?)|lab (?:tests?|results?|work))\b/i;
-const RELATIVES = /\b(?:relatives?|same (?:hormone|receptor|pathway)|\w+['’]s (?:own )?evidence)\b/i;
-const MECHANISM = /\b(?:how (?:it|they) works?|pathways?|mechanisms?|receptors?|in theory|not tested|expected from)\b/i;
-const COMBINE = /\b(?:overlap(?:s|ping)?|different (?:pathways|ways|directions)|separate (?:\w+ )?pathways?)\b/i;
-const PART_LABEL = { evidence: 'the studies', markers: 'blood tests', relatives: 'related compounds', mechanism: 'how it could work', combination: 'how they combine', synergy: 'checked together', builder: 'your stack' };
-const plainOf = (s) => String(s || '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/[*`]/g, '').trim();
-function crowdLabel(t) {
-  const forums = /\bforums?\b/i.test(t);
-  const members = /\bmembers?\b/i.test(t);
-  return forums && !members ? 'the forums' : members && !forums ? 'member reports' : forums ? 'members and forums' : 'what people report';
-}
-function partOf(text, { lead = false, live = false } = {}) {
-  const t = plainOf(text);
-  if (LEAD_NOTE.test(t)) return [['safety', 'good to know']];
-  if (LEAD_NEXT.test(t)) return [['recommender', 'next step']];
-  if (lead && live) return [['recommender', 'bottom line']];
-  if (live) return null;
-  if (!lead && /\?\W*$/.test(t)) return [['recommender', 'a question for you']];
-  const out = [];
-  const add = (a, label) => { if (out.length < 2 && !out.some(([x]) => x === a)) out.push([a, label]); };
-  if (lead) add('recommender', 'bottom line');
-  for (const [a, re] of NAMED) if (re.test(t)) add(a, PART_LABEL[a]);
-  const named = out.length > (lead ? 1 : 0);
-  const v = saidOf(text);
-  if (v === 'studies' || v === 'both') add('evidence', 'the studies');
-  if (v === 'community' || v === 'both') add('community', crowdLabel(t));
-  if (lead || named) return out;
-  if (BLOOD.test(t)) add('markers', PART_LABEL.markers);
-  if (RELATIVES.test(t)) add('relatives', PART_LABEL.relatives);
-  if (MECHANISM.test(t)) add('mechanism', PART_LABEL.mechanism);
-  if (COMBINE.test(t)) add('combination', PART_LABEL.combination);
-  return out;
-}
-function tagPart(el, text, ctx) {
+// Screen readers hear which voice a part draws on (the words say it too); the labelled rows carry
+// the rest
+function tagPart(el, text) {
   const v = saidOf(text);
   if (v) el.append(h('span', { class: 'sr', text: SAID_SR[v] }));
-  const who = partOf(text, ctx);
-  if (!who) {
-    el.classList.add('apart', 'is-live');
-    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true' }, h('span', { class: 'pt-k', text: '// writing…' })));
-  } else if (who.length) {
-    el.classList.add('apart');
-    el.dataset.a1 = who[0][0];
-    if (who[1]) el.dataset.a2 = who[1][0];
-    el.prepend(h('span', { class: 'ptag', 'aria-hidden': 'true' }, h('span', { class: 'pt-k', text: `// ${[...new Set(who.map(([, label]) => label))].join(' + ')}` }),
-      h('span', { class: 'pt-by' }, who.map(([a], i) => [i ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]))));
+  return el;
+}
+// The rows an answer ends with, each under its label: the studies, the safety line, the next step
+// (what to take to a doctor is a card that joins them: questionsNode)
+const ROWS = [
+  [/^\s*(?:\*\*)?the studies(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'studies', 'the studies'],
+  [/^\s*(?:\*\*)?good to know(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'safety', 'good to know'],
+  [/^\s*(?:\*\*)?next steps?(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'next', 'next step'],
+];
+function rowOf(text) {
+  for (const [re, kind, label] of ROWS) {
+    const m = re.exec(text);
+    if (m) {
+      const rest = text.slice(m[0].length);
+      return { kind, label, rest: rest.charAt(0).toUpperCase() + rest.slice(1) };
+    }
   }
+  return null;
+}
+// Which paragraph each compound's Signal goes in: the first (after the headline, never a labelled
+// row) that links it
+function firstLinks(msg) {
+  const firsts = new Map();
+  let lead = true;
+  for (const p of msg.parts || []) {
+    if (p.t !== 'text') continue;
+    const m = MORE.exec(p.s);
+    for (const b of blocksOf(m ? p.s.slice(0, m.index) : p.s)) {
+      if (b.k !== 'p') continue;
+      const words = b.lines.join(' ');
+      if (lead) { lead = false; continue; }
+      if (rowOf(words)) continue;
+      for (const x of words.matchAll(LIB_LINK)) if (!firsts.has(x[1])) firsts.set(x[1], words);
+    }
+  }
+  return firsts;
+}
+const labelled = (kind, label, ...value) => h('div', { class: `a-row r-${kind}` }, h('span', { class: 'a-rk', text: label }), h('div', { class: 'a-rv' }, ...value));
+// A compound's Community Signal beside it in the words, the first time the answer links it (only
+// when the community answered, and when it has a Signal): ● bpc-157 91.9
+let SIG = null;
+const chipName = (id) => {
+  const n = String(NAMES.get(id) || id);
+  return (n.length <= 14 && !/[\s(]/.test(n) ? n : id).toLowerCase();
+};
+function signalChip(id) {
+  const x = SIG?.signals?.[id];
+  if (!x || typeof x.score !== 'number') return null;
+  const score = Number(x.score).toFixed(1);
+  return h('span', { class: 'a-sig', title: `Community Signal: ${score} of 100` }, h('i', { 'aria-hidden': 'true' }), h('span', { 'aria-hidden': 'true', text: chipName(id) }), ' ', h('b', { 'aria-hidden': 'true', text: score }),
+    h('span', { class: 'sr', text: ` (Community Signal ${score} of 100)` }));
+}
+// A paragraph's words, with the Signal of the first compound it links (where mine() says this is
+// the paragraph for it) placed where that sentence ends
+const LIB_LINK = /\[[^\]]+\]\(lib:([a-z0-9]{1,40})\)/g;
+function withChip(el, s, mine) {
+  const link = mine ? [...s.matchAll(LIB_LINK)].find((x) => mine(x[1])) : null;
+  const id = link?.[1];
+  const chip = id && isLib(id) ? signalChip(id) : null;
+  if (!chip) { inline(el, s); return el; }
+  const after = link.index + link[0].length;
+  const end = /[.;!?](?=\s|$)/.exec(s.slice(after));
+  const cut = end ? after + end.index : -1;
+  // (never inside **bold**: then the Signal goes right after the name)
+  if (cut > 0 && ((s.slice(0, cut).match(/\*\*/g) || []).length % 2 === 0)) { inline(el, s.slice(0, cut)); el.append(' ', chip); inline(el, s.slice(cut)); } else { inline(el, s.slice(0, after)); el.append(' ', chip); inline(el, s.slice(after)); }
   return el;
 }
 // The words in blocks first (headings, lists, paragraphs), so the first can be the bottom line and
-// the last the one still being written
-function prose(text, { lead = false, live = false } = {}) {
+// the last the one still being written. The bottom line is the answer's headline; a paragraph that
+// starts "The studies:", "Good to know:" or "Next step:" is a labelled row; chips: the compounds
+// whose Signal is already shown in this answer (none: no Signals in the words)
+function blocksOf(text) {
   const blocks = [];
   const lines = String(text || '').replace(/\r/g, '').split('\n');
   for (let i = 0; i < lines.length;) {
@@ -250,13 +284,22 @@ function prose(text, { lead = false, live = false } = {}) {
     while (i < lines.length && lines[i].trim() && !BLOCK.test(lines[i])) buf.push(lines[i++]);
     blocks.push({ k: 'p', lines: buf });
   }
+  return blocks;
+}
+function prose(text, { lead = false, live = false, chips = null } = {}) {
+  const blocks = blocksOf(text);
   return blocks.map((b, bi) => {
     const last = live && bi === blocks.length - 1;
     if (b.k === 'h2') { const el = h('h2'); inline(el, b.text.replace(/\*\*/g, '')); return el; }
     if (b.k === 'p') {
+      const words = b.lines.join(' ');
+      if (lead && bi === 0) { const el = h('h2', { class: 'a-head' }); inline(el, words.replace(/\*\*/g, '')); return el; }
+      const row = rowOf(words);
+      if (row) { const rp = h('p'); inline(rp, row.rest); return labelled(row.kind, row.label, tagPart(rp, row.rest)); }
       const p = h('p');
-      b.lines.forEach((ln, j) => { if (j) p.append(h('br')); inline(p, ln); });
-      return tagPart(p, b.lines.join(' '), { lead: lead && bi === 0, live: last });
+      const mine = chips ? (id) => chips.get(id) === words : null;
+      b.lines.forEach((ln, j) => { if (j) p.append(h('br')); withChip(p, ln, mine); });
+      return tagPart(p, words);
     }
     const list = h(b.k);
     b.items.forEach((it, ii) => {
@@ -410,25 +453,28 @@ function userNode(text) {
   return h('div', { class: 'msg me' }, ps1('echo-ps1', 'ask'), h('div', { class: 'bubble', text }));
 }
 
-// A view: the DOM for one answer, kept in step with its message. The run (each agent's steps, as
-// log lines), then the answer under Sig's ring, then the Safety agent's check
+// A view: the DOM for one answer, kept in step with its message. Its first line (Sig's ring lit by
+// who answered, what it read, how many answered) with how it got there folded under it (each
+// agent's steps, as log lines), then the answer, then the Safety agent's check
+let traceN = 0;
 function assistantNode(msg) {
-  const sigEl = h('span', { class: 'msg-sig', 'data-sig': '13', 'aria-hidden': 'true' });
-  const trace = h('div', { class: 'trace open' });
-  const sum = h('button', { class: 'trace-sum', type: 'button', 'aria-expanded': 'true' });
+  const sigEl = h('span', { class: 'msg-sig', 'data-sig': '22', 'aria-hidden': 'true' });
+  const tid = `trace-${++traceN}`;
+  const sum = h('button', { class: 'a-how', type: 'button', 'aria-expanded': 'false', 'aria-controls': tid });
+  const read = h('span', { class: 'a-read' });
+  const readS = h('span', { class: 'a-read-s', 'aria-hidden': 'true' });
+  const head = h('div', { class: 'a-top' }, sigEl, h('p', { class: 'a-who' }, h('b', { text: 'Sig' }), read, readS), sum);
   const steps = h('ol', { class: 'trace-steps', 'aria-label': 'What the agents did' });
-  trace.append(sum, steps);
+  const trace = h('div', { class: 'trace', id: tid }, steps);
   sum.addEventListener('click', () => {
     view.open = !traceOpen(msg);
     drawTrace(msg);
   });
-  const head = h('p', { class: 'tm-ahead', hidden: true }, sigEl, h('b', { 'aria-hidden': 'true', text: 'answer' }), h('span', { class: 'ah-rule', 'aria-hidden': 'true' }),
-    h('span', { class: 'ah-check' }));
   const body = h('div', { class: 'sheet-body' });
   const foot = h('div', { class: 'sheet-foot', hidden: true });
-  const sheet = h('div', { class: 'sheet' }, trace, head, body, foot);
+  const sheet = h('div', { class: 'sheet' }, head, trace, body, foot);
   const node = h('div', { class: 'msg ai' }, sheet);
-  const view = { node, sigEl, trace, sum, steps, head, body, foot, stepEls: new Map(), partEls: [], cardEls: new Map(), cardTags: new Map(), raf: 0, revealIdx: -1, revealShown: Infinity, open: null };
+  const view = { node, sigEl, trace, sum, read, readS, steps, head, body, foot, stepEls: new Map(), partEls: [], cardEls: new Map(), cardTags: new Map(), raf: 0, revealIdx: -1, revealShown: Infinity, open: null };
   msg.view = view;
   for (const s of msg.steps || []) drawStep(view, s);
   drawParts(msg);
@@ -436,34 +482,47 @@ function assistantNode(msg) {
   else drawTrace(msg);
   return node;
 }
-// The run stays open, as a terminal shows what ran, on a screen wide enough to keep it above the
-// answer; on a phone it folds into one line once the answer is being written. Either way, unless
-// they opened or closed it themselves
+// How it got there shows while the agents work, and folds under the answer's first line once the
+// answer is being written, unless they opened or closed it themselves
 const hasBody = (m) => (m.parts || []).some((p) => (p.t === 'text' && p.s.trim()) || p.t === 'card');
-const WIDE = matchMedia('(min-width: 1100px)');
-const traceOpen = (m) => (m.view?.open ?? (WIDE.matches || (!m.state && !hasBody(m))));
+const traceOpen = (m) => (m.view?.open ?? (!m.state && !hasBody(m)));
+// An answer where help comes first (a sign of crisis, an emergency, someone under 18): plain words,
+// no headline, and nothing to tap after it but the help itself
+const calmOf = (m) => (!!m.flag && m.flag !== 'none') || (m.parts || []).some((p) => p.t === 'card' && (p.card.type === 'crisis' || p.card.type === 'urgent'))
+  || CRISIS_WORDS.test(questionOf(m));
+// Who answered: as Sig's server said (its first event), or as the page asked, or who reported
+const answered = (m) => (Array.isArray(m?.agents) && m.agents.length ? m.agents : Array.isArray(m?.asked) && m.asked.length ? m.asked : ranOf(m));
+// short: for a phone (Sig · 2 Signals · 12 agents)
+function readLine(m, short = false) {
+  const n = answered(m).length;
+  const who = n ? (n === WHO_ALL.length && !short ? `all ${n} agents` : plural(n, 'agent')) : '';
+  const line = (xs) => xs.filter(Boolean).map((x) => ` · ${x}`).join('');
+  if (!m.state) {
+    const last = (m.steps || []).filter((s) => s.status === 'run').pop();
+    return line([short ? 'working' : last ? low(last.title) : 'reading your message', who]);
+  }
+  const src = m.sources || {};
+  const sig = Number(src.community?.signals) || 0;
+  const sheets = Number(src.studies?.sheets) || 0;
+  if (short) return line([sig ? plural(sig, 'Signal') : sheets ? plural(sheets, 'fact sheet') : '', who]);
+  const read = sig || sheets ? `read ${[sig ? plural(sig, 'Signal') : '', sheets ? plural(sheets, 'fact sheet') : ''].filter(Boolean).join(' and ')}` : '';
+  return line([read, who]);
+}
 function drawTrace(m) {
   const view = m.view;
   if (!view) return;
   const open = traceOpen(m);
   const steps = m.steps || [];
-  const ran = ranOf(m);
-  const bits = steps.length ? [plural(steps.length, 'step'), plural(ran.length, 'agent')] : ['starting'];
-  if (m.state && m.ms) bits.push(`${(m.ms / 1000).toFixed(1)} s`);
   view.trace.classList.toggle('open', open);
+  view.trace.hidden = !open || !steps.length;
+  view.sum.hidden = !steps.length;
   view.sum.setAttribute('aria-expanded', String(open));
-  view.sum.replaceChildren(...[
-    h('span', { class: 'ts-car', 'aria-hidden': 'true', text: open ? '▾' : '▸' }),
-    h('span', { class: 'sr', text: 'What the agents did: ' }), h('b', { text: 'run' }), h('span', { text: ` · ${bits.join(' · ')}` }),
-    ran.length ? h('span', { class: 'ts-sw', 'aria-hidden': 'true' }, ran.map((a) => h('i', { 'data-agent': a }))) : null,
-    m.state ? h('span', { class: 'ts-act', 'aria-hidden': 'true', text: open ? 'hide steps' : 'show steps' }) : open ? null : h('span', { class: 'ts-busy', 'aria-hidden': 'true' }),
-  ].filter(Boolean));
-  view.trace.hidden = !steps.length && !!m.state;
-  // Sig's ring over the answer, lit by the agents who've reported so far; until the end, the
-  // Safety agent is still checking each part as it's written
-  view.head.hidden = !hasBody(m);
-  if (!m.state) view.head.querySelector('.ah-check').replaceChildren(h('span', { text: 'the safety agent checks each part as it’s written' }));
-  setSig(view.sigEl, m.state ? moodOf(m) : 'idle', ran);
+  view.sum.replaceChildren(...[h('span', { class: 'ts-car', 'aria-hidden': 'true', text: open ? '▾' : '▸' }), h('span', { text: 'how I got here' }),
+    !m.state ? h('span', { class: 'ts-busy', 'aria-hidden': 'true' }) : null].filter(Boolean));
+  view.read.textContent = readLine(m);
+  view.readS.textContent = readLine(m, true);
+  // Sig's ring: turning while the agents work, then lit by those who answered
+  setSig(view.sigEl, m.state ? moodOf(m) : 'think', m.state ? answered(m) : null);
 }
 const moodOf = (msg) => ((msg.flag && msg.flag !== 'none') || msg.state === 'error' ? 'concerned' : msg.state === 'done' ? 'happy' : 'idle');
 
@@ -524,8 +583,12 @@ function drawParts(msg) {
   let hasText = false;
   let fold = null;
   const folded = [];
-  // The answer's first words are its bottom line
-  const first = parts.findIndex((p) => p.t === 'text' && p.s.trim());
+  // The answer's first words are its bottom line; each compound's Signal goes in the first paragraph
+  // that links it, when the community answered
+  const calm = calmOf(msg);
+  const first = calm ? -1 : parts.findIndex((p) => p.t === 'text' && p.s.trim());
+  const chips = SIG && !calm && answered(msg).includes('community') ? firstLinks(msg) : null;
+  const chipKey = chips ? [...chips.keys()].join(',') : '';
   parts.forEach((p, i) => {
     if (p.t === 'text') {
       hasText = hasText || !!p.s.trim();
@@ -540,8 +603,8 @@ function drawParts(msg) {
       else if (m) { after = before.slice(m.index + m[0].length); before = before.slice(0, m.index); }
       if (before.trim()) {
         const cls = `prose${live && !m ? ' streaming' : ''}`;
-        const ctx = { lead: i === first, live: live && !m };
-        want.push(keep(`text ${i}`, `${cls}|${ctx.lead}|${before}`, () => {
+        const ctx = { lead: i === first, live: live && !m, chips };
+        want.push(keep(`text ${i}`, `${cls}|${ctx.lead}|${chipKey}|${before}`, () => {
           const el = h('div', { class: cls });
           el.append(...prose(before, ctx));
           return el;
@@ -588,18 +651,18 @@ function drawParts(msg) {
   const kids = view.body.childNodes;
   want.forEach((el, i) => { if (kids[i] !== el) view.body.insertBefore(el, kids[i] || null); });
   while (kids.length > want.length) view.body.lastChild.remove();
-  if (view.head.hidden === hasBody(msg)) drawTrace(msg);
+  if (view.hadBody !== hasBody(msg)) { view.hadBody = hasBody(msg); drawTrace(msg); }
 }
 // Who made each card, and what it is; help in a crisis or an emergency stands alone
 function cardWho(card) {
   switch (card.type) {
     case 'shortlist': return card.kind === 'yours' ? [['synergy'], 'your stack, checked together'] : [['builder'], 'options to discuss with your doctor'];
-    case 'plan': return [['builder'], 'your plan'];
-    case 'voices': return [['evidence', 'community'], 'the studies and the community'];
+    case 'plan': return null;
+    case 'voices': return null;
     case 'community': return [['community'], 'what people report'];
     case 'compare': return [['evidence'], 'side by side'];
-    case 'questions': return [['recommender'], 'to discuss with your clinician'];
-    case 'interpretation': return [['interpretation'], 'efficacy, reasoned last'];
+    case 'questions': return null;
+    case 'interpretation': return null;
     case 'intake': return [['recommender'], 'a few questions first'];
     case 'audit': return [['synergy'], 'checked together'];
     case 'warn': return [['safety'], 'when to get help'];
@@ -644,7 +707,9 @@ function schedule(msg) {
 // ---------------------------------------------------------------------------
 function cardNode(card, msg) {
   if (card.type === 'shortlist') return shortlistNode(card);
-  if (card.type === 'voices') return voicesNode(card);
+  // The studies and the community side by side: in the words now (each compound's Signal, the
+  // studies' row) and beside the chat (Sig's mind, the screen)
+  if (card.type === 'voices') return h('div', { class: 'a-none', hidden: true });
   if (card.type === 'community') return crowdNode(card);
   if (card.type === 'compare') return compareNode(card);
   if (card.type === 'plan') return planNode(card, msg);
@@ -698,7 +763,13 @@ function planNode(card, msg) {
     fillAudit(box, card.audit);
     box.hidden = false;
   }
-  return el;
+  // One line until it's opened: what it's for, and where they start
+  const first = cleanName(card.first || card.first_step || '', 90);
+  const box = h('details', { class: 'a-plan' }, h('summary', {},
+    h('span', { class: 'ap-k', text: 'your plan' }), h('span', { class: 'ap-t' }, h('b', { text: cleanName(card.title || 'Your Miracle Plan', 70) }), first ? h('span', { text: `start: ${first}` }) : null),
+    h('span', { class: 'ap-open', 'aria-hidden': 'true', text: 'open' })), el);
+  if (el.fill) box.fill = el.fill;
+  return box;
 }
 
 // Warning signs under fixed levels, most urgent first; 911 is a tap away
@@ -1155,12 +1226,12 @@ function screenSync() {
   const s = latestSubject();
   if (s) SCREEN.show(s);
 }
+// What to take to a doctor: one row under the answer's own, to copy in a tap
 function questionsNode(card) {
-  const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
-  btn.addEventListener('click', () => copy(['To discuss with my clinician:', ...card.items.map((q) => `- ${q}`)].join('\n'), btn));
-  return h('div', { class: 'card qs' },
-    h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: 'To discuss with your clinician' }), h('p', { class: 'sub', text: 'Points to bring to your next visit.' })), btn),
-    h('ul', {}, card.items.map((q) => h('li', { text: q }))));
+  const items = (card.items || []).map((q) => String(q)).filter(Boolean);
+  const btn = h('button', { class: 'a-copy', type: 'button' }, h('span', { text: 'copy' }));
+  btn.addEventListener('click', () => copy(['To discuss with my clinician:', ...items.map((q) => `- ${q}`)].join('\n'), btn));
+  return labelled('doctor', 'for your doctor', h('ul', { class: 'a-list' }, items.map((q) => h('li', { text: q }))), btn);
 }
 
 // The Interpretation agent's read, last in an answer: strictly efficacy, reasoned through from what
@@ -1173,18 +1244,18 @@ function interpretationNode(card) {
   const v = VERDICT.includes(card.verdict) ? card.verdict : 'unclear';
   const line = (k, val, cls = '') => (val ? h('div', { class: `ip-row${cls ? ` ${cls}` : ''}` }, h('dt', { text: k }), h('dd', {}, val)) : null);
   const steps = (Array.isArray(card.steps) ? card.steps : []).slice(0, 6).filter((x) => x && x.link && x.read);
-  return h('div', { class: 'card interp', role: 'group', 'aria-labelledby': `${card.id || 'interp'}-h` },
-    h('div', { class: 'card-head' }, h('div', {},
-      h('h2', { id: `${card.id || 'interp'}-h`, text: card.subject ? `Efficacy: ${card.subject}` : 'Efficacy' }),
-      h('p', { class: 'sub', text: 'Reasoned through by the Interpretation agent, from what the other agents found. Efficacy only.' }))),
+  // A row under the answer: the verdict, in plain words, with how it was reasoned a tap away
+  const how = h('details', { class: 'a-eff' },
+    h('summary', {}, h('span', { class: 'ae-open', text: 'how it reasoned' }), h('span', { class: 'ae-v' }, h('i', { class: `ip-dot v-${v}`, 'aria-hidden': 'true' }), card.label || v),
+      [card.size ? (card.size === 'unclear' ? 'size unclear' : `${card.size} effect`) : '', card.confidence ? `${card.confidence} confidence` : ''].filter(Boolean).map((t) => h('span', { class: 'ae-b', text: ` · ${t}` }))),
+    card.subject ? h('p', { class: 'ae-sub', text: `${card.subject}. Reasoned through by the Interpretation agent, from what the other agents found; efficacy only.` }) : null,
     h('dl', { class: 'ip-steps' }, steps.map((x) => h('div', { class: 'ip-row' }, h('dt', { text: x.link }),
       h('dd', {}, x.read, RUNG[x.rung] ? h('span', { class: 'ip-rung', text: RUNG[x.rung] }) : null)))),
     h('dl', { class: 'ip-verdict' },
-      line('efficacy', [h('i', { class: `ip-dot v-${v}`, 'aria-hidden': 'true' }), card.label || v], 'ip-main'),
       line('likely size', [card.size, card.size_note].filter(Boolean).join(': ')),
       line('confidence', [card.confidence, card.confidence_note].filter(Boolean).join(': ')),
-      line('what would change it', card.would_change || '')),
-    card.summary ? h('p', { class: 'ip-sum' }, h('b', { text: 'In plain words: ' }), card.summary) : null);
+      line('what would change it', card.would_change || '')));
+  return labelled('efficacy', 'efficacy', card.summary ? h('p', { text: card.summary }) : null, how);
 }
 // An answer as text to copy: its words, then the efficacy read when there is one
 const copyOf = (m) => {
@@ -1538,6 +1609,7 @@ function ask(text) {
   if (!adult) { gate(t); return; }
   closeIntakes();
   $('ai-gate')?.remove();
+  thread.querySelectorAll('.a-next, .a-quiet').forEach((el) => el.remove());
   input.value = '';
   grow();
   setEmpty(false);
@@ -1545,7 +1617,7 @@ function ask(text) {
   const um = { role: 'user', text: t };
   chat.push(um);
   thread.append(userNode(t));
-  const am = { role: 'assistant', parts: [], steps: [] };
+  const am = { role: 'assistant', parts: [], steps: [], asked: whoFor(sessions.find((t) => t.id === activeId)) };
   chat.push(am);
   thread.append(assistantNode(am));
   toBottom();
@@ -1561,14 +1633,19 @@ async function run(am) {
   busy = { controller, msg: am, sid };
   setBusy(true);
   drawTabs();
-  // Beside the chat: the agents at work, unless they're looking at something there themselves
-  if (!tabByHand) setTab('agents');
-  drawTeam(am);
+  // Beside the chat: Sig's mind, lighting up as the agents read, unless they're looking at
+  // something there themselves
+  if (!tabByHand) setTab('mind');
+  RAIL?.mind.light([]);
   const t0 = performance.now();
+  // Who answers: the chat's choice (Sig's server leaves out anyone not on it; the Safety agent always answers)
+  const asked = tidyWho(am.asked || whoFor(sessions.find((t) => t.id === sid)));
+  am.asked = asked;
+  drawTrace(am);
   try {
     const res = await fetch(ENDPOINT, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history() }), signal: controller.signal,
+      body: JSON.stringify({ messages: history(), ...(everyone(asked) ? {} : { agents: asked.filter((a) => a !== 'safety') }) }), signal: controller.signal,
     });
     if (!res.ok || !res.body) {
       let msg = '';
@@ -1619,12 +1696,11 @@ async function run(am) {
   if (open) {
     setState(am.state, am.ms);
     screenSync();
-    // What the answer was about, on the screen, once it's done
-    if (!tabByHand && SCREEN?.subject() && subjectIn(am, own.indexOf(am))) setTab('screen');
+    // Beside the chat, what the answer was about: the blood tests it may move, else Sig's mind
+    railSync({ choose: !tabByHand });
   } else showState();
   tabByHand = false;
   sigs().forEach((el) => setSig(el, moodOf(am) === 'concerned' ? 'concerned' : 'idle'));
-  drawTeam(teamMsg());
   fitPlaceholder();
   save();
   if (open && !coarse) input.focus();
@@ -1639,7 +1715,12 @@ const textOf = (m) => (m.parts || []).filter((p) => p.t === 'text').map((p) => p
 
 function onEvent(am, ev, d) {
   const view = am.view;
+  const here = busy?.msg === am && busy.sid === activeId;
   switch (ev) {
+    case 'meta':
+      if (Array.isArray(d.agents)) am.agents = tidyWho(d.agents.filter((a) => typeof a === 'string'));
+      drawTrace(am);
+      break;
     case 'step': {
       // The member's own clinician isn't a step in the chat (an older server still sends one)
       if (d.agent === 'clinician') break;
@@ -1648,7 +1729,7 @@ function onEvent(am, ev, d) {
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
       drawStep(view, am.steps.find((s) => s.id === d.id));
       drawTrace(am);
-      if (busy?.msg === am && busy.sid === activeId) drawTeam(am);
+      if (here && d.agent === 'community' && d.chips?.length) RAIL?.mind.light(d.chips.map((c) => c && c.id).filter(libId));
       // The screen says the auditor is checking, and shows what was named as soon as it's read
       if (d.agent === 'synergy' && d.status === 'run' && busy?.sid === activeId) SCREEN?.checking(true);
       if (d.agent === 'community' && d.chips?.length) screenSync();
@@ -1702,6 +1783,8 @@ function onEvent(am, ev, d) {
       break;
     case 'sources':
       am.sources = { studies: d.studies || {}, community: d.community || {}, version: typeof d.version === 'string' ? d.version.slice(0, 40) : '' };
+      if (here) RAIL?.mind.light(readIn(am));
+      drawTrace(am);
       schedule(am);
       break;
     case 'review':
@@ -1768,16 +1851,99 @@ function finish(am, live) {
     go?.addEventListener('click', () => { SCREEN.show(sub); openScreen(); });
     const checked = am.review || am.state === 'stopped';
     const line = !checked ? 'answered' : am.state === 'stopped' ? said : edited ? `the safety agent ${said}` : 'checked by the safety agent';
-    view.head.querySelector('.ah-check').replaceChildren(h('span', { class: `cleared${edited ? ' edited' : ''}` }, h('span', { text: line }), svg(edited ? ICON.edit : ICON.check)));
-    view.head.hidden = false;
-    view.foot.append(h('span', { class: 'foot-actions' }, go, btn));
+    view.foot.append(h('span', { class: `a-check${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: line })), h('span', { class: 'foot-actions' }, go, btn));
     view.foot.hidden = false;
+  }
+  // The newest answer ends with where to go next: a few follow-ups, and the members themselves
+  view.node.querySelectorAll(':scope .a-next, :scope .a-quiet').forEach((el) => el.remove());
+  if (am.state === 'done' && chatOf(am)[chatOf(am).length - 1] === am && !calmOf(am)) {
+    const quiet = quietNode(am);
+    if (quiet) view.foot.before(quiet);
+    const next = nextNode(am);
+    if (next) view.node.querySelector('.sheet').append(next);
   }
   helpPin();
   if (live && !am.helpShown && view.node.isConnected) {
     if (following || nearBottom()) toBottom();
     following = false;
   }
+}
+
+// What an answer was about: the compounds named (the fact sheets opened for them), else those the
+// community or the auditor read
+function namedIn(m) {
+  const steps = m?.steps || [];
+  const s = steps.find((x) => x.id === 'lookup' && x.chips?.length) || steps.find((x) => x.agent === 'community' && x.chips?.length)
+    || steps.find((x) => x.agent === 'synergy' && x.chips?.length);
+  return [...new Set((s?.chips || []).map((c) => c && c.id).filter(libId))].slice(0, 4);
+}
+// The Signals an answer read: as where it came from says, else what the community's step read
+function readIn(m) {
+  const names = m?.sources?.community?.names;
+  const ids = Array.isArray(names) && names.length ? names.map((x) => x && x.id) : (m?.steps || []).filter((x) => x.agent === 'community').flatMap((x) => (x.chips || []).map((c) => c && c.id));
+  return [...new Set(ids.filter(libId))].slice(0, 8);
+}
+const questionOf = (am) => {
+  const own = chatOf(am);
+  const i = own.indexOf(am);
+  return i > 0 && own[i - 1].role === 'user' ? own[i - 1].text : '';
+};
+const nameFor = (id) => cleanName(NAMES.get(id) || id, 40);
+// The name people use: what's in brackets (HGH), else the name
+const callFor = (id) => /\(([^)]{2,12})\)/.exec(nameFor(id))?.[1] || nameFor(id);
+// A few follow-ups to tap, from what the answer was about and who answered; then the question
+// itself, ready to post in the community
+function nextNode(am) {
+  const ids = namedIn(am);
+  const who = answered(am);
+  const [a, b] = ids.map(callFor);
+  const qs = [];
+  if (a && who.includes('community')) qs.push(`What side effects do people mention with ${a}?`);
+  if (a && b) qs.push(`How do ${a} and ${b} compare?`);
+  else if (a) qs.push(`What do the studies show for ${a}?`);
+  if (a && who.includes('markers') && RAIL?.markers.count()) qs.push(`Which blood tests matter with ${a}${b ? ` and ${b}` : ''}?`);
+  else if (a) qs.push(`What should I ask my doctor about ${a}?`);
+  const q = questionOf(am);
+  const btns = qs.slice(0, 3).map((t) => {
+    const btn = h('button', { class: 'a-q', type: 'button', text: t });
+    btn.addEventListener('click', () => { if (!busy) ask(t); });
+    return btn;
+  });
+  const members = q ? h('a', { class: 'a-q a-members', href: draftLink(ids, { title: cleanName(q, 140), body: q.length > 140 ? q : '' }), target: '_blank', rel: 'noopener' },
+    'Ask the members this', h('span', { class: 'a-ar', 'aria-hidden': 'true', text: ' ↗' }), h('span', { class: 'sr', text: ' (opens the community in a new tab)' })) : null;
+  if (!btns.length && !members) return null;
+  return h('div', { class: 'a-next', role: 'group', 'aria-label': 'Ask next' }, btns, members);
+}
+// A compound the community has no Signal for yet: rather than guess, ask the people who'd know.
+// The question opens in the community's new-post form, filled in, for them to post themselves;
+// and this device can say when its Signal goes live.
+const FOLLOW = 'mh-sig-follow-v1';
+const followed = () => { const f = store.get(FOLLOW, 'local'); return Array.isArray(f) ? f.filter(libId).slice(0, 20) : []; };
+function quietNode(am) {
+  if (am.quietDone || !SIG?.signals || !answered(am).includes('community')) return null;
+  const id = namedIn(am).find((x) => !SIG.signals[x]);
+  if (!id) return null;
+  const name = nameFor(id);
+  const q = questionOf(am);
+  const tid = `qc-${++traceN}`;
+  const ta = h('textarea', { class: 'qc-q', id: tid, rows: '2', maxlength: '1000' });
+  ta.value = q;
+  const link = () => draftLink([id], { title: cleanName(ta.value, 140), body: ta.value.length > 140 ? ta.value.trim() : '' });
+  const go = h('a', { class: 'qc-go', href: link(), target: '_blank', rel: 'noopener' }, 'Ask the members', h('span', { class: 'a-ar', 'aria-hidden': 'true', text: ' ↗' }), h('span', { class: 'sr', text: ' (opens the community in a new tab)' }));
+  ta.addEventListener('input', () => { go.href = link(); });
+  const not = h('button', { class: 'qc-not', type: 'button', text: 'Not now' });
+  const box = h('input', { type: 'checkbox', class: 'qc-box', checked: followed().includes(id) });
+  box.addEventListener('change', () => {
+    const now = followed().filter((x) => x !== id);
+    store.set(FOLLOW, box.checked ? [...now, id] : now, 'local');
+  });
+  const card = h('section', { class: 'a-quiet', 'aria-label': `Ask the members about ${name}` },
+    h('div', { class: 'qc-head' }, svg(glyphSvg('community', { size: 18 })), h('h3', { text: 'Ask the members' }), h('span', { class: 'qc-k', text: 'you post it yourself' })),
+    h('p', { class: 'qc-lede', text: `${name} has no Community Signal yet: not enough members have shared how it went. Rather than guess, ask the people who’d know.` }),
+    h('label', { class: 'qc-l', for: tid, text: `your question, ready to post in s/${id}` }), ta,
+    h('div', { class: 'qc-acts' }, go, not, h('label', { class: 'qc-follow' }, box, h('span', { text: `Show me here when ${name}’s Signal goes live` }))));
+  not.addEventListener('click', () => { am.quietDone = true; save(); card.remove(); });
+  return card;
 }
 
 // After a sign of crisis, 988 stays in reach for the rest of the visit
@@ -1892,12 +2058,12 @@ function openSheet() {
   rail.setAttribute('aria-modal', 'true');
   for (const el of behind()) el.inert = true;
   rail.scrollTop = 0;
-  requestAnimationFrame(() => rail.querySelector('.sc-close')?.focus({ preventScroll: true }));
+  requestAnimationFrame(() => $('rl-close')?.focus({ preventScroll: true }));
 }
 function openScreen() {
   if (!SCREEN || !rail) return;
-  if (narrowMq.matches) { openSheet(); return; }
   setTab('screen');
+  if (narrowMq.matches) { openSheet(); return; }
   rail.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   const head = rail.querySelector('.sc-headline');
   if (!head) return;
@@ -1919,29 +2085,34 @@ function closeSheet() {
   sheetFrom = null;
   back?.focus({ preventScroll: true });
 }
-// Beside the chat on wide screens, two tabs: the agents (the ring of the twelve, and what each is
-// doing or did) and the screen. The agents' tab while they work, the screen once an answer about
-// something is done; a tab picked by hand during an answer stays picked. On narrower screens the
-// screen alone, as the sheet.
-const tabs = { agents: $('tm-t-agents'), screen: $('tm-t-screen') };
-const panels = { agents: $('tm-team'), screen: $('sc-root') };
-let tab = 'agents';
+// Beside the chat, three tabs (page 19 of the design canvas): the blood markers what it's about may
+// move, Sig's mind (every Signal as one map, the ones an answer read lit) and the screen. Sig's mind
+// while the agents work, then the markers when the answer moves any, else the mind; a tab picked
+// by hand during an answer stays picked. On narrower screens the same three, as the sheet.
+const RAIL = makeRail({ h, svg, getSignal, catalog: CATALOG, spaceLink, community: COMMUNITY, copy });
+const tabs = { markers: $('tm-t-markers'), mind: $('tm-t-mind'), screen: $('tm-t-screen') };
+const panels = { markers: $('rl-markers'), mind: $('rl-mind'), screen: $('sc-root') };
+const ORDER = ['markers', 'mind', 'screen'];
+const TITLES = { markers: ['Blood markers', 'what it may move'], mind: ['Sig’s mind', 'every Signal, one memory'], screen: ['The screen', 'how it works in the body'] };
+let tab = 'mind';
 let tabByHand = false;
+if (panels.markers) RAIL.markers.mount(panels.markers);
+if (panels.mind) RAIL.mind.mount(panels.mind);
 function syncPanels() {
-  const wide = !narrowMq.matches;
-  if (panels.agents) panels.agents.hidden = !wide || tab !== 'agents';
-  if (panels.screen) {
-    panels.screen.hidden = wide && tab !== 'screen';
-    // On a narrow screen the sheet is the screen alone: no tabs to belong to
-    if (wide) panels.screen.setAttribute('role', 'tabpanel'); else panels.screen.removeAttribute('role');
+  for (const [k, p] of Object.entries(panels)) if (p) p.hidden = k !== tab;
+  if (panels.screen) panels.screen.setAttribute('role', 'tabpanel');
+  const t = $('rl-title');
+  if (t) {
+    t.querySelector('.rl-name').textContent = TITLES[tab][0];
+    t.querySelector('.rl-sub').textContent = TITLES[tab][1];
   }
-  if (rail && !app.classList.contains('sheet-open')) rail.setAttribute('aria-label', wide ? 'Beside the chat: the agents and the screen' : 'The screen: what Sig is talking about');
 }
 function setTab(name, { hand = false, focus = false } = {}) {
-  if (!tabs.agents || !panels[name]) return;
+  if (!tabs[name] || !panels[name]) return;
   tab = name;
   if (hand) tabByHand = true;
   for (const [k, b] of Object.entries(tabs)) {
+    if (!b) continue;
     const on = k === name;
     b.setAttribute('aria-selected', String(on));
     b.tabIndex = on ? 0 : -1;
@@ -1954,72 +2125,61 @@ for (const [name, b] of Object.entries(tabs)) {
   if (!b) continue;
   b.addEventListener('click', () => setTab(name, { hand: !!busy }));
   b.addEventListener('keydown', (e) => {
-    const to = e.key === 'Home' ? 'agents' : e.key === 'End' ? 'screen' : (e.key === 'ArrowLeft' || e.key === 'ArrowRight') ? (tab === 'agents' ? 'screen' : 'agents') : '';
+    const i = ORDER.indexOf(tab);
+    const to = e.key === 'Home' ? ORDER[0] : e.key === 'End' ? ORDER[ORDER.length - 1]
+      : e.key === 'ArrowRight' ? ORDER[(i + 1) % ORDER.length] : e.key === 'ArrowLeft' ? ORDER[(i + ORDER.length - 1) % ORDER.length] : '';
     if (!to) return;
     e.preventDefault();
     setTab(to, { hand: !!busy, focus: true });
   });
 }
+$('rl-close')?.addEventListener('click', () => closeSheet());
 narrowMq.addEventListener('change', () => {
   syncPanels();
-  // Sig's ring in the title bar: lit by who reported on a phone, whole beside the agents' tab
   if (!narrowMq.matches) setSig(document.querySelector('.tm-logo'), busy ? 'think' : 'idle');
-  drawTeam(teamMsg());
 });
-// The agents' tab: Sig's ring in 3D (lib/ring3d.js), a wall for each agent that stands up as it
-// reports, with a light going round while they work, and each one's line says what it's doing, what
-// it did, or (before anyone has asked) what it's for
-const team = {
-  ring: document.querySelector('.tm-bigring'), n: $('tm-n'), k: $('tm-k'), live: $('tm-live'), liveT: $('tm-live-t'), small: $('tm-count-sm'),
-  rows: new Map([...document.querySelectorAll('.tm-who')].map((li) => [li.dataset.agent, li])),
-};
-const team3d = sigRing3d(team.ring, { wheel: WHEEL, colors: AGENT_COLOR, center: CENTER });
-const JOBS = new Map([...team.rows].map(([k, li]) => [k, li.querySelector('.tm-now')?.textContent || '']));
-// The answer the agents' tab is about: the one being written, or the last one with steps
+// The answer the side panel is about: the one being written, or the last one with steps
 function teamMsg() {
   if (busy && busy.sid === activeId) return busy.msg;
   for (let i = chat.length - 1; i >= 0; i--) if (chat[i].role === 'assistant') return (chat[i].steps || []).length ? chat[i] : null;
   return null;
 }
-function drawTeam(m) {
-  const steps = m ? (m.steps || []).filter((s) => s.agent !== 'clinician') : [];
-  const state = !m ? 'idle' : m.state ? 'done' : 'run';
-  const last = new Map();
-  const flagged = new Set();
-  for (const s of steps) {
-    const a = agentOf(s.agent);
-    if (!team.rows.has(a)) continue;
-    last.set(a, s);
-    if ((s.flag && s.flag !== 'none') || s.fixed) flagged.add(a);
-  }
-  const running = new Set([...last].filter(([, s]) => s.status === 'run' && state === 'run').map(([a]) => a));
-  if (panels.agents) panels.agents.dataset.state = state;
-  for (const [a, li] of team.rows) {
-    const s = last.get(a);
-    const cls = state === 'idle' ? '' : !s ? (state === 'done' ? 'is-skip' : 'is-wait') : running.has(a) ? 'is-run' : flagged.has(a) ? 'is-done is-flag' : 'is-done';
-    const text = state === 'idle' ? JOBS.get(a) : !s ? (state === 'run' ? 'waiting' : m.state === 'done' ? 'not needed this time' : 'stopped before its turn') : s.title || '';
-    li.className = `tm-who${cls ? ` ${cls}` : ''}`;
-    const now = li.querySelector('.tm-now');
-    if (now && now.textContent !== text) now.textContent = text;
-  }
-  const all = team.rows.size;
-  const n = state === 'idle' ? all : last.size;
-  if (team.ring) {
-    setSig(team.ring, 'idle', state === 'idle' ? null : [...last.keys()]);
-    for (const p of team.ring.querySelectorAll('.rg')) p.classList.toggle('is-now', running.has(p.dataset.a));
-    team3d?.busy(state === 'run');
-  }
-  if (team.n) team.n.textContent = String(n);
-  if (team.k) team.k.textContent = state === 'idle' ? 'ready' : state === 'run' ? 'reporting' : 'reported';
-  team.live?.classList.toggle('on', state === 'run');
-  if (team.liveT) team.liveT.textContent = state === 'run' ? 'live' : state === 'done' ? `${n}/${all} reported` : 'ready';
-  // On a phone, in the title bar: how many have reported
-  if (team.small) {
-    team.small.classList.toggle('on', state === 'run');
-    team.small.replaceChildren(h('b', { text: String(n) }), state === 'idle' ? `/${all} ready` : `/${all} agents`);
-  }
-  const logo = document.querySelector('.tm-logo');
-  if (logo && narrowMq.matches) setSig(logo, busy ? 'think' : 'idle', state === 'idle' ? null : [...last.keys()]);
+// Who answers in each chat (ai/who.js): its own choice, kept with its answers; a new chat starts
+// with the last choice made anywhere
+const WHO_KEY = 'mh-sig-who-v1';
+function whoFor(t) {
+  if (t?.who) return tidyWho(t.who);
+  const last = [...(t?.chat || [])].reverse().find((m) => m.role === 'assistant' && Array.isArray(m.asked));
+  if (last) return tidyWho(last.asked);
+  const kept = store.get(WHO_KEY, 'local');
+  return tidyWho(Array.isArray(kept) ? kept : WHO_ALL);
+}
+// The count in a phone's title bar
+function drawCount(on) {
+  const el = $('tm-count-sm');
+  if (el) el.replaceChildren(h('b', { text: String(on.length) }), `/${WHO_ALL.length} agents`);
+}
+const pickRing = document.querySelector('.who-ring');
+const bigRing = document.querySelector('.who-big');
+const pick = $('ai-who') && $('ai-whopop') ? whoPicker({
+  pill: $('ai-who'), pop: $('ai-whopop'), label: $('ai-who-label'),
+  onRing: (on) => { setSig(pickRing, 'idle', on); setSig(bigRing, 'idle', on); drawCount(on); },
+  onChange: (on) => {
+    const t = sessions.find((x) => x.id === activeId);
+    if (t) t.who = on;
+    store.set(WHO_KEY, on, 'local');
+  },
+}) : null;
+pick?.set(whoFor(sessions.find((t) => t.id === activeId)));
+// What it was about, beside the chat: the blood tests its compounds may move, and the Signals it
+// read lit in Sig's mind. choose: open the tab that has something (the markers when they move any)
+async function railSync({ choose = false } = {}) {
+  const m = teamMsg();
+  const ids = m ? namedIn(m) : [];
+  RAIL.mind.light(m ? readIn(m) : []);
+  const n = await RAIL.markers.show(ids, Object.fromEntries(ids.map((id) => [id, nameFor(id)])));
+  // the rack opens by itself when the Markers agent answered and there's something on it
+  if (choose && !busy) setTab(n && m && answered(m).includes('markers') ? 'markers' : 'mind');
 }
 // ---------------------------------------------------------------------------
 // The chats as tabs, like a browser's: in the title bar (in the conversation's header on a phone),
@@ -2095,8 +2255,9 @@ function shown() {
   tabs.screen?.classList.remove('new');
   closeSheet();
   tabByHand = false;
-  setTab(busy?.sid === activeId || !SCREEN?.subject() ? 'agents' : 'screen');
-  drawTeam(teamMsg());
+  pick?.set(whoFor(sessions.find((t) => t.id === activeId)));
+  if (busy?.sid === activeId) setTab('mind');
+  railSync({ choose: busy?.sid !== activeId });
   showState();
   helpPin();
   refreshStack();
@@ -2402,17 +2563,8 @@ function fitPlaceholder() {
   const room = input.clientWidth;
   input.placeholder = (room && hints.find((t) => widthOf(`${t}00`) <= room)) || hints[hints.length - 1];
 }
-// Sig everywhere, and the agents waking up once on arrival
-document.querySelectorAll('[data-sig]').forEach((el) => setSig(el, 'idle'));
-if (!reduceMotion) {
-  for (const list of document.querySelectorAll('.agent-list')) {
-    list.querySelectorAll('.agent').forEach((a, i) => {
-      a.style.setProperty('--i', String(i));
-      a.classList.add('wake');
-      a.querySelector('.agent-node').addEventListener('animationend', () => a.classList.remove('wake'), { once: true });
-    });
-  }
-}
+// Sig everywhere (the picker's rings are lit by who answers)
+document.querySelectorAll('[data-sig]:not(.who-ring):not(.who-big)').forEach((el) => setSig(el, 'idle'));
 
 // The chats that were open in this browser tab come back as they were: the open one on the page,
 // the others when they're opened
@@ -2422,11 +2574,9 @@ save();
 placeStrip();
 syncSide();
 screenSync();
-// The window as it was: the chats in their tabs, the last answer's agents, and the screen in front
-// when it has something on it
-drawTeam(teamMsg());
+// The window as it was: the chats in their tabs, and beside the chat what the last answer was about
 syncPanels();
-if (SCREEN?.subject()) setTab('screen');
+railSync({ choose: true });
 showState();
 {
   const m = teamMsg();
@@ -2442,11 +2592,25 @@ stackFromLink();
 // of a list. The list stays hidden if the snapshot can't load.
 const FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': 'YouTube', 'Podcast / YouTube': 'podcasts' };
 getSignal().then((snap) => {
+  // Each compound's Signal in Sig's words, in the answers already on the page too
+  SIG = snap && snap.signals ? snap : null;
+  if (SIG) {
+    for (const t of sessions) for (const m of t.chat) if (m.role === 'assistant' && m.view) { m.view.drawn = null; drawParts(m); }
+    const what = $('tm-what');
+    const n = Object.values(SIG.signals).filter((x) => x && x.kind !== 'stack' && typeof x.score === 'number').length;
+    if (what && n && !what.dataset.signals) { what.dataset.signals = '1'; what.textContent = `${fmt(n)} Signals · ${what.textContent} · live`; }
+  }
   const c = snap?.community;
   const el = $('ai-pulse');
   if (!el || !c || !(c.signals > 0)) return;
   const row = (k, dd) => [h('dt', {}, k === 'Community' ? h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }) : null, k), dd];
   const rows = [];
+  // A compound they asked to hear about has its Signal now: said once, here
+  const live = followed().filter((id) => SIG?.signals?.[id] && typeof SIG.signals[id].score === 'number');
+  if (live.length) {
+    rows.push(...row('Now live', h('dd', { class: 'ai-crowd' }, live.map((id, i) => [i ? ', ' : '', h('a', { href: `/library/${id}/`, text: nameFor(id) }), ` ${Number(SIG.signals[id].score).toFixed(1)}`]))));
+    store.set(FOLLOW, followed().filter((id) => !live.includes(id)), 'local');
+  }
   if (c.reports > 0) {
     rows.push(...row('Community', h('dd', { class: 'ai-crowd' }, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
       h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`)));

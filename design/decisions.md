@@ -151,3 +151,18 @@ Two checks keep it this way. `scripts/check_states.mjs` runs on every pull reque
 On main before this update it found 14 such places. The brand check now also counts tracked mono outside kickers and capitals outside headlines, kickers and the COMMUNITY tag. Today's 15 and 3 are its baseline.
 
 The website's side panel turned out to move focus into itself when it opens, so it needed no change.
+
+## 2026-11-13 · Ask Sig as the community's mind (page 19 of the design canvas)
+
+The owner approved page 19 ("I like this GO"), and Ask Sig is built to it. Where the build departs from the boards, it's on purpose:
+
+- **Who answers.** A pill beside the send button opens the picker: four teams (everyone, the crowd, the studies, what I take) and the twelve one by one. The Safety agent is always on. Each chat keeps its own choice, and a new chat starts from the last one made. The choice goes to Sig's server with each message, and the server says who answered (the community repo's `ask` function, the same pull request's partner). Choosing never takes away what keeps someone safe: the server still calls in the Synergy auditor when the member mentions their own medicines, conditions or pregnancy, so the picker says so.
+- **The answer is spoken.** It opens with a headline (22px, the scale's nearest to the board's 23), then short paragraphs (16px, not 16.5). Each compound carries its Community Signal where its first sentence ends, when the community answered. The studies, the safety line ("good to know"), what to take to a doctor and the efficacy read stand apart in labelled rows. The numbered part tags and their agent names are gone from the words; screen readers still hear which voice a part draws on, and the words say it too.
+- **No member's quote.** The board showed one member's words under the answer. Sig never quotes or describes one member's post, only totals, so the build leaves it out.
+- **How it got there** (each agent's steps) folds under the answer's first line, "how I got here". It is open while the agents work.
+- **When nobody has a Signal for it yet,** a card offers to ask the members. It opens the community's new-post form with the question filled in, and the member posts it themselves. Two changes from the board. It doesn't say "posted without your name", because the page can't promise that. It doesn't show "0 of 10" either, because the page can't know how many reports a compound without a Signal already has. Its button is a white line button, so the send button stays the one electric blue action in the view. "Show me here when its Signal goes live" is kept on this device. The next visit after it goes live says so once.
+- **Nothing to tap after help.** After a sign of crisis, an emergency or someone under 18, the answer gets no headline, no follow-ups and no "ask the members": only the help.
+- **Beside the chat**, the agents' roster and the 3D ring gave way to three tabs: blood markers, Sig's mind and the screen. The left side panel (the site's navigation and the chats) is unchanged.
+  - **Blood markers** are a rack of test tubes from the Library's body map, for whatever the answer names, not only the board's two. The rack opens by itself only when the Markers agent answered.
+  - **Sig's mind** maps every Signal by family. Its lines mean "read together for this answer": the Signal doesn't have taken-together data yet.
+- **Narrower windows** get the same three tabs in the pull-up sheet, closed from its own bar.
