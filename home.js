@@ -8,15 +8,42 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=bb8f0ed784';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=b5712a2ea7';
-import { startSigHero } from '/lib/sighero.js?v=fb817cf146';
-import { ring3d, sigRing3d } from '/lib/ring3d.js?v=899677ad8c';
+import { startSigHero } from '/lib/sighero.js?v=d221dd5fbe';
+import { ring3d, sigRing3d } from '/lib/ring3d.js?v=ff7d1350cc';
 import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
-import { h, getJson, getSignal, calm, SIGNAL_URL } from '/lib/dom.js?v=cef2a56736';
+import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const fmt = (n) => Number(n || 0).toLocaleString('en-US');
+// While the page opens, only the top moves. The parts further down (the community board, Ask Sig's
+// example run, How it works) start once the top has played in, one at a time in the browser's idle
+// moments, in the order they come down the page; or all at once, at the first scroll, so each is
+// ready before it can be seen (a jump to one of them, or a page that opens part way down, scrolls too)
+const below = [];
+let belowOn = false;
+function later(el, start) {
+  if (!el) return;
+  if (belowOn) { start(); return; }
+  below.push({ el, start });
+  below.sort((a, b) => (a.el.compareDocumentPosition(b.el) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+}
+function startBelow(now = false) {
+  belowOn = true;
+  if (now) { while (below.length) below.shift().start(); return; }
+  const idle = window.requestIdleCallback ? (f) => window.requestIdleCallback(f, { timeout: 800 }) : (f) => setTimeout(f, 40);
+  const next = () => { if (below.length) { below.shift().start(); idle(next); } };
+  idle(next);
+}
+function openBelow() {
+  window.addEventListener('scroll', () => startBelow(true), { once: true, passive: true });
+  if (location.hash || window.scrollY > 0) { startBelow(true); return; }
+  // and never later than this, whatever the top is doing
+  const wait = setTimeout(() => startBelow(), 9000);
+  topPlayed.then(() => { clearTimeout(wait); if (below.length || !belowOn) startBelow(); });
+}
+
+const fmt = groupN;
 const clamp = (v) => Math.max(0, Math.min(100, Number(v) || 0));
 function ago(iso) {
   const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
@@ -141,7 +168,7 @@ if (card) {
 const prompt = document.querySelector('form.hp[data-graph]');
 const library = prompt ? getJson(prompt.dataset.graph) : Promise.resolve(null);
 library.then((data) => { if (data && data.counts) promptFrom(data); });
-startSigHero(document.querySelector('.sx-hero'), {
+const topPlayed = startSigHero(document.querySelector('.sx-hero'), {
   getSignal,
   library: library.then((d) => d && {
     grades: new Map((d.ids || []).map((id, c) => [id, d.grade?.[c]]).filter(([, g]) => Number.isInteger(g) && g >= 0)),
@@ -256,7 +283,7 @@ function promptFrom(data) {
 // board is on screen it asks for a newer snapshot once a minute; a row that moved flashes, lime up,
 // coral down, and the log says so.
 const board = document.getElementById('fp-board');
-if (board) signalBoard(board);
+later(board, () => signalBoard(board));
 function signalBoard(board) {
   const load = document.getElementById('fp-load'), stats = document.getElementById('fp-stats');
   const wrap = document.getElementById('fp-top-wrap'), tbody = board.querySelector('#fp-top tbody');
@@ -265,7 +292,7 @@ function signalBoard(board) {
   const wheel = pieces.filter((p) => !p.classList.contains('rg-c')), centre = pieces.find((p) => p.classList.contains('rg-c'));
   const said = (k) => load.querySelector(`[data-load="${k}"]`);
   const S = (k) => board.querySelector(`[data-s="${k}"]`);
-  const fmtN = (n) => Number(n || 0).toLocaleString('en-US');
+  const fmtN = fmt;
   // the labels under the totals: "1 member", "2 members"
   const ONE = { signals: 'live signal', reports: 'first-hand report', moves: 'move today', members: 'member' };
   const MANY = { signals: 'live signals', reports: 'first-hand reports', moves: 'moves today', members: 'members' };
@@ -427,8 +454,8 @@ function signalBoard(board) {
 // part by part, each signed by the agent that wrote it. Picking an agent lights up what it wrote and
 // stands its wall above the rest. Reduced motion: the finished run.
 const run = document.getElementById('fp-run');
-const sigRing = run && sigRing3d(run.querySelector('.fp-ring3'), { wheel: WHEEL, colors: AGENT_COLOR, cls: 'fp-bigring' });
-if (run) runDemo(run);
+let sigRing = null;
+later(run, () => { sigRing = sigRing3d(run.querySelector('.fp-ring3'), { wheel: WHEEL, colors: AGENT_COLOR, cls: 'fp-bigring' }); runDemo(run); });
 // the check mark: neither font has one, so it's drawn (img/i-check.svg, as a mask in the words' colour)
 function ck() { return h('i', { class: 'ck', 'aria-hidden': 'true' }); }
 function runDemo(run) {
@@ -519,4 +546,6 @@ if (askForm) askForm.addEventListener('submit', (e) => {
 document.querySelectorAll('svg.sig, svg.takeover, svg.flowviz').forEach(calm);
 
 // How it works: the system behind one honest number, on the live Signal
-startHow(document.getElementById('how'), getSignal);
+const how = document.getElementById('how');
+later(how, () => startHow(how, getSignal));
+openBelow();

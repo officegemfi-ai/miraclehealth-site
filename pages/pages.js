@@ -4,12 +4,12 @@
 // taken, how far the first pairs are, and the method page's check of the Signal against the
 // studies. Every page reads fine without it.
 import { sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
-import { h, svg, getJson, getSignal } from '/lib/dom.js?v=cef2a56736';
+import { h, svg, getJson, getSignal, groupN } from '/lib/dom.js?v=f31d9546b5';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const fmt = (n) => Number(n || 0).toLocaleString('en-US');
+const fmt = groupN;
 // A bar's fill, set through the DOM (the pages allow no inline styles), grown in once
 function grow(el, pct) {
   const w = `${Math.max(0, Math.min(100, pct))}%`;

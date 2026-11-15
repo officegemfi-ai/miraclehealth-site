@@ -5,7 +5,7 @@ import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signal
 import { setPrintSignal } from '/lib/print.js?v=d7172ffaa1';
 import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=9eee17d93b';
 import { wireBodyMap } from '/kit/bodymap.js?v=57440abdb8';
-import { h, svg, getJson, getSignal, calm, hold } from '/lib/dom.js?v=cef2a56736';
+import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=f31d9546b5';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 // Both voices for each compound and use, worked out with Sig's own code from the same
@@ -25,7 +25,7 @@ const SOURCE_FAMILY = { Reddit: 'Reddit', YouTube: 'YouTube', 'YouTube index': '
 // ---------------------------------------------------------------------------
 // Small helpers
 // ---------------------------------------------------------------------------
-const fmt = (n) => Number(n || 0).toLocaleString('en-US');
+const fmt = groupN;
 const fold = (s) => String(s || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '');
 function ago(iso) {
   const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
@@ -140,8 +140,11 @@ function frontPage(grid) {
   chips.forEach((b) => b.addEventListener('click', () => { family = b.dataset.family; apply(); }));
   apply();
 
+  // What moved this week waits in its place (the build reserves it, so the search and the list under
+  // it don't move when the numbers arrive); with nothing to show, it goes
+  const moves = document.querySelector('[data-live="moves"]');
   load().then(({ snap }) => {
-    if (!snap) return;
+    if (!snap) { if (moves) moves.hidden = true; return; }
     const sig = snap.signals;
     scores = new Map(Object.entries(sig).map(([id, x]) => [id, Number(x.score)]));
     cards.forEach((c) => {
@@ -172,7 +175,6 @@ function frontPage(grid) {
       hold(panel);
     }
     // What moved this week, and the pairs the community is filling first
-    const moves = document.querySelector('[data-live="moves"]');
     const list = (Array.isArray(snap.moves) ? snap.moves : []).filter((m) => m && m.id && Number.isFinite(Number(m.from)) && Number.isFinite(Number(m.to)));
     const focus = (Array.isArray(snap.focus) ? snap.focus : []).filter((f) => f && f.id && Number(f.reports) < Number(f.goal)).slice(0, 5);
     if (moves && (list.length || focus.length)) {
@@ -189,8 +191,9 @@ function frontPage(grid) {
           `${String(f.name).slice(0, 40)} for ${String(f.label || '').toLowerCase().slice(0, 40)}`, h('span', { class: 'n' }, ` ${fmt(f.reports)} of ${fmt(f.goal)}`))));
         fp.hidden = false;
       }
-      moves.hidden = false;
-    }
+      moves.classList.remove('is-wait');
+      moves.removeAttribute('aria-hidden');
+    } else if (moves) moves.hidden = true;
     if (sort.value === 'signal') apply();
   });
 }

@@ -14,7 +14,7 @@
 // built node by node.
 import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=9eee17d93b';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
-import { h, svg, getSignal } from '/lib/dom.js?v=cef2a56736';
+import { h, svg, getSignal, groupN } from '/lib/dom.js?v=f31d9546b5';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
 import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
@@ -57,7 +57,7 @@ const USE = {
 const FORUM_N = { 'Very common': 4, Common: 3, Mixed: 2, Occasional: 1 };
 const FORUM_SAID = { 'Very common': 'Very common on the forums', Common: 'Common on the forums', Mixed: 'Mixed reports on the forums', Occasional: 'Now and then on the forums' };
 const forumSaid = (f) => FORUM_SAID[f] || 'On the forums';
-const fmt = (n) => Math.max(0, Math.round(Number(n) || 0)).toLocaleString('en-US');
+const fmt = (n) => groupN(Math.max(0, Math.round(Number(n) || 0)));
 const plural = (n, one, many = `${one}s`) => `${fmt(n)} ${Number(n) === 1 ? one : many}`;
 const low = (s) => String(s || '').charAt(0).toLowerCase() + String(s || '').slice(1);
 const STATUS = {
@@ -2602,7 +2602,10 @@ getSignal().then((snap) => {
   }
   const c = snap?.community;
   const el = $('ai-pulse');
-  if (!el || !c || !(c.signals > 0)) return;
+  if (!el) return;
+  // the community's lines wait in their places (the build reserves them, so the welcome above them
+  // doesn't move when they arrive); with nothing to say, they go
+  if (!c || !(c.signals > 0)) { el.hidden = true; return; }
   const row = (k, dd) => [h('dt', {}, k === 'Community' ? h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }) : null, k), dd];
   const rows = [];
   // A compound they asked to hear about has its Signal now: said once, here
@@ -2628,8 +2631,10 @@ getSignal().then((snap) => {
         `${cleanName(f.name, 40)} for ${low(cleanName(f.label, 40))}`, h('span', { class: 'n', text: ` ${fmt(f.reports)} of ${fmt(f.goal)}` }))))));
   }
   el.replaceChildren(...rows);
+  el.classList.remove('is-wait');
+  el.removeAttribute('aria-hidden');
   el.hidden = false;
-}).catch(() => {});
+}).catch(() => { const el = $('ai-pulse'); if (el) el.hidden = true; });
 // A question typed in for them elsewhere (a Library page, a community space, My Miracle):
 // ready to read, change and send; never sent by itself
 const asked = askFrom(location.hash);
