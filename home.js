@@ -7,9 +7,9 @@
 // what it was published with.
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=bb8f0ed784';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
-import { startHow } from '/lib/how.js?v=b5712a2ea7';
-import { startSigHero } from '/lib/sighero.js?v=d221dd5fbe';
-import { ring3d, sigRing3d } from '/lib/ring3d.js?v=ff7d1350cc';
+import { startHow } from '/lib/how.js?v=547caf3594';
+import { startSigHero } from '/lib/sighero.js?v=f9eea40a86';
+import { ring3d, sigRing3d } from '/lib/ring3d.js?v=c70c6dd053';
 import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
@@ -462,7 +462,7 @@ function runDemo(run) {
   const steps = [...run.querySelectorAll('#fp-steps > li')];
   const parts = [...run.querySelectorAll('#fp-answer > *')];
   const signed = [...run.querySelectorAll('.signed')];
-  const rg = [...run.querySelectorAll('svg.fp-bigring .rg')];
+  const rg = [...run.querySelectorAll('.fp-bigring .rg')];
   const roster = [...run.querySelectorAll('#fp-roster > li')];
   const centre = run.querySelector('.fp-center');
   const ringN = document.getElementById('fp-ring-n');

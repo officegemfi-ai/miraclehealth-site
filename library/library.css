@@ -322,7 +322,7 @@
 /* before the Signal is in, the panel keeps the height it will have (five pairs filling first), so the
    search and the list under it stay where they are; then what it says comes in */
 .lib-moves.is-wait{min-height:174px}
-.lib-moves:not(.is-wait) .moves-track,.lib-moves:not(.is-wait) .moves-focus{animation:lib-in .45s cubic-bezier(.2,.7,.2,1) both}
+.lib-moves:not(.is-wait) .moves-track,.lib-moves:not(.is-wait) .moves-focus{animation:lib-in .45s cubic-bezier(.2,.7,.2,1) backwards}
 @keyframes lib-in{from{opacity:0}}
 @media (max-width:899px){.lib-moves.is-wait{min-height:212px}}
 @media (max-width:560px){.lib-moves.is-wait{min-height:288px}}

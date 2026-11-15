@@ -58,3 +58,16 @@ Pictures:
 - `front-page-390.jpg`: the same on a phone.
 - `ask-sig-waiting-and-in.jpg`: Ask Sig's community lines waiting in their places, then filled.
 - `front-page-opening-while-busy.jpg`: the opening keeps playing while the page's main thread is held busy for 0.7 s, because the compositor moves it. Only the score's count waits.
+
+## Scrolling the front page
+
+A 9,000px scroll down the front page after it has opened: the browser's own scroll gesture, two runs each, medians.
+
+| Device | Frames dropped, before → after | Pauses over 50 ms | Script time on the main thread |
+|---|---|---|---|
+| Laptop, full speed | 88.5 → 43 | 0.5 → 0 | 2.2 s → 0.4 s |
+| Phone size, full speed | 62.5 → 23 | 1 → 0 | 1.8 s → 0.3 s |
+| Laptop, processor slowed 4x | 440 → 300 | 58 → 20.5 | 3.6 s → 1.0 s |
+| Phone, processor slowed 4x | 385 → 235.5 | 50.5 → 14 | 3.1 s → 1.0 s |
+
+With the processor slowed, much of what's left is the browser's own drawing of the page. This test machine draws without a graphics card, so a real device should do better there.

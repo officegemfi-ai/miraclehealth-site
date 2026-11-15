@@ -56,11 +56,25 @@ test('the front page carries the plate the build draws, and no walls until the S
   const plate = sxRingSvg(ring3d);
   assert.ok(html.includes(`<!-- sighero:ring -->${plate}<!-- /sighero:ring -->`), 'index.html is out of date: run node scripts/build_library.mjs');
   assert.ok(!plate.includes('data-walls'));
-  assert.ok(plate.includes('class="sx-orbit"'));
+  assert.ok(plate.includes('class="orbit sx-orbit"'));
 });
 
 test('numbers are grouped as en-US toLocaleString groups them', () => {
   for (const n of [0, 7, 999, 1000, 1234, 12345, 1234567, -1234, 12.5, 1234.5678, '3456', null, undefined, NaN]) {
     assert.equal(groupN(n), Number(n || 0).toLocaleString('en-US'), String(n));
   }
+});
+
+test("the agents' ring, drawn one part to a layer, draws the same walls in the same order", () => {
+  const parts = ['safety', 'planner', 'recommender', 'community', 'combination', 'markers', 'synergy', 'evidence', 'relatives', 'mechanism', 'builder']
+    .map((key) => ({ key, span: 100 / 11, color: '#FF6B5B' }));
+  const geo = ring3d({ w: 400, h: 300, cx: 200, cy: 150, r: 118, band: 11, rim: 14, floor: 34, slab: 10, gap: 3.4, grid: 114, step: 38, byPart: true, parts });
+  const whole = geo.walls();
+  const layered = geo.partWalls();
+  assert.equal(layered.length, parts.length);
+  // the same slices, in the same order from the back to the front
+  const ids = (m) => [...m.matchAll(/data-s="(\d+)"/g)].map((x) => x[1]);
+  assert.deepEqual(layered.flatMap(([, m]) => ids(m)), ids(whole));
+  const keys = [...whole.matchAll(/class="rg" data-a="(\w+)"/g)].map((x) => x[1]);
+  assert.deepEqual(layered.map(([k]) => k), keys);
 });

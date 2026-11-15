@@ -461,7 +461,7 @@
 /* before the Signal is in, its lines wait as empty places of the same size; then the words come in */
 .ai-pulse.is-wait .ai-crowd{min-height:1.5em}
 .ai-pulse.is-wait .ai-focus span{display:block;min-height:36px;border:1px solid var(--line-ink)}
-.ai-pulse:not(.is-wait) dd{animation:ai-in .45s cubic-bezier(.2,.7,.2,1) both}
+.ai-pulse:not(.is-wait) dd{animation:ai-in .45s cubic-bezier(.2,.7,.2,1) backwards}
 @keyframes ai-in{from{opacity:0}}
 /* on a phone, one column of three, each a full-height tap */
 @media (max-width:600px){

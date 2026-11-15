@@ -82,10 +82,15 @@ ul,ol{list-style:none;margin:0;padding:0}
 .kick{color:var(--muted)}
 .kick.lime{color:var(--text-2)}
 .live{display:inline-flex;align-items:center;gap:10px}
-.live i{position:relative;width:7px;height:7px;border-radius:50%;background:var(--lime);translate:0 -1px}
+.live i{position:relative;flex:none;width:25px;height:25px;margin:-9px;overflow:hidden;translate:0 -1px}
+.live i::before,.live i::after{content:'';position:absolute;left:9px;top:9px;width:7px;height:7px;border-radius:50%}
+.live i::before{background:var(--lime)}
 /* The ring grows and fades on the compositor (transform, opacity): a box-shadow that grows
-   repaints the page every frame, which cost a phone a fifth of its main thread while idle */
-.live i::after{content:'';position:absolute;inset:0;border-radius:50%;background:rgba(61,139,255,.55);animation:live 1.8s ease-out infinite}
+   repaints the page every frame, which cost a phone a fifth of its main thread while idle. It
+   grows inside a box of its own that clips it (the dot's 7px, with room for the ring, taken back
+   by the margins), because a layer that moves without a clip around it makes the browser give
+   everything drawn after it a layer of its own, and scrolling such a page stutters */
+.live i::after{background:rgba(61,139,255,.55);animation:live 1.8s ease-out infinite}
 @keyframes live{0%{transform:scale(1);opacity:1}70%,100%{transform:scale(3.3);opacity:0}}
 
 /* ---------------------------------------------------------------- buttons: pills */

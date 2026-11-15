@@ -184,3 +184,15 @@ What changed:
 - **Picking another compound** still moves the walls themselves, as before.
 - **The rest of the front page waits.** The board, the example run and How it works start after the top has played, one at a time in idle moments. At the first scroll they all start at once, so each is ready before it can be seen. A jump to How it works now lands where it should, because nothing above it moves.
 - **Smaller costs.** Numbers are grouped without loading the browser's number formats. Every page preloads the mono font, so it doesn't swap after the first frame. The front page asks for its scripts alongside home.js. Ask Sig's 3D ring doesn't animate while it's off screen.
+
+Then the owner asked for it smoother still ("maked it smoother"). Scrolling down the front page was the next thing that stuttered:
+
+- **How it works redid all its work on every frame.** It read the layout between its writes, so the browser laid the page out again several times a frame. It also re-wrote every card, title and drawing, and drew all six pictures even when they were off screen. Now:
+  - it reads where things sit once, and again when the section changes size;
+  - each frame it writes only what changed;
+  - a card's picture moves only while the card can be seen;
+  - the ring of words is drawn at most 30 times a second, and only while it's on screen;
+  - the spine's marker and fill move by transform.
+- **The live dots' pulse layered the whole page.** The pulse moves on the compositor, but with nothing clipping it the browser had to give everything drawn after it a layer of its own, and every frame paid for those layers. Each pulse now grows inside a small clipping box, with negative margins so the layout is unchanged. That covers the front page's kicker and the Library's and fact sheets' "live" dots. The orbits round the 3D rings are clipped the same way.
+- **Ask Sig's example ring** gives each agent's walls a layer of their own, and its light moves on the compositor too. A wall that rises now redraws only that agent's walls.
+- **The opening's last heavy frame is lighter.** The walls are made unseen while the Signal is still loading. The spectrum's bars, when they're off screen, are made after the opening. The fade-ins let go of their layers when they end.
