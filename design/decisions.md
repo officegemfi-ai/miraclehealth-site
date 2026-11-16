@@ -196,3 +196,14 @@ Then the owner asked for it smoother still ("maked it smoother"). Scrolling down
 - **The live dots' pulse layered the whole page.** The pulse moves on the compositor, but with nothing clipping it the browser had to give everything drawn after it a layer of its own, and every frame paid for those layers. Each pulse now grows inside a small clipping box, with negative margins so the layout is unchanged. That covers the front page's kicker and the Library's and fact sheets' "live" dots. The orbits round the 3D rings are clipped the same way.
 - **Ask Sig's example ring** gives each agent's walls a layer of their own, and its light moves on the compositor too. A wall that rises now redraws only that agent's walls.
 - **The opening's last heavy frame is lighter.** The walls are made unseen while the Signal is still loading. The spectrum's bars, when they're off screen, are made after the opening. The fade-ins let go of their layers when they end.
+
+## 2026-11-16 · How it works on the front page, simpler
+
+The owner asked for the front page's "Three steps, one honest number" and the three ways in under it to look better and simpler (pictures in `design/audits/2026-11-16/simpler-how-it-works/`). It was six boxes: three tall cards with an empty band between each drawing and its title, then, after a wide gap, three more cards that said much of the same again. Now:
+
+- **The three steps stand on one line.** No cards: the three drawings are joined by a hairline with an arrow, and each step's number, title and line sit under its drawing at one left edge. Up to 999px, and on a phone, the hairline runs down the left.
+- **The step titles are semibold, in sentence case,** as headings inside a section are in the brand book; the section's headline is its one line in capitals.
+- **The line under the headline sits under it,** not far off to the right.
+- **The three ways in are three slim links** on the steps' own columns, each starting where its step does: the place's mark from the side panel, the title and, where there's room, where it opens. Their descriptions went, since the steps say how the Signal works and the titles say where each goes. The links themselves are the same three.
+
+On the owner's window the section is 696px tall instead of 1,048; on a phone, 1,151 instead of 1,979.
