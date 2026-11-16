@@ -8,7 +8,7 @@
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
 import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=9eee17d93b';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
-import { h, getSignal } from '/lib/dom.js?v=cef2a56736';
+import { h, getSignal } from '/lib/dom.js?v=f31d9546b5';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
 
 const P = window.MHPlan;
@@ -259,7 +259,16 @@ function forgetSection() {
   return h('section', { class: 'my-sec my-forget', 'aria-label': 'Forget' }, row);
 }
 
+// The page arrives with the empty state already drawn in, unseen under "Opening…", so it has its
+// height from the first frame; when nothing is kept here, that's what is shown
+const preEmpty = app?.querySelector('.my-empty');
 function emptyState() {
+  if (preEmpty) {
+    preEmpty.querySelector('.my-loading')?.remove();
+    preEmpty.classList.remove('my-wait');
+    preEmpty.removeAttribute('aria-hidden');
+    return preEmpty;
+  }
   return h('section', { class: 'my-sec my-empty', 'aria-labelledby': 'empty-h' },
     h('h2', { id: 'empty-h', text: 'Nothing kept here yet' }),
     h('p', { class: 'my-lede', text: 'When you keep a Miracle Plan or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.' }),
@@ -298,5 +307,8 @@ async function draw() {
   if (location.hash === '#checkin') document.getElementById('checkin')?.scrollIntoView({ block: 'start' });
 }
 
-if (P && app) draw();
+// With nothing kept here and nothing coming in from another device, the page says so at once: it
+// needs none of the Library's or the community's numbers for that, so it doesn't wait for them
+if (P && app && !/^#m=/.test(location.hash) && !P.keptPlan() && !savedStack()) app.replaceChildren(emptyState());
+else if (P && app) draw();
 else if (app) app.replaceChildren(h('p', { class: 'my-loading', text: 'My Miracle couldn’t start in this browser.' }));

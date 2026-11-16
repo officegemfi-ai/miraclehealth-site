@@ -458,12 +458,19 @@
 .ai-focus a{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-height:36px;padding:8px 12px;border-radius:0;border:1px solid var(--line-ink);color:var(--on-ink);font-size:13.5px;line-height:1.35;text-decoration:none;transition:border-color .15s}
 .ai-focus a:hover{border-color:var(--on-ink-2)}
 .ai-focus .n{flex:none;font:400 11.5px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--on-ink-3)}
+/* before the Signal is in, its lines wait as empty places of the same size; then the words come in */
+.ai-pulse.is-wait .ai-crowd{min-height:1.5em}
+.ai-pulse.is-wait .ai-focus span{display:block;min-height:36px;border:1px solid var(--line-ink)}
+.ai-pulse:not(.is-wait) dd{animation:ai-in .45s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes ai-in{from{opacity:0}}
 /* on a phone, one column of three, each a full-height tap */
 @media (max-width:600px){
   .ai-pulse{margin-top:26px;padding-top:16px}
   .ai-focus{grid-template-columns:minmax(0,1fr)}
   .ai-focus a{min-height:40px;padding:10px 12px}
-  .ai-focus a:nth-of-type(n+4){display:none}
+  .ai-focus a:nth-of-type(n+4),.ai-pulse.is-wait .ai-focus span:nth-of-type(n+4){display:none}
+  .ai-pulse.is-wait .ai-crowd{min-height:3em}
+  .ai-pulse.is-wait .ai-focus span{min-height:40px}
 }
 
 /* ---------------------------------------------------------------- smaller screens */

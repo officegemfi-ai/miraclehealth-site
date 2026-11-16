@@ -30,6 +30,8 @@ import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
 // at its centre (lib/ring.js, shared with ai/ai.js)
 import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
+import { ring3d } from '../lib/ring3d.js';
+import { sxRingSvg } from '../lib/sighero.js';
 import { glyphSvg } from '../lib/glyphs.js';
 import { printSvg } from '../lib/print.js';
 
@@ -271,7 +273,8 @@ function page({
 <meta property="og:image" content="${SITE}${ogImage}${ogVersion(ogImage)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
+<link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/monaspace-neon-400.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
 <link rel="stylesheet" href="/styles.css?v=${V.css}">
 ${styles.map((href) => `<link rel="stylesheet" href="${href}">`).join('\n')}
@@ -336,7 +339,7 @@ function indexPage() {
   </div>
 </section>
 
-<section class="wrap lib-moves" data-live="moves" aria-label="What moved this week" hidden>
+<section class="wrap lib-moves is-wait" data-live="moves" aria-label="What moved this week" aria-hidden="true">
   <p class="moves-k"><i aria-hidden="true"></i>What moved this week</p>
   <div class="moves-track"></div>
   <p class="moves-focus" hidden></p>
@@ -845,7 +848,7 @@ function aiPage() {
         <div class="ai-starts" role="group" aria-label="Start with">
           ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
         </div>
-        <dl class="ai-pulse" id="ai-pulse" hidden></dl>
+        <dl class="ai-pulse is-wait" id="ai-pulse" aria-hidden="true"><dt><span class="crowd-dot" aria-hidden="true"></span>Community</dt><dd class="ai-crowd"></dd><dt>Filling first</dt><dd class="ai-focus"><span></span><span></span><span></span><span></span></dd></dl>
       </div>
       <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
     </div>
@@ -990,7 +993,14 @@ function myPage() {
       <p>Your plan, how it’s going, your stack and your places in the community, together. They’re kept on this device; Miracle Health never receives them.</p>
     </div>
   </section>
-  <div id="my-app"><p class="my-loading">Opening what you keep on this device…</p></div>
+  <div id="my-app">
+    <section class="my-sec my-empty my-wait" aria-labelledby="empty-h" aria-hidden="true">
+      <p class="my-loading">Opening what you keep on this device…</p>
+      <h2 id="empty-h">Nothing kept here yet</h2>
+      <p class="my-lede">When you keep a Miracle Plan or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.</p>
+      <div class="my-actions"><a class="btn lime" href="/sig/">Build your plan with Sig</a><a class="btn line" href="/library/">Explore the Library</a></div>
+    </section>
+  </div>
   <noscript><p class="my-loading">My Miracle needs JavaScript: it reads what you keep in this browser.</p></noscript>
 </div>`;
   return page({
@@ -1347,6 +1357,9 @@ front = fill(front, 'ring:big', ringSvg(196, { center: false, cls: 'fp-bigring' 
 front = fill(front, 'ring:tile', ringSvg(28));
 // and between Noise and Signal, Sig's ring on its dark disc
 front = fill(front, 'ring:sn', ringSvg(30));
+// The Community Signal's ring at the top, as it stands before the live Signal is in (its walls low),
+// so it's there in the page's first frame; lib/sighero.js raises the walls when the numbers arrive
+front = fill(front, 'sighero:ring', sxRingSvg(ring3d));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
 // count of what its lines say, and the graph as text
 const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
@@ -1364,6 +1377,9 @@ front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img"
 // Its one script, by its version
 front = front.replace(/(<meta property="og:image" content="https:\/\/miraclehealth\.us\/og\.jpg)(?:\?v=[0-9a-z]+)?"/, `$1${ogVersion('/og.jpg')}"`);
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
+// and the scripts it imports, asked for alongside it rather than after it (modulepreload), by the
+// same versions home.js imports them by
+for (const [f, v] of SHARED) front = front.replace(new RegExp(`(<link rel="modulepreload" href="/${f.replace(/\./g, '\\.')})(?:\\?v=[0-9a-f]+)?"`, 'g'), `$1?v=${v}"`);
 front = front.replace(/<link rel="stylesheet" href="\/home\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/home.css?v=${V.homeCss}">`);
 // Any Sig (the community's lime character) it draws is the kit's; the front page now shows Sig as
 // its ring, so it draws none

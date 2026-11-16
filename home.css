@@ -23,8 +23,11 @@
 .sx-do{grid-area:do;min-width:0}
 .sx-kick{display:flex;align-items:center;gap:12px;margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
 .sx-kick::before,.hs-kick::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
-.sx-live{position:relative;flex:none;width:8px;height:8px;border-radius:50%;background:var(--lime)}
-.sx-live::after{content:'';position:absolute;inset:0;border-radius:50%;background:rgba(61,139,255,.55);animation:live 1.8s ease-out infinite}
+/* the dot and its ring, in a clipping box of their own (see .live i in styles.css), its 8px taken back by the margins */
+.sx-live{position:relative;flex:none;width:28px;height:28px;margin:-10px;overflow:hidden}
+.sx-live::before,.sx-live::after{content:'';position:absolute;left:10px;top:10px;width:8px;height:8px;border-radius:50%}
+.sx-live::before{background:var(--lime)}
+.sx-live::after{background:rgba(61,139,255,.55);animation:live 1.8s ease-out infinite}
 .sx-hero h1{max-width:none;margin:22px 0 0;font:800 expanded clamp(30px,3.2cqi + 12px,48px)/.98 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--text)}
 .sx-hero .fp-lede{max-width:460px;margin:24px 0 0;font-size:17.5px;line-height:1.6;color:var(--text-2)}
 
@@ -95,6 +98,25 @@
    shrinks with the ring and always sits inside it */
 .sx-ill{container-type:inline-size;--u:calc(100cqw / 560)}
 .sx-ill .sx-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+/* a light going round a 3D ring's plate (lib/ring3d.js, placeOrbit, places it): a frame squashed to
+   the edge's ellipse (its height is 1/√3 of its width), an arm turning in it, and the light at the
+   arm's end turned back and unsquashed, so it stays round. Only transforms move, on the compositor;
+   it sits between the plate's drawing and the walls', so it passes behind the walls at the back.
+   Its box clips it to the drawing, so the turning layer stays bounded and nothing else on the page
+   has to be layered for it. Turned off, it fades where it is */
+.orbit-box{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.orbit{position:absolute;left:0;top:0;width:0;height:0;opacity:0;transform:translate(var(--ox,0),var(--oy,0)) scaleY(.5773503);transition:opacity .6s ease}
+.orbit.is-on{opacity:1}
+.orbit-arm,.orbit-dot{position:absolute;left:0;top:0;width:0;height:0}
+.orbit-dot{left:var(--ra,0)}
+.orbit-arm{animation:orbit-turn var(--turn,10s) linear infinite paused}
+.orbit-dot{animation:orbit-back var(--turn,10s) linear infinite paused}
+.orbit.is-on .orbit-arm,.orbit.is-on .orbit-dot{animation-play-state:running}
+.orbit-dot::before,.orbit-dot::after{content:'';position:absolute;border-radius:50%;transform:scaleY(1.7320508)}
+.orbit-dot::before{left:calc(var(--rh,9px) * -1);top:calc(var(--rh,9px) * -1);width:calc(var(--rh,9px) * 2);height:calc(var(--rh,9px) * 2);background:var(--halo,rgba(61,139,255,.28))}
+.orbit-dot::after{left:calc(var(--rc,3px) * -1);top:calc(var(--rc,3px) * -1);width:calc(var(--rc,3px) * 2);height:calc(var(--rc,3px) * 2);background:#FFFFFF}
+@keyframes orbit-turn{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}
+@keyframes orbit-back{from{transform:rotate(90deg)}to{transform:rotate(-270deg)}}
 .sx-mid{position:absolute;left:50%;top:47.5%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
 .sx-mid p{margin:0}
 .sx-score{font:650 expanded clamp(34px,calc(52 * var(--u)),64px)/1 var(--head);letter-spacing:-.04em;color:var(--text);white-space:nowrap}
@@ -117,6 +139,10 @@
 .sx-fq.hi{color:var(--lime)}
 .sx-fq.mid{color:var(--text-read)}
 .sx-k[hidden],.sx-themes[hidden]{display:none}
+/* before the live Signal is in, the card already has its full size: four empty rows wait under
+   "what people report most", the parts' chips (on a phone) wait with dashes, and the foot keeps a line
+   for the level, so nothing beside or under the card moves when the numbers arrive */
+.sx .sx-sub [data-sx="level"]{min-height:1.3em}
 .sx .sx-sub{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .sx-studies{display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border:1px solid rgba(20,236,195,.34);border-radius:0;background:rgba(20,236,195,.06);color:var(--sig-evidence);font:400 11px/1 var(--mono);text-decoration:none;white-space:nowrap;transition:border-color .2s}
 .sx-studies:hover{border-color:var(--sig-evidence)}
@@ -161,6 +187,20 @@
 .sx-gline{display:none;margin:10px 0 0;font:400 11px/1.6 var(--mono);color:var(--muted)}
 .sx-gline b{font-weight:400;color:var(--text)}
 .is-off .sx-band{display:none}
+/* the opening (lib/sighero.js): when the live Signal arrives, the walls come up onto the plate as the
+   score counts up, what the numbers changed comes in, the rows of what people report one after
+   another, and the spectrum's bars grow from the floor in the spectrum's order, the picked bar's name
+   once its bar is up. Transform and opacity only, so it stays smooth while the page is still loading */
+@keyframes sx-in{from{opacity:0;transform:translateY(6px)}}
+@keyframes sx-grow{from{transform:scaleY(0)}}
+@keyframes sx-show{from{opacity:0}}
+.is-opening .sx-h-in,.is-opening .sx-sum,.is-opening .sx-sub,.is-opening .sx-themes li,.is-opening .sx-parts li{animation:sx-in .5s cubic-bezier(.2,.7,.2,1) backwards}
+.is-opening .sx-themes li{animation-delay:calc(.15s + var(--i,0) * 70ms)}
+.is-opening .is-growing .sx-bar{transform-origin:50% 100%;animation:sx-grow .8s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 12ms)}
+.is-opening .is-growing .sx-bar .sx-lab,.is-opening .is-growing .sx-bar .sx-cap{animation:sx-show .3s ease-out .9s backwards}
+.sx-walls.is-wait{visibility:hidden}
+.is-opening .sx-walls{animation:sx-up .7s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes sx-up{from{opacity:0;transform:translateY(14px)}}
 
 /* ---------- three steps, one honest number (page 15 of the design canvas): how a report becomes
    the Signal, in three cards with their line drawings ---------- */
@@ -346,6 +386,10 @@
 .fp-ringbox{aspect-ratio:400/300;container-type:inline-size;--u:calc(100cqw / 400)}
 .fp-ring3{position:absolute;inset:0}
 .fp-ring3 svg{display:block;width:100%;height:100%}
+/* Ask Sig's ring in 3D (lib/ring3d.js, sigRing3d): the plate, the light and each agent's walls, stacked */
+.r3d{position:absolute;inset:0}
+.r3d>svg{position:absolute;inset:0}
+.r3d .orbit{--turn:2.4s;--halo:rgba(255,255,255,.22)}
 .fp-bigring .rg{transition:opacity .45s}
 .fp-run.is-armed .fp-bigring .rg{opacity:.3}
 .fp-run.is-armed .fp-bigring .rg.on{opacity:1}
@@ -607,7 +651,7 @@
 .hs-head.hs-small{font-size:clamp(30px,3.6cqi,48px)}
 .hs-lede{max-width:34em;margin:22px auto 0;font:400 18px/1.55 var(--body);color:var(--text-2)}
 .hs-spine{position:absolute;left:50%;top:0;width:2px;margin-left:-1px;background:repeating-linear-gradient(to bottom,var(--line-2) 0 2px,transparent 2px 10px)}
-.hs-fill{position:absolute;left:0;top:0;width:2px;height:0;background:var(--lime)}
+.hs-fill{position:absolute;left:0;top:0;width:2px;height:100%;background:var(--lime);transform:scaleY(0);transform-origin:0 0}
 .hs-marker{position:absolute;left:50%;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;background:var(--text);z-index:3}
 .hs-steps{margin:0;padding:0;list-style:none}
 .hs-step{position:relative;height:880px;display:flex;align-items:center}

@@ -9,6 +9,9 @@
 .my-intro h1{color:var(--on-ink)}
 .my-intro p{margin-top:8px;max-width:50ch;font-size:18px;line-height:1.6;color:var(--on-ink-2)}
 .my-loading{margin-top:24px;color:var(--on-ink-3)}
+/* the empty state waits unseen, holding its height, with "Opening…" over it */
+.my-wait{position:relative;visibility:hidden}
+.my-wait .my-loading{position:absolute;top:0;left:0;margin:0;visibility:visible}
 
 .my-sec{margin-top:14px;padding:24px;border-radius:0;background:var(--card);border:1px solid var(--line-ink)}
 .my-sec>h2{color:var(--on-ink)}

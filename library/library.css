@@ -319,6 +319,13 @@
 .move .dn{font:500 12px var(--mono);color:#FF9A8E}
 .move .eq,.move.quiet{color:var(--on-ink-3)}
 .moves-focus{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:13px}
+/* before the Signal is in, the panel keeps the height it will have (five pairs filling first), so the
+   search and the list under it stay where they are; then what it says comes in */
+.lib-moves.is-wait{min-height:174px}
+.lib-moves:not(.is-wait) .moves-track,.lib-moves:not(.is-wait) .moves-focus{animation:lib-in .45s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes lib-in{from{opacity:0}}
+@media (max-width:899px){.lib-moves.is-wait{min-height:212px}}
+@media (max-width:560px){.lib-moves.is-wait{min-height:288px}}
 .moves-focus .kick-sm{color:var(--on-ink-3)}
 .moves-focus a{padding:5px 10px;border-radius:0;border:1px solid var(--line-ink);color:var(--on-ink);text-decoration:none}
 .moves-focus a:hover{border-color:var(--act-c);color:var(--accent)}
