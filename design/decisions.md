@@ -240,3 +240,16 @@ The owner pointed at the isometric squares under the Signal's ring. They asked f
   - what people report most and the foot became a plate of their own under it.
 - **The design check counts one more gradient.** It is the wash, laid again on the top's own black, since the top's ground now hides the page's grid; the baseline is raised for it.
 - **Smoothness:** measured over the whole first load, with the processor slowed four times, the opening pauses as often and for as long as before. Main-thread work is the same.
+
+## 2026-11-16 · The violet band
+
+The owner showed a grainy purple gradient banner and asked for something like it in some parts of the website, "so it doesn't look too flat". There is now a violet band (`.violet` in `styles.css`):
+- **What it is:** a violet gradient, deepest at the top left and lightest at the bottom right, under a fine grain (a small noise tile, `img/grain.svg`, blended over it).
+- **Its colours** are tokens: `violet-deep` #5D33EF, `violet` #6B48F1 and `violet-light` #9AA0F4.
+- **It's a little deeper than the example,** so the white words on it read at 4.5:1 or better where they sit. Measured on a laptop and a phone, the smallest line, the weekly email's note, reads at 4.6 to 4.8.
+- **Where it goes:**
+  - How it works' opening on the front page ("The system behind one honest number."), where the spine's marker now passes under the band;
+  - Join ("Took something? Say how it went."), with its pane of reports a black window on it;
+  - the weekly email at the foot of every page, as a band of its own.
+- **On the band:** the words are white and the main action is black, since electric blue doesn't hold on violet. The weekly email's field is a dark glass, with a white outline when you're in it.
+- **The design check** counts its one gradient (the baseline is raised by one). Its colours are in the palette, so the colour count is unchanged.

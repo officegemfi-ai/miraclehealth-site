@@ -273,6 +273,11 @@
 .fp-sub{margin:16px 0 0;max-width:50ch;font-size:18px;line-height:1.6;color:var(--text-2)}
 .fp-sub a{color:var(--text)}
 .fp-fine{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:52ch}
+/* Join on the violet band: its words white, its pane of reports a black window on it */
+.fp-join.violet{border-top:0}
+.violet .kick{color:var(--text)}
+.violet .fp-sub,.violet .fp-fine{color:var(--text)}
+.violet .fp-commits{border-color:rgba(255,255,255,.28)}
 .fp-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
 .fp-more{font:400 13px/1.4 var(--mono);color:var(--text-2)}
 .fp-more:hover{color:var(--text)}
@@ -659,6 +664,12 @@
 .hs-head{margin:22px 0 0;font:800 expanded clamp(32px,4.2cqi,56px)/1 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--text)}
 .hs-head.hs-small{font-size:clamp(30px,3.6cqi,48px)}
 .hs-lede{max-width:34em;margin:22px auto 0;font:400 18px/1.55 var(--body);color:var(--text-2)}
+/* How it works' opening on the violet band (styles.css, .violet): the kicker and the line under the headline turn white */
+.hs-intro.violet{z-index:4;padding:104px 24px 112px}
+.violet .hs-kick{color:var(--text)}
+.violet .hs-kick i{background:var(--text)}
+.violet .hs-lede{color:var(--text)}
+/* the spine's marker passes under the band, so it shows only along the steps */
 .hs-spine{position:absolute;left:50%;top:0;width:2px;margin-left:-1px;background:repeating-linear-gradient(to bottom,var(--line-2) 0 2px,transparent 2px 10px)}
 .hs-fill{position:absolute;left:0;top:0;width:2px;height:100%;background:var(--lime);transform:scaleY(0);transform-origin:0 0}
 .hs-marker{position:absolute;left:50%;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;background:var(--text);z-index:3}
@@ -705,6 +716,7 @@
 @container (max-width:900px){
   .hs-spine,.hs-marker{left:20px}
   .hs-intro{padding:72px 20px 60px 44px;text-align:left}
+  .hs-intro.violet{padding:72px 20px 64px 44px}
   .hs-lede{margin-left:0}
   .hs-step{display:block;height:auto;padding:28px 0 28px 44px}
   .hs-card{width:100%;margin:0!important}
