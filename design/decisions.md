@@ -207,3 +207,18 @@ The owner asked for the front page's "Three steps, one honest number" and the th
 - **The three ways in are three slim links** on the steps' own columns, each starting where its step does: the place's mark from the side panel, the title and, where there's room, where it opens. Their descriptions went, since the steps say how the Signal works and the titles say where each goes. The links themselves are the same three.
 
 On the owner's window the section is 696px tall instead of 1,048; on a phone, 1,151 instead of 1,979.
+
+## 2026-11-16 · The Signal board, cleaner
+
+The owner asked for the front page's Community Signal board to look cleaner, and whether it was needed at all (pictures in `design/audits/2026-11-16/cleaner-signal-board/`). It stays: it is the one place on the front page that names the compounds people say worked best, in a ranked list. Around that list, most of the board said nothing yet:
+- four counters, three of them zeros;
+- where the numbers come from, and the score's formula;
+- ten columns, two of them the same on every row;
+- a log with two lines in it.
+
+Now it is the eight highest Signals, each with what people report most for it and its score, and a way to the whole board:
+- **Gone:** the counters, the source split and formula (the line under the headline says the Signal is read from public forums for now, and "How the numbers are made" has the formula), the four parts' columns (the ring at the top of the page shows them, and the community's full board sorts by them), "from", "read", the log, and the second button to the full board.
+- **What people report most** is new: the first of each compound's themes in the snapshot, beside its name, or under it on a phone.
+- **The bars are Signal blue,** the community's colour.
+- **This week's move** shows beside a score only when the compound moved.
+- **When the Signal can't load,** the board says it is offline and opens the whole board in the community.

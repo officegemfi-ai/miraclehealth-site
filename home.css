@@ -269,10 +269,12 @@
 .fp .term-file{color:var(--text-2)}
 .fp .term-file b{font-weight:400;color:var(--text)}
 
-/* ---------- the Community Signal, like top ---------- */
+/* ---------- the Community Signal, like top: the eight highest, each with what people report most and
+   its score, and a way to the whole board (simpler, November 16) ---------- */
 .fp-board{margin-top:36px}
 .fp-snap{display:inline-flex;align-items:center;gap:8px;color:var(--text-2)}
 .fp-snap .pip{animation:fp-live 2.4s ease-in-out infinite}
+.fp-snap.is-off .pip{animation:none;background:var(--muted)}
 @keyframes fp-live{50%{opacity:.35}}
 .fp-load{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px;align-items:center;max-width:560px;padding:28px 20px 30px}
 .fp-load[hidden]{display:none}
@@ -286,16 +288,6 @@
 .fp-noscript{margin:0;padding:0 20px 24px;font:400 12.5px/1.6 var(--mono);color:var(--text-2)}
 .fp-noscript a{color:var(--text)}
 
-.fp-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,2fr);gap:1px;border-bottom:1px solid var(--line);background:var(--line);font:400 12px/1.3 var(--mono);color:var(--muted)}
-.fp-stats[hidden]{display:none}
-.fp-stats>*{margin:0;padding:16px 18px;background:var(--paper)}
-.fp-stats b{display:block;font:500 26px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
-.fp-stats p>span{display:block;margin-top:8px}
-.fp-mix-k{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;margin:0}
-.fp-mix-k .lime{color:var(--lime)}
-.fp-mix-bar{display:block;height:6px;margin-top:10px;border-radius:0;background:rgba(255,255,255,.22);overflow:hidden}
-.fp-mix-bar i{display:block;width:0;height:100%;border-radius:0;background:var(--lime);transition:width .9s cubic-bezier(.2,.7,.2,1)}
-.fp-mix-f{margin:10px 0 0;color:var(--muted)}
 
 .fp-top-wrap{overflow-x:auto}
 .fp-top-wrap[hidden]{display:none}
@@ -304,21 +296,24 @@
 .fp-top thead th{background:var(--band);font-size:11.5px;font-weight:400;color:var(--muted)}
 .fp-top th:first-child,.fp-top td:first-child{padding-left:18px}
 .fp-top th:last-child,.fp-top td:last-child{padding-right:18px}
-.fp-top .num{text-align:right}
 .fp-top tbody tr{border-top:1px solid rgba(255,255,255,.07);transition:background-color .2s}
 .fp-top tbody tr:hover{background:var(--fp-hover)}
 .fp-top .c-n{width:44px;color:var(--muted)}
 .fp-top th[scope="row"]{font:600 14.5px/1 var(--body);color:var(--text)}
 .fp-top th[scope="row"] a{color:inherit;text-decoration:none}
 .fp-top th[scope="row"] a:hover{text-decoration:underline}
-.fp-top .c-sig{width:230px}
+.fp-top th[scope="row"]{width:220px}
+.fp-top .c-sig{width:320px}
+.fp-top td.c-th{font:400 14px/1.3 var(--body);color:var(--text-2)}
+.fp-top-t{display:none}
 .fp-bar{display:flex;align-items:center;gap:10px}
 .fp-bar>span:first-child{position:relative;flex:1;height:4px;border-radius:0;background:rgba(255,255,255,.12)}
-.fp-bar>span:first-child i{position:absolute;left:0;top:0;bottom:0;border-radius:0;background:var(--text);transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.fp-bar>span:first-child i{position:absolute;left:0;top:0;bottom:0;border-radius:0;background:var(--lime);transition:width .9s cubic-bezier(.2,.7,.2,1)}
 .fp-bar b{min-width:34px;font-weight:500;color:var(--text);text-align:right}
+.fp-mv{display:none;min-width:44px;font-size:12px}
+.fp-top.has-moves .fp-mv{display:block}
 .fp-top .up{color:var(--lime)}
 .fp-top .down{color:#FF9A8E}
-.fp-top .flat{color:var(--muted)}
 .fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted);white-space:normal}
 .fp-top .more a{color:var(--text-2);font-weight:400}
 .fp-top tr.flash-up{animation:fp-up 1.6s ease-out}
@@ -326,20 +321,9 @@
 @keyframes fp-up{from{background:rgba(61,139,255,.16)}}
 @keyframes fp-down{from{background:rgba(255,154,142,.16)}}
 
-.fp-log{padding:14px 18px 16px;border-top:1px solid var(--line);background:var(--band);font:400 12.5px/1.9 var(--mono);color:var(--text-2)}
-.fp-log-cmd{margin:0 0 4px;color:var(--muted)}
-.fp-log-lines{margin:0;padding:0;list-style:none}
-.fp-log-lines li{display:grid;grid-template-columns:150px minmax(0,1fr);column-gap:12px}
-.fp-log-lines .t{color:var(--muted);white-space:nowrap}
-.fp-log-lines .who{color:var(--lime)}
-.fp-log-lines .up{color:var(--lime)}
-.fp-log-lines .down{color:#FF9A8E}
-.cursor{display:inline-block;width:8px;height:15px;margin-left:2px;vertical-align:-3px;background:var(--text);animation:fp-blink 1.1s steps(1) infinite}
-@keyframes fp-blink{50%{opacity:0}}
 
 .fp-signal-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;margin-top:24px}
 .fp-signal-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
-.fp-signal-foot .who{font:400 14px/1 var(--mono)}
 
 /* ---------- Ask Sig, with all twelve agents ---------- */
 .fp-run{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start;margin-top:36px}
@@ -570,14 +554,9 @@
 @container fp (min-width:1000px) and (max-width:1399px){
   .fp-way-k{display:none}
 }
-@container fp (max-width:1060px){
-  .fp-top .c-x{display:none}
-}
 @container fp (max-width:860px){
   .fp-wrap{padding:0 24px}
   .fp-sec{padding:64px 0}
-  .fp-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fp-mix{grid-column:1/-1}
   .fp-vs .vs-cols{display:none}
   .fp-vs .vs-row{grid-template-columns:minmax(0,1fr);row-gap:14px}
   .fp-vs .vs-lbl{display:block;margin:0 0 6px;font:400 11.5px/1.3 var(--mono);color:var(--muted)}
@@ -600,8 +579,6 @@
   .hp-row{grid-template-columns:minmax(0,1fr) auto}
   .hp-file{display:none}
   .fp-prompt .hp-keys-ask{margin-left:0}
-  .fp-log-lines li{grid-template-columns:minmax(0,1fr)}
-  .fp-log-lines .t{font-size:11.5px}
   .fp-askbox .ps1{display:none}
 }
 @container fp (max-width:560px){
@@ -635,6 +612,8 @@
   .sx-acts .btn{flex:1 1 100%}
   .sx-read{justify-content:space-between;gap:16px}
   .fp-top .c-sig{width:auto}
+  .fp-top .c-th{display:none}
+  .fp-top-t{display:block;margin-top:6px;font:400 13px/1.3 var(--body);color:var(--text-2);white-space:normal}
   .fp-top th,.fp-top td{padding:12px 8px}
   .fp-top th:first-child,.fp-top td:first-child{padding-left:12px}
   .fp-top th:last-child,.fp-top td:last-child{padding-right:12px}
@@ -649,9 +628,9 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .fp-snap .pip,.cursor{animation:none}
+  .fp-snap .pip{animation:none}
   .fp-top tr.flash-up,.fp-top tr.flash-down{animation:none}
-  .log li,.signed,.roster button,.fp-bigring .rg,.fp-mix-bar i,.fp-bar>span:first-child i{transition:none}
+  .log li,.signed,.roster button,.fp-bigring .rg,.fp-bar>span:first-child i{transition:none}
 }
 
 /* how:system: "The system behind one honest number", the homepage's How it works (page 18 of the design canvas).

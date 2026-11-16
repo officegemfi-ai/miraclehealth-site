@@ -25,8 +25,8 @@
 <link rel="preload" href="fonts/monaspace-neon-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=05a1ff01ee">
 <link rel="stylesheet" href="styles.css?v=0f9c0b897e">
-<link rel="stylesheet" href="/home.css?v=8c49140af0">
-<script type="module" src="/home.js?v=db6adf8e96"></script>
+<link rel="stylesheet" href="/home.css?v=e66aa83a79">
+<script type="module" src="/home.js?v=d7faa4e0ff"></script>
 <link rel="modulepreload" href="/lib/sighero.js?v=f9eea40a86">
 <link rel="modulepreload" href="/lib/ring3d.js?v=c70c6dd053">
 <link rel="modulepreload" href="/lib/dom.js?v=f31d9546b5">
@@ -238,7 +238,7 @@
       <header class="fp-head">
         <p class="kick">the community signal</p>
         <h2 id="signal-h">How it went, for the people who took it.</h2>
-        <p class="fp-sub">One score from 0 to 100 for each compound, from what people who took it report. It moves as reports land, and “it did nothing” counts as much as “it worked.” For now it’s read from public forums. Members’ own reports take over as they come in.</p>
+        <p class="fp-sub">One score from 0 to 100 for each compound, from what the people who took it report, and “it did nothing” counts too. For now it’s read from public forums, until members’ own reports take over.</p>
       </header>
 
       <div class="term fp-board" id="fp-board" aria-busy="true">
@@ -252,35 +252,19 @@
           </div>
         </div>
         <noscript><p class="fp-noscript">The live board needs JavaScript. <a href="https://community.miraclehealth.us/#/signal">Open the whole board in the community</a>.</p></noscript>
-        <div class="fp-stats" id="fp-stats" hidden>
-          <p><b data-s="signals">0</b><span>live signals</span></p>
-          <p><b data-s="reports">0</b><span>first-hand reports</span></p>
-          <p><b data-s="moves">0</b><span>moves today</span></p>
-          <p><b data-s="members">0</b><span>members</span></p>
-          <div class="fp-mix">
-            <p class="fp-mix-k"><span>where the numbers come from</span><span><span class="lime" data-s="share">members 0%</span> · <span data-s="forums">forums 100%</span></span></p>
-            <span class="fp-mix-bar" aria-hidden="true"><i data-s="bar"></i></span>
-            <p class="fp-mix-f">score = 65 what happened · 15 agreement · 10 voices · 10 volume</p>
-          </div>
-        </div>
         <div class="fp-top-wrap" id="fp-top-wrap" hidden>
           <table class="fp-top" id="fp-top">
-            <caption class="mh-sr">The compounds with the highest Community Signal right now</caption>
-            <thead><tr><th scope="col" class="c-n">#</th><th scope="col">compound</th><th scope="col" class="c-sig">signal</th><th scope="col" class="c-x num">what happened</th><th scope="col" class="c-x num">agreement</th><th scope="col" class="c-x num">voices</th><th scope="col" class="c-x num">volume</th><th scope="col" class="c-x">from</th><th scope="col" class="num">this week</th><th scope="col" class="c-x">read</th></tr></thead>
+            <caption class="mh-sr">The compounds with the highest Community Signal right now, and what people report most for each</caption>
+            <thead><tr><th scope="col" class="c-n">#</th><th scope="col">compound</th><th scope="col" class="c-th">reported most</th><th scope="col" class="c-sig">signal</th></tr></thead>
             <tbody></tbody>
           </table>
-        </div>
-        <div class="fp-log" id="fp-log">
-          <p class="fp-log-cmd">$ tail -f signal.log</p>
-          <ol class="fp-log-lines" id="fp-log-lines" aria-live="polite"><li><span class="t">now</span><span>reading the signal <span class="cursor" aria-hidden="true"></span></span></li></ol>
         </div>
       </div>
 
       <div class="fp-signal-foot">
-        <p>Each report lands in the log as a line, signed by <span class="who" data-agent="community">the community</span>, and its row moves with it. Your report moves it, whether it worked or not.</p>
+        <p>Your report moves it, whether it worked or not.</p>
         <div class="fp-acts">
           <a class="btn lime" href="https://community.miraclehealth.us/">+ Share how it went</a>
-          <a class="btn line" href="https://community.miraclehealth.us/#/signal">Open the full board</a>
           <a class="fp-more" href="/method/">How the numbers are made</a>
         </div>
       </div>

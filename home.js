@@ -277,31 +277,28 @@ function promptFrom(data) {
 
 // ---------------------------------------------------------------------------------------------
 // The Community Signal, like top. While the snapshot loads, Sig's ring is the spinner and three
-// lines say what's happening. Then the board: the totals, where the numbers come from (members or
-// the forums), the compounds with the highest Signal and the log, every line of it signed by the
-// community. Only what the public snapshot holds: totals, nothing about any one member. While the
+// lines say what's happening. Then the board: the compounds with the highest Signal, each with what
+// people report most and its score, and a way to the whole board. Only what the public snapshot holds,
+// nothing about any one member. A row shows how far it moved this week only when it moved. While the
 // board is on screen it asks for a newer snapshot once a minute; a row that moved flashes, lime up,
-// coral down, and the log says so.
+// coral down.
 const board = document.getElementById('fp-board');
 later(board, () => signalBoard(board));
 function signalBoard(board) {
-  const load = document.getElementById('fp-load'), stats = document.getElementById('fp-stats');
+  const load = document.getElementById('fp-load');
   const wrap = document.getElementById('fp-top-wrap'), tbody = board.querySelector('#fp-top tbody');
-  const log = document.getElementById('fp-log-lines'), snapEl = document.getElementById('fp-snap');
+  const snapEl = document.getElementById('fp-snap');
   const pieces = [...load.querySelectorAll('svg.ring .rg')];
   const wheel = pieces.filter((p) => !p.classList.contains('rg-c')), centre = pieces.find((p) => p.classList.contains('rg-c'));
   const said = (k) => load.querySelector(`[data-load="${k}"]`);
-  const S = (k) => board.querySelector(`[data-s="${k}"]`);
   const fmtN = fmt;
-  // the labels under the totals: "1 member", "2 members"
-  const ONE = { signals: 'live signal', reports: 'first-hand report', moves: 'move today', members: 'member' };
-  const MANY = { signals: 'live signals', reports: 'first-hand reports', moves: 'moves today', members: 'members' };
   const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-  const stamp = (iso, withDate = true) => {
+  // "nov 16, 11:29"
+  const stamp = (iso) => {
     const d = new Date(iso);
     if (!Number.isFinite(d.getTime())) return '';
     const p = (n) => String(n).padStart(2, '0');
-    return `${withDate ? `${months[d.getMonth()]} ${d.getDate()} ` : ''}${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+    return `${months[d.getMonth()]} ${d.getDate()}, ${p(d.getHours())}:${p(d.getMinutes())}`;
   };
   // the spinner: the ring's pieces light one by one, round and round, until the numbers arrive
   let tick = 0, spin = 0;
@@ -312,46 +309,29 @@ function signalBoard(board) {
       said('agents').textContent = `${tick}/12 …`;
     }, 140);
   }
-  let shown = null, version = null, seenOnce = false;
+  let shown = null, version = null;
   const rows = new Map();
-  function line(t, kids, cls = '') {
-    return h('li', { class: cls }, h('span', { class: 't', text: t }), h('span', {}, ...kids));
-  }
-  function logFrom(snap) {
-    const c = snap.community || {}, share = Math.max(0, Math.min(100, Number(c.community_share) || 0));
-    const n = c.signals ?? Object.keys(snap.signals || {}).length;
-    const items = [line(stamp(snap.published_at || snap.generated_at), [`snapshot ${snap.version ?? 1} published · ${fmtN(n)} signals, `,
-      share ? `${share}% from members` : 'all read from public forums'])];
-    for (const m of (snap.moves || []).slice(0, 4)) {
-      const up = Number(m.to) >= Number(m.from);
-      items.push(line('this week', [h('span', { class: up ? 'up' : 'down', text: up ? '▲ ' : '▼ ' }), `${String(m.name).toLowerCase()} ${Number(m.from).toFixed(1)} → ${Number(m.to).toFixed(1)}`]));
-    }
-    if (Number(c.reports_week) > 0) items.push(line('this week', [`${fmtN(c.reports_week)} first-hand report${c.reports_week === 1 ? '' : 's'} read by `, h('span', { class: 'who', text: 'the community' })]));
-    const cursor = h('span', { class: 'cursor', 'aria-hidden': 'true' });
-    items.push(line('now', [Number(c.reports) > 0 ? 'listening for the next report ' : 'waiting for the first first-hand report ', cursor]));
-    log.replaceChildren(...items);
-  }
-  // the board's rows: the highest Signal first
+  // a row: its rank, the compound (its fact sheet), what people report most for it, and its Signal,
+  // with this week's move beside the score when there was one
   function rowFor(id, s, i) {
     const score = Number(s.score), wk = Number(s.week);
     const d = Number.isFinite(wk) ? score - wk : NaN;
     const fill = h('i');
     fill.style.width = `${Math.max(0, Math.min(100, score)).toFixed(1)}%`;
-    const from = Number(s.internal_share) > 0 ? `members ${s.internal_share}%` : 'forums';
-    const n0 = (x) => (Number.isFinite(Number(x)) && x != null ? String(Math.round(Number(x))) : '—');
-    const dl = !Number.isFinite(d) || Math.abs(d) < 0.05 ? h('span', { class: 'flat', text: '—' })
-      : h('span', { class: d > 0 ? 'up' : 'down', text: `${d > 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}` });
+    const most = (Array.isArray(s.themes) ? s.themes : []).find((t) => t && t.theme);
+    const said1 = most ? String(most.theme) : '';
+    // every row keeps a slot for the move, so the scores stay in one column; it shows only when a row moved
+    const moved = Number.isFinite(d) && Math.abs(d) >= 0.05
+      ? h('span', { class: `fp-mv ${d > 0 ? 'up' : 'down'}`, title: 'this week', text: `${d > 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}` })
+      : h('span', { class: 'fp-mv', 'aria-hidden': 'true' });
     return h('tr', { 'data-id': id },
       h('td', { class: 'c-n', text: String(i + 1) }),
-      h('th', { scope: 'row' }, h('a', { href: `/library/${id}/`, text: s.name || id })),
-      h('td', { class: 'c-sig' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }))),
-      h('td', { class: 'c-x num', text: n0(s.efficacy) }), h('td', { class: 'c-x num', text: n0(s.consistency) }),
-      h('td', { class: 'c-x num', text: n0(s.diversity) }), h('td', { class: 'c-x num', text: n0(s.confidence) }),
-      h('td', { class: 'c-x', text: from }), h('td', { class: 'num' }, dl),
-      h('td', { class: 'c-x', text: String(s.summary_label || '').toLowerCase() || '—' }));
+      h('th', { scope: 'row' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
+        said1 ? h('span', { class: 'fp-top-t', 'aria-hidden': 'true', text: said1 }) : null),
+      h('td', { class: 'c-th', text: said1 || '—' }),
+      h('td', { class: 'c-sig' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
   }
   function render(snap) {
-    const c = snap.community || {};
     const all = Object.entries(snap.signals || {}).filter(([, s]) => s && s.score != null && Number.isFinite(Number(s.score)));
     all.sort((a, b) => b[1].score - a[1].score);
     const top = all.slice(0, 8);
@@ -360,49 +340,24 @@ function signalBoard(board) {
     const trs = top.map(([id, s], i) => { rows.set(id, Number(s.score)); return rowFor(id, s, i); });
     const rest = all.length - top.length;
     if (rest > 0) {
-      trs.push(h('tr', { class: 'more' }, h('td', { colspan: '10' }, `… ${rest} more · `,
-        h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'sort the whole board in the community' }))));
+      trs.push(h('tr', { class: 'more' }, h('td', { colspan: '4' }, `+ ${fmtN(rest)} more · `,
+        h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'open the full board' }))));
     }
     tbody.replaceChildren(...trs);
+    tbody.parentElement.classList.toggle('has-moves', !!tbody.querySelector('.fp-mv.up,.fp-mv.down'));
     // a row that moved since the last snapshot flashes, lime up or coral down
     if (shown) for (const tr of tbody.querySelectorAll('tr[data-id]')) {
       const was = before.get(tr.dataset.id), now = rows.get(tr.dataset.id);
       if (was != null && now != null && Math.abs(now - was) >= 0.05) tr.classList.add(now > was ? 'flash-up' : 'flash-down');
     }
-    const share = Math.max(0, Math.min(100, Number(c.community_share) || 0));
-    const totals = { signals: c.signals ?? all.length, reports: c.reports ?? 0, moves: c.moves_today ?? 0, members: c.members ?? 0 };
-    for (const [k, n] of Object.entries(totals)) {
-      S(k).dataset.to = String(n);
-      S(k).nextElementSibling.textContent = Number(n) === 1 ? ONE[k] : MANY[k];
-      if (seenOnce || reduceMotion) S(k).textContent = fmtN(n);
-    }
-    S('share').textContent = `members ${share}%`;
-    S('forums').textContent = `forums ${100 - share}%`;
-    S('bar').style.width = `${share}%`;
-    logFrom(snap);
     const at = snap.checked_at || snap.published_at || snap.generated_at;
-    snapEl.lastElementChild.textContent = `live · snapshot ${snap.version ?? 1} · ${stamp(at)}`;
+    snapEl.lastElementChild.textContent = `live · ${stamp(at)}`;
     shown = snap; version = snap.version ?? null;
-  }
-  // the totals count up once, as the board comes into view
-  function countUp() {
-    seenOnce = true;
-    for (const k of ['signals', 'reports', 'moves', 'members']) {
-      const el = S(k), to = Number(el.dataset.to || 0);
-      if (reduceMotion || !to) { el.textContent = fmtN(to); continue; }
-      const t0 = performance.now();
-      const step = (t) => { const f = Math.min(1, (t - t0) / 900); el.textContent = fmtN(Math.round(to * (1 - (1 - f) ** 3))); if (f < 1) requestAnimationFrame(step); };
-      requestAnimationFrame(step);
-    }
   }
   function show() {
     clearInterval(spin);
-    load.hidden = true; stats.hidden = false; wrap.hidden = false;
+    load.hidden = true; wrap.hidden = false;
     board.setAttribute('aria-busy', 'false');
-    if ('IntersectionObserver' in window && !reduceMotion) {
-      const io = new IntersectionObserver((seen) => { if (seen.some((e) => e.isIntersecting)) { io.disconnect(); countUp(); } }, { threshold: 0.25 });
-      io.observe(stats);
-    } else countUp();
   }
   getSignal().then((snap) => {
     if (!snap || !snap.signals) throw new Error('no snapshot');
@@ -420,8 +375,11 @@ function signalBoard(board) {
     said('signal').textContent = 'not reachable just now';
     said('signal').classList.add('is-wait');
     said('agents').textContent = '—';
+    snapEl.lastElementChild.textContent = 'offline';
+    snapEl.classList.add('is-off');
     board.setAttribute('aria-busy', 'false');
-    log.replaceChildren(line('now', ['the signal couldn’t load just now · ', h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'open the board in the community' })]));
+    wrap.before(h('p', { class: 'fp-noscript' }, 'The Signal couldn’t load just now. ',
+      h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'Open the whole board in the community' }), '.'));
   });
   // while the board is on screen and the tab is showing, a newer snapshot is asked for once a minute
   function keepLive() {
@@ -434,7 +392,6 @@ function signalBoard(board) {
         if (snap && snap.signals && (snap.version ?? null) !== version) {
           snap.checked_at = r.headers.get('X-Signal-Checked') || snap.checked_at;
           render(snap);
-          log.prepend(line(stamp(new Date().toISOString(), false), [`snapshot ${snap.version} arrived · `, h('span', { class: 'who', text: 'the community' })]));
         }
       } catch { /* the board keeps what it has */ }
     };
