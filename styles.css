@@ -829,3 +829,23 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
   .foot-logo{display:inline-flex;align-items:center;min-height:40px}
   .foot-links a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}
 }
+
+/* ---------- the violet band (decision, November 16): a grainy violet gradient, deepest at the top left and
+   lightest at the bottom right (design/tokens.json violet-deep, violet, violet-light), for a few statement
+   bands so the black pages aren't flat: How it works' opening and Join on the front page, and the weekly
+   email at the foot of every page. The grain is a small noise tile (img/grain.svg) laid over the gradient.
+   Words on it are white and sit in its deeper part; its main action is black, since electric blue doesn't
+   hold on violet ---------- */
+.violet,.foot-news{background:url(/img/grain.svg) 0 0/180px 180px,radial-gradient(70% 130% at 24% 0%,#5d33ef 0%,rgba(93,51,239,0) 72%),linear-gradient(115deg,#5d33ef 0%,#6b48f1 55%,#9aa0f4 118%);background-blend-mode:overlay,normal,normal;color:var(--text);--focus:var(--text)}
+.violet .btn.lime,.foot-news .btn{background:var(--ink);border-color:var(--ink);color:var(--text);box-shadow:none}
+.violet .btn.lime:hover,.foot-news .btn:hover{background:var(--card);border-color:var(--card);color:var(--text)}
+.violet a:not(.btn),.foot-news a:not(.btn){color:var(--text)}
+/* the weekly email: a band of its own at the top of the foot */
+.foot-news{padding:34px 36px;border-bottom:0}
+.foot-news>p,.foot-news>p b{color:var(--text)}
+.foot-news .nf-row input{border-color:rgba(255,255,255,.42);background:rgba(0,0,0,.3);color:var(--text)}
+.foot-news .nf-row input::placeholder{color:rgba(255,255,255,.8)}
+.foot-news .nf-row input:focus-visible{outline-color:var(--text)}
+.foot-news .nf-note{color:var(--text)}
+.foot-news .nf-note a{text-decoration-color:rgba(255,255,255,.7)}
+@media (max-width:640px){.foot-news{padding:24px 20px}}
