@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ring3d } from '../lib/ring3d.js';
-import { sxRingSvg } from '../lib/sighero.js';
+import { sxRingSvg, sxFloorSvg } from '../lib/sighero.js';
 import { groupN } from '../lib/dom.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -77,4 +77,19 @@ test("the agents' ring, drawn one part to a layer, draws the same walls in the s
   assert.deepEqual(layered.flatMap(([, m]) => ids(m)), ids(whole));
   const keys = [...whole.matchAll(/class="rg" data-a="(\w+)"/g)].map((x) => x[1]);
   assert.deepEqual(layered.map(([k]) => k), keys);
+});
+
+test('the floor under the top runs through the plate, and the page carries it', () => {
+  // the plate rests on the floor: its centre on the floor is where the floor's middle lines cross
+  const geo = ring3d({ ...GEO, floor: 12 });
+  const floor = sxFloorSvg(ring3d);
+  const d = floor.match(/<path d="([^"]+)" fill="none" stroke="url\(#sx-ground-line\)"/)[1];
+  const segs = [...d.matchAll(/M([\d.-]+) ([\d.-]+)L([\d.-]+) ([\d.-]+)/g)].map((m) => m.slice(1).map(Number));
+  const [cx, cy] = geo.iso(0, 0, -12);
+  const through = segs.filter(([x0, y0, x1, y1]) => Math.abs((x0 + x1) / 2 - cx) < 0.06 && Math.abs((y0 + y1) / 2 - cy) < 0.06);
+  assert.equal(through.length, 2, 'one line each way crosses at the plate\'s centre');
+  // the plate no longer draws a grid of its own or the posts it stood on
+  assert.ok(!/stroke-dasharray="3 4"/.test(sxRingSvg(ring3d)));
+  const page = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  assert.ok(page.includes('<div class="sx-ground" aria-hidden="true"><!-- sighero:floor --><svg class="sx-ground-svg"'));
 });
