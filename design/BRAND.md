@@ -90,7 +90,7 @@ Every page opens the same way:
   
   Under them comes what is on this page, then the rest and the legal.
 - **Top bar** (60px, sticky): the menu button, the logo, a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button.
-- **Page,** across the window's whole width (up to 2400px, with a margin that grows from 16px to 96px) on the faint grid under the ultramarine wash, then the foot: the weekly email, the links, the disclaimer. Text keeps its own line lengths inside it; on a wide screen the front page's top grows with it.
+- **Page,** across the window's whole width (up to 2400px, with a margin that grows from 16px to 96px) on the faint grid under the ultramarine wash, then the foot: the weekly email, the links, the disclaimer. Text keeps its own line lengths inside it; on a wide screen the front page's top grows with it. On the front page's top the faint grid gives way to the Signal's floor: the plate's isometric squares, laid under the whole top and brightest round the ring, with the wash kept over it (decision, November 16).
 
 No window box, tabs, path line or status bar: the frame is a plain website's (decision log, November 12).
 
@@ -104,7 +104,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 - **Square, in How it works' language:** How it works' six cards, the Signal's and Sig's cards on the front page, the example run beside Sig's, and on Ask Sig the window, its answer cards, its ways to start and its box to write in have no round corners: a 1px frame, the number in its box, the title in mono, dividers with a gap by the tree.
 - **Panes:** a pane is a framed block with a bar naming its file (`signal.top`, `house-rules.md`, `~/chats/…`), mono in the bar, the content under it.
 - **Shadows:** nothing casts one except what floats (`shadow-float`) and the phone drawer (`shadow-drawer`). Depth comes from the four grounds, not from shadows.
-- **Drawn depth:** the Signal's ring and Sig's ring stand in 3D (`lib/ring3d.js`): isometric, on a slab over a grid, each part a wall lit from the front left. The depth is drawn, in the drawing's own shades; nothing on the page casts a shadow for it.
+- **Drawn depth:** the Signal's ring and Sig's ring stand in 3D (`lib/ring3d.js`): isometric, on a slab over a grid, each part a wall lit from the front left. On the front page's top the Signal's slab rests on that floor, in no card, with Signal blue lighting the floor round it. The depth is drawn, in the drawing's own shades; nothing on the page casts a shadow for it.
 
 ## Motion
 

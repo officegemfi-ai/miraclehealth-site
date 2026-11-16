@@ -222,3 +222,21 @@ Now it is the eight highest Signals, each with what people report most for it an
 - **The bars are Signal blue,** the community's colour.
 - **This week's move** shows beside a score only when the compound moved.
 - **When the Signal can't load,** the board says it is offline and opens the whole board in the community.
+
+## 2026-11-16 · The front page's top stands on the Signal's floor
+
+The owner pointed at the isometric squares under the Signal's ring. They asked for the top's background to be made of them, "so it looks like it's going inside", with the ring built into it to look more spectacular. Now:
+
+- **The floor is a layer of the top's own** (`.sx-ground`, `lib/sighero.js` `sxFloorSvg`), under everything in it. It is the plate's grid, the same isometric squares 40 units apart, carried on across the whole top in place of the page's square grid.
+- **It fades with distance,** the back first, so it reads as going in:
+  - it is brightest round the ring;
+  - it fades down to the page grid's own faintness;
+  - the ultramarine wash stays at the top.
+- **The floor and the plate line up.** The floor is drawn in the drawing's own units, and the script moves and scales it to wherever the drawing sits. It does this again whenever the top or the drawing changes size, then fades the floor in.
+- **The ring is built into the floor:**
+  - the slab rests on it, without the posts or the small grid it stood over;
+  - Signal blue lights the floor round the slab;
+  - the card has no box round the ring;
+  - what people report most and the foot became a plate of their own under it.
+- **The design check counts one more gradient.** It is the wash, laid again on the top's own black, since the top's ground now hides the page's grid; the baseline is raised for it.
+- **Smoothness:** measured over the whole first load, with the processor slowed four times, the opening pauses as often and for as long as before. Main-thread work is the same.

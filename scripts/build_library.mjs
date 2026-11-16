@@ -31,7 +31,7 @@ import { SIGNAL_URL } from '../lib/dom.js';
 // at its centre (lib/ring.js, shared with ai/ai.js)
 import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
 import { ring3d } from '../lib/ring3d.js';
-import { sxRingSvg } from '../lib/sighero.js';
+import { sxRingSvg, sxFloorSvg } from '../lib/sighero.js';
 import { glyphSvg } from '../lib/glyphs.js';
 import { printSvg } from '../lib/print.js';
 
@@ -1363,6 +1363,8 @@ front = fill(front, 'ring:sn', ringSvg(30));
 // The Community Signal's ring at the top, as it stands before the live Signal is in (its walls low),
 // so it's there in the page's first frame; lib/sighero.js raises the walls when the numbers arrive
 front = fill(front, 'sighero:ring', sxRingSvg(ring3d));
+// the floor under the whole top, lined up with the plate once the page knows where the drawing sits
+front = fill(front, 'sighero:floor', sxFloorSvg(ring3d));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
 // count of what its lines say, and the graph as text
 const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
