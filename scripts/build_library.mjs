@@ -1348,10 +1348,13 @@ const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'count:compounds', String(catalog.length));
 front = fill(front, 'count:sheets', String(entries.size));
-// Sig's ring beside "rather ask?" under the prompt and on the third way in; the ring that is the
-// Signal board's loading spinner (dark until home.js lights it piece by piece); and the big ring
-// beside the example run, every piece lit (home.js dims it and lights each agent as it reports)
+// Sig's ring on the third way in under How it works; the ring that is the Signal board's loading
+// spinner (dark until home.js lights it piece by piece); and the big ring beside the example run,
+// every piece lit (home.js dims it and lights each agent as it reports)
 front = fill(front, 'ring:ask', ringSvg(16));
+// the other two ways in carry their places' marks, as the side panel does
+front = fill(front, 'mark:library', PLACE_ICON.library());
+front = fill(front, 'mark:signal', ICO.signal);
 front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
 front = fill(front, 'ring:big', ringSvg(196, { center: false, cls: 'fp-bigring' }));
 front = fill(front, 'ring:tile', ringSvg(28));
