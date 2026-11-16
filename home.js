@@ -8,8 +8,8 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=bb8f0ed784';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=547caf3594';
-import { startSigHero } from '/lib/sighero.js?v=f9eea40a86';
-import { ring3d, sigRing3d } from '/lib/ring3d.js?v=c70c6dd053';
+import { startSigHero } from '/lib/sighero.js?v=8cee795e4b';
+import { ring3d, sigRing3d } from '/lib/ring3d.js?v=5335cb2283';
 import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
