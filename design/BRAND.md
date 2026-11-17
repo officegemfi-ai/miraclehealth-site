@@ -131,8 +131,8 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 ## Iconography
 
 - **The twelve's glyphs** (`assets/Glyphs/`, the AgentGlyph component): a 24-unit grid, one 1.6 stroke, round caps and joins, no fills, each in its agent's colour. Each one means its agent and nothing else.
-- **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig and every title bar.
-- **Sig in the community** is the blue ring and dot (`assets/Logos/sig-mark.svg`), also the favicon. It is the community's own character, with moods. Don't confuse it with the ring.
+- **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig, every title bar and the browser tab: `favicon.svg`, with `favicon.ico` for browsers that can't show an SVG icon, both drawn by `design/favicon/make_favicon.py` from `lib/ring.js` (the owner's request, November 17).
+- **Sig in the community** is the blue ring and dot (`assets/Logos/sig-mark.svg`). It is the community's own character, with moods. Don't confuse it with the ring.
 - **Compound prints** (`assets/Prints/`, the CompoundPrint component): one mark per fact sheet, drawn from its data. Never use a print that isn't that compound's own.
 - **Interface icons:** the community's stroke set, 1.8 stroke on a 24 grid, round caps, drawn at 16–20px in `currentColor`: home, flame, pulse, compass, layers, comment, vote arrows, check.
 - **No emoji, ever.**

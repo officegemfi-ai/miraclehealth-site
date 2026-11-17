@@ -263,3 +263,10 @@ The owner sent the front page's top on a wide screen and asked for it to look cl
 - **The Signal stands on the floor with no plates:** the name and its rank are words over the ring (no numbered box), the ring's four numbers are words with a dark edge instead of boxed tags (on a phone, two by two under it), what people report most is three lines, and the level and the studies follow on one line.
 - **On a wide screen** (the window 1500px and up) the headline grows to 88px and the Signal's column to 800px, so the two halves fill the width together.
 - **The top bar names its sections:** The Signal, Library, Community and How it works sit after the logo, the search moved to the right, and the page you're on is underlined. The side panel keeps everything and stays where it was; below 1100px wide the bar is as before.
+
+## 2026-11-17 · Sig's ring in the browser tab
+
+The owner asked for Sig's logo in the browser tab, where the community's blue ring and dot was.
+- **The tab icon is Sig's ring:** the eleven agents' pieces in their colours and the Interpretation agent's white dot, on Ask Sig's app icon's dark ground, with the corners the tab icon already had. It is drawn larger and bolder than the title bar's ring (28 of 32 across, pieces 5.2 wide, 14° apart) so it still reads as a ring at 16 pixels.
+- **One drawing, two files:** `favicon.svg` for the browsers that show an SVG icon, and `favicon.ico` (16, 32 and 48 pixels) for those that can't. `design/favicon/make_favicon.py` draws both from `lib/ring.js`, so the tab's colours follow the ring's. No page changes: they already link `/favicon.svg`.
+- **The community app** keeps its own tab icon, the blue Sig, the community's character.
