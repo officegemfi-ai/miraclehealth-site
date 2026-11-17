@@ -270,3 +270,16 @@ The owner asked for Sig's logo in the browser tab, where the community's blue ri
 - **The tab icon is Sig's ring:** the eleven agents' pieces in their colours and the Interpretation agent's white dot, on Ask Sig's app icon's dark ground, with the corners the tab icon already had. It is drawn larger and bolder than the title bar's ring (28 of 32 across, pieces 5.2 wide, 14° apart) so it still reads as a ring at 16 pixels.
 - **One drawing, two files:** `favicon.svg` for the browsers that show an SVG icon, and `favicon.ico` (16, 32 and 48 pixels) for those that can't. `design/favicon/make_favicon.py` draws both from `lib/ring.js`, so the tab's colours follow the ring's. No page changes: they already link `/favicon.svg`.
 - **The community app** keeps its own tab icon, the blue Sig, the community's character.
+## 2026-11-17 · The foot, with the logo's word drawn big
+
+The owner sent a video of a footer whose name is drawn huge at the bottom as a stack of hairline outlines that light up under the pointer, and asked for ours to be like it, with the Miracle logo and our purple and blue.
+- **The word:** the logo's script word alone (HEALTH and the registered mark left out), traced from `logo.webp` into outlines (`design/wordmark/make_wordmark.py`, run when the logo changes). It is drawn eight times, each a step down and to the left and fainter than the one in front, as hairlines in a gradient from light violet through the brand's violet and an ultramarine into the Signal's blue (`img/wordmark.svg`, 11 KB, cached once).
+- **At the very bottom of every page,** as wide as the page's text, the page's bottom edge cuts off the lower part of the word. On a phone it runs edge to edge.
+- **It's dim, and lights up under the pointer:** a second copy at full strength is seen only through a soft circle (`img/glow.svg`) that follows the pointer anywhere in the foot (`lib/os.js`). With no pointer (a phone) the circle sweeps slowly across. With reduced motion there's no sweep.
+- **The brand book's logo rule** (never recolour or outline it) now has this one exception, at the owner's request. The word is used there only, and never as the logo.
+- **The foot above it, tidied:**
+  - the logo at 32px with "Peptides, without the sales pitch." and the disclaimer;
+  - the links in four columns: explore, community, how it works, contact;
+  - a last line: © 2026 Miracle Health and "no ads · no sellers · no doses".
+  The weekly email's violet band stays first.
+- **The design check** is unchanged: the glow's circle is a drawn file, not a CSS gradient.
