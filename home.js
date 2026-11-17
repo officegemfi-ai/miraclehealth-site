@@ -8,8 +8,9 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=bb8f0ed784';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=547caf3594';
-import { startSigHero } from '/lib/sighero.js?v=2ac74a58b7';
-import { ring3d, sigRing3d } from '/lib/ring3d.js?v=2fabbf5beb';
+import { startSigHero } from '/lib/sighero.js?v=6cda26d8c6';
+import { sigRing3d } from '/lib/ring3d.js?v=2fabbf5beb';
+import { sigField } from '/lib/sigfield.js?v=550f1a84fb';
 import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
@@ -176,7 +177,7 @@ const topPlayed = startSigHero(document.querySelector('.sx-hero'), {
   }),
   meter: (grade) => meterHtml(grade, { bare: true }),
   levels: LEVELS,
-  ring3d,
+  field: sigField,
 });
 // the side panel says how many Signals are live
 getSignal().then((snap) => {

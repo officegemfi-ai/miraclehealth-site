@@ -1,13 +1,12 @@
-// The front page's opening (lib/sighero.js, lib/ring3d.js) and the shared number formatter
-// (lib/dom.js): the drawing the build writes into the page is the one the browser would draw, and
-// numbers are grouped as the browser's own formats would. Run: node --test tests/*.test.mjs
+// The front page's top (lib/sighero.js, lib/sigfield.js), Sig's 3D ring (lib/ring3d.js) and the shared
+// number formatter (lib/dom.js): the walls a ring draws are the walls it binds, the top carries the
+// light and the parts' bars, and numbers are grouped as the browser's own formats would. Run: node --test tests/*.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ring3d } from '../lib/ring3d.js';
-import { sxRingSvg, sxFloorSvg } from '../lib/sighero.js';
 import { groupN } from '../lib/dom.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -51,12 +50,13 @@ test('bind leaves a part alone until its height changes', () => {
   assert.ok(sets > 0);
 });
 
-test('the front page carries the plate the build draws, and no walls until the Signal is in', () => {
+test('the front page carries the light and the four parts, and no ring or floor', () => {
   const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  const plate = sxRingSvg(ring3d);
-  assert.ok(html.includes(`<!-- sighero:ring -->${plate}<!-- /sighero:ring -->`), 'index.html is out of date: run node scripts/build_library.mjs');
-  assert.ok(!plate.includes('data-walls'));
-  assert.ok(plate.includes('class="orbit sx-orbit"'));
+  assert.ok(html.includes('<div class="sx-field" aria-hidden="true"><canvas class="sx-field-c" width="1" height="1"></canvas><i class="sx-led"></i></div>'));
+  const ill = html.slice(html.indexOf('data-sx="ring"'), html.indexOf('<div class="sx-tb">'));
+  assert.equal((ill.match(/<li class="sx-pt p\d"><span>[a-z ]+<\/span><span class="sx-m"><i><\/i><\/span><b>–<\/b><\/li>/g) || []).length, 4);
+  assert.ok(!/sighero:|sx-ground|sx-svg|orbit/.test(ill + html.slice(html.indexOf('sx-hero'), html.indexOf('sx-grid'))));
+  assert.ok(fs.existsSync(path.join(ROOT, 'img/led.svg')));
 });
 
 test('numbers are grouped as en-US toLocaleString groups them', () => {
@@ -79,17 +79,15 @@ test("the agents' ring, drawn one part to a layer, draws the same walls in the s
   assert.deepEqual(layered.map(([k]) => k), keys);
 });
 
-test('the floor under the top runs through the plate, and the page carries it', () => {
-  // the plate rests on the floor: its centre on the floor is where the floor's middle lines cross
-  const geo = ring3d({ ...GEO, floor: 12 });
-  const floor = sxFloorSvg(ring3d);
-  const d = floor.match(/<path d="([^"]+)" fill="none" stroke="url\(#sx-ground-line\)"/)[1];
-  const segs = [...d.matchAll(/M([\d.-]+) ([\d.-]+)L([\d.-]+) ([\d.-]+)/g)].map((m) => m.slice(1).map(Number));
-  const [cx, cy] = geo.iso(0, 0, -12);
-  const through = segs.filter(([x0, y0, x1, y1]) => Math.abs((x0 + x1) / 2 - cx) < 0.06 && Math.abs((y0 + y1) / 2 - cy) < 0.06);
-  assert.equal(through.length, 2, 'one line each way crosses at the plate\'s centre');
-  // the plate no longer draws a grid of its own or the posts it stood on
-  assert.ok(!/stroke-dasharray="3 4"/.test(sxRingSvg(ring3d)));
-  const page = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  assert.ok(page.includes('<div class="sx-ground" aria-hidden="true"><!-- sighero:floor --><svg class="sx-ground-svg"'));
+test("the Signal's parts are the same four colours in the light, the bars and the spectrum", () => {
+  const js = fs.readFileSync(path.join(ROOT, 'lib/sighero.js'), 'utf8');
+  const cols = JSON.parse(js.match(/const COLS = (\[[^\]]+\]);/)[1].replace(/'/g, '"')).map((c) => c.toUpperCase());
+  const css = fs.readFileSync(path.join(ROOT, 'home.css'), 'utf8');
+  const lime = '#3D8BFF';
+  const val = (v) => (v.trim() === 'var(--lime)' ? lime : v.trim().toUpperCase());
+  for (let i = 0; i < 4; i++) {
+    assert.equal(val(css.match(new RegExp(`\\.p${i}\\{--c:([^}]+)\\}`))[1]), cols[i], `bar ${i}`);
+    assert.equal(val(css.match(new RegExp(`\\.sx-p${i}\\{background:([^}]+)\\}`))[1]), cols[i], `spectrum ${i}`);
+  }
 });
+
