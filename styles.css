@@ -284,19 +284,36 @@ ul,ol{list-style:none;margin:0;padding:0}
 
 /* ---------------------------------------------------------------- footer */
 .foot{background:var(--ink);color:var(--on-ink-2);font-size:14px;--focus:var(--accent)}
-.foot-in{padding-top:40px;padding-bottom:calc(34px + env(safe-area-inset-bottom))}
-.foot-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px 32px}
-.foot-row+.foot-row{margin-top:26px;padding-top:22px;border-top:1px solid var(--line-ink)}
-.foot img{height:24px;width:auto}
+.foot-in{padding-top:40px;padding-bottom:28px}
+/* the logo and what the site is, beside its links in four columns, then a last line */
+.foot-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:36px 64px;padding-top:8px}
+.foot-brand{display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:380px}
 .foot-logo{display:block;flex:none;border-radius:0}
-/* the last row: the wordmark, the disclaimer, then the copyright, one under the other at every width */
-.foot-row:last-child{flex-direction:column;align-items:flex-start;gap:12px}
-.foot-row>p:not(.copy){font-size:15px;line-height:1.55;max-width:52ch}
-.foot-links{display:flex;flex-wrap:wrap;gap:8px 24px;font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:lowercase}
-.foot-links a{color:var(--on-ink);text-decoration:none;transition:color .15s}
-.foot-links a:hover{color:var(--accent)}
-.foot-links .mail{text-transform:none;letter-spacing:.02em}
-.foot .copy{font:500 12px/1.4 var(--mono)}
+.foot-logo img{height:32px;width:auto}
+.foot-say{font:400 14px/1.6 var(--body);color:var(--on-ink-2)}
+.foot-say b{display:block;margin-bottom:6px;font:600 16px/1.35 var(--head);letter-spacing:-.012em;color:var(--on-ink)}
+.foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 24px}
+.foot-h{margin:0 0 14px;font:400 12px/1.4 var(--mono);color:var(--muted)}
+.foot-col ul{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.foot-col a{display:inline-flex;align-items:center;min-height:24px;font:500 14px/1.35 var(--body);color:var(--on-ink-2);text-decoration:none;transition:color .15s}
+.foot-col a:hover{color:#FFFFFF}
+.foot-col .mail{overflow-wrap:anywhere}
+.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:44px;padding-top:18px;border-top:1px solid var(--line-ink)}
+.foot .copy{font:500 12px/1.4 var(--mono);color:var(--muted)}
+/* the logo's word at the very bottom (November 17): the same drawing twice, the outlines dim, and over
+   them at full strength seen only through a soft circle (img/glow.svg) that follows the pointer
+   (lib/os.js sets --mx and --my) or, with no pointer, sweeps slowly across. The page's bottom edge
+   cuts it off */
+.foot-wordwrap{padding-bottom:0}
+.foot-word{position:relative;aspect-ratio:4/1;overflow:hidden;pointer-events:none}
+.foot-word span{position:absolute;inset:0;background:url(/img/wordmark.svg) top center/100% auto no-repeat}
+.fw-dim{opacity:.4}
+.fw-glow{-webkit-mask:url(/img/glow.svg) -80% 50%/560px 560px no-repeat;mask:url(/img/glow.svg) -80% 50%/560px 560px no-repeat;animation:fw-sweep 12s ease-in-out infinite}
+.foot-word.is-pointing .fw-glow{animation:none;-webkit-mask-position:calc(var(--mx,0px) - 280px) calc(var(--my,0px) - 280px);mask-position:calc(var(--mx,0px) - 280px) calc(var(--my,0px) - 280px)}
+@keyframes fw-sweep{0%{-webkit-mask-position:-80% 50%;mask-position:-80% 50%}70%,100%{-webkit-mask-position:180% 50%;mask-position:180% 50%}}
+@media (prefers-reduced-motion:reduce){.fw-glow{animation:none;opacity:0}.foot-word.is-pointing .fw-glow{opacity:1}}
+@media (max-width:1100px){.foot-grid{grid-template-columns:1fr}.foot-brand{max-width:560px}}
+@media (max-width:640px){.foot-cols{grid-template-columns:repeat(2,minmax(0,1fr))}.foot-base{flex-direction:column}.foot-wordwrap{padding-left:0;padding-right:0}.foot-word{aspect-ratio:3.4/1}}
 
 /* The weekly email's sign-up: at the foot of every page (on ink), and on the weekly email's
    own pages (on paper, .on-paper). A plain form: it works with no script. */
@@ -497,9 +514,6 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 
 /* the footer */
 .foot{background:var(--band);border-top:1px solid var(--line)}
-.foot-links{font:500 13.5px/1.4 var(--body);letter-spacing:0;text-transform:none}
-.foot-links a{color:var(--on-ink-2)}
-.foot-links a:hover{color:#FFFFFF}
 .foot-news>p b{font:600 22px/1.2 var(--head);letter-spacing:-.012em;text-wrap:balance}
 .nf-row input{height:48px;padding:0 16px;border-radius:0;border-color:var(--line-2);background:var(--card)}
 .nf-row input:hover{border-color:var(--text)}
@@ -656,8 +670,8 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
   .os-search-t,.os-search kbd,.os-top-sig-t{display:none}
   .os-top-sig{justify-content:center;width:40px;margin-left:0;padding:0}
   .wrap{padding-left:16px;padding-right:16px}
-  .foot-links{gap:0 20px}
-  .foot-links a{display:inline-flex;align-items:center;min-height:40px}
+  .foot-col ul{gap:0}
+  .foot-col a{min-height:40px}
   .nf-main.win-body{min-height:calc(100svh - var(--os-tb) - 62px)}
 }
 @media (prefers-reduced-motion:reduce){.os-side{transition:none!important}}
@@ -841,7 +855,7 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
   .nf-note,.method .cell-sub{font-size:14px}
   .method .mtable{font-size:15px}
   .foot-logo{display:inline-flex;align-items:center;min-height:40px}
-  .foot-links a{display:inline-flex;align-items:center;justify-content:center;min-width:40px;min-height:40px}
+  .foot-col a{min-height:40px}
 }
 
 /* ---------- the violet band (decision, November 16): a grainy violet gradient, deepest at the top left and

@@ -204,25 +204,37 @@ ${osSide(current, side, url)}
     <a class="btn bone sm os-top-join" href="${COMMUNITY}/">Join</a>
   </header>`;
 }
+// The foot of every page: the weekly email, then the logo and what the site is beside its links in
+// four columns, then a last line, and under it all the logo's word drawn big as a stack of hairline
+// outlines in violet into blue (img/wordmark.svg), cut off by the bottom of the page, that lights up
+// under the pointer (lib/os.js) and, with no pointer, sweeps slowly (November 17)
+const FOOT_COLS = [
+  ['explore', [[placeHref('library', { site: '' }), 'Library'], ['/#signal', 'The Signal'], [placeHref('ai', { site: '' }), 'Ask Sig'], ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/status/', 'FDA status tracker']]],
+  ['community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My Miracle'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
+  ['how it works', [['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
+  ['contact', [['mailto:hello@miraclehealth.us', 'hello@miraclehealth.us'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
+];
 function osClose({ url = '/' }) {
   return `  <footer class="foot win-foot">
     <div class="wrap foot-in">
     ${url.startsWith('/weekly/') ? '' : footNews()}
-    <div class="foot-row">
-      ${footLinks()}
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="foot-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="92" height="32"></a>
+        <p class="foot-say"><b>Peptides, without the sales pitch.</b> Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
+      </div>
+      <nav class="foot-cols" aria-label="Site">
+        ${FOOT_COLS.map(([h, links]) => `<div class="foot-col"><p class="foot-h">${h}</p><ul>${links.map(([href, label]) => `<li><a href="${href}"${href.startsWith('mailto:') ? ' class="mail"' : ''}>${label}</a></li>`).join('')}</ul></div>`).join('\n        ')}
+      </nav>
     </div>
-    <div class="foot-row">
-      <a class="foot-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="69" height="24"></a>
-      <p>Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
-      <p class="copy">© 2026 Miracle Health</p>
+    <div class="foot-base"><p class="copy">© 2026 Miracle Health</p><p class="copy">no ads · no sellers · no doses</p></div>
     </div>
-    </div>
+    <div class="wrap foot-wordwrap" aria-hidden="true"><div class="foot-word"><span class="fw-dim"></span><span class="fw-glow"></span></div></div>
   </footer>
 </div>
 </div>
 </div>`;
 }
-const footLinks = () => `<nav class="foot-links" aria-label="Site">${PLACES.map(([k, label]) => `<a href="${placeHref(k, { site: '' })}">${label}</a>`).join('')}<a href="/#signal">The Signal</a><a href="/status/">FDA status tracker</a><a href="/compare/">Compare</a><a href="/goals/">By goal</a><a href="/weekly/">The weekly email</a><a href="/founders/">Founding reporters</a><a href="/method/">How the numbers are made</a><a href="/story/">The story</a><a href="/about/">About</a><a href="/#rules">House rules</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a class="mail" href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></nav>`;
 // The weekly email's sign-up at the foot of every page but the weekly email's own
 const footNews = () => `<div class="foot-news">
       <p><b>The Signal, weekly.</b> What changed, new studies and FDA news. One email a week.</p>

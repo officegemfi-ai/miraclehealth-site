@@ -264,6 +264,20 @@ The owner sent the front page's top on a wide screen and asked for it to look cl
 - **On a wide screen** (the window 1500px and up) the headline grows to 88px and the Signal's column to 800px, so the two halves fill the width together.
 - **The top bar names its sections:** The Signal, Library, Community and How it works sit after the logo, the search moved to the right, and the page you're on is underlined. The side panel keeps everything and stays where it was; below 1100px wide the bar is as before.
 
+## 2026-11-17 · The foot, with the logo's word drawn big
+
+The owner sent a video of a footer whose name is drawn huge at the bottom as a stack of hairline outlines that light up under the pointer, and asked for ours to be like it, with the Miracle logo and our purple and blue.
+- **The word:** the logo's script word alone (HEALTH and the registered mark left out), traced from `logo.webp` into outlines (`design/wordmark/make_wordmark.py`, run when the logo changes). It is drawn eight times, each a step down and to the left and fainter than the one in front, as hairlines in a gradient from light violet through the brand's violet and an ultramarine into the Signal's blue (`img/wordmark.svg`, 11 KB, cached once).
+- **At the very bottom of every page,** as wide as the page's text, the page's bottom edge cuts off the lower part of the word. On a phone it runs edge to edge.
+- **It's dim, and lights up under the pointer:** a second copy at full strength is seen only through a soft circle (`img/glow.svg`) that follows the pointer anywhere in the foot (`lib/os.js`). With no pointer (a phone) the circle sweeps slowly across. With reduced motion there's no sweep.
+- **The brand book's logo rule** (never recolour or outline it) now has this one exception, at the owner's request. The word is used there only, and never as the logo.
+- **The foot above it, tidied:**
+  - the logo at 32px with "Peptides, without the sales pitch." and the disclaimer;
+  - the links in four columns: explore, community, how it works, contact;
+  - a last line: © 2026 Miracle Health and "no ads · no sellers · no doses".
+  The weekly email's violet band stays first.
+- **The design check** is unchanged: the glow's circle is a drawn file, not a CSS gradient.
+
 ## 2026-11-17 · Where it acts, in place of the print
 
 The owner showed BPC-157's print beside its name and asked for it to have a use: it didn't make sense and was part of the older design. A print drew the sheet as one abstract mark (spokes to 38 places round a circle, coloured beads, evidence rings, a Signal arc that often hadn't loaded), and nothing on it said which spoke was which.
