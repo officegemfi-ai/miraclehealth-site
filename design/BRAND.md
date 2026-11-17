@@ -90,7 +90,7 @@ Every page opens the same way:
   - My Miracle: the Stack builder's glyph, "this device".
   
   Under them comes what is on this page, then the rest and the legal.
-- **Top bar** (60px, sticky): the menu button, the logo, a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button.
+- **Top bar** (60px, sticky): the menu button, the logo, then the four sections most people go to (The Signal, Library, Community, How it works; the page you're on is underlined where the bar meets the page), and at the right a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button. Below 1100px wide the four sections are left to the side panel.
 - **Page,** across the window's whole width (up to 2400px, with a margin that grows from 16px to 96px) on the faint grid under the ultramarine wash, then the foot: the weekly email, the links, the disclaimer. Text keeps its own line lengths inside it; on a wide screen the front page's top grows with it. On the front page's top the faint grid gives way to the Signal's floor: the plate's isometric squares, laid under the whole top and brightest round the ring, with the wash kept over it (decision, November 16).
 
 No window box, tabs, path line or status bar: the frame is a plain website's (decision log, November 12).

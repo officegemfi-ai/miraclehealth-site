@@ -184,6 +184,11 @@ function osSide(current, ctx = '', url = '') {
   </div>
 </aside>`;
 }
+// The top bar names the four places most people go, so a laptop shows where things are without the
+// menu (November 17): the Signal, the Library, the community and how it works. The side panel stays,
+// with everything; on a phone and a narrow window the bar keeps only the menu, search, Ask Sig and Join
+const TOP_LINKS = [['/#signal', 'The Signal', ''], ['/library/', 'Library', 'library'], [`${COMMUNITY}/`, 'Community', 'community'], ['/#how', 'How it works', '']];
+const topLinks = (current) => `<nav class="os-links" aria-label="Sections">${TOP_LINKS.map(([href, label, k]) => `<a href="${href}"${k && k === current ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>`;
 function osOpen({ current = '', url = '/', side = '' }) {
   return `<div class="os" id="os">
 ${osSide(current, side, url)}
@@ -193,6 +198,7 @@ ${osSide(current, side, url)}
   <header class="os-top">
     <button class="os-menu" id="os-menu" type="button" aria-label="Open the menu" aria-controls="os-side" aria-expanded="false">${ICO.menu}</button>
     <a class="os-top-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    ${topLinks(current)}
     <button class="os-search" type="button" data-cmdk aria-label="Search the Library and the site (⌘K)">${ICO.search}<span class="os-search-t">Search the Library…</span><kbd class="kbd-k" aria-hidden="true">⌘K</kbd></button>
     <a class="os-top-sig" href="/sig/"><span aria-hidden="true">${ringSvg(16)}</span><span class="os-top-sig-t">Ask Sig</span></a>
     <a class="btn bone sm os-top-join" href="${COMMUNITY}/">Join</a>

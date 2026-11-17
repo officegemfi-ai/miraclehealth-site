@@ -24,8 +24,8 @@
 <link rel="preload" href="fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/monaspace-neon-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=05a1ff01ee">
-<link rel="stylesheet" href="styles.css?v=273f9ccec2">
-<link rel="stylesheet" href="/home.css?v=0c62da5b63">
+<link rel="stylesheet" href="styles.css?v=6df92ee92a">
+<link rel="stylesheet" href="/home.css?v=acb75a29a5">
 <script type="module" src="/home.js?v=eb5e04179d"></script>
 <link rel="modulepreload" href="/lib/sighero.js?v=8cee795e4b">
 <link rel="modulepreload" href="/lib/ring3d.js?v=5335cb2283">
@@ -58,6 +58,7 @@
   <header class="os-top">
     <button class="os-menu" id="os-menu" type="button" aria-label="Open the menu" aria-controls="os-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
     <a class="os-top-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <nav class="os-links" aria-label="Sections"><a href="/#signal">The Signal</a><a href="/library/">Library</a><a href="https://community.miraclehealth.us/">Community</a><a href="/#how">How it works</a></nav>
     <button class="os-search" type="button" data-cmdk aria-label="Search the Library and the site (⌘K)"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4.2-4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="os-search-t">Search the Library…</span><kbd class="kbd-k" aria-hidden="true">⌘K</kbd></button>
     <a class="os-top-sig" href="/sig/"><span aria-hidden="true"><svg class="ring" width="16" height="16" viewBox="-8 -8 16 16" aria-hidden="true" focusable="false"><circle class="rg on" data-a="safety" r="6.14" fill="none" stroke="#FF6B5B" color="#FF6B5B" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-85.5)"/><circle class="rg on" data-a="planner" r="6.14" fill="none" stroke="#FF9F4A" color="#FF9F4A" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-52.77)"/><circle class="rg on" data-a="recommender" r="6.14" fill="none" stroke="#F2C94C" color="#F2C94C" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(-20.05)"/><circle class="rg on" data-a="community" r="6.14" fill="none" stroke="#3D8BFF" color="#3D8BFF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(12.68)"/><circle class="rg on" data-a="combination" r="6.14" fill="none" stroke="#5FE08A" color="#5FE08A" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(45.41)"/><circle class="rg on" data-a="markers" r="6.14" fill="none" stroke="#3FE0C5" color="#3FE0C5" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(78.14)"/><circle class="rg on" data-a="synergy" r="6.14" fill="none" stroke="#55D3FF" color="#55D3FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(110.86)"/><circle class="rg on" data-a="evidence" r="6.14" fill="none" stroke="#6FA8FE" color="#6FA8FE" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(143.59)"/><circle class="rg on" data-a="relatives" r="6.14" fill="none" stroke="#8F95FF" color="#8F95FF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(176.32)"/><circle class="rg on" data-a="mechanism" r="6.14" fill="none" stroke="#B98CFF" color="#B98CFF" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(209.05)"/><circle class="rg on" data-a="builder" r="6.14" fill="none" stroke="#FF7FC8" color="#FF7FC8" stroke-width="2.72" stroke-dasharray="2.54 38.58" transform="rotate(241.77)"/></svg></span><span class="os-top-sig-t">Ask Sig</span></a>
     <a class="btn bone sm os-top-join" href="https://community.miraclehealth.us/">Join</a>
@@ -74,7 +75,7 @@
       <div class="sx-head">
         <p class="sx-kick"><i class="sx-live" aria-hidden="true"></i>the community signal · live</p>
         <h1 id="fp-h">Peptides, without the sales pitch.</h1>
-        <p class="fp-lede">Meet the Community Signal: one honest score from 0 to 100 for how it went, built from what the people who took it report. “It did nothing” counts. Every report is followed up for twelve weeks. Nobody can buy a better number.</p>
+        <p class="fp-lede">One honest score from 0 to 100 for how it went, built from what the people who took it report. “It did nothing” counts, and nobody can buy a better number.</p>
       </div>
 
       <div class="sx-do">
@@ -96,18 +97,13 @@
                 <p class="hp-keys" aria-hidden="true"><span>↩ open the fact sheet</span><span>↓ move</span><span>esc clear</span><span class="hp-keys-ask">or ask sig instead</span></p>
               </div>
             </div>
-            <button class="btn line sx-go" type="submit">Look it up</button>
+            <button class="btn lime sx-go" type="submit">Look it up</button>
           </div>
         </form>
 
-        <p class="sx-acts"><a class="btn lime" href="https://community.miraclehealth.us/#/new">Share how it went</a><a class="sx-howto" href="#how">How the score is made</a></p>
+        <p class="sx-acts"><a href="https://community.miraclehealth.us/#/new">Took it? Share how it went<span class="sx-arr" aria-hidden="true">→</span></a><a href="#how">How the score is made<span class="sx-arr" aria-hidden="true">→</span></a></p>
 
-        <ul class="sx-read" aria-label="Miracle Health in numbers">
-          <li class="sx-read-live"><b data-sx="count">51</b><span>live Signals</span></li>
-          <li><b>0</b><span>ads</span></li>
-          <li><b>0</b><span>sellers</span></li>
-          <li><b>0</b><span>doses</span></li>
-        </ul>
+        <p class="sx-read"><span><b data-sx="count">51</b> live Signals</span><span>no ads</span><span>no sellers</span><span>no doses</span></p>
       </div>
 
       <figure class="sx hs-card" aria-busy="true" aria-labelledby="sx-cap">
