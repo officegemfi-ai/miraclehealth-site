@@ -253,3 +253,13 @@ The owner showed a grainy purple gradient banner and asked for something like it
   - the weekly email at the foot of every page, as a band of its own.
 - **On the band:** the words are white and the main action is black, since electric blue doesn't hold on violet. The weekly email's field is a dark glass, with a white outline when you're in it.
 - **The design check** counts its one gradient (the baseline is raised by one). Its colours are in the palette, so the colour count is unchanged.
+
+## 2026-11-17 · A cleaner top, and a top bar with its sections
+
+The owner sent the front page's top on a wide screen and asked for it to look cleaner, with a better header. The top had too many boxes (the rank's numbered box, two arrow boxes, four boxed tags round the ring, a plate of what people report and a foot with its own tile), three ways to act and four big numbers, and on a wide screen its two halves drifted far apart.
+- **The words:** the lede is two sentences: one honest score, built from what people who took it report; "it did nothing" counts and nobody can buy a better number. The twelve weeks are left to How it works.
+- **One main action:** the search is the top's main action, so Look it up is the electric-blue button. Share how it went and How the score is made are plain links with an arrow.
+- **The numbers** are one line: 51 live Signals (in the community's blue), no ads, no sellers, no doses. Zeros read like missing data.
+- **The Signal stands on the floor with no plates:** the name and its rank are words over the ring (no numbered box), the ring's four numbers are words with a dark edge instead of boxed tags (on a phone, two by two under it), what people report most is three lines, and the level and the studies follow on one line.
+- **On a wide screen** (the window 1500px and up) the headline grows to 88px and the Signal's column to 800px, so the two halves fill the width together.
+- **The top bar names its sections:** The Signal, Library, Community and How it works sit after the logo, the search moved to the right, and the page you're on is underlined. The side panel keeps everything and stays where it was; below 1100px wide the bar is as before.

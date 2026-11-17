@@ -68,15 +68,18 @@
 .fp-prompt .hp-keys{display:flex;flex-wrap:wrap;gap:6px 20px;margin:0;padding:11px 18px;border-top:1px solid var(--line);font:400 11.5px/1.4 var(--mono);color:var(--muted)}
 .fp-prompt .hp-keys-ask{margin-left:auto}
 
-.sx-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin:16px 0 0}
-.sx-howto{font:600 15px/1.3 var(--body);color:var(--text);text-decoration:underline 1px rgba(255,255,255,.5);text-underline-offset:3px}
-.sx-howto:hover{text-decoration-color:currentColor}
-.sx-howto:hover{color:#FFFFFF}
-.sx-read{display:flex;gap:32px;margin:38px 0 0;padding:22px 0 0;border-top:1px solid var(--line);list-style:none}
-.sx-read li{display:flex;flex-direction:column;gap:8px}
-.sx-read b{font:650 expanded 28px/1 var(--head);letter-spacing:-.03em;color:var(--text)}
-.sx-read .sx-read-live b{color:var(--lime)}
-.sx-read span{font:400 10.5px/1.2 var(--mono);color:var(--muted)}
+.sx-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;margin:20px 0 0}
+.sx-acts a{display:inline-flex;align-items:center;gap:8px;min-height:24px;font:600 15px/1.3 var(--body);color:var(--text);text-decoration:none}
+.sx-acts .sx-arr{color:var(--text-2);transition:transform .2s ease,color .2s ease}
+.sx-acts a:hover{color:#FFFFFF}
+.sx-acts a:hover .sx-arr{color:#FFFFFF;transform:translateX(3px)}
+.sx-acts a:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+/* what Miracle Health is in one line of numbers: the live Signals in the community's blue, then what it
+   never has */
+.sx-read{display:flex;flex-wrap:wrap;gap:6px 0;margin:36px 0 0;padding:18px 0 0;border-top:1px solid var(--line);font:400 12px/1.5 var(--mono);color:var(--text-2)}
+.sx-read span{white-space:nowrap}
+.sx-read span+span::before{content:'·';margin:0 10px;color:var(--muted)}
+.sx-read b{font-weight:700;color:var(--lime)}
 
 /* the Signal, as a card in How it works' language (page 18): its rank in the numbered box with the
    name and the arrows, its ring in 3D (a wall for each part) with the score in its middle, what people report
@@ -93,14 +96,24 @@
 .sx-ground-svg{position:absolute;left:0;top:0;width:100%;height:100%}
 .sx-hero .sx.hs-card{background:none;border-color:transparent}
 .sx-hero .sx .hs-tree-v,.sx-hero .sx .hs-tree-h,.sx-hero .sx .hs-h::after,.sx-hero .sx .hs-ill::after{display:none}
-.sx-hero .sx-tb,.sx-hero .sx-f{border:1px solid var(--line-2);background:var(--card)}
-.sx-hero .sx-tb{border-bottom:0;padding-left:24px}
-.sx-hero .sx-tb::after{background:var(--line)}
-.sx-hero .sx-f{border-top:0;padding-left:24px}
+/* cleaner (November 17): no plates round the Signal either. Its name and how it ranks stand over the
+   ring as words, the ring's four numbers are words with a dark edge (no boxes), and what people report
+   most and the level its Signal has reached follow under it on the floor. The rank's numbered box, the
+   foot's tile and its "Signal" are left out: the rank is in the line under the name */
+.sx-hero .sx-tb,.sx-hero .sx-f{border:0;background:none}
+.sx-hero .sx-tb{padding:4px 0 0}
+.sx-hero .sx-tb::after{display:none}
+.sx-hero .sx-f{height:auto;padding:16px 0 0}
+.sx-hero .hs-num,.sx-hero .hs-tile,.sx-hero .hs-who{display:none}
+.sx-hero .sx-h{height:auto;padding:0 0 4px}
+.sx-hero .sx-h .hs-title{font:650 expanded 26px/1.15 var(--head);letter-spacing:-.025em;white-space:nowrap}
+.sx-tag rect{fill:none;stroke:none}
+.sx-tag text{paint-order:stroke;stroke:#000000;stroke-width:5px;stroke-linejoin:round}
+.sx-tl{opacity:.5}
 .sx-h{gap:16px}
 .sx-h-in{flex:1;min-width:0}
 .sx-h .hs-title{display:block;margin:0;overflow:hidden;text-overflow:ellipsis}
-.sx-meta{margin:7px 0 0;font:400 11px/1.3 var(--mono);color:var(--muted)}
+.sx-meta{margin:8px 0 0;font:400 12px/1.4 var(--mono);color:var(--text-2)}
 .sx-rk{white-space:nowrap}
 .sx-nav{flex:none;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text);cursor:pointer;transition:border-color .2s,background-color .2s}
 .sx-nav+.sx-nav{margin-left:-8px}
@@ -138,15 +151,16 @@
 .sx-tb{position:relative;padding:18px 24px 18px 84px}
 .sx-k{margin:0 0 6px;font:400 11px/1 var(--mono);color:var(--lime)}
 .sx-parts{display:none;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:0;list-style:none}
-.sx-pt{padding:5px 8px;border:1px solid rgba(255,255,255,.22);border-radius:0;background:var(--ink);font:400 11px/1 var(--mono);white-space:nowrap}
+.sx-pt{padding:0;border:0;background:none;font:400 12px/1.4 var(--mono);white-space:nowrap}
 .sx-pt.p0{color:var(--lime)}
 .sx-pt.p1{color:color-mix(in srgb,var(--lime) 68%,#FFFFFF)}
 .sx-pt.p2{color:color-mix(in srgb,var(--lime) 44%,#FFFFFF)}
 .sx-pt.p3{color:color-mix(in srgb,var(--lime) 22%,#FFFFFF)}
-.sx-themes{min-height:148px;margin:0;padding:0;list-style:none}
-.sx-themes li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.sx-themes{min-height:96px;margin:0;padding:0;list-style:none}
+.sx-themes li{display:flex;align-items:baseline;justify-content:flex-start;gap:12px;padding:5px 0}
+.sx-themes li:nth-child(n+4){display:none}
 .sx-themes .sx-none{font:400 14px/1.35 var(--body);color:var(--muted)}
-.sx-th{font:400 14px/1.35 var(--body);color:var(--text-read)}
+.sx-th{font:400 15px/1.35 var(--body);color:var(--text-read)}
 .sx-fq{font:400 11px/1 var(--mono);color:var(--text-2);white-space:nowrap}
 .sx-fq.hi{color:var(--lime)}
 .sx-fq.mid{color:var(--text-read)}
@@ -156,6 +170,7 @@
    for the level, so nothing beside or under the card moves when the numbers arrive */
 .sx .sx-sub [data-sx="level"]{min-height:1.3em}
 .sx .sx-sub{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.sx-hero .sx .sx-sub{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-left:0;font-size:12px;color:var(--text-2);text-align:left}
 .sx-studies{display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border:1px solid rgba(20,236,195,.34);border-radius:0;background:rgba(20,236,195,.06);color:var(--sig-evidence);font:400 11px/1 var(--mono);text-decoration:none;white-space:nowrap;transition:border-color .2s}
 .sx-studies:hover{border-color:var(--sig-evidence)}
 .sx-studies:focus-visible{outline:2px solid var(--text);outline-offset:2px}
@@ -517,17 +532,18 @@
 
 /* ---------- by the window's width ---------- */
 @container fp (min-width:860px){
-  .sx-grid{grid-template-columns:minmax(0,1fr) minmax(400px,min(560px,48%));grid-template-rows:1fr auto auto 1fr auto;grid-template-areas:". inst" "head inst" "do inst" ". inst" "band band";column-gap:40px;row-gap:0}
-  .sx-head,.sx-do{max-width:490px}
+  .sx-grid{grid-template-columns:minmax(0,1fr) minmax(400px,min(620px,50%));grid-template-rows:1fr auto auto 1fr auto;grid-template-areas:". inst" "head inst" "do inst" ". inst" "band band";column-gap:48px;row-gap:0}
+  .sx-head,.sx-do{max-width:520px}
   .sx-do{margin-top:30px}
   .sx-band{margin-top:64px}
 }
 @container fp (min-width:1500px){
-  .sx-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:72px}
+  .sx-grid{grid-template-columns:minmax(0,1fr) minmax(0,min(800px,52%));column-gap:64px}
   .sx-head,.sx-do{max-width:720px}
-  .sx-hero h1{font-size:clamp(48px,2.4cqi + 12px,76px)}
-  .sx-hero .fp-lede{max-width:600px;font-size:20px}
-  .sx.hs-card{max-width:640px}
+  .sx-hero h1{font-size:clamp(52px,3.4cqi + 8px,88px)}
+  .sx-head{max-width:920px}
+  .sx-hero .fp-lede{max-width:640px;font-size:20px}
+  .sx.hs-card{max-width:800px}
   .sx-plot{height:260px}
   .sx-spec{min-height:324px}
 }
@@ -620,7 +636,7 @@
   .sx-ill{aspect-ratio:352/280;overflow:hidden;--u:calc(100cqw / 352)}
   .sx-ill .sx-svg{inset:auto;left:-29.545%;top:-30%;width:159.091%;height:135.714%}
   .sx-mid{top:34.46%}
-  .sx-parts{display:flex}
+  .sx-parts{display:grid;grid-template-columns:repeat(2,max-content);gap:6px 28px;margin-bottom:20px}
   .sx .hs-who{display:none}
   .sx-find .hp-line{display:block;height:auto;padding:0;border:0;background:none}
   .sx-box{position:relative;height:56px;padding:0 16px;border:1px solid var(--line-2);border-radius:0;background:var(--ink)}
@@ -628,8 +644,8 @@
   .sx-find .hp-line:has(input:focus-visible){outline:0}
   .sx-box:has(input:focus-visible){outline:2px solid var(--text);outline-offset:2px}
   .sx-go{width:100%;margin-top:12px}
-  .sx-acts .btn{flex:1 1 100%}
-  .sx-read{justify-content:space-between;gap:16px}
+  .sx-read{margin-top:28px;font-size:11px}
+  .sx-read span+span::before{margin:0 7px}
   .fp-top .c-sig{width:auto}
   .fp-top .c-th{display:none}
   .fp-top-t{display:block;margin-top:6px;font:400 13px/1.3 var(--body);color:var(--text-2);white-space:normal}
