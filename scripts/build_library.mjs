@@ -33,7 +33,7 @@ import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
 import { ring3d } from '../lib/ring3d.js';
 import { sxRingSvg, sxFloorSvg } from '../lib/sighero.js';
 import { glyphSvg } from '../lib/glyphs.js';
-import { printSvg } from '../lib/print.js';
+import { bodyFigure, MARK, MARK_SAY, ORDER_OPS, tipOf } from '../lib/bodyfig.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
@@ -121,7 +121,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/ring3d.js', 'ai/who.js', 'ai/mind.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/ring3d.js', 'ai/who.js', 'ai/mind.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -603,15 +603,23 @@ function entryPage(c) {
       : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
     <p class="lt-more">${catalog.filter((x) => !listed(x)).length} more compounds are listed and waiting for their sheets.</p>
   </nav>`;
-  // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
-  const print = f && BODY.compounds[c.id] ? `<figure class="le-print" aria-labelledby="le-print-cap">
-      ${printSvg({ id: c.id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[c.id].lines || [], places: BODY.places.map((x) => x.at) }, { size: 232 })}
-      <figcaption id="le-print-cap"><b>${e(c.name)}’s print.</b> Each spoke is a place in the body its sheet names, each bead a line there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">blood test</span> <span class="pk pk-warn">caution</span>. The rings in the middle are its evidence; the blue arc, its Signal. <a href="/story/#prints">How prints work</a></figcaption>
+  // where it acts: the sheet's lines in the body, on a figure beside its name (lib/bodyfig.js). Each
+  // place is a dot joined to its name and the marks of what happens there; the places that are the
+  // whole body are listed under it. Every name opens "In the body", where the lines are in full
+  const inBody = f && BODY.compounds[c.id];
+  const fig = inBody ? bodyFigure({ name: c.name, lines: inBody.lines || [], route: inBody.route }, { href: '#body', scale: .8 }) : null;
+  const opsUsed = new Set((inBody?.lines || []).map((l) => l.op));
+  const markOf = (o) => `<i class="lw-m${o === 'warn' ? ' warn' : o === 'watch' ? ' watch' : ''}" aria-hidden="true">${MARK[o]}</i>`;
+  const where = fig && fig.places ? `<figure class="le-where" aria-labelledby="le-where-cap">
+      <figcaption id="le-where-cap" class="lw-cap"><b>where it acts</b><span>${fig.places} place${fig.places === 1 ? '' : 's'} in the body${inBody.route ? ` · taken: ${e(inBody.route)}` : ''}</span></figcaption>
+      ${fig.svg}
+      ${fig.wide.length ? `<p class="lw-wide"><span class="lw-wk">Body-wide</span>${fig.wide.map((p) => `<a href="#body" title="${e(tipOf(p))}">${p.ops.map(markOf).join('')}${e(p.at.charAt(0).toUpperCase() + p.at.slice(1))}</a>`).join('')}</p>` : ''}
+      <p class="lw-key">${ORDER_OPS.filter((o) => opsUsed.has(o)).map((o) => `<span>${markOf(o)}${MARK_SAY[o]}</span>`).join('')}<a href="#body">Each place in full<span aria-hidden="true">&nbsp;→</span></a></p>
     </figure>` : '';
   const body = `<div class="lib-entry" data-id="${c.id}" data-name="${e(c.name)}">
-<section class="le-hero${print ? ' has-print' : ''}">
+<section class="le-hero${where ? ' has-where' : ''}">
   <div class="wrap">
-    ${print}
+    <div class="le-main">
     <p class="kick lime">${e(familyLine(c))}</p>
     <h1>${e(c.name)}.</h1>
     ${shownAliases(c).length ? `<p class="aka">Also called ${shownAliases(c).map(e).join(', ')}</p>` : ''}
@@ -627,6 +635,8 @@ function entryPage(c) {
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
       <a class="btn line sm" href="${COMMUNITY}/#/s/${encodeURIComponent(c.id)}">See what members report</a>
     </div>
+    </div>
+    ${where}
   </div>
 </section>
 
@@ -1039,9 +1049,9 @@ function myPage() {
 // The story: the new Miracle Health, told in its own windows
 // ---------------------------------------------------------------------------
 // One page that tells what changed and why: one app, the twelve agents and what each does, how an
-// answer is made (a real run, step by step), every compound's print, and the rules that don't
-// move. Everything on it is drawn from the Library and Sig as they are: the agents' own words, a
-// run as Sig logs it, the prints from the fact sheets.
+// answer is made (a real run, step by step), where each compound acts in the body, and the rules
+// that don't move. Everything on it is drawn from the Library and Sig as they are: the agents' own
+// words, a run as Sig logs it, the figures from the fact sheets.
 const STORY_PRINTS = ['semaglutide', 'tirzepatide', 'bpc157', 'testosterone', 'creatine', 'melatonin', 'ashwagandha', 'metformin'];
 const STORY_RUN = [
   ['safety', 'No red flags'], ['planner', 'Looking for evidence on body fat, body weight and lean mass'], ['recommender', 'Opened 2 fact sheets'],
@@ -1051,10 +1061,11 @@ const STORY_RUN = [
   ['interpretation', 'Reasoned it all through for efficacy: plausible, unproven'], ['safety', 'Every part checked before you saw it: no doses, no sellers'],
 ];
 function storyPage() {
-  const places = BODY.places.map((x) => x.at);
+  // where each acts, small: the dots alone, each figure opening its sheet's "In the body"
   const prints = STORY_PRINTS.filter((id) => entries.has(id) && BODY.compounds[id] && byId.has(id)).map((id) => {
-    const c = byId.get(id), f = entries.get(id);
-    return `<a class="sy-print" href="/library/${id}/">${printSvg({ id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[id].lines || [], places }, { size: 168 })}<span class="sy-pn">${e(c.name)}</span><span class="sy-pf">${e(`${id}.md`)} · ${(BODY.compounds[id].lines || []).length} lines</span></a>`;
+    const c = byId.get(id), lines = BODY.compounds[id].lines || [];
+    const fig = bodyFigure({ name: c.name, lines }, { labels: false, scale: .5 });
+    return `<a class="sy-print" href="/library/${id}/#body">${fig.svg}<span class="sy-pn">${e(c.name)}</span><span class="sy-pf">${fig.places} place${fig.places === 1 ? '' : 's'} · ${lines.length} lines</span></a>`;
   }).join('');
   const short = (k) => (k === 'community' ? 'community' : k);
   const body = `<article class="sy">
@@ -1100,14 +1111,14 @@ function storyPage() {
 
   <section class="sy-sec" id="prints" aria-labelledby="sy-prints">
     <div class="wrap">
-      <p class="sy-k">03 · prints</p>
-      <h2 id="sy-prints">Every compound has a print.</h2>
-      <p class="sy-lede">A print is a fact sheet drawn as one mark, so you can tell two compounds apart, and compare them, at a glance. Nothing in it is decoration.</p>
+      <p class="sy-k">03 · in the body</p>
+      <h2 id="sy-prints">Every compound shows where it acts.</h2>
+      <p class="sy-lede">Each fact sheet opens with a figure of the body: a dot for each place the sheet names, its name beside it and what happens there. Nothing is drawn that the sheet doesn’t say.</p>
       <ul class="sy-legend">
-        <li><b>Spokes</b> run to the places in the body the sheet names: the body’s ${places.length} places, head to toe, clockwise from the top.</li>
-        <li><b>Beads</b> are its lines there: <span class="pk pk-is">acts</span> <span class="pk pk-up">raises</span> <span class="pk pk-down">lowers</span> <span class="pk pk-block">blocks</span> <span class="pk pk-watch">worth a blood test</span> <span class="pk pk-warn">a caution</span>, cautions outermost.</li>
-        <li><b>The core</b> is the family’s shape (peptide, hormone, medication, supplement) and the evidence inside it, ring by ring, in the Evidence librarian’s blue.</li>
-        <li><b>The edge</b> carries the Community Signal in blue, once it’s known.</li>
+        <li><b>Dots</b> are the places the sheet names, from the brain to the feet. A coral dot has a caution.</li>
+        <li><b>Marks</b> say what happens there: <span class="sy-mk">${MARK.is}</span> acts, <span class="sy-mk">${MARK.up}</span> raises, <span class="sy-mk">${MARK.down}</span> lowers, <span class="sy-mk">${MARK.block}</span> blocks, <span class="sy-mk watch">${MARK.watch}</span> worth checking, <span class="sy-mk warn">${MARK.warn}</span> a caution.</li>
+        <li><b>Body-wide</b> places (the blood, blood sugar, the immune system, the mitochondria, the whole body) are listed under the figure.</li>
+        <li><b>Every name</b> opens the sheet’s “In the body”, where each line is in full, with its sources.</li>
       </ul>
       <div class="sy-prints">${prints}</div>
     </div>

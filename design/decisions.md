@@ -277,3 +277,14 @@ The owner sent a video of a footer whose name is drawn huge at the bottom as a s
   - a last line: © 2026 Miracle Health and "no ads · no sellers · no doses".
   The weekly email's violet band stays first.
 - **The design check** is unchanged: the glow's circle is a drawn file, not a CSS gradient.
+
+## 2026-11-17 · Where it acts, in place of the print
+
+The owner showed BPC-157's print beside its name and asked for it to have a use: it didn't make sense and was part of the older design. A print drew the sheet as one abstract mark (spokes to 38 places round a circle, coloured beads, evidence rings, a Signal arc that often hadn't loaded), and nothing on it said which spoke was which.
+- **Now the same lines are drawn on a body:** a dot for each place the sheet names, at that place, joined to its name and the marks of what happens there. The marks are the ones in "In the body" below: ▶ acts, ▲ raises, ▼ lowers, × blocks, ◊ worth checking, ! caution. A dot with a caution is coral.
+- **Body-wide places** (the blood, blood sugar, the immune system, the mitochondria, the whole body) are listed under the figure.
+- **Over it**, the count of places and how it's taken. Under it, the key for the marks it uses, and "Each place in full".
+- **Every name opens "In the body"**, and its tooltip says the lines. Nothing is drawn that the sheet doesn't say.
+- **The layout:** the hero is two columns with the figure on the right (400px from 1180px down). From 900px down the figure follows the buttons, and on a phone its names are set larger so they read at the same size.
+- **The story page's prints became the same figures, small:** the dots alone, each opening its sheet.
+- **Removed:** `lib/print.js`, its styles and the coloured bead key.
