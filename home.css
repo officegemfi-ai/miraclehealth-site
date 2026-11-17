@@ -81,25 +81,26 @@
 .sx-read span+span::before{content:'·';margin:0 10px;color:var(--muted)}
 .sx-read b{font-weight:700;color:var(--lime)}
 
-/* the Signal, as a card in How it works' language (page 18): its rank in the numbered box with the
-   name and the arrows, its ring in 3D (a wall for each part) with the score in its middle, what people report
-   most, and at the foot the level and the studies. The card's frame, box, tree and dividers are the
-   .hs-* rules further down */
+/* the Signal, as a card in How it works' language (page 18): the name, its rank and the arrows, the score,
+   big, with its four parts as glowing bars, what people report most, and at the foot the level and the
+   studies. The card's frame, box, tree and dividers are the .hs-* rules further down */
 .sx.hs-card{position:relative;grid-area:inst;justify-self:center;align-self:center;width:100%;max-width:560px;margin:0}
-/* the floor the ring stands on (.sx-ground, lib/sighero.js sxFloorSvg) is laid under the whole top in place of the page's
-   square grid: a layer of the top's own, under everything in it, lined up with the plate by the script and
-   shown once it is. The top keeps the page's ultramarine wash on its own black. The card has no box round the
-   ring, so the ring stands on the floor; what people report and the foot are a plate of their own under it */
+/* the top in light (decision, November 17; lib/sigfield.js): bands of violet and blue light drift behind
+   the whole top as if on an LED wall, a layer of the top's own under everything in it. The light is drawn
+   one pixel a cell and scaled up square (the canvas), and the wall's dark grid is a still layer over it
+   (img/led.svg, 5px cells). It fades in once the Signal is in; until then, and without WebGL, the top
+   keeps the page's ultramarine wash on its own black */
 .sx-hero{position:relative;isolation:isolate;background:radial-gradient(90% 640px at 50% calc(-160px - var(--os-tb,60px)),rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),var(--os-win)}
-.sx-ground{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;opacity:0;transition:opacity .5s ease}
-.sx-ground.is-set{opacity:1}
-.sx-ground-svg{position:absolute;left:0;top:0;width:100%;height:100%}
+.sx-field{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;opacity:0;transition:opacity .9s ease}
+.sx-field.is-on{opacity:1}
+.sx-field-c{position:absolute;left:0;top:0;width:100%;height:100%;image-rendering:pixelated}
+.sx-led{position:absolute;inset:0;background:url(/img/led.svg) 0 0/5px 5px}
 .sx-hero .sx.hs-card{background:none;border-color:transparent}
 .sx-hero .sx .hs-tree-v,.sx-hero .sx .hs-tree-h,.sx-hero .sx .hs-h::after,.sx-hero .sx .hs-ill::after{display:none}
-/* cleaner (November 17): no plates round the Signal either. Its name and how it ranks stand over the
-   ring as words, the ring's four numbers are words with a dark edge (no boxes), and what people report
-   most and the level its Signal has reached follow under it on the floor. The rank's numbered box, the
-   foot's tile and its "Signal" are left out: the rank is in the line under the name */
+/* cleaner (November 17): no plates round the Signal. Its name and how it ranks stand over the score as
+   words, and what people report most and the level its Signal has reached follow under it in the light.
+   The rank's numbered box, the foot's tile and its "Signal" are left out: the rank is in the line under
+   the name */
 .sx-hero .sx-tb,.sx-hero .sx-f{border:0;background:none}
 .sx-hero .sx-tb{padding:4px 0 0}
 .sx-hero .sx-tb::after{display:none}
@@ -107,9 +108,6 @@
 .sx-hero .hs-num,.sx-hero .hs-tile,.sx-hero .hs-who{display:none}
 .sx-hero .sx-h{height:auto;padding:0 0 4px}
 .sx-hero .sx-h .hs-title{font:650 expanded 26px/1.15 var(--head);letter-spacing:-.025em;white-space:nowrap}
-.sx-tag rect{fill:none;stroke:none}
-.sx-tag text{paint-order:stroke;stroke:#000000;stroke-width:5px;stroke-linejoin:round}
-.sx-tl{opacity:.5}
 .sx-h{gap:16px}
 .sx-h-in{flex:1;min-width:0}
 .sx-h .hs-title{display:block;margin:0;overflow:hidden;text-overflow:ellipsis}
@@ -119,10 +117,9 @@
 .sx-nav+.sx-nav{margin-left:-8px}
 .sx-nav:hover{border-color:var(--text);background:rgba(255,255,255,.04)}
 .sx-nav:focus-visible{outline:2px solid var(--text);outline-offset:2px}
-/* the drawing is 560 by 380; --u is one of its units, so the score in the ring's middle grows and
-   shrinks with the ring and always sits inside it */
-.sx-ill{container-type:inline-size;--u:calc(100cqw / 560)}
-.sx-ill .sx-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+/* the middle of the card: the score, big, and under it its four parts as bars on a dark pane. --u is a
+   560th of the card's width, so the score grows and shrinks with the card */
+.sx-hero .sx-ill{container-type:inline-size;--u:calc(100cqw / 560);aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:clamp(22px,calc(34 * var(--u)),40px);padding:clamp(28px,calc(56 * var(--u)),72px) 0 clamp(24px,calc(40 * var(--u)),48px)}
 /* a light going round a 3D ring's plate (lib/ring3d.js, placeOrbit, places it): a frame squashed to
    the edge's ellipse (its height is 1/√3 of its width), an arm turning in it, and the light at the
    arm's end turned back and unsquashed, so it stays round. Only transforms move, on the compositor;
@@ -142,20 +139,26 @@
 .orbit-dot::after{left:calc(var(--rc,3px) * -1);top:calc(var(--rc,3px) * -1);width:calc(var(--rc,3px) * 2);height:calc(var(--rc,3px) * 2);background:#FFFFFF}
 @keyframes orbit-turn{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}
 @keyframes orbit-back{from{transform:rotate(90deg)}to{transform:rotate(-270deg)}}
-.sx-mid{position:absolute;left:50%;top:51.75%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.sx-mid{text-align:center;pointer-events:none}
 .sx-mid p{margin:0}
-.sx-score{font:650 expanded clamp(34px,calc(52 * var(--u)),64px)/1 var(--head);letter-spacing:-.04em;color:var(--text);white-space:nowrap}
-.sx-dec{font-size:clamp(16px,calc(24 * var(--u)),30px);color:var(--text-2)}
-.sx-of{margin-top:clamp(5px,calc(8 * var(--u)),9px)!important;font:400 clamp(9px,calc(10.5 * var(--u)),12px)/1 var(--mono);color:var(--text-2);white-space:nowrap}
-.sx-sum{margin-top:clamp(4px,calc(6 * var(--u)),7px)!important;font:400 clamp(9px,calc(10.5 * var(--u)),12px)/1.2 var(--mono);color:var(--lime);white-space:nowrap}
+.sx-score{font:650 expanded clamp(64px,calc(118 * var(--u)),136px)/.92 var(--head);letter-spacing:-.045em;color:var(--text);white-space:nowrap}
+.sx-dec{font-size:clamp(26px,calc(48 * var(--u)),54px);letter-spacing:-.02em;color:var(--text-2)}
+.sx-of{margin-top:clamp(10px,calc(14 * var(--u)),16px)!important;font:400 clamp(11px,calc(12 * var(--u)),13px)/1 var(--mono);color:var(--text-2);white-space:nowrap}
+.sx-sum{margin-top:clamp(6px,calc(8 * var(--u)),9px)!important;font:400 clamp(11px,calc(12 * var(--u)),13px)/1.2 var(--mono);color:var(--lime);white-space:nowrap}
 .sx-tb{position:relative;padding:18px 24px 18px 84px}
 .sx-k{margin:0 0 6px;font:400 11px/1 var(--mono);color:var(--lime)}
-.sx-parts{display:none;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:0;list-style:none}
-.sx-pt{padding:0;border:0;background:none;font:400 12px/1.4 var(--mono);white-space:nowrap}
-.sx-pt.p0{color:var(--lime)}
-.sx-pt.p1{color:color-mix(in srgb,var(--lime) 68%,#FFFFFF)}
-.sx-pt.p2{color:color-mix(in srgb,var(--lime) 44%,#FFFFFF)}
-.sx-pt.p3{color:color-mix(in srgb,var(--lime) 22%,#FFFFFF)}
+/* the four parts: a bar each, filled as far as its number (scaled on the compositor, eased to each
+   compound's numbers), in its colour with a glow of the same light, on a dark pane over the light */
+.sx-parts{display:grid;gap:13px;width:min(100%,460px);margin:0;padding:18px 20px;list-style:none;border:1px solid var(--line);background:rgba(0,0,0,.6)}
+.sx-pt{display:grid;grid-template-columns:minmax(0,8.6em) minmax(0,1fr) 2.2em;align-items:center;gap:16px;font:400 12px/1 var(--mono);color:var(--text-2);white-space:nowrap}
+.sx-pt b{font-weight:400;text-align:right;color:var(--text);font-variant-numeric:tabular-nums}
+.sx-m{position:relative;height:6px;background:rgba(255,255,255,.08)}
+.sx-m i{position:absolute;inset:0;background:var(--c);transform:scaleX(var(--v,0));transform-origin:0 50%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.sx-m i::after{content:'';position:absolute;inset:-4px 0;background:inherit;opacity:.55;filter:blur(7px)}
+.p0{--c:var(--lime)}
+.p1{--c:#9AA0F4}
+.p2{--c:#6B48F1}
+.p3{--c:#3A2BFF}
 .sx-themes{min-height:96px;margin:0;padding:0;list-style:none}
 .sx-themes li{display:flex;align-items:baseline;justify-content:flex-start;gap:12px;padding:5px 0}
 .sx-themes li:nth-child(n+4){display:none}
@@ -185,9 +188,9 @@
 .sx-legend span{display:inline-flex;align-items:center;gap:7px;font:400 11px/1 var(--mono);color:var(--text-2);white-space:nowrap}
 .sx-legend i{display:block;width:10px;height:10px;border-radius:0}
 .sx-p0{background:var(--lime)}
-.sx-p1{background:color-mix(in srgb,var(--lime) 68%,#FFFFFF)}
-.sx-p2{background:color-mix(in srgb,var(--lime) 44%,#FFFFFF)}
-.sx-p3{background:color-mix(in srgb,var(--lime) 22%,#FFFFFF)}
+.sx-p1{background:#9AA0F4}
+.sx-p2{background:#6B48F1}
+.sx-p3{background:#3A2BFF}
 .sx-spec{min-height:244px}
 .sx-plot{position:relative;height:180px;margin-top:6px}
 .sx-rule{position:absolute;left:0;right:0;height:0;border-top:1px dashed rgba(255,255,255,.09);pointer-events:none}
@@ -225,9 +228,6 @@
 .is-opening .sx-themes li{animation-delay:calc(.15s + var(--i,0) * 70ms)}
 .is-opening .is-growing .sx-bar{transform-origin:50% 100%;animation:sx-grow .8s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 12ms)}
 .is-opening .is-growing .sx-bar .sx-lab,.is-opening .is-growing .sx-bar .sx-cap{animation:sx-show .3s ease-out .9s backwards}
-.sx-walls.is-wait{visibility:hidden}
-.is-opening .sx-walls{animation:sx-up .7s cubic-bezier(.2,.7,.2,1) backwards}
-@keyframes sx-up{from{opacity:0;transform:translateY(14px)}}
 
 /* ---------- three steps, one honest number (page 15 of the design canvas, made simpler on November 16):
    how a report becomes the Signal. The three line drawings stand on one hairline that runs from step
@@ -630,14 +630,10 @@
   .sx-tb{padding:16px 16px 16px 74px}
   .sx-nav{width:36px;height:36px}
   .sx-conf{display:none}
-  .sx-ill .sx-tag,.sx-ill .sx-tl{display:none}
-  /* no tags on a phone, so the drawing is cut down to the ring itself (352 by 280 of it, from 104 across
-     and 84 down) and the ring fills the card; the floor under the whole top is a layer of its own */
-  .sx-ill{aspect-ratio:352/280;overflow:hidden;--u:calc(100cqw / 352)}
-  .sx-ill .sx-svg{inset:auto;left:-29.545%;top:-30%;width:159.091%;height:135.714%}
-  .sx-mid{top:40.2%}
-  .sx-score{font-size:calc(42 * var(--u))}
-  .sx-parts{display:grid;grid-template-columns:repeat(2,max-content);gap:6px 28px;margin-bottom:20px}
+  /* on a phone the score is a 352nd of the card's width, and the parts' pane runs the card's width */
+  .sx-hero .sx-ill{--u:calc(100cqw / 352);padding:28px 14px 8px}
+  .sx-parts{width:100%;padding:16px}
+  .sx-pt{gap:12px;grid-template-columns:minmax(0,8.2em) minmax(0,1fr) 2em}
   .sx .hs-who{display:none}
   .sx-find .hp-line{display:block;height:auto;padding:0;border:0;background:none}
   .sx-box{position:relative;height:56px;padding:0 16px;border:1px solid var(--line-2);border-radius:0;background:var(--ink)}
@@ -665,7 +661,8 @@
 
 @media (prefers-reduced-motion:reduce){
   .fp-snap .pip{animation:none}
-  .sx-ground{transition:none}
+  .sx-field{transition:none}
+  .sx-m i{transition:none}
   .fp-top tr.flash-up,.fp-top tr.flash-down{animation:none}
   .log li,.signed,.roster button,.fp-bigring .rg,.fp-bar>span:first-child i{transition:none}
 }
