@@ -30,8 +30,6 @@ import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
 // at its centre (lib/ring.js, shared with ai/ai.js)
 import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
-import { ring3d } from '../lib/ring3d.js';
-import { sxRingSvg, sxFloorSvg } from '../lib/sighero.js';
 import { glyphSvg } from '../lib/glyphs.js';
 import { printSvg } from '../lib/print.js';
 
@@ -121,7 +119,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/ring3d.js', 'ai/who.js', 'ai/mind.js'].map((f) => [f, version(f)]);
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/sigfield.js', 'lib/ring3d.js', 'ai/who.js', 'ai/mind.js'].map((f) => [f, version(f)]);
 const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
@@ -1378,11 +1376,6 @@ front = fill(front, 'ring:big', ringSvg(196, { center: false, cls: 'fp-bigring' 
 front = fill(front, 'ring:tile', ringSvg(28));
 // and between Noise and Signal, Sig's ring on its dark disc
 front = fill(front, 'ring:sn', ringSvg(30));
-// The Community Signal's ring at the top, as it stands before the live Signal is in (its walls low),
-// so it's there in the page's first frame; lib/sighero.js raises the walls when the numbers arrive
-front = fill(front, 'sighero:ring', sxRingSvg(ring3d));
-// the floor under the whole top, lined up with the plate once the page knows where the drawing sits
-front = fill(front, 'sighero:floor', sxFloorSvg(ring3d));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
 // count of what its lines say, and the graph as text
 const hashOf = (text) => createHash('sha256').update(text).digest('hex').slice(0, 10);
