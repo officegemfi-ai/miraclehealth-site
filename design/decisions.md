@@ -277,3 +277,12 @@ The owner sent a video of a footer whose name is drawn huge at the bottom as a s
   - a last line: © 2026 Miracle Health and "no ads · no sellers · no doses".
   The weekly email's violet band stays first.
 - **The design check** is unchanged: the glow's circle is a drawn file, not a CSS gradient.
+
+## 2026-11-17 · The Signal's ring, in light
+
+The owner sent the front page's ring and asked for the drawing to look better. Up close it had grey walls (the light parts' shaded sides went grey), stripes down the big wall (each 4° slice its own flat shade), beaded top edges (each slice's highlight overlapped the next one's), a slab outlined twice in grey like a record, and the score running into the back walls.
+- **Shading:** the walls are shaded by one gradient per part across the drawing, so the curve turns smoothly; the light falls off a little faster round the curve so the turn reads. Shadows lean toward a deep Signal blue (#0E2A66) rather than toward black, so the light parts read as pale blue in shadow, not grey. The tops brighten slightly toward the light.
+- **Edges:** the top edges are solid lines with round ends, so they run on unbroken.
+- **The slab:** no outlines: its side is lit from the left and its rim catches the light at the front left and fades round the back. Signal blue spills onto it round the walls' foot, inside and out. The middle keeps one faint ring, not two.
+- **Room for the score:** the walls stand a little lower (100 is 35 high, was 42) and the score sits lower in the opening (51.75% down, 40.2% on a phone, where it's 42 units high), so it clears the back walls and the front wall at every width.
+- **Only the Signal's ring:** these are options of `lib/ring3d.js` (smooth, ambient, sheen, a soft slab); Sig's agents ring keeps its look.
