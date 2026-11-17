@@ -142,7 +142,7 @@
 .orbit-dot::after{left:calc(var(--rc,3px) * -1);top:calc(var(--rc,3px) * -1);width:calc(var(--rc,3px) * 2);height:calc(var(--rc,3px) * 2);background:#FFFFFF}
 @keyframes orbit-turn{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}
 @keyframes orbit-back{from{transform:rotate(90deg)}to{transform:rotate(-270deg)}}
-.sx-mid{position:absolute;left:50%;top:47.5%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.sx-mid{position:absolute;left:50%;top:51.75%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
 .sx-mid p{margin:0}
 .sx-score{font:650 expanded clamp(34px,calc(52 * var(--u)),64px)/1 var(--head);letter-spacing:-.04em;color:var(--text);white-space:nowrap}
 .sx-dec{font-size:clamp(16px,calc(24 * var(--u)),30px);color:var(--text-2)}
@@ -635,7 +635,8 @@
      and 84 down) and the ring fills the card; the floor under the whole top is a layer of its own */
   .sx-ill{aspect-ratio:352/280;overflow:hidden;--u:calc(100cqw / 352)}
   .sx-ill .sx-svg{inset:auto;left:-29.545%;top:-30%;width:159.091%;height:135.714%}
-  .sx-mid{top:34.46%}
+  .sx-mid{top:40.2%}
+  .sx-score{font-size:calc(42 * var(--u))}
   .sx-parts{display:grid;grid-template-columns:repeat(2,max-content);gap:6px 28px;margin-bottom:20px}
   .sx .hs-who{display:none}
   .sx-find .hp-line{display:block;height:auto;padding:0;border:0;background:none}

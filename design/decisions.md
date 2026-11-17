@@ -263,3 +263,12 @@ The owner sent the front page's top on a wide screen and asked for it to look cl
 - **The Signal stands on the floor with no plates:** the name and its rank are words over the ring (no numbered box), the ring's four numbers are words with a dark edge instead of boxed tags (on a phone, two by two under it), what people report most is three lines, and the level and the studies follow on one line.
 - **On a wide screen** (the window 1500px and up) the headline grows to 88px and the Signal's column to 800px, so the two halves fill the width together.
 - **The top bar names its sections:** The Signal, Library, Community and How it works sit after the logo, the search moved to the right, and the page you're on is underlined. The side panel keeps everything and stays where it was; below 1100px wide the bar is as before.
+
+## 2026-11-17 · The Signal's ring, in light
+
+The owner sent the front page's ring and asked for the drawing to look better. Up close it had grey walls (the light parts' shaded sides went grey), stripes down the big wall (each 4° slice its own flat shade), beaded top edges (each slice's highlight overlapped the next one's), a slab outlined twice in grey like a record, and the score running into the back walls.
+- **Shading:** the walls are shaded by one gradient per part across the drawing, so the curve turns smoothly; the light falls off a little faster round the curve so the turn reads. Shadows lean toward a deep Signal blue (#0E2A66) rather than toward black, so the light parts read as pale blue in shadow, not grey. The tops brighten slightly toward the light.
+- **Edges:** the top edges are solid lines with round ends, so they run on unbroken.
+- **The slab:** no outlines: its side is lit from the left and its rim catches the light at the front left and fades round the back. Signal blue spills onto it round the walls' foot, inside and out. The middle keeps one faint ring, not two.
+- **Room for the score:** the walls stand a little lower (100 is 35 high, was 42) and the score sits lower in the opening (51.75% down, 40.2% on a phone, where it's 42 units high), so it clears the back walls and the front wall at every width.
+- **Only the Signal's ring:** these are options of `lib/ring3d.js` (smooth, ambient, sheen, a soft slab); Sig's agents ring keeps its look.
