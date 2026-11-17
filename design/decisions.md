@@ -263,3 +263,14 @@ The owner sent the front page's top on a wide screen and asked for it to look cl
 - **The Signal stands on the floor with no plates:** the name and its rank are words over the ring (no numbered box), the ring's four numbers are words with a dark edge instead of boxed tags (on a phone, two by two under it), what people report most is three lines, and the level and the studies follow on one line.
 - **On a wide screen** (the window 1500px and up) the headline grows to 88px and the Signal's column to 800px, so the two halves fill the width together.
 - **The top bar names its sections:** The Signal, Library, Community and How it works sit after the logo, the search moved to the right, and the page you're on is underlined. The side panel keeps everything and stays where it was; below 1100px wide the bar is as before.
+
+## 2026-11-17 · Where it acts, in place of the print
+
+The owner showed BPC-157's print beside its name and asked for it to have a use: it didn't make sense and was part of the older design. A print drew the sheet as one abstract mark (spokes to 38 places round a circle, coloured beads, evidence rings, a Signal arc that often hadn't loaded), and nothing on it said which spoke was which.
+- **Now the same lines are drawn on a body:** a dot for each place the sheet names, at that place, joined to its name and the marks of what happens there. The marks are the ones in "In the body" below: ▶ acts, ▲ raises, ▼ lowers, × blocks, ◊ worth checking, ! caution. A dot with a caution is coral.
+- **Body-wide places** (the blood, blood sugar, the immune system, the mitochondria, the whole body) are listed under the figure.
+- **Over it**, the count of places and how it's taken. Under it, the key for the marks it uses, and "Each place in full".
+- **Every name opens "In the body"**, and its tooltip says the lines. Nothing is drawn that the sheet doesn't say.
+- **The layout:** the hero is two columns with the figure on the right (400px from 1180px down). From 900px down the figure follows the buttons, and on a phone its names are set larger so they read at the same size.
+- **The story page's prints became the same figures, small:** the dots alone, each opening its sheet.
+- **Removed:** `lib/print.js`, its styles and the coloured bead key.

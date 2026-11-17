@@ -382,33 +382,51 @@
 .le-sec h2,.bl-head .bl-k{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 18px}
 .toc .mono,.side-card .mono{font:400 12.5px/1.4 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
 
-/* the sheet's print, beside its name */
-.le-print{float:right;width:260px;margin:32px 0 18px 40px}
-.le-print .print{width:232px;height:232px;margin:0 auto}
-.le-print figcaption{margin-top:12px;font:400 11.5px/1.6 var(--mono);color:var(--muted);max-width:72ch}
-.le-print figcaption b{font-weight:500;color:var(--text-2)}
-.le-print figcaption a{color:var(--text-2);font-weight:400;text-decoration-color:rgba(255,255,255,.5);text-decoration-thickness:1px}
-.le-print figcaption a:hover{text-decoration-color:currentColor}
+/* where it acts, beside the sheet's name: the hero in two columns, the figure on the right with its
+   caption over it and the body-wide places and the key under it. On a tablet and a phone the figure
+   follows the buttons */
+.le-hero.has-where .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);column-gap:56px;align-items:start}
+.le-main{min-width:0}
+.le-where{margin:32px 0 0}
+.lw-cap{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 16px;margin:0 0 6px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.lw-cap b{font:400 12px/1.4 var(--mono);color:var(--text-2)}
+.lw-cap span{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.le-where .bf{width:100%;height:auto;margin:0 auto}
+.lw-wide{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;margin:10px 0 0;font:400 14px/1.4 var(--body)}
+.lw-wk{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.lw-wide a{display:inline-flex;align-items:center;gap:6px;min-height:24px;color:var(--text-read);text-decoration:none}
+.lw-wide a:hover{color:var(--text)}
+.lw-key{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);font:400 12px/1.4 var(--mono);color:var(--muted)}
+.lw-key span{display:inline-flex;align-items:center;gap:6px}
+.lw-key a{margin-left:auto;font:600 13px/1.3 var(--body);color:var(--text);text-decoration:none}
+.lw-key a:hover{color:#FFFFFF}
+.lw-m{font:600 12px/1 var(--mono);font-style:normal;color:var(--text-2)}
+.lw-m.warn{color:var(--sig-safety,#FF6B5B)}
+.lw-m.watch{color:var(--sig-evidence)}
+@media (max-width:1180px){
+  .le-hero.has-where .wrap{grid-template-columns:minmax(0,1fr) minmax(0,400px);column-gap:40px}
+  .le-where .bf text{font-size:14.5px}
+}
 @media (max-width:900px){
-  .le-print{float:none;width:auto;margin:0 0 24px}
-  .le-print .print{width:200px;height:200px;margin:0}
+  .le-hero.has-where .wrap{grid-template-columns:1fr}
+  .le-where{max-width:560px;margin-top:40px}
+}
+/* on a phone the figure is drawn smaller, so its names are set larger to read at the same size */
+@media (max-width:640px){
+  .le-where .bf text{font-size:16px}
+  .le-where .bf .bf-m{font-size:13px}
 }
 
 /* ---------------------------------------------------------------- the tablet band
    From 901 to 1279px the side panel and the window's frame take 306px, so the page is narrower than
-   at 768: the sheet's glance, its claims and the Library's explainer stack, and the print sits above
-   the name beside its key instead of squeezing it */
+   at 768: the sheet's glance, its claims and the Library's explainer stack */
 @media (max-width:1279px){
   .le-glance-in,.lib-explain .explain-grid{grid-template-columns:1fr}
   .claims li{grid-template-columns:1fr;gap:10px}
-  .le-print{float:none;width:auto;margin:0 0 24px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;align-items:center}
-  .le-print .print{width:200px;height:200px;margin:0}
-  .le-print figcaption{margin-top:0}
 }
 @media (max-width:900px){.wrap.lib-moves{width:calc(100% - 40px)}}
 @media (max-width:700px){.wrap.lib-moves{width:calc(100% - 32px)}}
 @media (max-width:640px){
-  .le-print{grid-template-columns:1fr;justify-items:center;gap:12px}
   .lib-filters label{display:grid;grid-template-columns:76px minmax(0,1fr);width:100%}
   .lib-filters select{width:100%}
 }

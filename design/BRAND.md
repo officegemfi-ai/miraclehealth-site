@@ -57,7 +57,7 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
 - **One main action per view:** the electric blue button, `accent` lit from the top by `accent-hi`, with white `on-accent` words and a soft glow. A white button is the second choice; every other button is a hairline: `line-2` border, `text` words.
 - **Signatures:**
   - Signal blue (`lime`) only for the community and its Signal: the live dot, scores, moves up, points, the community's place mark and tab.
-  - Mint (`evidence`) only for the studies: grades, the evidence meter, a print's rungs, the Library's mark.
+  - Mint (`evidence`) only for the studies: grades, the evidence meter, the Library's mark.
   - `safety` only for the Safety agent and "safety on".
   - `agent-*` only where that agent is named, speaks or made something.
   - Never fill a button with a signature colour.
@@ -133,7 +133,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 - **The twelve's glyphs** (`assets/Glyphs/`, the AgentGlyph component): a 24-unit grid, one 1.6 stroke, round caps and joins, no fills, each in its agent's colour. Each one means its agent and nothing else.
 - **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig and every title bar.
 - **Sig in the community** is the blue ring and dot (`assets/Logos/sig-mark.svg`), also the favicon. It is the community's own character, with moods. Don't confuse it with the ring.
-- **Compound prints** (`assets/Prints/`, the CompoundPrint component): one mark per fact sheet, drawn from its data. Never use a print that isn't that compound's own.
+- **Where it acts** (`lib/bodyfig.js`): the figure beside a fact sheet's name. A dot on the body for each place the sheet names (coral where there's a caution), joined to its name and the marks of what happens there (▶ acts, ▲ raises, ▼ lowers, × blocks, ◊ worth checking, ! caution, as in the sheet's "In the body"); body-wide places are listed under it, and every name opens "In the body". Drawn from the sheet's own lines only. It replaced the compound prints (November 2026).
 - **Interface icons:** the community's stroke set, 1.8 stroke on a 24 grid, round caps, drawn at 16–20px in `currentColor`: home, flame, pulse, compass, layers, comment, vote arrows, check.
 - **No emoji, ever.**
 

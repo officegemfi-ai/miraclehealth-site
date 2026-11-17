@@ -2,7 +2,6 @@
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
-import { setPrintSignal } from '/lib/print.js?v=d7172ffaa1';
 import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=9eee17d93b';
 import { wireBodyMap } from '/kit/bodymap.js?v=57440abdb8';
 import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=f31d9546b5';
@@ -378,8 +377,6 @@ function entryPage(root) {
     }
     const x = snap.signals[id];
     signalPanel(box, id, name, x, snap.spaces?.[id], uses, snap, baselines);
-    // the sheet's print: the Signal's blue arc round its edge, once it's here
-    if (x && Number.isFinite(x.signal)) setPrintSignal(document.querySelector('.le-print .print'), x.signal);
     const radarBox = document.querySelector('[data-live="radar"]');
     if (radarBox && x) radarLayers(radarBox, x, uses);
   });

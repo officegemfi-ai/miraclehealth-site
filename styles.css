@@ -684,23 +684,25 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 }
 
 /* ---------------------------------------------------------------- the illustrations */
-/* The Twelve's glyphs (lib/glyphs.js) take their agent's colour; a compound's print (lib/print.js)
-   draws its fact sheet as one mark */
+/* The Twelve's glyphs (lib/glyphs.js) take their agent's colour */
 .glyph{display:inline-block;flex:none;vertical-align:middle}
-.print{display:block;overflow:visible}
-.print .pr-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:3}
-.print .pr-sig{fill:none;stroke:var(--lime);stroke-width:3;stroke-linecap:round;transition:stroke-dasharray .8s ease}
-.print:not(.has-sig) .pr-sig{display:none}
-.print .pr-ticks{fill:none;stroke:rgba(255,255,255,.22);stroke-width:1}
-.print .pr-fam>*{fill:none;stroke:rgba(255,255,255,.5);stroke-width:1.3}
-.print .pr-rung{fill:none;stroke:rgba(20,236,195,.16);stroke-width:1.7}
-.print .pr-rung.on{stroke:var(--sig-evidence)}
-.print .pr-spoke{stroke:rgba(255,255,255,.22);stroke-width:1.1}
-.print .pr-core{fill:none;stroke:rgba(255,255,255,.08);stroke-width:1;stroke-dasharray:1.5 3.5}
-.print .pr-warn{stroke:var(--os-win,#000000);stroke-width:1.2}
-.pk{display:inline-flex;align-items:center;gap:5px;margin-right:6px;white-space:nowrap}
-.pk::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
-.pk-is{color:#F7F8FA}.pk-up{color:#F2C94C}.pk-down{color:#55D3FF}.pk-block{color:#B98CFF}.pk-watch{color:#3FE0C5}.pk-warn{color:#FF6B5B}
+/* Where it acts (lib/bodyfig.js): the body's outline, a dot for each place the sheet names (coral where
+   there's a caution) and its name beside it with the marks of what happens there, the same marks as
+   the sheet's "In the body". A name lights up under the pointer and opens that part of the sheet */
+.bf{display:block;overflow:visible}
+.bf .bf-body{fill:rgba(255,255,255,.035);stroke:rgba(255,255,255,.3);stroke-width:1.1;vector-effect:non-scaling-stroke}
+.bf .bf-ln{fill:none;stroke:rgba(255,255,255,.26);stroke-width:1;transition:stroke .2s ease}
+.bf .bf-halo{fill:rgba(255,255,255,.08)}
+.bf .bf-halo.warn{fill:rgba(255,107,91,.16)}
+.bf .bf-dot{fill:#F7F8FA;stroke:#000000;stroke-width:2}
+.bf .bf-dot.warn{fill:var(--sig-safety)}
+.bf text{font:400 13px/1 var(--body);fill:var(--text-read);transition:fill .2s ease}
+.bf .bf-m{font:600 11px/1 var(--mono);fill:var(--text-2)}
+.bf .bf-m.warn{fill:var(--sig-safety)}
+.bf .bf-m.watch{fill:var(--mh-bm-watch,#3FE0C5)}
+.bf-pl:hover text,.bf-pl:focus-visible text{fill:var(--text)}
+.bf-pl:hover .bf-ln,.bf-pl:focus-visible .bf-ln{stroke:rgba(255,255,255,.7)}
+.bf-pl:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 
 /* a page that isn't here: the shell says so first */
 .nf-shell{max-width:640px;margin:0 0 48px;padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:0;background:var(--band);font:400 12.5px/1.75 var(--mono);color:var(--text)}
@@ -770,7 +772,10 @@ kbd{font:inherit}
 .sy-prints{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:48px}
 .sy-print{display:grid;justify-items:center;gap:6px;padding:20px;border:1px solid var(--line);border-radius:0;background:var(--card);color:var(--text);text-decoration:none;transition:border-color .15s,background-color .15s}
 .sy-print:hover{border-color:var(--text)}
-.sy-print .print{width:168px;height:168px;margin-bottom:8px}
+.sy-print .bf{margin-bottom:8px}
+.sy-mk{font:600 12px/1 var(--mono);color:var(--text-2)}
+.sy-mk.warn{color:var(--sig-safety)}
+.sy-mk.watch{color:var(--mh-bm-watch,#3FE0C5)}
 .sy-pn{font:600 16px/1.3 var(--body)}
 .sy-pf{font:400 11.5px/1.4 var(--mono);color:var(--muted)}
 .sy-wins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:48px}
