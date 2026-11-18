@@ -319,3 +319,7 @@ The owner asked for a check of six risks that commonly catch new sites: a missin
 - **The weekly email:** one-click unsubscribe (and the List-Unsubscribe header) was there; the postal address wasn't, because `library/data/about.json` has no `mailing_address` yet. The address line is now marked (`data-mh-postal`), and the community's newsletter function refuses to send an issue without it. No issue has been sent.
 - **Renewals:** nothing is sold or renewed, so there is no subscribe button to put terms beside.
 - **DMCA:** the terms now explain how to send a copyright notice and a counter-notice, and that repeat infringers' accounts are closed. The agent still has to be registered with the Copyright Office; once it is, its details go in the terms exactly as registered.
+
+## 2026-11-18 · Sig's ring on the community's sign-in page
+
+The owner pointed at the blue ring and dot beside "The Miracle Health community" on the sign-in page and said it should be the Sig logo. That spot is a logo, not Sig reacting to anything, so it now shows Sig's ring, the mark in the browser tab and on Ask Sig, drawn the way `lib/ring.js` draws it (community PR #25). The blue Sig keeps its moods everywhere it acts as a character.
