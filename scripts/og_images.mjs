@@ -62,7 +62,6 @@ const html = (c) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Mona;src:url('${font('mona-sans.woff2')}') format('woff2');font-weight:200 900;font-stretch:75% 125%}
 @font-face{font-family:MonaDisplay;src:url('${font('mona-sans.woff2')}') format('woff2');font-weight:640 900;font-stretch:112.5% 125%}
 @font-face{font-family:Neon;src:url('${font('monaspace-neon-400.woff2')}') format('woff2');font-weight:100 549}
-@font-face{font-family:Neon;src:url('${font('monaspace-neon-700.woff2')}') format('woff2');font-weight:550 900}
 *{box-sizing:border-box;margin:0}
 body{width:1200px;height:630px;overflow:hidden;background:#000000;color:#F7F8FA;font-family:Mona,sans-serif;position:relative}
 /* the page itself: the logo and the address along the top, the words, the rules along the foot, on the

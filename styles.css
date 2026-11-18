@@ -9,8 +9,9 @@
    headlines included, at its normal width and semibold; Monaspace Neon for chrome, logs and numbers:
    one regular, one bold. */
 @font-face{font-family:'Mona Sans';src:url('fonts/mona-sans.woff2') format('woff2');font-weight:200 900;font-stretch:75% 125%;font-style:normal;font-display:swap}
+/* One file of the code face: its small bold labels and numbers are drawn bold from it by the browser (the bold file was 44 KB for a few of them a
+   page); large numbers are set regular (500), where a drawn bold would hollow the dot in a zero */
 @font-face{font-family:'Monaspace Neon';src:url('fonts/monaspace-neon-400.woff2') format('woff2');font-weight:100 549;font-style:normal;font-display:swap;size-adjust:96.5%}
-@font-face{font-family:'Monaspace Neon';src:url('fonts/monaspace-neon-700.woff2') format('woff2');font-weight:550 900;font-style:normal;font-display:swap;size-adjust:96.5%}
 
 /* Graphite: Sig's own background on every page, near-white words, two quiet greys, hairline
    frames. The one main action is white. Colour is a signature: it shows only where one of Sig's

@@ -15,7 +15,7 @@
 /* Goals: would it have happened anyway, and the way into each goal */
 .pg-anyway{margin-top:18px;border-top:1px solid var(--line)}
 .pg-anyway li{display:grid;grid-template-columns:88px minmax(0,1fr);gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
-.pg-anyway b{font:700 31px/1 var(--mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.pg-anyway b{font:500 31px/1 var(--mono);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .pg-anyway li>span{color:var(--text-2);line-height:1.6}
 .pa-use{display:block;margin-bottom:2px;font:600 16px/1.35 var(--body);color:var(--text)}
 .pa-src{display:block;margin-top:4px;font-size:13px;color:var(--muted)}

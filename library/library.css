@@ -52,7 +52,7 @@
 .lib-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:0;border-radius:0;overflow:hidden;border:1px solid var(--line-ink);background:var(--line-ink)}
 .lib-stats div{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:18px 20px;background:var(--card)}
 .lib-stats dt{font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--on-ink-3)}
-.lib-stats dd{margin:0;font:700 36px/1 var(--mono);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.lib-stats dd{margin:0;font:500 36px/1 var(--mono);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 
 .lib-tools{display:grid;gap:16px;padding-top:36px;padding-bottom:8px}
 .lib-search{position:relative;display:flex;align-items:center}
@@ -339,7 +339,7 @@
 /* on a phone the headline takes the page size like every h1; its line break gives way to balance */
 @media (max-width:560px){.lib-hero h1 br{display:none}}
 .lib-stats{border-radius:0;border:1px solid var(--line);background:var(--line);-webkit-backdrop-filter:none;backdrop-filter:none}
-.lib-stats dd{font-family:var(--mono);font-weight:700;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.lib-stats dd{font-family:var(--mono);font-weight:500;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 .ev,.st,.pill,.ev-strong,.ev-moderate,.ev-limited,.ev-preclinical,.ev-anecdotal,.ev-pending,.st-approved,.st-otc,.st-supplement,.st-compounded,.st-category2,.st-investigational,.st-not_approved,.st-restricted,.st-unclear,.st-under_review,.st-blend,.hc,.hc-common,.hc-uncommon,.hc-rare,.hc-theoretical,.hc-unknown,.check{border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text)}
 /* how often a harm happens is in the words; the less often, the quieter */
 .hc-rare,.check{color:var(--text-2)}

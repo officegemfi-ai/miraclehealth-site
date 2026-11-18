@@ -423,6 +423,7 @@
 .fp-ring-mid .fp-center{width:clamp(8px,calc(11 * var(--u)),13px);height:clamp(8px,calc(11 * var(--u)),13px);outline:calc(6 * var(--u)) solid rgba(255,255,255,.1);transition:opacity .45s}
 .fp-run.is-armed:not(.is-centre) .fp-ring-mid .fp-center{opacity:.14}
 .fp-ring-n{margin-top:clamp(8px,calc(14 * var(--u)),16px);font:500 clamp(20px,calc(28 * var(--u)),32px)/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
+.fp-ring-n b{font-weight:500}
 .fp-ring-n span{color:var(--muted)}
 .fp-ring-l{margin-top:6px;font:400 clamp(9px,calc(11 * var(--u)),12px)/1 var(--mono);color:var(--muted)}
 .fp-team-tb{position:relative;padding:14px 18px 18px 74px}
