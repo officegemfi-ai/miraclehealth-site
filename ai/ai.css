@@ -459,6 +459,7 @@
 .ai-focus a:hover{border-color:var(--on-ink-2)}
 .ai-focus .n{flex:none;font:400 11.5px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--on-ink-3)}
 /* before the Signal is in, its lines wait as empty places of the same size; then the words come in */
+.ai-pulse.is-gone{visibility:hidden}
 .ai-pulse.is-wait .ai-crowd{min-height:1.5em}
 .ai-pulse.is-wait .ai-focus span{display:block;min-height:36px;border:1px solid var(--line-ink)}
 .ai-pulse:not(.is-wait) dd{animation:ai-in .45s cubic-bezier(.2,.7,.2,1) backwards}

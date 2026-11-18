@@ -2604,8 +2604,9 @@ getSignal().then((snap) => {
   const el = $('ai-pulse');
   if (!el) return;
   // the community's lines wait in their places (the build reserves them, so the welcome above them
-  // doesn't move when they arrive); with nothing to say, they go
-  if (!c || !(c.signals > 0)) { el.hidden = true; return; }
+  // doesn't move when they arrive); with nothing to say, they go unseen, keeping their room, so the
+  // welcome doesn't slide down
+  if (!c || !(c.signals > 0)) { unseen(el); return; }
   const row = (k, dd) => [h('dt', {}, k === 'Community' ? h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }) : null, k), dd];
   const rows = [];
   // A compound they asked to hear about has its Signal now: said once, here
@@ -2634,7 +2635,13 @@ getSignal().then((snap) => {
   el.classList.remove('is-wait');
   el.removeAttribute('aria-hidden');
   el.hidden = false;
-}).catch(() => { const el = $('ai-pulse'); if (el) el.hidden = true; });
+}).catch(() => { const el = $('ai-pulse'); if (el) unseen(el); });
+// The community's lines when the numbers don't come: gone from sight and from screen readers, their
+// room kept (the welcome above them is set from the foot of the window, so taking it away moved it)
+function unseen(el) {
+  el.classList.add('is-gone');
+  el.setAttribute('aria-hidden', 'true');
+}
 // A question typed in for them elsewhere (a Library page, a community space, My Miracle):
 // ready to read, change and send; never sent by itself
 const asked = askFrom(location.hash);
