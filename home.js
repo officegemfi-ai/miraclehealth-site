@@ -9,9 +9,7 @@ import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=547caf3594';
 import { startSigHero } from '/lib/sighero.js?v=4e7b799161';
-import { sigRing3d } from '/lib/ring3d.js?v=2fabbf5beb';
 import { sigField } from '/lib/sigfield.js?v=f02230fa27';
-import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
 const card = document.querySelector('[data-live="example"]');
@@ -405,92 +403,8 @@ function signalBoard(board) {
   }
 }
 
-// ---------------------------------------------------------------------------------------------
-// Ask Sig, with all twelve agents: the example run plays once as it comes into view. Sig's ring stands
-// in 3D (lib/ring3d.js), a wall for each agent; each step stands its agent's wall up and ticks it off
-// in the list under it; the Interpretation agent lights the centre, last; then the answer comes in,
-// part by part, each signed by the agent that wrote it. Picking an agent lights up what it wrote and
-// stands its wall above the rest. Reduced motion: the finished run.
-const run = document.getElementById('fp-run');
-let sigRing = null;
-later(run, () => { sigRing = sigRing3d(run.querySelector('.fp-ring3'), { wheel: WHEEL, colors: AGENT_COLOR, cls: 'fp-bigring' }); runDemo(run); });
 // the check mark: neither font has one, so it's drawn (img/i-check.svg, as a mask in the words' colour)
 function ck() { return h('i', { class: 'ck', 'aria-hidden': 'true' }); }
-function runDemo(run) {
-  const steps = [...run.querySelectorAll('#fp-steps > li')];
-  const parts = [...run.querySelectorAll('#fp-answer > *')];
-  const signed = [...run.querySelectorAll('.signed')];
-  const rg = [...run.querySelectorAll('.fp-bigring .rg')];
-  const roster = [...run.querySelectorAll('#fp-roster > li')];
-  const centre = run.querySelector('.fp-center');
-  const ringN = document.getElementById('fp-ring-n');
-  const state = document.getElementById('fp-run-state'), replay = document.getElementById('fp-replay');
-  const total = {};
-  for (const li of steps) total[li.dataset.agent] = (total[li.dataset.agent] || 0) + 1;
-
-  // picking an agent: a click keeps it, pointing or focus previews it
-  let kept = null;
-  function pick(a) {
-    run.classList.toggle('has-pick', !!a);
-    for (const el of [...steps, ...signed]) el.classList.toggle('is-lit', !!a && el.dataset.agent === a);
-    for (const p of rg) p.classList.toggle('is-lit', !!a && p.dataset.a === a);
-    for (const li of roster) li.querySelector('button').setAttribute('aria-pressed', String(!!kept && li.dataset.agent === kept));
-  }
-  for (const li of roster) {
-    const b = li.querySelector('button'), a = li.dataset.agent;
-    b.addEventListener('click', () => { kept = kept === a ? null : a; pick(kept); });
-    b.addEventListener('pointerenter', () => pick(a));
-    b.addEventListener('pointerleave', () => pick(kept));
-    b.addEventListener('focus', () => pick(a));
-    b.addEventListener('blur', () => pick(kept));
-  }
-  run.addEventListener('keydown', (e) => { if (e.key === 'Escape' && kept) { kept = null; pick(null); } });
-
-  if (reduceMotion || !('IntersectionObserver' in window)) return;
-  let timers = [];
-  const seen = new Set();
-  function arm() {
-    timers.forEach(clearTimeout); timers = [];
-    seen.clear();
-    run.classList.add('is-armed'); run.classList.remove('is-centre');
-    for (const el of [...steps, ...parts]) el.classList.remove('in');
-    for (const p of rg) p.classList.remove('on');
-    for (const li of roster) { li.classList.remove('done'); li.dataset.n = '0'; }
-    ringN.textContent = '0';
-    state.textContent = 'waking sig’s agents …';
-    replay.hidden = true;
-  }
-  function report(li, i) {
-    li.classList.add('in');
-    const a = li.dataset.agent;
-    seen.add(a);
-    if (a === 'interpretation') run.classList.add('is-centre');
-    else rg.find((p) => p.dataset.a === a)?.classList.add('on');
-    const r = roster.find((x) => x.dataset.agent === a);
-    if (r) { r.classList.add('done'); r.dataset.n = String(Number(r.dataset.n || 0) + 1); r.querySelector('.ct').replaceChildren(ck(), ` ${r.dataset.n}`); }
-    ringN.textContent = String(seen.size);
-    state.textContent = `running · step ${i + 1} of ${steps.length}`;
-  }
-  function play() {
-    arm();
-    sigRing?.busy(true);
-    const gap = 230;
-    steps.forEach((li, i) => timers.push(setTimeout(() => report(li, i), 350 + i * gap)));
-    const t0 = 350 + steps.length * gap + 250;
-    parts.forEach((el, i) => timers.push(setTimeout(() => el.classList.add('in'), t0 + i * 170)));
-    timers.push(setTimeout(() => {
-      sigRing?.busy(false);
-      state.replaceChildren(ck(), ` done · ${steps.length} steps · ${seen.size} agents`);
-      replay.hidden = false;
-      for (const li of roster) li.querySelector('.ct').replaceChildren(ck(), ` ${total[li.dataset.agent] || 0}`);
-    }, t0 + parts.length * 170));
-  }
-  arm();
-  // it starts once the start of the run is well on screen, however tall the run is
-  const io = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { io.disconnect(); play(); } }, { rootMargin: '0px 0px -30% 0px' });
-  io.observe(run.querySelector('.fp-cmd') || run);
-  replay.addEventListener('click', play);
-}
 
 // Ask Sig from the front page: the question goes to Sig's own page, in the link
 const askForm = document.getElementById('fp-askbox');

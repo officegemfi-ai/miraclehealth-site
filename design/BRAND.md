@@ -103,7 +103,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 ## Shape and depth
 
 - **Corners:** square. Every card, plate, table, pane, button, field, tag, chip, tab, row, menu, dialog and meter has `radius-none` (0), in both apps and in the drawings' tags (decision, November 13). Only dots and rings are round (`radius-dot`, 50%): pips, live dots, agent dots, avatars and Sig's ring button. No pills.
-- **Square, in How it works' language:** How it works' six cards, the Signal's and Sig's cards on the front page, the example run beside Sig's, and on Ask Sig the window, its answer cards, its ways to start and its box to write in have no round corners: a 1px frame, the number in its box, the title in mono, dividers with a gap by the tree.
+- **Square, in How it works' language:** How it works' six cards, the Signal's card on the front page, its picture of Sig's twelve agents (one question in four steps, each agent in its own box, signed along the top in its colour), and on Ask Sig the window, its answer cards, its ways to start and its box to write in have no round corners: a 1px frame, the number in its box, the title in mono, dividers with a gap by the tree.
 - **Panes:** a pane is a framed block with a bar naming its file (`signal.top`, `house-rules.md`, `~/chats/…`), mono in the bar, the content under it.
 - **Shadows:** nothing casts one except what floats (`shadow-float`) and the phone drawer (`shadow-drawer`). Depth comes from the four grounds, not from shadows.
 - **Drawn depth:** Sig's ring stands in 3D on Ask Sig (`lib/ring3d.js`): isometric, on a slab over a grid, each agent a wall lit from the front left. The depth is drawn, in the drawing's own shades; nothing on the page casts a shadow for it.
