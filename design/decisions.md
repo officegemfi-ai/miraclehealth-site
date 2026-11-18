@@ -296,3 +296,10 @@ The owner didn't like the 3D ring at the top of the front page and asked for som
 - **The card:** the 3D ring and its floor are gone from the top. The score stands big, and the four parts are bars on a dark pane under it, each filled to its number with a glow of its colour, growing on the compositor.
 - **The parts' colours** move from Signal blue's tints to Signal blue into the brand's violets (what happened `lime`, agreement `violet-light`, voices `violet`, volume `accent-hi`), in the bars, the light, the spectrum and its legend, so the top is one violet-into-blue piece with the foot.
 - **Sig's ring** keeps its 3D on Ask Sig; only the front page's Signal left it. This replaces the ring's polish (#45, merged earlier the same day); `lib/ring3d.js` keeps its smooth-light options for Ask Sig to use.
+
+## 2026-11-17 · The light made smooth, the parts in plain words
+
+The owner saw the new top on a sharp screen: "the background is not as smooth as in your video", and the parts' names "not very clear".
+- **Smooth light:** on a screen with twice the pixels the wall's cells were 10 of the screen's pixels each, drawn as hard squares, with a twinkle on every cell ten times a second and the light skipping every other frame. Now the browser scales the light up smoothly (soft gradients through the grid), the cells are 5 CSS pixels on an ordinary screen and finer on sharp ones (4 at 1.5 times, 3 at twice), the twinkle is gone, and it draws every frame. The dark behind the words has rounded, softer edges.
+- **Plain words:** the four parts are named for what they measure, everywhere the site names them (the bars, the spectrum's legend, How it works and the Library's figure): what happened is now "how well it worked", agreement "how much people agree", voices "how many people" and volume "how many reports". The bars' names are in the reading face, not the code face, at 15px.
+- **The keyhole** on How it works' fifth step sat 10 units right of its lid's middle; it's centred.

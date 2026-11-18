@@ -54,7 +54,7 @@ test('the front page carries the light and the four parts, and no ring or floor'
   const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   assert.ok(html.includes('<div class="sx-field" aria-hidden="true"><canvas class="sx-field-c" width="1" height="1"></canvas><i class="sx-led"></i></div>'));
   const ill = html.slice(html.indexOf('data-sx="ring"'), html.indexOf('<div class="sx-tb">'));
-  assert.equal((ill.match(/<li class="sx-pt p\d"><span>[a-z ]+<\/span><span class="sx-m"><i><\/i><\/span><b>–<\/b><\/li>/g) || []).length, 4);
+  assert.equal((ill.match(/<li class="sx-pt p\d"><span>[A-Za-z ]+<\/span><span class="sx-m"><i><\/i><\/span><b>–<\/b><\/li>/g) || []).length, 4);
   assert.ok(!/sighero:|sx-ground|sx-svg|orbit/.test(ill + html.slice(html.indexOf('sx-hero'), html.indexOf('sx-grid'))));
   assert.ok(fs.existsSync(path.join(ROOT, 'img/led.svg')));
 });
