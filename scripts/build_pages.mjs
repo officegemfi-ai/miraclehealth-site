@@ -238,6 +238,7 @@ export function buildPages(ctx) {
   </div>`;
       add(`/goals/${g.id}/`, page({
         title: `${g.label}: what the studies show and what people report · Miracle Health`,
+        titles: [`${g.label}: what studies show and people report`, `${g.label}: studies and reports · Miracle Health`, `${g.label}: studies and reports`],
         description: `${g.main.length} peptides, supplements and medications people take for ${lower(g.label)}, with what the studies show for each, its risks and status, and what people who took it report.`,
         url: `/goals/${g.id}/`, body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: SCRIPTS, ogImage: og(`goal-${g.id}`),
       }));
@@ -306,6 +307,8 @@ export function buildPages(ctx) {
   </div>`;
       add(`/compare/${slug}/`, page({
         title: `${a.name} vs ${b.name}: evidence, risks and status side by side · Miracle Health`,
+        titles: [`${a.name} vs ${b.name}: evidence and risks · Miracle Health`, `${a.name} vs ${b.name}: side by side · Miracle Health`, `${a.name} vs ${b.name}: side by side`, `${a.name} vs ${b.name}`,
+          `${a.name.replace(/\s*\([^)]*\)/g, '')} vs ${b.name.replace(/\s*\([^)]*\)/g, '')}: side by side`],
         description: `${a.name} and ${b.name} compared: what each is, its FDA status, what the studies show, risks and side effects, and what people who took them report.`,
         url: `/compare/${slug}/`, body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: SCRIPTS, ogImage: og(`compare-${slug}`),
       }));
