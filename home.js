@@ -9,7 +9,7 @@ import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=547caf3594';
 import { startSigHero } from '/lib/sighero.js?v=4e7b799161';
-import { sigField } from '/lib/sigfield.js?v=f02230fa27';
+import { sigField } from '/lib/sigfield.js?v=36f23eb1e2';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
 const card = document.querySelector('[data-live="example"]');
@@ -405,6 +405,24 @@ function signalBoard(board) {
 
 // the check mark: neither font has one, so it's drawn (img/i-check.svg, as a mask in the words' colour)
 function ck() { return h('i', { class: 'ck', 'aria-hidden': 'true' }); }
+
+// Sig's twelve agents, in light like the top (the owner's request, November 18: "give it that Solana
+// design"): bands in four of the agents' colours, from the Safety agent's coral to the Mechanism
+// agent's violet, drift behind the section on the LED wall, brightest behind the agents, dark behind
+// the words above and below them; a pulse goes out from the agents every few seconds while it's seen
+const sig = document.getElementById('sig');
+later(sig, () => {
+  const canvas = sig.querySelector('.fp-sig-field canvas');
+  let light = null;
+  try {
+    light = canvas ? sigField(sig, { canvas, colors: ['#FF6B5B', '#F2C94C', '#3FE0C5', '#B98CFF'], quiet: ['.fp-head h2', '.fp-head .fp-sub', '.fp-askbox', '.fp-fine'], focus: sig.querySelector('.fp-groups'), spread: 2.3 }) : null;
+  } catch { light = null; }
+  if (!light) return;
+  light.set([92, 70, 86, 76], 84, { pulse: false });
+  light.start();
+  if (reduceMotion) return;
+  setInterval(() => { if (!document.hidden) light.set([92, 70, 86, 76], 84); }, 8000);
+});
 
 // Ask Sig from the front page: the question goes to Sig's own page, in the link
 const askForm = document.getElementById('fp-askbox');

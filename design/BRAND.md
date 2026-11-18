@@ -118,6 +118,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
   - The Signal's tape runs, and pauses on hover.
   - A Signal counts from its last value to its new one, and its parts' bars grow to theirs.
   - The Signal in light drifts behind the front page's top (`lib/sigfield.js`), smoothly at the screen's own frame rate, and stops off screen; a pulse goes out through it from the score when another compound is picked, and on a screen with a pointer it gathers a little round it.
+  - The same light drifts behind the front page's twelve agents (the owner's request, November 18), in four of the agents' colours (coral, yellow, teal, violet), spread over the whole section and brightest behind the agents; the frame is dark glass over it, a strip of the ring's eleven colours runs under its bar, and a pulse travels down the four steps, taking each step's colour.
   - Sig's ring lights each agent's arc as it reports.
   - Drawers slide in 0.22s.
 - **When it doesn't:** nothing loops for decoration (the Signal's light carries its four numbers), and when a device asks for reduced motion, everything stops: the light stands still.

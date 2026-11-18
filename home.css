@@ -365,25 +365,63 @@
    signed along the top in its own colour, with its mark, its name and what it does. The ten that gather
    stand in two frames: what the studies show, and what people report with what it means for your stack. */
 .fp-crew{margin-top:36px;border:1px solid var(--line-2);border-radius:0;background:var(--paper)}
+/* In light, like the top (the owner's request, November 18): the LED wall's bands drift behind the
+   section (lib/sigfield.js, mounted in home.js), and the frame is dark glass over them, so they glow
+   through between the agents while every word sits on a dark ground */
+.fp-sig{position:relative;isolation:isolate;overflow:hidden}
+.fp-sig .fp-crew{background:color-mix(in srgb,var(--paper) 34%,transparent)}
+.fp-sig .fp-crew .term-bar{background:color-mix(in srgb,var(--paper) 80%,transparent)}
+.fp-sig .fp-agent{background:color-mix(in srgb,var(--ac) 7%,color-mix(in srgb,var(--raised) 74%,transparent));transition:background-color .25s,border-color .25s}
+.fp-sig .fp-agent:hover{border-color:color-mix(in srgb,var(--ac) 55%,var(--line-2));background:color-mix(in srgb,var(--ac) 14%,color-mix(in srgb,var(--raised) 80%,transparent))}
+.fp-sig .fp-group-k{background:var(--paper)}
+.fp-sig .fp-askbox{background:color-mix(in srgb,var(--raised) 88%,transparent)}
+.fp-sig .fp-crew-q,.fp-sig .fp-crew-a{background:color-mix(in srgb,var(--raised) 80%,transparent)}
+.fp-sig .fp-agent-g{background:color-mix(in srgb,var(--ac) 18%,color-mix(in srgb,var(--paper) 70%,transparent))}
+/* the ring's eleven colours in a strip under the frame's bar */
+.fp-spectrum{display:flex;height:2px}
+.fp-spectrum i{flex:1;background:var(--ac)}
+/* a pulse of light down the steps' line, taking each step's colour as it passes: the Safety agent's,
+   the gatherers', the Interpretation agent's white, the Safety agent's again */
+.fp-flow::after{content:'';position:absolute;left:18px;top:20px;width:3px;height:72px;opacity:0;animation:fp-pulse 7s cubic-bezier(.45,0,.25,1) infinite}
+@keyframes fp-pulse{
+  0%{top:20px;opacity:0;background-color:#FF6B5B}
+  6%{opacity:1}
+  30%{background-color:#F2C94C}
+  48%{background-color:#3FE0C5}
+  66%{background-color:#B98CFF}
+  80%{background-color:#F7F8FA}
+  92%{opacity:1;background-color:#FF6B5B}
+  100%{top:calc(100% - 92px);opacity:0;background-color:#FF6B5B}
+}
 .fp-crew-meta{font:400 12px/1.4 var(--mono);color:var(--muted)}
-.fp-crew-body{padding:22px 26px 26px}
-.fp-crew-q,.fp-crew-a{margin:0;font:400 13.5px/1.6 var(--mono);color:var(--text)}
-.fp-crew-q .ps,.fp-crew-a .ps{margin-right:12px;color:var(--muted)}
-.fp-crew-a{max-width:72ch}
-.fp-flow{position:relative;display:grid;gap:26px;margin:24px 0;padding:0;list-style:none}
-.fp-flow::before{content:'';position:absolute;left:18px;top:18px;bottom:18px;width:1px;background:var(--line-2)}
-.fp-step{position:relative;display:grid;grid-template-columns:37px minmax(0,1fr);column-gap:20px}
-.fp-step-n{display:grid;place-items:center;width:37px;height:37px;border:1px solid var(--line-2);background:var(--paper);font:400 13px/1 var(--mono);color:var(--text)}
-.fp-step-t{margin:8px 0 12px;font-size:16px;font-weight:600;line-height:1.3;color:var(--text)}
-.fp-boxes{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:10px}
-.fp-boxes.one{grid-template-columns:minmax(0,420px)}
-.fp-groups{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
-.fp-group{padding:12px 12px 14px;border:1px solid var(--line);border-radius:0}
-.fp-group-k{margin:0 2px 10px;font:400 12px/1.4 var(--mono);color:var(--muted)}
-.fp-agent{display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:12px;row-gap:3px;align-content:start;padding:13px 14px 14px;border:1px solid var(--line-2);border-top:2px solid var(--ac);border-radius:0;background:var(--raised)}
-.fp-agent-g{grid-row:1/3;display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line-2);color:var(--ac)}
-.fp-agent-n{font:500 13px/1.35 var(--mono);color:var(--ac)}
-.fp-agent-t{margin:0;font-size:14px;line-height:1.45;color:var(--text-2)}
+.fp-crew-body{padding:26px 28px 28px}
+/* the question in, the answer out: two lines in the prompt's box, the answer signed by all twelve */
+.fp-crew-q,.fp-crew-a{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:0;padding:14px 18px;border:1px solid var(--line-2);border-radius:0;background:var(--raised);font:400 13.5px/1.6 var(--mono);color:var(--text-2)}
+.fp-crew-q .ps,.fp-crew-a .ps{flex:none;color:var(--muted)}
+.fp-crew-q .w{color:var(--text)}
+.fp-crew-a .w{flex:1 1 40ch}
+.fp-sigs{display:inline-flex;flex:none;align-items:center;gap:6px;align-self:center}
+.fp-sigs .pip{width:8px;height:8px}
+/* the four steps down a line, each numbered in its square */
+.fp-flow{position:relative;display:grid;gap:30px;margin:30px 0;padding:0;list-style:none}
+.fp-flow::before{content:'';position:absolute;left:19px;top:20px;bottom:20px;width:1px;background:var(--line-2)}
+.fp-step{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:22px}
+.fp-step-n{position:relative;z-index:1;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line-2);background:var(--paper);font:400 13px/1 var(--mono);color:var(--text)}
+.fp-step-t{margin:9px 0 16px;font-size:18px;font-weight:600;line-height:1.3;color:var(--text)}
+/* an agent: signed down its left in its colour, on a ground of it; its mark on a tile of it */
+.fp-agent{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;column-gap:16px;padding:12px 16px 12px 12px;border:1px solid color-mix(in srgb,var(--ac) 24%,var(--line-2));border-left:2px solid var(--ac);border-radius:0;background:color-mix(in srgb,var(--ac) 6%,var(--raised))}
+.fp-agent.band{grid-template-columns:42px minmax(0,1fr) auto;padding:14px 20px 14px 12px;background:color-mix(in srgb,var(--ac) 9%,var(--raised))}
+.fp-agent-g{display:grid;place-items:center;width:42px;height:42px;background:color-mix(in srgb,var(--ac) 16%,var(--paper));color:var(--ac)}
+.fp-agent-g svg{width:20px;height:20px}
+.fp-agent-w{min-width:0}
+.fp-agent-n{display:block;font:500 13px/1.35 var(--mono);color:var(--ac)}
+.fp-agent-t{display:block;margin-top:3px;font-size:15px;line-height:1.45;color:var(--text-2)}
+.fp-agent-tag{padding:6px 10px;border:1px solid color-mix(in srgb,var(--ac) 40%,var(--line-2));font:400 12px/1 var(--mono);color:var(--ac);white-space:nowrap}
+/* the ten in two frames, each named on its border, five rows to a frame */
+.fp-groups{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
+.fp-group{position:relative;margin-top:8px;padding:24px 14px 14px;border:1px solid var(--line-2);border-radius:0}
+.fp-group-k{position:absolute;top:-10px;left:12px;margin:0;padding:0 10px;background:var(--paper);font:400 12px/20px var(--mono);color:var(--text-2)}
+.fp-rows{display:grid;gap:8px}
 
 
 
@@ -521,10 +559,9 @@
   .fp-join-in{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px}
   .fp-faq-in{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);align-items:start}
 }
-/* the two frames of gatherers side by side only where each box keeps room for its sentence */
-@container fp (min-width:1200px){
+/* the two frames of gatherers side by side where each row keeps room for its sentence */
+@container fp (min-width:1100px){
   .fp-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fp-group .fp-boxes{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @container fp (min-width:1000px) and (max-width:1180px){
   .st-steps,.fp-ways{--st-gap:40px}
@@ -545,12 +582,16 @@
 }
 @container fp (max-width:640px){
   .fp-crew-body{padding:18px 14px 20px}
-  .fp-step{grid-template-columns:31px minmax(0,1fr);column-gap:12px}
-  .fp-step-n{width:31px;height:31px;font-size:12px}
+  .fp-step{grid-template-columns:32px minmax(0,1fr);column-gap:12px}
+  .fp-step-n{width:32px;height:32px;font-size:12px}
   .fp-flow::before{left:15px}
-  .fp-step-t{margin-top:5px}
-  .fp-boxes,.fp-boxes.one{grid-template-columns:minmax(0,1fr)}
-  .fp-group{padding:10px 8px 10px}
+  .fp-step-t{margin-top:5px;font-size:16px}
+  .fp-agent,.fp-agent.band{grid-template-columns:36px minmax(0,1fr);column-gap:12px;padding:11px 12px 11px 10px}
+  .fp-agent-g{width:36px;height:36px}
+  .fp-agent-t{font-size:14px}
+  .fp-agent-tag{display:none}
+  .fp-group{padding:22px 8px 8px}
+  .fp-crew-q,.fp-crew-a{padding:12px 14px}
   .hp-row{grid-template-columns:minmax(0,1fr) auto}
   .hp-file{display:none}
   .fp-prompt .hp-keys-ask{margin-left:0}
@@ -606,6 +647,8 @@
   .sx-m i{transition:none}
   .fp-top tr.flash-up,.fp-top tr.flash-down{animation:none}
   .fp-bar>span:first-child i{transition:none}
+  .fp-flow::after{animation:none;display:none}
+  .fp-sig .fp-agent{transition:none}
 }
 
 /* how:system: "The system behind one honest number", the homepage's How it works (page 18 of the design canvas).
