@@ -5,8 +5,9 @@
 // weekly email, the founding reporters) into img/og/<slug>.jpg. The pages use an image once it's
 // there (run the library build after).
 // Needs Playwright with Chromium, so it's run by hand, not in CI (CHROMIUM_PATH names a Chrome
-// to use when Playwright's own isn't installed):
+// to use when Playwright's own isn't installed); name cards to make only those:
 //   node scripts/og_images.mjs && node scripts/build_library.mjs
+//   node scripts/og_images.mjs community
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
@@ -51,6 +52,9 @@ const cards = [
   })),
   { slug: 'weekly', name: 'The Signal, weekly', tab: 'issues', kick: 'The Signal, weekly', title: 'What moved, once a week', sub: 'The Community Signal, new studies and FDA news. Free, no ads.' },
   { slug: 'founders', name: 'Founding reporters', tab: 'founders.md', kick: 'Founding reporters', title: 'Be one of the first 100.', sub: 'Share a first-hand report on what you took, and how it went.' },
+  // The community's own share card (community.miraclehealth.us points its og:image here)
+  { slug: 'community', name: 'Community', tab: 'community', addr: 'community.miraclehealth.us', kick: 'The Miracle Health community', title: 'Took something?<br><em>Say how it went.</em>',
+    sub: 'Your report moves the number for the next person, even if it did nothing. Free to join.', art: ringSvg(260) },
 ];
 
 const meter = (g) => `<span class="meter">${[0, 1, 2, 3].map((i) => `<i class="${i < BARS[g] ? 'on' : ''}"></i>`).join('')}</span>`;
@@ -96,7 +100,7 @@ h1 em,.vs{font-style:normal;font-weight:inherit}
 .p-ground{height:8px;margin-top:-12px;background:#F7F8FA}
 </style></head><body>
 <div class="in">
-<div class="top"><img class="logo" src="${pathToFileURL(path.join(ROOT, 'logo.webp')).href}" alt=""><span class="addr">miraclehealth.us</span></div>
+<div class="top"><img class="logo" src="${pathToFileURL(path.join(ROOT, 'logo.webp')).href}" alt=""><span class="addr">${e(c.addr || 'miraclehealth.us')}</span></div>
 <p class="kick${c.kick.startsWith('~') ? ' lower' : ''}">${e(c.kick)}</p>
 <h1>${c.title}</h1>
 ${c.sub ? `<p class="sub">${e(c.sub)}</p>` : ''}
@@ -108,7 +112,10 @@ ${c.pair ? `<div class="pills">${c.pair.map((id) => { const f = entries.get(id);
 fs.mkdirSync(OUT, { recursive: true });
 const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
-for (const c of cards) {
+// node scripts/og_images.mjs [slug ...]: only those cards, so one new card doesn't redraw the rest
+const only = process.argv.slice(2);
+const todo = only.length ? cards.filter((c) => only.includes(c.slug)) : cards;
+for (const c of todo) {
   const file = path.join(OUT, `${c.slug}.html`);
   fs.writeFileSync(file, html(c));
   await page.goto(pathToFileURL(file).href, { waitUntil: 'load' });
@@ -117,4 +124,4 @@ for (const c of cards) {
   fs.rmSync(file);
 }
 await browser.close();
-console.log(`share images: ${cards.length} (og.jpg, img/og-plan.jpg and ${cards.length - 2} in img/og)`);
+console.log(only.length ? `share images: ${todo.map((c) => c.slug).join(', ')}` : `share images: ${cards.length} (og.jpg, img/og-plan.jpg and ${cards.length - 2} in img/og)`);
