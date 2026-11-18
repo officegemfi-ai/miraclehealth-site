@@ -814,6 +814,45 @@ const AGENTS = [
   ['builder', 'Stack builder', 'Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.', 'Lays out options to discuss'],
   ['interpretation', 'Interpretation agent', 'Runs last. Reasons through everything the others found, strictly about efficacy: how likely it is to work for what you asked, how big the effect could be, and how sure anyone can be.', 'Efficacy, reasoned last'],
 ];
+// The front page's picture of the twelve (index.html, "crew:flow"): one question through them in four
+// steps, each agent in its own box with what it does, in a sentence anyone can follow. The names come
+// from AGENTS above; the Safety agent has a box at each end, for what it does first and last.
+const CREW_JOB = {
+  planner: 'Turns your goal into what studies measure, like body fat or lean mass.',
+  recommender: 'Finds the fact sheets that fit your question, then writes the answer.',
+  evidence: 'Pulls every study result, and how strong the evidence is.',
+  relatives: 'Few studies? Checks close relatives that work the same way.',
+  mechanism: 'Explains how each one could work in your body. Theory, and it says so.',
+  community: 'Reads what members and public forums report, kept apart from the studies.',
+  combination: 'Says whether two things work the same way or different ways.',
+  markers: 'Names the blood tests that two things push in opposite directions.',
+  synergy: 'Checks it all against your medicines and conditions.',
+  builder: 'Lays out your options side by side, to talk over with your doctor.',
+};
+const CREW = [
+  { title: 'First, safety reads your question', boxes: [['safety', 'Looks for anything urgent first: an emergency, your medicines, pregnancy, age.']] },
+  { title: 'Ten agents gather what’s known', groups: [
+    ['what the studies show', ['planner', 'recommender', 'evidence', 'relatives', 'mechanism']],
+    ['what people report, and your stack', ['community', 'combination', 'markers', 'synergy', 'builder']],
+  ] },
+  { title: 'One agent weighs it all', boxes: [['interpretation', 'Reasons through everything the others found, for one thing only: is it likely to work?']] },
+  { title: 'Safety checks every line', boxes: [['safety', 'Reads the answer before you do: no doses, no sellers, no diagnosis.']] },
+];
+function crewFlow() {
+  const nameOf = (k) => AGENTS.find(([key]) => key === k)[1];
+  const box = (k, job) => `<div class="fp-agent" data-agent="${k}"><span class="fp-agent-g">${glyphSvg(k, { size: 18 })}</span><b class="fp-agent-n">${e(nameOf(k))}</b><p class="fp-agent-t">${e(job)}</p></div>`;
+  const step = (st, i) => `<li class="fp-step"><span class="fp-step-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="fp-step-in"><h3 class="fp-step-t">${e(st.title)}</h3>`
+    + (st.groups
+      ? `<div class="fp-groups">${st.groups.map(([label, ks]) => `<section class="fp-group"><h4 class="fp-group-k">${e(label)}</h4><div class="fp-boxes">${ks.map((k) => box(k, CREW_JOB[k])).join('')}</div></section>`).join('')}</div>`
+      : `<div class="fp-boxes one">${st.boxes.map(([k, job]) => box(k, job)).join('')}</div>`)
+    + '</div></li>';
+  const shown = new Set(CREW.flatMap((st) => (st.groups ? st.groups.flatMap(([, ks]) => ks) : st.boxes.map(([k]) => k))));
+  if (shown.size !== AGENTS.length) throw new Error(`the front page's picture shows ${shown.size} of the ${AGENTS.length} agents`);
+  return '<p class="fp-crew-q"><span class="ps">you ask</span>“Is HGH plus enclomiphene good for fat loss?”</p>'
+    + `<ol class="fp-flow">${CREW.map(step).join('')}</ol>`
+    + '<p class="fp-crew-a"><span class="ps">you get</span>One answer, with the studies and what people report kept apart, each part signed in the colour of the agent that wrote it.</p>';
+}
+
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
 const STARTERS = [
   ['stack', 'Check what I take together', '', 'I take '],
@@ -1397,16 +1436,15 @@ const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'count:compounds', String(catalog.length));
 front = fill(front, 'count:sheets', String(entries.size));
-// Sig's ring on the third way in under How it works; the ring that is the Signal board's loading
-// spinner (dark until home.js lights it piece by piece); and the big ring beside the example run,
-// every piece lit (home.js dims it and lights each agent as it reports)
+// Sig's ring on the third way in under How it works, and the ring that is the Signal board's loading
+// spinner (dark until home.js lights it piece by piece)
 front = fill(front, 'ring:ask', ringSvg(16));
 // the other two ways in carry their places' marks, as the side panel does
 front = fill(front, 'mark:library', PLACE_ICON.library());
 front = fill(front, 'mark:signal', ICO.signal);
 front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
-front = fill(front, 'ring:big', ringSvg(196, { center: false, cls: 'fp-bigring' }));
-front = fill(front, 'ring:tile', ringSvg(28));
+// Sig's twelve agents, one question through them, each in its own box (CREW)
+front = fill(front, 'crew:flow', crewFlow());
 // and between Noise and Signal, Sig's ring on its dark disc
 front = fill(front, 'ring:sn', ringSvg(30));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the

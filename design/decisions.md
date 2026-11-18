@@ -323,3 +323,8 @@ The owner asked for a check of six risks that commonly catch new sites: a missin
 ## 2026-11-18 · Sig's ring on the community's sign-in page
 
 The owner pointed at the blue ring and dot beside "The Miracle Health community" on the sign-in page and said it should be the Sig logo. That spot is a logo, not Sig reacting to anything, so it now shows Sig's ring, the mark in the browser tab and on Ask Sig, drawn the way `lib/ring.js` draws it (community PR #25). The blue Sig keeps its moods everywhere it acts as a character.
+
+## 2026-11-18 · Sig's twelve agents, drawn simply on the front page
+
+The owner found the front page's Ask Sig section too busy: a 15-step run log, a six-part answer, Sig's ring in 3D and a list of the twelve that lit up the lines each wrote. They asked for the agents illustrated in frames and boxes, each explained. The section now shows one question going through them in four steps down a numbered line: the Safety agent reads it first, ten agents gather what's known (in two frames: what the studies show, and what people report with what it means for your stack), the Interpretation agent weighs it all, and the Safety agent checks every line. Each agent is a box signed along its top in its own colour, with its mark, its name and one plain sentence. The build draws the boxes from Ask Sig's own list (`AGENTS` and `CREW` in scripts/build_library.mjs), so the two pages name the agents the same way. The section is half as tall on a phone (2,688px from 4,072), and the front page no longer loads the 3D ring.
+
