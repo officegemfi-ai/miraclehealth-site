@@ -422,7 +422,7 @@ ${i.close ? `<p style="${P};margin-top:26px">${link(i.close.lead)}</p>
 <tr><td style="padding:20px 32px 28px;border-top:1px solid #E3E5E4">
 <p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
 <p style="margin:0;font-size:13px;line-height:1.5;color:#6A6F6E">You get this because you signed up at miraclehealth.us and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#6A6F6E">Read it on the web</a> · <a href="{{unsubscribe}}" style="color:#6A6F6E">Unsubscribe</a></p>
-${about.mailing_address ? `<p style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Miracle Health · ${e(about.mailing_address)}</p>` : ''}
+${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Miracle Health · ${e(about.mailing_address)}</p>` : ''}
 </td></tr>
 </table>
 </td></tr></table>
