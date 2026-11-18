@@ -142,6 +142,8 @@ const V = {
   scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'), mdCss: version('ai/mind.css'),
   myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
   home: version('home.js'), homeCss: version('home.css'),
+  // the tab's icon, by its version, so a browser that kept the old one fetches the new one
+  icon: version('favicon.svg', 'favicon.ico'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
 };
 
@@ -261,7 +263,9 @@ function stampShell(html, file, { current = '', home = false, url = '/' } = {}) 
     // A page that reads the community's numbers (the front page) may read them from the Signal API
     .replace(/connect-src 'self'[^;"]*https:\/\/community\.miraclehealth\.us[^;"]*/, `connect-src 'self' ${READS_SIGNAL}`)
     .replace(/<link rel="stylesheet" href="\/?kit\/kit\.css(?:\?v=[0-9a-f]+)?">\n/, '')
-    .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`);
+    .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`)
+    // the tab's icon, by its version
+    .replace(/<link rel="icon" href="\/?favicon\.svg(?:\?v=[0-9a-f]+)?" type="image\/svg\+xml">/, `<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">`);
 }
 
 function page({
@@ -288,7 +292,7 @@ function page({
 <meta property="og:description" content="${e(description)}">
 <meta property="og:image" content="${SITE}${ogImage}${ogVersion(ogImage)}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">
 <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/monaspace-neon-400.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
