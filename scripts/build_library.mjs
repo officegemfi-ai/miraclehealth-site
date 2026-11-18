@@ -268,8 +268,34 @@ function stampShell(html, file, { current = '', home = false, url = '/' } = {}) 
     .replace(/<link rel="icon" href="\/?favicon\.svg(?:\?v=[0-9a-f]+)?" type="image\/svg\+xml">/, `<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">`);
 }
 
+// What a search result shows: Google cuts a title at about 60 characters and a description at about
+// 155, with "…". The page's own title and description are fitted to that: the first of the page's
+// forms that fits (the fullest, most telling one first), else its title without the site's name, and
+// for a description, the whole sentences that fit. Its share card (og:) keeps the full ones.
+export const TITLE_MAX = 60;
+export const DESC_MAX = 155;
+export function fitTitle(title, forms = []) {
+  const all = [title, ...forms, title.replace(/ · Miracle Health$/, '')];
+  return all.find((t) => t.length <= TITLE_MAX) ?? all.reduce((a, b) => (b.length < a.length ? b : a));
+}
+export function fitDescription(text) {
+  const s = String(text ?? '').replace(/\s+/g, ' ').trim();
+  if (s.length <= DESC_MAX) return s;
+  let out = '';
+  for (const x of s.split(/(?<=[.!?])\s+(?=[A-Z0-9“"‘(])/)) {
+    const next = out ? `${out} ${x}` : x;
+    if (next.length > DESC_MAX) break;
+    out = next;
+  }
+  if (out.length >= 70) return out;
+  const cut = s.slice(0, DESC_MAX - 1);
+  return `${cut.slice(0, cut.lastIndexOf(' ')).replace(/[\s,;:–—-]+$/, '')}…`;
+}
+// A name without what's in brackets, for a title that can't fit it all ("KLOW blend (GHK-Cu, …)")
+const bare = (name) => String(name).replace(/\s*\([^)]*\)/g, '').trim();
+
 function page({
-  title, description, url, body, current = 'library', preload = '', bodyClass = 'lib',
+  title, titles = [], description, url, body, current = 'library', preload = '', bodyClass = 'lib',
   styles = [`/library/library.css?v=${V.lib}`], script = `/library/library.js?v=${V.js}`, scripts = [script], connect = READS_SIGNAL, head = '',
   ogImage = '/og.jpg', app = false, side = '',
 }) {
@@ -278,8 +304,8 @@ function page({
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover${app ? ', interactive-widget=resizes-content' : ''}">
-<title>${e(title)}</title>
-<meta name="description" content="${e(description)}">
+<title>${e(fitTitle(title, titles))}</title>
+<meta name="description" content="${e(fitDescription(description))}">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#17171A">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
@@ -668,7 +694,9 @@ function entryPage(c) {
   </aside>
 </div>
 </div>`;
-  return page({ title: `${c.name}: evidence, risks, blood tests · Miracle Health Library`, description: desc.slice(0, 300), url: `/library/${c.id}/`,
+  const what = ': evidence, risks, blood tests';
+  return page({ title: `${c.name}${what} · Miracle Health`, titles: [`${c.name}${what}`, `${bare(c.name)}${what} · Miracle Health`, `${bare(c.name)}${what}`, `${c.name}: evidence and risks`, `${bare(c.name)}: evidence and risks`, bare(c.name)],
+    description: desc.slice(0, 300), url: `/library/${c.id}/`,
     side: tree, body });
 }
 
@@ -761,7 +789,7 @@ function guidePage(g) {
 </div>
 </div>`;
   return page({
-    title: `${title} · Miracle Health Library`,
+    title: `${title} · Miracle Health`,
     description: 'What a lab report (certificate of analysis) for a peptide, hormone or supplement should show, how to spot a weak or fake one, and what even a good one can’t tell you. No sellers named.',
     url: `/library/${g.id}/`, body, scripts: [], connect: '',
   });
@@ -941,6 +969,7 @@ ${body}
 </div>`;
   return page({
     title: 'Ask Sig · Miracle Health’s AI: the studies and the whole community, in one answer',
+    titles: ['Ask Sig: the studies and the whole community, in one answer'],
     description: 'Ask Sig, Miracle Health’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
     ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'ask-sig.jpg')) ? '/img/og/ask-sig.jpg' : '/og.jpg',
     url: '/sig/', body: shell, current: 'ai', bodyClass: 'ai sigapp', app: true,
