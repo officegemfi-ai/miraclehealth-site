@@ -1448,8 +1448,10 @@ front = fill(front, 'ring:ask', ringSvg(16));
 front = fill(front, 'mark:library', PLACE_ICON.library());
 front = fill(front, 'mark:signal', ICO.signal);
 front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
-// Sig's twelve agents, one question through them, each in its own box (CREW)
+// Sig's twelve agents, one question through them, each in its own box (CREW), under a strip of the
+// ring's eleven colours, round it from the Safety agent's coral
 front = fill(front, 'crew:flow', crewFlow());
+front = fill(front, 'crew:spectrum', WHEEL.map((k) => `<i data-agent="${k}"></i>`).join(''));
 // and between Noise and Signal, Sig's ring on its dark disc
 front = fill(front, 'ring:sn', ringSvg(30));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
