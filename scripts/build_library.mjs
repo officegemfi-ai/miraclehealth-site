@@ -818,39 +818,44 @@ const AGENTS = [
 // steps, each agent in its own box with what it does, in a sentence anyone can follow. The names come
 // from AGENTS above; the Safety agent has a box at each end, for what it does first and last.
 const CREW_JOB = {
-  planner: 'Turns your goal into what studies measure, like body fat or lean mass.',
+  planner: 'Turns your goal into what studies measure, like body fat.',
   recommender: 'Finds the fact sheets that fit your question, then writes the answer.',
   evidence: 'Pulls every study result, and how strong the evidence is.',
   relatives: 'Few studies? Checks close relatives that work the same way.',
-  mechanism: 'Explains how each one could work in your body. Theory, and it says so.',
-  community: 'Reads what members and public forums report, kept apart from the studies.',
+  mechanism: 'Explains how each could work in your body: theory, not proof.',
+  community: 'Reads member and forum reports, kept apart from the studies.',
   combination: 'Says whether two things work the same way or different ways.',
   markers: 'Names the blood tests that two things push in opposite directions.',
   synergy: 'Checks it all against your medicines and conditions.',
   builder: 'Lays out your options side by side, to talk over with your doctor.',
 };
 const CREW = [
-  { title: 'First, safety reads your question', boxes: [['safety', 'Looks for anything urgent first: an emergency, your medicines, pregnancy, age.']] },
+  { title: 'First, safety reads your question', band: ['safety', 'Looks for anything urgent first: an emergency, your medicines, pregnancy, age.', 'reads first'] },
   { title: 'Ten agents gather what’s known', groups: [
     ['what the studies show', ['planner', 'recommender', 'evidence', 'relatives', 'mechanism']],
     ['what people report, and your stack', ['community', 'combination', 'markers', 'synergy', 'builder']],
   ] },
-  { title: 'One agent weighs it all', boxes: [['interpretation', 'Reasons through everything the others found, for one thing only: is it likely to work?']] },
-  { title: 'Safety checks every line', boxes: [['safety', 'Reads the answer before you do: no doses, no sellers, no diagnosis.']] },
+  { title: 'One agent weighs it all', band: ['interpretation', 'Reasons through everything the others found, for one thing only: is it likely to work?', 'weighs it all'] },
+  { title: 'Safety checks every line', band: ['safety', 'Reads the answer before you do: no doses, no sellers, no diagnosis.', 'checks last'] },
 ];
 function crewFlow() {
   const nameOf = (k) => AGENTS.find(([key]) => key === k)[1];
-  const box = (k, job) => `<div class="fp-agent" data-agent="${k}"><span class="fp-agent-g">${glyphSvg(k, { size: 18 })}</span><b class="fp-agent-n">${e(nameOf(k))}</b><p class="fp-agent-t">${e(job)}</p></div>`;
+  // an agent: its mark on a tile of its colour, its name in its colour, what it does; a band adds when
+  const agent = (k, job, tag = '') => `<div class="fp-agent${tag ? ' band' : ''}" data-agent="${k}"><span class="fp-agent-g">${glyphSvg(k, { size: 20 })}</span>`
+    + `<span class="fp-agent-w"><b class="fp-agent-n">${e(nameOf(k))}</b><span class="fp-agent-t">${e(job)}</span></span>`
+    + (tag ? `<span class="fp-agent-tag">${e(tag)}</span>` : '') + '</div>';
   const step = (st, i) => `<li class="fp-step"><span class="fp-step-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="fp-step-in"><h3 class="fp-step-t">${e(st.title)}</h3>`
     + (st.groups
-      ? `<div class="fp-groups">${st.groups.map(([label, ks]) => `<section class="fp-group"><h4 class="fp-group-k">${e(label)}</h4><div class="fp-boxes">${ks.map((k) => box(k, CREW_JOB[k])).join('')}</div></section>`).join('')}</div>`
-      : `<div class="fp-boxes one">${st.boxes.map(([k, job]) => box(k, job)).join('')}</div>`)
+      ? `<div class="fp-groups">${st.groups.map(([label, ks]) => `<section class="fp-group"><h4 class="fp-group-k">${e(label)}</h4><div class="fp-rows">${ks.map((k) => agent(k, CREW_JOB[k])).join('')}</div></section>`).join('')}</div>`
+      : agent(...st.band))
     + '</div></li>';
-  const shown = new Set(CREW.flatMap((st) => (st.groups ? st.groups.flatMap(([, ks]) => ks) : st.boxes.map(([k]) => k))));
+  const shown = new Set(CREW.flatMap((st) => (st.groups ? st.groups.flatMap(([, ks]) => ks) : [st.band[0]])));
   if (shown.size !== AGENTS.length) throw new Error(`the front page's picture shows ${shown.size} of the ${AGENTS.length} agents`);
-  return '<p class="fp-crew-q"><span class="ps">you ask</span>“Is HGH plus enclomiphene good for fat loss?”</p>'
+  // the answer is signed by each of them, in its colour: twelve dots, the Interpretation agent's last
+  const sigs = AGENTS.map(([k]) => `<i class="pip" data-agent="${k}"></i>`).join('');
+  return '<p class="fp-crew-q"><span class="ps">you ask</span><span class="w">“Is HGH plus enclomiphene good for fat loss?”</span></p>'
     + `<ol class="fp-flow">${CREW.map(step).join('')}</ol>`
-    + '<p class="fp-crew-a"><span class="ps">you get</span>One answer, with the studies and what people report kept apart, each part signed in the colour of the agent that wrote it.</p>';
+    + `<p class="fp-crew-a"><span class="ps">you get</span><span class="w">One answer, the studies and what people report kept apart, each part signed in its agent’s colour.</span><span class="fp-sigs" aria-hidden="true">${sigs}</span></p>`;
 }
 
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
