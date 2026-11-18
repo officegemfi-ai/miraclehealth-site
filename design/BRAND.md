@@ -57,7 +57,7 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
 - **One main action per view:** the electric blue button, `accent` lit from the top by `accent-hi`, with white `on-accent` words and a soft glow. A white button is the second choice; every other button is a hairline: `line-2` border, `text` words.
 - **Signatures:**
   - Signal blue (`lime`) only for the community and its Signal: the live dot, scores, moves up, points, the community's place mark and tab.
-  - The Signal's four parts, in its bars, its light and the spectrum: what happened in Signal blue, agreement in `violet-light`, voices in `violet`, volume in `accent-hi` (decision, November 17).
+  - The Signal's four parts, in its bars, its light and the spectrum: how well it worked in Signal blue, how much people agree in `violet-light`, how many people in `violet`, how many reports in `accent-hi` (decision, November 17).
   - Mint (`evidence`) only for the studies: grades, the evidence meter, a print's rungs, the Library's mark.
   - `safety` only for the Safety agent and "safety on".
   - `agent-*` only where that agent is named, speaks or made something.
@@ -92,7 +92,7 @@ Every page opens the same way:
   
   Under them comes what is on this page, then the rest and the legal.
 - **Top bar** (60px, sticky): the menu button, the logo, then the four sections most people go to (The Signal, Library, Community, How it works; the page you're on is underlined where the bar meets the page), and at the right a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button. Below 1100px wide the four sections are left to the side panel.
-- **Page,** across the window's whole width (up to 2400px, with a margin that grows from 16px to 96px) on the faint grid under the ultramarine wash, then the foot: the weekly email, the logo and the disclaimer beside four columns of links, a last line, and the logo's word drawn big at the very bottom. Text keeps its own line lengths inside it; on a wide screen the front page's top grows with it. On the front page's top the faint grid gives way to the Signal in light: bands of violet and blue light drifting behind the whole top as if on an LED wall (5px cells), one band for each of the Signal's four parts and as bright as its number, brightest round the score and dark behind the words (decision, November 17).
+- **Page,** across the window's whole width (up to 2400px, with a margin that grows from 16px to 96px) on the faint grid under the ultramarine wash, then the foot: the weekly email, the logo and the disclaimer beside four columns of links, a last line, and the logo's word drawn big at the very bottom. Text keeps its own line lengths inside it; on a wide screen the front page's top grows with it. On the front page's top the faint grid gives way to the Signal in light: bands of violet and blue light drifting behind the whole top as if on an LED wall (5px cells, finer on a sharp screen, the light running in soft gradients across them), one band for each of the Signal's four parts and as bright as its number, brightest round the score and dark behind the words (decision, November 17).
 
 No window box, tabs, path line or status bar: the frame is a plain website's (decision log, November 12).
 
@@ -117,7 +117,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
   - A row of the Signal that moved flashes once, blue up, coral down.
   - The Signal's tape runs, and pauses on hover.
   - A Signal counts from its last value to its new one, and its parts' bars grow to theirs.
-  - The Signal in light drifts behind the front page's top (`lib/sigfield.js`), about 30 frames a second, and stops off screen; a pulse goes out through it from the score when another compound is picked, and on a screen with a pointer it gathers a little round it.
+  - The Signal in light drifts behind the front page's top (`lib/sigfield.js`), smoothly at the screen's own frame rate, and stops off screen; a pulse goes out through it from the score when another compound is picked, and on a screen with a pointer it gathers a little round it.
   - Sig's ring lights each agent's arc as it reports.
   - Drawers slide in 0.22s.
 - **When it doesn't:** nothing loops for decoration (the Signal's light carries its four numbers), and when a device asks for reduced motion, everything stops: the light stands still.

@@ -13,7 +13,7 @@
 // textContent, and the small amount of formatting the AI uses (bold, lists, Library links) is
 // built node by node.
 import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=9eee17d93b';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=bb8f0ed784';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
 import { h, svg, getSignal, groupN } from '/lib/dom.js?v=f31d9546b5';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';

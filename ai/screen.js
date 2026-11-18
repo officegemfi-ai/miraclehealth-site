@@ -17,7 +17,7 @@
 // windows it's a sheet that pulls up over the chat (ai.js opens and closes it), and a bar above
 // the box to write in says what's on it. window.MHScreen is the whole interface.
 import { draftLink, signalHtml, catColor, node as fromKit } from '/kit/kit.js?v=9eee17d93b';
-import { sealSvg } from '/library/signalviz.js?v=bb8f0ed784';
+import { sealSvg } from '/library/signalviz.js?v=865e272ad0';
 import { h, getSignal } from '/lib/dom.js?v=f31d9546b5';
 
 const motionOff = () => matchMedia('(prefers-reduced-motion: reduce)').matches;

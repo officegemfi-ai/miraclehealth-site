@@ -5,12 +5,12 @@
 // community's public files (totals only: no posts, no names): the Community Signal, what people
 // report for each use and the placebo figures beside them. If the files can't load, the page keeps
 // what it was published with.
-import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=bb8f0ed784';
+import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=547caf3594';
-import { startSigHero } from '/lib/sighero.js?v=6cda26d8c6';
+import { startSigHero } from '/lib/sighero.js?v=4e7b799161';
 import { sigRing3d } from '/lib/ring3d.js?v=2fabbf5beb';
-import { sigField } from '/lib/sigfield.js?v=550f1a84fb';
+import { sigField } from '/lib/sigfield.js?v=f02230fa27';
 import { WHEEL, AGENT_COLOR } from '/lib/ring.js?v=59d3289bb7';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
