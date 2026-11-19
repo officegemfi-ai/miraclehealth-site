@@ -314,12 +314,12 @@ function signalBoard(board) {
     const moved = Number.isFinite(d) && Math.abs(d) >= 0.05
       ? h('span', { class: `fp-mv ${d > 0 ? 'up' : 'down'}`, title: 'this week', text: `${d > 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}` })
       : h('span', { class: 'fp-mv', 'aria-hidden': 'true' });
-    return h('tr', { 'data-id': id },
-      h('td', { class: 'c-n', text: String(i + 1) }),
-      h('th', { scope: 'row' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
+    return h('tr', { 'data-id': id, role: 'row' },
+      h('td', { class: 'c-n', role: 'cell', text: String(i + 1) }),
+      h('th', { scope: 'row', role: 'rowheader' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
         said1 ? h('span', { class: 'fp-top-t', text: said1 }) : null),
-      h('td', { class: 'c-th', text: said1 || '—' }),
-      h('td', { class: 'c-sig' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
+      h('td', { class: 'c-th', role: 'cell', text: said1 || '—' }),
+      h('td', { class: 'c-sig', role: 'cell' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
   }
   function render(snap) {
     const all = Object.entries(snap.signals || {}).filter(([, s]) => s && s.score != null && Number.isFinite(Number(s.score)));
@@ -330,7 +330,7 @@ function signalBoard(board) {
     const trs = top.map(([id, s], i) => { rows.set(id, Number(s.score)); return rowFor(id, s, i); });
     const rest = all.length - top.length;
     if (rest > 0) {
-      trs.push(h('tr', { class: 'more' }, h('td', { colspan: '4' },
+      trs.push(h('tr', { class: 'more', role: 'row' }, h('td', { colspan: '4', role: 'cell' },
         h('a', { href: 'https://community.miraclehealth.us/#/signal', text: `See all ${fmtN(all.length)} on the full board` }))));
     }
     tbody.replaceChildren(...trs);

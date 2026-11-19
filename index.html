@@ -25,8 +25,8 @@
 <link rel="preload" href="fonts/monaspace-neon-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/kit/kit.css?v=05a1ff01ee">
 <link rel="stylesheet" href="styles.css?v=7ee4de2614">
-<link rel="stylesheet" href="/home.css?v=70e1c688f1">
-<script type="module" src="/home.js?v=4a81fedb73"></script>
+<link rel="stylesheet" href="/home.css?v=b274729c10">
+<script type="module" src="/home.js?v=d3db3a1504"></script>
 <link rel="modulepreload" href="/lib/sighero.js?v=e0fa87772c">
 <link rel="modulepreload" href="/lib/dom.js?v=f31d9546b5">
 <link rel="modulepreload" href="/kit/kit.js?v=9eee17d93b">
@@ -250,10 +250,11 @@
         </div>
         <noscript><p class="fp-noscript">The live board needs JavaScript. <a href="https://community.miraclehealth.us/#/signal">Open the whole board in the community</a>.</p></noscript>
         <div class="fp-top-wrap" id="fp-top-wrap" hidden>
-          <table class="fp-top" id="fp-top">
+          <!-- a table to a screen reader (its roles keep it one, since home.css lays its rows out as a grid) -->
+          <table class="fp-top" id="fp-top" role="table">
             <caption class="mh-sr">The compounds with the highest Community Signal right now, and what people report most for each</caption>
-            <thead><tr><th scope="col" class="c-n">#</th><th scope="col">Compound</th><th scope="col" class="c-th">Reported most</th><th scope="col" class="c-sig">Signal</th></tr></thead>
-            <tbody></tbody>
+            <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader" class="c-n">Rank</th><th scope="col" role="columnheader">Compound</th><th scope="col" role="columnheader" class="c-th">Reported most</th><th scope="col" role="columnheader" class="c-sig">Signal</th></tr></thead>
+            <tbody role="rowgroup"></tbody>
           </table>
         </div>
       </div>
