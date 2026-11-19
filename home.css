@@ -22,7 +22,7 @@
 .sx-head{grid-area:head;min-width:0}
 .sx-do{grid-area:do;min-width:0}
 .sx-kick{display:flex;align-items:center;gap:12px;margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
-.sx-kick::before,.hs-kick::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
+.hs-kick::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
 /* the dot and its ring, in a clipping box of their own (see .live i in styles.css), its 8px taken back by the margins */
 .sx-live{position:relative;flex:none;width:28px;height:28px;margin:-10px;overflow:hidden}
 .sx-live::before,.sx-live::after{content:'';position:absolute;left:10px;top:10px;width:8px;height:8px;border-radius:50%}
@@ -30,8 +30,11 @@
 .sx-live::after{background:rgba(61,139,255,.55);animation:live 1.8s ease-out infinite}
 .sx-hero h1{max-width:none;margin:22px 0 0;font:800 expanded clamp(30px,3.2cqi + 12px,48px)/.98 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--text)}
 .sx-hero .fp-lede{max-width:460px;margin:24px 0 0;font-size:17.5px;line-height:1.6;color:var(--text-2)}
-/* the punchline's second sentence on its own line, in the Signal's blue */
-.sx-hero h1 em{display:block;font-style:normal;color:var(--lime)}
+/* the punchline's second sentence on a line of its own (the <br>), in the Signal's light: its blue running
+   into the violets of its bars, each line drawn with the whole run (decision, November 18). Signal blue
+   underneath, for a browser that can't clip a gradient to words and for high-contrast modes */
+.sx-hero h1 em{font-style:normal;color:var(--lime);background:linear-gradient(90deg,#3D8BFF 0%,#6B48F1 52%,#9AA0F4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media (forced-colors:active){.sx-hero h1 em{background:none;-webkit-text-fill-color:currentColor}}
 
 /* the prompt: a search box with its button; what it finds opens under it while you're in it */
 .fp-prompt.sx-find{position:relative;max-width:none;margin:0;border:0;border-radius:0;background:none;overflow:visible}
@@ -70,26 +73,21 @@
 .fp-prompt .hp-keys{display:flex;flex-wrap:wrap;gap:6px 20px;margin:0;padding:11px 18px;border-top:1px solid var(--line);font:400 11.5px/1.4 var(--mono);color:var(--muted)}
 .fp-prompt .hp-keys-ask{margin-left:auto}
 
-.sx-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;margin:20px 0 0}
+.sx-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 32px;margin:24px 0 0}
 .sx-acts a{display:inline-flex;align-items:center;gap:8px;min-height:24px;font:600 15px/1.3 var(--body);color:var(--text);text-decoration:none}
 .sx-acts .sx-arr{color:var(--text-2);transition:transform .2s ease,color .2s ease}
 .sx-acts a:hover{color:#FFFFFF}
 .sx-acts a:hover .sx-arr{color:#FFFFFF;transform:translateX(3px)}
 .sx-acts a:focus-visible{outline:2px solid var(--text);outline-offset:3px}
-/* what Miracle Health is in one line of numbers: the live Signals in the community's blue, then what it
-   never has */
-/* the four most talked about, as square chips under the search box */
-.sx-pop{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 0}
-.sx-pop-k{margin-right:4px;font:400 12px/1.4 var(--mono);color:var(--muted)}
-.sx-pop a{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border:1px solid var(--line-2);border-radius:0;background:color-mix(in srgb,var(--raised) 80%,transparent);font:400 13px/1 var(--mono);color:var(--text-2);text-decoration:none;transition:border-color .2s,color .2s}
-.sx-pop a:hover{border-color:var(--lime);color:var(--text)}
+/* the four most talked about, one tap from their fact sheets: plain links under the search box, no boxes */
+.sx-pop{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;margin:10px 0 0;font:400 13px/1 var(--mono)}
+.sx-pop-k{color:var(--muted)}
+.sx-pop a{display:inline-flex;align-items:center;min-height:32px;font-weight:400;color:var(--text-2);text-decoration:none;transition:color .2s}
+.sx-pop a:hover{color:var(--text)}
 .sx-pop a:focus-visible{outline:2px solid var(--text);outline-offset:2px}
-@container fp (max-width:1180px){.sx-pop-k{display:none}}
-/* sharing how it went, framed as the second thing to do; how the score is made stays a link */
-.sx-acts a.sx-share{min-height:44px;padding:0 18px;border:1px solid var(--line-2);transition:border-color .2s}
-.sx-acts a.sx-share:hover{border-color:var(--text)}
+@container fp (max-width:480px){.sx-pop-k{display:none}}
 /* what's here, in numbers: the live Signals in blue, then the Library */
-.sx-stats{display:grid;grid-template-columns:repeat(3,max-content);gap:0 44px;margin:36px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.sx-stats{display:grid;grid-template-columns:repeat(3,max-content);gap:0 44px;margin:44px 0 0}
 .sx-stats div{display:flex;flex-direction:column-reverse;gap:8px}
 .sx-stats dd{margin:0;font:500 28px/1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
 .sx-stats div:first-child dd{color:var(--lime)}
