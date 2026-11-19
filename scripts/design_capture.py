@@ -31,7 +31,7 @@ async def offline(route):
         return await route.continue_()
     return await route.abort()
 os.makedirs(os.path.join(OUT,'data'),exist_ok=True); os.makedirs(os.path.join(OUT,'shots'),exist_ok=True)
-WIDTHS=[1440,1024,768,390]
+WIDTHS=[2560,1440,1024,768,390]
 JS = r"""
 () => {
   const out = [];

@@ -300,7 +300,9 @@ function signalBoard(board) {
   let shown = null, version = null;
   const rows = new Map();
   // a row: its rank, the compound (its fact sheet), what people report most for it, and its Signal,
-  // with this week's move beside the score when there was one
+  // with this week's move beside the score when there was one. What people report most is written
+  // twice, under the name and in its own column; the board shows one or the other by its width
+  // (home.css), so it's seen, and read out, once
   function rowFor(id, s, i) {
     const score = Number(s.score), wk = Number(s.week);
     const d = Number.isFinite(wk) ? score - wk : NaN;
@@ -315,7 +317,7 @@ function signalBoard(board) {
     return h('tr', { 'data-id': id },
       h('td', { class: 'c-n', text: String(i + 1) }),
       h('th', { scope: 'row' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
-        said1 ? h('span', { class: 'fp-top-t', 'aria-hidden': 'true', text: said1 }) : null),
+        said1 ? h('span', { class: 'fp-top-t', text: said1 }) : null),
       h('td', { class: 'c-th', text: said1 || '—' }),
       h('td', { class: 'c-sig' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
   }

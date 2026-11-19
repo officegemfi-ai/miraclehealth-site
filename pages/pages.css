@@ -91,7 +91,7 @@
 .wk-msg:focus{outline:none}
 .wk-top .pg-intro{margin-bottom:24px}
 .wk-top .news-form{max-width:640px}
-.wk-list{margin-top:16px;border-top:1px solid var(--line)}
+.wk-list{max-width:780px;margin-top:16px;border-top:1px solid var(--line)}
 .wk-list a{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none}
 .wk-list a:hover .wk-t{text-decoration:underline}
 .wk-n{font:400 13px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--muted)}

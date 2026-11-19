@@ -290,6 +290,8 @@
 .fp-sec{padding:88px 0;border-top:1px solid var(--line)}
 .fp-head{max-width:780px}
 .fp-head h2,.fp-join-copy h2{margin:14px 0 0;font:800 expanded clamp(26px,1.89cqi + 13px,36px)/1.04 var(--body);letter-spacing:var(--head-ls);color:var(--text)}
+/* a heading of short sentences breaks between them where it can, never after a sentence's first word */
+.fp-keep{display:inline-block}
 .fp-sub{margin:16px 0 0;max-width:50ch;font-size:18px;line-height:1.6;color:var(--text-2)}
 .fp-sub a{color:var(--text)}
 .fp-fine{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:52ch}
@@ -307,8 +309,11 @@
 .fp .term{border:1px solid var(--line);border-radius:0;background:var(--paper);overflow:hidden}
 
 /* ---------- the Community Signal, like top: the eight highest, each with what people report most and
-   its score, and a way to the whole board (simpler, November 16) ---------- */
-.fp-board{margin-top:36px}
+   its score, and a way to the whole board (simpler, November 16). A row's parts stay together at every
+   width (the owner's question, November 18: "why is it so stretched?"): the bar fills the row between
+   the compound and its score, so a wider board draws a longer bar, never a gap; what people report most
+   stands under the name, with a column of its own only on a board 1100px wide and up ---------- */
+.fp-board{margin-top:36px;container:board/inline-size}
 .fp-load{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px;align-items:center;max-width:560px;padding:28px 20px 30px}
 .fp-load[hidden]{display:none}
 .fp-load-ring svg{display:block}
@@ -326,26 +331,32 @@
 .fp-top-wrap[hidden]{display:none}
 .fp-top{width:100%;border-collapse:collapse;font:400 13px/1 var(--body);font-variant-numeric:tabular-nums;color:var(--text-2)}
 .fp-top .c-n,.fp-bar b,.fp-mv{font-family:var(--mono)}
-.fp-top th,.fp-top td{padding:13px 12px;text-align:left;white-space:nowrap}
+.fp-top th,.fp-top td{padding:12px;text-align:left;white-space:nowrap;vertical-align:middle}
 .fp-top thead th{background:var(--band);font-size:13px;font-weight:500;color:var(--muted)}
 .fp-top th:first-child,.fp-top td:first-child{padding-left:18px}
 .fp-top th:last-child,.fp-top td:last-child{padding-right:18px}
 .fp-top tbody tr{border-top:1px solid rgba(255,255,255,.07);transition:background-color .2s}
 .fp-top tbody tr:hover{background:var(--fp-hover)}
 .fp-top .c-n{width:44px;color:var(--muted)}
-.fp-top th[scope="row"]{font:600 14.5px/1 var(--body);color:var(--text)}
+.fp-top th[scope="row"]{width:240px;font:600 15px/1.25 var(--body);color:var(--text)}
 .fp-top th[scope="row"] a{color:inherit;text-decoration:none}
 .fp-top th[scope="row"] a:hover{text-decoration:underline}
-.fp-top th[scope="row"]{width:220px}
-.fp-top .c-sig{width:320px}
+/* the Signal's column takes what the others leave: its bar grows, the score stays at its end */
+.fp-top .c-sig{width:auto}
+.fp-top .c-th{display:none}
 .fp-top td.c-th{font:400 14px/1.3 var(--body);color:var(--text-2)}
-.fp-top-t{display:none}
-.fp-bar{display:flex;align-items:center;gap:10px}
-.fp-bar>span:first-child{position:relative;flex:1;height:4px;border-radius:0;background:rgba(255,255,255,.12)}
+.fp-top-t{display:block;margin-top:5px;font:400 13px/1.35 var(--body);color:var(--text-2);white-space:normal}
+.fp-bar{display:flex;align-items:center;gap:14px}
+.fp-bar>span:first-child{position:relative;flex:1;min-width:48px;height:6px;border-radius:0;background:rgba(255,255,255,.1)}
 .fp-bar>span:first-child i{position:absolute;left:0;top:0;bottom:0;border-radius:0;background:var(--lime);transition:width .9s cubic-bezier(.2,.7,.2,1)}
-.fp-bar b{min-width:34px;font-weight:500;color:var(--text);text-align:right}
-.fp-mv{display:none;min-width:44px;font-size:12px}
+.fp-bar b{min-width:38px;font-size:14px;font-weight:500;color:var(--text);text-align:right}
+.fp-mv{display:none;min-width:52px;font-size:13px}
 .fp-top.has-moves .fp-mv{display:block}
+@container board (min-width:1100px){
+  .fp-top th[scope="row"]{width:220px}
+  .fp-top .c-th{display:table-cell;width:280px}
+  .fp-top-t{display:none}
+}
 .fp-top .up{color:var(--lime)}
 .fp-top .down{color:#FF9A8E}
 .fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted);white-space:normal}
@@ -493,7 +504,8 @@
 
 /* ---------- questions ---------- */
 .fp-faq-in{display:grid;grid-template-columns:minmax(0,1fr);gap:28px 64px}
-.fp-faq-list{border-bottom:1px solid var(--line)}
+/* the questions keep a reading width, so on a wide window each one's + stays near it */
+.fp-faq-list{max-width:1040px;border-bottom:1px solid var(--line)}
 .fp-faq details{border-top:1px solid var(--line)}
 .fp-faq summary{position:relative;padding:18px 40px 18px 0;list-style:none;font:600 16px/1.4 var(--body);color:var(--text);cursor:pointer}
 .fp-faq summary::-webkit-details-marker{display:none}
@@ -556,6 +568,39 @@
 @container fp (min-width:1100px){
   .fp-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+/* On a wide window a section's heading stands beside its block (the owner's question, November 18:
+   "why is it so stretched?"): the heading in a column on the left, as the questions' was, and
+   everything under it in the column on the right, in the same order, so the page keeps its whole width
+   and nothing in it runs long and empty. The left column grows with the window, 360 to 560px. The
+   Signal, the rules and the questions read well in a narrower block and split from 1280px; signal and
+   noise, the twelve agents and the example need more room and split from 1880px. The last row takes
+   whatever height the heading needs beyond the block's, so the block's own rows keep theirs. The
+   Signal's foot (your report moves it, and the two ways on) stands under its heading, so the board
+   has its column to itself. */
+.fp-sec{--fp-side:clamp(360px,27cqi,560px);--fp-gutter:clamp(48px,4cqi,104px)}
+@container fp (min-width:1280px){
+  :is(.fp-rules,.fp-faq)>.fp-wrap{display:grid;grid-template-columns:var(--fp-side) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;gap:0 var(--fp-gutter);align-items:start}
+  :is(.fp-rules,.fp-faq)>.fp-wrap>*{grid-column:2}
+  :is(.fp-rules,.fp-faq)>.fp-wrap>.fp-head{grid-column:1;grid-row:1/-1}
+  :is(.fp-rules,.fp-faq)>.fp-wrap>.fp-head+*{margin-top:0}
+  .fp-signal>.fp-wrap{display:grid;grid-template-columns:var(--fp-side) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"head board" "foot board";gap:0 var(--fp-gutter);align-items:start}
+  .fp-signal .fp-head{grid-area:head}
+  .fp-signal .fp-board{grid-area:board;margin-top:0}
+  .fp-signal .fp-signal-foot{grid-area:foot;flex-direction:column;align-items:flex-start;gap:18px;margin-top:32px}
+}
+@container fp (min-width:1880px){
+  :is(.sn,.fp-sig,.fp-example)>.fp-wrap{display:grid;grid-template-columns:var(--fp-side) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;gap:0 var(--fp-gutter);align-items:start}
+  :is(.sn,.fp-sig,.fp-example)>.fp-wrap>*{grid-column:2}
+  :is(.sn,.fp-sig,.fp-example)>.fp-wrap>.fp-head{grid-column:1;grid-row:1/-1}
+  :is(.sn,.fp-sig,.fp-example)>.fp-wrap>.fp-head+*{margin-top:0}
+  /* the four rules two by two, each with its number, its name and its line */
+  .fp-file .fp-rule-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:0}
+  .fp-rule-list li{grid-template-columns:40px minmax(0,1fr);row-gap:8px;padding:24px 28px 26px 0}
+  .fp-rule-list li:nth-child(2){border-top:0}
+  .fp-rule-list li:nth-child(even){border-left:1px solid rgba(255,255,255,.07)}
+  .fp-rule-list p{grid-column:2}
+  .fp-members{padding-left:58px}
+}
 @container fp (min-width:1000px) and (max-width:1180px){
   .st-steps,.fp-ways{--st-gap:40px}
   .fp-way{column-gap:12px;padding:12px 14px 12px 12px}
@@ -616,13 +661,10 @@
   .sx-go{width:100%;margin-top:12px}
   .sx-stats{gap:0 28px}
   .sx-stats dd{font-size:24px}
-  .fp-top .c-sig{width:auto}
-  .fp-top .c-th{display:none}
-  .fp-top-t{display:block;margin-top:6px;font:400 13px/1.3 var(--body);color:var(--text-2);white-space:normal}
   .fp-top th,.fp-top td{padding:12px 8px}
   .fp-top th:first-child,.fp-top td:first-child{padding-left:12px}
   .fp-top th:last-child,.fp-top td:last-child{padding-right:12px}
-  .fp-bar>span:first-child{min-width:48px}
+  .fp-bar{gap:10px}
   .fp-vs .vs-head,.fp-vs .vs-row,.fp-vs .vs-foot{padding-left:18px;padding-right:18px}
   .fp-vs .vs-id h3{font-size:32px}
   .fp-vs .vs-act,.fp-vs .vs-act .btn{width:100%}

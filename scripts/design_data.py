@@ -5,7 +5,7 @@ import json, re, glob, os, collections
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, '.design')
 PAGES = json.load(open(os.path.join(REPO, 'design', 'pages.json')))
-WIDTHS = [1440, 1024, 768, 390]
+WIDTHS = [2560, 1440, 1024, 768, 390]
 def _palette():
     t = json.load(open(os.path.join(REPO, 'design', 'tokens.json')))
     cols = {x['name']: x['value'] for x in t['color']['tokens']}

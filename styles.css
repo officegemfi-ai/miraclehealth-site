@@ -263,7 +263,11 @@ ul,ol{list-style:none;margin:0;padding:0}
 .doc-head p:last-child{margin-top:18px;font:400 13.5px/1.5 var(--body);color:var(--on-ink-3)}
 .doc{padding-top:64px;padding-bottom:110px}
 .doc>*{max-width:740px}
-.doc>.mtable-wrap,.doc>.mtable{max-width:none}
+/* the method's tables run wider than its words, to a point: a table of pairs (what, and what it counts
+   as) keeps the words' 740px, the placebo table stops at 1280px, so on a wide screen no row runs long
+   and empty (the owner's question, November 18: "why is it so stretched?") */
+.doc>.mtable-wrap,.doc>.mtable{max-width:1280px}
+.doc>.mtable-wrap.mtable-pair{max-width:740px}
 .doc h2{margin-top:56px}
 .doc h3{margin-top:36px}
 .doc p,.doc li{max-width:52ch;font-size:16px;line-height:1.55;color:var(--text-2)}

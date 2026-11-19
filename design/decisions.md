@@ -360,3 +360,14 @@ The owner sent six screenshots of small details (the three numbers' tiny labels 
 **Kept.** Every navigation panel and its links; the agents' colours and glyphs; the frames and steps of the twelve; the numbers; the honest notes ("An example, not a real report"); the drawings' own labels; and the body map's place names, set in the body face here by the site (the shared kit still sets them in the code face until the community's pass).
 
 **Next.** The community app gets the same pass (its kit, its labels), with the agent's rules.
+
+## 2026-11-18 · Wide screens: nothing runs long and empty
+
+The owner sent the front page's Community Signal on a screen about 2,450px wide and asked why it was so stretched. Since the pages run the window's whole width (November 12), every block under a heading ran the whole width too: the board's eight rows put the compound and what people report most at the left and its bar and score some 1,500px away, and signal and noise, the example, the twelve agents and the rules ran long with their words at the left and empty space after. The pages keep the whole width; what fills it changed.
+
+- **A row's parts stay together.** The board's bar now fills the row between the compound and its score, so a wider board draws a longer bar, not a gap. What people report most stands under the compound's name (as it did on a phone), with a column of its own only on a board 1100px wide and up. It is written once for a screen reader too: the copy under the name was hidden from them, and now whichever copy shows is the one read out.
+- **The heading beside its block.** From 1280px the Signal, the rules and the questions put the heading in a column on the left, 360px growing to 560px, and the block in the rest; the Signal's foot (your report moves it, and the two ways on) stands under its heading. Signal and noise, the twelve agents and the example need more room and do the same from 1880px. Below that they stay as they were. The order on the page and for a screen reader doesn't change.
+- **On the widest screens,** the four rules stand two by two, and the questions keep a reading width (1040px), so each one's + stays near it. Ask Sig's heading breaks between its three sentences, never after a sentence's first word.
+- **Elsewhere:** the weekly's list of issues keeps 780px (its dates had run to the far edge), and the method's tables stop at 740px (the table of pairs) and 1280px (the placebo table).
+
+**The check.** `scripts/check_layout.mjs` now also opens every page at 1920 and 2560 and fails a row (a table row or a list item) whose parts stand side by side more than 560px apart. On the site as it was it found 26 such rows on the front page at 1440 to 2560 alone, and others on the method and weekly pages; now none, at all 16 widths. The design department's capture adds 2560, and the layout lead looks for it.
