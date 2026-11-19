@@ -64,7 +64,7 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
   - Never fill a button with a signature colour.
 - **Moves:** Signal blue ▲ up, `down` ▼ down. The arrow always carries the direction too.
 - **Hairlines:** `line` frames windows and cards; `line-2` borders controls. Neither carries meaning alone.
-- **Gradients and glows** only for the Signal's scale bar, the main action (electric blue, lit from the top, with its glow), the window's ground (an ultramarine wash at the top over a faint 64px grid), the violet band and the front page's top in light (the Signal's parts as bands of light, and the glow on their bars). One set of colours, black and electric blue, whatever a device is set to.
+- **Gradients and glows** only for the Signal's scale bar, the main action (electric blue, lit from the top, with its glow), the window's ground (an ultramarine wash at the top over a faint 64px grid), the violet band, the front page's top in light (the Signal's parts as bands of light, and the glow on their bars) and the front page's punchline, whose second sentence runs from Signal blue into `violet` and `violet-light`, line by line (decision, November 18). One set of colours, black and electric blue, whatever a device is set to.
 
 ## Type
 
