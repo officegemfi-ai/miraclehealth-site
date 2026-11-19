@@ -10,6 +10,9 @@
 #     (scripts/check_layout.mjs, in Chromium)
 #   - every focus shows a 2px ring, one electric blue action shows per view and phone fields are 16px
 #     (scripts/check_states.mjs, in Chromium); the brand check also counts tracked mono and capitals
+#   - no page looks machine-made: no code costume (file names, paths, prompts), no strings of middle
+#     dots, no rows of dots and no words in the code face (scripts/check_clean.mjs, in Chromium; the
+#     owner's rule of November 18, design/BRAND.md, "Clean, not costume")
 # GitHub emails you when a run fails.
 name: Check the site
 on:
@@ -56,7 +59,7 @@ jobs:
           done
   layout:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -70,3 +73,5 @@ jobs:
         run: node scripts/check_layout.mjs
       - name: Every focus shows its ring, one blue action per view, phone fields at 16px
         run: node scripts/check_states.mjs
+      - name: No AI-looking details (code costume, dot chains and strips, words in the code face)
+        run: node scripts/check_clean.mjs

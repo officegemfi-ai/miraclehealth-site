@@ -457,7 +457,7 @@ function ladderHeadline(ids, L) {
 // The chip at the top: how much there is, rung by rung
 function ladderChip(L) {
   const own = L.rows.reduce((n, r) => n + r.found.length, 0);
-  return [cap(mainOf(L)), own ? `${own} studied` : 'nothing studied', L.via.length ? (L.via.length === 1 ? '1 through a relative' : `${L.via.length} through relatives`) : ''].filter(Boolean).join(' · ');
+  return [cap(mainOf(L)), own ? `${own} studied` : 'nothing studied', L.via.length ? (L.via.length === 1 ? '1 through a relative' : `${L.via.length} through relatives`) : ''].filter(Boolean).join(', ');
 }
 function ladderNode(ids, L, animate) {
   const grid = h('div', { class: `sc-grid sc-ladder${ids.length > 3 ? ' many' : ''}`, role: 'table', 'aria-label': `The evidence for ${mainOf(L)}, rung by rung, for ${listOf(ids.map(nameOf))}` });
@@ -522,7 +522,7 @@ function ladderNode(ids, L, animate) {
     }
   }
   return h('div', { class: `sc-code${animate ? ' typing' : ''}` }, grid,
-    h('p', { class: 'sc-small sc-evkey', text: '● studies in people · ○ animal or lab studies, or nothing yet · ↳ a relative’s evidence, a rung below. Each rung is weaker than the one above it; none is a reason to take something.' }));
+    h('p', { class: 'sc-small sc-evkey', text: '● studies in people; ○ animal or lab studies, or nothing yet; ↳ a relative’s evidence, a rung below. Each rung is weaker than the one above it; none is a reason to take something.' }));
 }
 
 // A marker picked: what it is, and the lines that move it light up

@@ -18,7 +18,7 @@ Your area, across every page in `design/pages.json` at 1440, 1024, 768 and 390 w
    - it covers the page;
    - the scrim works;
    - Escape closes it.
-5. **The bars:** what the title bar and status bar keep at 390 and 768.
+5. **The bars:** what the top bar and Ask Sig's tab bar keep at 390 and 768.
 6. **Side padding at 390:** equal left and right, and the same on every page.
 7. **Text size at 390:**
    - body at least 15px;

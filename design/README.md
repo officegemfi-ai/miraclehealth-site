@@ -9,10 +9,10 @@ miraclehealth.us keeps to one design language: every page is a window in Sig's t
 
 ## The record
 - `decisions.md`: the art director's calls where the agents disagreed or a fix meant choosing between the brand book and the site, with the reasons, and what was left for the founder.
-- `audits/<date>/`: each review's five reports, finding by finding.
+- `audits/<date>/`: each review's reports, finding by finding.
 
 ## The team
-Five agents, in `.claude/agents/`, audit the site and report findings with exact fixes. Each has its own area:
+Six agents, in `.claude/agents/`, audit the site and report findings with exact fixes. Each has its own area:
 
 | Agent | Looks after |
 | --- | --- |
@@ -21,10 +21,13 @@ Five agents, in `.claude/agents/`, audit the site and report findings with exact
 | `design-layout` | The window's geometry, symmetric padding, one left edge, centring, vertical rhythm, grids, alignment |
 | `design-components` | Buttons, links, cards and plates, tables, chips, forms, radii, hover and focus |
 | `design-responsive` | Phones and tablets: overflow, wrapping, tap targets, the drawer, side padding, text sizes |
+| `design-clean` | What makes a page look machine-made and busy: code costume (file names, paths, prompts, title and status bars), corner captions and counters, middle-dot chains, rows of dots and colour strips, words in the code face. It deletes first (the owner's rule, November 18) |
 
-To run a full review in Claude Code, ask for a design review. The `design-review` skill in `.claude/skills/` captures every page, briefs the five agents in parallel (`BRIEF.md`), consolidates and fixes their findings on a branch, checks the result and opens a PR.
+To run a full review in Claude Code, ask for a design review. The `design-review` skill in `.claude/skills/` captures every page, briefs the six agents in parallel (`BRIEF.md`), consolidates and fixes their findings on a branch, checks the result and opens a PR.
 
-## The check, on every change
+## The checks, on every change
+`scripts/check_clean.mjs` opens every page in Chromium at 1440 and 390 wide (and the front page's search results and ⌘K) and fails on code costume, dot chains and strips, and words in the code face. It runs with the layout and focus checks.
+
 `scripts/design_check.mjs` runs in the site's checks on every push and PR. It reads every stylesheet and finds:
 - colours that aren't the brand's;
 - type faces other than the three;

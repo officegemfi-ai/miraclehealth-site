@@ -42,7 +42,7 @@
 .ci-after:empty{display:none}
 .ci-saved{display:flex;align-items:center;gap:10px;margin-top:18px;font-weight:600;color:var(--on-ink)}
 .ci-saved .sig{flex:none;width:28px;height:28px}
-.ci-label{display:block;margin-top:16px;font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--on-ink-3)}
+.ci-label{display:block;margin-top:16px;font:400 13px/1.4 var(--body);color:var(--on-ink-3)}
 .ci-took{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .ci-took-b{min-height:40px;padding:0 14px;border-radius:0;border:1px dashed var(--line-2);background:transparent;color:var(--on-ink-2);font:500 14px/1 var(--body);cursor:pointer}
 .ci-took-b[aria-pressed="true"]{border-style:solid;border-color:var(--act-c);background:rgba(255,255,255,.08);color:var(--on-ink)}

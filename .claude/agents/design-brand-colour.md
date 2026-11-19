@@ -17,7 +17,7 @@ Your area, across every page in `design/pages.json` at 1440, 1024, 768 and 390 w
 4. **Contrast:** with `ds.EFFECTIVE_BG_JS` on live pages at 1440 and 390. Small text needs 4.5:1 and 24px+ text 3:1. Tab through a page to check the 2px focus ring shows.
 5. **Logo and marks:**
    - The wordmark is 22px in the side panel, 24px in a foot, never under 20px.
-   - Sig's ring is 18px in every title bar.
+   - Sig's ring is 18px beside Ask Sig in the top bar and in Ask Sig's tab bar.
    - The glyphs keep their colours.
 6. **Gradients and shadows:**
    - Gradients only for the Signal's bar and drawn marks such as the plate's ticks.

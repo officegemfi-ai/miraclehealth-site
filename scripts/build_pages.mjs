@@ -346,7 +346,7 @@ export function buildPages(ctx) {
       ['unknown', 'That link didn’t work', 'It may be old, or already used. Sign up again below, or write to hello@miraclehealth.us.'],
       ['error', 'Something went wrong', 'Nothing changed. Try the link again in a minute.'],
     ];
-    const body = `${docHead('The Signal, weekly', 'What moved, once a week', 'An email · free · unsubscribe in one click')}
+    const body = `${docHead('The Signal, weekly', 'What moved, once a week', 'A free email. Unsubscribe in one click.')}
 
   <div class="wrap pg-wrap wk">
     <div class="wk-said">${said.map(([id, t, s]) => `<p class="wk-msg" id="${id}" tabindex="-1"><b>${e(t)}.</b> ${e(s)}</p>`).join('')}</div>

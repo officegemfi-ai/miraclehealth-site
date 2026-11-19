@@ -29,7 +29,7 @@ import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
 // at its centre (lib/ring.js, shared with ai/ai.js)
-import { CENTER, ringSvg, WHEEL } from '../lib/ring.js';
+import { ringSvg } from '../lib/ring.js';
 import { glyphSvg } from '../lib/glyphs.js';
 import { printSvg } from '../lib/print.js';
 
@@ -165,22 +165,21 @@ const ICO = {
 };
 const libDateOf = () => date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
 const PLACE_ICON = { library: () => glyphSvg('evidence', { size: 16 }), ai: () => ringSvg(16), community: () => glyphSvg('community', { size: 16 }), my: () => glyphSvg('builder', { size: 16 }) };
-const PLACE_META = { library: () => `${entries.size} sheets`, ai: () => `${AGENTS.length} agents`, community: () => '<i class="op-live" aria-hidden="true"></i>live', my: () => 'this device' };
 // The Signal leads the places (page 15 of the design canvas): the community's live score, its spectrum on
 // the front page; the front page writes in how many Signals are live
-const SIGNAL_PLACE = () => `<a href="/#signal"><span class="op-g" aria-hidden="true">${ICO.signal}</span><span class="op-n">The Signal</span><span class="op-k"><i class="op-live" aria-hidden="true"></i><span class="op-signal-n"></span>live</span></a>`;
+const SIGNAL_PLACE = () => `<a href="/#signal"><span class="op-g" aria-hidden="true">${ICO.signal}</span><span class="op-n">The Signal</span></a>`;
 const MORE = [['/#how', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
   ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/weekly/', 'The weekly email'], ['/founders/', 'Founding reporters'], ['/story/', 'The story'], ['/about/', 'About']];
 function osSide(current, ctx = '', url = '') {
   return `<aside class="os-side" id="os-side" aria-label="Miracle Health">
   <div class="os-head"><a class="os-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a><button class="os-fold" id="os-fold" type="button" aria-label="Close the menu" aria-controls="os-side" aria-expanded="false">${ICO.fold}</button></div>
   <a class="os-ask" href="/sig/">${ringSvg(16)}<span>Ask Sig a question</span></a>
-  <nav class="os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
+  <nav class="os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span></a>`).join('')}</nav>
   ${ctx ? `<div class="os-ctx">${ctx}</div>` : ''}
-  <nav class="os-more" aria-label="More of the site"><p class="os-k">more</p>${MORE.map(([href, label]) => `<a href="${href}"${href === url ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+  <nav class="os-more" aria-label="More of the site"><p class="os-k">More</p>${MORE.map(([href, label]) => `<a href="${href}"${href === url ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
   <div class="os-foot">
     <div class="os-acct"><a class="os-signin" href="${COMMUNITY}/">Sign in</a><a class="btn line sm" href="${COMMUNITY}/">Join</a></div>
-    <p class="os-legal"><a href="/privacy">Privacy</a><span aria-hidden="true"> · </span><a href="/terms">Terms</a><span aria-hidden="true"> · </span><span>© 2026</span></p>
+    <p class="os-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><span>© 2026</span></p>
   </div>
 </aside>`;
 }
@@ -209,10 +208,10 @@ ${osSide(current, side, url)}
 // outlines in violet into blue (img/wordmark.svg), cut off by the bottom of the page, that lights up
 // under the pointer (lib/os.js) and, with no pointer, sweeps slowly (November 17)
 const FOOT_COLS = [
-  ['explore', [[placeHref('library', { site: '' }), 'Library'], ['/#signal', 'The Signal'], [placeHref('ai', { site: '' }), 'Ask Sig'], ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/status/', 'FDA status tracker']]],
-  ['community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My Miracle'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
-  ['how it works', [['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
-  ['contact', [['mailto:hello@miraclehealth.us', 'hello@miraclehealth.us'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
+  ['Explore', [[placeHref('library', { site: '' }), 'Library'], ['/#signal', 'The Signal'], [placeHref('ai', { site: '' }), 'Ask Sig'], ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/status/', 'FDA status tracker']]],
+  ['Community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My Miracle'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
+  ['How it works', [['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
+  ['Contact', [['mailto:hello@miraclehealth.us', 'hello@miraclehealth.us'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
 ];
 function osClose({ url = '/' }) {
   return `  <footer class="foot win-foot">
@@ -227,7 +226,7 @@ function osClose({ url = '/' }) {
         ${FOOT_COLS.map(([h, links]) => `<div class="foot-col"><p class="foot-h">${h}</p><ul>${links.map(([href, label]) => `<li><a href="${href}"${href.startsWith('mailto:') ? ' class="mail"' : ''}>${label}</a></li>`).join('')}</ul></div>`).join('\n        ')}
       </nav>
     </div>
-    <div class="foot-base"><p class="copy">© 2026 Miracle Health</p><p class="copy">no ads · no sellers · no doses</p></div>
+    <div class="foot-base"><p class="copy">© 2026 Miracle Health</p><p class="copy">No ads, no sellers, no doses.</p></div>
     </div>
     <div class="wrap foot-wordwrap" aria-hidden="true"><div class="foot-word"><span class="fw-dim"></span><span class="fw-glow"></span></div></div>
   </footer>
@@ -424,13 +423,13 @@ function indexPage() {
     </div>
     <div class="explain-grid">
       <div class="glass deep">
-        <p class="mono evid">// The fact sheet</p>
+        <p class="label evid">The fact sheet</p>
         <h3>Checked against the sources</h3>
         <p>Every claim links to the FDA label, NIH fact sheet, trial or review it came from. Each benefit says what kind of evidence backs it, from randomized trials in people to studies in rats. No doses, no sellers.</p>
         <ul class="grade-key">${Object.entries(GRADE).filter(([k]) => k !== 'anecdotal').map(([k, [l, d]]) => `<li>${evPill(k, l)}<span>${e(d)}</span></li>`).join('')}</ul>
       </div>
       <div class="glass deep">
-        <p class="mono lime">// The Community Signal</p>
+        <p class="label lime">The Community Signal</p>
         <h3>A certificate of human experience</h3>
         <p>Each number starts from what people say on public forums and is rewritten, report by report, by members who took it themselves. As first-hand reports take over, a Signal earns its level:</p>
         <ul class="level-key">${LEVELS.map((l) => `<li>${sealSvg(l.key, 26)}<span><b>${e(l.name)}</b> ${e(l.rule)}</span></li>`).join('')}</ul>
@@ -469,7 +468,7 @@ function list(items, cls = '') {
 // that part of it for an answer: the Evidence librarian the evidence, the Safety agent the risks
 // and where it stands, the Markers agent the blood tests, the Mechanism agent the body map
 const SIGNER = { evidence: 'evidence librarian', safety: 'safety agent', markers: 'markers agent', mechanism: 'mechanism agent', community: 'the community' };
-const by = (...as) => `<span class="h-by" aria-hidden="true">${as.map((a) => `<b data-agent="${a}">${SIGNER[a]}</b>`).join(' · ')}</span>`;
+const by = (...as) => `<span class="h-by" aria-hidden="true">${as.map((a, i) => `<b data-agent="${a}">${i ? SIGNER[a] : SIGNER[a][0].toUpperCase() + SIGNER[a].slice(1)}</b>`).join(' and ')}</span>`;
 
 function factSheet(c, f) {
   const g = GRADE[f.evidence.grade] || [f.evidence.grade, ''];
@@ -511,8 +510,8 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
       <h2>Blood tests to watch${by('markers')}</h2>
       ${UNAPPROVED.has(f.status_us.key) && ((labs.before || []).length || (labs.during || []).length) ? '<p class="lab-note">Not an approved medicine. These are checks a doctor or a clinical trial would use, not a plan for taking it on your own.</p>' : ''}
       <div class="labs" data-agent="markers">
-        <div class="lab-col"><p class="mono">Before starting</p>${(labs.before || []).length ? list(labs.before, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
-        <div class="lab-col"><p class="mono">While taking it</p>${(labs.during || []).length ? list(labs.during, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
+        <div class="lab-col"><p class="label">Before starting</p>${(labs.before || []).length ? list(labs.before, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
+        <div class="lab-col"><p class="label">While taking it</p>${(labs.during || []).length ? list(labs.during, 'marks') : '<p class="muted">None routinely needed.</p>'}</div>
       </div>
       <p class="lab-why">${e(labs.why || '')}</p>
     </section>
@@ -617,18 +616,17 @@ function entryPage(c) {
   ].filter(Boolean) : [];
   const toc = f ? [['voices', 'The bottom line'], ['what', 'What it is'], ...(drawnHere(c.id) ? [['body', 'In the body']] : []), ['benefits', 'What it may do'], ['risks', 'Risks'], ['labs', 'Blood tests'], ...(f.studies?.length ? [['studies', 'The main studies']] : []), ['ask', 'Ask your doctor'], ['status', 'US status'], ['sources', 'Sources']] : [];
   const desc = f ? `${f.summary} Evidence, risks, blood tests to watch and sources, next to what people who took it report.` : `${c.name}: what members report, and its fact sheet as soon as it’s checked against primary sources.`;
-  // The Library beside the sheet: the family's sheets as files in the side panel (the other families
-  // as folders that open the Library on them)
-  const dir = (fam) => fam.toLowerCase();
+  // The Library beside the sheet: the family's sheets by name in the side panel (the other families
+  // open the Library on them)
   const listed = (x) => entries.has(x.id) || x.kind === 'blend';
   const famFiles = catalog.filter((x) => x.family === c.family && (listed(x) || x.id === c.id)).sort((a, b) => a.id.localeCompare(b.id));
   const famCount = (fam) => catalog.filter((x) => x.family === fam && listed(x)).length;
   const tree = `<nav class="le-tree" aria-label="Fact sheets in the Library">
-    <p class="lt-root"><a href="/library/">library/</a><span>${entries.size} sheets</span></p>
+    <p class="lt-root"><a href="/library/">The Library</a></p>
     ${FAMILIES.map((fam) => (fam === c.family
-      ? `<p class="lt-dir on"><span aria-hidden="true">▾ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></p>
-    <ul class="lt-files">${famFiles.map((x) => `<li><a href="/library/${x.id}/"${x.id === c.id ? ' aria-current="page"' : ''}>${e(entries.has(x.id) ? `${x.id}.md` : x.id)}</a></li>`).join('')}</ul>`
-      : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(dir(fam))}/<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
+      ? `<p class="lt-dir on">${e(fam)}<span class="lt-n">${famCount(fam)}</span></p>
+    <ul class="lt-files">${famFiles.map((x) => `<li><a href="/library/${x.id}/"${x.id === c.id ? ' aria-current="page"' : ''}>${e(x.name || x.id)}</a></li>`).join('')}</ul>`
+      : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}">${e(fam)}<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
     <p class="lt-more">${catalog.filter((x) => !listed(x)).length} more compounds are listed and waiting for their sheets.</p>
   </nav>`;
   // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
@@ -684,9 +682,9 @@ function entryPage(c) {
     ${parentBlends.length ? `<section class="le-sec" id="blends"><h2>Also sold in blends</h2><div class="parts">${parentBlends.map((b) => `<a class="part" href="/library/${b.id}/"><span class="lc-fam">Blend</span><b>${e(b.name)}</b></a>`).join('')}</div></section>` : ''}
   </article>
   <aside class="le-side">
-    ${toc.length ? `<nav class="toc" aria-label="On this page"><p class="mono">// on this page</p>${toc.map(([id, l]) => `<a href="#${id}">${l}</a>`).join('')}</nav>` : ''}
+    ${toc.length ? `<nav class="toc" aria-label="On this page"><p class="label">On this page</p>${toc.map(([id, l]) => `<a href="#${id}">${l}</a>`).join('')}</nav>` : ''}
     <div class="side-card">
-      <p class="mono">// took it?</p>
+      <p class="label">Took it?</p>
       <p>Your report moves the ${e(c.name)} Signal, whether it worked or not.</p>
       <a class="btn line sm" href="${shareLink(c.id)}">Share how it went</a>
     </div>
@@ -783,7 +781,7 @@ function guidePage(g) {
     </section>
   </article>
   <aside class="le-side">
-    <nav class="toc" aria-label="On this page"><p class="mono">On this page</p>${shown.map((x) => `<a href="#${slug(x.title)}">${e(x.title)}</a>`).join('')}<a href="#sources">Sources</a></nav>
+    <nav class="toc" aria-label="On this page"><p class="label">On this page</p>${shown.map((x) => `<a href="#${slug(x.title)}">${e(x.title)}</a>`).join('')}<a href="#sources">Sources</a></nav>
     <p class="side-note">Education, not medical advice. No doses, no sellers, no labs named. A good report doesn’t make a product safe.</p>
   </aside>
 </div>
@@ -830,32 +828,32 @@ const CREW_JOB = {
   builder: 'Lays out your options side by side, to talk over with your doctor.',
 };
 const CREW = [
-  { title: 'First, safety reads your question', band: ['safety', 'Looks for anything urgent first: an emergency, your medicines, pregnancy, age.', 'reads first'] },
+  { title: 'First, safety reads your question', band: ['safety', 'Looks for anything urgent first: an emergency, your medicines, pregnancy, age.'] },
   { title: 'Ten agents gather what’s known', groups: [
-    ['what the studies show', ['planner', 'recommender', 'evidence', 'relatives', 'mechanism']],
-    ['what people report, and your stack', ['community', 'combination', 'markers', 'synergy', 'builder']],
+    ['What the studies show', ['planner', 'recommender', 'evidence', 'relatives', 'mechanism']],
+    ['What people report, and your stack', ['community', 'combination', 'markers', 'synergy', 'builder']],
   ] },
-  { title: 'One agent weighs it all', band: ['interpretation', 'Reasons through everything the others found, for one thing only: is it likely to work?', 'weighs it all'] },
-  { title: 'Safety checks every line', band: ['safety', 'Reads the answer before you do: no doses, no sellers, no diagnosis.', 'checks last'] },
+  { title: 'One agent weighs it all', band: ['interpretation', 'Reasons through everything the others found, for one thing only: is it likely to work?'] },
+  { title: 'Safety checks every line', band: ['safety', 'Reads the answer before you do: no doses, no sellers, no diagnosis.'] },
 ];
 function crewFlow() {
   const nameOf = (k) => AGENTS.find(([key]) => key === k)[1];
-  // an agent: its mark on a tile of its colour, its name in its colour, what it does; a band adds when
-  const agent = (k, job, tag = '') => `<div class="fp-agent${tag ? ' band' : ''}" data-agent="${k}"><span class="fp-agent-g">${glyphSvg(k, { size: 20 })}</span>`
-    + `<span class="fp-agent-w"><b class="fp-agent-n">${e(nameOf(k))}</b><span class="fp-agent-t">${e(job)}</span></span>`
-    + (tag ? `<span class="fp-agent-tag">${e(tag)}</span>` : '') + '</div>';
-  const step = (st, i) => `<li class="fp-step"><span class="fp-step-n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="fp-step-in"><h3 class="fp-step-t">${e(st.title)}</h3>`
+  // an agent: its mark on a tile of its colour, its name in its colour, what it does; a step of one
+  // agent alone (a band) runs the whole width
+  const agent = (k, job, band = false) => `<div class="fp-agent${band ? ' band' : ''}" data-agent="${k}"><span class="fp-agent-g">${glyphSvg(k, { size: 20 })}</span>`
+    + `<span class="fp-agent-w"><b class="fp-agent-n">${e(nameOf(k))}</b><span class="fp-agent-t">${e(job)}</span></span></div>`;
+  const step = (st, i) => `<li class="fp-step"><span class="fp-step-n" aria-hidden="true">${i + 1}</span><div class="fp-step-in"><h3 class="fp-step-t">${e(st.title)}</h3>`
     + (st.groups
       ? `<div class="fp-groups">${st.groups.map(([label, ks]) => `<section class="fp-group"><h4 class="fp-group-k">${e(label)}</h4><div class="fp-rows">${ks.map((k) => agent(k, CREW_JOB[k])).join('')}</div></section>`).join('')}</div>`
-      : agent(...st.band))
+      : agent(...st.band, true))
     + '</div></li>';
   const shown = new Set(CREW.flatMap((st) => (st.groups ? st.groups.flatMap(([, ks]) => ks) : [st.band[0]])));
   if (shown.size !== AGENTS.length) throw new Error(`the front page's picture shows ${shown.size} of the ${AGENTS.length} agents`);
-  // the answer is signed by each of them, in its colour: twelve dots, the Interpretation agent's last
-  const sigs = AGENTS.map(([k]) => `<i class="pip" data-agent="${k}"></i>`).join('');
-  return '<p class="fp-crew-q"><span class="ps">you ask</span><span class="w">“Is HGH plus enclomiphene good for fat loss?”</span></p>'
+  // the question it starts from, and what comes back, in plain sentences (the owner's rule, November 18:
+  // no prompt, no labels in another face, no row of dots)
+  return '<p class="fp-crew-q">For example: <q>Is HGH plus enclomiphene good for fat loss?</q></p>'
     + `<ol class="fp-flow">${CREW.map(step).join('')}</ol>`
-    + `<p class="fp-crew-a"><span class="ps">you get</span><span class="w">One answer, the studies and what people report kept apart, each part signed in its agent’s colour.</span><span class="fp-sigs" aria-hidden="true">${sigs}</span></p>`;
+    + '<p class="fp-crew-a">You get one answer, with the studies and what people report kept apart.</p>';
 }
 
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
@@ -866,10 +864,10 @@ const STARTERS = [
   ['sleep', 'Sleep better', 'I want to sleep better. What has good evidence, and what is mostly hype?', ''],
 ];
 
-// Ask Sig is Sig's health terminal: a window under the site's bar with a title bar (Sig's ring, the
-// question it's on and the twelve who answer), the conversation on the left with the box to write
-// in as its prompt, the agents and the screen beside it as two tabs, and a status bar. On a phone it
-// is the conversation alone, with the ring in its title bar; the screen pulls up as a sheet.
+// Ask Sig is Sig's own window: a bar with Sig's ring and the chats as tabs, the conversation on the
+// left with the box to write in at its foot, and Sig's mind, the markers and the screen beside it as
+// tabs (no status bar, path or prompt: the owner's rule, November 18). On a phone it is the
+// conversation alone; the screen pulls up as a sheet.
 // Who answers, picked beside the box to write in (page 19 of the design canvas): the twelve in the
 // picker's order, each in a few words, and four ready-made teams. The Safety agent is always on.
 const WHO = [
@@ -894,7 +892,6 @@ const TEAMS = [
 ];
 function aiPage() {
   // The Library's newest change: a fact sheet checked, the body map or a guide
-  const libDate = date([...entries.values()].map((f) => f.checked || '').concat(BODY.updated || '', GUIDES.map((g) => g.checked)).filter(Boolean).sort().pop());
   const ring = (size, cls = '', opts = {}) => `<span${cls ? ` class="${cls}"` : ''} data-sig="${size}" aria-hidden="true">${ringSvg(size, opts)}</span>`;
   const nameOf = (k) => AGENTS.find(([key]) => key === k)[1];
   const tick = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.4 6.2 4.9 8.6 9.6 3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -916,17 +913,15 @@ function aiPage() {
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title">
     <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
-    <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b><span class="tm-dim">the community’s mind</span></span>
+    <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b></span>
     <div class="tm-tabstrip" id="tm-tabstrip">
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
       <button class="tm-plus" id="tm-plus" type="button" aria-label="New chat" title="New chat"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
     </div>
-    <span class="tm-online" aria-hidden="true"><span class="tm-dots">${[...WHEEL, CENTER].map((k) => `<i data-agent="${k}"></i>`).join('')}</span><span>${AGENTS.length} agents online</span></span>
-    <span class="tm-count-sm" id="tm-count-sm" aria-hidden="true"><b>${AGENTS.length}</b>/${AGENTS.length} ready</span>
   </div>
   <section class="ai-chat is-empty" aria-label="Conversation with Sig">
     <div class="ai-bar">
-      <div class="ai-id"><span class="tm-path" aria-hidden="true">~/chats/<b id="tm-slug">new</b></span><h1>Ask Sig</h1><span class="tm-what" id="tm-what" aria-hidden="true">${entries.size} fact sheets</span></div>
+      <div class="ai-id"><h1>Ask Sig</h1></div>
     </div>
     <div class="ai-scroll" id="ai-scroll">
       <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
@@ -948,9 +943,8 @@ function aiPage() {
       <div class="ai-peek" id="ai-peek" hidden></div>
       ${pickerPanel}
       <div class="ai-composer">
-        <span class="tm-ps1" aria-hidden="true"><span class="ps-host">sig@miracle</span> <span class="ps-path">~/chats</span> <b>›</b></span>
         <label class="sr" for="ai-input">Message Sig</label>
-        <span class="tm-field"><textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea><span class="tm-caret" aria-hidden="true"></span></span>
+        <span class="tm-field"><textarea id="ai-input" rows="1" maxlength="2000" placeholder="Ask about a goal, something you take, or a mix" data-short="Ask about a goal or what you take"></textarea></span>
         <span class="ai-count" id="ai-count" aria-live="polite"></span>
         ${picker}
         <button class="ai-send" id="ai-send" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="i-send" d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect class="i-stop" x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg><span class="tm-key k-send" aria-hidden="true">↩ send</span><span class="tm-key k-stop" aria-hidden="true">stop</span></button>
@@ -962,9 +956,9 @@ function aiPage() {
     <div class="rl-bar">
       <span class="rl-title" id="rl-title"><span class="rl-name">Sig’s mind</span><span class="rl-sub">every Signal, one memory</span></span>
       <div class="rl-tabs" role="tablist" aria-label="Beside the chat">
-        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-markers" data-railtab="markers" aria-controls="rl-markers" aria-selected="false" tabindex="-1">markers</button>
-        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-mind" data-railtab="mind" aria-controls="rl-mind" aria-selected="true">mind</button>
-        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-screen" data-railtab="screen" aria-controls="sc-root" aria-selected="false" tabindex="-1">screen</button>
+        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-markers" data-railtab="markers" aria-controls="rl-markers" aria-selected="false" tabindex="-1">Markers</button>
+        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-mind" data-railtab="mind" aria-controls="rl-mind" aria-selected="true">Mind</button>
+        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-screen" data-railtab="screen" aria-controls="sc-root" aria-selected="false" tabindex="-1">Screen</button>
       </div>
       <button class="rl-close" id="rl-close" type="button" aria-label="Close"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
@@ -972,14 +966,6 @@ function aiPage() {
     <div class="rl-panel" id="rl-mind" role="tabpanel" aria-labelledby="tm-t-mind"><noscript><p class="rl-note">Sig’s mind needs JavaScript.</p></noscript></div>
     <div id="sc-root" role="tabpanel" aria-labelledby="tm-t-screen" hidden><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
   </section>
-  <div class="tm-status">
-    <span class="tm-sb tm-sb-sig" aria-hidden="true">${ring(12)}SIG</span>
-    <span class="tm-sb tm-sb-state" id="tm-state" data-state="ready"><i class="tm-ico" aria-hidden="true"></i><span id="ai-status">ready</span></span>
-    <span class="tm-sb tm-sb-safe"><i aria-hidden="true"></i>safety on</span>
-    <span class="tm-sb tm-sb-rules">no doses · no sellers · no diagnosis</span>
-    <span class="tm-sb tm-sb-lib">library · ${libDate.toLowerCase()}</span>
-    <button class="tm-sb tm-sb-k" type="button" data-cmdk aria-label="Go anywhere (⌘K)">⌘K</button>
-  </div>
 </div>`;
   // Sig's own page: the window fills the browser beside a side panel with the chats kept on this
   // device and the site's own links (the site's bar and footer give way to it)
@@ -991,19 +977,19 @@ function aiPage() {
     <button class="sg-fold" id="sg-fold" type="button" aria-label="Hide the side panel" aria-controls="sg-side" aria-expanded="true">${ico('M10 3.5 5.5 8l4.5 4.5')}</button>
   </div>
   <button class="sg-new" id="sg-new" type="button">${ico('M8 2.5v11M2.5 8h11')}<span>New chat</span></button>
-  <nav class="sg-site os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span><span class="op-k">${PLACE_META[k] ? PLACE_META[k]() : ''}</span></a>`).join('')}</nav>
+  <nav class="sg-site os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === 'ai' ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span></a>`).join('')}</nav>
   <section class="sg-chats" aria-labelledby="sg-chats-h">
     <h2 class="sg-k" id="sg-chats-h">Chats on this device</h2>
     <ol class="sg-list" id="sg-list"></ol>
     <p class="sg-none" id="sg-none">Your chats show here. They stay on this device, never on our servers.</p>
   </section>
-  <nav class="os-more sg-more" aria-label="More of the site"><p class="os-k">more</p>${MORE.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</nav>
+  <nav class="os-more sg-more" aria-label="More of the site"><p class="os-k">More</p>${MORE.map(([href, label]) => `<a href="${href}">${label}</a>`).join('')}</nav>
   <div class="sg-foot">
     <div class="sg-acct"><a class="sg-signin" href="${COMMUNITY}/">Sign in</a><a class="btn line sm" href="${COMMUNITY}/">Join</a></div>
     <div class="sg-wipe-row" id="sg-wipe-row">
       <button class="sg-wipe" id="sg-wipe" type="button">${ico('M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5')}<span>Delete all chats</span></button>
     </div>
-    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><span aria-hidden="true"> · </span><a href="/terms">Terms</a><span aria-hidden="true"> · </span><a href="/">miraclehealth.us</a></p>
+    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><a href="/terms">Terms</a><a href="/">miraclehealth.us</a></p>
   </div>
 </aside>
 <div class="sg-scrim" id="sg-scrim" hidden></div>
@@ -1129,7 +1115,7 @@ function storyPage() {
   const places = BODY.places.map((x) => x.at);
   const prints = STORY_PRINTS.filter((id) => entries.has(id) && BODY.compounds[id] && byId.has(id)).map((id) => {
     const c = byId.get(id), f = entries.get(id);
-    return `<a class="sy-print" href="/library/${id}/">${printSvg({ id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[id].lines || [], places }, { size: 168 })}<span class="sy-pn">${e(c.name)}</span><span class="sy-pf">${e(`${id}.md`)} · ${(BODY.compounds[id].lines || []).length} lines</span></a>`;
+    return `<a class="sy-print" href="/library/${id}/">${printSvg({ id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[id].lines || [], places }, { size: 168 })}<span class="sy-pn">${e(c.name)}</span><span class="sy-pf">${(BODY.compounds[id].lines || []).length} lines</span></a>`;
   }).join('');
   const short = (k) => (k === 'community' ? 'community' : k);
   const body = `<article class="sy">
@@ -1137,9 +1123,9 @@ function storyPage() {
     <div class="wrap sy-hero-in">
       <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26, centerY: -66 })}<span class="sy-ring-n"><b>12</b>agents</span></div>
       <div class="sy-hero-copy">
-        <p class="sy-k">~/story · the new Miracle Health</p>
+        <p class="sy-k">The new Miracle Health</p>
         <h1>One app.<br> Twelve agents.<br> <em>Every answer, checked.</em></h1>
-        <p class="lede">Miracle Health is now one app. The Library, Ask Sig, the community and My Miracle each open as a window in Sig’s terminal, side by side, the same everywhere. Behind every answer are twelve agents, each with one job, each signing what it made.</p>
+        <p class="lede">Miracle Health is now one app: the Library, Ask Sig, the community and My Miracle, the same everywhere. Behind every answer are twelve agents, each with one job, each signing what it made.</p>
         <div class="sy-acts"><a class="btn lime" href="/sig/">Ask Sig a question</a><a class="btn line" href="/library/">Open the Library</a></div>
       </div>
     </div>
@@ -1147,35 +1133,34 @@ function storyPage() {
 
   <section class="sy-sec" id="twelve" aria-labelledby="sy-twelve">
     <div class="wrap">
-      <p class="sy-k">01 · the twelve</p>
+      <p class="sy-k">The twelve</p>
       <h2 id="sy-twelve">Meet the twelve.</h2>
       <p class="sy-lede">Eleven gather what’s known, each in its own colour round Sig’s ring. The twelfth sits at its centre and reasons it all through, last, strictly for efficacy. Colour on Miracle Health is a signature: wherever you see one, that agent made it.</p>
-      <ol class="sy-twelve">${AGENTS.map(([key, name, what], i) => `<li class="sy-agent" data-agent="${key}"><span class="sy-an" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>${glyphSvg(key, { size: 34 })}<h3>${e(name)}</h3><p>${e(what)}</p></li>`).join('')}</ol>
+      <ol class="sy-twelve">${AGENTS.map(([key, name, what], i) => `<li class="sy-agent" data-agent="${key}"><span class="sy-an" aria-hidden="true">${i + 1}</span>${glyphSvg(key, { size: 34 })}<h3>${e(name)}</h3><p>${e(what)}</p></li>`).join('')}</ol>
     </div>
   </section>
 
   <section class="sy-sec" id="run" aria-labelledby="sy-run">
     <div class="wrap sy-split">
       <div>
-        <p class="sy-k">02 · how an answer is made</p>
+        <p class="sy-k">How an answer is made</p>
         <h2 id="sy-run">Watch it work.</h2>
-        <p class="sy-lede">Every question runs as a log you can read: each agent’s step, numbered, in its colour, as it happens. The answer comes under the Safety agent’s check, each part numbered and signed by the agent that made it. Nothing is a black box.</p>
-        <p class="sy-note">A real run, as Sig logged it, for “Is HGH plus enclomiphene good for fat loss?”</p>
+        <p class="sy-lede">Every question runs in steps you can follow: each agent’s step, in its colour, as it happens. The answer comes under the Safety agent’s check, each part signed by the agent that made it. Nothing is a black box.</p>
+        <p class="sy-note">A real run, for “Is HGH plus enclomiphene good for fat loss?”</p>
       </div>
       <div class="sy-term" aria-label="A run, as Sig logs it">
-        <p class="sy-ps"><span>sig@miracle ~/chats ›</span> ask “Is HGH plus enclomiphene good for fat loss?”</p>
-        <p class="sy-sum">▾ run · ${STORY_RUN.length} steps · ${AGENTS.length} agents</p>
-        <ol class="sy-log">${STORY_RUN.map(([a, t], i) => `<li data-agent="${a}"><span class="sl-n">${String(i + 1).padStart(2, '0')}</span><span class="sl-who">${short(a)}</span><span class="sl-st" aria-hidden="true"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
-        <p class="sy-ah"><b>answer</b><span class="sy-rule" aria-hidden="true"></span><span>checked by the safety agent <span class="sy-ok"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></p>
-        <div class="sy-part" data-agent="recommender"><span class="sp-n">1</span><p class="sp-k"><span>// the bottom line</span><b>recommender</b></p><p>No trial has tested the two together for fat loss. They act on different hormone systems, so any effect would come from each one separately.</p></div>
-        <div class="sy-part" data-agent="interpretation"><span class="sp-n">8</span><p class="sp-k"><span>// efficacy, reasoned last</span><b>interpretation agent</b></p><p>Plausible, unproven. A small combined effect is possible; nothing has measured the pair.</p></div>
+        <p class="sy-sum">${STORY_RUN.length} steps, ${AGENTS.length} agents</p>
+        <ol class="sy-log">${STORY_RUN.map(([a, t], i) => `<li data-agent="${a}"><span class="sl-n">${i + 1}</span><span class="sl-who">${short(a)[0].toUpperCase() + short(a).slice(1)}</span><span class="sl-st" aria-hidden="true"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
+        <p class="sy-ah"><b>The answer</b><span class="sy-rule" aria-hidden="true"></span><span>Checked by the Safety agent <span class="sy-ok"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></p>
+        <div class="sy-part" data-agent="recommender"><span class="sp-n">1</span><p class="sp-k"><span>The bottom line</span><b>Recommender</b></p><p>No trial has tested the two together for fat loss. They act on different hormone systems, so any effect would come from each one separately.</p></div>
+        <div class="sy-part" data-agent="interpretation"><span class="sp-n">8</span><p class="sp-k"><span>Efficacy, reasoned last</span><b>Interpretation agent</b></p><p>Plausible, unproven. A small combined effect is possible; nothing has measured the pair.</p></div>
       </div>
     </div>
   </section>
 
   <section class="sy-sec" id="prints" aria-labelledby="sy-prints">
     <div class="wrap">
-      <p class="sy-k">03 · prints</p>
+      <p class="sy-k">Prints</p>
       <h2 id="sy-prints">Every compound has a print.</h2>
       <p class="sy-lede">A print is a fact sheet drawn as one mark, so you can tell two compounds apart, and compare them, at a glance. Nothing in it is decoration.</p>
       <ul class="sy-legend">
@@ -1190,23 +1175,22 @@ function storyPage() {
 
   <section class="sy-sec" id="windows" aria-labelledby="sy-windows">
     <div class="wrap">
-      <p class="sy-k">04 · one app</p>
-      <h2 id="sy-windows">Four places. One window.</h2>
+      <p class="sy-k">One app</p>
+      <h2 id="sy-windows">Four places. One app.</h2>
       <div class="sy-wins">
-        <a class="sy-win" href="/library/">${glyphSvg('evidence', { size: 22 })}<b>Library</b><span>~/library/peptides/bpc157.md</span><p>Every compound is a file: its path, its family’s sheets beside it, each section signed by the agent that reads it, its facts on the status line.</p></a>
-        <a class="sy-win" href="/sig/">${ringSvg(22)}<b>Ask Sig</b><span>sig@miracle ~/chats ›</span><p>Ask at the prompt. The run shows as a log; the answer comes checked and signed.</p></a>
-        <a class="sy-win" href="${COMMUNITY}/">${glyphSvg('community', { size: 22 })}<b>Community</b><span>log --all-spaces</span><p>The feed is a log: each report a commit, Sig’s read its check. The Signal is a live table, like top.</p></a>
-        <a class="sy-win" href="/my/">${glyphSvg('builder', { size: 22 })}<b>My Miracle</b><span>this device only</span><p>Your plan, how it’s going and your stack, kept in your browser. Miracle Health never receives it.</p></a>
+        <a class="sy-win" href="/library/">${glyphSvg('evidence', { size: 22 })}<b>Library</b><p>Every compound has its fact sheet, its family’s sheets beside it, each section signed by the agent that reads it.</p></a>
+        <a class="sy-win" href="/sig/">${ringSvg(22)}<b>Ask Sig</b><p>Ask in plain words. You see each agent’s step, and the answer comes checked and signed.</p></a>
+        <a class="sy-win" href="${COMMUNITY}/">${glyphSvg('community', { size: 22 })}<b>Community</b><p>Sig reads every report and you confirm what it read. The Signal is a live table of every score.</p></a>
+        <a class="sy-win" href="/my/">${glyphSvg('builder', { size: 22 })}<b>My Miracle</b><p>Your plan, how it’s going and your stack, kept in your browser. Miracle Health never receives it.</p></a>
       </div>
     </div>
   </section>
 
   <section class="sy-sec sy-rules" id="rules" aria-labelledby="sy-rules">
     <div class="wrap">
-      <p class="sy-k">05 · what never changes</p>
-      <h2 id="sy-rules">The rules are in the status bar.</h2>
-      <p class="sy-lede">At the foot of every window, always: safety on; no doses, no sellers, no diagnosis. They aren’t settings. They’re how it’s built.</p>
-      <div class="sy-status" aria-hidden="true"><span class="ss-sig">${ringSvg(12)}SIG</span><span><i class="ss-on"></i>online</span><span><i class="ss-safe"></i>safety on</span><span class="ss-r">no doses · no sellers · no diagnosis</span></div>
+      <p class="sy-k">What never changes</p>
+      <h2 id="sy-rules">The rules never change.</h2>
+      <p class="sy-lede">Safety is always on: no doses, no sellers, no diagnosis. They aren’t settings. They’re how it’s built.</p>
       <ul class="sy-promises">
         <li><b>No doses.</b> Ever, for anything. The right amount is a conversation with your doctor.</li>
         <li><b>No sellers.</b> No shop, no ads, no affiliate links. Nobody pays to be in the Library.</li>
@@ -1271,7 +1255,7 @@ function methodPage() {
       <tbody>
         <tr><th scope="row">A first-hand report</th><td class="d">1</td></tr>
         <tr><th scope="row">…that its author confirmed or fixed</th><td class="d">× 1.25</td></tr>
-        <tr><th scope="row">…by how long they took it</th><td class="d">under a week × 0.6 · 1–4 weeks × 0.9 · 1–3 months × 1 · 3 months or more × 1.15 · not said × 0.85</td></tr>
+        <tr><th scope="row">…by how long they took it</th><td class="d">under a week × 0.6; 1–4 weeks × 0.9; 1–3 months × 1; 3 months or more × 1.15; not said × 0.85</td></tr>
         <tr><th scope="row">…for each check-in, up to three</th><td class="d">× 1.1</td></tr>
         <tr><th scope="row">A “same for me” on someone’s report</th><td class="d">half a report</td></tr>
         <tr><th scope="row">From an account in its first days</th><td class="d">half</td></tr>
@@ -1451,7 +1435,6 @@ front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
 // Sig's twelve agents, one question through them, each in its own box (CREW), under a strip of the
 // ring's eleven colours, round it from the Safety agent's coral
 front = fill(front, 'crew:flow', crewFlow());
-front = fill(front, 'crew:spectrum', WHEEL.map((k) => `<i data-agent="${k}"></i>`).join(''));
 // and between Noise and Signal, Sig's ring on its dark disc
 front = fill(front, 'ring:sn', ringSvg(30));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the

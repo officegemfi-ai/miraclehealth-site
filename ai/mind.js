@@ -271,7 +271,7 @@ export function makeRail({ h, svg, getSignal, catalog, spaceLink, community, cop
     const first = lit[0];
     el.replaceChildren(
       map,
-      h('p', { class: 'rl-note rl-cap', text: lit.length ? 'lit: what Sig read for this answer · lines: read together' : 'every Community Signal Sig speaks for, by family' }),
+      h('p', { class: 'rl-note rl-cap', text: lit.length ? 'Lit up: what Sig read for this answer. Lines join what it read together.' : 'Every Community Signal Sig speaks for, by family' }),
       rows.length ? h('div', { class: 'rl-rows' }, rows) : h('p', { class: 'rl-lede', text: 'Ask about something, and the Signals Sig reads for its answer light up here.' }),
       h('p', { class: 'rl-add' }, 'Every report a member shares lands here and makes the next answer sharper. ',
         h('a', { href: first ? spaceLink(first) : `${community}/`, text: 'Add yours' })));

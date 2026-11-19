@@ -19,9 +19,10 @@
   --a-interpretation:#F7F8FA;
   --tm-page:#000000;--tm-win:#000000;--tm-bar:#17171A;--tm-pane2:#121214;--tm-stat:#000000;
   --tm-tx:#F7F8FA;--tm-t2:#A1A7B2;--tm-t3:#7F8796;--tm-line:rgba(255,255,255,.1);--tm-line2:rgba(255,255,255,.2);
-  /* the gap around the window, the title bar, the pane's header, the status bar, the pane's padding */
-  --tm-g:16px;--tm-tb:44px;--tm-ph:34px;--tm-sb:28px;--tm-px:24px;
-  /* the height between the title bar and the status bar */
+  /* the gap around the window, the title bar, the pane's header, the foot (no status bar since the
+     owner's rule of November 18, so 0), the pane's padding */
+  --tm-g:16px;--tm-tb:44px;--tm-ph:34px;--tm-sb:0px;--tm-px:24px;
+  /* the height under the title bar */
   --tm-h:calc(100svh - var(--top-h) - 2 * var(--tm-g) - var(--tm-tb) - var(--tm-sb));
 }
 .ai [data-agent="safety"],.ai [data-agent="review"]{--ac:var(--a-safety)}
@@ -68,7 +69,6 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm.ai-app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:0;width:calc(100% - 2 * var(--tm-g));max-width:none;margin:calc(var(--top-h) + var(--tm-g)) auto 0;padding:0}
 .tm .tm-title{grid-column:1/-1;grid-row:1}
 .tm .ai-chat{grid-column:1;grid-row:2}
-.tm .tm-status{grid-column:1/-1;grid-row:3}
 @media (min-width:1101px){
   .tm.ai-app{grid-template-columns:minmax(0,1fr) clamp(380px,32%,560px)}
 }
@@ -83,7 +83,6 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-brand{display:flex;align-items:center;gap:10px;flex:none;align-self:center;padding-right:18px}
 .tm-logo{width:18px;height:18px}
 .tm-brand b{font:650 14px/1 var(--body);letter-spacing:-.01em;color:var(--tm-tx)}
-.tm-dim{font:400 11.5px/1 var(--mono);color:var(--tm-t3)}
 /* The chats, as a browser's tabs: the open one joined to the conversation below it, the others
    behind; × on the open one and on hover, + after the last. They shrink as more open, then the
    strip scrolls. */
@@ -95,7 +94,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-tab.on{z-index:1;border-color:var(--tm-line);background:var(--tm-win);color:var(--tm-tx)}
 .tm-tab:not(.on):hover{background:var(--hover);color:var(--tm-t2)}
 .tm-tab:not(.on)+.tm-tab:not(.on)::before{content:'';position:absolute;left:-2px;top:9px;bottom:9px;width:1px;background:var(--tm-line)}
-.tm-tabopen{display:flex;align-items:center;gap:9px;flex:1;min-width:0;height:100%;padding:0 4px 0 13px;border:0;border-radius:0;background:none;color:inherit;font:500 12px/1 var(--mono);text-align:left;cursor:pointer}
+.tm-tabopen{display:flex;align-items:center;gap:9px;flex:1;min-width:0;height:100%;padding:0 4px 0 13px;border:0;border-radius:0;background:none;color:inherit;font:500 13px/1 var(--body);text-align:left;cursor:pointer}
 /* the chat tabs scroll in their strip, so their ring sits inside; the + beside them has room outside */
 .tm-tabopen:focus-visible,.tm-tabx:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-2px}
 .tm-plus:focus-visible{outline:2px solid var(--tm-tx);outline-offset:2px}
@@ -112,45 +111,14 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-plus{flex:none;display:grid;place-items:center;align-self:center;width:28px;height:28px;margin-left:4px;padding:0;border:0;border-radius:0;background:none;color:var(--tm-t2);cursor:pointer;transition:background-color .15s,color .15s}
 .tm-plus:hover:not(:disabled){background:var(--hover);color:var(--tm-tx)}
 .tm-plus:disabled{opacity:.5;cursor:default}
-.tm-online{display:flex;align-items:center;gap:12px;margin-left:auto;align-self:center;padding-left:16px;font:500 11.5px/1 var(--mono);color:var(--tm-t2);white-space:nowrap}
-.tm-dots{display:flex;gap:3px}
-.tm-dots i{width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:none}
-.tm-count-sm{display:none}
 
 /* The status bar: stays at the foot of the window */
-.tm .tm-status{position:sticky;bottom:var(--tm-g);z-index:9;display:flex;align-items:stretch;height:var(--tm-sb);border:1px solid var(--tm-line);border-radius:0;background:var(--tm-stat);font:500 11.5px/1 var(--mono);color:var(--tm-t3)}
-.tm .tm-status::before{content:'';position:absolute;left:-1px;right:-1px;top:calc(100% + 1px);height:var(--tm-g);background:var(--tm-page);pointer-events:none}
-.tm-sb{display:inline-flex;align-items:center;gap:7px;padding:0 12px;white-space:nowrap}
-.tm-sb-sig{border-bottom-left-radius:0;background:var(--tm-tx);color:#000000;letter-spacing:.04em}
-.tm-sb-sig [data-sig]{width:12px;height:12px;translate:0 -1px}
-.tm-sb-state{min-width:132px;border-right:1px solid var(--tm-line);color:var(--tm-tx)}
-.tm-sb-state[data-state="ready"]{color:var(--tm-t3)}
-.tm-sb-state[data-state="done"]{color:var(--tm-tx)}
-.tm-sb-state[data-state="error"]{color:#FF9A8E}
-.tm-ico{display:inline-grid;place-items:center;width:10px;font-style:normal}
-.tm-ico::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
-.tm-sb-state[data-state="working"] .tm-ico::before,.tm-sb-state[data-state="writing"] .tm-ico::before{content:'';width:7px;height:7px;border-radius:50%;border:1.6px solid rgba(255,255,255,.25);border-top-color:var(--tm-tx);animation:tm-spin .8s linear infinite}
-.tm-sb-state[data-state="done"] .tm-ico::before{content:'';width:10px;height:10px;border-radius:0;background:currentColor;-webkit-mask:url(/img/i-check.svg) center/contain no-repeat;mask:url(/img/i-check.svg) center/contain no-repeat}
-.tm-sb-state[data-state="stopped"] .tm-ico::before{content:'';width:7px;height:7px;border-radius:0;background:currentColor}
-.tm-sb-state[data-state="error"] .tm-ico::before{content:'!';font-size:11px}
-.tm-sb-safe{border-right:1px solid var(--tm-line);color:var(--tm-t3)}
-.tm-sb-safe i{width:6px;height:6px;border-radius:50%;background:var(--a-safety);box-shadow:none}
-.tm-sb-rules{margin-left:auto}
-.tm-sb-lib{border-left:1px solid var(--tm-line)}
-.tm-sb-k{margin:0;border:0;border-left:1px solid var(--tm-line);background:transparent;color:var(--tm-t2);font:inherit;cursor:pointer}
-.tm-sb-k:hover{color:var(--text)}
-.tm-sb-k:focus-visible{outline:2px solid var(--text);outline-offset:2px}
-@media (max-width:700px){.tm-sb-k{display:none}}
 
 /* ---------------------------------------------------------------- the conversation's pane */
 .tm .ai-bar{min-height:var(--tm-ph);padding:0 10px 0 20px;border-bottom:1px solid var(--tm-line);gap:12px}
 .tm .ai-id{gap:10px;min-width:0}
-/* the bar: the open chat as a path, then what Sig is, all lower case like a shell */
-.tm-path{flex:none;font:400 12.5px/1 var(--mono);color:var(--tm-t3);white-space:nowrap}
-.tm-path b{font-weight:500;color:var(--tm-tx)}
-.tm .ai-id h1{font:400 12px/1 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--tm-t3);white-space:nowrap;font-stretch:100%;text-transform:none}
-.tm-what{overflow:hidden;font:400 12px/1 var(--mono);letter-spacing:0;text-transform:none;color:var(--tm-t3);white-space:nowrap;text-overflow:ellipsis}
-.tm-what::before{content:'·';margin-right:8px}
+/* the pane's bar: its heading (for screen readers on most screens) */
+.tm .ai-id h1{font:400 13px/1 var(--body);color:var(--tm-t3);white-space:nowrap;font-stretch:100%;text-transform:none}
 /* the pane's header stays under the title bar, like the agents' tabs beside it */
 @media (min-width:701px){
   .tm .ai-bar{position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));z-index:7;background:var(--tm-win)}
@@ -181,7 +149,6 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-composer{align-items:flex-start;gap:10px;max-width:900px;min-height:56px;padding:6px 10px 6px 16px;border:1px solid var(--tm-line2);border-radius:0;background:var(--tm-bar);transition:border-color .15s}
 .tm .ai-composer:focus-within{border-color:var(--tm-tx)}
 .tm .ai-composer:has(textarea:focus-visible){outline:2px solid var(--text);outline-offset:2px}
-.tm .ai-composer:focus-within .tm-ps1{text-shadow:none}
 .tm .ai-fine{max-width:900px;margin:8px 0 0;padding:0 2px;font-size:12px;line-height:1.45;color:var(--tm-t3)}
 .ai-fine-s{display:none}
 /* where the whole line won't fit on one line, the short one */
@@ -190,21 +157,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .ai-fine-x{display:none}
   .ai-fine-s{display:inline}
 }
-.tm-ps1{flex:none;padding-top:9px;font:400 13px/22px var(--mono);color:var(--tm-t2);white-space:nowrap}
-.tm-ps1 b,.echo-ps1 b{font-weight:600;color:var(--tm-tx)}
-.ps-path{color:var(--tm-t3)}
-.ps-verb{color:var(--tm-t2)}
 .tm-field{position:relative;display:flex;flex:1;min-width:0}
-.tm .ai-composer textarea{padding:9px 0;font:500 15px/22px var(--mono);color:var(--tm-tx);caret-color:var(--tm-tx)}
+.tm .ai-composer textarea{padding:9px 0;font:500 16px/22px var(--body);color:var(--tm-tx);caret-color:var(--tm-tx)}
 .tm .ai-composer textarea::placeholder{font-weight:400;color:var(--tm-t3)}
 /* An empty prompt shows a block cursor (dim until the box has the keyboard), the hint after it */
-.tm .ai-composer textarea:placeholder-shown{text-indent:1.5ch;caret-color:transparent}
-.tm-caret{display:none;position:absolute;left:0;top:11px;width:1ch;height:18px;font:500 15px/22px var(--mono);background:var(--tm-tx);opacity:.35;pointer-events:none}
-.tm textarea:placeholder-shown+.tm-caret{display:block}
-.tm textarea:focus:placeholder-shown+.tm-caret{opacity:1;animation:tm-blink 1.06s steps(1) infinite}
-.tm .ai-count{align-self:center;font:500 11px/1 var(--mono);color:var(--tm-t3)}
+.tm .ai-count{align-self:center;font:500 12.5px/1 var(--body);color:var(--tm-t3)}
 /* the send key: ↵ send, then ■ stop while the agents work */
-.tm .ai-send{align-self:center;display:inline-flex;align-items:center;justify-content:center;width:auto;height:40px;padding:0 12px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t3);font:500 11.5px/1 var(--mono);white-space:nowrap;transition:border-color .15s,color .15s,background-color .15s}
+.tm .ai-send{align-self:center;display:inline-flex;align-items:center;justify-content:center;width:auto;height:40px;padding:0 12px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t3);font:500 13px/1 var(--body);white-space:nowrap;transition:border-color .15s,color .15s,background-color .15s}
 .tm .ai-send svg,.tm .ai-send .k-stop{display:none}
 .tm .ai-send.stop .k-send{display:none}
 .tm .ai-send.stop .k-stop{display:inline}
@@ -225,17 +184,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 
 /* ---------------------------------------------------------------- the log */
 /* their question, as typed at the prompt */
-.tm .msg.me{display:block;font:500 13.5px/1.6 var(--mono)}
-.tm .echo-ps1{display:inline;margin-right:8px;font:400 13.5px/1.6 var(--mono);color:var(--tm-t2);white-space:nowrap}
-.tm .msg.me .bubble{display:inline;max-width:none;padding:0;border:0;border-radius:0;background:none;font:500 13.5px/1.6 var(--mono);color:var(--tm-tx)}
-.tm .msg.me .bubble::before,.tm .msg.me .bubble::after{content:'"';color:var(--tm-t2)}
 .tm .msg.ai{display:block}
 .tm .msg.ai .sheet{margin:0;padding:0}
 .tm .waiting{display:none}
 /* the run: one line per step, in the colour of the agent that took it, folded into one line once
    the answer is being written */
 .tm .trace{margin:0 0 4px}
-.tm .trace-sum{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:28px;padding:2px 0;font:500 12.5px/1.5 var(--mono);color:var(--tm-t2);text-align:left}
+.tm .trace-sum{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:28px;padding:2px 0;font:500 13.5px/1.5 var(--body);color:var(--tm-t2);text-align:left}
 .tm .trace-sum::after{display:none}
 .tm .trace-sum:hover{color:var(--tm-tx)}
 .tm .trace-sum b{font-weight:500;color:var(--tm-tx)}
@@ -246,7 +201,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .ts-busy{width:9px;height:9px;border-radius:50%;border:1.6px solid rgba(255,255,255,.25);border-top-color:var(--tm-tx);animation:tm-spin .8s linear infinite}
 .tm .trace .trace-steps,.tm .trace.done .trace-steps{display:none}
 .tm .trace.open .trace-steps,.tm .trace.done.open .trace-steps{display:grid;gap:0;margin-top:2px}
-.tm .tstep{display:grid;grid-template-columns:22px 15ch 12px minmax(0,1fr);column-gap:10px;align-items:start;padding:1px 0;font:400 12.5px/1.6 var(--mono)}
+.tm .tstep{display:grid;grid-template-columns:22px 15ch 12px minmax(0,1fr);column-gap:10px;align-items:start;padding:1px 0;font:400 13.5px/1.6 var(--body)}
 .ts-n{color:var(--tm-t3);font-variant-numeric:tabular-nums}
 .ts-who{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;color:var(--ac)}
 .tm .tstep-what{color:var(--tm-t2)}
@@ -255,7 +210,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tstep.run .ts-st::before{content:'';position:absolute;left:1px;top:6px;width:8px;height:8px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
 .tstep.flag .ts-st::before{content:'!';color:#F2BE4B;text-shadow:none}
 .tm .tstep-chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 3px}
-.tm .tstep-chips a,.tm .tstep-chips span{padding:2px 8px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11.5px/1.5 var(--mono);text-decoration:none}
+.tm .tstep-chips a,.tm .tstep-chips span{padding:2px 8px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 13px/1.5 var(--body);text-decoration:none}
 .tm .tstep-chips a:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
 /* the answer's head */
 .tm .sheet-body{padding-left:0}
@@ -265,7 +220,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .prose ul li{padding-left:17px}
 .tm .prose ul li::before{left:3px;top:.68em;width:5px;height:5px;background:var(--tm-t3)}
 .tm .prose ul+p,.tm .prose p+ul{margin-top:6px}
-.ctag{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 16px;margin:0 0 4px;font:400 12px/1.5 var(--mono);letter-spacing:0;text-transform:none;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
+.ctag{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 16px;margin:0 0 4px;font:400 13px/1.5 var(--body);text-transform:none;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
 .ctag b{font-weight:500;color:var(--ac);text-transform:lowercase}
 .pt-by{color:var(--tm-t3)}
 /* the part's number, in the gutter */
@@ -273,12 +228,12 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .prose ol li::before{font-family:var(--mono)}
 .tm .prose.streaming>p:last-child::after,.tm .prose.streaming>h2:last-child::after,.tm .prose.streaming>ul:last-child>li:last-child::after,.tm .prose.streaming>ol:last-child>li:last-child::after{width:.6em;height:1.1em;border-radius:0;background:var(--tm-tx);animation:tm-blink 1.06s steps(1) infinite}
 .tm details.more{margin:8px 0 4px;border-top:1px dashed var(--tm-line2)}
-.tm details.more>summary{min-height:36px;font:500 12px/1 var(--mono);color:var(--tm-t2)}
+.tm details.more>summary{min-height:36px;font:500 13px/1 var(--body);color:var(--tm-t2)}
 /* the cards keep their own layout, with the agent that made them over each and its colour down its side */
 .tm .sheet-body>.ctag{position:relative;margin:16px 0 0}
 .tm .sheet-body>.ctag+.card,.tm .sheet-body>.ctag+.ai-pointer{margin-top:6px}
 .tm .sheet-body>.card[data-agent]{border-left:3px solid var(--ac)}
-.tm .ai-pointer{border-color:var(--tm-line2);background:rgba(0,0,0,.2);font:500 12.5px/1.4 var(--mono)}
+.tm .ai-pointer{border-color:var(--tm-line2);background:rgba(0,0,0,.2);font:500 13.5px/1.4 var(--body)}
 /* the efficacy read: the Interpretation agent's derivation, on the terminal's own panel */
 .tm .card.interp{border-color:var(--tm-line);background:var(--tm-pane2);color:var(--tm-tx)}
 .tm .card.interp p.sub,.tm .ip-row dt,.tm .ip-rung{color:var(--tm-t3)}
@@ -287,17 +242,17 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ip-verdict{border-top-color:var(--tm-line)}
 .tm .ip-dot{color:var(--a-interpretation);box-shadow:none}
 /* where it came from: the studies in the Evidence librarian's blue, the community in its lime */
-.tm .answer-src{gap:4px 14px;margin-top:12px;font:400 12px/1.5 var(--mono);color:var(--tm-t3)}
+.tm .answer-src{gap:4px 14px;margin-top:12px;font:400 13px/1.5 var(--body);color:var(--tm-t3)}
 .tm .answer-src .src-k{text-transform:lowercase;letter-spacing:0;font-weight:400}
 .tm .src-part{color:var(--tm-t2)}
 .tm .v-dot{width:8px;height:8px;border:0;border-radius:0}
 .tm .v-dot.v-studies{background:#14ECC3;box-shadow:none}
 .tm .v-dot.v-community{background:var(--a-community);box-shadow:none}
 /* the foot: the Safety agent's check, then the screen and copying */
-.tm .sheet-foot{margin-top:10px;font:500 12px/1.45 var(--mono);color:var(--tm-t2)}
+.tm .sheet-foot{margin-top:10px;font:500 13px/1.45 var(--body);color:var(--tm-t2)}
 .tm .sheet-foot{justify-content:flex-end}
 .tm .ai-toscreen{display:inline-flex}
-.tm .sheet-foot .mini,.tm .ai-toscreen{min-height:38px;margin:0;padding:0 12px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 11.5px/1 var(--mono)}
+.tm .sheet-foot .mini,.tm .ai-toscreen{min-height:38px;margin:0;padding:0 12px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 13px/1 var(--body)}
 .tm .sheet-foot .mini:hover,.tm .ai-toscreen:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
 /* after words of crisis, 988 stays in reach: opaque, so nothing scrolling under it shows through */
 .tm .help-pin{margin:10px var(--tm-px) 0;background:linear-gradient(rgba(224,104,92,.16),rgba(224,104,92,.16)),var(--tm-win)}
@@ -310,28 +265,18 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 
 /* ---------------------------------------------------------------- phones: edge to edge */
 @media (max-width:700px){
-  .ai{--tm-g:0px;--tm-px:16px;--tm-tb:52px;--tm-sb:28px;--tm-ph:44px}
+  .ai{--tm-g:0px;--tm-px:16px;--tm-tb:52px;--tm-sb:0px;--tm-ph:44px}
   .tm.ai-app{width:100%;max-width:none;margin:var(--top-h) 0 0}
   .tm .tm-title{top:var(--top-h);padding:0 14px;border-width:0 0 1px;border-radius:0;align-items:center}
   .tm .tm-title::before,.tm .tm-title::after{display:none}
   .tm-brand{padding-right:10px}
   .tm-brand b{font-size:15px}
-  .tm-dim{font-size:11px}
-  .tm-online{display:none}
   .tm .ai-bar{gap:0;padding:0 6px 0 4px}
   .tm .ai-bar .ai-id{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .tm .ai-bar .tm-tabstrip{flex:1;height:var(--tm-ph)}
   .tm .ai-bar .tm-tab{flex-basis:180px;min-width:100px;height:40px}
   .tm-plus{width:40px;height:40px}
   .tm .ai-bar .tm-tabx{opacity:.75}
-  .tm-count-sm{display:inline-flex;align-items:baseline;gap:0;margin-left:auto;font:500 12px/1 var(--mono);color:var(--tm-t3);white-space:nowrap}
-  .tm-count-sm b{font-weight:700;color:var(--tm-tx)}
-  .tm-count-sm.on b{color:var(--tm-tx)}
-  .tm .tm-status{bottom:0;border-width:1px 0 0;border-radius:0;height:calc(28px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
-  .tm .tm-status::before,.tm .tm-status::after{display:none}
-  .tm-sb-state,.tm-sb-lib{display:none}
-  .tm-sb{padding:0 10px}
-  .tm-sb-sig{border-bottom-left-radius:0}
   .tm .ai-chat{min-height:calc(100svh - var(--top-h) - var(--tm-tb) - var(--tm-sb));border:0}
   .tm .help-pin{top:calc(var(--top-h) + var(--tm-tb) + 8px)}
   .tm .ai-dock{padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
@@ -341,17 +286,13 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm .pk-chip{flex:none}
   .tm .ai-composer{min-height:50px;padding:4px 6px 4px 12px}
   .tm .ai-fine{margin-top:6px;font-size:11px}
-  .tm .ai-composer textarea,.tm-caret{font-size:16px}
-  .tm-ps1{padding-top:10px}
+  .tm .ai-composer textarea{font-size:16px}
   .tm .ai-thread{padding-top:12px}
   .tm .prose{font-size:15px}
   .tm .tstep{grid-template-columns:18px 14ch 10px minmax(0,1fr);column-gap:7px;font-size:11.5px}
-  .tm-ps1 .ps-host,.tm-ps1 .ps-path,.echo-ps1 .ps-host,.echo-ps1 .ps-path{display:none}
   .tm .trace-sum{font-size:11.5px}
 }
 @media (max-width:480px){
-  .tm-what{display:none}
-  .tm-dim{display:none}
 }
 
 /* ---------------------------------------------------------------- Sig's own page (/sig) */
@@ -377,7 +318,7 @@ html:has(body.sigapp){--top-h:0px}
 /* on a short screen the panel scrolls as a whole rather than squeezing its links */
 .sg-side>:not(.sg-chats){flex-shrink:0}
 .sg-chats{flex:1;min-height:0;margin:12px -6px 0 -3px;padding-right:6px;padding-left:3px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.2) transparent}
-.sg-k{margin:0 10px 6px;font:400 11.5px/1 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--tm-t3)}
+.sg-k{margin:0 10px 6px;font:500 13px/1 var(--body);text-transform:none;color:var(--tm-t3)}
 .sg-list{display:grid;grid-template-columns:minmax(0,1fr);gap:1px;margin:0;padding:0;list-style:none}
 .sg-item{position:relative;display:flex;align-items:center;border-radius:0}
 .sg-item:hover{background:var(--hover)}
@@ -389,7 +330,7 @@ html:has(body.sigapp){--top-h:0px}
 .sg-item.on .sg-dot{background:var(--tm-tx)}
 .sg-item.busy .sg-dot{width:8px;height:8px;border:1.5px solid rgba(255,255,255,.28);border-top-color:var(--tm-tx);background:none;box-shadow:none;animation:tm-spin .8s linear infinite}
 .sg-name{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.sg-when{flex:none;font:500 10.5px/1 var(--mono);color:var(--tm-t3)}
+.sg-when{flex:none;font:500 12px/1 var(--body);color:var(--tm-t3)}
 .sg-del{flex:none;display:grid;place-items:center;width:28px;height:28px;margin-right:4px;padding:0;border:0;border-radius:0;background:none;color:var(--tm-t3);opacity:0;cursor:pointer}
 .sg-del svg{width:16px;height:16px}
 .sg-item:hover .sg-del,.sg-item:focus-within .sg-del{opacity:1}
@@ -422,7 +363,7 @@ html:has(body.sigapp){--top-h:0px}
 .sg-wipe-yes:hover,.sg-yes:hover{background:var(--hover)}
 .sg-wipe-no,.sg-no{border:1px solid var(--tm-line2);color:var(--tm-t2)}
 .sg-wipe-no:hover,.sg-no:hover{color:var(--tm-tx)}
-.sg-legal{margin:0;padding:0 10px;font-size:11.5px;color:var(--tm-t3)}
+.sg-legal{display:flex;flex-wrap:wrap;gap:0 14px;margin:0;padding:0 10px;font-size:13px;color:var(--tm-t3)}
 .sg-legal a{color:inherit}
 .sg-legal a:hover{color:var(--tm-tx)}
 .sg-scrim{position:fixed;inset:0;z-index:29;background:rgba(0,0,0,.55)}
@@ -434,7 +375,6 @@ html:has(body.sigapp){--top-h:0px}
 html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavior:none}
 .sigapp .tm.ai-app{height:calc(100dvh - 2 * var(--tm-g))}
 .sigapp .tm .tm-title{position:relative;top:auto}
-.sigapp .tm .tm-status{position:relative;bottom:auto}
 .sigapp .tm .ai-chat{min-height:0;overflow:hidden}
 .sigapp .tm .ai-scroll{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;scroll-padding:12px 0 24px}
 .sigapp .tm .help-pin{position:relative;top:auto;margin-bottom:10px}
@@ -462,29 +402,26 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 }
 @media (max-width:700px){
   .sigapp .tm.ai-app{height:100dvh;margin:0}
-  /* the small print under the typing bar says what the status bar would */
-  .sigapp .tm .tm-status{display:none}
   .tm-menu{margin-right:4px}
 }
 
 /* ---------------------------------------------------------------- less motion, and paper */
 @media (prefers-reduced-motion:reduce){
   [data-sig].is-spin svg,[data-sig].is-flag .rg,.ts-busy,.tstep.run .ts-st::before,
-  .tm-sb-state .tm-ico::before,.tm textarea:focus:placeholder-shown+.tm-caret,.tm .prose.streaming>*::after,.tm .prose.streaming>*>li::after{animation:none!important}
+  .tm .prose.streaming>*::after,.tm .prose.streaming>*>li::after{animation:none!important}
   .rg,.sg-side{transition:none!important}
   .sg-item.busy .sg-dot{animation:none!important}
 }
 @media print{
-  .tm-title,.tm-status,.tm-boot,.a-top .msg-sig,.a-how,.a-next,.a-quiet,.ai-composer,.ts-sw,.sg-side,.sg-scrim{display:none!important}
+  .tm-title,.tm-boot,.a-top .msg-sig,.a-how,.a-next,.a-quiet,.ai-composer,.ts-sw,.sg-side,.sg-scrim{display:none!important}
   .a-top,.a-rk,.a-check{color:#444444!important}
   .sg{display:block!important}
   body.sigapp{overflow:visible!important}
   .sigapp .tm.ai-app,.sigapp .tm .ai-chat{height:auto!important;overflow:visible!important}
   .tm.ai-app{display:block!important;padding:0!important}
   .ai,.ai #main,.ai-app,.tm .ai-chat{background:#FFFFFF!important;color:#111111!important;border:0!important;margin:0!important;width:auto!important}
-  .tm .bubble,.tm .echo-ps1,.tm .prose,.tm .prose p,.tm .prose li,.tm .prose strong,.tm .prose a,.tm .prose h2,.tm .answer-src,.tm .src-part,.tm .sheet,.a-who b,.a-rv>p,.a-list{color:#111111!important;text-shadow:none!important}
+  .tm .bubble,.tm .prose,.tm .prose p,.tm .prose li,.tm .prose strong,.tm .prose a,.tm .prose h2,.tm .answer-src,.tm .src-part,.tm .sheet,.a-who b,.a-rv>p,.a-list{color:#111111!important;text-shadow:none!important}
   .ctag,.ctag b{color:#444444!important;text-shadow:none!important}
-  .tm .msg.me .bubble{border-color:#999999!important;background:#FFFFFF!important}
 }
 
 
@@ -499,10 +436,5 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 .sg-more{margin-top:8px}
 @media (min-width:901px){.sg-foot{position:sticky;bottom:-12px;z-index:1;margin-bottom:-12px;padding-bottom:12px;background:inherit}}
 :root:has(#sg.drawer){overflow:hidden}
-/* the status bar drops segments as the site's does: the Library's date first, then on small phones
-   the SIG word (the ring stays), then the SIG segment */
-@media (max-width:1100px){.tm-sb-lib{display:none}}
-@media (max-width:429px){.tm .tm-status{font-size:11px}.tm-sb{padding:0 8px}.tm-sb-sig{font-size:0;gap:0}}
-@media (max-width:374px){.tm-sb-sig{display:none}}
 /* the stop key's square is drawn: neither font has one */
 .tm .ai-send .k-stop::before{content:'';display:inline-block;width:.6em;height:.6em;margin-right:.5em;background:currentColor;vertical-align:.02em}

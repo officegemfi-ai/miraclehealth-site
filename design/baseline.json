@@ -5,29 +5,26 @@
       "ai/ai.css": 42,
       "ai/packet.css": 66,
       "ai/screen.css": 28,
-      "ai/term.css": 8,
+      "ai/term.css": 7,
       "kit/kit.css": 1
     },
     "font-family": {},
     "radius": {},
     "font-size": {
-      "ai/ai.css": 6,
+      "ai/ai.css": 5,
       "ai/plan.css": 2,
       "ai/screen.css": 4,
-      "ai/term.css": 1,
       "library/library.css": 2,
       "pages/pages.css": 2,
       "styles.css": 6
     },
     "mono-tracking": {
-      "home.css": 5,
+      "home.css": 1,
       "library/library.css": 3,
       "pages/pages.css": 2,
       "styles.css": 5
     },
-    "capitals": {
-      "home.css": 2
-    },
+    "capitals": {},
     "gradient": {
       "ai/ai.css": 7,
       "ai/screen.css": 3,

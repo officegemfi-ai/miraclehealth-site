@@ -8,7 +8,7 @@
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=9eee17d93b';
 import { startHow } from '/lib/how.js?v=547caf3594';
-import { startSigHero } from '/lib/sighero.js?v=4e7b799161';
+import { startSigHero } from '/lib/sighero.js?v=e0fa87772c';
 import { sigField } from '/lib/sigfield.js?v=36f23eb1e2';
 import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
 
@@ -116,8 +116,8 @@ function update(ev, snap) {
     v('bar').querySelector('.fi').setAttribute('width', clamp(sig.score).toFixed(1));
     const lvl = levelOf(sig.certification || 'forum');
     v('level').replaceChildren(seal(lvl.key), h('span', {}, lvl.name));
-    v('cap').textContent = [sig.summary_label, sig.confidence_label ? `${sig.confidence_label} confidence` : null,
-      Number(sig.internal_share) > 0 ? `${sig.internal_share}% from members` : 'From public forums so far'].filter(Boolean).join(' · ');
+    const said = [sig.summary_label, sig.confidence_label ? `with ${String(sig.confidence_label).toLowerCase()} confidence` : null].filter(Boolean).join(', ');
+    v('cap').textContent = `${said ? `${said}. ` : ''}${Number(sig.internal_share) > 0 ? `${sig.internal_share}% from members.` : 'From public forums so far.'}`;
   }
   const at = snap?.checked_at || snap?.generated_at;
   if (at && ago(at)) v('when').textContent = `Live from the Library, updated ${ago(at)}`;
@@ -202,8 +202,8 @@ function promptFrom(data) {
   const byId = new Map(ids.map((id, c) => [id, c]));
   let snap = null;
   const rank = (name, t) => { const f = fold(name); return f.startsWith(t) ? 0 : f.includes(t) ? 1 : 2; };
-  const row = (href, file, name, kind, facts, cls = '') => h('li', {}, h('a', { class: `hp-row${cls}`, href },
-    h('span', { class: 'hp-file' }, ...[].concat(file)), h('span', { class: 'hp-name' }, name, kind ? h('span', { class: 'hp-kind', text: ` · ${kind}` }) : null),
+  const row = (href, name, kind, facts, cls = '', lead = null) => h('li', {}, h('a', { class: `hp-row${cls}`, href },
+    h('span', { class: 'hp-name' }, lead, name, kind ? h('span', { class: 'hp-kind', text: ` · ${kind}` }) : null),
     h('span', { class: 'hp-facts' }, ...facts)));
   const fact = (cls, text, label) => h('span', { class: `hp-fact ${cls}`, title: label }, h('i', { 'aria-hidden': 'true' }), h('span', { class: 'mh-sr', text: `${label}: ` }), text);
   const facts = (id, c) => {
@@ -211,7 +211,7 @@ function promptFrom(data) {
     return [g >= 0 ? fact('hp-ev', GRADE[g], 'Evidence') : null,
       Number.isFinite(Number(sig)) && sig != null ? fact('hp-sig', Number(sig).toFixed(1), 'Community Signal') : null].filter(Boolean);
   };
-  const sheetRow = (c) => row(`/library/${ids[c]}/`, `${ids[c]}.md`, names[c], FAM[data.famOf[c]] || 'compound', facts(ids[c], c));
+  const sheetRow = (c) => row(`/library/${ids[c]}/`, names[c], FAM[data.famOf[c]] || 'compound', facts(ids[c], c));
   // empty: the most talked-about sheets, highest Signal first, until it's typed in
   function suggest() {
     let top = ['bpc157', 'tirzepatide', 'semaglutide', 'tb500'];
@@ -222,7 +222,7 @@ function promptFrom(data) {
     }
     list.replaceChildren(...top.filter((id) => byId.has(id)).map((id) => sheetRow(byId.get(id))));
     head.hidden = false;
-    head.textContent = snap?.signals ? 'most talked about · by the live signal' : 'most talked about';
+    head.textContent = 'Most talked about';
     count.textContent = '';
   }
   function draw() {
@@ -237,15 +237,14 @@ function promptFrom(data) {
     const rows = hits.slice(0, 4).map((m) => {
       if (m.k != null) {
         const st = stacks[m.k];
-        return row(`/library/${st.id}/`, st.id, st.name, 'blend', [h('span', { class: 'hp-parts', text: st.parts.map((c) => names[c]).join(' + ') })]);
+        return row(`/library/${st.id}/`, st.name, 'blend', [h('span', { class: 'hp-parts', text: st.parts.map((c) => names[c]).join(' + ') })]);
       }
       return sheetRow(m.c);
     });
     // and Sig, a keystroke away
     const said = q.value.trim().slice(0, 120);
     rows.push(row(askLink(`What does the evidence say about ${said}, and what do people report?`, { site: '' }),
-      [node('<svg class="ring" width="12" height="12" viewBox="-6 -6 12 12" aria-hidden="true" focusable="false"><circle r="4.3" fill="none" stroke="#FF6B5B" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-85.5)"/><circle r="4.3" fill="none" stroke="#F2C94C" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-20.05)"/><circle r="4.3" fill="none" stroke="#3D8BFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(12.68)"/><circle r="4.3" fill="none" stroke="#3FE0C5" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(78.14)"/><circle r="4.3" fill="none" stroke="#14ECC3" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(143.59)"/><circle r="4.3" fill="none" stroke="#B98CFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(209.05)"/><circle r="4.3" fill="none" stroke="#FF7FC8" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(241.77)"/></svg>'), 'sig ask'],
-      `“${said}”`, '', [], ' hp-ask'));
+      `Ask Sig about “${said}”`, '', [], ' hp-ask', node('<svg class="ring" width="12" height="12" viewBox="-6 -6 12 12" aria-hidden="true" focusable="false"><circle r="4.3" fill="none" stroke="#FF6B5B" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-85.5)"/><circle r="4.3" fill="none" stroke="#F2C94C" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(-20.05)"/><circle r="4.3" fill="none" stroke="#3D8BFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(12.68)"/><circle r="4.3" fill="none" stroke="#3FE0C5" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(78.14)"/><circle r="4.3" fill="none" stroke="#14ECC3" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(143.59)"/><circle r="4.3" fill="none" stroke="#B98CFF" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(209.05)"/><circle r="4.3" fill="none" stroke="#FF7FC8" stroke-width="2.4" stroke-dasharray="1.78 27.02" transform="rotate(241.77)"/></svg>')));
     list.replaceChildren(...rows);
     head.hidden = true;
   }
@@ -286,26 +285,16 @@ later(board, () => signalBoard(board));
 function signalBoard(board) {
   const load = document.getElementById('fp-load');
   const wrap = document.getElementById('fp-top-wrap'), tbody = board.querySelector('#fp-top tbody');
-  const snapEl = document.getElementById('fp-snap');
   const pieces = [...load.querySelectorAll('svg.ring .rg')];
   const wheel = pieces.filter((p) => !p.classList.contains('rg-c')), centre = pieces.find((p) => p.classList.contains('rg-c'));
   const said = (k) => load.querySelector(`[data-load="${k}"]`);
   const fmtN = fmt;
-  const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-  // "nov 16, 11:29"
-  const stamp = (iso) => {
-    const d = new Date(iso);
-    if (!Number.isFinite(d.getTime())) return '';
-    const p = (n) => String(n).padStart(2, '0');
-    return `${months[d.getMonth()]} ${d.getDate()}, ${p(d.getHours())}:${p(d.getMinutes())}`;
-  };
   // the spinner: the ring's pieces light one by one, round and round, until the numbers arrive
   let tick = 0, spin = 0;
   if (!reduceMotion && wheel.length) {
     spin = setInterval(() => {
       tick = (tick + 1) % (wheel.length + 1);
       wheel.forEach((p, i) => p.classList.toggle('on', i < tick));
-      said('agents').textContent = `${tick}/12 …`;
     }, 140);
   }
   let shown = null, version = null;
@@ -339,8 +328,8 @@ function signalBoard(board) {
     const trs = top.map(([id, s], i) => { rows.set(id, Number(s.score)); return rowFor(id, s, i); });
     const rest = all.length - top.length;
     if (rest > 0) {
-      trs.push(h('tr', { class: 'more' }, h('td', { colspan: '4' }, `+ ${fmtN(rest)} more · `,
-        h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'open the full board' }))));
+      trs.push(h('tr', { class: 'more' }, h('td', { colspan: '4' },
+        h('a', { href: 'https://community.miraclehealth.us/#/signal', text: `See all ${fmtN(all.length)} on the full board` }))));
     }
     tbody.replaceChildren(...trs);
     tbody.parentElement.classList.toggle('has-moves', !!tbody.querySelector('.fp-mv.up,.fp-mv.down'));
@@ -349,8 +338,6 @@ function signalBoard(board) {
       const was = before.get(tr.dataset.id), now = rows.get(tr.dataset.id);
       if (was != null && now != null && Math.abs(now - was) >= 0.05) tr.classList.add(now > was ? 'flash-up' : 'flash-down');
     }
-    const at = snap.checked_at || snap.published_at || snap.generated_at;
-    snapEl.lastElementChild.textContent = `live · ${stamp(at)}`;
     shown = snap; version = snap.version ?? null;
   }
   function show() {
@@ -360,10 +347,8 @@ function signalBoard(board) {
   }
   getSignal().then((snap) => {
     if (!snap || !snap.signals) throw new Error('no snapshot');
-    clearInterval(spin); // stop the spinner first, so the full ring and 12/12 stay up until the board shows
-    const n = snap.community?.signals ?? Object.keys(snap.signals).length;
-    said('signal').replaceChildren(`${fmtN(n)} `, ck());
-    said('agents').replaceChildren('12/12 ', ck());
+    clearInterval(spin); // stop the spinner first, so the full ring stays up until the board shows
+    said('signal').replaceChildren(' ', ck());
     wheel.forEach((p) => p.classList.add('on'));
     if (centre) centre.classList.add('on');
     render(snap);
@@ -371,11 +356,8 @@ function signalBoard(board) {
     keepLive();
   }).catch(() => {
     clearInterval(spin);
-    said('signal').textContent = 'not reachable just now';
+    said('signal').textContent = ': not reachable just now';
     said('signal').classList.add('is-wait');
-    said('agents').textContent = '—';
-    snapEl.lastElementChild.textContent = 'offline';
-    snapEl.classList.add('is-off');
     board.setAttribute('aria-busy', 'false');
     wrap.before(h('p', { class: 'fp-noscript' }, 'The Signal couldn’t load just now. ',
       h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'Open the whole board in the community' }), '.'));

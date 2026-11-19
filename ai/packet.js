@@ -210,7 +210,7 @@ const facts = (it) => [
   `Evidence for this use: ${useLabel(it)}`,
   it.status?.label ? `US status: ${it.status.label}` : it.tag ? `US status: ${it.tag}` : '',
   it.signal && Number.isFinite(Number(it.signal.score)) ? `Community Signal ${Number(it.signal.score).toFixed(0)} (${String(it.signal.level || 'forum data').toLowerCase()}, self-reported)` : '',
-].filter(Boolean).join(' · ');
+].filter(Boolean).join('. ');
 
 // Every study finding's source, numbered once for the whole packet
 function referencesOf(p) {

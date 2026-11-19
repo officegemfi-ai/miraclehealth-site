@@ -18,7 +18,7 @@ import { h, svg, getSignal, groupN } from '/lib/dom.js?v=f31d9546b5';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
 import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
-import { makeRail } from '/ai/mind.js?v=8c2c22060a';
+import { makeRail } from '/ai/mind.js?v=f4d59a48c1';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -446,11 +446,9 @@ addEventListener('touchstart', () => { following = false; }, { passive: true });
 addEventListener('keydown', (e) => { if (/^(?:PageUp|ArrowUp|Home)$/.test(e.key) && !e.target.closest?.('textarea, input')) following = false; });
 
 // The prompt: who is asking, where, and the arrow (the composer has the same one)
-const ps1 = (cls, verb = '') => h('span', { class: cls, 'aria-hidden': 'true' }, h('span', { class: 'ps-host', text: 'sig@miracle' }), ' ',
-  h('span', { class: 'ps-path', text: '~/chats' }), ' ', h('b', { text: '›' }), verb ? h('span', { class: 'ps-verb', text: ` ${verb}` }) : null);
-// Their question, as typed at the prompt: sig@miracle ~/chats › ask "…"
+// Their question, as they wrote it
 function userNode(text) {
-  return h('div', { class: 'msg me' }, ps1('echo-ps1', 'ask'), h('div', { class: 'bubble', text }));
+  return h('div', { class: 'msg me' }, h('div', { class: 'bubble', text }));
 }
 
 // A view: the DOM for one answer, kept in step with its message. Its first line (Sig's ring lit by
@@ -873,7 +871,7 @@ function pickNode(it) {
     `Community Signal ${Number(it.signal.score).toFixed(0)} (${it.signal.level.toLowerCase()})`,
     it.signal.reports ? `${it.signal.reports} first-hand report${it.signal.reports === 1 ? '' : 's'}` : '',
     it.signal.effects?.length ? `most mentioned: ${it.signal.effects.join(', ').toLowerCase()}` : '',
-  ].filter(Boolean).join(' · ') : '';
+  ].filter(Boolean).join('; ') : '';
   return h('div', { class: 'pick' },
     h('div', { class: 'pick-main' },
       h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url, text: it.name }) : h('b', { text: it.name }), h('span', { class: 'pick-role', text: it.role }), ev),
@@ -1103,7 +1101,7 @@ function crowdRow(r) {
     h('div', { class: 'crowd-val' },
       rated ? h('b', { class: 'crowd-num', text: String(r.rating) }) : h('b', { class: 'crowd-num forum', text: r.forum || 'Forums' }),
       bar,
-      h('span', { class: 'crowd-meta', text: rated ? `members’ rating${r.low != null && r.high != null ? ` · likely ${r.low}–${r.high}` : ''} · ${plural(r.reports, 'report')}` : 'mentioned on the forums · not rated yet' })));
+      h('span', { class: 'crowd-meta', text: rated ? `Members’ rating${r.low != null && r.high != null ? `, likely ${r.low}–${r.high}` : ''}, from ${plural(r.reports, 'report')}` : 'Mentioned on the forums, not rated yet' })));
 }
 function crowdNode(card) {
   const use = low(card.use?.label || '');
@@ -1522,7 +1520,7 @@ async function stackFromLink() {
   no.addEventListener('click', refreshStack);
   const box = h('section', { class: 'saved-box incoming', 'aria-labelledby': 'saved-in-h' },
     h('h2', { id: 'saved-in-h', text: 'A stack from your link' }),
-    h('p', { class: 'saved-names', text: st.items.map((i) => i.name).join(' · ') }),
+    h('p', { class: 'saved-names', text: st.items.map((i) => i.name).join(', ') }),
     st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
     h('div', { class: 'saved-actions' }, save, now, no));
   if (chat.length) {
@@ -1570,14 +1568,15 @@ function setBusy(on) {
   thread.setAttribute('aria-busy', String(on));
   updateSend();
 }
-// The status bar: ready, the agents working, Sig writing, then how it ended and how long it took
+// Where Sig is: ready, the agents working, Sig writing, then how it ended and how long it took (kept on
+// the page's state for the styles; the conversation itself shows the steps)
 const stateEl = $('tm-state');
 const STATE_SAID = { ready: 'ready', working: 'working', writing: 'writing', stopped: 'stopped', error: 'couldn’t answer' };
 function setState(st, ms = 0) {
   const known = Object.hasOwn(STATE_SAID, st);
   const said = known ? STATE_SAID[st] : `done${ms ? ` · ${(ms / 1000).toFixed(1)} s` : ''}`;
   if (stateEl) stateEl.dataset.state = known ? st : 'done';
-  if (statusEl.textContent !== said) statusEl.textContent = said;
+  if (statusEl && statusEl.textContent !== said) statusEl.textContent = said;
 }
 // Send, or stop the answer being written in this chat; while Sig answers in another chat, this one
 // waits (one answer at a time)
@@ -2191,7 +2190,7 @@ const tabsNav = $('tm-chats');
 const plusBtn = $('tm-plus');
 const tabStrip = $('tm-tabstrip');
 const chatName = (t) => titleOf(t.chat);
-// The open chat as a path in the terminal's bar: ~/chats/hgh-enclomiphene-fat-loss
+// The open chat's short name (kept where a page has a place for it)
 const slugEl = $('tm-slug');
 const SLUG_SKIP = new Set('a an and any are about be can could did do does for good bad how i in is it me my of on or plus should that the their there this to vs was were what when which will with would you your'.split(' '));
 const slugOf = (title) => String(title || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, ' ').trim().split(' ')
@@ -2616,7 +2615,7 @@ getSignal().then((snap) => {
     store.set(FOLLOW, followed().filter((id) => !live.includes(id)), 'local');
   }
   if (c.reports > 0) {
-    rows.push(...row('Community', h('dd', { class: 'ai-crowd' }, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'} · `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} · `,
+    rows.push(...row('Community', h('dd', { class: 'ai-crowd' }, h('b', { text: fmt(c.members) }), ` member${c.members === 1 ? '' : 's'}, `, h('b', { text: fmt(c.reports) }), ` first-hand report${c.reports === 1 ? '' : 's'} and `,
       h('b', { text: fmt(c.signals) }), ` Community Signal${c.signals === 1 ? '' : 's'}, with public forum data`)));
   } else {
     // Before members' reports start, the Signals are what the public forums say: said plainly
@@ -2663,7 +2662,7 @@ updateSend();
 {
   let cmdk = null;
   const cmdkOpen = (from) => {
-    (cmdk ||= import('/lib/cmdk.js?v=9c92a8758f')).then((m) => (m.isOpen() ? m.close() : m.openCmdk(from))).catch(() => { location.assign('/library/'); });
+    (cmdk ||= import('/lib/cmdk.js?v=767f876aea')).then((m) => (m.isOpen() ? m.close() : m.openCmdk(from))).catch(() => { location.assign('/library/'); });
   };
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); cmdkOpen(document.activeElement); }

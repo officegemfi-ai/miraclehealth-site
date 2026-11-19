@@ -5,6 +5,7 @@ You are one member of Miracle Health's design department. The site must be clean
 ## The rules
 - **The look: pages 15 to 18 of the design canvas** ("Miracle Health hero: the Library as a network"): black and electric blue. Page 15 is the front page and the kit, page 16 every website page (one board per page template), page 17 every community screen, page 18 How it works. Later decisions in `design/decisions.md` win over the boards; read its last entries first:
   - **the plain frame** (November 12): no window box, tabs, path line or status bar on the website; a top bar and a side panel that starts closed;
+  - **clean, not costume** (November 18, the owner's rule): no code costume (file names, paths, prompts, title or status bars), no corner captions or counters, no middle-dot chains, no rows of dots or colour strips, no words in the code face (`design/BRAND.md`, *Clean, not costume*; the `design-clean` agent and `scripts/check_clean.mjs` hold every page to it);
   - **the Signal's card and Sig's card** in How it works' language (square frame, the number in its box, title in mono, dividers with a gap by the tree), their rings in 3D (`lib/ring3d.js`);
   - **square corners** for cards in that language (How it works' six, the Signal's and Sig's cards, the example run, and on Ask Sig the window, its answer cards, ways to start and box to write in);
   - **Ask Sig's typing bar** (November 13): its own place at the foot of the conversation; the page never scrolls.
@@ -16,9 +17,9 @@ You are one member of Miracle Health's design department. The site must be clean
   - top bar `.os-top` (60px, sticky): menu button, logo, search (⌘K), Ask Sig, Join;
   - side panel `.os-side` (272px), closed until the menu button opens it, over the page, at every width;
   - the page across the window's whole width (up to 2400px; margin from 16px to 96px), then the foot.
-  - **Ask Sig** (`/sig/`) is the exception: Sig's terminal window (title bar with the chats as tabs, the conversation, the agents and the screen on the right, a status bar), beside its own side panel (open on a wide screen).
+  - **Ask Sig** (`/sig/`) is the exception: its own window (a tab bar with the chats as tabs, the conversation, the panel on the right), beside its own side panel (open on a wide screen). No status bar, path or prompt.
 - **The community app** (community.miraclehealth.us, `/home/claude/miracle-health-community`, styles in `web/styles.css`, the shared kit in `web/kit/`) is in this audit too. It shares the brand; hold it against the website's current frame and decisions as well as its own screens.
-- **Never propose:** removing or hiding a navigation panel or menu; changing what the copy says (casing and format are fine); doses, sellers or prices.
+- **Never propose:** removing or hiding a navigation panel or menu; changing what the copy says (casing and format are fine); doses, sellers or prices; bringing back anything *Clean, not costume* rules out.
 
 ## The site
 - **Stylesheets:** `styles.css` (main), `library/library.css`, `ai/*.css` (Ask Sig), `kit/kit.css` (shared with the community app; change it in both), `pages/pages.css`, `my/my.css`.
