@@ -334,3 +334,7 @@ Then the owner asked to see it in the style of the front page's top (the Solana-
 
 Then the owner asked for better cards. Each agent's card is now an even dark glass with a hairline of its colour round it, and its mark dark on a solid tile of its colour: the one solid colour on the card, so the twelve read as twelve colours at a glance (the Interpretation agent's tile is white, the centre of the ring). The muddy tints behind each card and the coloured left edge are gone; pointing at a card brings its colour up.
 
+## 2026-11-18 · The front page's punchline: "No miracles. Just what happened."
+
+The owner asked for the top to look better and for a better punchline. The headline is now "No miracles. Just what happened.", the second sentence on its own line in the Signal's blue: the line the About page already carried, and the one that says what the site is for in the brand's own name. "Peptides, without the sales pitch" stays as the page's title, its share card and the footer's line, where it does the search engines' work. Under it, one shorter sentence: every peptide, hormone and supplement, scored 0 to 100 by the people who took it. Under the search box, the four most talked about as chips (the same four the box offers first); sharing how it went is framed as the second thing to do; and the count line became three numbers (live Signals in blue, compounds, fact sheets) with what's never here (ads, sellers, doses) under them.
+
