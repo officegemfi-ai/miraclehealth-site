@@ -10,8 +10,7 @@ Your area, across every page in `design/pages.json` at 1440, 1024, 768 and 390 w
 2. **The type scale** (`design/tokens.json` type styles): list sizes in use per family with counts. Flag one-offs and near-duplicates doing one job, and give the scale size each should be. Headline clamp() is fine.
 3. **Hierarchy:** the same level (h1, h2, h3) looks the same on every page type.
 4. **Kickers and labels:**
-   - Kickers are mono capitals at 0.12em, led by a 28px rule at 75% opacity.
-   - Side panel and status labels are mono lowercase.
+   - Kickers, labels, tags, table heads, captions and tabs are Mona Sans in sentence case: no rule before a kicker, no dots in it, and no words in mono (the owner's rule, November 18; `design/BRAND.md`, *Clean, not costume*; `design-clean` audits it).
 5. **Line length and rag:**
    - Paragraphs at most about 75 characters per line.
    - No single-word last lines in headlines; text-wrap: balance or pretty fixes them.
@@ -19,5 +18,5 @@ Your area, across every page in `design/pages.json` at 1440, 1024, 768 and 390 w
 6. **Tracking and leading:**
    - Headlines at -0.026 to -0.032em, with line height about 1.
    - Body at 1.5–1.6.
-   - Mono untracked, except kickers.
+   - Mono only for numbers, untracked.
 7. **Numbers:** every measured number in mono with tabular figures.

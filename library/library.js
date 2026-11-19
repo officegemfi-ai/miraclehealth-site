@@ -220,7 +220,7 @@ function signalPanel(box, id, name, x, space, uses, snap, baselines = new Map())
     h('div', { class: 'sig-top' }, n, h('span', { class: 'of' }, '/100'),
       h('span', { class: 'lvl' }, svg(sealSvg(lvl.key, 34)), h('span', {}, h('b', { class: 'lvl-name' }, lvl.name), h('span', { class: 'lvl-rule' }, lvl.rule)))),
     scale,
-    h('p', { class: 'sig-cap' }, `Overall rating · ${x.summary_label} · ${x.confidence_label} confidence · ${x.internal_share}% from members`));
+    h('p', { class: 'sig-cap' }, `Overall: ${String(x.summary_label || '').toLowerCase()}, with ${String(x.confidence_label || '').toLowerCase()} confidence. ${x.internal_share}% from members.`));
   countUp(n, x.score);
 
   const list = x.by_use || [];
@@ -237,7 +237,7 @@ function signalPanel(box, id, name, x, space, uses, snap, baselines = new Map())
           u.rating != null ? rangeBar(u.rating, u.low, u.high) : h('div', { class: 'bar wait' }),
           h('span', { class: 'use-meta' }, [u.reports ? `${fmt(u.reports)} reports` : null, u.better_pct != null ? `${u.better_pct}% said better` : null,
             b ? `in trials: ${b.short}` : null, u.forum ? `forums: ${FORUM_WORD[u.forum] || u.forum}` : null,
-            u.rating == null ? 'rated after 3 reports' : null].filter(Boolean).join(' · ')));
+            u.rating == null ? 'rated after 3 reports' : null].filter(Boolean).join('; ')));
       })),
       rated.length ? h('p', { class: 'sig-cap' }, 'Each rating starts from what members report for that use everywhere and moves toward this compound’s own reports, so a handful of glowing reports can’t outrank many good ones. The band is the likely range.') : null));
   }
@@ -259,7 +259,7 @@ function signalPanel(box, id, name, x, space, uses, snap, baselines = new Map())
   // The side-effect watch: reported unusually often with this compound compared with every other
   if ((x.watch || []).length || x.serious) {
     kids.push(h('div', { class: 'sig-sec watch' }, h('span', { class: 'kick-sm' }, 'Side-effect watch'),
-      (x.watch || []).length ? h('div', { class: 'fx warn' }, x.watch.map((w) => h('span', { title: `Reported ${w.ratio}× as often as for other compounds` }, `${w.effect} · ${w.n} of ${w.of} reports (${w.pct}%) · ${w.others_pct}% for others`))) : null,
+      (x.watch || []).length ? h('div', { class: 'fx warn' }, x.watch.map((w) => h('span', { title: `Reported ${w.ratio}× as often as for other compounds` }, `${w.effect}: ${w.n} of ${w.of} reports (${w.pct}%), ${w.others_pct}% for others`))) : null,
       h('p', { class: 'sig-cap' }, (x.watch || []).length ? 'Reported unusually often with it, compared with every other compound here. A flag, not proof it causes it. ' : '',
         x.serious ? `${fmt(x.serious)} reports describe a reaction that sounded serious. ` : '',
         'A serious reaction needs medical help; anyone can report one to the FDA through ', h('a', { href: MEDWATCH, target: '_blank', rel: 'noopener' }, 'MedWatch'), '.')));

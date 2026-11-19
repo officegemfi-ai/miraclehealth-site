@@ -21,8 +21,7 @@
 .sx-grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "inst" "band" "do";row-gap:44px}
 .sx-head{grid-area:head;min-width:0}
 .sx-do{grid-area:do;min-width:0}
-.sx-kick{display:flex;align-items:center;gap:12px;margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
-.hs-kick::before{content:'';flex:none;width:28px;height:1px;background:currentColor;opacity:.75}
+.sx-kick{display:flex;align-items:center;gap:12px;margin:0;font:600 14px/1.4 var(--body);color:var(--lime)}
 /* the dot and its ring, in a clipping box of their own (see .live i in styles.css), its 8px taken back by the margins */
 .sx-live{position:relative;flex:none;width:28px;height:28px;margin:-10px;overflow:hidden}
 .sx-live::before,.sx-live::after{content:'';position:absolute;left:10px;top:10px;width:8px;height:8px;border-radius:50%}
@@ -51,27 +50,23 @@
 .sx-find .hp-drop{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:6;display:none;border:1px solid var(--line-2);border-radius:0;background:var(--raised);box-shadow:0 24px 48px rgba(0,0,0,.6);overflow:hidden}
 .sx-find:focus-within .hp-drop{display:block}
 .sx-find .hp-list{border-top:0}
-.fp-prompt .hp-k{margin:0;padding:12px 18px 4px;font:400 11.5px/1 var(--mono);color:var(--muted)}
-.fp-prompt .hp-k::before{content:'// '}
+.fp-prompt .hp-k{margin:0;padding:12px 18px 4px;font:500 13px/1 var(--body);color:var(--muted)}
 .fp-prompt .hp-k[hidden]{display:none}
 .fp-prompt .hp-list{margin:0;padding:0 0 4px;list-style:none}
 .fp-prompt .hp-list[hidden]{display:none}
-.hp-row{display:grid;grid-template-columns:136px minmax(0,1fr) auto;column-gap:14px;align-items:center;min-height:44px;padding:0 18px;color:var(--text);text-decoration:none}
+.hp-row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;align-items:center;min-height:44px;padding:0 18px;color:var(--text);text-decoration:none}
 .hp-row:hover,.hp-row:focus-visible{background:var(--fp-hover)}
 .hp-row:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
-.hp-file{overflow:hidden;font:400 12.5px/1 var(--mono);color:var(--muted);white-space:nowrap;text-overflow:ellipsis}
-.hp-row:hover .hp-file,.hp-row:focus-visible .hp-file{color:var(--text-2)}
 .hp-name{overflow:hidden;font:500 15px/1.3 var(--body);white-space:nowrap;text-overflow:ellipsis}
 .hp-kind{font-weight:400;color:var(--muted)}
-.hp-facts{display:flex;align-items:center;gap:14px;font:400 12px/1 var(--mono);color:var(--text-2);white-space:nowrap}
+.hp-facts{display:flex;align-items:center;gap:14px;font:400 13px/1 var(--body);color:var(--text-2);white-space:nowrap}
 .hp-fact{display:inline-flex;align-items:center;gap:6px}
 .hp-fact i{width:6px;height:6px;border-radius:50%;background:var(--ac)}
 .hp-ev{--ac:#14ECC3}.hp-sig{--ac:#3D8BFF}
 .hp-parts{overflow:hidden;max-width:220px;color:var(--muted);text-overflow:ellipsis}
 .hp-row.hp-ask{color:var(--text-2)}
-.hp-row.hp-ask .hp-file{display:flex;align-items:center;gap:8px;color:var(--text-2)}
-.fp-prompt .hp-keys{display:flex;flex-wrap:wrap;gap:6px 20px;margin:0;padding:11px 18px;border-top:1px solid var(--line);font:400 11.5px/1.4 var(--mono);color:var(--muted)}
-.fp-prompt .hp-keys-ask{margin-left:auto}
+.hp-row.hp-ask .hp-name{color:var(--text-2)}
+.hp-row.hp-ask .hp-name .ring{display:inline-block;margin:0 10px 0 0;vertical-align:-1px}
 
 .sx-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 32px;margin:24px 0 0}
 .sx-acts a{display:inline-flex;align-items:center;gap:8px;min-height:24px;font:600 15px/1.3 var(--body);color:var(--text);text-decoration:none}
@@ -80,7 +75,7 @@
 .sx-acts a:hover .sx-arr{color:#FFFFFF;transform:translateX(3px)}
 .sx-acts a:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 /* the four most talked about, one tap from their fact sheets: plain links under the search box, no boxes */
-.sx-pop{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;margin:10px 0 0;font:400 13px/1 var(--mono)}
+.sx-pop{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;margin:10px 0 0;font:400 14px/1 var(--body)}
 .sx-pop-k{color:var(--muted)}
 .sx-pop a{display:inline-flex;align-items:center;min-height:32px;font-weight:400;color:var(--text-2);text-decoration:none;transition:color .2s}
 .sx-pop a:hover{color:var(--text)}
@@ -91,11 +86,7 @@
 .sx-stats div{display:flex;flex-direction:column-reverse;gap:8px}
 .sx-stats dd{margin:0;font:500 28px/1 var(--mono);color:var(--text);font-variant-numeric:tabular-nums}
 .sx-stats div:first-child dd{color:var(--lime)}
-.sx-stats dt{font:400 12px/1.4 var(--mono);color:var(--text-2)}
-.sx-read{display:flex;flex-wrap:wrap;gap:6px 0;margin:16px 0 0;padding:0;font:400 12px/1.5 var(--mono);color:var(--text-2)}
-.sx-read span{white-space:nowrap}
-.sx-read span+span::before{content:'·';margin:0 10px;color:var(--muted)}
-.sx-read b{font-weight:700;color:var(--lime)}
+.sx-stats dt{font:400 13px/1.4 var(--body);color:var(--text-2)}
 
 /* the Signal, as a card in How it works' language (page 18): the name, its rank and the arrows, the score,
    big, with its four parts as glowing bars, what people report most, and at the foot the level and the
@@ -127,7 +118,7 @@
 .sx-h{gap:16px}
 .sx-h-in{flex:1;min-width:0}
 .sx-h .hs-title{display:block;margin:0;overflow:hidden;text-overflow:ellipsis}
-.sx-meta{margin:8px 0 0;font:400 12px/1.4 var(--mono);color:var(--text-2)}
+.sx-meta{margin:8px 0 0;font:400 14px/1.4 var(--body);color:var(--text-2)}
 .sx-rk{white-space:nowrap}
 .sx-nav{flex:none;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid var(--line-2);border-radius:0;background:transparent;color:var(--text);cursor:pointer;transition:border-color .2s,background-color .2s}
 .sx-nav+.sx-nav{margin-left:-8px}
@@ -159,10 +150,10 @@
 .sx-mid p{margin:0}
 .sx-score{font:650 expanded clamp(64px,calc(118 * var(--u)),136px)/.92 var(--head);letter-spacing:-.045em;color:var(--text);white-space:nowrap}
 .sx-dec{font-size:clamp(26px,calc(48 * var(--u)),54px);letter-spacing:-.02em;color:var(--text-2)}
-.sx-of{margin-top:clamp(10px,calc(14 * var(--u)),16px)!important;font:400 clamp(11px,calc(12 * var(--u)),13px)/1 var(--mono);color:var(--text-2);white-space:nowrap}
-.sx-sum{margin-top:clamp(6px,calc(8 * var(--u)),9px)!important;font:400 clamp(11px,calc(12 * var(--u)),13px)/1.2 var(--mono);color:var(--lime);white-space:nowrap}
+.sx-of{margin-top:clamp(10px,calc(14 * var(--u)),16px)!important;font:400 clamp(12px,calc(13 * var(--u)),14px)/1 var(--body);color:var(--text-2);white-space:nowrap}
+.sx-sum{margin-top:clamp(6px,calc(8 * var(--u)),9px)!important;font:500 clamp(13px,calc(14 * var(--u)),15px)/1.2 var(--body);color:var(--lime);white-space:nowrap}
 .sx-tb{position:relative;padding:18px 24px 18px 84px}
-.sx-k{margin:0 0 6px;font:400 11px/1 var(--mono);color:var(--lime)}
+.sx-k{margin:0 0 8px;font:500 13px/1.2 var(--body);color:var(--text-2)}
 /* the four parts: a bar each, filled as far as its number (scaled on the compositor, eased to each
    compound's numbers), in its colour with a glow of the same light, on a dark pane over the light */
 .sx-parts{display:grid;grid-template-columns:max-content minmax(48px,1fr) 2.2em;gap:13px 16px;width:min(100%,480px);margin:0;padding:18px 20px;list-style:none;border:1px solid var(--line);background:rgba(0,0,0,.6)}
@@ -181,17 +172,17 @@
 .sx-themes li:nth-child(n+4){display:none}
 .sx-themes .sx-none{font:400 14px/1.35 var(--body);color:var(--muted)}
 .sx-th{font:400 15px/1.35 var(--body);color:var(--text-read)}
-.sx-fq{font:400 11px/1 var(--mono);color:var(--text-2);white-space:nowrap}
+.sx-fq{font:400 13px/1 var(--body);color:var(--text-2);white-space:nowrap}
 .sx-fq.hi{color:var(--lime)}
 .sx-fq.mid{color:var(--text-read)}
 .sx-k[hidden],.sx-themes[hidden]{display:none}
 /* before the live Signal is in, the card already has its full size: four empty rows wait under
-   "what people report most", the parts' chips (on a phone) wait with dashes, and the foot keeps a line
+   "What people report most", the parts' chips (on a phone) wait with dashes, and the foot keeps a line
    for the level, so nothing beside or under the card moves when the numbers arrive */
 .sx .sx-sub [data-sx="level"]{min-height:1.3em}
 .sx .sx-sub{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.sx-hero .sx .sx-sub{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-left:0;font-size:12px;color:var(--text-2);text-align:left}
-.sx-studies{display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border:1px solid rgba(20,236,195,.34);border-radius:0;background:rgba(20,236,195,.06);color:var(--sig-evidence);font:400 11px/1 var(--mono);text-decoration:none;white-space:nowrap;transition:border-color .2s}
+.sx-hero .sx .sx-sub{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-left:0;font-size:13px;color:var(--text-2);text-align:left}
+.sx-studies{display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border:1px solid rgba(20,236,195,.34);border-radius:0;background:rgba(20,236,195,.06);color:var(--sig-evidence);font:500 13px/1 var(--body);text-decoration:none;white-space:nowrap;transition:border-color .2s}
 .sx-studies:hover{border-color:var(--sig-evidence)}
 .sx-studies:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 
@@ -201,9 +192,6 @@
 .sx-band-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 28px;margin-bottom:40px}
 .sx-band-t{max-width:560px;margin:0;font:400 15px/1.55 var(--body);color:var(--text-read)}
 .sx-band-t b{font:650 expanded 15px/1.3 var(--head);letter-spacing:-.01em;color:var(--text)}
-.sx-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0}
-.sx-legend span{display:inline-flex;align-items:center;gap:7px;font:400 11px/1 var(--mono);color:var(--text-2);white-space:nowrap}
-.sx-legend i{display:block;width:10px;height:10px;border-radius:0}
 .sx-p0{background:var(--lime)}
 .sx-p1{background:#9AA0F4}
 .sx-p2{background:#6B48F1}
@@ -227,12 +215,12 @@
 .sx-bar[aria-pressed="true"] .sx-lab,.sx-bar[aria-pressed="true"] .sx-cap{display:block}
 .sx-floor{height:2px;margin-top:4px;border-radius:0;background:linear-gradient(90deg,rgba(61,139,255,.15),rgba(61,139,255,.75) 18%,rgba(61,139,255,.4) 70%,rgba(61,139,255,.1));box-shadow:0 0 28px 6px rgba(61,139,255,.18)}
 .sx-glabs{display:flex;gap:24px}
-.sx-glab{min-width:0;margin:0;padding-top:10px;font:400 11px/1.25 var(--mono);color:var(--muted);white-space:nowrap}
+.sx-glab{min-width:0;margin:0;padding-top:10px;font:400 13px/1.25 var(--body);color:var(--muted);white-space:nowrap}
 .sx-glab b{font:650 expanded 14px/1.5 var(--head);color:var(--text)}
 .sx-glab.end{direction:rtl;text-align:right}
 .sx-glab.end span,.sx-glab.end b{direction:ltr;unicode-bidi:isolate}
-.sx-gline{display:none;margin:10px 0 0;font:400 11px/1.6 var(--mono);color:var(--muted)}
-.sx-gline b{font-weight:400;color:var(--text)}
+.sx-gline{display:none;flex-wrap:wrap;gap:2px 16px;margin:10px 0 0;font:400 13px/1.6 var(--body);color:var(--muted)}
+.sx-gline b{font-weight:600;color:var(--text)}
 .is-off .sx-band{display:none}
 /* the opening (lib/sighero.js): when the live Signal arrives, the walls come up onto the plate as the
    score counts up, what the numbers changed comes in, the rows of what people report one after
@@ -257,7 +245,7 @@
 .st-ico{display:block;width:100%;height:100%;overflow:visible}
 .st-step:not(:last-child)::after{content:"";position:absolute;left:28px;top:68px;bottom:12px;width:1px;background:var(--line-2)}
 .st-step:not(:last-child)::before{content:"";position:absolute;left:25px;bottom:13px;width:6px;height:6px;border:solid var(--line-2);border-width:0 1px 1px 0;transform:rotate(45deg)}
-.st-n{margin:6px 0 0;font:400 12px/1 var(--mono);letter-spacing:.08em;color:var(--lime)}
+.st-n{margin:6px 0 0;font:400 13px/1 var(--mono);color:var(--lime)}
 .fp .st-step h3{margin:10px 0 0;font:600 20px/1.25 var(--body);letter-spacing:-.01em;color:var(--text)}
 .st-t{margin:8px 0 0;max-width:46ch;font-size:16px;line-height:1.55;color:var(--text-2)}
 .fp-sec.st{padding-bottom:64px}
@@ -274,7 +262,7 @@
 .sn-noise .sn-name{color:var(--text-2)}
 .sn-signal .sn-name{color:var(--lime)}
 .sn-name i{flex:none;width:12px;height:12px;border-radius:50%;background:var(--lime);outline:4px solid rgba(61,139,255,.22)}
-.sn-sub{margin:10px 0 0;font:400 12px/1.4 var(--mono);color:var(--muted)}
+.sn-sub{margin:10px 0 0;font:400 14px/1.4 var(--body);color:var(--muted)}
 .sn-list{margin:0;padding:0;list-style:none}
 .sn-list li{display:flex;align-items:center;gap:16px;min-height:78px;padding:14px 28px;border-top:1px solid var(--line);font-size:15.5px;line-height:1.45}
 .sn-list li:first-child{border-top:0}
@@ -293,7 +281,7 @@
 .fp-way-i{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line-2)}
 .fp-way-i svg{display:block}
 .fp-way-h{min-width:0;font:600 16px/1.3 var(--body);letter-spacing:-.01em}
-.fp-way-go{display:flex;align-items:center;gap:10px;font:400 13px/1 var(--mono);color:var(--muted);transition:color .2s}
+.fp-way-go{display:flex;align-items:center;gap:10px;font:500 14px/1 var(--body);color:var(--muted);transition:color .2s}
 .fp-way-a{display:block;flex:none;transition:transform .2s}
 .fp-way:hover .fp-way-go{color:var(--text)}
 .fp-way:hover .fp-way-a{transform:translateX(3px)}
@@ -311,40 +299,35 @@
 .violet .fp-sub,.violet .fp-fine{color:var(--text)}
 .violet .fp-commits{border-color:rgba(255,255,255,.28)}
 .fp-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
-.fp-more{font:400 13px/1.4 var(--mono);color:var(--text-2)}
+.fp-more{font:500 14px/1.4 var(--body);color:var(--text-2)}
 .fp-more:hover{color:var(--text)}
 
-/* a terminal pane: a framed block with a bar naming its file */
+/* a pane: a framed block, its content straight under the frame (no bar naming it: the owner's rule,
+   November 18) */
 .fp .term{border:1px solid var(--line);border-radius:0;background:var(--paper);overflow:hidden}
-.fp .term-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;min-height:42px;margin:0;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--band);font:400 12px/1.3 var(--mono);color:var(--muted)}
-.fp .term-file{color:var(--text-2)}
-.fp .term-file b{font-weight:400;color:var(--text)}
 
 /* ---------- the Community Signal, like top: the eight highest, each with what people report most and
    its score, and a way to the whole board (simpler, November 16) ---------- */
 .fp-board{margin-top:36px}
-.fp-snap{display:inline-flex;align-items:center;gap:8px;color:var(--text-2)}
-.fp-snap .pip{animation:fp-live 2.4s ease-in-out infinite}
-.fp-snap.is-off .pip{animation:none;background:var(--muted)}
-@keyframes fp-live{50%{opacity:.35}}
 .fp-load{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px;align-items:center;max-width:560px;padding:28px 20px 30px}
 .fp-load[hidden]{display:none}
 .fp-load-ring svg{display:block}
 .fp-load-ring .rg{opacity:.16;transition:opacity .3s}
 .fp-load-ring .rg.on{opacity:1}
-.fp-load-lines{font:400 12.5px/1.9 var(--mono);color:var(--text-2)}
-.fp-load-lines p{display:flex;justify-content:space-between;gap:16px;margin:0}
+.fp-load-lines{font:400 15px/1.6 var(--body);color:var(--text-2)}
+.fp-load-lines p{margin:0}
 .fp-load-lines b{font-weight:400;color:var(--text)}
 .fp-load-lines b.is-wait{color:var(--muted)}
-.fp-noscript{margin:0;padding:0 20px 24px;font:400 12.5px/1.6 var(--mono);color:var(--text-2)}
+.fp-noscript{margin:0;padding:0 20px 24px;font:400 14px/1.6 var(--body);color:var(--text-2)}
 .fp-noscript a{color:var(--text)}
 
 
 .fp-top-wrap{overflow-x:auto}
 .fp-top-wrap[hidden]{display:none}
-.fp-top{width:100%;border-collapse:collapse;font:400 13px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text-2)}
+.fp-top{width:100%;border-collapse:collapse;font:400 13px/1 var(--body);font-variant-numeric:tabular-nums;color:var(--text-2)}
+.fp-top .c-n,.fp-bar b,.fp-mv{font-family:var(--mono)}
 .fp-top th,.fp-top td{padding:13px 12px;text-align:left;white-space:nowrap}
-.fp-top thead th{background:var(--band);font-size:11.5px;font-weight:400;color:var(--muted)}
+.fp-top thead th{background:var(--band);font-size:13px;font-weight:500;color:var(--muted)}
 .fp-top th:first-child,.fp-top td:first-child{padding-left:18px}
 .fp-top th:last-child,.fp-top td:last-child{padding-right:18px}
 .fp-top tbody tr{border-top:1px solid rgba(255,255,255,.07);transition:background-color .2s}
@@ -366,7 +349,7 @@
 .fp-top .up{color:var(--lime)}
 .fp-top .down{color:#FF9A8E}
 .fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted);white-space:normal}
-.fp-top .more a{color:var(--text-2);font-weight:400}
+.fp-top .more a{font:500 14px/1.4 var(--body);color:var(--text-2)}
 .fp-top tr.flash-up{animation:fp-up 1.6s ease-out}
 .fp-top tr.flash-down{animation:fp-down 1.6s ease-out}
 @keyframes fp-up{from{background:rgba(61,139,255,.16)}}
@@ -386,7 +369,6 @@
    through between the agents while every word sits on a dark ground */
 .fp-sig{position:relative;isolation:isolate;overflow:hidden}
 .fp-sig .fp-crew{background:color-mix(in srgb,var(--paper) 34%,transparent)}
-.fp-sig .fp-crew .term-bar{background:color-mix(in srgb,var(--paper) 80%,transparent)}
 .fp-sig .fp-group-k{background:var(--paper)}
 .fp-sig .fp-askbox{background:color-mix(in srgb,var(--raised) 88%,transparent)}
 .fp-sig .fp-crew-q,.fp-sig .fp-crew-a{background:color-mix(in srgb,var(--raised) 80%,transparent)}
@@ -395,15 +377,12 @@
    solid colour on the card, so the twelve read as twelve colours at a glance; pointing at one brings
    its colour up */
 .fp-sig .fp-agent{grid-template-columns:44px minmax(0,1fr);column-gap:16px;padding:14px 18px 14px 14px;border:1px solid color-mix(in srgb,var(--ac) 32%,transparent);background:color-mix(in srgb,var(--raised) 82%,transparent);transition:border-color .2s,background-color .2s,transform .2s}
-.fp-sig .fp-agent.band{grid-template-columns:44px minmax(0,1fr) auto;padding:16px 20px 16px 14px;background:color-mix(in srgb,var(--raised) 82%,transparent)}
+.fp-sig .fp-agent.band{grid-template-columns:44px minmax(0,1fr);padding:16px 20px 16px 14px;background:color-mix(in srgb,var(--raised) 82%,transparent)}
 .fp-sig .fp-agent.band:hover{background:color-mix(in srgb,var(--ac) 8%,color-mix(in srgb,var(--raised) 86%,transparent))}
 .fp-sig .fp-agent:hover{border-color:color-mix(in srgb,var(--ac) 78%,transparent);background:color-mix(in srgb,var(--ac) 8%,color-mix(in srgb,var(--raised) 86%,transparent));transform:translateY(-1px)}
 .fp-sig .fp-agent-g{width:44px;height:44px;background:var(--ac);color:var(--paper)}
 .fp-sig .fp-agent-g svg{width:22px;height:22px;stroke-width:1.9;color:var(--paper)}
 .fp-sig .fp-agent-t{color:var(--text-2)}
-/* the ring's eleven colours in a strip under the frame's bar */
-.fp-spectrum{display:flex;height:2px}
-.fp-spectrum i{flex:1;background:var(--ac)}
 /* a pulse of light down the steps' line, taking each step's colour as it passes: the Safety agent's,
    the gatherers', the Interpretation agent's white, the Safety agent's again */
 .fp-flow::after{content:'';position:absolute;left:18px;top:20px;width:3px;height:72px;opacity:0;animation:fp-pulse 7s cubic-bezier(.45,0,.25,1) infinite}
@@ -417,15 +396,10 @@
   92%{opacity:1;background-color:#FF6B5B}
   100%{top:calc(100% - 92px);opacity:0;background-color:#FF6B5B}
 }
-.fp-crew-meta{font:400 12px/1.4 var(--mono);color:var(--muted)}
 .fp-crew-body{padding:26px 28px 28px}
-/* the question in, the answer out: two lines in the prompt's box, the answer signed by all twelve */
-.fp-crew-q,.fp-crew-a{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:0;padding:14px 18px;border:1px solid var(--line-2);border-radius:0;background:var(--raised);font:400 13.5px/1.6 var(--mono);color:var(--text-2)}
-.fp-crew-q .ps,.fp-crew-a .ps{flex:none;color:var(--muted)}
-.fp-crew-q .w{color:var(--text)}
-.fp-crew-a .w{flex:1 1 40ch}
-.fp-sigs{display:inline-flex;flex:none;align-items:center;gap:6px;align-self:center}
-.fp-sigs .pip{width:8px;height:8px}
+/* the question in, the answer out: two plain sentences in a box */
+.fp-crew-q,.fp-crew-a{margin:0;padding:14px 18px;border:1px solid var(--line-2);border-radius:0;background:var(--raised);font:400 16px/1.5 var(--body);color:var(--text-2)}
+.fp-crew-q q{color:var(--text)}
 /* the four steps down a line, each numbered in its square */
 .fp-flow{position:relative;display:grid;gap:30px;margin:30px 0;padding:0;list-style:none}
 .fp-flow::before{content:'';position:absolute;left:19px;top:20px;bottom:20px;width:1px;background:var(--line-2)}
@@ -434,17 +408,16 @@
 .fp-step-t{margin:9px 0 16px;font-size:18px;font-weight:600;line-height:1.3;color:var(--text)}
 /* an agent: signed down its left in its colour, on a ground of it; its mark on a tile of it */
 .fp-agent{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;column-gap:16px;padding:12px 16px 12px 12px;border:1px solid color-mix(in srgb,var(--ac) 24%,var(--line-2));border-left:2px solid var(--ac);border-radius:0;background:color-mix(in srgb,var(--ac) 6%,var(--raised))}
-.fp-agent.band{grid-template-columns:42px minmax(0,1fr) auto;padding:14px 20px 14px 12px;background:color-mix(in srgb,var(--ac) 9%,var(--raised))}
+.fp-agent.band{grid-template-columns:42px minmax(0,1fr);padding:14px 20px 14px 12px;background:color-mix(in srgb,var(--ac) 9%,var(--raised))}
 .fp-agent-g{display:grid;place-items:center;width:42px;height:42px;background:color-mix(in srgb,var(--ac) 16%,var(--paper));color:var(--ac)}
 .fp-agent-g svg{width:20px;height:20px}
 .fp-agent-w{min-width:0}
-.fp-agent-n{display:block;font:500 13px/1.35 var(--mono);color:var(--ac)}
+.fp-agent-n{display:block;font:600 15px/1.35 var(--body);color:var(--ac)}
 .fp-agent-t{display:block;margin-top:3px;font-size:15px;line-height:1.45;color:var(--text-2)}
-.fp-agent-tag{padding:6px 10px;border:1px solid color-mix(in srgb,var(--ac) 40%,var(--line-2));font:400 12px/1 var(--mono);color:var(--ac);white-space:nowrap}
 /* the ten in two frames, each named on its border, five rows to a frame */
 .fp-groups{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
 .fp-group{position:relative;margin-top:8px;padding:24px 14px 14px;border:1px solid var(--line-2);border-radius:0}
-.fp-group-k{position:absolute;top:-10px;left:12px;margin:0;padding:0 10px;background:var(--paper);font:400 12px/20px var(--mono);color:var(--text-2)}
+.fp-group-k{position:absolute;top:-10px;left:12px;margin:0;padding:0 10px;background:var(--paper);font:500 14px/20px var(--body);color:var(--text-2)}
 .fp-rows{display:grid;gap:8px}
 
 
@@ -452,9 +425,7 @@
 
 .fp-askbox{display:flex;align-items:center;gap:12px;max-width:880px;min-height:58px;margin-top:22px;padding:7px 7px 7px 16px;border:1px solid var(--line-2);border-radius:0;background:var(--raised)}
 .fp-askbox:focus-within{border-color:var(--text);outline:2px solid var(--text);outline-offset:2px}
-.fp-askbox .ps1{flex:none;font:400 13px/1 var(--mono);color:var(--text-2)}
-.fp-askbox .ps1 span{color:var(--muted)}
-.fp-askbox input{flex:1;min-width:0;height:42px;padding:0;border:0;background:transparent;color:var(--text);font:400 14.5px/1 var(--mono);outline:none}
+.fp-askbox input{flex:1;min-width:0;height:42px;padding:0;border:0;background:transparent;color:var(--text);font:400 16px/1 var(--body);outline:none}
 .fp-askbox input::placeholder{color:var(--muted);opacity:1}
 .fp-askbox .btn{flex:none;min-height:40px;padding:0 16px}
 
@@ -464,17 +435,17 @@
 .fp-vs .vs-id h3{margin:0;font:600 38px/1.1 var(--body);letter-spacing:-.02em;color:var(--text)}
 .fp-vs .vs-status{display:inline-flex;align-items:center;min-height:28px;margin:14px 0 0;padding:0 10px;border:1px solid var(--line-2);border-radius:0;font:500 12.5px/1.2 var(--body);letter-spacing:0;text-transform:none;color:var(--text-2)}
 .fp-vs .vs-sig{min-width:min(100%,340px)}
-.fp-vs .vs-k{display:flex;align-items:center;gap:8px;margin:0;font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.fp-vs .vs-k{display:flex;align-items:center;gap:8px;margin:0;font:500 13px/1.4 var(--body);color:var(--muted)}
 .fp-vs .vs-score{display:flex;align-items:baseline;gap:8px;margin:10px 0 0}
 .fp-vs .vs-score b{font:500 40px/1 var(--mono);letter-spacing:-.02em;color:var(--text)}
 .fp-vs .vs-score .of{margin:0;font:400 13px/1 var(--mono);color:var(--muted)}
-.fp-vs .vs-lvl{display:inline-flex;align-items:center;gap:7px;margin:0 0 0 auto;font:400 12px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--text-2)}
+.fp-vs .vs-lvl{display:inline-flex;align-items:center;gap:7px;margin:0 0 0 auto;font:500 13px/1.3 var(--body);color:var(--text-2)}
 .fp-vs .vs-bar{display:block;width:100%;height:4px;margin-top:12px;border-radius:0}
 .fp-vs .vs-bar .tr{fill:rgba(255,255,255,.12)}
 .fp-vs .vs-bar .fi{fill:var(--text)}
-.fp-vs .vs-cap{margin:10px 0 0;font:400 12px/1.4 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.fp-vs .vs-cap{margin:10px 0 0;font:400 13px/1.45 var(--body);color:var(--muted)}
 .fp-vs .vs-cols,.fp-vs .vs-row{display:grid;grid-template-columns:170px repeat(3,minmax(0,1fr));column-gap:24px;padding:0 26px}
-.fp-vs .vs-cols{align-items:center;min-height:40px;border-top:1px solid var(--line);background:var(--band);font:400 12px/1.3 var(--mono);text-transform:none;color:var(--muted)}
+.fp-vs .vs-cols{align-items:center;min-height:40px;border-top:1px solid var(--line);background:var(--band);font:500 13px/1.3 var(--body);color:var(--muted)}
 .fp-vs .vs-cols span{display:inline-flex;align-items:center;gap:8px}
 .fp-vs .vs-row{padding-top:20px;padding-bottom:20px;border-top:1px solid rgba(255,255,255,.07)}
 .fp-vs .vs-use{grid-column:auto;margin:0;font:600 15.5px/1.35 var(--body);color:var(--text)}
@@ -488,28 +459,27 @@
 .fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:20px 26px 22px;border-top:1px solid var(--line)}
 .fp-vs .vs-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
 .fp-vs .vs-act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
-.fp-vs .vs-when{margin:0;font:400 12px/1.4 var(--mono);color:var(--muted)}
+.fp-vs .vs-when{margin:0;font:400 13px/1.4 var(--body);color:var(--muted)}
 .fp-vs .mh-meter{color:#14ECC3}
 
-/* ---------- every report is a commit ---------- */
+/* ---------- how a report counts ---------- */
 .fp-join-in{display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:center}
 .fp-join-copy .fp-acts{margin-top:28px}
 .fp-commits{margin:0;border:1px solid var(--line);border-radius:0;background:var(--band);overflow:hidden}
-.fp-commits .term-bar{background:var(--band)}
+.fp-c-cap{margin:0;padding:18px 22px 0;font:500 13px/1.4 var(--body);color:var(--muted)}
 .fp-commits ol{margin:0;padding:22px 22px 4px;list-style:none}
 .fp-commits li{position:relative;padding:0 0 22px 34px}
 .fp-commits li::before{content:'';position:absolute;left:12px;top:6px;bottom:-6px;width:1px;background:var(--line-2)}
 .fp-commits li:last-child::before{display:none}
 .fp-c-dot{position:absolute;left:7px;top:4px;width:11px;height:11px;box-sizing:border-box;border:1.5px solid var(--text);border-radius:50%;background:var(--band)}
 .fp-commits li[data-agent] .fp-c-dot{border-color:var(--ac)}
-.fp-c-k{margin:0;font:400 12px/1.4 var(--mono);color:var(--muted)}
+.fp-c-k{margin:0;font:500 13px/1.4 var(--body);color:var(--muted)}
 .fp-c-t{margin:6px 0 0;font-size:16px;line-height:1.5;color:var(--text)}
-.fp-c-t.fp-c-code{font:400 13.5px/1.5 var(--mono);color:var(--text)}
-.fp-c-t b{font-weight:500}
+.fp-c-t b{font-weight:600}
 .fp-c-t .up{color:var(--lime)}
 .fp-c-s{margin:6px 0 0;font-size:14px;line-height:1.5;color:var(--text-2)}
 
-/* ---------- house rules, as a file ---------- */
+/* ---------- house rules ---------- */
 .fp-rules-in{display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
 .fp-file .fp-rule-list{margin:0;padding:6px 0;list-style:none;counter-reset:rule}
 .fp-rule-list li{display:grid;grid-template-columns:52px 230px minmax(0,1fr);column-gap:18px;align-items:baseline;padding:14px 22px 14px 0;border-top:1px solid rgba(255,255,255,.07)}
@@ -558,7 +528,6 @@
   .sx-band-head{display:contents}
   .sx-band-t{order:1;margin-bottom:28px}
   .sx-spec{order:2;min-height:0}
-  .sx-legend{order:3;display:grid;grid-template-columns:repeat(2,max-content);gap:8px 22px;margin-top:14px}
   .sx-plot{height:120px}
   .sx-cols{gap:10px}
   .sx-col{gap:2px}
@@ -567,7 +536,7 @@
   .sx-rule.g25,.sx-rule.g75{display:none}
   .sx-gv{left:auto;right:0;top:-16px;text-align:right}
   .sx-glabs{display:none}
-  .sx-gline{display:block}
+  .sx-gline{display:flex}
 }
 @container fp (min-width:760px){
   .sn-cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -599,7 +568,7 @@
   .fp-sec{padding:64px 0}
   .fp-vs .vs-cols{display:none}
   .fp-vs .vs-row{grid-template-columns:minmax(0,1fr);row-gap:14px}
-  .fp-vs .vs-lbl{display:block;margin:0 0 6px;font:400 11.5px/1.3 var(--mono);color:var(--muted)}
+  .fp-vs .vs-lbl{display:block;margin:0 0 6px;font:500 13px/1.3 var(--body);color:var(--muted)}
   .fp-rule-list li{grid-template-columns:40px minmax(0,1fr);row-gap:6px}
   .fp-rule-list p{grid-column:2}
   .fp-members{padding-left:58px}
@@ -613,16 +582,12 @@
   .fp-agent,.fp-agent.band{grid-template-columns:36px minmax(0,1fr);column-gap:12px;padding:11px 12px 11px 10px}
   .fp-agent-g{width:36px;height:36px}
   .fp-agent-t{font-size:14px}
-  .fp-agent-tag{display:none}
   .fp-sig .fp-agent,.fp-sig .fp-agent.band{grid-template-columns:38px minmax(0,1fr);column-gap:12px;padding:12px 12px 12px 10px}
   .fp-sig .fp-agent-g{width:38px;height:38px}
   .fp-sig .fp-agent-g svg{width:19px;height:19px}
   .fp-group{padding:22px 8px 8px}
   .fp-crew-q,.fp-crew-a{padding:12px 14px}
   .hp-row{grid-template-columns:minmax(0,1fr) auto}
-  .hp-file{display:none}
-  .fp-prompt .hp-keys-ask{margin-left:0}
-  .fp-askbox .ps1{display:none}
 }
 @container fp (max-width:560px){
   .fp-wrap{padding:0 16px}
@@ -637,7 +602,6 @@
   .sx-h{gap:10px;padding:0 14px}
   .sx-tb{padding:16px 16px 16px 74px}
   .sx-nav{width:36px;height:36px}
-  .sx-conf{display:none}
   /* on a phone the score is a 352nd of the card's width, and the parts' pane runs the card's width */
   .sx-hero .sx-ill{--u:calc(100cqw / 352);padding:28px 14px 8px}
   .sx-parts{width:100%;padding:16px}
@@ -652,8 +616,6 @@
   .sx-go{width:100%;margin-top:12px}
   .sx-stats{gap:0 28px}
   .sx-stats dd{font-size:24px}
-  .sx-read{margin-top:28px;font-size:11px}
-  .sx-read span+span::before{margin:0 7px}
   .fp-top .c-sig{width:auto}
   .fp-top .c-th{display:none}
   .fp-top-t{display:block;margin-top:6px;font:400 13px/1.3 var(--body);color:var(--text-2);white-space:normal}
@@ -671,7 +633,6 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .fp-snap .pip{animation:none}
   .sx-field{transition:none}
   .sx-m i{transition:none}
   .fp-top tr.flash-up,.fp-top tr.flash-down{animation:none}
@@ -686,15 +647,13 @@
 .hs svg{display:block;overflow:visible}
 .hs-wide{font-stretch:125%;letter-spacing:var(--head-ls)}
 .hs-intro{position:relative;padding:120px 24px 140px;text-align:center}
-.hs-kick{display:inline-flex;align-items:center;gap:12px;margin:0;font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
-.hs-kick i{width:7px;height:7px;border-radius:50%;background:var(--lime)}
+.hs-kick{display:inline-flex;align-items:center;gap:12px;margin:0;font:600 14px/1.4 var(--body);color:var(--lime)}
 .hs-head{margin:22px 0 0;font:800 expanded clamp(32px,4.2cqi,56px)/1 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--text)}
 .hs-head.hs-small{font-size:clamp(30px,3.6cqi,48px)}
 .hs-lede{max-width:34em;margin:22px auto 0;font:400 18px/1.55 var(--body);color:var(--text-2)}
 /* How it works' opening on the violet band (styles.css, .violet): the kicker and the line under the headline turn white */
 .hs-intro.violet{z-index:4;padding:104px 24px 112px}
 .violet .hs-kick{color:var(--text)}
-.violet .hs-kick i{background:var(--text)}
 .violet .hs-lede{color:var(--text)}
 /* the spine's marker passes under the band, so it shows only along the steps */
 .hs-spine{position:absolute;left:50%;top:0;width:2px;margin-left:-1px;background:repeating-linear-gradient(to bottom,var(--line-2) 0 2px,transparent 2px 10px)}
@@ -710,13 +669,13 @@
    what's under the drawing */
 .hs-h::after,.hs-ill::after,.sx-tb::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--line) 0 40px,transparent 40px 60px,var(--line) 60px)}
 .hs-num{flex:none;display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);font:400 20px/1 var(--mono);color:var(--text)}
-.hs-title{min-width:0;font:400 17.5px/1.25 var(--mono);letter-spacing:.02em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:clip}
+.hs-title{min-width:0;font:600 18px/1.25 var(--body);letter-spacing:-.01em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:clip}
 .hs-ill{position:relative;aspect-ratio:560/380}
 .hs-ill .hs-svg{width:100%;height:100%}
 .hs-f{display:flex;align-items:center;gap:16px;height:96px;padding:0 24px 0 84px}
 .hs-tile{flex:none;display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);background:var(--ink)}
 .hs-who{font:500 24px/1 var(--body);letter-spacing:-.01em;color:var(--text-2)}
-.hs-sub{margin-left:auto;font:400 11px/1.3 var(--mono);color:var(--muted);text-align:right}
+.hs-sub{margin-left:auto;font:400 13px/1.3 var(--body);color:var(--muted);text-align:right}
 /* 901 to 1279px the cards are 384 to 494px wide: titles wrap, and the foot's line goes under the name, as on
    Sig's card */
 @container (min-width:901px) and (max-width:1279px){
@@ -731,13 +690,12 @@
 .hs-cap{position:absolute;top:50%;width:min(380px,calc(50% - 120px));transform:translateY(-50%);z-index:2}
 .hs-r .hs-cap{right:calc(50% + 64px);text-align:right}
 .hs-l .hs-cap{left:calc(50% + 64px)}
-.hs-cap p{margin:14px 0 0;font:400 17.5px/1.6 var(--body);color:var(--text-2);max-width:50ch}
-.hs-cap .hs-cap-k{margin:0;font:400 11px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--lime)}
+.hs-cap p{margin:0;font:400 17.5px/1.6 var(--body);color:var(--text-2);max-width:50ch}
 .hs-finale{position:relative;height:1600px}
 .hs-ringc{position:absolute;left:50%;top:80px;width:980px;max-width:100%;aspect-ratio:1;transform:translateX(-50%)}
 .hs-mid{position:absolute;left:50%;top:570px;transform:translate(-50%,-50%);text-align:center}
 .hs-n{font:800 expanded clamp(56px,7cqi,96px)/1 var(--head);letter-spacing:-.03em;color:var(--text)}
-.hs-s{margin-top:12px;font:400 12px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--text-2)}
+.hs-s{margin-top:14px;font:500 16px/1.3 var(--body);color:var(--text-2)}
 .hs-close{position:absolute;left:0;right:0;top:1120px;padding:0 24px;text-align:center}
 .hs-ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:30px 0 0}
 @container (max-width:900px){
@@ -749,7 +707,7 @@
   .hs-card{width:100%;margin:0!important}
   .hs-cap{position:relative;top:auto;left:auto!important;right:auto!important;width:100%;transform:none}
   .hs-cap{margin:0 0 16px;text-align:left!important}
-  .hs-title{font-size:14px;line-height:1.35;white-space:normal}
+  .hs-title{font-size:15px;line-height:1.35;white-space:normal}
   .hs-f{padding-left:74px}
   .hs-who{font-size:20px}
   .hs-sub{display:none}

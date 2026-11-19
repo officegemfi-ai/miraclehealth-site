@@ -8,7 +8,7 @@
 .card.plan{position:relative;margin-top:16px;padding:20px 20px 18px;border-radius:0;overflow:hidden;background:var(--ink);color:var(--on-ink);--focus:var(--bone)}
 .card.plan [hidden]{display:none!important}
 .card.plan .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.plabel{font:400 12px/1.45 var(--mono);letter-spacing:0;text-transform:lowercase;color:var(--on-ink-3)}
+.plabel{font:400 13px/1.45 var(--body);color:var(--on-ink-3)}
 .plan-kick{color:var(--bone)}
 .plan-title{margin-top:5px;font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
 
