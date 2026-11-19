@@ -31,7 +31,7 @@ You are one member of Miracle Health's design department. The site must be clean
 ## What you work from
 - **The capture** (the art director has run it): `.design/shots/<page>@<width>.jpg` (full page) and `.design/data/<page>@<width>.json`.
   - Each data file has every visible element's selector, text, box and computed type, colour, border, radius, spacing and shadow.
-  - Widths: 1440, 1024, 768 and 390.
+  - Widths: 2560 (a wide screen, where a block that should stay together can run long and empty), 1440, 1024, 768 and 390.
   - The website's pages: `design/pages.json` (the live Signal answered from a saved copy, so the numbers show as they do live).
   - The community's screens: `design/pages-community.json`, captured as `comm-*` (signed in as a new member of the preview's sample community; `comm-signin` is the sign-in screen). If `.design/shots/comm-home@1440.jpg` is missing, the capture is still running: `tail /tmp/sx/capture-comm.log` ends with "exit" when it's done.
 - **The helpers:** `import sys; sys.path.insert(0, 'scripts'); import design_data as ds`. They give:

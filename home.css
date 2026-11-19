@@ -253,7 +253,7 @@
 /* ---------- signal, not noise (page 15 of the design canvas): what a forum thread or a star rating
    usually does, beside what the Community Signal does, rule for rule ---------- */
 .sn-cols{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:40px}
-.sn-card{min-width:0;border:1px solid var(--line);border-radius:0;overflow:hidden}
+.sn-card{min-width:0;border:1px solid var(--line);border-radius:0;overflow:hidden;container:sn-card/inline-size}
 .sn-noise{background:var(--hover)}
 .sn-signal{border-color:rgba(61,139,255,.4);background:radial-gradient(70% 240px at 88% 0%,rgba(61,139,255,.16) 0%,rgba(61,139,255,0) 100%),var(--card)}
 .sn-top{padding:28px 28px 24px;border-bottom:1px solid var(--line)}
@@ -290,6 +290,8 @@
 .fp-sec{padding:88px 0;border-top:1px solid var(--line)}
 .fp-head{max-width:780px}
 .fp-head h2,.fp-join-copy h2{margin:14px 0 0;font:800 expanded clamp(26px,1.89cqi + 13px,36px)/1.04 var(--body);letter-spacing:var(--head-ls);color:var(--text)}
+/* a heading of short sentences breaks between them where it can, never after a sentence's first word */
+.fp-keep{display:inline-block}
 .fp-sub{margin:16px 0 0;max-width:50ch;font-size:18px;line-height:1.6;color:var(--text-2)}
 .fp-sub a{color:var(--text)}
 .fp-fine{margin:12px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:52ch}
@@ -307,8 +309,14 @@
 .fp .term{border:1px solid var(--line);border-radius:0;background:var(--paper);overflow:hidden}
 
 /* ---------- the Community Signal, like top: the eight highest, each with what people report most and
-   its score, and a way to the whole board (simpler, November 16) ---------- */
-.fp-board{margin-top:36px}
+   its score, and a way to the whole board (simpler, November 16). Its rows are laid out as a grid, so a
+   board's parts stay together and its bars keep a sensible length at every width (the owner, November
+   18: "why is it so stretched?", then "having the lines that long looks ridiculous"): a bar is 48 to
+   480px long, and a board 1120px wide and up holds its eight in two columns of four. What people report
+   most stands under the compound's name, with a column of its own only where each column of the board is
+   1000px wide. The table keeps its rows, cells and headers for a screen reader (roles in the markup,
+   since the grid takes over their display); its head row is for them only ---------- */
+.fp-board{margin-top:36px;container:board/inline-size}
 .fp-load{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px;align-items:center;max-width:560px;padding:28px 20px 30px}
 .fp-load[hidden]{display:none}
 .fp-load-ring svg{display:block}
@@ -321,42 +329,58 @@
 .fp-noscript{margin:0;padding:0 20px 24px;font:400 14px/1.6 var(--body);color:var(--text-2)}
 .fp-noscript a{color:var(--text)}
 
-
-.fp-top-wrap{overflow-x:auto}
 .fp-top-wrap[hidden]{display:none}
-.fp-top{width:100%;border-collapse:collapse;font:400 13px/1 var(--body);font-variant-numeric:tabular-nums;color:var(--text-2)}
-.fp-top .c-n,.fp-bar b,.fp-mv{font-family:var(--mono)}
-.fp-top th,.fp-top td{padding:13px 12px;text-align:left;white-space:nowrap}
-.fp-top thead th{background:var(--band);font-size:13px;font-weight:500;color:var(--muted)}
-.fp-top th:first-child,.fp-top td:first-child{padding-left:18px}
-.fp-top th:last-child,.fp-top td:last-child{padding-right:18px}
-.fp-top tbody tr{border-top:1px solid rgba(255,255,255,.07);transition:background-color .2s}
+/* the Signal's track: room for a 48px bar and its score, or with this week's move too */
+.fp-top{--sig:minmax(110px,560px);display:block;width:100%;font:400 13px/1 var(--body);font-variant-numeric:tabular-nums;color:var(--text-2)}
+.fp-top.has-moves{--sig:minmax(170px,620px)}
+.fp-top thead{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fp-top tbody{display:grid;grid-template-columns:minmax(0,1fr)}
+.fp-top tbody tr{display:grid;grid-template-columns:32px 240px var(--sig);column-gap:14px;align-items:center;padding:14px 18px;border-top:1px solid rgba(255,255,255,.07);transition:background-color .2s}
+/* every row has the same tracks, set by width alone, so names, bars and scores line up row to row */
+.fp-top tbody tr:first-child{border-top:0}
 .fp-top tbody tr:hover{background:var(--fp-hover)}
-.fp-top .c-n{width:44px;color:var(--muted)}
-.fp-top th[scope="row"]{font:600 14.5px/1 var(--body);color:var(--text)}
+.fp-top th,.fp-top td{display:block;padding:0;text-align:left;white-space:nowrap}
+.fp-top td.c-n{font-family:var(--mono);color:var(--muted)}
+.fp-top th[scope="row"]{font:600 15px/1.25 var(--body);color:var(--text);white-space:normal}
 .fp-top th[scope="row"] a{color:inherit;text-decoration:none}
 .fp-top th[scope="row"] a:hover{text-decoration:underline}
-.fp-top th[scope="row"]{width:220px}
-.fp-top .c-sig{width:320px}
-.fp-top td.c-th{font:400 14px/1.3 var(--body);color:var(--text-2)}
-.fp-top-t{display:none}
-.fp-bar{display:flex;align-items:center;gap:10px}
-.fp-bar>span:first-child{position:relative;flex:1;height:4px;border-radius:0;background:rgba(255,255,255,.12)}
+.fp-top .c-th{display:none}
+.fp-top td.c-th{font:400 14px/1.35 var(--body);color:var(--text-2);white-space:normal}
+.fp-top-t{display:block;margin-top:5px;font:400 13px/1.35 var(--body);color:var(--text-2);white-space:normal}
+/* the bar and its score: the bar 48 to 480px, the score at its end */
+.fp-bar{display:flex;align-items:center;gap:14px}
+.fp-bar>span:first-child{position:relative;flex:1;min-width:48px;max-width:480px;height:6px;border-radius:0;background:rgba(255,255,255,.1)}
 .fp-bar>span:first-child i{position:absolute;left:0;top:0;bottom:0;border-radius:0;background:var(--lime);transition:width .9s cubic-bezier(.2,.7,.2,1)}
-.fp-bar b{min-width:34px;font-weight:500;color:var(--text);text-align:right}
-.fp-mv{display:none;min-width:44px;font-size:12px}
+.fp-bar b{min-width:40px;font:500 15px/1 var(--mono);color:var(--text);text-align:right}
+.fp-mv{display:none;min-width:52px;font:400 13px/1 var(--mono)}
 .fp-top.has-moves .fp-mv{display:block}
 .fp-top .up{color:var(--lime)}
 .fp-top .down{color:#FF9A8E}
-.fp-top .more td{padding-top:12px;padding-bottom:12px;color:var(--muted);white-space:normal}
+.fp-top tr.more{display:block;padding:14px 18px}
+.fp-top .more td{white-space:normal;color:var(--muted)}
 .fp-top .more a{font:500 14px/1.4 var(--body);color:var(--text-2)}
+/* a wide board: its eight in two columns of four, a line between them, the way to the whole board under
+   both */
+@container board (min-width:1120px){
+  .fp-top tbody{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,auto);grid-auto-flow:column}
+  .fp-top tbody tr:nth-child(5){border-top:0}
+  .fp-top tbody tr:nth-child(n+5):not(.more){border-left:1px solid var(--line)}
+  .fp-top tr.more{grid-column:1/-1;grid-row:5}
+}
+/* each column 1000px wide: what people report most in a column of its own */
+@container board (min-width:2000px){
+  .fp-top tbody tr{grid-template-columns:32px 220px 260px var(--sig)}
+  .fp-top .c-th{display:block}
+  .fp-top-t{display:none}
+}
 .fp-top tr.flash-up{animation:fp-up 1.6s ease-out}
 .fp-top tr.flash-down{animation:fp-down 1.6s ease-out}
 @keyframes fp-up{from{background:rgba(61,139,255,.16)}}
 @keyframes fp-down{from{background:rgba(255,154,142,.16)}}
 
 
-.fp-signal-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;margin-top:24px}
+/* the board's foot: its line, then its two ways on beside it, together at every width */
+.fp-signal-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:18px 40px;margin-top:24px}
 .fp-signal-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
 
 /* ---------- Sig's twelve agents: one question through them, in four steps ----------
@@ -456,7 +480,7 @@
 .fp-vs .vs-cell.pl .vs-v b{font:500 26px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
 .fp-vs .vs-cell .vs-bar{max-width:220px;margin-top:10px}
 .fp-vs .vs-cell .vs-bar .fi{fill:#A1A7B2}
-.fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:20px 26px 22px;border-top:1px solid var(--line)}
+.fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:16px 56px;padding:20px 26px 22px;border-top:1px solid var(--line)}
 .fp-vs .vs-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
 .fp-vs .vs-act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .fp-vs .vs-when{margin:0;font:400 13px/1.4 var(--body);color:var(--muted)}
@@ -493,7 +517,8 @@
 
 /* ---------- questions ---------- */
 .fp-faq-in{display:grid;grid-template-columns:minmax(0,1fr);gap:28px 64px}
-.fp-faq-list{border-bottom:1px solid var(--line)}
+/* the questions keep a reading width, so on a wide window each one's + stays near it */
+.fp-faq-list{max-width:1040px;border-bottom:1px solid var(--line)}
 .fp-faq details{border-top:1px solid var(--line)}
 .fp-faq summary{position:relative;padding:18px 40px 18px 0;list-style:none;font:600 16px/1.4 var(--body);color:var(--text);cursor:pointer}
 .fp-faq summary::-webkit-details-marker{display:none}
@@ -550,11 +575,53 @@
   .st-step:not(:last-child)::before{left:auto;right:calc(var(--st-gap) / -2 + 1px);top:33px;bottom:auto;border-width:1px 1px 0 0}
   .st-n{margin-top:28px}
   .fp-join-in{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px}
-  .fp-faq-in{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);align-items:start}
 }
-/* the two frames of gatherers side by side where each row keeps room for its sentence */
+/* the two frames of gatherers side by side where each row keeps room for its sentence; an agent alone
+   in its step is then as wide as one frame, not the whole window */
 @container fp (min-width:1100px){
   .fp-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fp-step-in>.fp-agent.band{width:calc((100% - 22px) / 2)}
+  /* the question in and the answer out end where those agents do */
+  .fp-crew-q,.fp-crew-a{max-width:calc(62px + (100% - 84px) / 2)}
+}
+/* ---------- the cards on a wide window (the owner, November 18: "why is it so stretched?", and then:
+   headings stay above their blocks, and the cards are fixed, not filled). Every heading stands over its
+   block at every width; what a card lists flows into more columns as the card widens, its words keep a
+   reading length, and what belongs together stays together ---------- */
+/* signal and noise: a card 840px wide and up lists its seven lines in two columns, the same in both
+   cards, so each line still stands level with its answer in the other; the last runs across both */
+@container sn-card (min-width:840px){
+  .sn-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sn-list li:nth-child(2){border-top:0}
+  .sn-list li:nth-child(even){border-left:1px solid var(--line)}
+  .sn-list li:last-child:nth-child(odd){grid-column:1/-1}
+}
+/* the four rules two by two from 1100px, then four across */
+@container fp (min-width:1100px){
+  .fp-file .fp-rule-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:0}
+  .fp-rule-list li{grid-template-columns:40px minmax(0,1fr);row-gap:8px;padding:24px 28px 26px 0}
+  .fp-rule-list li:nth-child(2){border-top:0}
+  .fp-rule-list li:nth-child(even){border-left:1px solid rgba(255,255,255,.07)}
+  .fp-rule-list p{grid-column:2}
+  .fp-members{padding-left:58px}
+}
+@container fp (min-width:1880px){
+  .fp-file .fp-rule-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .fp-rule-list li{border-top:0}
+  .fp-rule-list li:not(:first-child){border-left:1px solid rgba(255,255,255,.07)}
+  /* the twelve agents: the ten who gather, each frame a row of five cards; an agent alone in its step
+     one card wide, its right edge on the first card's below */
+  .fp-groups{grid-template-columns:minmax(0,1fr)}
+  .fp-rows{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .fp-step-in>.fp-agent.band{width:calc(15px + (100% - 62px) / 5)}
+  .fp-crew-q,.fp-crew-a{max-width:calc(85px + (2 * 100% - 248px) / 5)}
+}
+/* the example's head on the card's own columns from 1280px: the compound over the first two, its Signal
+   over what people report, not at the far edge, its bar no longer than the board's */
+@container fp (min-width:1280px){
+  .fp-vs .vs-head{display:grid;grid-template-columns:170px repeat(3,minmax(0,1fr));column-gap:24px;align-items:end}
+  .fp-vs .vs-id{grid-column:1/3}
+  .fp-vs .vs-sig{grid-column:3;min-width:0;max-width:480px}
 }
 @container fp (min-width:1000px) and (max-width:1180px){
   .st-steps,.fp-ways{--st-gap:40px}
@@ -616,13 +683,10 @@
   .sx-go{width:100%;margin-top:12px}
   .sx-stats{gap:0 28px}
   .sx-stats dd{font-size:24px}
-  .fp-top .c-sig{width:auto}
-  .fp-top .c-th{display:none}
-  .fp-top-t{display:block;margin-top:6px;font:400 13px/1.3 var(--body);color:var(--text-2);white-space:normal}
-  .fp-top th,.fp-top td{padding:12px 8px}
-  .fp-top th:first-child,.fp-top td:first-child{padding-left:12px}
-  .fp-top th:last-child,.fp-top td:last-child{padding-right:12px}
-  .fp-bar>span:first-child{min-width:48px}
+  .fp-top tbody tr{grid-template-columns:24px minmax(0,1fr) 128px;column-gap:10px;padding:12px}
+  .fp-top.has-moves tbody tr{grid-template-columns:24px minmax(0,1fr) 176px}
+  .fp-top tr.more{padding:12px}
+  .fp-bar{gap:10px}
   .fp-vs .vs-head,.fp-vs .vs-row,.fp-vs .vs-foot{padding-left:18px;padding-right:18px}
   .fp-vs .vs-id h3{font-size:32px}
   .fp-vs .vs-act,.fp-vs .vs-act .btn{width:100%}

@@ -21,7 +21,7 @@ The look is page 9 of the founder's design canvas, "9 Sig system" (the "Miracle 
 4. **Consolidate.** Read the six reports and merge duplicates. Verify each finding yourself (look at the evidence, re-measure), and drop what doesn't hold. Where two agents disagree, or a fix would change the brand book, make the call and write it in `design/decisions.md` with the reason. Keep the reports in `design/audits/<date>/`.
 5. **Fix.** Fix the shared rule rather than each page, using the tokens' values. `kit/kit.css`, `kit/kit.js`, `kit/bodymap.js` and `library/signalviz.js` are copies of the community repository's `shared/kit`: change them there and copy them over with its `scripts/sync_kit.sh <path to this repo>` (its CI compares them with this site's main). Rebuild with `node scripts/build_library.mjs`. Never leave a pseudo-element or a stray brace unchecked: a single extra `}` drops the next rule.
 6. **Check.**
-   - Capture again and compare before and after for every finding, at 1440, 1024 (the tablet band, where the side panel leaves the page narrower than at 768), 768 and 390.
+   - Capture again and compare before and after for every finding, at 2560 (a wide screen), 1440, 1024 (the tablet band, where the side panel leaves the page narrower than at 768), 768 and 390.
    - When you remove old CSS, capture with and without the removal and compare every element's computed style by selector: nothing on screen may change.
    - Run `node scripts/design_check.mjs`: no new drift. When drift is fixed, lower the baseline with `--update`.
    - Run `node scripts/check_clean.mjs`: no code costume, no dot chains or strips, no words in the code face, on any page.

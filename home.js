@@ -300,7 +300,9 @@ function signalBoard(board) {
   let shown = null, version = null;
   const rows = new Map();
   // a row: its rank, the compound (its fact sheet), what people report most for it, and its Signal,
-  // with this week's move beside the score when there was one
+  // with this week's move beside the score when there was one. What people report most is written
+  // twice, under the name and in its own column; the board shows one or the other by its width
+  // (home.css), so it's seen, and read out, once
   function rowFor(id, s, i) {
     const score = Number(s.score), wk = Number(s.week);
     const d = Number.isFinite(wk) ? score - wk : NaN;
@@ -312,12 +314,12 @@ function signalBoard(board) {
     const moved = Number.isFinite(d) && Math.abs(d) >= 0.05
       ? h('span', { class: `fp-mv ${d > 0 ? 'up' : 'down'}`, title: 'this week', text: `${d > 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}` })
       : h('span', { class: 'fp-mv', 'aria-hidden': 'true' });
-    return h('tr', { 'data-id': id },
-      h('td', { class: 'c-n', text: String(i + 1) }),
-      h('th', { scope: 'row' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
-        said1 ? h('span', { class: 'fp-top-t', 'aria-hidden': 'true', text: said1 }) : null),
-      h('td', { class: 'c-th', text: said1 || '—' }),
-      h('td', { class: 'c-sig' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
+    return h('tr', { 'data-id': id, role: 'row' },
+      h('td', { class: 'c-n', role: 'cell', text: String(i + 1) }),
+      h('th', { scope: 'row', role: 'rowheader' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
+        said1 ? h('span', { class: 'fp-top-t', text: said1 }) : null),
+      h('td', { class: 'c-th', role: 'cell', text: said1 || '—' }),
+      h('td', { class: 'c-sig', role: 'cell' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
   }
   function render(snap) {
     const all = Object.entries(snap.signals || {}).filter(([, s]) => s && s.score != null && Number.isFinite(Number(s.score)));
@@ -328,7 +330,7 @@ function signalBoard(board) {
     const trs = top.map(([id, s], i) => { rows.set(id, Number(s.score)); return rowFor(id, s, i); });
     const rest = all.length - top.length;
     if (rest > 0) {
-      trs.push(h('tr', { class: 'more' }, h('td', { colspan: '4' },
+      trs.push(h('tr', { class: 'more', role: 'row' }, h('td', { colspan: '4', role: 'cell' },
         h('a', { href: 'https://community.miraclehealth.us/#/signal', text: `See all ${fmtN(all.length)} on the full board` }))));
     }
     tbody.replaceChildren(...trs);

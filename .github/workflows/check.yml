@@ -6,7 +6,8 @@
 #   - every page has its security policy, a title and a description, and every script parses
 #   - the stylesheets keep to the brand book: no new off-brand colours, faces, radii or sizes
 #     (scripts/design_check.mjs against design/baseline.json)
-#   - no page scrolls sideways or cuts text off, at the widths where layouts switch, phones to wide screens
+#   - no page scrolls sideways, cuts text off or has a row that runs long and empty (two parts of a table
+#     row or list item more than 560px apart), at the widths where layouts switch, phones to 2560px
 #     (scripts/check_layout.mjs, in Chromium)
 #   - every focus shows a 2px ring, one electric blue action shows per view and phone fields are 16px
 #     (scripts/check_states.mjs, in Chromium); the brand check also counts tracked mono and capitals

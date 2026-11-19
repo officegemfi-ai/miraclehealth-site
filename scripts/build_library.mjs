@@ -1250,7 +1250,7 @@ function methodPage() {
     <p>Two, six and twelve weeks later, the author is asked <b>“How is it now?”</b>: better, about the same or worse; still taking it or not; and if not, why (it worked, it didn’t help, side effects, cost or hassle). The latest answer is the one that counts, and why people stop is counted too.</p>
 
     <h2 id="weights">Reports are weighted, never people</h2>
-    <div class="mtable-wrap"><table class="mtable">
+    <div class="mtable-wrap mtable-pair"><table class="mtable">
       <thead><tr><th scope="col">What</th><th scope="col">Counts as</th></tr></thead>
       <tbody>
         <tr><th scope="row">A first-hand report</th><td class="d">1</td></tr>
