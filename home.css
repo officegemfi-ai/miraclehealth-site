@@ -253,7 +253,7 @@
 /* ---------- signal, not noise (page 15 of the design canvas): what a forum thread or a star rating
    usually does, beside what the Community Signal does, rule for rule ---------- */
 .sn-cols{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:40px}
-.sn-card{min-width:0;border:1px solid var(--line);border-radius:0;overflow:hidden}
+.sn-card{min-width:0;border:1px solid var(--line);border-radius:0;overflow:hidden;container:sn-card/inline-size}
 .sn-noise{background:var(--hover)}
 .sn-signal{border-color:rgba(61,139,255,.4);background:radial-gradient(70% 240px at 88% 0%,rgba(61,139,255,.16) 0%,rgba(61,139,255,0) 100%),var(--card)}
 .sn-top{padding:28px 28px 24px;border-bottom:1px solid var(--line)}
@@ -367,7 +367,8 @@
 @keyframes fp-down{from{background:rgba(255,154,142,.16)}}
 
 
-.fp-signal-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px;margin-top:24px}
+/* the board's foot: its line, then its two ways on beside it, together at every width */
+.fp-signal-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:18px 40px;margin-top:24px}
 .fp-signal-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
 
 /* ---------- Sig's twelve agents: one question through them, in four steps ----------
@@ -467,7 +468,7 @@
 .fp-vs .vs-cell.pl .vs-v b{font:500 26px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
 .fp-vs .vs-cell .vs-bar{max-width:220px;margin-top:10px}
 .fp-vs .vs-cell .vs-bar .fi{fill:#A1A7B2}
-.fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:20px 26px 22px;border-top:1px solid var(--line)}
+.fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:16px 56px;padding:20px 26px 22px;border-top:1px solid var(--line)}
 .fp-vs .vs-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
 .fp-vs .vs-act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .fp-vs .vs-when{margin:0;font:400 13px/1.4 var(--body);color:var(--muted)}
@@ -562,44 +563,55 @@
   .st-step:not(:last-child)::before{left:auto;right:calc(var(--st-gap) / -2 + 1px);top:33px;bottom:auto;border-width:1px 1px 0 0}
   .st-n{margin-top:28px}
   .fp-join-in{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px}
-  .fp-faq-in{grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);align-items:start}
 }
-/* the two frames of gatherers side by side where each row keeps room for its sentence */
+/* the two frames of gatherers side by side where each row keeps room for its sentence; an agent alone
+   in its step is then as wide as one frame, not the whole window */
 @container fp (min-width:1100px){
   .fp-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fp-step-in>.fp-agent.band{width:calc((100% - 22px) / 2)}
+  /* the question in and the answer out end where those agents do */
+  .fp-crew-q,.fp-crew-a{max-width:calc(62px + (100% - 84px) / 2)}
 }
-/* On a wide window a section's heading stands beside its block (the owner's question, November 18:
-   "why is it so stretched?"): the heading in a column on the left, as the questions' was, and
-   everything under it in the column on the right, in the same order, so the page keeps its whole width
-   and nothing in it runs long and empty. The left column grows with the window, 360 to 560px. The
-   Signal, the rules and the questions read well in a narrower block and split from 1280px; signal and
-   noise, the twelve agents and the example need more room and split from 1880px. The last row takes
-   whatever height the heading needs beyond the block's, so the block's own rows keep theirs. The
-   Signal's foot (your report moves it, and the two ways on) stands under its heading, so the board
-   has its column to itself. */
-.fp-sec{--fp-side:clamp(360px,27cqi,560px);--fp-gutter:clamp(48px,4cqi,104px)}
-@container fp (min-width:1280px){
-  :is(.fp-rules,.fp-faq)>.fp-wrap{display:grid;grid-template-columns:var(--fp-side) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;gap:0 var(--fp-gutter);align-items:start}
-  :is(.fp-rules,.fp-faq)>.fp-wrap>*{grid-column:2}
-  :is(.fp-rules,.fp-faq)>.fp-wrap>.fp-head{grid-column:1;grid-row:1/-1}
-  :is(.fp-rules,.fp-faq)>.fp-wrap>.fp-head+*{margin-top:0}
-  .fp-signal>.fp-wrap{display:grid;grid-template-columns:var(--fp-side) minmax(0,1fr);grid-template-rows:auto 1fr;grid-template-areas:"head board" "foot board";gap:0 var(--fp-gutter);align-items:start}
-  .fp-signal .fp-head{grid-area:head}
-  .fp-signal .fp-board{grid-area:board;margin-top:0}
-  .fp-signal .fp-signal-foot{grid-area:foot;flex-direction:column;align-items:flex-start;gap:18px;margin-top:32px}
+/* ---------- the cards on a wide window (the owner, November 18: "why is it so stretched?", and then:
+   headings stay above their blocks, and the cards are fixed, not filled). Every heading stands over its
+   block at every width; what a card lists flows into more columns as the card widens, its words keep a
+   reading length, and what belongs together stays together ---------- */
+/* signal and noise: a card 840px wide and up lists its seven lines in two columns, the same in both
+   cards, so each line still stands level with its answer in the other; the last runs across both */
+@container sn-card (min-width:840px){
+  .sn-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sn-list li:nth-child(2){border-top:0}
+  .sn-list li:nth-child(even){border-left:1px solid var(--line)}
+  .sn-list li:last-child:nth-child(odd){grid-column:1/-1}
 }
-@container fp (min-width:1880px){
-  :is(.sn,.fp-sig,.fp-example)>.fp-wrap{display:grid;grid-template-columns:var(--fp-side) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;gap:0 var(--fp-gutter);align-items:start}
-  :is(.sn,.fp-sig,.fp-example)>.fp-wrap>*{grid-column:2}
-  :is(.sn,.fp-sig,.fp-example)>.fp-wrap>.fp-head{grid-column:1;grid-row:1/-1}
-  :is(.sn,.fp-sig,.fp-example)>.fp-wrap>.fp-head+*{margin-top:0}
-  /* the four rules two by two, each with its number, its name and its line */
+/* the four rules two by two from 1100px, then four across */
+@container fp (min-width:1100px){
   .fp-file .fp-rule-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:0}
   .fp-rule-list li{grid-template-columns:40px minmax(0,1fr);row-gap:8px;padding:24px 28px 26px 0}
   .fp-rule-list li:nth-child(2){border-top:0}
   .fp-rule-list li:nth-child(even){border-left:1px solid rgba(255,255,255,.07)}
   .fp-rule-list p{grid-column:2}
   .fp-members{padding-left:58px}
+}
+@container fp (min-width:1880px){
+  .fp-file .fp-rule-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .fp-rule-list li{border-top:0}
+  .fp-rule-list li:not(:first-child){border-left:1px solid rgba(255,255,255,.07)}
+  /* the twelve agents: the ten who gather, each frame a row of five cards; an agent alone in its step
+     one card wide, its right edge on the first card's below */
+  .fp-groups{grid-template-columns:minmax(0,1fr)}
+  .fp-rows{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .fp-step-in>.fp-agent.band{width:calc(15px + (100% - 62px) / 5)}
+  .fp-crew-q,.fp-crew-a{max-width:calc(85px + (2 * 100% - 248px) / 5)}
+  /* the example's notes a little longer */
+  .fp-vs .vs-sub{max-width:68ch}
+}
+/* the example's head on the card's own columns from 1280px: the compound over the first two, its Signal
+   over what people report, not at the far edge */
+@container fp (min-width:1280px){
+  .fp-vs .vs-head{display:grid;grid-template-columns:170px repeat(3,minmax(0,1fr));column-gap:24px;align-items:end}
+  .fp-vs .vs-id{grid-column:1/3}
+  .fp-vs .vs-sig{grid-column:3;min-width:0}
 }
 @container fp (min-width:1000px) and (max-width:1180px){
   .st-steps,.fp-ways{--st-gap:40px}

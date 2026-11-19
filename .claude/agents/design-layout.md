@@ -28,5 +28,5 @@ Measure with the element boxes in `.design/data`, and Playwright where you need 
    - Ask Sig's tabs sit exactly on its window.
 9. **Wide screens (2560, and 1920 where it helps):** nothing runs long and empty (the owner's question, November 18: "why is it so stretched?").
    - A row's parts stay together: a bar grows between a name and its number, never a gap. `node scripts/check_layout.mjs --widths 2560,1920` fails any table row or list item whose parts stand more than 560px apart.
-   - A block of short lines keeps a reading width, or sits beside its heading (the front page's sections from 1280px and 1880px).
+   - Headings stay above their blocks; never set one beside its block to fill the width (the owner turned that down). The cards fit the width instead: what a card lists flows into more columns as it widens, a card's head sits on its own columns, and a block of short lines keeps a reading width.
    - Flag what the check can't see: a card's title and its number at opposite edges, a link or a date far from what it belongs to, a section that is a narrow column with the rest of the width empty beside a full-width one.

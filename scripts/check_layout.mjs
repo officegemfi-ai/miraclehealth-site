@@ -6,8 +6,8 @@
 //   - a row runs long and empty: two parts of one table row or list item (its cells, or its pieces),
 //     side by side with nothing between them, what they show more than 560px apart (the owner's
 //     question, November 18, of the front page's board on a wide screen: "why is it so stretched?"). A
-//     row's parts belong together: on a wide screen its bar grows, or it keeps a reading width, or its
-//     block sits beside its heading; never a gap between a name and its number.
+//     row's parts belong together: on a wide screen its bar grows, its card flows into more columns or
+//     it keeps a reading width; never a gap between a name and its number.
 // Text clamped on purpose (-webkit-line-clamp) and panes that scroll up and down are fine.
 //
 // The site is served from this folder. The live Signal is answered from tests/fixtures/signal.json, so the
@@ -30,8 +30,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const FIXTURE = readFileSync(join(ROOT, 'tests/fixtures/signal.json'), 'utf8');
 // where layouts switch: the side panel's bands (900, 1280), How it works (901 to 1279), the example
-// (861 to 1100), Ask Sig's agents pane (to about 1700), the front page's headings beside their blocks
-// (1280, 1880), wide screens (1920, 2560) and phones
+// (861 to 1100), Ask Sig's agents pane (to about 1700), the front page's cards on a wide screen
+// (1100, 1280, 1880), wide screens (1920, 2560) and phones
 const WIDTHS = [2560, 1920, 1600, 1440, 1280, 1180, 1100, 1024, 960, 901, 860, 768, 600, 430, 390, 360];
 // two parts of one row, side by side, further apart than this run long and empty
 const LONG = 560;
