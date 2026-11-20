@@ -254,7 +254,9 @@
    usually does, beside what the Community Signal does, rule for rule ---------- */
 .sn-cols{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:40px}
 .sn-card{min-width:0;border:1px solid var(--line);border-radius:0;overflow:hidden;container:sn-card/inline-size}
-.sn-noise{background:var(--hover)}
+/* Noise is matte grey suede (the owner's choice, November 19): a fine grain over a grey ground, softly lit from
+   the top left, beside the Signal's clean, lit card; its words are text-2, about 5.8:1 on it (muted would be under 4:1) */
+.sn-noise{background:radial-gradient(120% 90% at 0% 0%,rgba(255,255,255,.06),rgba(255,255,255,0) 60%),url(/img/suede.svg) 0 0/200px 200px,var(--suede);background-blend-mode:normal,soft-light}
 .sn-signal{border-color:rgba(61,139,255,.4);background:radial-gradient(70% 240px at 88% 0%,rgba(61,139,255,.16) 0%,rgba(61,139,255,0) 100%),var(--card)}
 .sn-top{padding:28px 28px 24px;border-bottom:1px solid var(--line)}
 .sn-ico{display:block;width:84px;height:84px;overflow:visible}
@@ -266,7 +268,7 @@
 .sn-list{margin:0;padding:0;list-style:none}
 .sn-list li{display:flex;align-items:center;gap:16px;min-height:78px;padding:14px 28px;border-top:1px solid var(--line);font-size:15.5px;line-height:1.45}
 .sn-list li:first-child{border-top:0}
-.sn-noise li{color:var(--muted)}
+.sn-noise li,.sn-noise .sn-sub{color:var(--text-2)}
 .sn-signal li{color:var(--text)}
 .sn-mark{flex:none}
 .sn-signal .sn-mark{color:var(--lime)}

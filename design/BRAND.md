@@ -69,6 +69,7 @@ Plain, calm and exact, like a careful friend who has read the studies. Short sen
   - `bar` is the title bar and anything that floats (search results, menus).
   - `surface-raised` is cards, plates, fields and the read strip.
   - The violet band (`violet-deep`, `violet`, `violet-light`): a grainy violet gradient, deepest at the top left, for a few statement bands so the black pages aren't flat: How it works' opening and Join on the front page, and the weekly email at the foot of every page. Words on it are white and sit in its deeper part (4.5:1 and up); its main action is black, since electric blue doesn't hold on violet (decision, November 16).
+  - The suede card (`suede`): the Noise card in signal and noise is matte grey suede, a fine grain (`img/suede.svg`, laid on in soft light) over `suede`, lit softly from the top left, so noise feels like something to the touch beside the Signal's clean, lit card. Words on it are `text-2` (about 5.8:1 beside every line), never `muted` (under 4:1) (decision, November 19).
 - **Words:** `text` for words and headlines, `text-2` for ledes and secondary lines, `muted` for labels, meta and the path. Each reads at 5:1 or better on every ground.
 - **One main action per view:** the electric blue button, `accent` lit from the top by `accent-hi`, with white `on-accent` words and a soft glow. A white button is the second choice; every other button is a hairline: `line-2` border, `text` words.
 - **Signatures:**
