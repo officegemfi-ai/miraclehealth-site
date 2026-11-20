@@ -384,3 +384,11 @@ The owner asked for the Noise card (signal and noise, on the front page) in a ma
 - **Words on it.** `muted` would read at under 4:1 on it, so the card's list and its line under "Noise" are `text-2`: about 5.8:1 beside every line, 4.7:1 on the lightest grain. Noise stays quieter than the Signal card's white words.
 - **Why it works.** Noise feels like something to the touch, matte and grey; the Signal beside it stays clean and lit.
 - **The design check** counts one more gradient (26, the suede's light); the baseline was raised for it, on purpose. `suede` is in `design/tokens.json` and the brand book.
+
+## 2026-11-19 · The three steps as large cards
+
+The owner sent How it works on the front page ("Three steps, one honest number") and asked for three large cards, with the top icons larger (not the three ways in under them, which stay slim buttons). This undoes November 16's "no cards" for the steps, at the owner's word.
+
+- **The cards.** Each step is a card: its line drawing, its number, its title and its line, on `surface-raised` with a hairline border, the three on the same columns as the ways in below them.
+- **The drawings, larger:** 72px on a phone (beside the words), 112px on a laptop (over them), 128px on a wide screen, where the card's words grow too (title 24px, line 18px). Their strokes stay 1.2px at every size.
+- **No long lines.** The hairline that ran across from drawing to drawing, some 600px on a wide screen, is gone; a short arrow in the gap leads from each card to the next, across on a laptop and down on a phone.
