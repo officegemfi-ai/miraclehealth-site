@@ -375,3 +375,12 @@ A first try set each section's heading in a column beside its block on a wide sc
 - **Elsewhere:** the weekly's list of issues keeps 780px (its dates had run to the far edge), and the method's tables stop at 740px (the table of pairs) and 1280px (the placebo table).
 
 **The check.** `scripts/check_layout.mjs` now also opens every page at 1920 and 2560 and fails a row (a table row or a list item) whose parts stand side by side more than 560px apart. On the site as it was it found 26 such rows on the front page at 1440 to 2560 alone, and others on the method and weekly pages; now none, at all 16 widths. The design department's capture adds 2560, and the layout lead looks for it.
+
+## 2026-11-19 · The Noise card in matte grey suede
+
+The owner asked for the Noise card (signal and noise, on the front page) in a matte grey fabric. Six were tried on the page at 2,560px, at actual size: suede, felt, linen, twill, herringbone and a ribbed knit. The owner chose suede.
+
+- **What it is.** A fine grain, `img/suede.svg` (a 200px tile of fractal noise, grey, opaque), laid over a new ground, `suede` (#28282D), in soft light, so it lightens and darkens the grey a little, never tints it; and a soft light from the top left, a white radial gradient at 6% that fades out by 60%. The tile is a file on the site, as the page's rules (img-src 'self') ask, and drawn once.
+- **Words on it.** `muted` would read at under 4:1 on it, so the card's list and its line under "Noise" are `text-2`: about 5.8:1 beside every line, 4.7:1 on the lightest grain. Noise stays quieter than the Signal card's white words.
+- **Why it works.** Noise feels like something to the touch, matte and grey; the Signal beside it stays clean and lit.
+- **The design check** counts one more gradient (26, the suede's light); the baseline was raised for it, on purpose. `suede` is in `design/tokens.json` and the brand book.

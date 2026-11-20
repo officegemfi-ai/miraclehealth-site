@@ -32,6 +32,8 @@
   --text:#F7F8FA;--text-2:#A1A7B2;--muted:#7F8796;
   /* the words of an answer or a signed block, and the row under the pointer or picked (page 9) */
   --text-read:#D9DCE2;--hover:#1C1C20;
+  /* the Noise card's matte grey suede, under a fine grain (img/suede.svg) */
+  --suede:#28282D;
   --line:rgba(255,255,255,.10);--line-2:rgba(255,255,255,.20);--line-ink:rgba(255,255,255,.10);
   --on-ink:#F7F8FA;--on-ink-2:#A1A7B2;--on-ink-3:#7F8796;
   --scale:linear-gradient(90deg,rgba(61,139,255,.28),#3D8BFF);
