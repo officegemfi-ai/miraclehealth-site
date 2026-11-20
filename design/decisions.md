@@ -392,3 +392,22 @@ The owner sent How it works on the front page ("Three steps, one honest number")
 - **The cards.** Each step is a card: its line drawing, its number, its title and its line, on `surface-raised` with a hairline border, the three on the same columns as the ways in below them.
 - **The drawings, larger:** 72px on a phone (beside the words), 112px on a laptop (over them), 128px on a wide screen, where the card's words grow too (title 24px, line 18px). Their strokes stay 1.2px at every size.
 - **No long lines.** The hairline that ran across from drawing to drawing, some 600px on a wide screen, is gone; a short arrow in the gap leads from each card to the next, across on a laptop and down on a phone.
+
+## 2026-11-20 · One brand pack, made from the site
+
+The owner asked for an asset pack (brand identity, icons, marketing) that covers the website, the community and the Community Signal, all matching, in a clean format, with nothing in it that is too much. So the pack is not drawn by hand: `design/pack/build.mjs` makes it from what the site runs on, and it is lean: a two-page guide and six folders (*The brand pack* in the brand book).
+
+Taking stock first found six things that did not match. What was decided about each:
+
+- **The logo was only a 480px picture.** It is traced once into `design/pack/logo.svg` (one path; against the picture its ink area is within 0.11%, and 37 pixels differ by more than a quarter). HEALTH's corners are rounded in the artwork, so they stay rounded. The ® is part of the artwork and stays; whether the mark is registered is the owner's to confirm.
+- **The share images broke the clean rule** (a kicker in the code face in capitals with a rule before it, the address in the code face, a strip of four rules along the foot, a path as the story's kicker). All 35 are redrawn in one layout: the logo and the address along the top, a kicker, the headline with its punchline in the gradient, one line. The foot is gone, not restyled (delete first). Posts, stories and headers in the pack keep the same layout, from the same file (`design/pack/look.mjs`).
+- **Two icon weights.** The glyphs were drawn at 1.6 and the community's interface icons at 1.8. One set now: 1.6, the weight of the drawings that carry the brand. `design/pack/icons.json` is the set; the community draws it at 1.6 from its next change.
+- **Two tab icons.** The site's stood on an old graphite (#0B0F11) and the community's was Sig the character. The brand book already said the tab is Sig's ring; both are the ring on the page's own black now. The tile keeps its rounded corners: a tab icon is the one place the browser's convention wins.
+- **Two marks called Sig.** Kept as the brand book has them, and said plainly in the guide: the ring is the mark (the profile picture, the app icon, the tab); the blue ring and dot is Sig in the community, a character with moods, never the logo.
+- **The logo on violet.** The book says never on a colour. So a piece on the violet band (Join, the weekly email's header) puts the logo on black above the band.
+
+**Kept out, on purpose:** the community's fifteen emblems and the compound prints (they belong to the app and to each fact sheet, not to anyone making a post); a light version of the logo (there is none: it is white, on black); desktop copies of the fonts (the pack carries the web files and their licences and says where the full families are free to get).
+
+**Numbers in the pack are examples,** from the saved Signal the tests use. The live Signal is at its first level (forum data), so a piece that shows a compound's Signal says "What people report. Not medical advice.", never "what members report".
+
+**Left for the owner:** the community app has not had the clean pass the website had (its labels in the code face, a command line as a caption, a tape of numbers); and the front page tells how it works twice (the three steps, then the six-card scroll story). A simpler scroll story, one picture built in three stops, was drawn as a storyboard for the owner to decide.

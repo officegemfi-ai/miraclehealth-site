@@ -152,16 +152,26 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 - **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig, every title bar and the browser tab: `favicon.svg`, with `favicon.ico` for browsers that can't show an SVG icon, both drawn by `design/favicon/make_favicon.py` from `lib/ring.js` (the owner's request, November 17). It is also the mark on the community's sign-in page, beside "The Miracle Health community" (`ring()` in the community's `web/ui/art.js`, drawn the same way; the owner's request, November 18).
 - **Sig in the community** is the blue ring and dot (`assets/Logos/sig-mark.svg`). It is the community's own character, with moods: notifications, stickers, empty states and the Sig button. Where Sig stands as a logo rather than a character, as on the sign-in page, it is the ring. Don't confuse the two.
 - **Compound prints** (`assets/Prints/`, the CompoundPrint component): one mark per fact sheet, drawn from its data. Never use a print that isn't that compound's own.
-- **Interface icons:** the community's stroke set, 1.8 stroke on a 24 grid, round caps, drawn at 16–20px in `currentColor`: home, flame, pulse, compass, layers, comment, vote arrows, check.
+- **Interface icons** (`design/pack/icons.json`): one set for the website and the community app, drawn the way the glyphs are, so an icon and a glyph side by side are one weight: a 24-unit grid, one 1.6 stroke, round caps and joins, no fills, at 16–24px in `currentColor` (home, search, menu, comment, the vote arrows, check and thirty more; decision, November 20, when the community's set came down from 1.8).
 - **No emoji, ever.**
 
 ## Logo
 
-`assets/Logos/logo.webp` is the Miracle Health wordmark in near-white, for graphite grounds only:
-- Set it 22px tall in the side panel and 32px in a foot. Don't set it smaller than 20px.
-- Never recolour, outline, stretch or rotate it, and never set it on a photo or a colour.
+`design/pack/logo.svg` is the Miracle Health wordmark as a drawing that stays sharp at any size (traced from the 480px picture, November 20; the brand pack carries it). `logo.webp` is the same wordmark as the pages load it. It is white, for black grounds only:
+- Set it 22px tall in the side panel and 32px in a foot. Don't set it smaller than 20px, and keep half its height clear on every side.
+- Never recolour, outline, stretch or rotate it, and never set it on a photo or a colour. On a piece that uses the violet band, the logo sits on black above the band, never on it.
 - The one exception is the foot's big word (`img/wordmark.svg`, made by `design/wordmark/make_wordmark.py`): the logo's word alone, traced and drawn as a stack of hairline outlines in violet into blue, dim, lighting up under the pointer, cut off by the page's bottom edge. The owner asked for it (November 17). Use it there only, and never as the logo.
 - In the community it sits beside a "COMMUNITY" tag (mono capitals in a `line-2` frame).
+
+## The brand pack
+
+`design/pack/build.mjs` makes one folder to hand to anyone who makes something for Miracle Health: the logo and Sig's ring, the colours, the type, the icons, the Community Signal's pieces, the marketing formats and a two-page guide. Every file is made from what the site runs on (`tokens.json`, `lib/ring.js`, `lib/glyphs.js`, the fonts, the front page's step drawings, the share images), so it matches the pages; make it again when they change (decision, November 20).
+
+**Marketing keeps one layout,** on a share image, a post, a story or a header: the logo and the address along the top, then one kicker, the headline and one line under it, from the left, on the page's black ground. A headline's second sentence takes the punchline's gradient. Nothing else: no foot, no strip of rules, no counters, nothing in the code face but numbers. `design/pack/look.mjs` holds that look for `scripts/og_images.mjs` (every page's share image) and the pack, so they can't drift apart.
+
+- **A statement** (Join, the weekly email) may sit on the violet band, under the logo on black; its one action is black there.
+- **A piece that shows a compound's Signal** takes its number from the live Signal on the day it goes out and carries "What people report. Not medical advice."
+- **The words** are the site's own (*Voice*, above), as written. Never a dose, a seller, a brand, a lab, a price, a diagnosis or a promise, in a post as on a page.
 
 ## The Sig system
 
