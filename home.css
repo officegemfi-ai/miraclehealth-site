@@ -234,17 +234,18 @@
 .is-opening .is-growing .sx-bar{transform-origin:50% 100%;animation:sx-grow .8s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i,0) * 12ms)}
 .is-opening .is-growing .sx-bar .sx-lab,.is-opening .is-growing .sx-bar .sx-cap{animation:sx-show .3s ease-out .9s backwards}
 
-/* ---------- three steps, one honest number (page 15 of the design canvas, made simpler on November 16):
-   how a report becomes the Signal. The three line drawings stand on one hairline that runs from step
-   to step (down the left on a phone, across on a laptop), each with its number, title and line under
-   it at one left edge; no cards. The three ways in follow on the same columns ---------- */
-.st-steps{display:grid;grid-template-columns:minmax(0,1fr);margin:48px 0 0;padding:0;list-style:none}
-.st-step{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);align-content:start;column-gap:20px;min-width:0;padding:0 0 40px}
-.st-step:last-child{padding-bottom:0}
-.st-node{grid-row:1/4;display:block;width:56px;height:56px}
+/* ---------- three steps, one honest number (page 15 of the design canvas, made simpler on November 16;
+   cards on November 19, the owner: "make 3 large cards of these, also make the icons larger"): how a
+   report becomes the Signal, in three large cards, each with its line drawing (72px on a phone, 112px on
+   a laptop, 128px on a wide screen), its number, title and line. A short arrow in the gap leads from one
+   card to the next (down on a phone, across on a laptop). The three ways in follow on the same
+   columns ---------- */
+.st-steps{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;margin:48px 0 0;padding:0;list-style:none}
+.st-step{position:relative;display:grid;grid-template-columns:72px minmax(0,1fr);align-content:start;column-gap:20px;min-width:0;padding:24px 22px;border:1px solid var(--line);background:var(--card)}
+.st-node{grid-row:1/4;display:block;width:72px;height:72px}
 .st-ico{display:block;width:100%;height:100%;overflow:visible}
-.st-step:not(:last-child)::after{content:"";position:absolute;left:28px;top:68px;bottom:12px;width:1px;background:var(--line-2)}
-.st-step:not(:last-child)::before{content:"";position:absolute;left:25px;bottom:13px;width:6px;height:6px;border:solid var(--line-2);border-width:0 1px 1px 0;transform:rotate(45deg)}
+.st-step:not(:last-child)::after{content:"";position:absolute;left:58px;top:calc(100% + 1px);width:1px;height:27px;background:var(--line-2)}
+.st-step:not(:last-child)::before{content:"";position:absolute;left:55px;top:calc(100% + 20px);width:6px;height:6px;border:solid var(--line-2);border-width:0 1px 1px 0;transform:rotate(45deg)}
 .st-n{margin:6px 0 0;font:400 13px/1 var(--mono);color:var(--lime)}
 .fp .st-step h3{margin:10px 0 0;font:600 20px/1.25 var(--body);letter-spacing:-.01em;color:var(--text)}
 .st-t{margin:8px 0 0;max-width:46ch;font-size:16px;line-height:1.55;color:var(--text-2)}
@@ -571,11 +572,12 @@
 }
 @container fp (min-width:1000px){
   .st-steps,.fp-ways{--st-gap:48px;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--st-gap)}
-  .st-step{display:block;padding:0}
-  .st-node{width:72px;height:72px}
-  .st-step:not(:last-child)::after{left:calc(72px + var(--st-gap) / 2);right:calc(var(--st-gap) / -2);top:36px;bottom:auto;width:auto;height:1px}
-  .st-step:not(:last-child)::before{left:auto;right:calc(var(--st-gap) / -2 + 1px);top:33px;bottom:auto;border-width:1px 1px 0 0}
+  .st-step{display:block;padding:32px 32px 34px}
+  .st-node{width:112px;height:112px}
+  .st-step:not(:last-child)::after{left:calc(100% + 11px);top:88px;width:calc(var(--st-gap) - 22px);height:1px}
+  .st-step:not(:last-child)::before{left:calc(100% + var(--st-gap) - 18px);top:85px;border-width:1px 1px 0 0}
   .st-n{margin-top:28px}
+  .fp .st-step h3{font-size:22px}
   .fp-join-in{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px}
 }
 /* the two frames of gatherers side by side where each row keeps room for its sentence; an agent alone
@@ -608,6 +610,13 @@
   .fp-members{padding-left:58px}
 }
 @container fp (min-width:1880px){
+  /* the three steps' cards, larger again on a wide screen */
+  .st-step{padding:40px 40px 42px}
+  .st-node{width:128px;height:128px}
+  .st-step:not(:last-child)::after{top:104px}
+  .st-step:not(:last-child)::before{top:101px}
+  .fp .st-step h3{font-size:24px}
+  .st-t{font-size:18px}
   .fp-file .fp-rule-list{grid-template-columns:repeat(4,minmax(0,1fr))}
   .fp-rule-list li{border-top:0}
   .fp-rule-list li:not(:first-child){border-left:1px solid rgba(255,255,255,.07)}
@@ -660,6 +669,9 @@
 }
 @container fp (max-width:560px){
   .fp-wrap{padding:0 16px}
+  .st-step{column-gap:16px;padding:20px 18px}
+  .st-step:not(:last-child)::after{left:54px}
+  .st-step:not(:last-child)::before{left:51px}
   .fp-way-k{display:none}
   .sn-top{padding:22px 18px 18px}
   .sn-list li{min-height:0;padding:14px 18px}
