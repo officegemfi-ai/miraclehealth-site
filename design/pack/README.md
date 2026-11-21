@@ -8,7 +8,7 @@ One folder to hand to anyone who makes something for Miracle Health. `build.mjs`
 | `2 Colour`: the colours as CSS and JSON, the three grounds | `design/tokens.json`, `styles.css`'s grounds |
 | `3 Type`: the two faces and their licences, the type as CSS | `fonts/` |
 | `4 Icons`: every icon as a file, a sprite, a sheet | `icons.json` here, `lib/glyphs.js`, the front page's step drawings |
-| `5 Signal`: its mark, a score, a card, the board, Sig | `tests/fixtures/signal.json`, `kit/kit.js` |
+| `5 Signal`: its mark, a score, a card, the board, Sig in its eight moods | `tests/fixtures/signal.json`, `kit/kit.js` |
 | `6 Marketing`: share images, posts, a carousel, stories, headers, the words | `og.jpg` and `img/og/`, `pieces.mjs` |
 | `Brand guide.pdf`: two pages | `guide.mjs` |
 

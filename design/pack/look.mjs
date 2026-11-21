@@ -36,6 +36,6 @@ export const BASE = `${FACES}
 html,body{background:${C.surface}}
 body{color:${C.text};font-family:Mona,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
 img,svg{display:block}`;
-// The logo: one drawing, white, for black and violet grounds
+// The logo: one drawing, white, for black grounds (on a piece with the violet band it sits on black above the band)
 export const LOGO = fs.readFileSync(path.join(ROOT, 'design', 'pack', 'logo.svg'), 'utf8').replace(/<\?xml[^>]*>\s*/, '');
 export const logo = (height) => LOGO.replace(' width="480" height="168"', ` class="logo" width="${Number((height * 480 / 168).toFixed(2))}" height="${height}"`);

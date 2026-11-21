@@ -428,3 +428,19 @@ The same day, so that the two apps match: the community app had not had the clea
 - **The tab's icon is Sig's ring,** as the brand book says of a browser tab, and the icons are drawn at 1.6.
 
 **Left alone, on purpose:** the labels inside the drawings (the flow of forums to members, the takeover line); "s/" and "u/" before a space's and a member's name, which are the app's own way of naming them; and how much the Signal page shows at once, which is a question of what to keep, not of how it is set.
+
+## 2026-11-20 · Sig, redrawn in the steps' hand
+
+The owner looked at the brand pack's icon sheet, where Sig's eight moods (thick blue rings with a filled mark) sat beside the three step drawings (fine lines in a white ring, one thing in blue), and asked for the moods in the steps' design.
+
+- **One hand.** Sig in the community is now a fine white ring on the steps' 200 grid, the mood inside it in Signal blue, and round the mood its echoes fading at half and a fifth, in lines that stay 1.2px at any size. Nothing is filled. This replaces "the blue ring and dot" of the entries above; the ring (the eleven arcs) is still the mark, and Sig in the community is still a character, never the logo.
+- **Each mood echoes its own shape,** as each step has its own construction: rings round the dot at rest, lines of a report round the three dots while it thinks, the spark filling out toward the ring, hearts in hearts, an eye in an eye, a sign in a sign. Curious and resting keep Sig's rings round a question mark and a moon.
+- **Resting is a moon,** where it was a bar: the bar read as "nothing" once it was a hairline, and Sig rests at night. **Concerned is a warning sign,** in amber, the one colour Sig borrows.
+- **Small sizes draw less.** Stickers and notifications are 18 to 34px: under 36px it is the ring and the mood alone, drawn larger; from 36px one echo; from 56px the whole drawing. The ring is drawn a little smaller under 36px so its line is never cut by its own box.
+- **It moves as before,** with one change: the cheer swells the drawing inside the ring, not the ring, which now runs to the edge. The dimming while it rests is gone; the moon says it.
+- **In the community** the Sig button stands on a black disc, since hairlines over a scrolling feed need a ground, and it is drawn at the size it is shown (48px on a phone), so it gets that size's detail.
+- **In the pack** the eight files have lines that are part of the drawing (1.6 on the 200 grid), as the steps' files do, and the icon sheet shows the steps and the moods in one row at one size.
+
+**Found on the way:** the community's How it works page and the card under a Signal still called the Signal's four parts what happened, agreement, voices and volume, after the board took the website's names. They take them too. And the pack's read-me said the logo may sit on the violet band, which the book forbids; it says black only now.
+
+**The kit changed** (`kit/kit.js`, `kit/kit.css`), so the website's change goes live first and the community's after it: the community's check compares its kit with the website's.

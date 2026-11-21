@@ -3,7 +3,7 @@
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
 import { setPrintSignal } from '/lib/print.js?v=d7172ffaa1';
-import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=9eee17d93b';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=b2904115a8';
 import { wireBodyMap } from '/kit/bodymap.js?v=57440abdb8';
 import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=f31d9546b5';
 

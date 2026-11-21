@@ -133,11 +133,18 @@ put('4 Icons/sprite.svg', `<svg ${XMLNS} style="display:none">\n${[...Object.ent
 // ---------------------------------------------------------------------------
 put('5 Signal/signal-mark.svg', `<svg ${XMLNS} viewBox="0 0 16 16" width="256" height="256" fill="none" stroke="${C.lime}" stroke-width="1.8" stroke-linecap="round" role="img" aria-label="The Community Signal"><path d="M3 13.5v-4M6.5 13.5v-9M10 13.5v-6.5M13.5 13.5v-3"/></svg>\n`);
 put('5 Signal/spectrum.svg', `${P.spectrumSvg(board)}\n`);
-// Sig in the community: the Signal in person, a blue ring with a dot in it and no face. A mood changes
-// what is in the ring (kit/kit.js draws it; these are its drawings, standing alone)
+// Sig in the community: the Signal in person, drawn in the same hand as the three step drawings: a
+// fine ring with the mood inside it in the Signal's blue. kit/kit.js draws it; these are its
+// drawings standing alone, with lines that are part of the drawing, as the steps' files have them
 const SIG = { idle: 'sig', think: 'sig-thinking', cheer: 'sig-cheering', support: 'sig-support', curious: 'sig-curious', watching: 'sig-watching', concerned: 'sig-concerned', sleepy: 'sig-resting' };
+const SIG_NAME = { idle: 'Sig', think: 'Sig, thinking', cheer: 'Sig, cheering', support: 'Sig, support', curious: 'Sig, curious', watching: 'Sig, watching', concerned: 'Sig, concerned', sleepy: 'Sig, resting' };
 for (const [mood, file] of Object.entries(SIG)) {
-  put(`5 Signal/sig/${file}.svg`, `${sigSvg(256, mood, { dark: true }).replace(/<svg class="[^"]*"/, `<svg ${XMLNS}`).replace(' aria-hidden="true"', ` role="img" aria-label="Sig"`).replace(/ class="[^"]*"/g, '').replace(/>\s+</g, '><')}\n`);
+  const alone = sigSvg(200, mood, { dark: true })
+    .replace(/<svg class="[^"]*"/, `<svg ${XMLNS}`).replace(' aria-hidden="true"', ` role="img" aria-label="${SIG_NAME[mood]}"`)
+    .replace(/ vector-effect="non-scaling-stroke"/g, '').replace(/stroke-width="1\.2"/g, 'stroke-width="1.6"')
+    .replace(/ class="[^"]*"/g, '').replace(/<\/?g>/g, '').replace(/>\s+</g, '><');
+  if (/transform=|<g[ >]/.test(alone)) throw new Error(`Sig's ${mood} drawing can't stand alone: it still leans on a transform`);
+  put(`5 Signal/sig/${file}.svg`, `${alone}\n`);
 }
 
 // ---------------------------------------------------------------------------
@@ -176,7 +183,7 @@ put('README.txt', `MIRACLE HEALTH BRAND PACK
 
 Start with "Brand guide.pdf": two pages, everything that matters.
 
-1 Logo       The logo is white and sits on black or on the violet band, nothing else. The mark is Sig's ring;
+1 Logo       The logo is white and sits on black, nothing else. The mark is Sig's ring;
              use it for a profile picture, an app icon or a browser tab.
 2 Colour     The colours as CSS and JSON, and the three grounds as pictures.
 3 Type       Mona Sans for every word, Monaspace Neon for numbers. These are the web files; for Canva, Figma,
@@ -185,6 +192,7 @@ Start with "Brand guide.pdf": two pages, everything that matters.
 4 Icons      One set: 24 grid, 1.6 stroke, round ends, no fills. Files are white for black grounds; the
              sprite takes the colour of the words beside it.
 5 Signal     The Community Signal's mark, a score, a card and the board. The numbers are examples.
+             In sig: Sig in the community in its eight moods, drawn like the three steps in 4 Icons.
 6 Marketing  Share images, posts, a how-it-works carousel, stories, profile headers, the email's header,
              and the words to use.
 

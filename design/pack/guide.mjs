@@ -75,11 +75,12 @@ html,body{width:${W}px}
 .cells{display:grid;grid-template-columns:repeat(10,1fr);gap:22px 8px;margin-top:20px}
 .cells.twelve{grid-template-columns:repeat(12,1fr)}
 .cells figure{display:grid;justify-items:center;gap:10px;font:400 13px/1.2 Mona,sans-serif;color:${C['text-2']};text-align:center}
-.cells.steps{grid-template-columns:repeat(3,150px);gap:8px 26px}
-.cells.steps svg{width:104px;height:104px}
-.pair{display:grid;grid-template-columns:max-content 1fr;gap:0 96px}
+.cells.steps{grid-template-columns:repeat(3,128px);gap:8px 18px}
+.cells.steps svg,.cells.moods svg{width:96px;height:96px}
+.cells.steps svg *{vector-effect:non-scaling-stroke;stroke-width:1.2px}   /* on the sheet, hairlines as the pages draw them */
+.pair{display:grid;grid-template-columns:max-content 1fr;gap:0 72px}
 .pair h2{margin-top:36px}
-.cells.moods{grid-template-columns:repeat(8,1fr);align-items:end;margin-top:46px}`;
+.cells.moods{grid-template-columns:repeat(8,1fr)}`;
   const top = (word) => `<div class="pg-top">${logo(32)}<p>${word}</p></div>`;
 
   const page1 = `<section class="pg">${top('Brand guide')}<div class="grid">
@@ -117,7 +118,7 @@ html,body{width:${W}px}
 <h2>Interface</h2><div class="cells">${Object.entries(icons.interface).map(([k, d]) => cell(ico(d, C.text, 28), k)).join('')}</div>
 <h2>Sig’s agents</h2><div class="cells twelve">${[...WHEEL, CENTER].map((k) => cell(ico(GLYPH[k], AGENT_COLOR[k], 28), k)).join('')}</div>
 <div class="pair"><div><h2>The three steps</h2><div class="cells steps">${['Say how it went', 'Sig reads it in', 'The Signal moves'].map((n, i) => cell(steps[i], n)).join('')}</div></div>
-<div><h2>Sig in the community</h2><div class="cells moods">${[['idle', 'Sig'], ['think', 'thinking'], ['cheer', 'cheering'], ['support', 'support'], ['curious', 'curious'], ['watching', 'watching'], ['concerned', 'concerned'], ['sleepy', 'resting']].map(([m, n]) => cell(sig(52, m), n)).join('')}</div></div></div>
+<div><h2>Sig in the community</h2><div class="cells moods">${[['idle', 'Sig'], ['think', 'thinking'], ['cheer', 'cheering'], ['support', 'support'], ['curious', 'curious'], ['watching', 'watching'], ['concerned', 'concerned'], ['sleepy', 'resting']].map(([m, n]) => cell(sig(96, m), n)).join('')}</div></div></div>
 </section></body></html>`;
 
   return { w: W, h: H, count: 2, html: `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${page1}${page2}</body></html>`, iconSheet };
