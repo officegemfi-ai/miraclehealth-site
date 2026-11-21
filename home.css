@@ -304,148 +304,86 @@
 .violet .fp-sub,.violet .fp-fine{color:var(--text)}
 .violet .fp-commits{border-color:rgba(255,255,255,.28)}
 .fp-acts{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
-.fp-more{font:500 14px/1.4 var(--body);color:var(--text-2)}
-.fp-more:hover{color:var(--text)}
 
 /* a pane: a framed block, its content straight under the frame (no bar naming it: the owner's rule,
    November 18) */
 .fp .term{border:1px solid var(--line);border-radius:0;background:var(--paper);overflow:hidden}
 
-/* ---------- the Community Signal, like top: the eight highest, each with what people report most and
-   its score, and a way to the whole board (simpler, November 16). Its rows are laid out as a grid, so a
-   board's parts stay together and its bars keep a sensible length at every width (the owner, November
-   18: "why is it so stretched?", then "having the lines that long looks ridiculous"): a bar is 48 to
-   480px long, and a board 1120px wide and up holds its eight in two columns of four. What people report
-   most stands under the compound's name, with a column of its own only where each column of the board is
-   1000px wide. The table keeps its rows, cells and headers for a screen reader (roles in the markup,
-   since the grid takes over their display); its head row is for them only ---------- */
-.fp-board{margin-top:36px;container:board/inline-size}
-.fp-load{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px;align-items:center;max-width:560px;padding:28px 20px 30px}
-.fp-load[hidden]{display:none}
-.fp-load-ring svg{display:block}
-.fp-load-ring .rg{opacity:.16;transition:opacity .3s}
-.fp-load-ring .rg.on{opacity:1}
-.fp-load-lines{font:400 15px/1.6 var(--body);color:var(--text-2)}
-.fp-load-lines p{margin:0}
-.fp-load-lines b{font-weight:400;color:var(--text)}
-.fp-load-lines b.is-wait{color:var(--muted)}
-.fp-noscript{margin:0;padding:0 20px 24px;font:400 14px/1.6 var(--body);color:var(--text-2)}
-.fp-noscript a{color:var(--text)}
-
-.fp-top-wrap[hidden]{display:none}
-/* the Signal's track: room for a 48px bar and its score, or with this week's move too */
-.fp-top{--sig:minmax(110px,560px);display:block;width:100%;font:400 13px/1 var(--body);font-variant-numeric:tabular-nums;color:var(--text-2)}
-.fp-top.has-moves{--sig:minmax(170px,620px)}
-.fp-top thead{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.fp-top tbody{display:grid;grid-template-columns:minmax(0,1fr)}
-.fp-top tbody tr{display:grid;grid-template-columns:32px 240px var(--sig);column-gap:14px;align-items:center;padding:14px 18px;border-top:1px solid rgba(255,255,255,.07);transition:background-color .2s}
-/* every row has the same tracks, set by width alone, so names, bars and scores line up row to row */
-.fp-top tbody tr:first-child{border-top:0}
-.fp-top tbody tr:hover{background:var(--fp-hover)}
-.fp-top th,.fp-top td{display:block;padding:0;text-align:left;white-space:nowrap}
-.fp-top td.c-n{font-family:var(--mono);color:var(--muted)}
-.fp-top th[scope="row"]{font:600 15px/1.25 var(--body);color:var(--text);white-space:normal}
-.fp-top th[scope="row"] a{color:inherit;text-decoration:none}
-.fp-top th[scope="row"] a:hover{text-decoration:underline}
-.fp-top .c-th{display:none}
-.fp-top td.c-th{font:400 14px/1.35 var(--body);color:var(--text-2);white-space:normal}
-.fp-top-t{display:block;margin-top:5px;font:400 13px/1.35 var(--body);color:var(--text-2);white-space:normal}
-/* the bar and its score: the bar 48 to 480px, the score at its end */
-.fp-bar{display:flex;align-items:center;gap:14px}
-.fp-bar>span:first-child{position:relative;flex:1;min-width:48px;max-width:480px;height:6px;border-radius:0;background:rgba(255,255,255,.1)}
-.fp-bar>span:first-child i{position:absolute;left:0;top:0;bottom:0;border-radius:0;background:var(--lime);transition:width .9s cubic-bezier(.2,.7,.2,1)}
-.fp-bar b{min-width:40px;font:500 15px/1 var(--mono);color:var(--text);text-align:right}
-.fp-mv{display:none;min-width:52px;font:400 13px/1 var(--mono)}
-.fp-top.has-moves .fp-mv{display:block}
-.fp-top .up{color:var(--lime)}
-.fp-top .down{color:#FF9A8E}
-.fp-top tr.more{display:block;padding:14px 18px}
-.fp-top .more td{white-space:normal;color:var(--muted)}
-.fp-top .more a{font:500 14px/1.4 var(--body);color:var(--text-2)}
-/* a wide board: its eight in two columns of four, a line between them, the way to the whole board under
-   both */
-@container board (min-width:1120px){
-  .fp-top tbody{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,auto);grid-auto-flow:column}
-  .fp-top tbody tr:nth-child(5){border-top:0}
-  .fp-top tbody tr:nth-child(n+5):not(.more){border-left:1px solid var(--line)}
-  .fp-top tr.more{grid-column:1/-1;grid-row:5}
-}
-/* each column 1000px wide: what people report most in a column of its own */
-@container board (min-width:2000px){
-  .fp-top tbody tr{grid-template-columns:32px 220px 260px var(--sig)}
-  .fp-top .c-th{display:block}
-  .fp-top-t{display:none}
-}
-.fp-top tr.flash-up{animation:fp-up 1.6s ease-out}
-.fp-top tr.flash-down{animation:fp-down 1.6s ease-out}
-@keyframes fp-up{from{background:rgba(61,139,255,.16)}}
-@keyframes fp-down{from{background:rgba(255,154,142,.16)}}
-
-
-/* the board's foot: its line, then its two ways on beside it, together at every width */
-.fp-signal-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:18px 40px;margin-top:24px}
-.fp-signal-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
-
-/* ---------- Sig's twelve agents: one question through them, in four steps ----------
-   A window like the run's, its steps down a line on the left, numbered in squares; each agent in a box
-   signed along the top in its own colour, with its mark, its name and what it does. The ten that gather
-   stand in two frames: what the studies show, and what people report with what it means for your stack. */
+/* ---------- Sig's twelve agents, as Sig's ring (the owner, November 20: "make this circular similar to
+   the sig logo: and clean") ----------
+   The logo, large: eleven pieces round a ring, each one agent in its own colour with its mark on it and
+   its name beside it; at the centre the Interpretation agent's white dot. What an agent does is said in
+   the ring's middle, for the one pointed at or picked (home.js); at rest it is the centre's own. Beside
+   the ring (under it on a narrow window), the four steps a question takes. Nothing is boxed. */
 .fp-crew{margin-top:36px;border:1px solid var(--line-2);border-radius:0;background:var(--paper)}
 /* In light, like the top (the owner's request, November 18): the LED wall's bands drift behind the
-   section (lib/sigfield.js, mounted in home.js), and the frame is dark glass over them, so they glow
-   through between the agents while every word sits on a dark ground */
+   section (lib/sigfield.js, mounted in home.js), and the frame is dark glass over them, so the light
+   shows at its edges while the ring and every word stand on a dark ground */
 .fp-sig{position:relative;isolation:isolate;overflow:hidden}
-.fp-sig .fp-crew{background:color-mix(in srgb,var(--paper) 34%,transparent)}
-.fp-sig .fp-group-k{background:var(--paper)}
+.fp-sig .fp-crew{background:color-mix(in srgb,var(--paper) 78%,transparent)}
 .fp-sig .fp-askbox{background:color-mix(in srgb,var(--raised) 88%,transparent)}
-.fp-sig .fp-crew-q,.fp-sig .fp-crew-a{background:color-mix(in srgb,var(--raised) 80%,transparent)}
-/* the agents' cards (the owner's request, November 18, "make the cards look better"): an even dark
-   glass, a hairline of the agent's colour round it, and its mark dark on a tile of its colour, the one
-   solid colour on the card, so the twelve read as twelve colours at a glance; pointing at one brings
-   its colour up */
-.fp-sig .fp-agent{grid-template-columns:44px minmax(0,1fr);column-gap:16px;padding:14px 18px 14px 14px;border:1px solid color-mix(in srgb,var(--ac) 32%,transparent);background:color-mix(in srgb,var(--raised) 82%,transparent);transition:border-color .2s,background-color .2s,transform .2s}
-.fp-sig .fp-agent.band{grid-template-columns:44px minmax(0,1fr);padding:16px 20px 16px 14px;background:color-mix(in srgb,var(--raised) 82%,transparent)}
-.fp-sig .fp-agent.band:hover{background:color-mix(in srgb,var(--ac) 8%,color-mix(in srgb,var(--raised) 86%,transparent))}
-.fp-sig .fp-agent:hover{border-color:color-mix(in srgb,var(--ac) 78%,transparent);background:color-mix(in srgb,var(--ac) 8%,color-mix(in srgb,var(--raised) 86%,transparent));transform:translateY(-1px)}
-.fp-sig .fp-agent-g{width:44px;height:44px;background:var(--ac);color:var(--paper)}
-.fp-sig .fp-agent-g svg{width:22px;height:22px;stroke-width:1.9;color:var(--paper)}
-.fp-sig .fp-agent-t{color:var(--text-2)}
-/* a pulse of light down the steps' line, taking each step's colour as it passes: the Safety agent's,
-   the gatherers', the Interpretation agent's white, the Safety agent's again */
-.fp-flow::after{content:'';position:absolute;left:18px;top:20px;width:3px;height:72px;opacity:0;animation:fp-pulse 7s cubic-bezier(.45,0,.25,1) infinite}
-@keyframes fp-pulse{
-  0%{top:20px;opacity:0;background-color:#FF6B5B}
-  6%{opacity:1}
-  30%{background-color:#F2C94C}
-  48%{background-color:#3FE0C5}
-  66%{background-color:#B98CFF}
-  80%{background-color:#F7F8FA}
-  92%{opacity:1;background-color:#FF6B5B}
-  100%{top:calc(100% - 92px);opacity:0;background-color:#FF6B5B}
-}
-.fp-crew-body{padding:26px 28px 28px}
-/* the question in, the answer out: two plain sentences in a box */
-.fp-crew-q,.fp-crew-a{margin:0;padding:14px 18px;border:1px solid var(--line-2);border-radius:0;background:var(--raised);font:400 16px/1.5 var(--body);color:var(--text-2)}
-.fp-crew-q q{color:var(--text)}
-/* the four steps down a line, each numbered in its square */
-.fp-flow{position:relative;display:grid;gap:30px;margin:30px 0;padding:0;list-style:none}
-.fp-flow::before{content:'';position:absolute;left:19px;top:20px;bottom:20px;width:1px;background:var(--line-2)}
-.fp-step{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:22px}
-.fp-step-n{position:relative;z-index:1;display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line-2);background:var(--paper);font:400 13px/1 var(--mono);color:var(--text)}
-.fp-step-t{margin:9px 0 16px;font-size:18px;font-weight:600;line-height:1.3;color:var(--text)}
-/* an agent: signed down its left in its colour, on a ground of it; its mark on a tile of it */
-.fp-agent{display:grid;grid-template-columns:42px minmax(0,1fr);align-items:center;column-gap:16px;padding:12px 16px 12px 12px;border:1px solid color-mix(in srgb,var(--ac) 24%,var(--line-2));border-left:2px solid var(--ac);border-radius:0;background:color-mix(in srgb,var(--ac) 6%,var(--raised))}
-.fp-agent.band{grid-template-columns:42px minmax(0,1fr);padding:14px 20px 14px 12px;background:color-mix(in srgb,var(--ac) 9%,var(--raised))}
-.fp-agent-g{display:grid;place-items:center;width:42px;height:42px;background:color-mix(in srgb,var(--ac) 16%,var(--paper));color:var(--ac)}
-.fp-agent-g svg{width:20px;height:20px}
-.fp-agent-w{min-width:0}
-.fp-agent-n{display:block;font:600 15px/1.35 var(--body);color:var(--ac)}
-.fp-agent-t{display:block;margin-top:3px;font-size:15px;line-height:1.45;color:var(--text-2)}
-/* the ten in two frames, each named on its border, five rows to a frame */
-.fp-groups{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}
-.fp-group{position:relative;margin-top:8px;padding:24px 14px 14px;border:1px solid var(--line-2);border-radius:0}
-.fp-group-k{position:absolute;top:-10px;left:12px;margin:0;padding:0 10px;background:var(--paper);font:500 14px/20px var(--body);color:var(--text-2)}
-.fp-rows{display:grid;gap:8px}
+.cr{display:grid;grid-template-columns:minmax(0,1fr);row-gap:26px;padding:22px 16px 26px}
+/* the question in, the answer out: two plain sentences */
+.cr-q,.cr-a{margin:0;font:400 16px/1.5 var(--body);color:var(--text-2)}
+.cr-q q,.cr-a{color:var(--text)}
+.cr-a{padding-top:20px;border-top:1px solid var(--line)}
+/* the ring: as wide as the window lets it be, to 340px on a phone. Lengths inside it are in hundredths
+   of its width (cqi), so the dot, the words in its middle and the names round it keep their places at
+   every size */
+.cr-stage{display:grid;justify-items:center;min-width:0}
+.cr-dial{--D:min(100%,340px);position:relative;width:var(--D);container-type:inline-size}
+.cr-ring{display:block;width:100%;aspect-ratio:1;overflow:visible}
+.cr-arc{cursor:pointer;transition:opacity .25s,transform .25s cubic-bezier(.2,.7,.2,1)}
+/* the one pointed at or picked stands out a little and the rest dim; a step lights its own */
+.cr[data-on] .cr-arc,.cr[data-step] .cr-arc{opacity:.26}
+.cr[data-on] .cr-arc.on{opacity:1;transform:scale(1.03)}
+.cr[data-step="first"] .cr-arc[data-agent="safety"],.cr[data-step="check"] .cr-arc[data-agent="safety"],.cr[data-step="gather"] .cr-arc:not([data-agent="safety"]){opacity:1}
+/* what the picked agent does, in the ring's middle, under the dot */
+.cr-read{position:absolute;left:50%;top:44cqi;width:52cqi;margin:0;transform:translateX(-50%);text-align:center;pointer-events:none}
+.cr-read-n{display:block;font:600 15px/1.3 var(--body);color:var(--ac)}
+.cr-read-t{display:block;margin-top:4px;font:400 13px/1.42 var(--body);color:var(--text-2)}
+/* the names: on a phone a list under the ring, two to a row, each in its agent's colour */
+.cr-names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;margin:20px 0 0;padding:0;list-style:none}
+.cr-who{min-width:0;border-top:1px solid var(--line)}
+.cr-name{display:flex;align-items:center;width:100%;min-height:44px;margin:0;padding:4px 2px;border:0;border-radius:0;background:none;font:600 15px/1.25 var(--body);color:var(--ac);text-align:left;cursor:pointer;transition:opacity .25s}
+.cr-name:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.cr[data-on] .cr-who:not(.on) .cr-name{opacity:.5}
+/* what each does is the ring's middle's to show; a screen reader has it with the name */
+.cr-job{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* the centre's own: the logo's white dot, its button, above the words */
+.cr-core{position:absolute;left:50%;top:37cqi;border:0;transform:translate(-50%,-50%)}
+.cr-core .cr-name{display:grid;place-items:center;width:44px;height:44px;min-height:0;padding:0}
+.cr-core .cr-name::before{content:'';width:clamp(14px,4.6cqi,28px);aspect-ratio:1;border-radius:50%;background:var(--text);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.cr[data-on] .cr-core:not(.on) .cr-name{opacity:1}
+.cr[data-on] .cr-core.on .cr-name::before,.cr[data-step="weigh"] .cr-core .cr-name::before{transform:scale(1.25)}
+/* the four steps, each numbered in its square */
+.cr-steps{display:grid;gap:18px;margin:0;padding:0;list-style:none}
+.cr-step{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;align-items:start}
+.cr-step-n{display:grid;place-items:center;width:32px;height:32px;border:1px solid var(--line-2);font:400 13px/1 var(--mono);color:var(--text);transition:background-color .25s,color .25s,border-color .25s}
+.cr-step p{margin:0;padding-top:4px;font:400 15px/1.5 var(--body);color:var(--text-2)}
+.cr-step b{display:block;margin-bottom:2px;font:600 17.5px/1.3 var(--body);color:var(--text)}
+.cr-step.now .cr-step-n{border-color:var(--text);background:var(--text);color:var(--paper)}
+/* the names round the ring, where the window has room: each at its piece's middle (--x, --y: the unit
+   of the way there, clockwise from the top like the logo's pieces), 18px out from the ring */
+.cr-who:nth-child(1){--x:0.282;--y:-0.959}
+.cr-who:nth-child(2){--x:0.756;--y:-0.655}
+.cr-who:nth-child(3){--x:0.990;--y:-0.142}
+.cr-who:nth-child(4){--x:0.910;--y:0.415}
+.cr-who:nth-child(5){--x:0.541;--y:0.841}
+.cr-who:nth-child(6){--x:0;--y:1}
+.cr-who:nth-child(7){--x:-0.541;--y:0.841}
+.cr-who:nth-child(8){--x:-0.910;--y:0.415}
+.cr-who:nth-child(9){--x:-0.990;--y:-0.142}
+.cr-who:nth-child(10){--x:-0.756;--y:-0.655}
+.cr-who:nth-child(11){--x:-0.282;--y:-0.959}
+/* the ring plays in once, as it is first seen (home.js sets each piece's turn, --o): the Safety agent's
+   piece, then the ten round the ring, then the dot */
+.cr.cr-wait .cr-arc{opacity:.14}
+.cr.cr-wait .cr-core .cr-name::before{transform:scale(.4);opacity:.3}
+.cr.cr-play .cr-arc{animation:cr-in .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--o,0) * 110ms)}
+.cr.cr-play .cr-core .cr-name::before{animation:cr-dot .6s cubic-bezier(.2,.7,.2,1) 1.5s both}
+@keyframes cr-in{from{opacity:.14;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@keyframes cr-dot{from{transform:scale(.4);opacity:.3}60%{transform:scale(1.3);opacity:1}to{transform:scale(1);opacity:1}}
 
 
 
@@ -456,38 +394,54 @@
 .fp-askbox input::placeholder{color:var(--muted);opacity:1}
 .fp-askbox .btn{flex:none;min-height:40px;padding:0 16px}
 
-/* ---------- one real example: studies, people, placebo ---------- */
-.fp-vs{margin-top:36px;border:1px solid var(--line);border-radius:0;background:var(--paper);overflow:hidden}
-.fp-vs .vs-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;padding:24px 26px}
-.fp-vs .vs-id h3{margin:0;font:600 38px/1.1 var(--body);letter-spacing:-.02em;color:var(--text)}
-.fp-vs .vs-status{display:inline-flex;align-items:center;min-height:28px;margin:14px 0 0;padding:0 10px;border:1px solid var(--line-2);border-radius:0;font:500 12.5px/1.2 var(--body);letter-spacing:0;text-transform:none;color:var(--text-2)}
-.fp-vs .vs-sig{min-width:min(100%,340px)}
-.fp-vs .vs-k{display:flex;align-items:center;gap:8px;margin:0;font:500 13px/1.4 var(--body);color:var(--muted)}
-.fp-vs .vs-score{display:flex;align-items:baseline;gap:8px;margin:10px 0 0}
-.fp-vs .vs-score b{font:500 40px/1 var(--mono);letter-spacing:-.02em;color:var(--text)}
-.fp-vs .vs-score .of{margin:0;font:400 13px/1 var(--mono);color:var(--muted)}
-.fp-vs .vs-lvl{display:inline-flex;align-items:center;gap:7px;margin:0 0 0 auto;font:500 13px/1.3 var(--body);color:var(--text-2)}
-.fp-vs .vs-bar{display:block;width:100%;height:4px;margin-top:12px;border-radius:0}
+/* ---------- one real example: studies, people, placebo ----------
+   Three plates, one for each thing a fact sheet lays out, in the fact sheets' own order. A plate opens
+   with its bottom line (the fact sheet's grade, the Community Signal, how many get better on a
+   placebo) and the sentence it comes to, then says it use by use. From 1160px the three stand side by
+   side on one set of rows, so a use reads straight across them; from 700 to 1159px each plate keeps
+   its bottom line on the left and its uses on the right; narrower than that, everything stacks. */
+.fp-vs{margin-top:40px;border:0;background:none;overflow:visible}
+.fp-vs .vs-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:10px 18px;padding:0}
+.fp-vs .vs-head h3{margin:0;font:600 32px/1.1 var(--body);letter-spacing:-.02em;color:var(--text)}
+.fp-vs .vs-status{display:inline-flex;align-items:center;min-height:28px;margin:0;padding:0 10px;border:1px solid var(--line-2);border-radius:0;font:500 13px/1.2 var(--body);letter-spacing:0;text-transform:none;color:var(--text-2)}
+.fp-vs .vs-lanes{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:22px}
+.fp-vs .vs-lane{display:grid;grid-template-columns:minmax(0,1fr);align-content:start;min-width:0;padding:24px 20px;border:1px solid var(--line);background:var(--card)}
+.fp-vs .vs-k{margin:0;font:500 13px/1.4 var(--body);letter-spacing:0;text-transform:none;color:var(--text-2)}
+.fp-vs .vs-fig{min-width:0;margin-top:16px}
+.fp-vs .vs-fig-v{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;min-height:46px;margin:0}
+.fp-vs .vs-fig-v b{font:500 clamp(40px,2.5cqi + 16px,64px)/.82 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
+.fp-vs .vs-fig-v b.w{font:600 28px/1.1 var(--body);letter-spacing:-.02em;font-variant-numeric:normal}
+.fp-vs .vs-fig-v .of{margin:0 0 1px -6px;font:400 14px/1 var(--mono);color:var(--muted)}
+.fp-vs .vs-fig-n{display:grid;gap:3px;font:400 13px/1.3 var(--body);color:var(--muted)}
+.fp-vs .vs-lvl{display:inline-flex;align-items:center;gap:6px;margin:0;font:inherit;color:var(--text-2)}
+.fp-vs .vs-lvl svg{flex:none;width:20px;height:20px}
+.fp-vs .vs-bar{display:block;width:100%;height:6px;margin-top:16px;border-radius:0}
 .fp-vs .vs-bar .tr{fill:rgba(255,255,255,.12)}
-.fp-vs .vs-bar .fi{fill:var(--text)}
-.fp-vs .vs-cap{margin:10px 0 0;font:400 13px/1.45 var(--body);color:var(--muted)}
-.fp-vs .vs-cols,.fp-vs .vs-row{display:grid;grid-template-columns:170px repeat(3,minmax(0,1fr));column-gap:24px;padding:0 26px}
-.fp-vs .vs-cols{align-items:center;min-height:40px;border-top:1px solid var(--line);background:var(--band);font:500 13px/1.3 var(--body);color:var(--muted)}
-.fp-vs .vs-cols span{display:inline-flex;align-items:center;gap:8px}
-.fp-vs .vs-row{padding-top:20px;padding-bottom:20px;border-top:1px solid rgba(255,255,255,.07)}
-.fp-vs .vs-use{grid-column:auto;margin:0;font:600 15.5px/1.35 var(--body);color:var(--text)}
-.fp-vs .vs-lbl{display:none}
-.fp-vs .vs-v{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;font:600 15px/1.35 var(--body);color:var(--text)}
-.fp-vs .vs-sub{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--text-2);max-width:52ch}
-.fp-vs .vs-sub a{color:var(--text)}
-.fp-vs .vs-cell.pl .vs-v b{font:500 26px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
-.fp-vs .vs-cell .vs-bar{max-width:220px;margin-top:10px}
-.fp-vs .vs-cell .vs-bar .fi{fill:#A1A7B2}
-.fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:16px 56px;padding:20px 26px 22px;border-top:1px solid var(--line)}
-.fp-vs .vs-foot>p{max-width:62ch;margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
-.fp-vs .vs-act{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
-.fp-vs .vs-when{margin:0;font:400 13px/1.4 var(--body);color:var(--muted)}
+.fp-vs .vs-bar .fi{fill:#A1A7B2}
+.fp-vs .sig-bar .fi{fill:var(--lime)}
 .fp-vs .mh-meter{color:#14ECC3}
+.fp-vs .vs-fig>.mh-meter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;width:100%;margin-top:16px}
+.fp-vs .vs-fig>.mh-meter i{height:6px}
+.fp-vs .vs-say{margin:20px 0 0;font:600 20px/1.3 var(--body);letter-spacing:-.01em;color:var(--text);text-wrap:balance}
+.fp-vs .vs-uses{display:grid;grid-template-columns:minmax(0,1fr);margin:18px 0 0}
+.fp-vs .vs-u{min-width:0;padding:14px 0 16px;border-top:1px solid var(--line)}
+.fp-vs .vs-u:last-child{padding-bottom:0}
+.fp-vs .vs-u dt{font:500 13px/1.4 var(--body);color:var(--muted)}
+.fp-vs .vs-u dd{margin:6px 0 0}
+.fp-vs .vs-v{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;font:600 16px/1.35 var(--body);color:var(--text)}
+.fp-vs .vs-sub{margin:6px 0 0;max-width:56ch;font-size:15px;line-height:1.5;color:var(--text-2)}
+.fp-vs .vs-sub a{color:var(--text)}
+.fp-vs .vs-cell.pl .vs-v b{font:500 24px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--text)}
+.fp-vs .vs-cell .vs-bar{max-width:240px;height:4px;margin-top:10px}
+.fp-vs .rate-bar .fi{fill:var(--lime)}
+/* a placebo figure and its bar share a line */
+.fp-vs .vs-cell.pl{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:14px}
+.fp-vs .vs-cell.pl .vs-bar{margin-top:0}
+.fp-vs .vs-cell.pl .vs-sub{grid-column:1/-1}
+.fp-vs .vs-u:nth-child(1) .fi{transition-delay:.25s}.fp-vs .vs-u:nth-child(2) .fi{transition-delay:.4s}.fp-vs .vs-u:nth-child(3) .fi{transition-delay:.55s}
+.fp-vs .vs-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:14px 28px;margin-top:24px;padding:0;border:0}
+.fp-vs .vs-foot>p{max-width:none;margin:0;font:400 16px/1.5 var(--body);color:var(--text-2)}
+.fp-vs .vs-foot>.vs-when{font:400 13px/1.4 var(--body);color:var(--muted)}
 
 /* ---------- how a report counts ---------- */
 .fp-join-in{display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:center}
@@ -580,13 +534,33 @@
   .fp .st-step h3{font-size:22px}
   .fp-join-in{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:64px}
 }
-/* the two frames of gatherers side by side where each row keeps room for its sentence; an agent alone
-   in its step is then as wide as one frame, not the whole window */
-@container fp (min-width:1100px){
-  .fp-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fp-step-in>.fp-agent.band{width:calc((100% - 22px) / 2)}
-  /* the question in and the answer out end where those agents do */
-  .fp-crew-q,.fp-crew-a{max-width:calc(62px + (100% - 84px) / 2)}
+/* Sig's ring by the window's width. From 860px the names stand round the ring, each at its piece; from
+   1260px the four steps stand beside the ring, not under it; on a wide screen it is larger again */
+@container fp (min-width:860px){
+  .cr{row-gap:30px;padding:30px 28px 34px}
+  .cr-stage{padding:44px 140px}
+  .cr-dial{--D:440px}
+  .cr-names{display:block;margin:0}
+  .cr-who:not(.cr-core){position:absolute;left:calc(50cqi + var(--x) * (50cqi + 16px));top:calc(50cqi + var(--y) * (50cqi + 16px));border:0;transform:translate(calc(-50% * (1 - var(--x))),calc(-50% * (1 - var(--y))))}
+  .cr-who:not(.cr-core) .cr-name{width:auto;min-height:28px;padding:4px 6px;white-space:nowrap}
+  .cr-read{width:46cqi}
+  .cr-read-n{font-size:18px}
+  .cr-read-t{margin-top:6px;font-size:15px;line-height:1.45}
+  .cr-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px}
+}
+@container fp (min-width:1000px){
+  .cr-dial{--D:480px}
+}
+@container fp (min-width:1260px){
+  .cr{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"stage q" "stage steps" "stage a";align-content:center;column-gap:36px;row-gap:26px;padding:26px 40px 26px 24px}
+  .cr-stage{grid-area:stage;align-self:center}
+  .cr-q{grid-area:q;align-self:end;max-width:460px}
+  .cr-steps{grid-area:steps;grid-template-columns:minmax(0,1fr);gap:20px;max-width:460px}
+  .cr-a{grid-area:a;align-self:start;max-width:460px}
+}
+@container fp (min-width:1340px){
+  .cr{column-gap:56px}
+  .cr-dial{--D:560px}
 }
 /* ---------- the cards on a wide window (the owner, November 18: "why is it so stretched?", and then:
    headings stay above their blocks, and the cards are fixed, not filled). Every heading stands over its
@@ -620,19 +594,51 @@
   .fp-file .fp-rule-list{grid-template-columns:repeat(4,minmax(0,1fr))}
   .fp-rule-list li{border-top:0}
   .fp-rule-list li:not(:first-child){border-left:1px solid rgba(255,255,255,.07)}
-  /* the twelve agents: the ten who gather, each frame a row of five cards; an agent alone in its step
-     one card wide, its right edge on the first card's below */
-  .fp-groups{grid-template-columns:minmax(0,1fr)}
-  .fp-rows{grid-template-columns:repeat(5,minmax(0,1fr))}
-  .fp-step-in>.fp-agent.band{width:calc(15px + (100% - 62px) / 5)}
-  .fp-crew-q,.fp-crew-a{max-width:calc(85px + (2 * 100% - 248px) / 5)}
+  /* the twelve agents: the ring larger, the ring and its steps together in the window's middle */
+  .cr{max-width:1560px;margin-inline:auto;column-gap:96px;padding-top:40px;padding-bottom:40px}
+  .cr-dial{--D:640px}
+  .cr-q,.cr-steps,.cr-a{max-width:520px}
+  .cr-q,.cr-a{font-size:18px}
+  .cr-steps{gap:24px}
+  .cr-step b{font-size:20px}
+  .cr-step p{font-size:16px}
+  .cr-who:not(.cr-core) .cr-name{font-size:16px}
+  .cr-read-n{font-size:20px}
+  .cr-read-t{font-size:16px}
 }
-/* the example's head on the card's own columns from 1280px: the compound over the first two, its Signal
-   over what people report, not at the far edge, its bar no longer than the board's */
-@container fp (min-width:1280px){
-  .fp-vs .vs-head{display:grid;grid-template-columns:170px repeat(3,minmax(0,1fr));column-gap:24px;align-items:end}
-  .fp-vs .vs-id{grid-column:1/3}
-  .fp-vs .vs-sig{grid-column:3;min-width:0;max-width:480px}
+/* the example's three plates: bottom line beside the uses on a tablet, side by side on one set of
+   rows from 1160px (a browser without subgrid keeps the three columns, each on its own rows) */
+@container fp (min-width:700px) and (max-width:1159px){
+  .fp-vs .vs-lane{grid-template-columns:minmax(210px,.38fr) minmax(0,1fr);grid-template-rows:auto auto auto 1fr;column-gap:40px;padding:28px}
+  .fp-vs .vs-lane>*{grid-column:1}
+  .fp-vs .vs-uses{grid-column:2;grid-row:1/-1;margin-top:0}
+  .fp-vs .vs-u:first-child{padding-top:0;border-top:0}
+  .fp-vs .vs-fig-v b.w{font-size:24px}
+}
+@container fp (min-width:1160px){
+  .fp-vs .vs-lanes{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(6,auto);gap:0 20px}
+  .fp-vs .vs-lane{grid-row:span 6;grid-template-rows:subgrid;padding:28px}
+  .fp-vs .vs-uses{grid-row:span 3;grid-template-rows:subgrid}
+}
+@container fp (min-width:1400px){
+  .fp-vs .vs-head h3{font-size:38px}
+  .fp-vs .vs-lanes{column-gap:24px;margin-top:26px}
+  .fp-vs .vs-lane{padding:32px}
+  .fp-vs .vs-fig-v b.w{font-size:32px}
+  .fp-vs .vs-say{font-size:22px}
+}
+@container fp (min-width:1880px){
+  .fp-vs .vs-lanes{column-gap:32px}
+  .fp-vs .vs-lane{padding:44px}
+  .fp-vs .vs-k,.fp-vs .vs-u dt,.fp-vs .vs-fig-n{font-size:14px}
+  .fp-vs .vs-fig-v b.w{font-size:40px}
+  .fp-vs .vs-say{margin-top:26px;font-size:24px}
+  .fp-vs .vs-uses{margin-top:24px}
+  .fp-vs .vs-u{padding:18px 0 20px}
+  .fp-vs .vs-v{font-size:18px}
+  .fp-vs .vs-sub{font-size:16px}
+  .fp-vs .vs-cell.pl .vs-v b{font-size:28px}
+  .fp-vs .vs-foot>p:not(.vs-when){font-size:18px}
 }
 @container fp (min-width:1000px) and (max-width:1180px){
   .st-steps,.fp-ways{--st-gap:40px}
@@ -644,27 +650,11 @@
 @container fp (max-width:860px){
   .fp-wrap{padding:0 24px}
   .fp-sec{padding:64px 0}
-  .fp-vs .vs-cols{display:none}
-  .fp-vs .vs-row{grid-template-columns:minmax(0,1fr);row-gap:14px}
-  .fp-vs .vs-lbl{display:block;margin:0 0 6px;font:500 13px/1.3 var(--body);color:var(--muted)}
   .fp-rule-list li{grid-template-columns:40px minmax(0,1fr);row-gap:6px}
   .fp-rule-list p{grid-column:2}
   .fp-members{padding-left:58px}
 }
 @container fp (max-width:640px){
-  .fp-crew-body{padding:18px 14px 20px}
-  .fp-step{grid-template-columns:32px minmax(0,1fr);column-gap:12px}
-  .fp-step-n{width:32px;height:32px;font-size:12px}
-  .fp-flow::before{left:15px}
-  .fp-step-t{margin-top:5px;font-size:16px}
-  .fp-agent,.fp-agent.band{grid-template-columns:36px minmax(0,1fr);column-gap:12px;padding:11px 12px 11px 10px}
-  .fp-agent-g{width:36px;height:36px}
-  .fp-agent-t{font-size:14px}
-  .fp-sig .fp-agent,.fp-sig .fp-agent.band{grid-template-columns:38px minmax(0,1fr);column-gap:12px;padding:12px 12px 12px 10px}
-  .fp-sig .fp-agent-g{width:38px;height:38px}
-  .fp-sig .fp-agent-g svg{width:19px;height:19px}
-  .fp-group{padding:22px 8px 8px}
-  .fp-crew-q,.fp-crew-a{padding:12px 14px}
   .hp-row{grid-template-columns:minmax(0,1fr) auto}
 }
 @container fp (max-width:560px){
@@ -697,13 +687,8 @@
   .sx-go{width:100%;margin-top:12px}
   .sx-stats{gap:0 28px}
   .sx-stats dd{font-size:24px}
-  .fp-top tbody tr{grid-template-columns:24px minmax(0,1fr) 128px;column-gap:10px;padding:12px}
-  .fp-top.has-moves tbody tr{grid-template-columns:24px minmax(0,1fr) 176px}
-  .fp-top tr.more{padding:12px}
-  .fp-bar{gap:10px}
-  .fp-vs .vs-head,.fp-vs .vs-row,.fp-vs .vs-foot{padding-left:18px;padding-right:18px}
-  .fp-vs .vs-id h3{font-size:32px}
-  .fp-vs .vs-act,.fp-vs .vs-act .btn{width:100%}
+  .fp-vs .vs-head h3{font-size:28px}
+  .fp-vs .vs-foot .btn{width:100%}
   .fp-acts .btn{flex:1 1 100%}
   .fp-askbox{flex-wrap:wrap;padding:7px}
   .fp-askbox input{flex:1 1 100%;padding:0 9px;font-size:16px}
@@ -713,10 +698,8 @@
 @media (prefers-reduced-motion:reduce){
   .sx-field{transition:none}
   .sx-m i{transition:none}
-  .fp-top tr.flash-up,.fp-top tr.flash-down{animation:none}
-  .fp-bar>span:first-child i{transition:none}
-  .fp-flow::after{animation:none;display:none}
-  .fp-sig .fp-agent{transition:none}
+  .cr-arc,.cr-name,.cr-core .cr-name::before,.cr-step-n{transition:none}
+  .cr.cr-play .cr-arc,.cr.cr-play .cr-core .cr-name::before{animation:none}
 }
 
 /* how:system: "The system behind one honest number", the homepage's How it works (page 18 of the design canvas).
@@ -798,4 +781,4 @@
 /* /how:system */
 
 /* phone floors: running copy 15px, notes 14px */
-@media (max-width:700px){.fp-vs .vs-sub,.fp-c-s{font-size:15px}.fp-fine{font-size:14px}}
+@media (max-width:700px){.fp-c-s{font-size:15px}.fp-fine{font-size:14px}}

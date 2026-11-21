@@ -1,6 +1,6 @@
 // The front page, in the Sig system: the Community Signal and its spectrum with the prompt beside
-// them (the top, page 15 of the design canvas), the Community Signal like top, Ask Sig's twelve
-// agents in an example run, and the real compound in "Popular isn't the same as proven". What the studies show is published with the page, word for word from
+// them (the top, page 15 of the design canvas), Sig's twelve agents round its ring, and the real
+// compound in "Popular isn't the same as proven". What the studies show is published with the page, word for word from
 // the compound's fact sheet (caveats included). What changes as reports come in is read here from the
 // community's public files (totals only: no posts, no names): the Community Signal, what people
 // report for each use and the placebo figures beside them. If the files can't load, the page keeps
@@ -10,13 +10,13 @@ import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=b2904115a8';
 import { startHow } from '/lib/how.js?v=547caf3594';
 import { startSigHero } from '/lib/sighero.js?v=e0fa87772c';
 import { sigField } from '/lib/sigfield.js?v=36f23eb1e2';
-import { h, getJson, getSignal, calm, groupN, SIGNAL_URL } from '/lib/dom.js?v=f31d9546b5';
+import { h, getJson, getSignal, calm, groupN } from '/lib/dom.js?v=f31d9546b5';
 
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// While the page opens, only the top moves. The parts further down (the community board, Ask Sig's
-// example run, How it works) start once the top has played in, one at a time in the browser's idle
+// While the page opens, only the top moves. The parts further down (Sig's twelve agents, How it
+// works) start once the top has played in, one at a time in the browser's idle
 // moments, in the order they come down the page; or all at once, at the first scroll, so each is
 // ready before it can be seen (a jump to one of them, or a page that opens part way down, scrolls too)
 const below = [];
@@ -63,19 +63,20 @@ function reportCell(c) {
     said = [h('p', { class: 'vs-v' }, `Members rate it ${cu.rating} of 100`), bar(cu.rating, 'rate-bar'),
       h('p', { class: 'vs-sub' }, `${cu.low != null ? `Likely ${cu.low} to ${cu.high}, from` : 'From'} ${fmt(cu.reports)} first-hand reports`)];
   } else if (cu?.forum) {
+    // (no member reports yet: the plate's own level, "Forum data", already says so, once)
     said = [h('p', { class: 'vs-v' }, `${cu.forum} on the forums`),
-      h('p', { class: 'vs-sub' }, cu.reports ? `${fmt(cu.reports)} member report${cu.reports === 1 ? '' : 's'} so far; rated after 3` : 'No member ratings yet')];
+      cu.reports ? h('p', { class: 'vs-sub' }, `${fmt(cu.reports)} member report${cu.reports === 1 ? '' : 's'} so far; rated after 3`) : null];
   } else if (c?.near) {
     said = h('p', { class: 'vs-v' }, `Closest use reported: ${String(c.near.label).toLowerCase()}`);
   } else {
     said = h('p', { class: 'vs-v' }, 'Nothing reported yet');
   }
-  return h('div', { class: 'vs-cell rep' }, h('p', { class: 'vs-lbl' }, 'What people report'), said);
+  return h('dd', { class: 'vs-cell rep' }, said);
 }
 // How many get better on a placebo, for that use (or the closest one, said so)
 function placeboCell(c, use) {
   const b = c?.baseline;
-  return h('div', { class: 'vs-cell pl' }, h('p', { class: 'vs-lbl' }, 'Got better on a placebo'),
+  return h('dd', { class: 'vs-cell pl' },
     b?.pct != null
       ? [h('p', { class: 'vs-v' }, h('b', {}, `${b.pct}%`)), bar(b.pct, 'pl-bar'),
         h('p', { class: 'vs-sub' }, b.use !== use ? `For context, on ${String(c.near?.label || b.use).toLowerCase()}: ${b.says}` : b.says)]
@@ -97,16 +98,31 @@ function seal(key) {
   return s;
 }
 
+// The placebo plate's own bottom line: the lowest and the highest of its uses' figures, as they stand
+function placeboRange() {
+  const fig = v('range');
+  const pcts = [...card.querySelectorAll('.vs-cell.pl .vs-v b')].map((b) => parseFloat(b.textContent)).filter(Number.isFinite);
+  fig.hidden = !pcts.length;
+  if (!pcts.length) return;
+  const lo = Math.min(...pcts), hi = Math.max(...pcts);
+  v('range-n').textContent = lo === hi ? `${lo}%` : `${lo}–${hi}%`;
+  v('range-sr').textContent = lo === hi ? `${lo}%,` : `${lo}% to ${hi}%,`;
+  const fi = v('range-bar').querySelector('.fi');
+  fi.setAttribute('x', lo === hi ? '0' : clamp(lo).toFixed(1));
+  fi.setAttribute('width', (lo === hi ? clamp(lo) : Math.max(1, clamp(hi) - clamp(lo))).toFixed(1));
+}
+
 function update(ev, snap) {
   const id = card.dataset.id;
   if (ev && ev.id === id) {
     if (ev.status?.label) v('status').textContent = ev.status.label;
     for (const u of ev.uses || []) {
-      const row = u?.use && card.querySelector(`.vs-row[data-use="${CSS.escape(u.use)}"]`);
-      if (!row || !u.community) continue;
-      row.querySelector('.vs-cell.rep')?.replaceWith(reportCell(u.community));
-      row.querySelector('.vs-cell.pl')?.replaceWith(placeboCell(u.community, u.use));
+      if (!u?.use || !u.community) continue;
+      const cell = (lane) => card.querySelector(`.vs-lane.${lane} .vs-u[data-use="${CSS.escape(u.use)}"] .vs-cell`);
+      cell('rep')?.replaceWith(reportCell(u.community));
+      cell('pl')?.replaceWith(placeboCell(u.community, u.use));
     }
+    placeboRange();
   }
   const sig = snap?.signals?.[id];
   if (sig && sig.score != null && Number.isFinite(Number(sig.score))) {
@@ -116,8 +132,6 @@ function update(ev, snap) {
     v('bar').querySelector('.fi').setAttribute('width', clamp(sig.score).toFixed(1));
     const lvl = levelOf(sig.certification || 'forum');
     v('level').replaceChildren(seal(lvl.key), h('span', {}, lvl.name));
-    const said = [sig.summary_label, sig.confidence_label ? `with ${String(sig.confidence_label).toLowerCase()} confidence` : null].filter(Boolean).join(', ');
-    v('cap').textContent = `${said ? `${said}. ` : ''}${Number(sig.internal_share) > 0 ? `${sig.internal_share}% from members.` : 'From public forums so far.'}`;
   }
   const at = snap?.checked_at || snap?.generated_at;
   if (at && ago(at)) v('when').textContent = `Live from the Library, updated ${ago(at)}`;
@@ -273,139 +287,95 @@ function promptFrom(data) {
   draw();
 }
 
-// ---------------------------------------------------------------------------------------------
-// The Community Signal, like top. While the snapshot loads, Sig's ring is the spinner and three
-// lines say what's happening. Then the board: the compounds with the highest Signal, each with what
-// people report most and its score, and a way to the whole board. Only what the public snapshot holds,
-// nothing about any one member. A row shows how far it moved this week only when it moved. While the
-// board is on screen it asks for a newer snapshot once a minute; a row that moved flashes, lime up,
-// coral down.
-const board = document.getElementById('fp-board');
-later(board, () => signalBoard(board));
-function signalBoard(board) {
-  const load = document.getElementById('fp-load');
-  const wrap = document.getElementById('fp-top-wrap'), tbody = board.querySelector('#fp-top tbody');
-  const pieces = [...load.querySelectorAll('svg.ring .rg')];
-  const wheel = pieces.filter((p) => !p.classList.contains('rg-c')), centre = pieces.find((p) => p.classList.contains('rg-c'));
-  const said = (k) => load.querySelector(`[data-load="${k}"]`);
-  const fmtN = fmt;
-  // the spinner: the ring's pieces light one by one, round and round, until the numbers arrive
-  let tick = 0, spin = 0;
-  if (!reduceMotion && wheel.length) {
-    spin = setInterval(() => {
-      tick = (tick + 1) % (wheel.length + 1);
-      wheel.forEach((p, i) => p.classList.toggle('on', i < tick));
-    }, 140);
-  }
-  let shown = null, version = null;
-  const rows = new Map();
-  // a row: its rank, the compound (its fact sheet), what people report most for it, and its Signal,
-  // with this week's move beside the score when there was one. What people report most is written
-  // twice, under the name and in its own column; the board shows one or the other by its width
-  // (home.css), so it's seen, and read out, once
-  function rowFor(id, s, i) {
-    const score = Number(s.score), wk = Number(s.week);
-    const d = Number.isFinite(wk) ? score - wk : NaN;
-    const fill = h('i');
-    fill.style.width = `${Math.max(0, Math.min(100, score)).toFixed(1)}%`;
-    const most = (Array.isArray(s.themes) ? s.themes : []).find((t) => t && t.theme);
-    const said1 = most ? String(most.theme) : '';
-    // every row keeps a slot for the move, so the scores stay in one column; it shows only when a row moved
-    const moved = Number.isFinite(d) && Math.abs(d) >= 0.05
-      ? h('span', { class: `fp-mv ${d > 0 ? 'up' : 'down'}`, title: 'this week', text: `${d > 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}` })
-      : h('span', { class: 'fp-mv', 'aria-hidden': 'true' });
-    return h('tr', { 'data-id': id, role: 'row' },
-      h('td', { class: 'c-n', role: 'cell', text: String(i + 1) }),
-      h('th', { scope: 'row', role: 'rowheader' }, h('a', { href: `/library/${id}/`, text: s.name || id }),
-        said1 ? h('span', { class: 'fp-top-t', text: said1 }) : null),
-      h('td', { class: 'c-th', role: 'cell', text: said1 || '—' }),
-      h('td', { class: 'c-sig', role: 'cell' }, h('span', { class: 'fp-bar' }, h('span', { 'aria-hidden': 'true' }, fill), h('b', { text: score.toFixed(1) }), moved)));
-  }
-  function render(snap) {
-    const all = Object.entries(snap.signals || {}).filter(([, s]) => s && s.score != null && Number.isFinite(Number(s.score)));
-    all.sort((a, b) => b[1].score - a[1].score);
-    const top = all.slice(0, 8);
-    const before = new Map(rows);
-    rows.clear();
-    const trs = top.map(([id, s], i) => { rows.set(id, Number(s.score)); return rowFor(id, s, i); });
-    const rest = all.length - top.length;
-    if (rest > 0) {
-      trs.push(h('tr', { class: 'more', role: 'row' }, h('td', { colspan: '4', role: 'cell' },
-        h('a', { href: 'https://community.miraclehealth.us/#/signal', text: `See all ${fmtN(all.length)} on the full board` }))));
-    }
-    tbody.replaceChildren(...trs);
-    tbody.parentElement.classList.toggle('has-moves', !!tbody.querySelector('.fp-mv.up,.fp-mv.down'));
-    // a row that moved since the last snapshot flashes, lime up or coral down
-    if (shown) for (const tr of tbody.querySelectorAll('tr[data-id]')) {
-      const was = before.get(tr.dataset.id), now = rows.get(tr.dataset.id);
-      if (was != null && now != null && Math.abs(now - was) >= 0.05) tr.classList.add(now > was ? 'flash-up' : 'flash-down');
-    }
-    shown = snap; version = snap.version ?? null;
-  }
-  function show() {
-    clearInterval(spin);
-    load.hidden = true; wrap.hidden = false;
-    board.setAttribute('aria-busy', 'false');
-  }
-  getSignal().then((snap) => {
-    if (!snap || !snap.signals) throw new Error('no snapshot');
-    clearInterval(spin); // stop the spinner first, so the full ring stays up until the board shows
-    said('signal').replaceChildren(' ', ck());
-    wheel.forEach((p) => p.classList.add('on'));
-    if (centre) centre.classList.add('on');
-    render(snap);
-    setTimeout(show, reduceMotion ? 0 : 420);
-    keepLive();
-  }).catch(() => {
-    clearInterval(spin);
-    said('signal').textContent = ': not reachable just now';
-    said('signal').classList.add('is-wait');
-    board.setAttribute('aria-busy', 'false');
-    wrap.before(h('p', { class: 'fp-noscript' }, 'The Signal couldn’t load just now. ',
-      h('a', { href: 'https://community.miraclehealth.us/#/signal', text: 'Open the whole board in the community' }), '.'));
-  });
-  // while the board is on screen and the tab is showing, a newer snapshot is asked for once a minute
-  function keepLive() {
-    let visible = false, timer = 0;
-    const ask = async () => {
-      if (!visible || document.hidden) return;
-      try {
-        const r = await fetch(SIGNAL_URL, { credentials: 'omit', cache: 'no-cache' });
-        const snap = r.ok ? await r.json() : null;
-        if (snap && snap.signals && (snap.version ?? null) !== version) {
-          snap.checked_at = r.headers.get('X-Signal-Checked') || snap.checked_at;
-          render(snap);
-        }
-      } catch { /* the board keeps what it has */ }
-    };
-    if (!('IntersectionObserver' in window)) return;
-    new IntersectionObserver((seen) => {
-      visible = seen.some((e) => e.isIntersecting);
-      clearInterval(timer);
-      if (visible) timer = setInterval(ask, 60000);
-    }, { threshold: 0 }).observe(board);
-  }
-}
-
-// the check mark: neither font has one, so it's drawn (img/i-check.svg, as a mask in the words' colour)
-function ck() { return h('i', { class: 'ck', 'aria-hidden': 'true' }); }
-
 // Sig's twelve agents, in light like the top (the owner's request, November 18: "give it that Solana
 // design"): bands in four of the agents' colours, from the Safety agent's coral to the Mechanism
-// agent's violet, drift behind the section on the LED wall, brightest behind the agents, dark behind
-// the words above and below them; a pulse goes out from the agents every few seconds while it's seen
+// agent's violet, drift behind the section on the LED wall, brightest behind the ring, dark behind
+// the words above and below it; a pulse goes out from the ring every few seconds while it's seen
 const sig = document.getElementById('sig');
 later(sig, () => {
   const canvas = sig.querySelector('.fp-sig-field canvas');
   let light = null;
   try {
-    light = canvas ? sigField(sig, { canvas, colors: ['#FF6B5B', '#F2C94C', '#3FE0C5', '#B98CFF'], quiet: ['.fp-head h2', '.fp-head .fp-sub', '.fp-askbox', '.fp-fine'], focus: sig.querySelector('.fp-groups'), spread: 2.3 }) : null;
+    light = canvas ? sigField(sig, { canvas, colors: ['#FF6B5B', '#F2C94C', '#3FE0C5', '#B98CFF'], quiet: ['.fp-head h2', '.fp-head .fp-sub', '.fp-askbox', '.fp-fine'], focus: sig.querySelector('.cr-dial'), spread: 2.3 }) : null;
   } catch { light = null; }
   if (!light) return;
   light.set([92, 70, 86, 76], 84, { pulse: false });
   light.start();
   if (reduceMotion) return;
   setInterval(() => { if (!document.hidden) light.set([92, 70, 86, 76], 84); }, 8000);
+});
+
+// The twelve round Sig's ring (the owner's request, November 20). Pointing at an agent's piece or its
+// name, or moving to its name with the keyboard, says what it does in the ring's middle; a click or a
+// tap keeps it there until another is picked, or the same one again (or Escape). At rest the middle is
+// the centre's own, the Interpretation agent's. A step lights its agents' pieces while it is pointed
+// at. The ring plays in once, the first time it is seen: the Safety agent's piece, the ten round the
+// ring, then the dot, each step marked as its turn comes.
+const crew = document.getElementById('crew');
+later(crew, () => {
+  const read = crew.querySelector('.cr-read');
+  const whos = new Map([...crew.querySelectorAll('.cr-who')].map((li) => [li.dataset.agent, li]));
+  const arcs = new Map([...crew.querySelectorAll('.cr-arc')].map((g) => [g.dataset.agent, g]));
+  const steps = [...crew.querySelectorAll('.cr-step')];
+  const rest = crew.querySelector('.cr-core')?.dataset.agent;
+  if (!read || !rest || !arcs.size) return;
+  const readN = read.querySelector('.cr-read-n'), readT = read.querySelector('.cr-read-t');
+  let pinned = null, back = 0;
+  // what the ring shows: the agent pointed at, or else the one picked, or else the ring at rest
+  const show = (key) => {
+    clearTimeout(back);
+    const k = key || pinned;
+    const li = whos.get(k || rest);
+    read.dataset.agent = k || rest;
+    readN.textContent = li.querySelector('.cr-name').textContent;
+    readT.textContent = li.querySelector('.cr-job').textContent;
+    if (k) crew.dataset.on = k; else delete crew.dataset.on;
+    for (const [a, el] of whos) el.classList.toggle('on', a === k);
+    for (const [a, el] of arcs) el.classList.toggle('on', a === k);
+  };
+  // back to the picked one or to rest, a moment after the pointer leaves, so the words don't flicker
+  // as it crosses from one piece to the next
+  const leave = () => { clearTimeout(back); back = setTimeout(() => show(null), 160); };
+  const pick = (key) => {
+    pinned = pinned === key ? null : key;
+    for (const [a, el] of whos) el.querySelector('.cr-name').setAttribute('aria-pressed', String(a === pinned));
+    show(pinned);
+  };
+  for (const [key, li] of whos) {
+    const btn = li.querySelector('.cr-name');
+    li.addEventListener('pointerenter', () => show(key));
+    li.addEventListener('pointerleave', leave);
+    btn.addEventListener('focus', () => show(key));
+    btn.addEventListener('blur', leave);
+    btn.addEventListener('click', () => pick(key));
+  }
+  for (const [key, g] of arcs) {
+    g.addEventListener('pointerenter', () => show(key));
+    g.addEventListener('pointerleave', leave);
+    g.addEventListener('click', () => pick(key));
+  }
+  crew.addEventListener('keydown', (e) => { if (e.key === 'Escape' && pinned) pick(pinned); });
+  const mark = (step) => {
+    for (const s of steps) s.classList.toggle('now', s === step);
+    if (step) crew.dataset.step = step.dataset.lit; else delete crew.dataset.step;
+  };
+  for (const step of steps) {
+    step.addEventListener('pointerenter', () => mark(step));
+    step.addEventListener('pointerleave', () => mark(null));
+  }
+  // the ring plays in, once
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  [...arcs.values()].forEach((g, i) => g.style.setProperty('--o', String(i)));
+  crew.classList.add('cr-wait');
+  const io = new IntersectionObserver((seen) => {
+    if (!seen.some((e) => e.isIntersecting)) return;
+    io.disconnect();
+    crew.classList.replace('cr-wait', 'cr-play');
+    // each step as its agents light: the first piece, the ten after it, the dot, and the Safety agent's again
+    [[0, 0], [1, 330], [2, 1500], [3, 2200]].forEach(([i, ms]) => setTimeout(() => { for (const s of steps) s.classList.toggle('now', s === steps[i]); }, ms));
+    setTimeout(() => { crew.classList.remove('cr-play'); for (const s of steps) s.classList.remove('now'); }, 3000);
+  }, { threshold: 0.35 });
+  io.observe(crew.querySelector('.cr-dial'));
 });
 
 // Ask Sig from the front page: the question goes to Sig's own page, in the link
