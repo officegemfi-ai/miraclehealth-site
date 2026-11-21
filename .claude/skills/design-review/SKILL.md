@@ -25,5 +25,6 @@ The look is page 9 of the founder's design canvas, "9 Sig system" (the "Miracle 
    - When you remove old CSS, capture with and without the removal and compare every element's computed style by selector: nothing on screen may change.
    - Run `node scripts/design_check.mjs`: no new drift. When drift is fixed, lower the baseline with `--update`.
    - Run `node scripts/check_clean.mjs`: no code costume, no dot chains or strips, no words in the code face, on any page.
+   - Run `node scripts/check_sig.mjs` when Ask Sig changed: it is the only check that sees an answer, the blood markers beside it and the phone's sheet.
    - Run the site's checks (`node scripts/build_library.mjs --check`, `node --test tests/*.test.mjs`, `node scripts/check_links.mjs`).
 7. **Ship.** Open a PR with the findings fixed, any left with a reason, and before/after images for the most visible ones. Nothing goes live until the owner merges.

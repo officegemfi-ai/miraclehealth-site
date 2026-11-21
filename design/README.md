@@ -33,6 +33,8 @@ To run a full review in Claude Code, ask for a design review. The `design-review
 ## The checks, on every change
 `scripts/check_clean.mjs` opens every page in Chromium at 1440 and 390 wide (and the front page's search results and ⌘K) and fails on code costume, dot chains and strips, and words in the code face. It runs with the layout and focus checks.
 
+`scripts/check_sig.mjs` is the one check that sees Ask Sig with a conversation on it (the others open each page as it loads). Sig answers from a canned stream, at 1440, 1024 and 390 wide, and it fails when anything but the blood markers stands beside the chat, when the rack doesn't keep up with the answers, when the page itself moves or grows under a long answer, or when the phone's sheet isn't a proper dialog. It runs with the three above.
+
 `scripts/design_check.mjs` runs in the site's checks on every push and PR. It reads every stylesheet and finds:
 - colours that aren't the brand's;
 - type faces other than the three;
