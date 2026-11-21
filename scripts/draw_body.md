@@ -1,9 +1,11 @@
 # Drawing a compound on Ask Sig's body map
 
-The screen beside Ask Sig (`/ai`) shows how compounds work in the body, place by place, head to
-toe, and where two or more meet. Sig's Markers agent reads the same map to tell which blood markers
-each compound may move. Both read `library/data/body.json`. This is how a compound gets its entry
-there. `scripts/check_body.mjs` checks every entry against these rules and its fact sheet.
+Each fact sheet draws how its compound works in the body, place by place, head to toe. Beside Ask
+Sig (`/sig`) the blood markers that the compounds in an answer may move stand as a rack of test
+tubes, with which compound pushes each one and where two push the same. Sig's Markers agent reads
+the same map to tell which blood markers each compound may move. All three read
+`library/data/body.json`. This is how a compound gets its entry there. `scripts/check_body.mjs`
+checks every entry against these rules and its fact sheet.
 
 ## Where an entry comes from
 
@@ -40,8 +42,8 @@ but never adds a claim the sheet doesn't make.
   sheet's order: how it works first, then what it does, then what's checked, then the cautions.
 - `dirs`: every marker named in the lines, once, with its direction: `up` (the sheet says it
   rises in people), `down` (it falls or may fall in people) or `watch` (the sheet says to check it,
-  or the direction comes only from animal or lab studies: a marker's chip on the screen has no
-  room to say "in rats"). Exactly the markers the lines name, no more, and never the other way from
+  or the direction comes only from animal or lab studies: a marker's chip or tube has no room to
+  say "in rats"). Exactly the markers the lines name, no more, and never the other way from
   the lines naming it. A marker named only on lines without a source is `watch`.
 - `ask`: one question copied word for word from the sheet's `ask_your_clinician`, the one that
   best fits the lines (it joins the questions a member takes to a clinician). Required when the
@@ -81,12 +83,11 @@ but never adds a claim the sheet doesn't make.
   in people, the first line says so, at the place of its main mechanism: "binds IGF-1 receptors
   and lasts longer than IGF-1 (lab studies; never tested in people)".
 - **Relatives don't lend effects.** Draw what two compounds share the same way (same place, op and
-  phrase) so the screen shows where they meet, but only when both sheets say it. An effect never
+  phrase) so that where they meet can be shown, but only when both sheets say it. An effect never
   carries over from a relative's sheet: when a sheet says it didn't happen ("IGF-1 didn't rise in
   nine healthy men"), that's an `is` line saying so.
 - **The body, not the bottle.** Places are anatomy. A caution about the product itself (purity,
-  identity, contamination) has no place on the map: the fact sheet carries it, and the screen
-  links there.
+  identity, contamination) has no place on the map: the fact sheet carries it.
 - **No doses, ever.** No amounts (mg, mcg, IU, units, mL, spelled out or not), no schedules ("once
   a week", "every other day", "2 capsules a day", "5 days on, 2 off") and not the word dose itself:
   "at higher doses" becomes what the sheet says happened. Lab units count as amounts too, so a
@@ -113,7 +114,7 @@ weight) · `skin` (also injection sites, tanning, wounds) · `uterus` · `ovarie
 PSA: a line moving PSA always sits here, so compounds that move it meet) · `testes` (testosterone made there, sperm) · `joints · fluid` (joints, swelling) · `feet` · `veins`
 (blood clots) · `whole body` (only for a serious event with no one place: deaths in critical
 illness, tumor growth in people with cancer; never for missing data, which the evidence grade on
-the screen and the fact sheet already say)
+the fact sheet already says)
 
 ## Blood markers
 

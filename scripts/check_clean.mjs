@@ -38,7 +38,6 @@ const pages = JSON.parse(readFileSync(join(ROOT, 'design/pages.json'), 'utf8')).
 // the rules it may break, and why.
 const ALLOW = [
   { sel: 'kbd', rules: ['mono'], why: 'keyboard keys are set in the code face everywhere' },
-  { sel: '#sc-root', rules: ['mono'], why: 'Ask Sig’s screen is the editor the owner chose (compounds laid out like code, November 2026)' },
 ];
 
 let chromium;

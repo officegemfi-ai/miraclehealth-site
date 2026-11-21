@@ -31,7 +31,7 @@ The owner's rule (November 18, 2026), after six screenshots of the site: these s
 - **Keys that repeat labels:** the spectrum's four parts are named on the card above it, so it has no legend.
 - **Tiny text a reader needs:** 13px and up; under that, only footnote numbers.
 
-**What stays:** numbers in the code face; every navigation panel and menu, with plain names in it; one short kicker per section; honest notes said plainly ("An example, not a real report"); the drawings' own labels (How it works, the prints, the body map); and Ask Sig's screen, the editor the owner chose, which lays compounds out like code.
+**What stays:** numbers in the code face; every navigation panel and menu, with plain names in it; one short kicker per section; honest notes said plainly ("An example, not a real report"); and the drawings' own labels (How it works, the prints, the body map). Ask Sig's screen, the editor that laid compounds out like code, was an exception here until November 21, 2026, when the owner asked for only the blood markers beside the chat: it and Sig's mind are gone, and so is the exception.
 
 ## Voice
 

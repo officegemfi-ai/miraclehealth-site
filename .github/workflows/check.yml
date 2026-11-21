@@ -14,6 +14,10 @@
 #   - no page looks machine-made: no code costume (file names, paths, prompts), no strings of middle
 #     dots, no rows of dots and no words in the code face (scripts/check_clean.mjs, in Chromium; the
 #     owner's rule of November 18, design/BRAND.md, "Clean, not costume")
+#   - Ask Sig with a conversation on it, which the three above never see: only the blood markers
+#     stand beside the chat (the owner's rule of November 21), the rack keeps up with the answers, the
+#     page itself never moves under a long one, and a phone's sheet is a proper dialog
+#     (scripts/check_sig.mjs, in Chromium, Sig answering from a canned stream)
 # GitHub emails you when a run fails.
 name: Check the site
 on:
@@ -76,3 +80,5 @@ jobs:
         run: node scripts/check_states.mjs
       - name: No AI-looking details (code costume, dot chains and strips, words in the code face)
         run: node scripts/check_clean.mjs
+      - name: Ask Sig with an answer (only the blood markers beside the chat, the page stays put, the phone's sheet)
+        run: node scripts/check_sig.mjs

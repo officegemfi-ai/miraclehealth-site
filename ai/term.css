@@ -1,16 +1,16 @@
-/* Ask Sig as Sig's health terminal (miraclehealth.us/ai). Loads after ai.css, plan.css and
-   screen.css and dresses the same page: a window under the site's bar with a title bar (Sig's ring,
+/* Ask Sig as Sig's health terminal (miraclehealth.us/ai). Loads after ai.css and plan.css and
+   dresses the same page: a window under the site's bar with a title bar (Sig's ring,
    a tab for the question it's on, the twelve who answer) and a status bar that stay put while the
    conversation scrolls between them; the conversation on the left, as a shell: the question at
    the prompt (sig@miracle ~/chats › ask "…"), the run as numbered log lines (01 safety ✓ …), then
    the answer under the Safety agent's check, and the box to write in as the same prompt; the
-   agents and the screen beside it, as two tabs. Every agent keeps one colour (Eleven), and so does
+   blood markers beside it (mind.css). Every agent keeps one colour (Eleven), and so does
    every part of an answer: numbered in the gutter, a rule beside it in its agent's colour, and a
    line over it saying what kind of part it is (// the studies, // blood tests…) and, on the right,
    which agent signed it. Safety notes inform; they never shout. The typing bar has its own place
    at the foot of the conversation and never moves; only the conversation scrolls. On a phone it is
-   the conversation alone, edge to edge, with the ring and the count in its title bar; the screen
-   still pulls up as a sheet. */
+   the conversation alone, edge to edge, with the ring and the count in its title bar; the blood
+   markers pull up as a sheet. */
 
 .ai{
   --a-safety:#FF6B5B;--a-planner:#FF9F4A;--a-recommender:#F2C94C;--a-community:#3D8BFF;--a-combination:#5FE08A;--a-markers:#3FE0C5;
@@ -231,9 +231,8 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm details.more>summary{min-height:36px;font:500 13px/1 var(--body);color:var(--tm-t2)}
 /* the cards keep their own layout, with the agent that made them over each and its colour down its side */
 .tm .sheet-body>.ctag{position:relative;margin:16px 0 0}
-.tm .sheet-body>.ctag+.card,.tm .sheet-body>.ctag+.ai-pointer{margin-top:6px}
+.tm .sheet-body>.ctag+.card{margin-top:6px}
 .tm .sheet-body>.card[data-agent]{border-left:3px solid var(--ac)}
-.tm .ai-pointer{border-color:var(--tm-line2);background:rgba(0,0,0,.2);font:500 13.5px/1.4 var(--body)}
 /* the efficacy read: the Interpretation agent's derivation, on the terminal's own panel */
 .tm .card.interp{border-color:var(--tm-line);background:var(--tm-pane2);color:var(--tm-tx)}
 .tm .card.interp p.sub,.tm .ip-row dt,.tm .ip-rung{color:var(--tm-t3)}
@@ -248,18 +247,17 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .v-dot{width:8px;height:8px;border:0;border-radius:0}
 .tm .v-dot.v-studies{background:#14ECC3;box-shadow:none}
 .tm .v-dot.v-community{background:var(--a-community);box-shadow:none}
-/* the foot: the Safety agent's check, then the screen and copying */
+/* the foot: the Safety agent's check, then copying */
 .tm .sheet-foot{margin-top:10px;font:500 13px/1.45 var(--body);color:var(--tm-t2)}
 .tm .sheet-foot{justify-content:flex-end}
-.tm .ai-toscreen{display:inline-flex}
-.tm .sheet-foot .mini,.tm .ai-toscreen{min-height:38px;margin:0;padding:0 12px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 13px/1 var(--body)}
-.tm .sheet-foot .mini:hover,.tm .ai-toscreen:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
+.tm .sheet-foot .mini{min-height:38px;margin:0;padding:0 12px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 13px/1 var(--body)}
+.tm .sheet-foot .mini:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
 /* after words of crisis, 988 stays in reach: opaque, so nothing scrolling under it shows through */
 .tm .help-pin{margin:10px var(--tm-px) 0;background:linear-gradient(rgba(224,104,92,.16),rgba(224,104,92,.16)),var(--tm-win)}
 
 /* ---------------------------------------------------------------- beside the chat */
 @media (min-width:1101px){
-  .tm .ai-rail.sc{grid-column:2;grid-row:2;position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));align-self:start;height:var(--tm-h);max-height:none;margin:0;padding:0;overflow:auto;border:0;border-right:1px solid var(--tm-line);border-radius:0;background:var(--tm-pane2);--sc-code:var(--tm-pane2);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent}
+  .tm .ai-rail{grid-column:2;grid-row:2;position:sticky;top:calc(var(--top-h) + var(--tm-g) + var(--tm-tb));align-self:start;height:var(--tm-h);max-height:none;margin:0;padding:0;overflow:auto;border:0;border-right:1px solid var(--tm-line);border-radius:0;background:var(--tm-pane2);scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent}
   .tm .ai-chat{border-right-color:var(--tm-line)}
 }
 
@@ -280,10 +278,6 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm .ai-chat{min-height:calc(100svh - var(--top-h) - var(--tm-tb) - var(--tm-sb));border:0}
   .tm .help-pin{top:calc(var(--top-h) + var(--tm-tb) + 8px)}
   .tm .ai-dock{padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
-  .tm .ai-peek:not([hidden]){margin:0 0 8px}
-  /* what's on the screen, in one row that slides sideways, so the typing bar stays low */
-  .tm .pk-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
-  .tm .pk-chip{flex:none}
   .tm .ai-composer{min-height:50px;padding:4px 6px 4px 12px}
   .tm .ai-fine{margin-top:6px;font-size:11px}
   .tm .ai-composer textarea{font-size:16px}
@@ -376,7 +370,10 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 .sigapp .tm.ai-app{height:calc(100dvh - 2 * var(--tm-g))}
 .sigapp .tm .tm-title{position:relative;top:auto}
 .sigapp .tm .ai-chat{min-height:0;overflow:hidden}
-.sigapp .tm .ai-scroll{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;scroll-padding:12px 0 24px}
+/* (the pane is also what anything placed out of the flow inside it is measured from: a label kept for
+   screen readers at the end of a long chat would otherwise hang below the window, and make the page
+   itself able to move under the pane) */
+.sigapp .tm .ai-scroll{position:relative;flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;scroll-padding:12px 0 24px}
 .sigapp .tm .help-pin{position:relative;top:auto;margin-bottom:10px}
 /* on a wide screen the chat's name is on its tab, so the pane needs no header of its own (it stays
    for screen readers, with the page's heading) */
@@ -384,7 +381,7 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
   .sigapp .tm .ai-bar{position:absolute;width:1px;height:1px;min-height:0;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 }
 @media (min-width:1101px){
-  .sigapp .tm .ai-rail.sc{position:relative;top:auto;align-self:stretch;height:auto;min-height:0}
+  .sigapp .tm .ai-rail{position:relative;top:auto;align-self:stretch;height:auto;min-height:0}
 }
 /* where the site's bar would fold its links into a menu, the panel slides in over the window from
    the menu button; a little narrower until then */

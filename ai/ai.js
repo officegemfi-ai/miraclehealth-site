@@ -7,8 +7,8 @@
 // design canvas): its answer opens with a headline, each compound it names carries its Community
 // Signal, and the studies, the safety line and what to take to a doctor stand apart in labelled
 // rows, so the two voices never blur. How it got there (each agent's steps) folds away under the
-// answer's first line. Beside the chat (ai/mind.js, ai/screen.js): the blood markers what it's
-// about may move, Sig's mind (every Signal as one map, the ones it read lit) and the screen.
+// answer's first line. Beside the chat (ai/markers.js): the blood markers what it's about may move,
+// and nothing else.
 // Nothing here uses innerHTML for anything the AI or the visitor wrote: text is placed with
 // textContent, and the small amount of formatting the AI uses (bold, lists, Library links) is
 // built node by node.
@@ -18,7 +18,7 @@ import { h, svg, getSignal, groupN } from '/lib/dom.js?v=f31d9546b5';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
 import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
-import { makeRail } from '/ai/mind.js?v=f4d59a48c1';
+import { makeMarkers } from '/ai/markers.js?v=6c1607533c';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -83,7 +83,6 @@ const ICON = {
   close: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
   info: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 7.2v4M8 4.9v.1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
   keep: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 2h8v12l-4-3-4 3z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>',
-  code: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   net: '<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="8" r="5.6" stroke-dasharray="2 1.6"/><circle cx="8" cy="8" r="1.9" fill="currentColor" stroke="none"/></g><g fill="currentColor"><circle cx="8" cy="2.4" r="1.75"/><circle cx="12.85" cy="10.8" r="1.75"/><circle cx="3.15" cy="10.8" r="1.75"/></g></svg>',
 };
 const GOAL_ICON = {
@@ -347,7 +346,7 @@ const readList = () => {
   return Array.isArray(l) ? l.filter((c) => c && typeof c.id === 'string' && /^[a-z0-9]{6,16}$/.test(c.id)).map((c) => ({ id: c.id, title: String(c.title || 'Chat').slice(0, 80), at: Number(c.at) || 0 })) : [];
 };
 const titleOf = (c) => c.find((m) => m.role === 'user')?.text.replace(/\s+/g, ' ').trim().slice(0, 80) || 'New chat';
-const bare = (m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined });
+const bare = (m) => (m.role === 'user' ? m : { ...m, view: undefined, showHelp: undefined, helpShown: undefined, ladder: undefined });
 let list = readList();
 const gone = new Set();     // deleted in this window: not kept again
 let carried = [];
@@ -706,7 +705,7 @@ function schedule(msg) {
 function cardNode(card, msg) {
   if (card.type === 'shortlist') return shortlistNode(card);
   // The studies and the community side by side: in the words now (each compound's Signal, the
-  // studies' row) and beside the chat (Sig's mind, the screen)
+  // studies' row)
   if (card.type === 'voices') return h('div', { class: 'a-none', hidden: true });
   if (card.type === 'community') return crowdNode(card);
   if (card.type === 'compare') return compareNode(card);
@@ -779,47 +778,10 @@ function warnGroups(groups) {
     g.level === 'now' ? h('a', { class: 'warn-call', href: 'tel:911', text: 'Call 911' }) : null)));
 }
 
-// Their own stack, when the screen is there to show it: one line saying what the check found, and
-// how many cautions and blood markers are on the screen, which it opens
-function pointerText(card) {
-  const ids = (card.items || []).map((it) => it && it.id).filter(libId);
-  const a = card.audit;
-  const top = (a?.findings || []).reduce((t, f) => (({ avoid: 3, caution: 2 })[f?.level] || 0) > (({ avoid: 3, caution: 2 })[t] || 0) ? f.level : t, '');
-  const check = !a ? (ids.length > 1 ? 'The Synergy auditor is checking them together' : '')
-    : a.skipped ? '' : a.ok === false ? 'The Synergy auditor couldn’t check these just now'
-      : top === 'avoid' ? 'The Synergy auditor says not to take these together'
-        : top === 'caution' ? 'The Synergy auditor found something worth checking' : ids.length > 1 ? 'No clash found' : 'Checked for you';
-  const n = SCREEN?.sum?.(ids);
-  const bits = n ? [n.cautions ? plural(n.cautions, 'safety note') : '', n.markers ? plural(n.markers, 'blood marker') : ''].filter(Boolean) : [];
-  const where = bits.length ? `${listOf(bits)} on the screen` : 'How they work, on the screen';
-  return { text: check ? `${check}. ${where}` : where, tone: a && !a.skipped && a.ok !== false ? top : '' };
-}
-function pointerNode(card) {
-  const label = h('span', { class: 'ptr-text' });
-  const btn = h('button', { class: 'ai-pointer', type: 'button', 'data-card': card.id || '' }, h('span', { class: 'ptr-code', 'aria-hidden': 'true', text: '</>' }), label);
-  btn.fill = () => {
-    const t = pointerText(card);
-    label.textContent = t.text;
-    btn.classList.toggle('t-avoid', t.tone === 'avoid');
-    btn.classList.toggle('t-caution', t.tone === 'caution');
-  };
-  btn.fill();
-  // Again once the screen has these compounds' lines, for its counts
-  SCREEN?.ready?.then(() => SCREEN.need?.((card.items || []).map((it) => it && it.id).filter(libId))).then(() => btn.fill());
-  btn.addEventListener('click', () => {
-    const i = chat.findIndex((m) => (m.parts || []).some((p) => p.t === 'card' && p.card === card));
-    const sub = i >= 0 ? subjectIn(chat[i], i) : null;
-    if (sub) SCREEN.show(sub);
-    openScreen();
-  });
-  return btn;
-}
 function shortlistNode(card) {
-  if (card.kind === 'yours' && SCREEN) return pointerNode(card);
   const el = h('div', { class: 'card short', 'data-card': card.id || '' });
-  const compact = card.kind === 'yours' && !!SCREEN;
   const sub = card.kind === 'yours'
-    ? `What you take or asked about, checked together by the Synergy auditor.${compact ? ' How each works in the body, the blood markers and what the community reports are on the screen.' : ''}`
+    ? 'What you take or asked about, checked together by the Synergy auditor.'
     : 'Laid out by the Stack builder: options to talk through with your doctor.';
   el.append(h('div', { class: 'card-head' }, h('div', {}, h('h2', { text: card.title }), h('p', { text: sub }))));
   if (card.note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: card.note })));
@@ -829,7 +791,7 @@ function shortlistNode(card) {
   const shared = [...new Set(items.map((it) => it.caution).filter((c) => c && !c.includes(':') && items.filter((x) => x.caution === c).length > 1))];
   for (const it of items) {
     const one = shared.includes(it.caution) ? { ...it, caution: '' } : it;
-    el.append(compact ? pickCompact(one) : pickNode(one));
+    el.append(pickNode(one));
   }
   for (const c of shared) {
     const names = items.filter((x) => x.caution === c).map((x) => x.name);
@@ -840,14 +802,6 @@ function shortlistNode(card) {
   el.append(audit);
   if (card.kind === 'yours') el.append(stackSaveRow(card));
   return el;
-}
-// A compound in the member's own stack, in short: the screen has the rest
-function pickCompact(it) {
-  return h('div', { class: 'pick compact' },
-    h('div', { class: 'pick-name' }, isLib(it.id) ? h('a', { href: it.url || `/library/${it.id}/`, text: it.name }) : h('b', { text: it.name }),
-      h('span', { class: 'pick-role', text: it.role }),
-      it.status ? h('span', { class: `st st-${it.status.key}`, text: it.tag || STATUS[it.status.key] }) : h('span', { class: 'ev ev-pending', text: it.tag || 'No fact sheet yet' })),
-    it.caution ? h('p', { class: 'pick-warn' }, svg(ICON.info), h('span', { text: it.caution })) : null);
 }
 // One option: its two voices side by side (what the studies show for what was asked, what the
 // community reports), the one that leads first; then what studies found, each with its source.
@@ -1168,62 +1122,6 @@ function auditNode(card) {
   return h('div', { class: 'card short' }, box);
 }
 
-// ---------------------------------------------------------------------------
-// The screen (ai/screen.js): what the chat is about, drawn beside it (a tab on phones)
-// ---------------------------------------------------------------------------
-const SCREEN = window.MHScreen || null;
-// The compounds an answer was about, with the auditor's check when it ran: a stack, shortlist,
-// plan or comparison it laid out, or else what the member named (the community step reads those)
-function cardSet(card, at) {
-  let items = [];
-  if (card.type === 'shortlist' || card.type === 'compare' || card.type === 'voices') items = card.items || [];
-  else if (card.type === 'plan') items = [...(card.peptides || []), ...(card.supplements || [])];
-  const ids = [...new Set(items.map((it) => it && it.id).filter(libId))].slice(0, 6);
-  if (!ids.length) return null;
-  const a = card.type === 'shortlist' || card.type === 'plan' ? card.audit : null;
-  const ok = !a || a.skipped ? null : a.ok !== false;
-  return { ids, findings: a?.findings || [], ok, meds: card.meds || [], at };
-}
-// With what the agents did, how long it took and what the answer drew on, for the screen's log
-const withLog = (s, m) => s && {
-  ...s, log: (m.steps || []).map((x) => ({ agent: x.agent, title: x.title || '', status: x.status || '', flag: x.flag || '' })), ms: m.ms || 0, src: m.sources || null,
-  ladder: m.ladder || null,
-};
-function subjectIn(m, i) {
-  if (!m || m.role !== 'assistant') return null;
-  const cards = (m.parts || []).filter((p) => p.t === 'card').map((p) => p.card);
-  // The evidence for what they asked about keeps the screen: a card about other compounds (a plan
-  // built on foundations, options for the goal) doesn't take it away
-  const about = [...new Set((Array.isArray(m.ladder?.rows) ? m.ladder.rows : []).map((r) => r && r.id).filter(libId))].slice(0, 6);
-  for (let j = cards.length - 1; j >= 0; j--) {
-    const s = cardSet(cards[j], i);
-    if (s && (!about.length || about.some((id) => s.ids.includes(id)))) return withLog(s, m);
-  }
-  if (about.length) return withLog({ ids: about, findings: [], ok: null, meds: [], asked: cards.some((c) => c.type === 'intake'), at: i }, m);
-  const steps = m.steps || [];
-  const named = steps.find((s) => s.agent === 'community' && s.chips?.length)
-    || steps.find((s) => s.agent === 'synergy' && s.chips?.length)
-    || steps.find((s) => s.agent === 'recommender' && /fact sheet/i.test(s.title || '') && s.chips?.length);
-  if (!named) return null;
-  const ids = [...new Set(named.chips.map((c) => c.id).filter(libId))].slice(0, 6);
-  if (!ids.length) return null;
-  const audit = cards.find((c) => c.type === 'audit' && !c.for);
-  // Sig asked its questions first: the check comes with its next answer
-  const asked = cards.some((c) => c.type === 'intake');
-  return withLog({ ids, findings: audit?.findings || [], ok: audit ? audit.ok !== false : null, meds: [], asked, at: i }, m);
-}
-function latestSubject() {
-  for (let i = chat.length - 1; i >= 0; i--) {
-    const s = subjectIn(chat[i], i);
-    if (s) return s;
-  }
-  return null;
-}
-function screenSync() {
-  if (!SCREEN) return;
-  const s = latestSubject();
-  if (s) SCREEN.show(s);
-}
 // What to take to a doctor: one row under the answer's own, to copy in a tap
 function questionsNode(card) {
   const items = (card.items || []).map((q) => String(q)).filter(Boolean);
@@ -1632,10 +1530,7 @@ async function run(am) {
   busy = { controller, msg: am, sid };
   setBusy(true);
   drawTabs();
-  // Beside the chat: Sig's mind, lighting up as the agents read, unless they're looking at
-  // something there themselves
-  if (!tabByHand) setTab('mind');
-  RAIL?.mind.light([]);
+  railWait(railWaits());
   const t0 = performance.now();
   // Who answers: the chat's choice (Sig's server leaves out anyone not on it; the Safety agent always answers)
   const asked = tidyWho(am.asked || whoFor(sessions.find((t) => t.id === sid)));
@@ -1690,15 +1585,12 @@ async function run(am) {
   finish(am, true);
   setBusy(false);
   drawTabs();
-  SCREEN?.checking(false);
   const open = sid === activeId;
   if (open) {
     setState(am.state, am.ms);
-    screenSync();
-    // Beside the chat, what the answer was about: the blood tests it may move, else Sig's mind
-    railSync({ choose: !tabByHand });
+    // Beside the chat, what the answer was about: the blood tests it may move
+    railSync();
   } else showState();
-  tabByHand = false;
   sigs().forEach((el) => setSig(el, moodOf(am) === 'concerned' ? 'concerned' : 'idle'));
   fitPlaceholder();
   save();
@@ -1728,10 +1620,8 @@ function onEvent(am, ev, d) {
       if (d.flag && d.flag !== 'none') am.flag = d.flag;
       drawStep(view, am.steps.find((s) => s.id === d.id));
       drawTrace(am);
-      if (here && d.agent === 'community' && d.chips?.length) RAIL?.mind.light(d.chips.map((c) => c && c.id).filter(libId));
-      // The screen says the auditor is checking, and shows what was named as soon as it's read
-      if (d.agent === 'synergy' && d.status === 'run' && busy?.sid === activeId) SCREEN?.checking(true);
-      if (d.agent === 'community' && d.chips?.length) screenSync();
+      // The rack beside the chat follows the answer as soon as it names what it's about
+      if (here && d.chips?.length && (d.id === 'lookup' || d.agent === 'community' || d.agent === 'synergy')) railSync();
       schedule(am);
       break;
     }
@@ -1755,8 +1645,6 @@ function onEvent(am, ev, d) {
           const box = view.cardEls.get(host)?.querySelector('.audit');
           if (box) { fillAudit(box, d); box.hidden = false; }
           view.cardEls.get(host)?.fill?.();
-          SCREEN?.checking(false);
-          screenSync();
           break;
         }
       }
@@ -1770,19 +1658,12 @@ function onEvent(am, ev, d) {
         if (Number.isFinite(view.revealIdx)) view.revealIdx += 1;
       } else am.parts.push(part);
       schedule(am);
-      // A stack, shortlist, plan or comparison goes on the screen at once; its check when it comes
-      if (d.type === 'audit') SCREEN?.checking(false);
-      if (['shortlist', 'plan', 'audit', 'compare', 'voices'].includes(d.type)) screenSync();
       break;
     }
-    // The evidence for what they asked about, rung by rung: the screen draws it
-    case 'ladder':
-      am.ladder = d && typeof d === 'object' ? d : null;
-      screenSync();
-      break;
+    // (Sig's server also sends the evidence rung by rung, as "ladder"; nothing on the page draws it
+    // now, so it isn't kept)
     case 'sources':
       am.sources = { studies: d.studies || {}, community: d.community || {}, version: typeof d.version === 'string' ? d.version.slice(0, 40) : '' };
-      if (here) RAIL?.mind.light(readIn(am));
       drawTrace(am);
       schedule(am);
       break;
@@ -1844,13 +1725,9 @@ function finish(am, live) {
       : am.review ? 'every part checked before you saw it' : '';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(copyOf(am), btn));
-    const sub = SCREEN ? subjectIn(am, chatOf(am).indexOf(am)) : null;
-    const pointed = (am.parts || []).some((p) => p.t === 'card' && p.card.type === 'shortlist' && p.card.kind === 'yours');
-    const go = sub && !pointed ? h('button', { class: 'ai-toscreen', type: 'button' }, svg(ICON.code), h('span', { text: 'See it on the screen' })) : null;
-    go?.addEventListener('click', () => { SCREEN.show(sub); openScreen(); });
     const checked = am.review || am.state === 'stopped';
     const line = !checked ? 'answered' : am.state === 'stopped' ? said : edited ? `the safety agent ${said}` : 'checked by the safety agent';
-    view.foot.append(h('span', { class: `a-check${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: line })), h('span', { class: 'foot-actions' }, go, btn));
+    view.foot.append(h('span', { class: `a-check${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: line })), h('span', { class: 'foot-actions' }, btn));
     view.foot.hidden = false;
   }
   // The newest answer ends with where to go next: a few follow-ups, and the members themselves
@@ -1876,12 +1753,6 @@ function namedIn(m) {
     || steps.find((x) => x.agent === 'synergy' && x.chips?.length);
   return [...new Set((s?.chips || []).map((c) => c && c.id).filter(libId))].slice(0, 4);
 }
-// The Signals an answer read: as where it came from says, else what the community's step read
-function readIn(m) {
-  const names = m?.sources?.community?.names;
-  const ids = Array.isArray(names) && names.length ? names.map((x) => x && x.id) : (m?.steps || []).filter((x) => x.agent === 'community').flatMap((x) => (x.chips || []).map((c) => c && c.id));
-  return [...new Set(ids.filter(libId))].slice(0, 8);
-}
 const questionOf = (am) => {
   const own = chatOf(am);
   const i = own.indexOf(am);
@@ -1900,7 +1771,7 @@ function nextNode(am) {
   if (a && who.includes('community')) qs.push(`What side effects do people mention with ${a}?`);
   if (a && b) qs.push(`How do ${a} and ${b} compare?`);
   else if (a) qs.push(`What do the studies show for ${a}?`);
-  if (a && who.includes('markers') && RAIL?.markers.count()) qs.push(`Which blood tests matter with ${a}${b ? ` and ${b}` : ''}?`);
+  if (a && who.includes('markers') && MARKERS.count()) qs.push(`Which blood tests matter with ${a}${b ? ` and ${b}` : ''}?`);
   else if (a) qs.push(`What should I ask my doctor about ${a}?`);
   const q = questionOf(am);
   const btns = qs.slice(0, 3).map((t) => {
@@ -2040,38 +1911,30 @@ document.querySelectorAll('[data-prefill]').forEach((b) => b.addEventListener('c
   input.setSelectionRange(input.value.length, input.value.length);
 }));
 document.querySelectorAll('.ai-start[data-goal]').forEach((b) => b.querySelector('.start-ico')?.append(goalIcon(b.dataset.goal)));
-// The screen: beside the chat on wide screens. On phones and narrow windows it's a sheet that
-// pulls up over the chat, from the bar above the box to write in (or "See it on the screen"
-// under an answer); the page behind it rests until it's closed, and nothing is taken away.
-const rail = $('ai-screen');
+// Beside the chat: the blood markers what it's about may move (ai/markers.js), and nothing else. On
+// phones and narrow windows the rack is a sheet that pulls up over the chat, from a bar above the box
+// to write in that says how many tests move; the page behind it rests until it's closed, and
+// nothing is taken away.
+const rail = $('ai-rail');
+const peek = $('ai-peek');
 const narrowMq = matchMedia('(max-width: 1100px)');
-const backdrop = h('div', { class: 'sc-backdrop', 'aria-hidden': 'true' });
+const backdrop = h('div', { class: 'rl-backdrop', 'aria-hidden': 'true' });
 let sheetFrom = null;
+// What rests behind the open sheet, and is given back when it shuts (the side panel may be resting
+// already, as a drawer that's closed: that stays as it was)
+let rested = [];
 const behind = () => [document.querySelector('header.top'), document.querySelector('.sg-side'), chatEl, document.querySelector('.foot')].filter(Boolean);
 function openSheet() {
-  if (!SCREEN || !rail || !narrowMq.matches || !SCREEN.subject() || app.classList.contains('sheet-open')) return;
+  if (!rail || !narrowMq.matches || !MARKERS.count() || app.classList.contains('sheet-open')) return;
   sheetFrom = document.activeElement;
   app.classList.add('sheet-open');
   document.documentElement.classList.add('sheet-lock');
   rail.setAttribute('role', 'dialog');
   rail.setAttribute('aria-modal', 'true');
-  for (const el of behind()) el.inert = true;
+  rested = behind().filter((el) => !el.inert);
+  for (const el of rested) el.inert = true;
   rail.scrollTop = 0;
   requestAnimationFrame(() => $('rl-close')?.focus({ preventScroll: true }));
-}
-function openScreen() {
-  if (!SCREEN || !rail) return;
-  setTab('screen');
-  if (narrowMq.matches) { openSheet(); return; }
-  rail.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-  const head = rail.querySelector('.sc-headline');
-  if (!head) return;
-  head.setAttribute('tabindex', '-1');
-  head.focus({ preventScroll: true });
-  const box = head.closest('.sc-head');
-  box?.classList.remove('flash');
-  void box?.offsetWidth;
-  box?.classList.add('flash');
 }
 function closeSheet() {
   if (!app.classList.contains('sheet-open')) return;
@@ -2079,63 +1942,45 @@ function closeSheet() {
   document.documentElement.classList.remove('sheet-lock');
   rail?.setAttribute('role', 'complementary');
   rail?.removeAttribute('aria-modal');
-  for (const el of behind()) el.inert = false;
-  const back = sheetFrom && document.contains(sheetFrom) && sheetFrom !== document.body ? sheetFrom : $('ai-peek')?.querySelector('button');
+  for (const el of rested) el.inert = false;
+  rested = [];
+  const back = sheetFrom && document.contains(sheetFrom) && sheetFrom !== document.body ? sheetFrom : peek?.querySelector('button');
   sheetFrom = null;
   back?.focus({ preventScroll: true });
 }
-// Beside the chat, three tabs (page 19 of the design canvas): the blood markers what it's about may
-// move, Sig's mind (every Signal as one map, the ones an answer read lit) and the screen. Sig's mind
-// while the agents work, then the markers when the answer moves any, else the mind; a tab picked
-// by hand during an answer stays picked. On narrower screens the same three, as the sheet.
-const RAIL = makeRail({ h, svg, getSignal, catalog: CATALOG, spaceLink, community: COMMUNITY, copy });
-const tabs = { markers: $('tm-t-markers'), mind: $('tm-t-mind'), screen: $('tm-t-screen') };
-const panels = { markers: $('rl-markers'), mind: $('rl-mind'), screen: $('sc-root') };
-const ORDER = ['markers', 'mind', 'screen'];
-const TITLES = { markers: ['Blood markers', 'what it may move'], mind: ['Sig’s mind', 'every Signal, one memory'], screen: ['The screen', 'how it works in the body'] };
-let tab = 'mind';
-let tabByHand = false;
-if (panels.markers) RAIL.markers.mount(panels.markers);
-if (panels.mind) RAIL.mind.mount(panels.mind);
-function syncPanels() {
-  for (const [k, p] of Object.entries(panels)) if (p) p.hidden = k !== tab;
-  if (panels.screen) panels.screen.setAttribute('role', 'tabpanel');
-  const t = $('rl-title');
-  if (t) {
-    t.querySelector('.rl-name').textContent = TITLES[tab][0];
-    t.querySelector('.rl-sub').textContent = TITLES[tab][1];
+// The bar above the box to write in, on a narrow window: the rack's own first line, and the way to
+// it. It's there only while there are blood tests to show, and says what the rack says.
+function drawPeek() {
+  if (!peek) return;
+  const said = MARKERS.said();
+  if (!said) {
+    closeSheet();
+    peek.hidden = true;
+    peek.replaceChildren();
+    return;
   }
-}
-function setTab(name, { hand = false, focus = false } = {}) {
-  if (!tabs[name] || !panels[name]) return;
-  tab = name;
-  if (hand) tabByHand = true;
-  for (const [k, b] of Object.entries(tabs)) {
-    if (!b) continue;
-    const on = k === name;
-    b.setAttribute('aria-selected', String(on));
-    b.tabIndex = on ? 0 : -1;
-    if (on) b.classList.remove('new');
+  let btn = peek.querySelector('.rl-peek');
+  if (!btn) {
+    btn = h('button', { class: 'rl-peek', type: 'button', 'aria-haspopup': 'dialog', 'aria-controls': 'ai-rail' },
+      h('span', { class: 'rl-peek-t' }, h('b', { text: 'Blood markers' }), h('span', { class: 'rl-peek-n' })), h('span', { class: 'rl-peek-go', text: 'See them' }));
+    btn.addEventListener('click', openSheet);
+    peek.replaceChildren(btn);
   }
-  syncPanels();
-  if (focus) tabs[name].focus();
+  btn.querySelector('.rl-peek-n').textContent = said;
+  peek.hidden = false;
 }
-for (const [name, b] of Object.entries(tabs)) {
-  if (!b) continue;
-  b.addEventListener('click', () => setTab(name, { hand: !!busy }));
-  b.addEventListener('keydown', (e) => {
-    const i = ORDER.indexOf(tab);
-    const to = e.key === 'Home' ? ORDER[0] : e.key === 'End' ? ORDER[ORDER.length - 1]
-      : e.key === 'ArrowRight' ? ORDER[(i + 1) % ORDER.length] : e.key === 'ArrowLeft' ? ORDER[(i + ORDER.length - 1) % ORDER.length] : '';
-    if (!to) return;
-    e.preventDefault();
-    setTab(to, { hand: !!busy, focus: true });
-  });
+const MARKERS = makeMarkers({ h, svg, copy, onDraw: drawPeek });
+if ($('rl-markers')) MARKERS.mount($('rl-markers'));
+if (rail) {
+  $('rl-close')?.addEventListener('click', closeSheet);
+  app.append(backdrop);
+  backdrop.addEventListener('click', closeSheet);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && app.classList.contains('sheet-open')) { e.preventDefault(); closeSheet(); } });
 }
-$('rl-close')?.addEventListener('click', () => closeSheet());
 narrowMq.addEventListener('change', () => {
-  syncPanels();
-  if (!narrowMq.matches) setSig(document.querySelector('.tm-logo'), busy ? 'think' : 'idle');
+  if (narrowMq.matches) return;
+  closeSheet();
+  setSig(document.querySelector('.tm-logo'), busy ? 'think' : 'idle');
 });
 // The answer the side panel is about: the one being written, or the last one with steps
 function teamMsg() {
@@ -2170,21 +2015,26 @@ const pick = $('ai-who') && $('ai-whopop') ? whoPicker({
   },
 }) : null;
 pick?.set(whoFor(sessions.find((t) => t.id === activeId)));
-// What it was about, beside the chat: the blood tests its compounds may move, and the Signals it
-// read lit in Sig's mind. choose: open the tab that has something (the markers when they move any)
-async function railSync({ choose = false } = {}) {
+// What it was about, beside the chat: the blood tests its compounds may move
+async function railSync() {
   const m = teamMsg();
   const ids = m ? namedIn(m) : [];
-  RAIL.mind.light(m ? readIn(m) : []);
-  const n = await RAIL.markers.show(ids, Object.fromEntries(ids.map((id) => [id, nameFor(id)])));
-  // the rack opens by itself when the Markers agent answered and there's something on it
-  if (choose && !busy) setTab(n && m && answered(m).includes('markers') ? 'markers' : 'mind');
+  await MARKERS.show(ids, Object.fromEntries(ids.map((id) => [id, nameFor(id)])));
+  // (the Library's files can come back after the next question was sent: the rack then still waits)
+  railWait(railWaits());
+}
+// While a new answer hasn't yet said what it's about, the rack still holds the last answer's tests:
+// it rests, dimmed, until this one names its compounds or ends
+const railWaits = () => Boolean(busy && busy.sid === activeId && !namedIn(busy.msg).length && MARKERS.count());
+function railWait(on) {
+  app.classList.toggle('rail-wait', on);
+  $('rl-markers')?.setAttribute('aria-busy', String(on));
 }
 // ---------------------------------------------------------------------------
 // The chats as tabs, like a browser's: in the title bar (in the conversation's header on a phone),
 // named by their first question. + opens a new one; × closes one, and stops its answer if it's
 // being written (the last one closed leaves an empty chat). Each chat keeps its own lines on the
-// page and its place in them; the screen, the agents and the status bar follow the one that's open.
+// page and its place in them; the blood markers, the agents and the status bar follow the one that's open.
 // ---------------------------------------------------------------------------
 const tabsNav = $('tm-chats');
 const plusBtn = $('tm-plus');
@@ -2246,17 +2096,9 @@ function showState() {
 function shown() {
   drawTabs();
   following = false;
-  if (SCREEN) {
-    const sub = latestSubject();
-    if (sub) SCREEN.show(sub); else SCREEN.clear();
-    SCREEN.checking(false);
-  }
-  tabs.screen?.classList.remove('new');
   closeSheet();
-  tabByHand = false;
   pick?.set(whoFor(sessions.find((t) => t.id === activeId)));
-  if (busy?.sid === activeId) setTab('mind');
-  railSync({ choose: busy?.sid !== activeId });
+  railSync();
   showState();
   helpPin();
   refreshStack();
@@ -2514,36 +2356,7 @@ function placeStrip() {
   drawTabs();
 }
 phoneMq.addEventListener('change', placeStrip);
-if (SCREEN) {
-  SCREEN.mount($('sc-root'));
-  SCREEN.peek($('ai-peek'));
-  SCREEN.onOpen(openSheet);
-  SCREEN.onClose(closeSheet);
-  // Asked from the screen ("Try it"): the screen stays in front while the agents work
-  SCREEN.onAsk((q) => { closeSheet(); tabByHand = true; ask(q); });
-  // Something new on the screen while another tab is in front: its tab says so
-  SCREEN.onChange((sub, fresh) => { if (sub && fresh && tab !== 'screen') tabs.screen?.classList.add('new'); });
-  // Keeping what's on the screen in My Miracle: the same as saving a stack from its card
-  const fromScreen = (items, meds) => ({
-    v: 1, saved: localDate(),
-    items: items.filter((it) => libId(it.id)).slice(0, 8).map((it) => ({ id: it.id, name: cleanName(it.name), status: cleanName(it.status, 80), grade: GRADE[it.grade] ? it.grade : '' })),
-    meds: (meds || []).map((m) => cleanName(m, 40)).filter(Boolean).slice(0, 6),
-  });
-  SCREEN.onSave((items, meds) => {
-    const st = fromScreen(items, meds);
-    saveStack(st);
-    const now = savedStack();
-    return !!now && stackKey(now) === stackKey(st);
-  }, (items, meds) => {
-    const now = savedStack();
-    return !!now && stackKey(now) === stackKey(fromScreen(items, meds));
-  });
-  app.append(backdrop);
-  backdrop.addEventListener('click', closeSheet);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && app.classList.contains('sheet-open')) { e.preventDefault(); closeSheet(); } });
-  narrowMq.addEventListener('change', () => { if (!narrowMq.matches) closeSheet(); });
-}
-// A shorter prompt in the box when it's narrow (on phones, and beside the screen in a smaller
+// A shorter prompt in the box when it's narrow (on phones, and beside the blood markers in a smaller
 // window); after an answer, an invitation to follow it up
 let ruler = null;
 const widthOf = (t) => {
@@ -2572,10 +2385,8 @@ setEmpty(!chat.length);
 save();
 placeStrip();
 syncSide();
-screenSync();
 // The window as it was: the chats in their tabs, and beside the chat what the last answer was about
-syncPanels();
-railSync({ choose: true });
+railSync();
 showState();
 {
   const m = teamMsg();

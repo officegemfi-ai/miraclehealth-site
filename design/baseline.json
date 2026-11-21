@@ -2,9 +2,8 @@
   "note": "What the design check allows today. Lower it as drift is fixed (node scripts/design_check.mjs --update); never raise it to let drift in.",
   "counts": {
     "colour": {
-      "ai/ai.css": 42,
+      "ai/ai.css": 40,
       "ai/packet.css": 66,
-      "ai/screen.css": 28,
       "ai/term.css": 7,
       "kit/kit.css": 1
     },
@@ -13,7 +12,6 @@
     "font-size": {
       "ai/ai.css": 5,
       "ai/plan.css": 2,
-      "ai/screen.css": 4,
       "library/library.css": 2,
       "pages/pages.css": 2,
       "styles.css": 6
@@ -26,7 +24,6 @@
     "capitals": {},
     "gradient": {
       "ai/ai.css": 7,
-      "ai/screen.css": 3,
       "ai/term.css": 2,
       "home.css": 7,
       "kit/kit.css": 1,
@@ -37,7 +34,6 @@
       "ai/ai.css": 5,
       "ai/packet.css": 2,
       "ai/plan.css": 1,
-      "ai/screen.css": 5,
       "ai/term.css": 2,
       "home.css": 3,
       "kit/kit.css": 1,

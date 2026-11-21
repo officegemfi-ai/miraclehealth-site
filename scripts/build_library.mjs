@@ -7,7 +7,8 @@
 //                      (the community's shared/baselines.json; for the methodology page)
 // Writes library/index.html, library/<id>/index.html (one per compound), library/data/index.json
 // (what Sig reads to find and rank compounds), library/data/body/ (the body map, split for the
-// screen beside Ask Sig: an index, and one small file per drawn compound), the Ask Sig page (ai/index.html), the
+// blood markers beside Ask Sig and for the fact sheets: an index, and one small file per drawn
+// compound), the Ask Sig page (sig/index.html), the
 // pages scripts/build_pages.mjs makes (about, status, goals, compare, weekly, founders) and
 // sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
 // the live Community Signal from community.miraclehealth.us/snapshot.json; ai/ai.js is the chat.
@@ -119,8 +120,8 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/sigfield.js', 'lib/ring3d.js', 'ai/who.js', 'ai/mind.js'].map((f) => [f, version(f)]);
-const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'ai/screen.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/sigfield.js', 'lib/ring3d.js', 'ai/who.js', 'ai/markers.js'].map((f) => [f, version(f)]);
+const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
@@ -139,7 +140,7 @@ const V = {
   aiCss: version('ai/ai.css'), aiJs: version('ai/ai.js'),
   pkCss: version('ai/packet.css'), pkJs: version('ai/packet.js'), qr: version('ai/vendor/qrcode.js'),
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
-  scCss: version('ai/screen.css'), scJs: version('ai/screen.js'), tmCss: version('ai/term.css'), mdCss: version('ai/mind.css'),
+  tmCss: version('ai/term.css'), mdCss: version('ai/mind.css'),
   myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
   home: version('home.js'), homeCss: version('home.css'),
   // the tab's icon, by its version, so a browser that kept the old one fetches the new one
@@ -881,9 +882,9 @@ const STARTERS = [
 ];
 
 // Ask Sig is Sig's own window: a bar with Sig's ring and the chats as tabs, the conversation on the
-// left with the box to write in at its foot, and Sig's mind, the markers and the screen beside it as
-// tabs (no status bar, path or prompt: the owner's rule, November 18). On a phone it is the
-// conversation alone; the screen pulls up as a sheet.
+// left with the box to write in at its foot, and the blood markers beside it, alone (the owner's
+// rule, November 21: only the markers there; no status bar, path or prompt: November 18). On a
+// phone it is the conversation alone; the blood markers pull up as a sheet.
 // Who answers, picked beside the box to write in (page 19 of the design canvas): the twelve in the
 // picker's order, each in a few words, and four ready-made teams. The Safety agent is always on.
 const WHO = [
@@ -968,19 +969,12 @@ function aiPage() {
       <p class="ai-fine">Sig is an AI. No doses, sellers or diagnosis.<span class="ai-fine-x"> Your chats stay on this device.</span> <a href="/privacy#ai"><span class="ai-fine-x">How messages are handled</span><span class="ai-fine-s">Privacy</span></a></p>
     </form>
   </section>
-  <section class="ai-rail sc" id="ai-screen" role="complementary" aria-label="Beside the chat: blood markers, Sig’s mind and the screen">
+  <section class="ai-rail" id="ai-rail" role="complementary" aria-label="Beside the chat: blood markers">
     <div class="rl-bar">
-      <span class="rl-title" id="rl-title"><span class="rl-name">Sig’s mind</span><span class="rl-sub">every Signal, one memory</span></span>
-      <div class="rl-tabs" role="tablist" aria-label="Beside the chat">
-        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-markers" data-railtab="markers" aria-controls="rl-markers" aria-selected="false" tabindex="-1">Markers</button>
-        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-mind" data-railtab="mind" aria-controls="rl-mind" aria-selected="true">Mind</button>
-        <button class="tm-tabbtn" type="button" role="tab" id="tm-t-screen" data-railtab="screen" aria-controls="sc-root" aria-selected="false" tabindex="-1">Screen</button>
-      </div>
+      <span class="rl-title"><span class="rl-name">Blood markers</span><span class="rl-sub">what it may move</span></span>
       <button class="rl-close" id="rl-close" type="button" aria-label="Close"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
-    <div class="rl-panel" id="rl-markers" role="tabpanel" aria-labelledby="tm-t-markers" hidden></div>
-    <div class="rl-panel" id="rl-mind" role="tabpanel" aria-labelledby="tm-t-mind"><noscript><p class="rl-note">Sig’s mind needs JavaScript.</p></noscript></div>
-    <div id="sc-root" role="tabpanel" aria-labelledby="tm-t-screen" hidden><noscript><p class="sc-lede">The screen needs JavaScript.</p></noscript></div>
+    <div class="rl-panel" id="rl-markers"><noscript><p class="rl-note">The blood markers need JavaScript.</p></noscript></div>
   </section>
 </div>`;
   // Sig's own page: the window fills the browser beside a side panel with the chats kept on this
@@ -1023,8 +1017,8 @@ ${body}
 <link rel="apple-touch-icon" href="/sig/icon-180.png">
 <meta name="apple-mobile-web-app-title" content="Sig">
 <meta name="mobile-web-app-capable" content="yes">`,
-    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/screen.css?v=${V.scCss}`, `/ai/term.css?v=${V.tmCss}`, `/ai/mind.css?v=${V.mdCss}`],
-    scripts: [`/ai/plan.js?v=${V.plJs}`, `/ai/screen.js?v=${V.scJs}`, `/ai/ai.js?v=${V.aiJs}`],
+    styles: [`/library/library.css?v=${V.lib}`, `/ai/ai.css?v=${V.aiCss}`, `/ai/plan.css?v=${V.plCss}`, `/ai/term.css?v=${V.tmCss}`, `/ai/mind.css?v=${V.mdCss}`],
+    scripts: [`/ai/plan.js?v=${V.plJs}`, `/ai/ai.js?v=${V.aiJs}`],
     connect: `${new URL(ASK_URL).origin} ${COMMUNITY}`,
   });
 }
@@ -1359,11 +1353,11 @@ function methodPage() {
 }
 
 // ---------------------------------------------------------------------------
-// The body map, split for the screen beside Ask Sig. library/data/body.json is the one copy people
-// edit (scripts/check_body.mjs checks it) and what Sig's server reads. The screen loads only an
-// index with the page (the places, the markers, and each drawn compound with a version for its
-// file), then a compound's own lines when it first shows that compound, so the page doesn't carry
-// every compound's lines to show one or two.
+// The body map, split for the blood markers beside Ask Sig and for the fact sheets' own map.
+// library/data/body.json is the one copy people edit (scripts/check_body.mjs checks it) and what
+// Sig's server reads. A page loads only an index (the places, the markers, and each drawn compound
+// with a version for its file), then a compound's own lines when it first shows that compound, so
+// it doesn't carry every compound's lines to show one or two.
 // ---------------------------------------------------------------------------
 const BODY_DIR = path.join(DATA, 'body');
 function bodyFiles() {
