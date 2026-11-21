@@ -29,8 +29,8 @@ import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
 // at its centre (lib/ring.js, shared with ai/ai.js)
-import { ringSvg } from '../lib/ring.js';
-import { glyphSvg } from '../lib/glyphs.js';
+import { ringSvg, WHEEL, CENTER, AGENT_COLOR } from '../lib/ring.js';
+import { glyphSvg, GLYPH } from '../lib/glyphs.js';
 import { printSvg } from '../lib/print.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -812,10 +812,14 @@ const AGENTS = [
   ['builder', 'Stack builder', 'Lays out what you take and the options to discuss with your doctor. Never doses, never sellers.', 'Lays out options to discuss'],
   ['interpretation', 'Interpretation agent', 'Runs last. Reasons through everything the others found, strictly about efficacy: how likely it is to work for what you asked, how big the effect could be, and how sure anyone can be.', 'Efficacy, reasoned last'],
 ];
-// The front page's picture of the twelve (index.html, "crew:flow"): one question through them in four
-// steps, each agent in its own box with what it does, in a sentence anyone can follow. The names come
-// from AGENTS above; the Safety agent has a box at each end, for what it does first and last.
+// The front page's picture of the twelve (index.html, "crew:ring"; the owner's request, November 20:
+// "make this circular similar to the sig logo: and clean"). It is Sig's ring, large: the eleven who
+// gather round it in the logo's own order and colours, each with its mark on its piece and its name
+// beside it, and at the centre the Interpretation agent's white dot. What one agent does is said in
+// the ring's middle, for the one pointed at or picked (home.js); at rest it is the centre's own.
+// Beside the ring, the four steps a question takes. The names come from AGENTS above.
 const CREW_JOB = {
+  safety: 'First to read your question, last to check the answer.',
   planner: 'Turns your goal into what studies measure, like body fat.',
   recommender: 'Finds the fact sheets that fit your question, then writes the answer.',
   evidence: 'Pulls every study result, and how strong the evidence is.',
@@ -826,34 +830,46 @@ const CREW_JOB = {
   markers: 'Names the blood tests that two things push in opposite directions.',
   synergy: 'Checks it all against your medicines and conditions.',
   builder: 'Lays out your options side by side, to talk over with your doctor.',
+  interpretation: 'Weighs everything the others found, for one thing only: is it likely to work?',
 };
-const CREW = [
-  { title: 'First, safety reads your question', band: ['safety', 'Looks for anything urgent first: an emergency, your medicines, pregnancy, age.'] },
-  { title: 'Ten agents gather what’s known', groups: [
-    ['What the studies show', ['planner', 'recommender', 'evidence', 'relatives', 'mechanism']],
-    ['What people report, and your stack', ['community', 'combination', 'markers', 'synergy', 'builder']],
-  ] },
-  { title: 'One agent weighs it all', band: ['interpretation', 'Reasons through everything the others found, for one thing only: is it likely to work?'] },
-  { title: 'Safety checks every line', band: ['safety', 'Reads the answer before you do: no doses, no sellers, no diagnosis.'] },
+// The four steps: what happens, in a sentence, and whose pieces of the ring light for it
+const CREW_STEPS = [
+  ['Safety reads it first.', 'Anything urgent: an emergency, your medicines, pregnancy, age.', 'first'],
+  ['Ten agents gather what’s known.', 'What the studies show, what people report, and what it means for your stack.', 'gather'],
+  ['One agent weighs it all.', 'For one thing only: is it likely to work?', 'weigh'],
+  ['Safety checks every line.', 'No doses, no sellers, no diagnosis.', 'check'],
 ];
-function crewFlow() {
+// The ring on a 600 grid: a band 64 wide, its pieces 3.2 degrees apart, each agent's mark 28 across on
+// the middle of its piece
+const CREW_RING = { out: 296, band: 64, gap: 3.2, mark: 28 };
+function crewRing() {
   const nameOf = (k) => AGENTS.find(([key]) => key === k)[1];
-  // an agent: its mark on a tile of its colour, its name in its colour, what it does; a step of one
-  // agent alone (a band) runs the whole width
-  const agent = (k, job, band = false) => `<div class="fp-agent${band ? ' band' : ''}" data-agent="${k}"><span class="fp-agent-g">${glyphSvg(k, { size: 20 })}</span>`
-    + `<span class="fp-agent-w"><b class="fp-agent-n">${e(nameOf(k))}</b><span class="fp-agent-t">${e(job)}</span></span></div>`;
-  const step = (st, i) => `<li class="fp-step"><span class="fp-step-n" aria-hidden="true">${i + 1}</span><div class="fp-step-in"><h3 class="fp-step-t">${e(st.title)}</h3>`
-    + (st.groups
-      ? `<div class="fp-groups">${st.groups.map(([label, ks]) => `<section class="fp-group"><h4 class="fp-group-k">${e(label)}</h4><div class="fp-rows">${ks.map((k) => agent(k, CREW_JOB[k])).join('')}</div></section>`).join('')}</div>`
-      : agent(...st.band, true))
-    + '</div></li>';
-  const shown = new Set(CREW.flatMap((st) => (st.groups ? st.groups.flatMap(([, ks]) => ks) : [st.band[0]])));
-  if (shown.size !== AGENTS.length) throw new Error(`the front page's picture shows ${shown.size} of the ${AGENTS.length} agents`);
-  // the question it starts from, and what comes back, in plain sentences (the owner's rule, November 18:
-  // no prompt, no labels in another face, no row of dots)
-  return '<p class="fp-crew-q">For example: <q>Is HGH plus enclomiphene good for fat loss?</q></p>'
-    + `<ol class="fp-flow">${CREW.map(step).join('')}</ol>`
-    + '<p class="fp-crew-a">You get one answer, with the studies and what people report kept apart.</p>';
+  const all = [...WHEEL, CENTER];
+  if (all.length !== AGENTS.length || all.some((k) => !CREW_JOB[k] || !GLYPH[k])) throw new Error(`the front page's ring shows ${all.length} of the ${AGENTS.length} agents`);
+  const n = (x) => Number(x.toFixed(2));
+  const { out, band, gap, mark } = CREW_RING;
+  const r = out - band / 2, turn = 360 / WHEEL.length;
+  const at = (deg, rad) => [rad * Math.cos((deg * Math.PI) / 180), rad * Math.sin((deg * Math.PI) / 180)];
+  // a piece: an arc of the band, clockwise from the top like the logo's, with the agent's mark on it
+  const piece = (k, i) => {
+    const a0 = -90 + i * turn + gap / 2, a1 = -90 + (i + 1) * turn - gap / 2;
+    const [x0, y0] = at(a0, r), [x1, y1] = at(a1, r), [mx, my] = at((a0 + a1) / 2, r);
+    return `<g class="cr-arc" data-agent="${k}"><path class="cr-band" d="M${n(x0)} ${n(y0)}A${r} ${r} 0 0 1 ${n(x1)} ${n(y1)}" stroke="${AGENT_COLOR[k]}" stroke-width="${band}" fill="none"/>`
+      + `<g class="cr-mark" transform="translate(${n(mx - mark / 2)} ${n(my - mark / 2)}) scale(${n(mark / 24)})" fill="none" stroke="#000000" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${GLYPH[k]}</g></g>`;
+  };
+  const ring = `<svg class="cr-ring" viewBox="-300 -300 600 600" aria-hidden="true" focusable="false">${WHEEL.map(piece).join('')}</svg>`;
+  // a name: a button that picks its agent, and what the agent does, which a screen reader gets with
+  // the name. Where each name stands round the ring is home.css's (.cr-who:nth-child, the eleven
+  // pieces' middles; the page's policy allows no style attributes), and its colour styles.css's
+  const name = (k) => `<li class="cr-who" data-agent="${k}"><button class="cr-name" type="button" aria-pressed="false" aria-describedby="cr-j-${k}">${e(nameOf(k))}</button><span class="cr-job" id="cr-j-${k}">${e(CREW_JOB[k])}</span></li>`;
+  // the centre's own: the white dot is its button
+  const core = `<li class="cr-who cr-core" data-agent="${CENTER}"><button class="cr-name" type="button" aria-pressed="false" aria-describedby="cr-j-${CENTER}"><span class="mh-sr">${e(nameOf(CENTER))}</span></button><span class="cr-job" id="cr-j-${CENTER}">${e(CREW_JOB[CENTER])}</span></li>`;
+  const read = `<p class="cr-read" aria-hidden="true" data-agent="${CENTER}"><b class="cr-read-n">${e(nameOf(CENTER))}</b><span class="cr-read-t">${e(CREW_JOB[CENTER])}</span></p>`;
+  const steps = CREW_STEPS.map(([t, d, lit], i) => `<li class="cr-step" data-lit="${lit}"><span class="cr-step-n" aria-hidden="true">${i + 1}</span><p><b>${e(t)}</b> ${e(d)}</p></li>`).join('');
+  return '<p class="cr-q">For example: <q>Is HGH plus enclomiphene good for fat loss?</q></p>'
+    + `<div class="cr-stage"><div class="cr-dial">${ring}${read}<ul class="cr-names" aria-label="The twelve agents">${WHEEL.map(name).join('')}${core}</ul></div></div>`
+    + `<ol class="cr-steps">${steps}</ol>`
+    + '<p class="cr-a">You get one answer, with the studies and what people report kept apart.</p>';
 }
 
 // The first screen: four ways in. "Check my stack" starts the sentence for them to finish.
@@ -1425,16 +1441,13 @@ const fill = (html, key, inner) => html.replace(new RegExp(`(<!-- ${key} -->)[\\
 let front = fs.readFileSync(frontFile, 'utf8');
 front = fill(front, 'count:compounds', String(catalog.length));
 front = fill(front, 'count:sheets', String(entries.size));
-// Sig's ring on the third way in under How it works, and the ring that is the Signal board's loading
-// spinner (dark until home.js lights it piece by piece)
+// Sig's ring on the third way in under How it works
 front = fill(front, 'ring:ask', ringSvg(16));
 // the other two ways in carry their places' marks, as the side panel does
 front = fill(front, 'mark:library', PLACE_ICON.library());
 front = fill(front, 'mark:signal', ICO.signal);
-front = fill(front, 'ring:load', ringSvg(64, { lit: [] }));
-// Sig's twelve agents, one question through them, each in its own box (CREW), under a strip of the
-// ring's eleven colours, round it from the Safety agent's coral
-front = fill(front, 'crew:flow', crewFlow());
+// Sig's twelve agents round its ring, and the four steps a question takes through them
+front = fill(front, 'crew:ring', crewRing());
 // and between Noise and Signal, Sig's ring on its dark disc
 front = fill(front, 'ring:sn', ringSvg(30));
 // The graph in the hero: its data and still picture by their versions, its size, its legend, the
