@@ -40,11 +40,15 @@ const signals = JSON.parse(read('tests', 'fixtures', 'signal.json')).signals;
 const one = { Peptides: 'Peptide', Hormones: 'Hormone', Medications: 'Medication', Supplements: 'Supplement' };
 const board = Object.entries(signals).map(([id, s]) => ({ id, ...s })).filter((s) => s.score != null).sort((a, b) => b.score - a.score);
 const kindOf = (s) => { const f = catalog.find((c) => c.id === s.id)?.family; return one[f] || f || 'Compound'; };
-// The front page's three step drawings, as the page has them, made to stand alone: the page keeps
-// their lines a hair wide at any size; a file's lines are part of the drawing
-const steps = [...read('index.html').matchAll(/<svg class="st-ico"[\s\S]*?<\/svg>/g)].map((m) => m[0]
-  .replace(/<svg class="st-ico"[^>]*viewBox/, '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox')
-  .replace(/ vector-effect="non-scaling-stroke"/g, '').replace(/stroke-width="1\.2"/g, 'stroke-width="1.6"').replace(/><\/(circle|line|path|rect)>/g, '/>'));
+// A drawing that stands alone as a file: the page keeps its lines a hair wide at any size, a file's
+// lines are part of the drawing (1.6 on the 200 grid); and a see-through white is written as a colour
+// and an opacity, which every drawing tool reads (not all of them read rgba())
+const alone = (svg) => svg.replace(/ vector-effect="non-scaling-stroke"/g, '').replace(/stroke-width="1\.2"/g, 'stroke-width="1.6"')
+  .replace(/stroke="rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)"/g, (m, r, g, b, a) => `stroke="#${[r, g, b].map((n) => Number(n).toString(16).padStart(2, '0')).join('').toUpperCase()}" stroke-opacity="${a}"`);
+// The front page's three step drawings, as the page has them, made to stand alone
+const steps = [...read('index.html').matchAll(/<svg class="st-ico"[\s\S]*?<\/svg>/g)].map((m) => alone(m[0]
+  .replace(/<svg class="st-ico"[^>]*viewBox/, '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox'))
+  .replace(/><\/(circle|line|path|rect)>/g, '/>'));
 if (steps.length !== 3) throw new Error('the front page no longer has three step drawings');
 
 // ---------------------------------------------------------------------------
@@ -135,16 +139,15 @@ put('5 Signal/signal-mark.svg', `<svg ${XMLNS} viewBox="0 0 16 16" width="256" h
 put('5 Signal/spectrum.svg', `${P.spectrumSvg(board)}\n`);
 // Sig in the community: the Signal in person, drawn in the same hand as the three step drawings: a
 // fine ring with the mood inside it in the Signal's blue. kit/kit.js draws it; these are its
-// drawings standing alone, with lines that are part of the drawing, as the steps' files have them
+// drawings standing alone, as the steps' files do
 const SIG = { idle: 'sig', think: 'sig-thinking', cheer: 'sig-cheering', support: 'sig-support', curious: 'sig-curious', watching: 'sig-watching', concerned: 'sig-concerned', sleepy: 'sig-resting' };
 const SIG_NAME = { idle: 'Sig', think: 'Sig, thinking', cheer: 'Sig, cheering', support: 'Sig, support', curious: 'Sig, curious', watching: 'Sig, watching', concerned: 'Sig, concerned', sleepy: 'Sig, resting' };
 for (const [mood, file] of Object.entries(SIG)) {
-  const alone = sigSvg(200, mood, { dark: true })
-    .replace(/<svg class="[^"]*"/, `<svg ${XMLNS}`).replace(' aria-hidden="true"', ` role="img" aria-label="${SIG_NAME[mood]}"`)
-    .replace(/ vector-effect="non-scaling-stroke"/g, '').replace(/stroke-width="1\.2"/g, 'stroke-width="1.6"')
+  const svg = alone(sigSvg(200, mood, { dark: true })
+    .replace(/<svg class="[^"]*"/, `<svg ${XMLNS}`).replace(' aria-hidden="true"', ` role="img" aria-label="${SIG_NAME[mood]}"`))
     .replace(/ class="[^"]*"/g, '').replace(/<\/?g>/g, '').replace(/>\s+</g, '><');
-  if (/transform=|<g[ >]/.test(alone)) throw new Error(`Sig's ${mood} drawing can't stand alone: it still leans on a transform`);
-  put(`5 Signal/sig/${file}.svg`, `${alone}\n`);
+  if (/transform=|<g[ >]|rgba\(/.test(svg)) throw new Error(`Sig's ${mood} drawing can't stand alone: it still leans on a transform or an rgba() colour`);
+  put(`5 Signal/sig/${file}.svg`, `${svg}\n`);
 }
 
 // ---------------------------------------------------------------------------
