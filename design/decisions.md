@@ -410,4 +410,17 @@ Taking stock first found six things that did not match. What was decided about e
 
 **Numbers in the pack are examples,** from the saved Signal the tests use. The live Signal is at its first level (forum data), so a piece that shows a compound's Signal says "What people report. Not medical advice.", never "what members report".
 
-**Left for the owner:** the community app has not had the clean pass the website had (its labels in the code face, a command line as a caption, a tape of numbers); and the front page tells how it works twice (the three steps, then the six-card scroll story). A simpler scroll story, one picture built in three stops, was drawn as a storyboard for the owner to decide.
+**Left for the owner:** the front page tells how it works twice (the three steps, then the six-card scroll story). A simpler scroll story, one picture built in three stops, was drawn as a storyboard for the owner to decide.
+
+## 2026-11-20 · The community app, cleaned
+
+The same day, so that the two apps match: the community app had not had the clean pass the website had on November 18. The website's own scan, run on every screen of the app, found 343 different things: 317 words in the code face, 23 chains of bits on dots and 3 lines of code costume. Now it finds none, at a laptop's and a phone's width, and the app's end-to-end run fails a change that brings one back (`tests/e2e/clean.mjs` in its repository).
+
+- **Words left the code face:** kickers, labels, tabs, captions, the feed's line of who and where, Sig's read, the board's column heads, the foot. A kicker is one short phrase in the text face, with no rule before it and no capitals. Numbers stay in the code face.
+- **Costume, deleted:** the command line under the feed's heading, the "tail" line over the latest moves, "— top" after the board's heading, the notes beside the places in the side panel ("live", "12 agents", "this device"), the marks in the heroes' corners, and the padded numbers (01 became 1).
+- **Chains became sentences.** Sig's read under a report was "better · 3 months · nausea · fatigue · author confirmed"; it reads "Confirmed by the author. Better, 3 months in. Side effects: nausea, fatigue." A post's line is "Report in s/Tirzepatide by u/glp_journal", then when. A Signal reads "Mostly positive, high confidence", as on the website.
+- **One set of names for the Signal's four parts.** The board called them what happened, agreement, voices and volume; they are how well it worked, how much people agree, how many people and how many reports, as on the website.
+- **The tape stays** (the brand book's motion rules name it), without its "SIG" block and its "safety on": it says "The Signal, live" and runs the names and numbers.
+- **The tab's icon is Sig's ring,** as the brand book says of a browser tab, and the icons are drawn at 1.6.
+
+**Left alone, on purpose:** the labels inside the drawings (the flow of forums to members, the takeover line); "s/" and "u/" before a space's and a member's name, which are the app's own way of naming them; and how much the Signal page shows at once, which is a question of what to keep, not of how it is set.

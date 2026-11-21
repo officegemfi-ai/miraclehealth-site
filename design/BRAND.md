@@ -18,7 +18,7 @@ The look is **black and electric blue**, pages 15 to 18 of the Miracle Health de
 
 ## Clean, not costume
 
-The owner's rule (November 18, 2026), after six screenshots of the site: these small details "look like AI, it's too much and makes it not clean." The `design-clean` agent audits every page against it, and `scripts/check_clean.mjs` fails a change that brings the mechanical kinds back.
+The owner's rule (November 18, 2026), after six screenshots of the site: these small details "look like AI, it's too much and makes it not clean." The `design-clean` agent audits every page against it, and `scripts/check_clean.mjs` fails a change that brings the mechanical kinds back. The community app keeps to the same rule since November 20, held by the same scan on every one of its screens (its `tests/e2e/clean.mjs`).
 
 **Never:**
 - **Code costume:** a file name or extension as a label (`signal.top`, `bpc157.md`), a shell path (`~/sig/agents`), a prompt (`sig@miracle ›`), a command or flag (`git log --reports`), a code comment as a label (`// took it?`), a shell error, a status bar of slogans.
@@ -161,7 +161,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 - Set it 22px tall in the side panel and 32px in a foot. Don't set it smaller than 20px, and keep half its height clear on every side.
 - Never recolour, outline, stretch or rotate it, and never set it on a photo or a colour. On a piece that uses the violet band, the logo sits on black above the band, never on it.
 - The one exception is the foot's big word (`img/wordmark.svg`, made by `design/wordmark/make_wordmark.py`): the logo's word alone, traced and drawn as a stack of hairline outlines in violet into blue, dim, lighting up under the pointer, cut off by the page's bottom edge. The owner asked for it (November 17). Use it there only, and never as the logo.
-- In the community it sits beside a "COMMUNITY" tag (mono capitals in a `line-2` frame).
+- In the community it sits beside a "Community" tag: the word in the label style, in a `line-2` frame.
 
 ## The brand pack
 
