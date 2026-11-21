@@ -74,7 +74,7 @@ const PALETTE = [
   ['Mint', 'evidence', 'The studies.'],
   ['Coral', 'safety', 'Safety.'],
 ];
-const AGENT_NAME = { safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', community: 'Community', combination: 'Combination checker', markers: 'Blood markers', synergy: 'Synergy checker', evidence: 'Evidence librarian', relatives: 'Relatives', mechanism: 'Mechanism', builder: 'Stack builder', interpretation: 'Interpretation agent' };
+const AGENT_NAME = { safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', community: 'Community', combination: 'Combination agent', markers: 'Markers agent', synergy: 'Synergy auditor', evidence: 'Evidence librarian', relatives: 'Relatives agent', mechanism: 'Mechanism agent', builder: 'Stack builder', interpretation: 'Interpretation agent' };
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 put('2 Colour/colours.css', `/* Miracle Health: the colours. Black pages, white words, one electric blue main action. Colour is a
    signature (Signal blue for the community, mint for the studies, each agent its own), never decoration. */

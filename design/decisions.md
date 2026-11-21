@@ -408,6 +408,10 @@ Taking stock first found six things that did not match. What was decided about e
 
 **Kept out, on purpose:** the community's fifteen emblems and the compound prints (they belong to the app and to each fact sheet, not to anyone making a post); a light version of the logo (there is none: it is white, on black); desktop copies of the fonts (the pack carries the web files and their licences and says where the full families are free to get).
 
+**The token file's headlines were out of date** (weight 600 at the normal width, from before November 13; a sample that read "The Signal — top"). They say what the pages draw now: Mona Sans at its widest, 800, in capitals. Their sizes are left as they were, because the design check takes its type scale from them: the pages' headlines run smaller than those entries (a section's is 26 to 36px, not 42), and bringing the scale and the entries together is its own change.
+
+**The design system on Claude was a terminal-era one** (November 11). A new "Miracle Health" system holds the brand as it is today: this book in short, the tokens, ten components with live previews (the heading, the button, the card, the Signal's score, parts and board row, Sig's read, the ring, the glyphs, the icons), the logo and marks, and examples of the marketing. The two older systems are left for the owner to delete.
+
 **Numbers in the pack are examples,** from the saved Signal the tests use. The live Signal is at its first level (forum data), so a piece that shows a compound's Signal says "What people report. Not medical advice.", never "what members report".
 
 **Left for the owner:** the front page tells how it works twice (the three steps, then the six-card scroll story). A simpler scroll story, one picture built in three stops, was drawn as a storyboard for the owner to decide.
