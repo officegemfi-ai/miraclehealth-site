@@ -4,9 +4,9 @@
    Community Signal, and the studies, the safety line, what to take to a doctor and the efficacy
    read in labelled rows under it; how it got there folded under the answer's first line; then
    where to go next. Beside the box to write in, the picker of who answers (ai/who.js). Beside the
-   chat, three tabs (ai/mind.js): the blood markers as a rack of test tubes, Sig's mind as one map
-   of every Signal, and the screen. Corners are square, the main action is the electric blue, and
-   every agent keeps its colour. */
+   chat, the blood markers as a rack of test tubes (ai/markers.js), and nothing else; on a narrow
+   window the rack is a sheet over the chat, opened from a bar above the box to write in. Corners
+   are square, the main action is the electric blue, and every agent keeps its colour. */
 
 /* ---------------------------------------------------------------- the conversation */
 .tm .ai-thread{align-items:stretch}
@@ -186,47 +186,27 @@ button.who-row[aria-pressed="false"]>:not(.who-box){opacity:.55}
 .who-lock{display:inline-flex;align-items:center;gap:6px;font:400 13px/1 var(--body);color:var(--tm-t2);white-space:nowrap}
 .who-foot{margin:0;padding:12px 16px;border-top:1px solid var(--tm-line);font:400 13px/1.5 var(--body);color:var(--tm-t3)}
 
-/* ---------------------------------------------------------------- beside the chat */
+/* ---------------------------------------------------------------- beside the chat: the blood markers */
+/* (the rack stands on the window's own ground, beside the chat and in the sheet alike) */
+.ai-rail{padding:0;border-radius:0;border:1px solid var(--line-ink);background:var(--tm-win);overscroll-behavior:contain}
 @media (min-width:1101px){
-  .tm .ai-rail.sc{background:#000000;--sc-code:#000000}
+  .tm .ai-rail{background:var(--tm-win)}
 }
 .tm .ai-rail .rl-bar{position:sticky;top:0;z-index:4;display:flex;align-items:stretch;gap:12px;height:48px;padding:0 12px 0 20px;border-bottom:1px solid var(--tm-line);background:#000000}
 .rl-title{display:flex;align-items:center;gap:10px;min-width:0;overflow:hidden;white-space:nowrap}
 .rl-name{font:650 14px/1 var(--body);color:var(--tm-tx)}
-.rl-sub{display:none;overflow:hidden;font:400 13px/1 var(--body);color:var(--tm-t3);text-overflow:ellipsis}
-@media (min-width:1700px){.rl-sub{display:inline}}
-.rl-tabs{display:inline-flex;align-items:stretch;gap:4px;margin-left:auto}
-.tm .rl-tabs .tm-tabbtn{display:inline-flex;align-items:center;padding:2px 8px 0;border:0;border-bottom:2px solid transparent;border-radius:0;background:none;font:400 13px/1 var(--body);color:var(--tm-t3);cursor:pointer}
-.tm .rl-tabs .tm-tabbtn:hover{color:var(--tm-tx)}
-.tm .rl-tabs .tm-tabbtn[aria-selected="true"]{border-bottom-color:var(--tm-tx);color:var(--tm-tx)}
-.tm .rl-tabs .tm-tabbtn.new::after{content:'';width:6px;height:6px;margin-left:6px;border-radius:50%;background:var(--tm-tx)}
-.tm .rl-tabs .tm-tabbtn:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-2px}
-.rl-close{display:none;align-self:center;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:0;background:none;color:var(--tm-tx);cursor:pointer}
+.rl-sub{overflow:hidden;font:400 13px/1 var(--body);color:var(--tm-t3);text-overflow:ellipsis}
+.rl-close{display:none;align-self:center;place-items:center;width:44px;height:44px;margin-left:auto;padding:0;border:0;border-radius:0;background:none;color:var(--tm-tx);cursor:pointer}
 .rl-close:hover{background:var(--hover)}
 .rl-close:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-2px}
 .rl-panel{padding:16px 20px 28px}
-.rl-panel[hidden]{display:none}
-.ai-rail #sc-root .sc-close,.ai-rail #sc-root .sc-handle{display:none}
+/* a new answer hasn't said what it's about yet: the last answer's tests rest until it does */
+.rl-panel,.ai-peek{transition:opacity .2s}
+.ai-app.rail-wait .rl-panel,.ai-app.rail-wait .ai-peek{opacity:.4}
 .rl-lede{margin:0;font-size:14px;line-height:1.55;color:var(--tm-t2)}
 .rl-note{margin:10px 0 0;font:400 13px/1.5 var(--body);color:var(--tm-t3)}
-
-/* Sig's mind: every Signal as one map */
-.rl-map{display:block;width:100%;max-width:380px;height:auto;margin:0 auto}
-.rl-fam{font:400 10.5px var(--mono);fill:#7F8796;paint-order:stroke;stroke:#000000;stroke-width:3px}
-.rl-lab{font:400 11px var(--mono);fill:#F7F8FA;paint-order:stroke;stroke:#000000;stroke-width:3px}
-.rl-halo{animation:rl-pulse 2.6s ease-in-out infinite}
-@keyframes rl-pulse{0%,100%{opacity:.35}50%{opacity:1}}
-.rl-cap{text-align:left}
-.rl-rows{margin-top:14px;border-top:1px solid var(--tm-line)}
-.rl-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;padding:12px 4px;border-bottom:1px solid var(--tm-line);color:var(--tm-tx);text-decoration:none}
-.rl-row:hover{background:var(--hover)}
-.rl-row:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-2px}
-.rl-n{font:600 14px/1.3 var(--body)}
-.rl-s{font:500 14px/1.3 var(--mono);color:var(--a-community);text-align:right}
-.rl-t{min-width:0;font:400 13px/1.4 var(--body);color:var(--tm-t2)}
-.rl-c{font:400 13px/1.4 var(--body);color:var(--tm-t3);text-align:right;white-space:nowrap}
-.rl-add{margin:16px 0 0;font-size:13px;line-height:1.55;color:var(--tm-t2)}
-.rl-add a{font-weight:600;color:var(--tm-tx);text-underline-offset:3px}
+/* on a narrow window the rack is a sheet, and a bar above the box to write in opens it (below) */
+.ai-peek,.rl-backdrop{display:none}
 
 /* the blood markers: a rack of test tubes */
 .rk-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px}
@@ -276,9 +256,26 @@ button.who-row[aria-pressed="false"]>:not(.who-box){opacity:.55}
 .rk-copy{min-height:44px;margin-top:12px;padding:0 16px;border:1px solid var(--tm-tx);border-radius:0;background:transparent;color:var(--tm-tx);font:600 14px/1 var(--body);cursor:pointer}
 .rk-copy:hover{background:var(--hover)}
 
-/* ---------------------------------------------------------------- narrower windows: the side panel is a sheet */
+/* ---------------------------------------------------------------- narrower windows: the rack is a sheet */
 @media (max-width:1100px){
   .tm-dim{display:none}
+  /* the bar above the box to write in: how many blood tests move, and the way to the rack */
+  .ai-peek:not([hidden]){display:block;max-width:760px;margin:0 auto 8px}
+  .rl-peek{display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;width:100%;min-height:44px;padding:6px 14px;border:1px solid var(--tm-line2);border-radius:0;background:#121214;color:var(--tm-tx);font:400 13.5px/1.35 var(--body);text-align:left;cursor:pointer}
+  .rl-peek:hover{border-color:var(--tm-tx)}
+  .rl-peek:focus-visible{outline:2px solid var(--tm-tx);outline-offset:2px}
+  .rl-peek-t{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px;min-width:0}
+  .rl-peek-t b{font-weight:600}
+  .rl-peek-n{color:var(--tm-t2)}
+  .rl-peek-go{flex:none;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+  /* the sheet, over the chat (which rests behind it until it's closed): the width of a phone at most,
+     since the rack is drawn for a narrow column, and in the middle of a wider window */
+  .tm .ai-rail{display:block;position:fixed;left:50%;right:auto;bottom:0;top:calc(var(--top-h) + 28px);z-index:46;box-sizing:border-box;width:min(100%,640px);align-self:stretch;max-height:none;margin:0;overflow:auto;border:0;border-top:1px solid rgba(255,255,255,.16);border-radius:0;padding-bottom:env(safe-area-inset-bottom);transform:translate(-50%,104%);visibility:hidden;transition:transform .34s cubic-bezier(.2,.8,.2,1),visibility 0s linear .34s}
+  .ai-app.sheet-open .ai-rail{transform:translate(-50%,0);visibility:visible;transition:transform .34s cubic-bezier(.2,.8,.2,1),visibility 0s}
+  @media (min-width:641px){.tm .ai-rail{border-left:1px solid rgba(255,255,255,.16);border-right:1px solid rgba(255,255,255,.16)}}
+  .rl-backdrop{display:block;position:fixed;inset:0;z-index:45;background:rgba(0,0,0,.62);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s linear .25s}
+  .ai-app.sheet-open .rl-backdrop{opacity:1;visibility:visible;transition:opacity .25s}
+  html.sheet-lock,html.sheet-lock body{overflow:hidden}
   .ai-app.sheet-open .rl-close{display:grid}
   .tm .ai-rail .rl-bar{padding-left:16px;padding-right:4px}
 }
@@ -309,5 +306,6 @@ button.who-row[aria-pressed="false"]>:not(.who-box){opacity:.55}
   .rl-panel{padding:14px 16px 24px}
 }
 @media (prefers-reduced-motion:reduce){
-  .rl-halo{animation:none}
+  .ai-rail,.rl-backdrop,.rl-panel,.ai-peek{transition:none!important}
 }
+@media print{.ai-peek,.rl-backdrop{display:none!important}}

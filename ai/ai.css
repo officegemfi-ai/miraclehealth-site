@@ -3,8 +3,8 @@
    Builds on styles.css and the Library's pills (library.css). The whole page is the dark
    console; Sig's answers sit on it as plain text, each with the agents' steps on top and a dot
    beside each paragraph for the voice it comes from (studies or community); on wide
-   screens the screen (screen.css) sits beside the chat and shows what it's about; on phones
-   it's a sheet that pulls up from the bar above the box to write in. */
+   screens the blood markers sit beside the chat (mind.css); on phones they're a sheet that pulls
+   up from the bar above the box to write in. */
 
 .ai{background:var(--darker);color:var(--on-ink);--focus:var(--bone)}
 .ai [hidden]{display:none!important}
@@ -165,14 +165,6 @@
 .sheet-foot .mini{border-color:rgba(255,255,255,.2);background:transparent;color:var(--on-ink-2)}
 .sheet-foot .mini:hover{border-color:var(--bone);color:var(--bone)}
 .sheet-foot .mini.done{border-color:var(--bone);color:var(--bone)}
-/* their own stack: a line that points to the screen, where it all is */
-.ai-pointer{display:inline-flex;align-items:center;gap:10px;max-width:100%;min-height:44px;margin-top:16px;padding:8px 18px;border-radius:0;border:1px solid rgba(255,255,255,.16);background:var(--ink);color:var(--on-ink);font:500 14px/1.35 var(--body);text-align:left;cursor:pointer;transition:border-color .15s}
-.ai-pointer:hover{border-color:var(--bone)}
-.ptr-code{flex:none;font:600 13px/1 var(--mono);color:var(--accent)}
-.ai-pointer.t-caution{border-color:rgba(242,190,75,.55)}
-.ai-pointer.t-caution .ptr-code{color:#F2BE4B}
-.ai-pointer.t-avoid{border-color:rgba(255,107,91,.7);background:rgba(255,107,91,.1)}
-.ai-pointer.t-avoid .ptr-code{color:#FF6B5B}
 
 /* errors */
 .oops{display:grid;gap:10px;padding:14px 16px;border-radius:0;background:rgba(232,183,90,.12);color:#F2C46B;font-size:14.5px;line-height:1.5}
@@ -540,7 +532,6 @@
   .sheet{padding:0}
   .trace{display:none}
   .sheet,.prose,.prose strong,.prose a,.prose h2,.answer-src,.src-part{color:#FFFFFF}
-  .ai-pointer{display:none}
 }
 /* What the answer folds away: more on how it works, how the pieces fit */
 details.more{margin:6px 0 10px;border-top:1px dashed var(--line-ink)}
