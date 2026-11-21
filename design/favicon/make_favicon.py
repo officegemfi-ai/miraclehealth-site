@@ -16,7 +16,7 @@ import re
 from PIL import Image, ImageDraw
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-TILE, RX = '#0B0F11', 7          # Ask Sig's app icon's ground; the tab icon's corners, out of 32
+TILE, RX = '#000000', 7          # the page's own black; the tab icon's corners, out of 32
 D, SW, GAP, DOT = 28, 5.2, 14, 2.6   # the ring across, its width, the gap between pieces (degrees), the dot
 
 ring_js = (ROOT / 'lib' / 'ring.js').read_text()

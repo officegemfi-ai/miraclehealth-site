@@ -392,3 +392,55 @@ The owner sent How it works on the front page ("Three steps, one honest number")
 - **The cards.** Each step is a card: its line drawing, its number, its title and its line, on `surface-raised` with a hairline border, the three on the same columns as the ways in below them.
 - **The drawings, larger:** 72px on a phone (beside the words), 112px on a laptop (over them), 128px on a wide screen, where the card's words grow too (title 24px, line 18px). Their strokes stay 1.2px at every size.
 - **No long lines.** The hairline that ran across from drawing to drawing, some 600px on a wide screen, is gone; a short arrow in the gap leads from each card to the next, across on a laptop and down on a phone.
+
+## 2026-11-20 · One brand pack, made from the site
+
+The owner asked for an asset pack (brand identity, icons, marketing) that covers the website, the community and the Community Signal, all matching, in a clean format, with nothing in it that is too much. So the pack is not drawn by hand: `design/pack/build.mjs` makes it from what the site runs on, and it is lean: a two-page guide and six folders (*The brand pack* in the brand book).
+
+Taking stock first found six things that did not match. What was decided about each:
+
+- **The logo was only a 480px picture.** It is traced once into `design/pack/logo.svg` (one path; against the picture its ink area is within 0.11%, and 37 pixels differ by more than a quarter). HEALTH's corners are rounded in the artwork, so they stay rounded. The ® is part of the artwork and stays; whether the mark is registered is the owner's to confirm.
+- **The share images broke the clean rule** (a kicker in the code face in capitals with a rule before it, the address in the code face, a strip of four rules along the foot, a path as the story's kicker). All 35 are redrawn in one layout: the logo and the address along the top, a kicker, the headline with its punchline in the gradient, one line. The foot is gone, not restyled (delete first). Posts, stories and headers in the pack keep the same layout, from the same file (`design/pack/look.mjs`).
+- **Two icon weights.** The glyphs were drawn at 1.6 and the community's interface icons at 1.8. One set now: 1.6, the weight of the drawings that carry the brand. `design/pack/icons.json` is the set; the community draws it at 1.6 from its next change.
+- **Two tab icons.** The site's stood on an old graphite (#0B0F11) and the community's was Sig the character. The brand book already said the tab is Sig's ring; both are the ring on the page's own black now. The tile keeps its rounded corners: a tab icon is the one place the browser's convention wins.
+- **Two marks called Sig.** Kept as the brand book has them, and said plainly in the guide: the ring is the mark (the profile picture, the app icon, the tab); the blue ring and dot is Sig in the community, a character with moods, never the logo.
+- **The logo on violet.** The book says never on a colour. So a piece on the violet band (Join, the weekly email's header) puts the logo on black above the band.
+
+**Kept out, on purpose:** the community's fifteen emblems and the compound prints (they belong to the app and to each fact sheet, not to anyone making a post); a light version of the logo (there is none: it is white, on black); desktop copies of the fonts (the pack carries the web files and their licences and says where the full families are free to get).
+
+**The token file's headlines were out of date** (weight 600 at the normal width, from before November 13; a sample that read "The Signal — top"). They say what the pages draw now: Mona Sans at its widest, 800, in capitals. Their sizes are left as they were, because the design check takes its type scale from them: the pages' headlines run smaller than those entries (a section's is 26 to 36px, not 42), and bringing the scale and the entries together is its own change.
+
+**The design system on Claude was a terminal-era one** (November 11). A new "Miracle Health" system holds the brand as it is today: this book in short, the tokens, ten components with live previews (the heading, the button, the card, the Signal's score, parts and board row, Sig's read, the ring, the glyphs, the icons), the logo and marks, and examples of the marketing. The two older systems are left for the owner to delete.
+
+**Numbers in the pack are examples,** from the saved Signal the tests use. The live Signal is at its first level (forum data), so a piece that shows a compound's Signal says "What people report. Not medical advice.", never "what members report".
+
+**Left for the owner:** the front page tells how it works twice (the three steps, then the six-card scroll story). A simpler scroll story, one picture built in three stops, was drawn as a storyboard for the owner to decide.
+
+## 2026-11-20 · The community app, cleaned
+
+The same day, so that the two apps match: the community app had not had the clean pass the website had on November 18. The website's own scan, run on every screen of the app, found 343 different things: 317 words in the code face, 23 chains of bits on dots and 3 lines of code costume. Now it finds none, at a laptop's and a phone's width, and the app's end-to-end run fails a change that brings one back (`tests/e2e/clean.mjs` in its repository).
+
+- **Words left the code face:** kickers, labels, tabs, captions, the feed's line of who and where, Sig's read, the board's column heads, the foot. A kicker is one short phrase in the text face, with no rule before it and no capitals. Numbers stay in the code face.
+- **Costume, deleted:** the command line under the feed's heading, the "tail" line over the latest moves, "— top" after the board's heading, the notes beside the places in the side panel ("live", "12 agents", "this device"), the marks in the heroes' corners, and the padded numbers (01 became 1).
+- **Chains became sentences.** Sig's read under a report was "better · 3 months · nausea · fatigue · author confirmed"; it reads "Confirmed by the author. Better, 3 months in. Side effects: nausea, fatigue." A post's line is "Report in s/Tirzepatide by u/glp_journal", then when. A Signal reads "Mostly positive, high confidence", as on the website.
+- **One set of names for the Signal's four parts.** The board called them what happened, agreement, voices and volume; they are how well it worked, how much people agree, how many people and how many reports, as on the website.
+- **The tape stays** (the brand book's motion rules name it), without its "SIG" block and its "safety on": it says "The Signal, live" and runs the names and numbers.
+- **The tab's icon is Sig's ring,** as the brand book says of a browser tab, and the icons are drawn at 1.6.
+
+**Left alone, on purpose:** the labels inside the drawings (the flow of forums to members, the takeover line); "s/" and "u/" before a space's and a member's name, which are the app's own way of naming them; and how much the Signal page shows at once, which is a question of what to keep, not of how it is set.
+
+## 2026-11-20 · Sig, redrawn in the steps' hand
+
+The owner looked at the brand pack's icon sheet, where Sig's eight moods (thick blue rings with a filled mark) sat beside the three step drawings (fine lines in a white ring, one thing in blue), and asked for the moods in the steps' design.
+
+- **One hand.** Sig in the community is now a fine white ring on the steps' 200 grid, the mood inside it in Signal blue, and round the mood its echoes fading at half and a fifth, in lines that stay 1.2px at any size. Nothing is filled. This replaces "the blue ring and dot" of the entries above; the ring (the eleven arcs) is still the mark, and Sig in the community is still a character, never the logo.
+- **Each mood echoes its own shape,** as each step has its own construction: rings round the dot at rest, lines of a report round the three dots while it thinks, the spark filling out toward the ring, hearts in hearts, an eye in an eye, a sign in a sign. Curious and resting keep Sig's rings round a question mark and a moon.
+- **Resting is a moon,** where it was a bar: the bar read as "nothing" once it was a hairline, and Sig rests at night. **Concerned is a warning sign,** in amber, the one colour Sig borrows.
+- **Small sizes draw less.** Stickers and notifications are 18 to 34px: under 36px it is the ring and the mood alone, drawn larger; from 36px one echo; from 56px the whole drawing. The ring is drawn a little smaller under 36px so its line is never cut by its own box.
+- **It moves as before,** with one change: the cheer swells the drawing inside the ring, not the ring, which now runs to the edge. The dimming while it rests is gone; the moon says it.
+- **In the community** the Sig button stands on a black disc, since hairlines over a scrolling feed need a ground, and it is drawn at the size it is shown (48px on a phone), so it gets that size's detail.
+- **In the pack** the eight files have lines that are part of the drawing (1.6 on the 200 grid), as the steps' files do, and the icon sheet shows the steps and the moods in one row at one size.
+
+**Found on the way:** the community's How it works page and the card under a Signal still called the Signal's four parts what happened, agreement, voices and volume, after the board took the website's names. They take them too. And the pack's read-me said the logo may sit on the violet band, which the book forbids; it says black only now.
+
+**The kit changed** (`kit/kit.js`, `kit/kit.css`), so the website's change goes live first and the community's after it: the community's check compares its kit with the website's.
