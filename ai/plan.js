@@ -9,8 +9,8 @@
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
-import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=7920a66cee';
-import { h } from '/lib/dom.js?v=47be1f2023';
+import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=15699d1424';
+import { h } from '/lib/dom.js?v=5b30ad4a0f';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=955c60de6c';
 
 const KEPT = 'mh-ai-plan-v1';
@@ -716,7 +716,7 @@ function paint(ctx, raw, W, top, draw) {
     y += 40;
   }
   y += 4;
-  y += para('Made with Sig, Unhyped’s AI, at miraclehealth.us/sig. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
+  y += para('Made with Sig, Unhyped’s AI, at theunhyped.com/sig. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
   return y + 48;
 }
 

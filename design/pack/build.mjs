@@ -179,7 +179,7 @@ When a post shows a compound's Signal:
   Take the number from the live Signal on the day you post (the ones in these files are examples).
   Keep the line "What people report. Not medical advice." on it.
 
-Addresses: miraclehealth.us and community.miraclehealth.us
+Addresses: theunhyped.com and community.theunhyped.com
 `);
 
 put('README.txt', `UNHYPED BRAND PACK

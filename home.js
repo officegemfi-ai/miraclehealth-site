@@ -5,12 +5,12 @@
 // community's public files (totals only: no posts, no names): the Community Signal, what people
 // report for each use and the placebo figures beside them. If the files can't load, the page keeps
 // what it was published with.
-import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
-import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=7920a66cee';
+import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=c273a251fc';
+import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=15699d1424';
 import { startHow } from '/lib/how.js?v=547caf3594';
 import { startSigHero } from '/lib/sighero.js?v=e0fa87772c';
 import { sigField } from '/lib/sigfield.js?v=36f23eb1e2';
-import { h, getJson, getSignal, calm, groupN } from '/lib/dom.js?v=47be1f2023';
+import { h, getJson, getSignal, calm, groupN } from '/lib/dom.js?v=5b30ad4a0f';
 
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;

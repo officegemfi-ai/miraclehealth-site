@@ -1,0 +1,26 @@
+/* miraclehealth.us, Unhyped's old address: the one screen it can show (go.js). Unhyped's look,
+   kept to what this needs: a black page, Mona Sans, the logo, one white main action. Hidden while
+   go.js decides, so a visitor going straight on never sees it; shown anyway after two seconds in
+   case the script can't run. */
+@font-face{font-family:'Mona Sans';src:url('/fonts/mona-sans.woff2') format('woff2');font-weight:200 900;font-stretch:75% 125%;font-style:normal;font-display:swap}
+:root{color-scheme:dark;--bone:#F7F8FA;--text:#F7F8FA;--text-2:#A1A7B2;--line-2:rgba(255,255,255,.20);--body:'Mona Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#000;color:var(--text);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+.mv{max-width:560px;margin:0 auto;padding:clamp(48px,14vh,140px) 24px 64px;visibility:hidden;animation:mv-show 0s 2s forwards}
+.mv.mv-on{visibility:visible;animation:none}
+@keyframes mv-show{to{visibility:visible}}
+.mv-logo{display:block;height:20px;width:auto;margin-bottom:56px}
+.mv h1{margin:0 0 18px;font-weight:800;font-stretch:125%;font-size:clamp(28px,6vw,40px);line-height:1.05;letter-spacing:-.028em;text-transform:uppercase}
+.mv-say{margin:0;max-width:46ch;font-size:18px;color:var(--text-2)}
+.mv-say a,.mv-fine a{color:var(--text);text-underline-offset:3px}
+.mv-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.mv-acts[hidden]{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border:1px solid transparent;border-radius:0;font:600 15px/1 var(--body);text-decoration:none;white-space:nowrap;cursor:pointer}
+.btn[hidden]{display:none}
+.btn.bone{background:var(--bone);border-color:var(--bone);color:#000}
+.btn.bone:hover{background:#fff;border-color:#fff}
+.btn.bone:disabled{opacity:.55;cursor:progress}
+.btn.line{background:transparent;border-color:var(--line-2);color:var(--text)}
+.btn.line:hover{border-color:var(--bone);color:#fff}
+.btn:focus-visible,.mv a:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+@media (max-width:480px){.btn{flex:1 1 100%}}

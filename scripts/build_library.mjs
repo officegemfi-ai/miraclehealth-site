@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the public library at miraclehealth.us/library from library/data:
+// Builds the public library at theunhyped.com/library from library/data:
 //   catalog.json       every compound and blend in the community's library (from its database)
 //   entries/<id>.json  the fact sheets, each claim checked against a source we opened
 //   uses.json          the twelve goals and the uses members report on (the community's list)
@@ -11,7 +11,7 @@
 // compound), the Ask Sig page (sig/index.html), the
 // pages scripts/build_pages.mjs makes (about, status, goals, compare, weekly, founders) and
 // sitemap.xml. The pages are static; library/library.js adds search and filters, and fills in
-// the live Community Signal from community.miraclehealth.us/snapshot.json; ai/ai.js is the chat.
+// the live Community Signal from community.theunhyped.com/snapshot.json; ai/ai.js is the chat.
 // Run: node scripts/build_library.mjs   (--check fails if the committed pages are out of date)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -37,8 +37,8 @@ import { printSvg } from '../lib/print.js';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = path.join(ROOT, 'library');
 const DATA = path.join(LIB, 'data');
-const SITE = 'https://miraclehealth.us';
-const COMMUNITY = 'https://community.miraclehealth.us';
+const SITE = 'https://theunhyped.com';
+const COMMUNITY = 'https://community.theunhyped.com';
 // Sig's chat: the ask function in the community's live Supabase project
 // (miracle-health-community, supabase/functions/ask). The address isn't secret.
 const ASK_URL = 'https://nerfymdslkhopsomwriv.supabase.co/functions/v1/ask';
@@ -120,8 +120,8 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // version too: the build writes it into their import lines, so a new script never runs with an
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
-const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/sigfield.js', 'lib/ring3d.js', 'ai/who.js', 'ai/markers.js'].map((f) => [f, version(f)]);
-const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
+const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/sigfield.js', 'lib/ring3d.js', 'ai/who.js', 'ai/markers.js', 'lib/carry.js'].map((f) => [f, version(f)]);
+const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js', 'move/move.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
@@ -212,7 +212,7 @@ const FOOT_COLS = [
   ['Explore', [[placeHref('library', { site: '' }), 'Library'], ['/#signal', 'The Signal'], [placeHref('ai', { site: '' }), 'Ask Sig'], ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/status/', 'FDA status tracker']]],
   ['Community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My stack'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
   ['How it works', [['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
-  ['Contact', [['mailto:hello@miraclehealth.us', 'hello@miraclehealth.us'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
+  ['Contact', [['mailto:hello@theunhyped.com', 'hello@theunhyped.com'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
 ];
 function osClose({ url = '/' }) {
   return `  <footer class="foot win-foot">
@@ -261,7 +261,7 @@ function stampShell(html, file, { current = '', home = false, url = '/' } = {}) 
     // The sign-up goes to the newsletter function, which sends the browser back here: both allowed
     .replace(/form-action ([^;"]*)/, `form-action 'self' ${NEWSLETTER_ORIGIN}`)
     // A page that reads the community's numbers (the front page) may read them from the Signal API
-    .replace(/connect-src 'self'[^;"]*https:\/\/community\.miraclehealth\.us[^;"]*/, `connect-src 'self' ${READS_SIGNAL}`)
+    .replace(/connect-src 'self'[^;"]*https:\/\/community\.theunhyped\.com[^;"]*/, `connect-src 'self' ${READS_SIGNAL}`)
     .replace(/<link rel="stylesheet" href="\/?kit\/kit\.css(?:\?v=[0-9a-f]+)?">\n/, '')
     .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`)
     // the tab's icon, by its version
@@ -536,7 +536,7 @@ ${drawnHere(c.id) ? `    <section class="le-sec" id="body">
     <section class="le-sec" id="sources">
       <h2>Sources${by('evidence')}</h2>
       <ol class="sources">${(f.sources || []).map((s) => `<li id="src-${s.n}"><a href="${e(s.url)}" rel="noopener" target="_blank">${e(s.title)}</a><span>${e(s.publisher)}${s.year ? `, ${e(s.year)}` : ''}</span></li>`).join('')}</ol>
-      <p class="checked">Fact-checked against these sources on ${date(f.checked)}.${reviewedBy(f) ? ` ${ReviewWords(f)}.` : ''} Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
+      <p class="checked">Fact-checked against these sources on ${date(f.checked)}.${reviewedBy(f) ? ` ${ReviewWords(f)}.` : ''} Spotted something wrong? <a href="mailto:hello@theunhyped.com?subject=${encodeURIComponent(`Library: ${c.name}`)}">Tell us</a>.</p>
     </section>`;
 }
 
@@ -706,7 +706,7 @@ function aiIndex() {
   const nonzero = (g) => Object.fromEntries(Object.entries(g || {}).filter(([, v]) => Number(v) > 0));
   const checked = [...entries.values()].map((f) => f.checked || '').sort().pop() || '';
   return JSON.stringify({
-    note: 'Every compound and blend in the Library, with the status, evidence grade, goals and lab list of the ones that have a fact sheet. Written by scripts/build_library.mjs for Sig (miraclehealth.us/ai) and its screen.',
+    note: 'Every compound and blend in the Library, with the status, evidence grade, goals and lab list of the ones that have a fact sheet. Written by scripts/build_library.mjs for Sig (theunhyped.com/ai) and its screen.',
     checked,
     goals: uses.goals,
     items: catalog.map((c) => {
@@ -778,7 +778,7 @@ function guidePage(g) {
     <section class="le-sec" id="sources">
       <h2>Sources</h2>
       <ol class="sources">${sources.map((x) => `<li id="src-${x.n}"><a href="${e(x.url)}" rel="noopener" target="_blank">${e(x.text)}</a></li>`).join('')}</ol>
-      <p class="checked">Checked against these sources on ${date(g.checked)}. Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=${encodeURIComponent(`Library: ${title}`)}">Tell us</a>.</p>
+      <p class="checked">Checked against these sources on ${date(g.checked)}. Spotted something wrong? <a href="mailto:hello@theunhyped.com?subject=${encodeURIComponent(`Library: ${title}`)}">Tell us</a>.</p>
     </section>
   </article>
   <aside class="le-side">
@@ -795,7 +795,7 @@ function guidePage(g) {
 }
 
 // ---------------------------------------------------------------------------
-// Ask Sig, Sig's own page (miraclehealth.us/sig): Sig, Unhyped's AI, with its agents and the community's numbers, and the
+// Ask Sig, Sig's own page (theunhyped.com/sig): Sig, Unhyped's AI, with its agents and the community's numbers, and the
 // member's own clinician last
 // ---------------------------------------------------------------------------
 // Each agent: its key, its name, what it does, and that in a few words (the agents' tab on Ask Sig)
@@ -999,7 +999,7 @@ function aiPage() {
     <div class="sg-wipe-row" id="sg-wipe-row">
       <button class="sg-wipe" id="sg-wipe" type="button">${ico('M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5')}<span>Delete all chats</span></button>
     </div>
-    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><a href="/terms">Terms</a><a href="/">miraclehealth.us</a></p>
+    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><a href="/terms">Terms</a><a href="/">theunhyped.com</a></p>
   </div>
 </aside>
 <div class="sg-scrim" id="sg-scrim" hidden></div>
@@ -1088,6 +1088,7 @@ function myPage() {
       <h2 id="empty-h">Nothing kept here yet</h2>
       <p class="my-lede">When you keep a plan from Sig or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.</p>
       <div class="my-actions"><a class="btn lime" href="/sig/">Build your plan with Sig</a><a class="btn line" href="/library/">Explore the Library</a></div>
+      <p class="my-fine">Kept things at miraclehealth.us, Unhyped’s old address? <a href="/move/">Bring them over</a>.</p>
     </section>
   </div>
   <noscript><p class="my-loading">My stack needs JavaScript: it reads what you keep in this browser.</p></noscript>
@@ -1343,7 +1344,7 @@ function methodPage() {
       <li>No diagnosis, and never start, stop or change a prescribed medicine: that’s for your doctor.</li>
       <li>No health records: Sig keeps nothing you write, and the community holds only what members choose to post.</li>
     </ul>
-    <p>Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=Method">Tell us</a>.</p>
+    <p>Spotted something wrong? <a href="mailto:hello@theunhyped.com?subject=Method">Tell us</a>.</p>
   </article>`;
   return page({
     title: 'How the numbers are made · Unhyped',
@@ -1459,7 +1460,7 @@ front = fill(front, 'signal-art:levels', LEVELS.map((l) => `<li>${sealSvg(l.key,
 // The real example's level seal sits beside the level's name, so it's only a picture
 front = fill(front, 'signal-art:seal', sealSvg('forum', 22).replace(/ role="img" aria-label="[^"]*"/, ' aria-hidden="true"'));
 // Its one script, by its version
-front = front.replace(/(<meta property="og:image" content="https:\/\/miraclehealth\.us\/og\.jpg)(?:\?v=[0-9a-z]+)?"/, `$1${ogVersion('/og.jpg')}"`);
+front = front.replace(/(<meta property="og:image" content="https:\/\/theunhyped\.com\/og\.jpg)(?:\?v=[0-9a-z]+)?"/, `$1${ogVersion('/og.jpg')}"`);
 front = front.replace(/<script type="module" src="\/home\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/home.js?v=${V.home}"></script>`);
 // and the scripts it imports, asked for alongside it rather than after it (modulepreload), by the
 // same versions home.js imports them by

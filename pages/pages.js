@@ -3,10 +3,10 @@
 // names): the Community Signal on cards and comparisons, how many founding-reporter spots are
 // taken, how far the first pairs are, and the method page's check of the Signal against the
 // studies. Every page reads fine without it.
-import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
-import { h, svg, getJson, getSignal, groupN } from '/lib/dom.js?v=47be1f2023';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=c273a251fc';
+import { h, svg, getJson, getSignal, groupN } from '/lib/dom.js?v=5b30ad4a0f';
 
-const COMMUNITY = 'https://community.miraclehealth.us';
+const COMMUNITY = 'https://community.theunhyped.com';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const fmt = groupN;

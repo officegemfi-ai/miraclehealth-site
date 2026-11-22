@@ -90,7 +90,7 @@ export function buildPages(ctx) {
     <p class="intro">Unhyped is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Ask Sig</a>, where Sig, Unhyped’s AI, answers from both.</p>
 
     <h2 id="who">Who runs it</h2>
-    <p>Unhyped is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. Until November 2026 it was called Miracle Health. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>; a person reads every email.</p>
+    <p>Unhyped is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. Until November 2026 it was called Miracle Health. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@theunhyped.com">hello@theunhyped.com</a>; a person reads every email.</p>
 
     <h2 id="money">How it’s paid for</h2>
     <p>It’s free for everyone, and today it’s paid for by its founder. There are no ads, no sponsors and no affiliate links, and nobody can pay to be in the Library, in Sig’s answers or in the Community Signal. We never sell what members share.</p>
@@ -111,11 +111,11 @@ export function buildPages(ctx) {
     </ul>
 
     <h2 id="corrections">Corrections</h2>
-    <p>Found a mistake? <a href="mailto:hello@miraclehealth.us?subject=Correction">Tell us</a> which page and what’s wrong, with a source if you have one. When we fix a fact sheet, its “checked” date changes, and significant corrections are listed here.</p>
+    <p>Found a mistake? <a href="mailto:hello@theunhyped.com?subject=Correction">Tell us</a> which page and what’s wrong, with a source if you have one. When we fix a fact sheet, its “checked” date changes, and significant corrections are listed here.</p>
     ${corrections.length ? `<ul class="fixes">${corrections.map((c) => `<li><b>${date(c.date)}</b>, ${c.url ? `<a href="${e(c.url)}">${e(c.page || c.url)}</a>` : e(c.page || '')}: ${e(c.what)}</li>`).join('')}</ul>` : '<p class="muted-line">No significant corrections so far.</p>'}
 
     <h2 id="contact">Contact</h2>
-    <p><a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>. See also the <a href="/privacy">privacy notice</a> and the <a href="/terms">terms of use</a>.</p>
+    <p><a href="mailto:hello@theunhyped.com">hello@theunhyped.com</a>. See also the <a href="/privacy">privacy notice</a> and the <a href="/terms">terms of use</a>.</p>
   </article>`;
     add('/about/', page({
       title: 'About · No miracles. Just what happened. · Unhyped',
@@ -178,7 +178,7 @@ export function buildPages(ctx) {
       </div>
     </section>`).join('\n    ')}
 
-    <p class="pg-foot">${catalog.length - entries.size} more compounds are still being checked; their pages in the <a href="/library/">Library</a> say what we know so far. Status isn’t advice: what’s legal to compound or sell doesn’t say whether something is right for you. Spotted something out of date? <a href="mailto:hello@miraclehealth.us?subject=Status%20tracker">Tell us</a>.</p>
+    <p class="pg-foot">${catalog.length - entries.size} more compounds are still being checked; their pages in the <a href="/library/">Library</a> say what we know so far. Status isn’t advice: what’s legal to compound or sell doesn’t say whether something is right for you. Spotted something out of date? <a href="mailto:hello@theunhyped.com?subject=Status%20tracker">Tell us</a>.</p>
   </div>`;
     add('/status/', page({
       title: 'Peptide and supplement FDA status tracker · Unhyped',
@@ -343,7 +343,7 @@ export function buildPages(ctx) {
       ['signup-error', 'Something went wrong', 'Nothing was saved. Try again in a minute.'],
       ['confirmed', 'You’re confirmed', 'The Signal comes once a week. Every issue has a one-click unsubscribe link.'],
       ['unsubscribed', 'You’re unsubscribed', 'No more emails. Changed your mind? Sign up again below.'],
-      ['unknown', 'That link didn’t work', 'It may be old, or already used. Sign up again below, or write to hello@miraclehealth.us.'],
+      ['unknown', 'That link didn’t work', 'It may be old, or already used. Sign up again below, or write to hello@theunhyped.com.'],
       ['error', 'Something went wrong', 'Nothing changed. Try the link again in a minute.'],
     ];
     const body = `${docHead('The Signal, weekly', 'What moved, once a week', 'A free email. Unsubscribe in one click.')}
@@ -424,7 +424,7 @@ ${i.close ? `<p style="${P};margin-top:26px">${link(i.close.lead)}</p>
 </td></tr>
 <tr><td style="padding:20px 32px 28px;border-top:1px solid #E3E5E4">
 <p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
-<p style="margin:0;font-size:13px;line-height:1.5;color:#6A6F6E">You get this because you signed up at miraclehealth.us and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#6A6F6E">Read it on the web</a> · <a href="{{unsubscribe}}" style="color:#6A6F6E">Unsubscribe</a></p>
+<p style="margin:0;font-size:13px;line-height:1.5;color:#6A6F6E">You get this because you signed up at theunhyped.com and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#6A6F6E">Read it on the web</a> · <a href="{{unsubscribe}}" style="color:#6A6F6E">Unsubscribe</a></p>
 ${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Unhyped · ${e(about.mailing_address)}</p>` : ''}
 </td></tr>
 </table>
@@ -474,7 +474,26 @@ ${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12p
   }
 
   // -------------------------------------------------------------------------
-  // miraclehealth.us/ai, where Ask Sig was first: on to Sig's own page at /sig/ (the library
+  // theunhyped.com/move: where what a member kept on miraclehealth.us, the old address, arrives
+  // (move/move.js, lib/carry.js). Not for search engines, and not in the sitemap.
+  // -------------------------------------------------------------------------
+  files.set(path.join(ROOT, 'move', 'index.html'), page({
+    title: 'Bring your saved things over · Unhyped',
+    description: 'Moves what you kept on miraclehealth.us, Unhyped’s old address, to theunhyped.com, on your own device.',
+    url: '/move/',
+    body: `${docHead('Moving', 'Bring your saved things over')}
+
+  <article class="wrap doc move">
+    <p class="intro" id="mv-say" role="status">One moment…</p>
+    <p id="mv-act" hidden><a class="btn bone" href="https://miraclehealth.us/?bring">Open miraclehealth.us</a></p>
+    <noscript><p>Bringing your saved things over needs JavaScript.</p></noscript>
+  </article>`,
+    current: '', bodyClass: 'doc-page', styles: [`/pages/pages.css?v=${V.css}`], scripts: [`/move/move.js?v=${version('move/move.js')}`],
+    connect: '', head: '<meta name="robots" content="noindex">',
+  }));
+
+  // -------------------------------------------------------------------------
+  // theunhyped.com/ai, where Ask Sig was first: on to Sig's own page at /sig/ (the library
   // build writes it), keeping any question or stack in the link, and not a page of its own for
   // search engines. Every link made before (Library pages, the community, My stack) still works.
   // The refresh is only for browsers without scripts: racing go.js, it could drop the #ask= part.
@@ -497,7 +516,7 @@ ${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12p
 </body>
 </html>
 `);
-  files.set(path.join(ROOT, 'ai', 'go.js'), '// miraclehealth.us/ai: on to Sig\'s own page at /sig/, keeping a question or a stack in the link\nlocation.replace(`/sig/${location.search}${location.hash}`);\n');
+  files.set(path.join(ROOT, 'ai', 'go.js'), '// theunhyped.com/ai: on to Sig\'s own page at /sig/, keeping a question or a stack in the link\nlocation.replace(`/sig/${location.search}${location.hash}`);\n');
 
   return { files, urls, pairs, goals: goalStats, issues, V, og };
 }

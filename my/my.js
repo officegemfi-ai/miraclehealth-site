@@ -1,4 +1,4 @@
-// My stack (miraclehealth.us/my): what a member keeps on this device, together. Their
+// My stack (theunhyped.com/my): what a member keeps on this device, together. Their
 // plan with its steps, how it's going (check-ins), their saved stack, their places in the community,
 // a code to move it all to their phone, and a way to forget it.
 // It's all read from and written to this browser's storage. Nothing leaves it unless they choose:
@@ -6,9 +6,9 @@
 // question they take to Sig (typed in for them there, never sent by itself), or the code
 // they open on their phone (it travels in the link after "#", which no server receives).
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
-import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=7920a66cee';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
-import { h, getSignal } from '/lib/dom.js?v=47be1f2023';
+import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=15699d1424';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=c273a251fc';
+import { h, getSignal } from '/lib/dom.js?v=5b30ad4a0f';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=955c60de6c';
 
 const P = window.MHPlan;

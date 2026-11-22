@@ -1,6 +1,6 @@
 # Unhyped library: research brief
 
-You are writing entries for the Unhyped public library (miraclehealth.us/library): one page per
+You are writing entries for the Unhyped public library (theunhyped.com/library): one page per
 peptide, hormone, supplement or medication that members of an online community take. Each page must be
 the most trustworthy plain-English summary on the web, with every claim backed by a source you actually
 opened. The pages will say "Fact-checked against primary sources · clinician review pending" and

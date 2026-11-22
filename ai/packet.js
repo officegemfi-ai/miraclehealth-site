@@ -7,10 +7,10 @@
 // link or QR code: the packet travels in the part of the link after "#", which browsers never send
 // to a server, so Unhyped never receives or keeps it.
 // Used by the chat (/ai/) and by the page a clinician opens (/ai/packet/).
-import { h } from '/lib/dom.js?v=47be1f2023';
+import { h } from '/lib/dom.js?v=5b30ad4a0f';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=955c60de6c';
 
-const SITE = 'https://miraclehealth.us';
+const SITE = 'https://theunhyped.com';
 const LEVEL = { avoid: 'Avoid', caution: 'Caution', unknown: 'Never studied together', info: 'Good to know' };
 const FOUND = { strong: 'strong evidence', moderate: 'moderate evidence', limited: 'small human studies', preclinical: 'animal or lab studies', anecdotal: 'user reports' };
 // Evidence for the use asked about, as the chat's cards say it
@@ -229,7 +229,7 @@ function itemNode(it, withWhy, refs) {
   const url = `${SITE}/library/${it.id}/`;
   return h('li', { class: 'pk-item' },
     h('div', { class: 'pk-item-head' },
-      isId(it.id) ? h('a', { href: url, 'data-short': `miraclehealth.us/library/${it.id}`, text: it.name }) : h('b', { text: it.name }),
+      isId(it.id) ? h('a', { href: url, 'data-short': `theunhyped.com/library/${it.id}`, text: it.name }) : h('b', { text: it.name }),
       it.role ? h('span', { class: 'pk-role', text: it.role }) : null),
     h('p', { class: 'pk-facts', text: facts(it) }),
     withWhy && it.why ? h('p', { class: 'pk-why', text: `Why it’s listed: ${it.why}` }) : null,
@@ -284,7 +284,7 @@ export function render(p, { level = 2 } = {}) {
     art.append(sec('References', h('ol', { class: 'pk-refs' }, refs.map((r) => h('li', {},
       `${r.title}${r.year ? ` (${r.year})` : ''}. `, h('a', { href: r.url, target: '_blank', rel: 'noopener noreferrer', text: r.url }))))));
   }
-  art.append(h('footer', { class: 'pk-foot', text: 'Made in my own browser with Sig (miraclehealth.us/ai). Education from the Unhyped Library and Community Signal; no doses or diagnoses. Unhyped doesn’t receive or keep this packet.' }));
+  art.append(h('footer', { class: 'pk-foot', text: 'Made in my own browser with Sig (theunhyped.com/ai). Education from the Unhyped Library and Community Signal; no doses or diagnoses. Unhyped doesn’t receive or keep this packet.' }));
   return art;
 }
 
@@ -313,7 +313,7 @@ export function text(p) {
   if (p.questions.length) out.push('What I’d like to discuss:', ...p.questions.map((q, i) => `${i + 1}. ${q}`), '');
   out.push('Clinician notes (not an endorsement): reviewed by ____  credentials ____  date ____', 'Notes:', '');
   if (refs.length) out.push('References:', ...refs.map((r, i) => `${i + 1}. ${r.title}${r.year ? ` (${r.year})` : ''}. ${r.url}`), '');
-  out.push('Made in my own browser with Sig (miraclehealth.us/ai). Unhyped doesn’t receive or keep this packet.');
+  out.push('Made in my own browser with Sig (theunhyped.com/ai). Unhyped doesn’t receive or keep this packet.');
   return out.filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
 }
 

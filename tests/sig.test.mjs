@@ -49,7 +49,7 @@ test('the navigation panel keeps every link', () => {
   // each link's words (its drawing aside) and where it goes
   const links = (nav) => [...nav.replace(/<svg[\s\S]*?<\/svg>/g, '').matchAll(/<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => `${m[2].replace(/<[^>]+>/g, '').trim()} ${m[1]}`);
   assert.deepEqual(links(between(side, '<nav class="sg-site', '</nav>')),
-    ['The Signal /#signal', 'Library /library/', 'Ask Sig /sig/', 'Community https://community.miraclehealth.us/', 'My stack /my/']);
+    ['The Signal /#signal', 'Library /library/', 'Ask Sig /sig/', 'Community https://community.theunhyped.com/', 'My stack /my/']);
   assert.deepEqual(links(between(side, '<nav class="os-more sg-more"', '</nav>')),
     ['How it works /#how', 'How the numbers are made /method/', 'FDA status tracker /status/', 'Compare /compare/', 'By goal /goals/', 'The weekly email /weekly/', 'Founding reporters /founders/', 'The story /story/', 'About /about/']);
   assert.match(side, /id="sg-new"/, 'a new chat');
@@ -102,7 +102,7 @@ function rackOn() {
 }
 // (the rack reads the split body map as a browser would, from the site's own files)
 globalThis.fetch = async (url) => {
-  const f = path.join(ROOT, new URL(url, 'https://miraclehealth.us').pathname);
+  const f = path.join(ROOT, new URL(url, 'https://theunhyped.com').pathname);
   return fs.existsSync(f) ? { ok: true, json: async () => JSON.parse(fs.readFileSync(f, 'utf8')) } : { ok: false, json: async () => null };
 };
 // What a compound's lines may move, worked out here from the one file people edit
