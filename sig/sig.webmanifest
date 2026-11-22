@@ -1,7 +1,7 @@
 {
-  "name": "Sig · Miracle Health",
+  "name": "Sig · Unhyped",
   "short_name": "Sig",
-  "description": "Ask Sig, Miracle Health’s AI: the studies and the whole community, in one answer. No doses, no sellers, no diagnosis.",
+  "description": "Ask Sig, Unhyped’s AI: the studies and the whole community, in one answer. No doses, no sellers, no diagnosis.",
   "id": "/sig/",
   "start_url": "/sig/",
   "scope": "/sig/",

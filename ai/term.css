@@ -301,7 +301,7 @@ html:has(body.sigapp){--top-h:0px}
 .sg-side{position:sticky;top:0;z-index:30;display:flex;flex-direction:column;height:100dvh;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.22) transparent;padding:10px 10px 12px 12px;border-right:1px solid var(--tm-line);background:#000000;color:var(--tm-tx)}
 .sg-head{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 0 0 6px}
 .sg-logo{display:block;padding:4px 0}
-.sg-logo img{display:block;width:auto;height:22px}
+.sg-logo img{display:block;width:auto;height:20px}
 .sg-fold,.tm-menu{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:0;background:none;color:var(--tm-t2);cursor:pointer}
 .sg-fold:hover,.tm-menu:hover{background:var(--hover);color:var(--tm-tx)}
 .sg-fold:focus-visible,.tm-menu:focus-visible,.sg-new:focus-visible,.sg-open:focus-visible,.sg-del:focus-visible,.sg-wipe:focus-visible,.sg-site a:focus-visible,.sg-yes:focus-visible,.sg-no:focus-visible,.sg-wipe-yes:focus-visible,.sg-wipe-no:focus-visible{outline:2px solid var(--tm-tx);outline-offset:2px}

@@ -1,6 +1,6 @@
 // The pages around the Library, built with it by scripts/build_library.mjs (which passes in its
 // page template, words and data):
-//   /about/                  who runs Miracle Health, how it's paid for, how sheets are checked,
+//   /about/                  who runs Unhyped, how it's paid for, how sheets are checked,
 //                            reviewers and corrections (library/data/about.json)
 //   /status/                 where each compound stands with the FDA, from the fact sheets
 //   /goals/, /goals/<goal>/  the compounds people take for each of the twelve goals
@@ -87,14 +87,14 @@ export function buildPages(ctx) {
     const body = `${docHead('About', 'No miracles. Just what happened.', `Updated ${date(about.updated)}`)}
 
   <article class="wrap doc about">
-    <p class="intro">Miracle Health is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Ask Sig</a>, where Sig, Miracle Health’s AI, answers from both.</p>
+    <p class="intro">Unhyped is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Ask Sig</a>, where Sig, Unhyped’s AI, answers from both.</p>
 
     <h2 id="who">Who runs it</h2>
-    <p>Miracle Health is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>; a person reads every email.</p>
+    <p>Unhyped is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. Until November 2026 it was called Miracle Health. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>; a person reads every email.</p>
 
     <h2 id="money">How it’s paid for</h2>
     <p>It’s free for everyone, and today it’s paid for by its founder. There are no ads, no sponsors and no affiliate links, and nobody can pay to be in the Library, in Sig’s answers or in the Community Signal. We never sell what members share.</p>
-    <p>If Miracle Health ever sells anything of its own, it will be kept apart: never in the Library, never in Sig’s answers, never counted in the Signal. And this page will say so before it happens.</p>
+    <p>If Unhyped ever sells anything of its own, it will be kept apart: never in the Library, never in Sig’s answers, never counted in the Signal. And this page will say so before it happens.</p>
 
     <h2 id="checked">How fact sheets are checked</h2>
     <p>Each fact sheet is checked claim by claim against sources we opened: FDA labels and documents, NIH fact sheets and published trials. Every benefit says what kind of evidence backs it, from randomized trials in people to studies in rats, and every claim links to its source. Each sheet shows the date it was checked; ${entries.size} of ${catalog.length} compounds have one so far, and the rest say they’re still being checked. <a href="/method/">How the numbers are made</a> explains the grades, how reports are read and weighted, and the side-effect watch.</p>
@@ -118,8 +118,8 @@ export function buildPages(ctx) {
     <p><a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>. See also the <a href="/privacy">privacy notice</a> and the <a href="/terms">terms of use</a>.</p>
   </article>`;
     add('/about/', page({
-      title: 'About · No miracles. Just what happened. · Miracle Health',
-      description: 'Who runs Miracle Health, how it’s paid for, how fact sheets are checked, and corrections.',
+      title: 'About · No miracles. Just what happened. · Unhyped',
+      description: 'Who runs Unhyped, how it’s paid for, how fact sheets are checked, and corrections.',
       url: '/about/', body, current: '', bodyClass: 'doc-page', styles: [`/pages/pages.css?v=${V.css}`], scripts: [], ogImage: og('about'),
     }));
   }
@@ -181,7 +181,7 @@ export function buildPages(ctx) {
     <p class="pg-foot">${catalog.length - entries.size} more compounds are still being checked; their pages in the <a href="/library/">Library</a> say what we know so far. Status isn’t advice: what’s legal to compound or sell doesn’t say whether something is right for you. Spotted something out of date? <a href="mailto:hello@miraclehealth.us?subject=Status%20tracker">Tell us</a>.</p>
   </div>`;
     add('/status/', page({
-      title: 'Peptide and supplement FDA status tracker · Miracle Health',
+      title: 'Peptide and supplement FDA status tracker · Unhyped',
       description: `Where ${entries.size} peptides, hormones, supplements and medications stand with the FDA: approved, compoundable, on the safety-risk list or under review, each checked against FDA’s own documents.`,
       url: '/status/', body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: [], ogImage: og('status'),
     }));
@@ -237,8 +237,8 @@ export function buildPages(ctx) {
     <nav class="pg-goals" aria-label="Other goals">${goalStats.filter((x) => x.id !== g.id).map((x) => `<a href="/goals/${e(x.id)}/">${e(GOAL_SHORT[x.id] || x.label)}</a>`).join('')}</nav>
   </div>`;
       add(`/goals/${g.id}/`, page({
-        title: `${g.label}: what the studies show and what people report · Miracle Health`,
-        titles: [`${g.label}: what studies show and people report`, `${g.label}: studies and reports · Miracle Health`, `${g.label}: studies and reports`],
+        title: `${g.label}: what the studies show and what people report · Unhyped`,
+        titles: [`${g.label}: what studies show and people report`, `${g.label}: studies and reports · Unhyped`, `${g.label}: studies and reports`],
         description: `${g.main.length} peptides, supplements and medications people take for ${lower(g.label)}, with what the studies show for each, its risks and status, and what people who took it report.`,
         url: `/goals/${g.id}/`, body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: SCRIPTS, ogImage: og(`goal-${g.id}`),
       }));
@@ -249,7 +249,7 @@ export function buildPages(ctx) {
     <div class="pg-goal-grid">${goalStats.map((g) => `<a class="pg-goal" href="/goals/${e(g.id)}/"><b>${e(g.label)}</b><span>${g.main.length} studied for it${g.some.length ? ` · ${g.some.length} sometimes taken for it` : ''}</span></a>`).join('')}</div>
   </div>`;
     add('/goals/', page({
-      title: 'Peptides and supplements by goal · Miracle Health',
+      title: 'Peptides and supplements by goal · Unhyped',
       description: 'The peptides, hormones, supplements and medications people take for weight, muscle, recovery, sleep, focus, skin, aging and more, with what the studies show.',
       url: '/goals/', body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: [], ogImage: og('goals'),
     }));
@@ -306,8 +306,8 @@ export function buildPages(ctx) {
     <p class="pg-foot">Took one of them? <a href="${COMMUNITY}/#/new?c=${e(a.id)}">Share how ${e(a.name)} went</a> or <a href="${COMMUNITY}/#/new?c=${e(b.id)}">how ${e(b.name)} went</a>. <a href="/compare/">More comparisons</a>.</p>
   </div>`;
       add(`/compare/${slug}/`, page({
-        title: `${a.name} vs ${b.name}: evidence, risks and status side by side · Miracle Health`,
-        titles: [`${a.name} vs ${b.name}: evidence and risks · Miracle Health`, `${a.name} vs ${b.name}: side by side · Miracle Health`, `${a.name} vs ${b.name}: side by side`, `${a.name} vs ${b.name}`,
+        title: `${a.name} vs ${b.name}: evidence, risks and status side by side · Unhyped`,
+        titles: [`${a.name} vs ${b.name}: evidence and risks · Unhyped`, `${a.name} vs ${b.name}: side by side · Unhyped`, `${a.name} vs ${b.name}: side by side`, `${a.name} vs ${b.name}`,
           `${a.name.replace(/\s*\([^)]*\)/g, '')} vs ${b.name.replace(/\s*\([^)]*\)/g, '')}: side by side`],
         description: `${a.name} and ${b.name} compared: what each is, its FDA status, what the studies show, risks and side effects, and what people who took them report.`,
         url: `/compare/${slug}/`, body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: SCRIPTS, ogImage: og(`compare-${slug}`),
@@ -320,7 +320,7 @@ export function buildPages(ctx) {
     <div class="pg-acts"><a class="btn lime" href="${e(askLink('Can you compare two compounds for me?', { site: '' }))}">Compare others with Sig</a></div>
   </div>`;
     add('/compare/', page({
-      title: 'Compare peptides and supplements side by side · Miracle Health',
+      title: 'Compare peptides and supplements side by side · Unhyped',
       description: 'Semaglutide vs tirzepatide, BPC-157 vs TB-500 and more: evidence, risks, FDA status and what people report, side by side.',
       url: '/compare/', body, current: 'library', bodyClass: 'lib pg', styles: STYLES, scripts: [], ogImage: og('compare'),
     }));
@@ -363,7 +363,7 @@ export function buildPages(ctx) {
     </section>
   </div>`;
     add('/weekly/', page({
-      title: 'The Signal: Miracle Health’s weekly email',
+      title: 'The Signal: Unhyped’s weekly email',
       description: 'Once a week: what moved in the Community Signal, new studies and FDA news on peptides, hormones and supplements. Free, no ads.',
       url: '/weekly/', body, current: '', bodyClass: 'lib pg', styles: STYLES, scripts: [], ogImage: og('weekly'),
     }));
@@ -383,7 +383,7 @@ export function buildPages(ctx) {
     </div>
   </article>`;
       add(`/weekly/${i.n}/`, page({
-        title: `${i.subject} · Miracle Health`,
+        title: `${i.subject} · Unhyped`,
         description: i.preview,
         url: `/weekly/${i.n}/`, body: web, current: '', bodyClass: 'doc-page', styles: [`/pages/pages.css?v=${V.css}`], scripts: [], ogImage: og('weekly'),
       }));
@@ -425,7 +425,7 @@ ${i.close ? `<p style="${P};margin-top:26px">${link(i.close.lead)}</p>
 <tr><td style="padding:20px 32px 28px;border-top:1px solid #E3E5E4">
 <p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
 <p style="margin:0;font-size:13px;line-height:1.5;color:#6A6F6E">You get this because you signed up at miraclehealth.us and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#6A6F6E">Read it on the web</a> · <a href="{{unsubscribe}}" style="color:#6A6F6E">Unsubscribe</a></p>
-${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Miracle Health · ${e(about.mailing_address)}</p>` : ''}
+${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Unhyped · ${e(about.mailing_address)}</p>` : ''}
 </td></tr>
 </table>
 </td></tr></table>
@@ -467,7 +467,7 @@ ${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12p
     <p class="pg-foot">One badge per member, by when your first report was read. A report removed for breaking the <a href="${COMMUNITY}/#/rules">house rules</a> doesn’t count. No doses, no sellers.</p>
   </div>`;
     add('/founders/', page({
-      title: 'Be one of the first 100 founding reporters · Miracle Health',
+      title: 'Be one of the first 100 founding reporters · Unhyped',
       description: 'The first 100 members to share a first-hand report on a peptide, hormone or supplement become founding reporters. Here’s what counts.',
       url: '/founders/', body, current: '', bodyClass: 'lib pg', styles: STYLES, scripts: SCRIPTS, ogImage: og('founders'),
     }));
@@ -476,7 +476,7 @@ ${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12p
   // -------------------------------------------------------------------------
   // miraclehealth.us/ai, where Ask Sig was first: on to Sig's own page at /sig/ (the library
   // build writes it), keeping any question or stack in the link, and not a page of its own for
-  // search engines. Every link made before (Library pages, the community, My Miracle) still works.
+  // search engines. Every link made before (Library pages, the community, My stack) still works.
   // The refresh is only for browsers without scripts: racing go.js, it could drop the #ask= part.
   // -------------------------------------------------------------------------
   files.set(path.join(ROOT, 'ai', 'index.html'), `<!doctype html>
@@ -484,8 +484,8 @@ ${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12p
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ask Sig · Miracle Health</title>
-<meta name="description" content="Ask Sig, Miracle Health’s AI: the studies and the whole community, in one answer.">
+<title>Ask Sig · Unhyped</title>
+<meta name="description" content="Ask Sig, Unhyped’s AI: the studies and the whole community, in one answer.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="${SITE}/sig/">

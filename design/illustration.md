@@ -1,6 +1,6 @@
 # The illustration system
 
-Miracle Health draws with data, not decoration. There are three marks, all made from code: Sig's ring, the twelve agents' glyphs and the compound prints. The fourth illustration is the product itself, the window. Nothing else is drawn: no stock photos, no 3D pills or syringes, no people, no gradients, no mascots other than Sig.
+Unhyped draws with data, not decoration. There are three marks, all made from code: Sig's ring, the twelve agents' glyphs and the compound prints. The fourth illustration is the product itself, the window. Nothing else is drawn: no stock photos, no 3D pills or syringes, no people, no gradients, no mascots other than Sig.
 
 ## Sig's ring
 

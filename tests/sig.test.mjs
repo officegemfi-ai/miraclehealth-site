@@ -49,7 +49,7 @@ test('the navigation panel keeps every link', () => {
   // each link's words (its drawing aside) and where it goes
   const links = (nav) => [...nav.replace(/<svg[\s\S]*?<\/svg>/g, '').matchAll(/<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => `${m[2].replace(/<[^>]+>/g, '').trim()} ${m[1]}`);
   assert.deepEqual(links(between(side, '<nav class="sg-site', '</nav>')),
-    ['The Signal /#signal', 'Library /library/', 'Ask Sig /sig/', 'Community https://community.miraclehealth.us/', 'My Miracle /my/']);
+    ['The Signal /#signal', 'Library /library/', 'Ask Sig /sig/', 'Community https://community.miraclehealth.us/', 'My stack /my/']);
   assert.deepEqual(links(between(side, '<nav class="os-more sg-more"', '</nav>')),
     ['How it works /#how', 'How the numbers are made /method/', 'FDA status tracker /status/', 'Compare /compare/', 'By goal /goals/', 'The weekly email /weekly/', 'Founding reporters /founders/', 'The story /story/', 'About /about/']);
   assert.match(side, /id="sg-new"/, 'a new chat');
@@ -158,7 +158,7 @@ test('direction only: no amounts and no doses, on the rack or in what it copies'
   all(el, 'rk-copy')[0].press();
   assert.equal(copied.length, 1);
   const lines = copied[0].split('\n');
-  assert.equal(lines[0], 'Blood tests to discuss with my clinician (from Miracle Health’s fact sheets; direction only):');
+  assert.equal(lines[0], 'Blood tests to discuss with my clinician (from Unhyped’s fact sheets; direction only):');
   assert.equal(lines.length - 1, m.count());
   for (const line of lines.slice(1)) assert.match(line, /^- [^:]+: ((HGH|Enclomiphene) (may raise it|may lower it|means it’s checked|is noted)(; )?)+$/);
   assert.ok(!amount.test(copied[0]), 'an amount in the copy for the doctor');

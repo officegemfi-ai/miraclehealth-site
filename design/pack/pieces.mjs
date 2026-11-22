@@ -126,7 +126,7 @@ ${o.band ? `<div class="band">${words}</div>` : words}</div>`, `background:${o.b
 // The lines, as the site says them
 const LINE = {
   brand: { kick: 'The Community Signal', title: 'No miracles.<br><em>Just what happened.</em>', sub: 'Every peptide, hormone and supplement, scored 0 to 100 by the people who took it.' },
-  report: { kick: 'The Miracle Health community', title: 'Took something?<br>Say how it went.', sub: 'Your report moves the number for the next person, even if it did nothing.', go: 'community.miraclehealth.us', addr: 'community.miraclehealth.us', band: true },
+  report: { kick: 'The Unhyped community', title: 'Took something?<br>Say how it went.', sub: 'Your report moves the number for the next person, even if it did nothing.', go: 'community.miraclehealth.us', addr: 'community.miraclehealth.us', band: true },
   rules: { kick: 'Independent and free', title: 'Nobody can buy<br><em>a better number.</em>', sub: 'No doses. No sellers. No diagnosis. Nothing for sale.' },
 };
 const NOT_ADVICE = 'What people report. Not medical advice.';
@@ -150,7 +150,7 @@ h1{margin-top:22px}`;
     'posts/post-rules.png': [sq, piece(sq, LINE.rules)],
     'carousel/1-cover.png': [pt, piece(pt, { kick: 'How it works', title: 'Three steps,<br><em>one honest number.</em>', sub: 'Nothing to fill in but how it went. Everything after that is worked out in the open.' })],
     'carousel/2-say-how-it-went.png': [pt, step(0, 'Say how it went', 'In your own words: what you took, what for, and how it went. Better, the same or worse, it all counts.')],
-    'carousel/3-sig-reads-it-in.png': [pt, step(1, 'Sig reads it in', 'Sig, Miracle Health’s AI, reads what it was for and how it went, then asks “Did we read you right?” Your word wins.')],
+    'carousel/3-sig-reads-it-in.png': [pt, step(1, 'Sig reads it in', 'Sig, Unhyped’s AI, reads what it was for and how it went, then asks “Did we read you right?” Your word wins.')],
     'carousel/4-the-signal-moves.png': [pt, step(2, 'The Signal moves', 'Every report moves one honest score from 0 to 100, and it’s followed up at 2, 6 and 12 weeks. Nobody can buy a better number.')],
     'carousel/5-your-turn.png': [pt, piece(pt, { ...LINE.report, head: 78 })],
     'stories/story-brand.png': [st, piece(st, { ...LINE.brand, go: 'miraclehealth.us' })],

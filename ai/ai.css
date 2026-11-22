@@ -70,7 +70,7 @@
 .linkish{min-height:32px;padding:0;border:0;background:none;color:inherit;font:500 13.5px/1.3 var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .saved-box .linkish{color:var(--on-ink-2)}
 .saved-box .linkish:hover{color:var(--bone)}
-/* My Miracle in short: their plan and stack, and a nudge to check in */
+/* My stack in short: their plan and stack, and a nudge to check in */
 .my-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
 .my-head .linkish{min-height:0}
 .my-part{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)}
@@ -229,7 +229,7 @@
 .stack-save .linkish:hover{color:var(--text)}
 .audit-none{margin-top:6px;font-size:13.5px;color:var(--muted)}
 
-/* when to get help: fixed levels from Miracle Health's table, most urgent first */
+/* when to get help: fixed levels from Unhyped's table, most urgent first */
 .card.warn{padding:16px 18px;border:1px solid rgba(232,183,90,.45);background:rgba(232,183,90,.07)}
 .card.warn h2{font:600 16px/1.3 var(--body);letter-spacing:-.01em;color:var(--text);font-weight:600;font-stretch:100%;text-transform:none}
 .inject-points{display:grid;gap:7px;margin-top:10px}

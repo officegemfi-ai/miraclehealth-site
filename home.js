@@ -6,11 +6,11 @@
 // report for each use and the placebo figures beside them. If the files can't load, the page keeps
 // what it was published with.
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
-import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=b2904115a8';
+import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=7920a66cee';
 import { startHow } from '/lib/how.js?v=547caf3594';
 import { startSigHero } from '/lib/sighero.js?v=e0fa87772c';
 import { sigField } from '/lib/sigfield.js?v=36f23eb1e2';
-import { h, getJson, getSignal, calm, groupN } from '/lib/dom.js?v=f31d9546b5';
+import { h, getJson, getSignal, calm, groupN } from '/lib/dom.js?v=47be1f2023';
 
 const card = document.querySelector('[data-live="example"]');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;

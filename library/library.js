@@ -3,9 +3,9 @@
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
 import { setPrintSignal } from '/lib/print.js?v=d7172ffaa1';
-import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=b2904115a8';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=7920a66cee';
 import { wireBodyMap } from '/kit/bodymap.js?v=57440abdb8';
-import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=f31d9546b5';
+import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=47be1f2023';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
 // Both voices for each compound and use, worked out with Sig's own code from the same

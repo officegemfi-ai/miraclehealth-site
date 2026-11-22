@@ -1,4 +1,4 @@
-/* Miracle Health (miraclehealth.us)
+/* Unhyped (miraclehealth.us)
    AlgoRx's look: deep green-black and near-white paper, one lime accent, photography,
    frosted glass cards, Mona Sans words and Monaspace Neon data.
    The photo at the top is shown exactly as supplied. The front page's one script (home.js)
@@ -298,7 +298,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .foot-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:36px 64px;padding-top:8px}
 .foot-brand{display:flex;flex-direction:column;align-items:flex-start;gap:18px;max-width:380px}
 .foot-logo{display:block;flex:none;border-radius:0}
-.foot-logo img{height:32px;width:auto}
+.foot-logo img{height:26px;width:auto}
 .foot-say{font:400 14px/1.6 var(--body);color:var(--on-ink-2)}
 .foot-say b{display:block;margin-bottom:6px;font:600 16px/1.35 var(--head);letter-spacing:-.012em;color:var(--on-ink)}
 .foot-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 24px}
@@ -580,7 +580,7 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .os-side>:not(.os-ctx){flex-shrink:0}
 .os-head{display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 0 0 6px}
 .os-logo{display:block;padding:4px 0}
-.os-logo img{display:block;width:auto;height:22px}
+.os-logo img{display:block;width:auto;height:20px}
 .os-fold,.os-menu{display:grid;place-items:center;flex:none;width:32px;height:32px;padding:0;border:0;border-radius:0;background:none;color:var(--text-2);cursor:pointer}
 .os-fold:hover,.os-menu:hover{background:var(--hover);color:var(--text)}
 .os-fold:focus-visible,.os-menu:focus-visible,.os-side a:focus-visible{outline:2px solid var(--text);outline-offset:2px}
@@ -632,7 +632,7 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .win{position:relative;min-height:100dvh;background:radial-gradient(90% 640px at 50% -160px,rgba(26,4,255,.3) 0%,rgba(0,0,0,0) 62%),linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/64px 64px,var(--os-win)}
 .os-top{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:14px;height:var(--os-tb);padding:0 24px;border-bottom:1px solid var(--line);background:rgba(0,0,0,.84);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .os-top-logo{display:flex;align-items:center;flex:none;min-height:40px}
-.os-top-logo img{display:block;width:auto;height:22px}
+.os-top-logo img{display:block;width:auto;height:20px}
 /* the four places in the bar (a laptop and up); the page you're on is underlined where the bar meets the page */
 .os-links{display:flex;align-items:center;gap:2px;margin-left:10px}
 .os-links a{position:relative;display:flex;align-items:center;min-height:40px;padding:0 12px;color:var(--text-2);font:500 14.5px/1 var(--body);text-decoration:none;white-space:nowrap;transition:color .2s}
@@ -723,7 +723,7 @@ kbd{font:inherit}
 .kbd-k{font-family:var(--mono);font-size:.92em}
 
 /* ================================================================ the story (/story/)
-   The new Miracle Health told in its own language: the ring, the twelve and their glyphs, a run
+   Unhyped told in its own language: the ring, the twelve and their glyphs, a run
    as it runs, the prints, the four places, the rules */
 .sy{--sy-w:1320px}
 .sy .wrap{max-width:var(--sy-w)}

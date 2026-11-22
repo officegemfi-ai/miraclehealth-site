@@ -170,7 +170,7 @@ export function makeMarkers({ h, svg, copy, onDraw }) {
         const r = stateOf(m);
         return `- ${d.meta[m]?.name || m}: ${r.act.map((p) => `${shortName(rack.names[p.id] || p.id)} ${p.op === 'up' ? 'may raise it' : p.op === 'down' ? 'may lower it' : p.op === 'watch' ? 'means it’s checked' : 'is noted'}`).join('; ')}`;
       });
-      copy(['Blood tests to discuss with my clinician (from Miracle Health’s fact sheets; direction only):', ...rows].join('\n'), copyBtn);
+      copy(['Blood tests to discuss with my clinician (from Unhyped’s fact sheets; direction only):', ...rows].join('\n'), copyBtn);
     });
     el.replaceChildren(
       h('div', { class: 'rk-top' }, h('p', { class: 'rk-sum', text }), chips),
