@@ -476,3 +476,14 @@ The owner: "On the Ask sig page, make sure only the markers are shown on the rig
 **Lighter.** The page's own scripts go from 285 KB to 201 KB and its stylesheets from 132 KB to 110 KB. The design baseline drops with the screen's stylesheet: colours off the palette 144 to 114, sizes off the scale 21 to 17, gradients 26 to 23, shadows 22 to 17.
 
 **Left as they are:** Sig's server still sends the evidence ladder, and its Markers agent is still told that "the screen lists every marker" (the rack does); `lib/dom.js` still names `ai/screen.js` in a comment, since every page's scripts carry that file's version and one corrected comment would restamp 345 pages.
+
+## 2026-11-21 · Miracle Health is now Unhyped
+
+The owner: "I think we need to change our name". He took **Unhyped**, at theunhyped.com (unhyped.com is taken). The headline already said "Peptides, without the sales pitch", and "Miracle" was the one pitch left; it is also the word the FTC uses for health scams ("Miracle Health Claims", at ftc.gov/miraclehealth). Pictures in `design/audits/2026-11-21/rename-unhyped/`.
+
+- **The logo is drawn from the site's own face,** not traced from a picture: "unhyped", lower case, Mona Sans at 900 and 125% wide, a little tight, kerned and slanted 10 degrees, the old script logo's energy without its second line or its ®. `design/pack/wordmark.py` draws every copy of it (the pages', the brand pack's, an ink one for light grounds, and the foot's big word) from one outline. Option A of four; the other three are in the audit folder.
+- **Sizes:** 20px tall in the top bar, the side panel and Ask Sig's side, 26px in a foot (the one-line word is wider than the old two-line logo, so it is set shorter to weigh the same). Share images draw it at 0.55 of the room the old logo took, for the same footprint.
+- **The names that came from the old one:** "My Miracle" is **My stack** (the audience's own word for what they take, and what the page holds; the shared kit's name for the place, so the community app follows); the "Miracle Plan" is a plain **plan**. "No miracles. Just what happened." stays, since it says the new name's promise.
+- **Said once where it matters:** About, the privacy notice and the terms say that Unhyped was called Miracle Health until November 2026. Sig is told the same, to say if asked.
+- **What waits for the domain:** links, canonical addresses, the share images' address line, `CNAME` and the contact address stay on miraclehealth.us until theunhyped.com points here; then one change moves them. Storage keys (`mh-…`) keep their names so nobody loses a saved chat, stack or plan.
+- **The kit changed in the community repository first** (`shared/kit`: the place's name, the bar's label) and was copied here with its `sync_kit.sh`; its check compares with this site's main, so this site merges first, then the community app.
