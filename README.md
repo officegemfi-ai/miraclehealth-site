@@ -150,6 +150,7 @@ forwarded by Namecheap (Domain > Redirect Email).
 Until November 2026 the site was miraclehealth.us. Keep that domain registered: its DNS records stay
 as they were (the same four A records, `www`, `community` and the TXT), and two small sites answer
 there, each in its own repository with GitHub Pages on (a GitHub Pages site has one address):
+`miraclehealth-forward` and `miraclehealth-community-forward`.
 
 - miraclehealth.us: every page goes on to the same page here, keeping anything after the address.
   A browser that has saved things from the old address (a stack, a plan, chats with Sig) is asked
