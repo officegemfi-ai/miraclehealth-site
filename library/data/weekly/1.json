@@ -1,10 +1,10 @@
 {
-  "note": "One issue of The Signal, Miracle Health's weekly email. The build makes its web page (weekly/<n>/) and the email itself (weekly/<n>/email.html, which the newsletter function sends). Text is plain, with [words](link) for links; {{compounds}} and {{sheets}} become the Library's counts. Every fact comes from a checked fact sheet.",
+  "note": "One issue of The Signal, Unhyped's weekly email. The build makes its web page (weekly/<n>/) and the email itself (weekly/<n>/email.html, which the newsletter function sends). Text is plain, with [words](link) for links; {{compounds}} and {{sheets}} become the Library's counts. Every fact comes from a checked fact sheet.",
   "n": 1,
   "date": "2026-11-05",
   "subject": "The Signal #1: off FDA’s risk list isn’t the same as allowed",
   "preview": "Where the peptides FDA reviewed this year stand, the GLP-1 news, and the five pairs the community is filling first.",
-  "intro": "This is the first Signal, Miracle Health’s weekly email: what moved in the Community Signal, new studies, and FDA news on the compounds in the Library. Every fact here links to the fact sheet it comes from, and every fact sheet to its sources. No ads, nothing for sale.",
+  "intro": "This is the first Signal, Unhyped’s weekly email: what moved in the Community Signal, new studies, and FDA news on the compounds in the Library. Every fact here links to the fact sheet it comes from, and every fact sheet to its sources. No ads, nothing for sale.",
   "sections": [
     {
       "h": "The peptides FDA reviewed this year",

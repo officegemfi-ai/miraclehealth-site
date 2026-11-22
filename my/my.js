@@ -1,15 +1,15 @@
-// My Miracle (miraclehealth.us/my): what a member keeps on this device, together. Their Miracle
-// Plan with its steps, how it's going (check-ins), their saved stack, their places in the community,
+// My stack (miraclehealth.us/my): what a member keeps on this device, together. Their
+// plan with its steps, how it's going (check-ins), their saved stack, their places in the community,
 // a code to move it all to their phone, and a way to forget it.
 // It's all read from and written to this browser's storage. Nothing leaves it unless they choose:
 // a check-in they post in the community (it opens there as a draft they change and post), a
 // question they take to Sig (typed in for them there, never sent by itself), or the code
 // they open on their phone (it travels in the link after "#", which no server receives).
 // Nothing here uses innerHTML; the design kit's pieces are its own markup.
-import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=b2904115a8';
+import { chipHtml, signalHtml, sigSvg, node as fromKit, askLink, spaceLink, COMMUNITY } from '/kit/kit.js?v=7920a66cee';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
-import { h, getSignal } from '/lib/dom.js?v=f31d9546b5';
-import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
+import { h, getSignal } from '/lib/dom.js?v=47be1f2023';
+import { b64url, unb64url, pipe } from '/lib/pack.js?v=955c60de6c';
 
 const P = window.MHPlan;
 const root = document.getElementById('my-root');
@@ -63,9 +63,9 @@ async function packAll() {
 async function unpackAll(s) {
   let bytes = unb64url(s.slice(1));
   if (s[0] === 'z') bytes = await pipe(bytes, new DecompressionStream('deflate-raw'));
-  else if (s[0] !== 'u') throw new Error('not a My Miracle link');
+  else if (s[0] !== 'u') throw new Error('not a My stack link');
   const x = JSON.parse(new TextDecoder().decode(bytes));
-  if (!x || x.v !== 1) throw new Error('not a My Miracle link');
+  if (!x || x.v !== 1) throw new Error('not a My stack link');
   return x;
 }
 async function incoming() {
@@ -177,7 +177,7 @@ function historySection() {
 function planSection(k) {
   const card = { ...k.card, done: k.done };
   const el = P.node(card, {
-    kick: 'Your Miracle Plan', share: true,
+    kick: 'Your plan', share: true,
     // Answering a "not sure yet" pillar goes to Sig, the answer typed in for them
     onAnswer: (text) => { location.href = askLink(text, { site: '' }); },
     onKeep: () => draw(),
@@ -228,7 +228,7 @@ function moveSection() {
     try {
       const url = `${location.origin}/my/#m=${await packAll()}`;
       const { svg } = await window.MHPacket.qrSvg(url, QR_SRC);
-      svg.setAttribute('aria-label', 'QR code that opens My Miracle on another device');
+      svg.setAttribute('aria-label', 'QR code that opens My stack on another device');
       const copyBtn = h('button', { class: 'linkish', type: 'button', text: 'Copy the link instead' });
       copyBtn.addEventListener('click', () => copy(url, copyBtn));
       box.replaceChildren(h('div', { class: 'my-qr-code' }, svg), h('p', { text: 'Point your phone’s camera at it, then choose to keep them there.' }), copyBtn);
@@ -241,7 +241,7 @@ function moveSection() {
     }
   });
   return sec('my-move', 'move', 'Move it to your phone',
-    h('p', { class: 'my-lede', text: 'A code that carries your plan, its ticks, your stack and your check-ins to another device. It travels inside the link, so Miracle Health never receives it.' }),
+    h('p', { class: 'my-lede', text: 'A code that carries your plan, its ticks, your stack and your check-ins to another device. It travels inside the link, so Unhyped never receives it.' }),
     show, box);
 }
 
@@ -271,7 +271,7 @@ function emptyState() {
   }
   return h('section', { class: 'my-sec my-empty', 'aria-labelledby': 'empty-h' },
     h('h2', { id: 'empty-h', text: 'Nothing kept here yet' }),
-    h('p', { class: 'my-lede', text: 'When you keep a Miracle Plan or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.' }),
+    h('p', { class: 'my-lede', text: 'When you keep a plan from Sig or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.' }),
     h('div', { class: 'my-actions' },
       h('a', { class: 'btn lime', href: '/sig/' }, 'Build your plan with Sig'),
       h('a', { class: 'btn line', href: '/library/' }, 'Explore the Library')));
@@ -311,4 +311,4 @@ async function draw() {
 // needs none of the Library's or the community's numbers for that, so it doesn't wait for them
 if (P && app && !/^#m=/.test(location.hash) && !P.keptPlan() && !savedStack()) app.replaceChildren(emptyState());
 else if (P && app) draw();
-else if (app) app.replaceChildren(h('p', { class: 'my-loading', text: 'My Miracle couldn’t start in this browser.' }));
+else if (app) app.replaceChildren(h('p', { class: 'my-loading', text: 'My stack couldn’t start in this browser.' }));

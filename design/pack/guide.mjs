@@ -1,4 +1,4 @@
-// The brand guide: two pages, the least anyone needs to make something that looks like Miracle Health.
+// The brand guide: two pages, the least anyone needs to make something that looks like Unhyped.
 // Page one is what it is (the logo, the mark, the colours, the type); page two is how it's used (shape,
 // icons, the Community Signal, the voice). Each panel shows the real thing and says at most three
 // short things about it. Also the icon sheet: every icon with the name of its file.

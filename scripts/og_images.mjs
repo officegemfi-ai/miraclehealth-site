@@ -36,14 +36,14 @@ const BARS = { strong: 4, moderate: 3, limited: 2, preclinical: 1, anecdotal: 0 
 const PLAN_ART = `<div class="plan"><div class="p-start"><span>Start here</span><b>One step, this week</b></div>
 <div class="p-pillars"><i class="on">Nutrition</i><i class="next">Sleep</i><i>Exercise</i></div><div class="p-ground"></div></div>`;
 const cards = [
-  { slug: 'home', name: 'Miracle Health', tab: 'home', file: path.join(ROOT, 'og.jpg'), kick: 'Independent and free, for adults 18+', title: 'Peptides,<br><em>without the sales pitch.</em>',
+  { slug: 'home', name: 'Unhyped', tab: 'home', file: path.join(ROOT, 'og.jpg'), kick: 'Independent and free, for adults 18+', title: 'Peptides,<br><em>without the sales pitch.</em>',
     sub: 'What the studies show and how it went for people who took it, side by side. Nothing for sale.' },
-  { slug: 'plan', name: 'A Miracle Plan', tab: 'plan.md', file: path.join(ROOT, 'img', 'og-plan.jpg'), kick: 'A Miracle Plan', title: 'A plan built from the ground up, <em>shared with you</em>',
+  { slug: 'plan', name: 'A plan built with Sig', tab: 'plan.md', file: path.join(ROOT, 'img', 'og-plan.jpg'), kick: 'A plan built with Sig', title: 'A plan built from the ground up, <em>shared with you</em>',
     sub: 'Nutrition, sleep and exercise first, then what rests on them. Made with Sig.', art: PLAN_ART },
   { slug: 'story', name: 'The story', tab: 'story.md', kick: 'The story', title: 'One app. Twelve agents.<br><em>Every answer, checked.</em>',
-    sub: 'The Library, Ask Sig, the community and My Miracle, as one app.', art: ringSvg(260) },
-  { slug: 'ask-sig', name: 'Ask Sig', tab: 'chats/new', kick: 'Ask Sig', title: 'The studies and the whole community, <em>in one answer.</em>', sub: 'Sig is Miracle Health’s AI. It says which is which, and never gives doses or names sellers.', art: ringSvg(260) },
-  { slug: 'about', name: 'About', tab: 'about.md', kick: 'About', title: 'No miracles.<br><em>Just what happened.</em>', sub: 'Who runs Miracle Health, how it’s paid for, and how every fact sheet is checked.' },
+    sub: 'The Library, Ask Sig, the community and My stack, as one app.', art: ringSvg(260) },
+  { slug: 'ask-sig', name: 'Ask Sig', tab: 'chats/new', kick: 'Ask Sig', title: 'The studies and the whole community, <em>in one answer.</em>', sub: 'Sig is Unhyped’s AI. It says which is which, and never gives doses or names sellers.', art: ringSvg(260) },
+  { slug: 'about', name: 'About', tab: 'about.md', kick: 'About', title: 'No miracles.<br><em>Just what happened.</em>', sub: 'Who runs Unhyped, how it’s paid for, and how every fact sheet is checked.' },
   { slug: 'status', name: 'FDA status tracker', tab: 'status.log', kick: 'FDA status tracker', title: 'Where each compound stands with the FDA', sub: `${entries.size} peptides, hormones, supplements and medications, each checked against FDA’s own documents.` },
   { slug: 'goals', name: 'By goal', tab: 'goals', kick: 'By goal', title: 'What people take, and what the studies show', sub: 'Weight, muscle, recovery, sleep, focus, skin, aging and more.' },
   ...uses.goals.map((g) => ({ slug: `goal-${g.id}`, name: 'By goal', tab: `goals/${g.id}`, kick: 'Goals', title: e(g.label), sub: 'What the studies show for each compound people take for it, and what people who took it report.' })),
@@ -55,7 +55,7 @@ const cards = [
   { slug: 'weekly', name: 'The Signal, weekly', tab: 'issues', kick: 'The Signal, weekly', title: 'What moved, once a week', sub: 'The Community Signal, new studies and FDA news. Free, no ads.' },
   { slug: 'founders', name: 'Founding reporters', tab: 'founders.md', kick: 'Founding reporters', title: 'Be one of the first 100.', sub: 'Share a first-hand report on what you took, and how it went.' },
   // The community's own share card (community.miraclehealth.us points its og:image here)
-  { slug: 'community', name: 'Community', tab: 'community', addr: 'community.miraclehealth.us', kick: 'The Miracle Health community', title: 'Took something?<br><em>Say how it went.</em>',
+  { slug: 'community', name: 'Community', tab: 'community', addr: 'community.miraclehealth.us', kick: 'The Unhyped community', title: 'Took something?<br><em>Say how it went.</em>',
     sub: 'Your report moves the number for the next person, even if it did nothing. Free to join.', art: ringSvg(260) },
 ];
 

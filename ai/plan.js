@@ -1,17 +1,17 @@
-// The Miracle Plan: a member's plan, built from the ground up, led by the one thing to do first.
+// The plan: a member's plan, built from the ground up, led by the one thing to do first.
 //   Start here: the first step for this week, for the pillar where they begin.
 //   The building: three pillars (nutrition, sleep, exercise), their peptides and medicines resting
 //   on them, the supplements that shore up the weak spot, and wellbeing and community on top.
 //   Then: the rest of the steps, numbered, to tick off. A pillar that's "not sure yet" can be
 //   answered in place, and Sig updates the plan.
 // Drawn in the chat (/sig/) and on the page a shared plan opens (/plan/). A shared plan travels in
-// the part of the link after "#", which browsers never send to a server, so Miracle Health never
+// the part of the link after "#", which browsers never send to a server, so Unhyped never
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
-import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=b2904115a8';
-import { h } from '/lib/dom.js?v=f31d9546b5';
-import { b64url, unb64url, pipe } from '/lib/pack.js?v=0326531823';
+import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=7920a66cee';
+import { h } from '/lib/dom.js?v=47be1f2023';
+import { b64url, unb64url, pipe } from '/lib/pack.js?v=955c60de6c';
 
 const KEPT = 'mh-ai-plan-v1';
 const CHECKINS = 'mh-my-checkins-v1';
@@ -78,7 +78,7 @@ export function normalize(card) {
   const start = foundations.find((f) => f.state === 'start');
   return {
     ...card,
-    title: clip(card.title, 60) || 'Your Miracle Plan',
+    title: clip(card.title, 60) || 'Your plan',
     foundations,
     first: start ? { pillar: start.pillar, step: clip(card.first?.step, 80) || start.step } : null,
     peptides: card.peptides || [], supplements: card.supplements || [], wellbeing: card.wellbeing || [],
@@ -141,9 +141,9 @@ export function node(raw, opts = {}) {
     return box;
   };
 
-  const el = h('section', { class: 'card plan', 'aria-label': `${opts.kick || 'Your Miracle Plan'}: ${card.title}` });
+  const el = h('section', { class: 'card plan', 'aria-label': `${opts.kick || 'Your plan'}: ${card.title}` });
   el.append(h('header', { class: 'plan-head' },
-    h('p', { class: 'plabel plan-kick', text: opts.kick || 'Your Miracle Plan' }),
+    h('p', { class: 'plabel plan-kick', text: opts.kick || 'Your plan' }),
     h('h2', { class: 'plan-title', text: card.title })));
 
   // Start here: the one thing to do this week
@@ -169,7 +169,7 @@ export function node(raw, opts = {}) {
   if (card.community) {
     pwell.append(h('p', { class: 'pwell-community' },
       h('a', { href: `${COMMUNITY}/#/s/${card.community.id}`, target: '_blank', rel: 'noopener', text: `Compare notes with others on ${card.community.name}` }),
-      h('span', { text: ' in the Miracle Health community' })));
+      h('span', { text: ' in the Unhyped community' })));
   }
   const chips = (items, empty) => (items.length ? h('ul', { class: 'pchips' }, items.map(chip)) : h('p', { class: 'prow-empty', text: empty }));
   const rows = [
@@ -253,7 +253,7 @@ function foot(raw, card, opts) {
       try {
         const url = await link(pick());
         if (navigator.share) {
-          try { await navigator.share({ title: 'My Miracle Plan', text: `${card.title}: my plan, built from the ground up with Sig, Miracle Health’s AI.`, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
+          try { await navigator.share({ title: 'My plan', text: `${card.title}: my plan, built from the ground up with Sig, Unhyped’s AI.`, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
         }
         await navigator.clipboard.writeText(url);
         say('Link copied. Paste it into a message.');
@@ -270,7 +270,7 @@ function foot(raw, card, opts) {
       menu.open = false;
       try {
         const blob = await image(pick(), { shape });
-        const a = h('a', { href: URL.createObjectURL(blob), download: shape === 'story' ? 'my-miracle-plan-story.png' : 'my-miracle-plan.png' });
+        const a = h('a', { href: URL.createObjectURL(blob), download: shape === 'story' ? 'my-plan-story.png' : 'my-plan.png' });
         document.body.append(a);
         a.click();
         setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
@@ -305,7 +305,7 @@ function foot(raw, card, opts) {
     incl ? h('label', { class: 'plan-incl' }, incl, h('span', { text: 'Include my peptides and medicines' })) : null,
     actions,
     h('p', { class: 'plan-note', text: opts.share
-      ? 'A shared plan travels inside its link, and a kept plan stays in this browser: Miracle Health never receives either. Talk any change through with your doctor.'
+      ? 'A shared plan travels inside its link, and a kept plan stays in this browser: Unhyped never receives either. Talk any change through with your doctor.'
       : 'Talk any change through with your own doctor.' }));
   el.redrawKeep = drawKeep;
   return el;
@@ -346,7 +346,7 @@ function expand(c) {
   const lead = foundations.find((f) => f.state === 'start') || foundations.find((f) => f.state === 'focus');
   const community = Array.isArray(c.c) && isId(c.c[0]) ? { id: c.c[0], name: clip(c.c[1], 60) || c.c[0] } : null;
   return normalize({
-    title: clip(c.t, 60) || 'A Miracle Plan',
+    title: clip(c.t, 60) || 'A plan built with Sig',
     first: lead && clip(c.a, 80) ? { pillar: lead.pillar, step: clip(c.a, 80) } : null,
     foundations, peptides: items(c.p), supplements: items(c.s),
     wellbeing: arr(c.w, 3).map((w) => clip(w, 80)).filter(Boolean),
@@ -402,7 +402,7 @@ export function keepPlan(card) {
   const same = !!was && (was.title === now.title || ids(was).some((id) => ids(now).includes(id)));
   return saveKept({ key: keyOf(card), saved: same && prev.saved ? prev.saved : today(), plan: c, done: Array.isArray(card.done) ? card.done : [] });
 }
-// From another device (My Miracle's "move to your phone" link): kept as it was there
+// From another device (My stack's "move to your phone" link): kept as it was there
 export function restorePlan({ saved, plan, done }) {
   const card = expand(plan);
   const c = compact({ ...card, hidden: false });
@@ -456,9 +456,9 @@ export function reportDraft(k, c) {
   const names = took.map((i) => i.name);
   const habits = [...new Set(steps(card).filter((s) => k.done.includes(s.key)).map((s) => PILLAR[s.pillar].toLowerCase()))];
   const how = { better: 'Better than before I started', same: 'About the same as before I started', worse: 'Worse than before I started' }[c.how];
-  const title = `${long} on ${names.length ? names.join(' + ') : 'my Miracle Plan'}: ${HOW[c.how].toLowerCase()}`;
+  const title = `${long} on ${names.length ? names.join(' + ') : 'my plan'}: ${HOW[c.how].toLowerCase()}`;
   const body = [
-    `What for: ${card.title} (my Miracle Plan).`,
+    `What for: ${card.title} (my plan).`,
     names.length ? `What I take: ${names.join(', ')}.` : '',
     `How long: about ${long}.`,
     `How it’s going: ${how}.`,
@@ -479,7 +479,7 @@ export function checkIn(card, done) {
   const did = all.filter((s) => done.includes(s.key)).map((s) => s.step);
   const left = all.filter((s) => !done.includes(s.key) && s.state !== 'strong' && s.state !== 'unknown').map((s) => s.step);
   const unsure = all.filter((s) => s.state === 'unknown').map((s) => PILLAR[s.pillar].toLowerCase());
-  return [`I’m checking in on my Miracle Plan, “${c.title}”.`,
+  return [`I’m checking in on my plan, “${c.title}”.`,
     did.length ? `Done so far: ${did.join('; ')}.` : 'I haven’t ticked anything off yet.',
     left.length ? `Still to do: ${left.join('; ')}.` : '',
     unsure.length ? `Not sure yet about my ${unsure.join(' and ')}.` : '',
@@ -569,8 +569,8 @@ function paint(ctx, raw, W, top, draw) {
     ctx.strokeStyle = C.lime; ctx.lineWidth = 3.4; ctx.beginPath(); ctx.arc(P + 12, y + 20, 10.5, 0, Math.PI * 2); ctx.stroke();
     ctx.fillStyle = C.lime; ctx.beginPath(); ctx.arc(P + 12, y + 20, 3.8, 0, Math.PI * 2); ctx.fill();
   }
-  text('Miracle Health', P + 36, y + 31, F.brand, C.text);
-  label('My Miracle Plan', W - P, y + 29, C.text3, 'right');
+  text('Unhyped', P + 36, y + 31, F.brand, C.text);
+  label('My plan', W - P, y + 29, C.text3, 'right');
   y += 84;
   y += para(card.title, P, y, inner, F.title, C.text, 64) + 26;
 
@@ -635,7 +635,7 @@ function paint(ctx, raw, W, top, draw) {
         text(fit(t, w - 26, F.body), x + 26, yy + used + 26, F.body, C.text);
         used += 38;
       }
-      if (card.community) { text(fit(`Others on ${card.community.name}: the Miracle Health community`, w, F.body), x, yy + used + 26, F.body, C.text2); used += 38; }
+      if (card.community) { text(fit(`Others on ${card.community.name}: the Unhyped community`, w, F.body), x, yy + used + 26, F.body, C.text2); used += 38; }
       return used - 4;
     });
   }
@@ -716,7 +716,7 @@ function paint(ctx, raw, W, top, draw) {
     y += 40;
   }
   y += 4;
-  y += para('Made with Sig, Miracle Health’s AI, at miraclehealth.us/sig. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
+  y += para('Made with Sig, Unhyped’s AI, at miraclehealth.us/sig. Education, not medical advice: talk any change through with your doctor.', P, y, inner, F.small, C.text3, 30);
   return y + 48;
 }
 
@@ -771,16 +771,16 @@ if (root) {
       const card = await decode(hash);
       const kept = keptPlan();
       const theirs = !!kept && kept.key === keyOf(card);
-      if (theirs) document.title = 'Your Miracle Plan · Miracle Health';
+      if (theirs) document.title = 'Your plan · Unhyped';
       if (intro && theirs) {
-        intro.querySelector('h1').textContent = 'Your Miracle Plan';
-        intro.querySelector('p').textContent = `Kept on this device${kept.saved ? ` since ${dayLabel(kept.saved)}` : ''}. Tick off steps as you go; they stay in this browser. How it’s going, your stack and your check-ins are together in My Miracle.`;
+        intro.querySelector('h1').textContent = 'Your plan';
+        intro.querySelector('p').textContent = `Kept on this device${kept.saved ? ` since ${dayLabel(kept.saved)}` : ''}. Tick off steps as you go; they stay in this browser. How it’s going, your stack and your check-ins are together in My stack.`;
         const due = checkInDue(kept);
-        intro.append(h('p', { class: 'plan-my' }, h('a', { class: 'btn lime sm', href: '/my/#checkin', text: due ? 'How’s it going? Check in' : 'Open My Miracle' })));
+        intro.append(h('p', { class: 'plan-my' }, h('a', { class: 'btn lime sm', href: '/my/#checkin', text: due ? 'How’s it going? Check in' : 'Open My stack' })));
         // Their own plan: no "build your own" pitch
         document.querySelector('.plan-cta')?.setAttribute('hidden', '');
       }
-      const el = node(theirs ? { ...card, done: kept.done } : card, { kick: theirs ? 'Your Miracle Plan' : 'A Miracle Plan', save: true, live: true });
+      const el = node(theirs ? { ...card, done: kept.done } : card, { kick: theirs ? 'Your plan' : 'A plan built with Sig', save: true, live: true });
       root.replaceChildren(...(intro ? [intro] : []), el);
     } catch {
       root.replaceChildren(h('h1', { class: 'plan-oops', text: 'This plan couldn’t be opened' }),

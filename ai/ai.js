@@ -1,4 +1,4 @@
-// Sig's own page (miraclehealth.us/sig): the chat with Sig, Miracle Health's AI, filling the browser
+// Sig's own page (miraclehealth.us/sig): the chat with Sig, Unhyped's AI, filling the browser
 // window. The chats are kept on this device until they're deleted (see "The conversation"), with
 // the list of them in the side panel. Each message goes to the ask function (the community's Supabase
 // project), with the agents the member picked to answer (ai/who.js; the Safety agent always does),
@@ -12,13 +12,13 @@
 // Nothing here uses innerHTML for anything the AI or the visitor wrote: text is placed with
 // textContent, and the small amount of formatting the AI uses (bold, lists, Library links) is
 // built node by node.
-import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=b2904115a8';
+import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=7920a66cee';
 import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
-import { h, svg, getSignal, groupN } from '/lib/dom.js?v=f31d9546b5';
+import { h, svg, getSignal, groupN } from '/lib/dom.js?v=47be1f2023';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
 import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
-import { makeMarkers } from '/ai/markers.js?v=6c1607533c';
+import { makeMarkers } from '/ai/markers.js?v=355773ccc0';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -743,7 +743,7 @@ function cardNode(card, msg) {
   return h('div');
 }
 
-// Their Miracle Plan (ai/plan.js draws it): where to start, the pillars and what rests on them,
+// Their plan (ai/plan.js draws it): where to start, the pillars and what rests on them,
 // the steps to tick off, and the auditor's check of what the plan adds, filled in when it arrives.
 // Ticks are kept with the chat; a "not sure yet" pillar answered on the card is their next message.
 function planNode(card, msg) {
@@ -763,7 +763,7 @@ function planNode(card, msg) {
   // One line until it's opened: what it's for, and where they start
   const first = cleanName(card.first || card.first_step || '', 90);
   const box = h('details', { class: 'a-plan' }, h('summary', {},
-    h('span', { class: 'ap-k', text: 'your plan' }), h('span', { class: 'ap-t' }, h('b', { text: cleanName(card.title || 'Your Miracle Plan', 70) }), first ? h('span', { text: `start: ${first}` }) : null),
+    h('span', { class: 'ap-k', text: 'your plan' }), h('span', { class: 'ap-t' }, h('b', { text: cleanName(card.title || 'Your plan', 70) }), first ? h('span', { text: `start: ${first}` }) : null),
     h('span', { class: 'ap-open', 'aria-hidden': 'true', text: 'open' })), el);
   if (el.fill) box.fill = el.fill;
   return box;
@@ -1261,8 +1261,8 @@ const localDate = () => { const d = new Date(); return `${d.getFullYear()}-${Str
 
 // ---------------------------------------------------------------------------
 // Their stack, kept on this device only if they ask, so they can come back to it: the
-// compounds and the medicines they mentioned. It's never sent anywhere unless they ask Miracle
-// AI about it again; a link can carry it to their other devices (after "#", which browsers
+// compounds and the medicines they mentioned. It's never sent anywhere unless they ask Sig
+// about it again; a link can carry it to their other devices (after "#", which browsers
 // never send to a server).
 // ---------------------------------------------------------------------------
 const cleanName = (x, n = 60) => String(x ?? '').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, n);
@@ -1336,13 +1336,13 @@ function stackSaveRow(card) {
       saveStack(mine);
       if (!savedStack()) row.replaceChildren(h('span', { text: 'This browser isn’t keeping anything for this site, so it couldn’t be saved.' }));
     });
-    row.replaceChildren(h('span', { class: 'stack-save-why', text: 'Keep this stack for next time, on this device only. Miracle Health never receives it.' }), btn);
+    row.replaceChildren(h('span', { class: 'stack-save-why', text: 'Keep this stack for next time, on this device only. Unhyped never receives it.' }), btn);
   };
   row.redraw();
   return row;
 }
 
-// What they keep on this device, together: My Miracle in short, on the first screen (and beside
+// What they keep on this device, together: My stack in short, on the first screen (and beside
 // the chat on wide screens). Their plan, stack and check-ins are in full at /my/.
 function myBox(where) {
   const P = window.MHPlan;
@@ -1382,9 +1382,9 @@ function myBox(where) {
   }
   const hid = `my-${where}-h`;
   return h('section', { class: 'saved-box my-box', 'aria-labelledby': hid },
-    h('div', { class: 'my-head' }, h('h2', { id: hid, text: 'My Miracle' }), h('a', { class: 'linkish', href: '/my/', text: 'Open My Miracle' })),
+    h('div', { class: 'my-head' }, h('h2', { id: hid, text: 'My stack' }), h('a', { class: 'linkish', href: '/my/', text: 'Open My stack' })),
     ...parts,
-    h('p', { class: 'saved-note', text: 'Kept on this device. Miracle Health never receives it.' }));
+    h('p', { class: 'saved-note', text: 'Kept on this device. Unhyped never receives it.' }));
 }
 function refreshStack() {
   const host = $('ai-saved');
@@ -1871,7 +1871,7 @@ function gate(pending) {
   const box = h('div', { class: 'gate', id: 'ai-gate', role: 'region', 'aria-labelledby': 'ai-gate-h', 'data-q': pending },
     h('p', { class: 'gate-q' }, h('span', { class: 'sr', text: 'Your question, waiting: ' }), h('span', { text: pending })),
     h('h2', { id: 'ai-gate-h', text: 'One check before Sig answers' }),
-    h('p', { text: 'Sig is Miracle Health’s AI, for adults 18 and over. It explains evidence and what people report; it isn’t a person or a doctor.' }),
+    h('p', { text: 'Sig is Unhyped’s AI, for adults 18 and over. It explains evidence and what people report; it isn’t a person or a doctor.' }),
     h('div', { class: 'gate-actions' }, yes, no));
   yes.addEventListener('click', () => {
     adult = true;
@@ -2452,7 +2452,7 @@ function unseen(el) {
   el.classList.add('is-gone');
   el.setAttribute('aria-hidden', 'true');
 }
-// A question typed in for them elsewhere (a Library page, a community space, My Miracle):
+// A question typed in for them elsewhere (a Library page, a community space, My stack):
 // ready to read, change and send; never sent by itself
 const asked = askFrom(location.hash);
 if (asked) {

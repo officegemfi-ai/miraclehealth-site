@@ -36,6 +36,12 @@ export const BASE = `${FACES}
 html,body{background:${C.surface}}
 body{color:${C.text};font-family:Mona,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
 img,svg{display:block}`;
-// The logo: one drawing, white, for black grounds (on a piece with the violet band it sits on black above the band)
+// The logo: one drawing, white, for black grounds (on a piece with the violet band it sits on black above the band).
+// height is the room the old two-line logo took; the one-line word is drawn a little over half as tall
+// (and so about as wide), so it weighs on a picture what the old one did
 export const LOGO = fs.readFileSync(path.join(ROOT, 'design', 'pack', 'logo.svg'), 'utf8').replace(/<\?xml[^>]*>\s*/, '');
-export const logo = (height) => LOGO.replace(' width="480" height="168"', ` class="logo" width="${Number((height * 480 / 168).toFixed(2))}" height="${height}"`);
+const [, , LW, LH] = /viewBox="([^"]+)"/.exec(LOGO)[1].split(/\s+/).map(Number);
+export const logo = (height) => {
+  const h = Number((height * 0.55).toFixed(2));
+  return LOGO.replace(/ width="[^"]*" height="[^"]*"/, ` class="logo" width="${Number((h * LW / LH).toFixed(2))}" height="${h}"`);
+};

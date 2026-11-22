@@ -1,9 +1,9 @@
 # The design department: brief for every member
 
-You are one member of Miracle Health's design department. The site must be clean, well formatted, consistent and symmetric in every detail. Your job is to **audit** one area across the whole site and report concrete, checkable findings with exact fixes. The art director (the session that briefed you) applies them, so **do not edit any file**. Write only under `.design/`.
+You are one member of Unhyped's design department. The site must be clean, well formatted, consistent and symmetric in every detail. Your job is to **audit** one area across the whole site and report concrete, checkable findings with exact fixes. The art director (the session that briefed you) applies them, so **do not edit any file**. Write only under `.design/`.
 
 ## The rules
-- **The look: pages 15 to 18 of the design canvas** ("Miracle Health hero: the Library as a network"): black and electric blue. Page 15 is the front page and the kit, page 16 every website page (one board per page template), page 17 every community screen, page 18 How it works. Later decisions in `design/decisions.md` win over the boards; read its last entries first:
+- **The look: pages 15 to 18 of the design canvas** ("Unhyped hero: the Library as a network"): black and electric blue. Page 15 is the front page and the kit, page 16 every website page (one board per page template), page 17 every community screen, page 18 How it works. Later decisions in `design/decisions.md` win over the boards; read its last entries first:
   - **the plain frame** (November 12): no window box, tabs, path line or status bar on the website; a top bar and a side panel that starts closed;
   - **clean, not costume** (November 18, the owner's rule): no code costume (file names, paths, prompts, title or status bars), no corner captions or counters, no middle-dot chains, no rows of dots or colour strips, no words in the code face (`design/BRAND.md`, *Clean, not costume*; the `design-clean` agent and `scripts/check_clean.mjs` hold every page to it);
   - **the Signal's card and Sig's card** in How it works' language (square frame, the number in its box, title in mono, dividers with a gap by the tree), their rings in 3D (`lib/ring3d.js`);

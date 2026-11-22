@@ -255,7 +255,7 @@ async function visit(w) {
   ok(s.panels.length === 1 && s.panels[0] === 'rl-markers' && s.rail.kids.join(' ') === 'rl-bar rl-markers', `beside the chat there is more than the blood markers: ${s.rail.kids.join(', ')}`);
   ok(s.title === 'Blood markers' && /blood markers/i.test(s.rail.label), `the panel beside the chat is named “${s.title}”, not “Blood markers”`);
   ok(s.tubes.length === 0 && s.none, 'the rack shows blood tests before Sig has talked about anything');
-  ok(['The Signal', 'Library', 'Ask Sig', 'Community', 'My Miracle'].every((n) => s.side.main.includes(n)) && s.side.more >= 5, `the navigation panel has lost links (it has: ${s.side.main.join(', ')}; ${s.side.more} more)`);
+  ok(['The Signal', 'Library', 'Ask Sig', 'Community', 'My stack'].every((n) => s.side.main.includes(n)) && s.side.more >= 5, `the navigation panel has lost links (it has: ${s.side.main.join(', ')}; ${s.side.more} more)`);
   if (w > 1100) {
     ok(s.rail.shown && s.side.shown, 'on a wide window the blood markers and the navigation panel both show');
     ok(s.rail.box.left >= s.chatBox.right - 1 && s.rail.box.right <= s.width + 1, 'the blood markers don’t stand to the right of the chat, inside the window');

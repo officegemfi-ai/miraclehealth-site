@@ -1,12 +1,12 @@
-# Miracle Health: the brand book
+# Unhyped: the brand book
 
-The rules every page keeps to. The tokens are in `tokens.json` beside this file; the illustration system is in `illustration.md`. The same book, with live previews of every component, is the "Miracle Health" design system on Claude.
+The rules every page keeps to. The tokens are in `tokens.json` beside this file; the illustration system is in `illustration.md`. The same book, with live previews of every component, is the "Unhyped" design system on Claude.
 
-Miracle Health is an independent, free place for adults 18+ to look up what they take, ask about it and say how it went. It has four places: the Library, Ask Sig, the Community and My Miracle. All four are one app. Behind every answer are twelve agents, each with one job, each signing what it made. Nothing is for sale, nobody is told what to take, and no amount is ever given.
+Unhyped is an independent, free place for adults 18+ to look up what they take, ask about it and say how it went. It has four places: the Library, Ask Sig, the Community and My stack. All four are one app. Behind every answer are twelve agents, each with one job, each signing what it made. Nothing is for sale, nobody is told what to take, and no amount is ever given.
 
 Build every page from this system: the window and its parts (`components/`), the tokens (`tokens.json`), the twelve agents' glyphs, Sig's ring and the compound prints (`assets/`). The illustration rules are in *The illustration system*; the launch rules are in *The launch campaign*.
 
-The look is **black and electric blue**, pages 15 to 18 of the Miracle Health design canvas ("15 Black and electric blue", "16 Website, every page", "17 Community, every screen", "18 The system, animated"): black pages under a faint grid, wide capital headlines, one electric blue main action, signed in Sig's colours. It keeps the Sig system's window (page 9). When this book and those pages disagree, the pages win and this book is corrected. *The Sig system*, below, says what it asks of every page.
+The look is **black and electric blue**, pages 15 to 18 of the Unhyped design canvas ("15 Black and electric blue", "16 Website, every page", "17 Community, every screen", "18 The system, animated"): black pages under a faint grid, wide capital headlines, one electric blue main action, signed in Sig's colours. It keeps the Sig system's window (page 9). When this book and those pages disagree, the pages win and this book is corrected. *The Sig system*, below, says what it asks of every page.
 
 ## Principles
 
@@ -103,7 +103,7 @@ Every page opens the same way:
   - Library: the Evidence librarian's ladder.
   - Ask Sig: Sig's ring.
   - Community: the community's glyph.
-  - My Miracle: the Stack builder's glyph.
+  - My stack: the Stack builder's glyph.
   
   Under them comes what is on this page, then the rest and the legal.
 - **Top bar** (60px, sticky): the menu button, the logo, then the four sections most people go to (The Signal, Library, Community, How it works; the page you're on is underlined where the bar meets the page), and at the right a search box that opens ⌘K (Ctrl K) to go anywhere, Ask Sig with its ring, and Join as a white button. Below 1100px wide the four sections are left to the side panel.
@@ -149,7 +149,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 ## Iconography
 
 - **The twelve's glyphs** (`assets/Glyphs/`, the AgentGlyph component): a 24-unit grid, one 1.6 stroke, round caps and joins, no fills, each in its agent's colour. Each one means its agent and nothing else.
-- **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig, every title bar and the browser tab: `favicon.svg`, with `favicon.ico` for browsers that can't show an SVG icon, both drawn by `design/favicon/make_favicon.py` from `lib/ring.js` (the owner's request, November 17). It is also the mark on the community's sign-in page, beside "The Miracle Health community" (`ring()` in the community's `web/ui/art.js`, drawn the same way; the owner's request, November 18).
+- **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig, every title bar and the browser tab: `favicon.svg`, with `favicon.ico` for browsers that can't show an SVG icon, both drawn by `design/favicon/make_favicon.py` from `lib/ring.js` (the owner's request, November 17). It is also the mark on the community's sign-in page, beside "The Unhyped community" (`ring()` in the community's `web/ui/art.js`, drawn the same way; the owner's request, November 18).
 - **Sig in the community** is drawn in the same hand as the front page's three step drawings (`sigSvg` in `kit/kit.js`; the owner's request, November 20): a fine white ring on a 200 grid, the mood inside it in Signal blue, and around the mood its echoes fading out (half strength, then a fifth), in lines that stay 1.2px at any size. Nothing is filled. It is the community's own character, with moods: notifications, stickers, empty states and the Sig button.
   - **The moods:** a dot at rest, three dots while it thinks, a spark to cheer, a heart for support, a question mark when curious, an eye when watching, a moon while it rests. When something is wrong it is a warning sign in amber, the one colour it borrows; offline it is grey.
   - **Small sizes draw less:** the whole drawing from 56px up, one echo from 36px, and under that the ring and the mood alone, drawn larger. Never thicken its lines or fill its shapes to make it louder.
@@ -160,15 +160,15 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 
 ## Logo
 
-`design/pack/logo.svg` is the Miracle Health wordmark as a drawing that stays sharp at any size (traced from the 480px picture, November 20; the brand pack carries it). `logo.webp` is the same wordmark as the pages load it. It is white, for black grounds only:
-- Set it 22px tall in the side panel and 32px in a foot. Don't set it smaller than 20px, and keep half its height clear on every side.
+The logo is the word **unhyped**, lower case, in the site's own face: Mona Sans at its heaviest (900) and widest (125%), set a little tight with the font's own kerning, and slanted 10 degrees, with the old script logo's energy and none of its fuss (the owner's new name, November 21, 2026; it was Miracle Health until then). It is drawn as outlines, so it needs no font: `design/pack/wordmark.py` draws it, and draws `logo.svg` (what the pages load), `design/pack/logo.svg` (the brand pack, the share images and the posts), `design/pack/logo-ink.svg` (for a light ground) and the foot's big word from the same outline. Never set the word in type instead. It is near-white, for black grounds:
+- Set it 20px tall in the top bar, the side panel and Ask Sig's side, and 26px in a foot. Don't set it smaller than 16px, and keep half its height clear on every side.
 - Never recolour, outline, stretch or rotate it, and never set it on a photo or a colour. On a piece that uses the violet band, the logo sits on black above the band, never on it.
-- The one exception is the foot's big word (`img/wordmark.svg`, made by `design/wordmark/make_wordmark.py`): the logo's word alone, traced and drawn as a stack of hairline outlines in violet into blue, dim, lighting up under the pointer, cut off by the page's bottom edge. The owner asked for it (November 17). Use it there only, and never as the logo.
+- The one exception is the foot's big word (`img/wordmark.svg`, made by `design/pack/wordmark.py`): the logo's word drawn as a stack of hairline outlines in violet into blue, dim, lighting up under the pointer, standing on the page's bottom edge with its lowest strokes cut off. The owner asked for it (November 17). Use it there only, and never as the logo.
 - In the community it sits beside a "Community" tag: the word in the label style, in a `line-2` frame.
 
 ## The brand pack
 
-`design/pack/build.mjs` makes one folder to hand to anyone who makes something for Miracle Health: the logo and Sig's ring, the colours, the type, the icons, the Community Signal's pieces, the marketing formats and a two-page guide. Every file is made from what the site runs on (`tokens.json`, `lib/ring.js`, `lib/glyphs.js`, the fonts, the front page's step drawings, the share images), so it matches the pages; make it again when they change (decision, November 20).
+`design/pack/build.mjs` makes one folder to hand to anyone who makes something for Unhyped: the logo and Sig's ring, the colours, the type, the icons, the Community Signal's pieces, the marketing formats and a two-page guide. Every file is made from what the site runs on (`tokens.json`, `lib/ring.js`, `lib/glyphs.js`, the fonts, the front page's step drawings, the share images), so it matches the pages; make it again when they change (decision, November 20).
 
 **Marketing keeps one layout,** on a share image, a post, a story or a header: the logo and the address along the top, then one kicker, the headline and one line under it, from the left, on the page's black ground. A headline's second sentence takes the punchline's gradient. Nothing else: no foot, no strip of rules, no counters, nothing in the code face but numbers. `design/pack/look.mjs` holds that look for `scripts/og_images.mjs` (every page's share image) and the pack, so they can't drift apart.
 

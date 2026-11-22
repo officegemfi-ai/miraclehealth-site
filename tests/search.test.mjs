@@ -41,8 +41,8 @@ test('a fact sheet keeps its whole name when it fits, and its share card keeps t
   assert.equal(head('library/citicoline/index.html').title, 'Citicoline (CDP-choline): evidence, risks, blood tests');
   // Too long with its brackets: the name without them, the site's name kept
   const klow = head('library/klow/index.html');
-  assert.equal(klow.title, 'KLOW blend: evidence, risks, blood tests · Miracle Health');
-  assert.equal(klow.ogTitle, 'KLOW blend (GHK-Cu, BPC-157, TB-500, KPV): evidence, risks, blood tests · Miracle Health');
+  assert.equal(klow.title, 'KLOW blend: evidence, risks, blood tests · Unhyped');
+  assert.equal(klow.ogTitle, 'KLOW blend (GHK-Cu, BPC-157, TB-500, KPV): evidence, risks, blood tests · Unhyped');
 });
 
 test('a description keeps whole sentences, and the share card the full text', () => {

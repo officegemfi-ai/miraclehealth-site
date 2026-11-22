@@ -1,6 +1,6 @@
 ---
 name: design-review
-description: Run Miracle Health's design department over miraclehealth.us. Six specialist agents (brand and colour, typography, layout and symmetry, components and states, phone and tablet, and clean: no AI-looking details) audit every page, then the findings are fixed on a branch and checked. Use when asked to review, polish or check the site's design, branding, consistency or symmetry.
+description: Run Unhyped's design department over miraclehealth.us. Six specialist agents (brand and colour, typography, layout and symmetry, components and states, phone and tablet, and clean: no AI-looking details) audit every page, then the findings are fixed on a branch and checked. Use when asked to review, polish or check the site's design, branding, consistency or symmetry.
 ---
 
 # The design review
@@ -13,7 +13,7 @@ You are the art director. The department is six agents defined in `.claude/agent
 - `design-responsive`
 - `design-clean`: what makes a page look machine-made and busy (code costume, corner captions, dot chains and strips, words in the code face). Its findings come first: delete before restyling.
 
-The look is page 9 of the founder's design canvas, "9 Sig system" (the "Miracle Health hero: the Library as a network" artifact): graphite pages, signed in Sig's colours. Open it before anything else and keep it beside the captures; the boards to hold each page against are SysHome (the front page), SysLibrary (a fact sheet), SysSignal (the Signal), SysAskSig (Ask Sig), SysCommunity (the community), SysEverywhere (⌘K, status bars, loading, the 404, My Miracle, share cards, the weekly email) and SysRule (who signs what). `design/BRAND.md` and `design/tokens.json` write that page down; where they disagree with it, the page wins and the book is corrected. Pages are plain: the owner ruled out the terminal costume (file names, paths, prompts, title and status bars, small mono labels) on November 18, 2026, and `design/BRAND.md`'s *Clean, not costume* wins over any board that still shows it. Navigation panels are never removed.
+The look is page 9 of the founder's design canvas, "9 Sig system" (the "Unhyped hero: the Library as a network" artifact): graphite pages, signed in Sig's colours. Open it before anything else and keep it beside the captures; the boards to hold each page against are SysHome (the front page), SysLibrary (a fact sheet), SysSignal (the Signal), SysAskSig (Ask Sig), SysCommunity (the community), SysEverywhere (⌘K, status bars, loading, the 404, My stack, share cards, the weekly email) and SysRule (who signs what). `design/BRAND.md` and `design/tokens.json` write that page down; where they disagree with it, the page wins and the book is corrected. Pages are plain: the owner ruled out the terminal costume (file names, paths, prompts, title and status bars, small mono labels) on November 18, 2026, and `design/BRAND.md`'s *Clean, not costume* wins over any board that still shows it. Navigation panels are never removed.
 
 1. **Branch.** Work on a branch, never on main (main is the live site).
 2. **Capture.** Run `python3 scripts/design_capture.py`. It serves the site on 127.0.0.1:8765 and writes `.design/shots` and `.design/data` for every page in `design/pages.json` at four widths. Add a new page template to `design/pages.json` first.

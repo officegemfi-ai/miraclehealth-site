@@ -7,7 +7,7 @@
 // it's run by hand, like scripts/og_images.mjs:
 //   node scripts/og_images.mjs                       (first, when the share images changed)
 //   node design/pack/build.mjs <folder to write to>   (CHROMIUM_PATH names a Chrome to use)
-// It writes "<folder>/Miracle Health brand pack" and, beside it, the same as a zip and the guide's two
+// It writes "<folder>/Unhyped brand pack" and, beside it, the same as a zip and the guide's two
 // pages as pictures.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -24,8 +24,8 @@ import { sigSvg } from '../../kit/kit.js';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
-const NAME = 'Miracle Health brand pack';
-const dest = path.resolve(process.argv[2] || path.join(os.tmpdir(), 'miracle-health-brand-pack'));
+const NAME = 'Unhyped brand pack';
+const dest = path.resolve(process.argv[2] || path.join(os.tmpdir(), 'unhyped-brand-pack'));
 const OUT = path.join(dest, NAME);
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'mh-pack-'));
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -80,7 +80,7 @@ const PALETTE = [
 ];
 const AGENT_NAME = { safety: 'Safety agent', planner: 'Planner', recommender: 'Recommender', community: 'Community', combination: 'Combination agent', markers: 'Markers agent', synergy: 'Synergy auditor', evidence: 'Evidence librarian', relatives: 'Relatives agent', mechanism: 'Mechanism agent', builder: 'Stack builder', interpretation: 'Interpretation agent' };
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-put('2 Colour/colours.css', `/* Miracle Health: the colours. Black pages, white words, one electric blue main action. Colour is a
+put('2 Colour/colours.css', `/* Unhyped: the colours. Black pages, white words, one electric blue main action. Colour is a
    signature (Signal blue for the community, mint for the studies, each agent its own), never decoration. */
 :root{
 ${PALETTE.map(([n, t, u]) => `  --mh-${slug(n)}:${C[t]};${' '.repeat(Math.max(1, 22 - slug(n).length))}/* ${u} */`).join('\n')}
@@ -106,7 +106,7 @@ copy('fonts/mona-sans.woff2', '3 Type/mona-sans.woff2');
 copy('fonts/monaspace-neon-400.woff2', '3 Type/monaspace-neon-400.woff2');
 copy('fonts/OFL-Mona-Sans.txt', '3 Type/Licence Mona Sans.txt');
 copy('fonts/OFL-Monaspace.txt', '3 Type/Licence Monaspace.txt');
-put('3 Type/type.css', `/* Miracle Health: the type. Two faces: Mona Sans for every word, Monaspace Neon for numbers only. */
+put('3 Type/type.css', `/* Unhyped: the type. Two faces: Mona Sans for every word, Monaspace Neon for numbers only. */
 @font-face{font-family:'Mona Sans';src:url('mona-sans.woff2') format('woff2');font-weight:200 900;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Monaspace Neon';src:url('monaspace-neon-400.woff2') format('woff2');font-weight:100 549;font-display:swap}
 .mh-headline{font:800 expanded 64px/.98 'Mona Sans',sans-serif;letter-spacing:-.028em;text-transform:uppercase}   /* widest, heaviest, capitals */
@@ -156,7 +156,7 @@ for (const [mood, file] of Object.entries(SIG)) {
 copy('og.jpg', '6 Marketing/share/share-home.jpg');
 copy('img/og/community.jpg', '6 Marketing/share/share-community.jpg');
 copy('img/og/ask-sig.jpg', '6 Marketing/share/share-ask-sig.jpg');
-put('6 Marketing/Words.txt', `MIRACLE HEALTH: THE WORDS
+put('6 Marketing/Words.txt', `UNHYPED: THE WORDS
 
 Plain, calm and exact. Sentence case in text; headlines in capitals. No emoji, no exclamation marks.
 
@@ -182,7 +182,7 @@ When a post shows a compound's Signal:
 Addresses: miraclehealth.us and community.miraclehealth.us
 `);
 
-put('README.txt', `MIRACLE HEALTH BRAND PACK
+put('README.txt', `UNHYPED BRAND PACK
 
 Start with "Brand guide.pdf": two pages, everything that matters.
 
@@ -257,7 +257,7 @@ import sys, zipfile, pathlib
 from PIL import Image
 out = pathlib.Path(sys.argv[1])
 pages = [Image.open(out.parent / f'Brand guide {i}.png').convert('RGB') for i in range(1, int(sys.argv[2]) + 1)]
-pages[0].save(out / 'Brand guide.pdf', save_all=True, append_images=pages[1:], resolution=192, title='Miracle Health brand guide')
+pages[0].save(out / 'Brand guide.pdf', save_all=True, append_images=pages[1:], resolution=192, title='Unhyped brand guide')
 z = out.parent / (out.name + '.zip'); z.unlink(missing_ok=True)
 with zipfile.ZipFile(z, 'w', zipfile.ZIP_DEFLATED) as f:
     for p in sorted(out.rglob('*')):

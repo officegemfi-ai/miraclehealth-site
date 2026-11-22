@@ -10,7 +10,7 @@ miraclehealth.us keeps to one design language: black pages under a faint grid, w
 ## The brand pack
 - `pack/build.mjs` makes the brand pack: the logo, Sig's ring, the colours, the type, the icons, the Community Signal's pieces, the marketing formats and a two-page guide, in one folder and a zip, all from the site's own values. `pack/README.md` says how to run it.
 - `pack/look.mjs` is the look as values a script draws with; `scripts/og_images.mjs` draws every page's share image from it too.
-- `pack/logo.svg` is the logo as a vector; `pack/icons.json` is the one set of interface icons.
+- `pack/wordmark.py` draws the logo from the site's own font (`logo.svg`, `pack/logo.svg`, `pack/logo-ink.svg` and the foot's big word, `img/wordmark.svg`); `pack/icons.json` is the one set of interface icons.
 
 ## The record
 - `decisions.md`: the art director's calls where the agents disagreed or a fix meant choosing between the brand book and the site, with the reasons, and what was left for the founder.

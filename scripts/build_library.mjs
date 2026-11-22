@@ -18,7 +18,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signalviz.js';
-// Miracle Health's design kit, shared with the community app (copied from the community's
+// Unhyped's design kit, shared with the community app (copied from the community's
 // shared/kit by its scripts/sync_kit.sh): the bar of the four places, the evidence meter, Sig
 import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompound } from '../kit/kit.js';
 // The body map (the kit's bodymap.js): how each compound works in the body, from body.json
@@ -172,8 +172,8 @@ const SIGNAL_PLACE = () => `<a href="/#signal"><span class="op-g" aria-hidden="t
 const MORE = [['/#how', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
   ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/weekly/', 'The weekly email'], ['/founders/', 'Founding reporters'], ['/story/', 'The story'], ['/about/', 'About']];
 function osSide(current, ctx = '', url = '') {
-  return `<aside class="os-side" id="os-side" aria-label="Miracle Health">
-  <div class="os-head"><a class="os-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a><button class="os-fold" id="os-fold" type="button" aria-label="Close the menu" aria-controls="os-side" aria-expanded="false">${ICO.fold}</button></div>
+  return `<aside class="os-side" id="os-side" aria-label="Unhyped">
+  <div class="os-head"><a class="os-logo" href="/"><img src="/logo.svg" alt="Unhyped" width="109" height="20"></a><button class="os-fold" id="os-fold" type="button" aria-label="Close the menu" aria-controls="os-side" aria-expanded="false">${ICO.fold}</button></div>
   <a class="os-ask" href="/sig/">${ringSvg(16)}<span>Ask Sig a question</span></a>
   <nav class="os-places" aria-label="Main">${SIGNAL_PLACE()}${PLACES.map(([k, label]) => `<a href="${k === 'ai' ? '/sig/' : placeHref(k, { site: '' })}"${k === current ? ' aria-current="page"' : ''}><span class="op-g" aria-hidden="true">${PLACE_ICON[k] ? PLACE_ICON[k]() : ''}</span><span class="op-n">${label}</span></a>`).join('')}</nav>
   ${ctx ? `<div class="os-ctx">${ctx}</div>` : ''}
@@ -197,7 +197,7 @@ ${osSide(current, side, url)}
 <div class="win" data-win="${e(current || 'site')}">
   <header class="os-top">
     <button class="os-menu" id="os-menu" type="button" aria-label="Open the menu" aria-controls="os-side" aria-expanded="false">${ICO.menu}</button>
-    <a class="os-top-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <a class="os-top-logo" href="/"><img src="/logo.svg" alt="Unhyped" width="109" height="20"></a>
     ${topLinks(current)}
     <button class="os-search" type="button" data-cmdk aria-label="Search the Library and the site (⌘K)">${ICO.search}<span class="os-search-t">Search the Library…</span><kbd class="kbd-k" aria-hidden="true">⌘K</kbd></button>
     <a class="os-top-sig" href="/sig/"><span aria-hidden="true">${ringSvg(16)}</span><span class="os-top-sig-t">Ask Sig</span></a>
@@ -210,7 +210,7 @@ ${osSide(current, side, url)}
 // under the pointer (lib/os.js) and, with no pointer, sweeps slowly (November 17)
 const FOOT_COLS = [
   ['Explore', [[placeHref('library', { site: '' }), 'Library'], ['/#signal', 'The Signal'], [placeHref('ai', { site: '' }), 'Ask Sig'], ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/status/', 'FDA status tracker']]],
-  ['Community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My Miracle'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
+  ['Community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My stack'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
   ['How it works', [['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
   ['Contact', [['mailto:hello@miraclehealth.us', 'hello@miraclehealth.us'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
 ];
@@ -220,14 +220,14 @@ function osClose({ url = '/' }) {
     ${url.startsWith('/weekly/') ? '' : footNews()}
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="foot-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="92" height="32"></a>
+        <a class="foot-logo" href="/"><img src="/logo.svg" alt="Unhyped" width="142" height="26"></a>
         <p class="foot-say"><b>Peptides, without the sales pitch.</b> Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything. In a crisis, call or text 988 (US).</p>
       </div>
       <nav class="foot-cols" aria-label="Site">
         ${FOOT_COLS.map(([h, links]) => `<div class="foot-col"><p class="foot-h">${h}</p><ul>${links.map(([href, label]) => `<li><a href="${href}"${href.startsWith('mailto:') ? ' class="mail"' : ''}>${label}</a></li>`).join('')}</ul></div>`).join('\n        ')}
       </nav>
     </div>
-    <div class="foot-base"><p class="copy">© 2026 Miracle Health</p><p class="copy">No ads, no sellers, no doses.</p></div>
+    <div class="foot-base"><p class="copy">© 2026 Unhyped</p><p class="copy">No ads, no sellers, no doses.</p></div>
     </div>
     <div class="wrap foot-wordwrap" aria-hidden="true"><div class="foot-word"><span class="fw-dim"></span><span class="fw-glow"></span></div></div>
   </footer>
@@ -275,7 +275,7 @@ function stampShell(html, file, { current = '', home = false, url = '/' } = {}) 
 export const TITLE_MAX = 60;
 export const DESC_MAX = 155;
 export function fitTitle(title, forms = []) {
-  const all = [title, ...forms, title.replace(/ · Miracle Health$/, '')];
+  const all = [title, ...forms, title.replace(/ · Unhyped$/, '')];
   return all.find((t) => t.length <= TITLE_MAX) ?? all.reduce((a, b) => (b.length < a.length ? b : a));
 }
 export function fitDescription(text) {
@@ -312,7 +312,7 @@ function page({
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Miracle Health">
+<meta property="og:site_name" content="Unhyped">
 <meta property="og:url" content="${SITE}${url}">
 <meta property="og:title" content="${e(title)}">
 <meta property="og:description" content="${e(description)}">
@@ -444,7 +444,7 @@ function indexPage() {
   </div>
 </section>`;
   return page({
-    title: 'The Library · Peptides, hormones and supplements, checked · Miracle Health',
+    title: 'The Library · Peptides, hormones and supplements, checked · Unhyped',
     description: `${catalog.length} peptides, hormones, supplements and medications: what each one is, what the studies show, the risks and the blood tests to watch, checked against primary sources, next to how it went for people who took it.`,
     url: '/library/',
     body,
@@ -694,7 +694,7 @@ function entryPage(c) {
 </div>
 </div>`;
   const what = ': evidence, risks, blood tests';
-  return page({ title: `${c.name}${what} · Miracle Health`, titles: [`${c.name}${what}`, `${bare(c.name)}${what} · Miracle Health`, `${bare(c.name)}${what}`, `${c.name}: evidence and risks`, `${bare(c.name)}: evidence and risks`, bare(c.name)],
+  return page({ title: `${c.name}${what} · Unhyped`, titles: [`${c.name}${what}`, `${bare(c.name)}${what} · Unhyped`, `${bare(c.name)}${what}`, `${c.name}: evidence and risks`, `${bare(c.name)}: evidence and risks`, bare(c.name)],
     description: desc.slice(0, 300), url: `/library/${c.id}/`,
     side: tree, body });
 }
@@ -788,14 +788,14 @@ function guidePage(g) {
 </div>
 </div>`;
   return page({
-    title: `${title} · Miracle Health`,
+    title: `${title} · Unhyped`,
     description: 'What a lab report (certificate of analysis) for a peptide, hormone or supplement should show, how to spot a weak or fake one, and what even a good one can’t tell you. No sellers named.',
     url: `/library/${g.id}/`, body, scripts: [], connect: '',
   });
 }
 
 // ---------------------------------------------------------------------------
-// Ask Sig, Sig's own page (miraclehealth.us/sig): Sig, Miracle Health's AI, with its agents and the community's numbers, and the
+// Ask Sig, Sig's own page (miraclehealth.us/sig): Sig, Unhyped's AI, with its agents and the community's numbers, and the
 // member's own clinician last
 // ---------------------------------------------------------------------------
 // Each agent: its key, its name, what it does, and that in a few words (the agents' tab on Ask Sig)
@@ -944,7 +944,7 @@ function aiPage() {
       <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
         <div class="ai-empty" id="ai-empty">
           <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
-          <p class="ai-lede">I’m Sig, Miracle Health’s AI. I’ll tell you what the studies show and what people report, and I’ll always say which is which. Your doctor has the final say.</p>
+          <p class="ai-lede">I’m Sig, Unhyped’s AI. I’ll tell you what the studies show and what people report, and I’ll always say which is which. Your doctor has the final say.</p>
         </div>
       </div>
       <div class="ai-begin" id="ai-begin">
@@ -983,7 +983,7 @@ function aiPage() {
   const shell = `<div class="sg" id="sg">
 <aside class="sg-side" id="sg-side" aria-label="Your chats and the site">
   <div class="sg-head">
-    <a class="sg-logo" href="/"><img src="/logo.webp" alt="Miracle Health" width="80" height="28"></a>
+    <a class="sg-logo" href="/"><img src="/logo.svg" alt="Unhyped" width="109" height="20"></a>
     <button class="sg-fold" id="sg-fold" type="button" aria-label="Hide the side panel" aria-controls="sg-side" aria-expanded="true">${ico('M10 3.5 5.5 8l4.5 4.5')}</button>
   </div>
   <button class="sg-new" id="sg-new" type="button">${ico('M8 2.5v11M2.5 8h11')}<span>New chat</span></button>
@@ -1008,9 +1008,9 @@ ${body}
 </main>
 </div>`;
   return page({
-    title: 'Ask Sig · Miracle Health’s AI: the studies and the whole community, in one answer',
+    title: 'Ask Sig · Unhyped’s AI: the studies and the whole community, in one answer',
     titles: ['Ask Sig: the studies and the whole community, in one answer'],
-    description: 'Ask Sig, Miracle Health’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
+    description: 'Ask Sig, Unhyped’s AI, about peptides, supplements and hormones: what studies show and what members and the public forums report, in one answer that says which is which. Every part is checked before you see it. No doses, no sellers.',
     ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'ask-sig.jpg')) ? '/img/og/ask-sig.jpg' : '/og.jpg',
     url: '/sig/', body: shell, current: 'ai', bodyClass: 'ai sigapp', app: true,
     head: `<link rel="manifest" href="/sig/sig.webmanifest">
@@ -1029,28 +1029,28 @@ function packetPage() {
   const body = `<div class="packet-root" id="packet-root">
   <section class="pk-welcome">
     <h1>Clinician review packet</h1>
-    <p>This page shows a review packet that a patient made with Sig and shared with you as a link or QR code. The packet travels inside the link itself, so Miracle Health never receives or keeps it.</p>
+    <p>This page shows a review packet that a patient made with Sig and shared with you as a link or QR code. The packet travels inside the link itself, so Unhyped never receives or keeps it.</p>
     <p>If you were sent here without a packet, ask for the link or the code again.</p>
   </section>
   <noscript><p class="pk-loading">Opening a packet needs JavaScript.</p></noscript>
 </div>`;
   return page({
-    title: 'Clinician review packet · Miracle Health',
-    description: 'A clinician review packet a patient made with Sig. The packet travels inside the shared link; Miracle Health never receives it.',
+    title: 'Clinician review packet · Unhyped',
+    description: 'A clinician review packet a patient made with Sig. The packet travels inside the shared link; Unhyped never receives it.',
     url: '/ai/packet/', body, current: 'ai', bodyClass: 'packet-page',
     styles: [`/ai/packet.css?v=${V.pkCss}`], scripts: [`/ai/packet.js?v=${V.pkJs}`],
     connect: '', head: '<meta name="robots" content="noindex">',
   });
 }
 
-// The page a shared Miracle Plan opens: the plan travels in the link after "#", so it never
+// The page a shared plan opens: the plan travels in the link after "#", so it never
 // reaches this site's server; the page draws it in the browser
 function planPage() {
   const body = `<div class="plan-wrap">
   <div class="plan-root" id="plan-root">
     <section class="plan-intro">
-      <h1>A Miracle Plan, shared with you.</h1>
-      <p>Someone built this plan with Sig and wanted you to see it: the three foundations everything rests on, what they’ve built on top, and the pillar they’re working on. It travels inside the link you opened, so Miracle Health never receives it.</p>
+      <h1>A plan built with Sig, shared with you.</h1>
+      <p>Someone built this plan with Sig and wanted you to see it: the three foundations everything rests on, what they’ve built on top, and the pillar they’re working on. It travels inside the link you opened, so Unhyped never receives it.</p>
     </section>
     <noscript><p class="plan-oops-p">Opening a plan needs JavaScript.</p></noscript>
   </div>
@@ -1059,18 +1059,18 @@ function planPage() {
     <p>Tell Sig your goal and what you take. It asks about your nutrition, sleep and training, finds the pillar that will make the biggest difference, and builds your plan around it.</p>
     <a class="btn lime" href="/sig/">Start with Sig</a>
   </section>
-  <p class="plan-fine">Education, not medical advice. Miracle Health gives no doses and names no sellers. Talk any change through with your own doctor.</p>
+  <p class="plan-fine">Education, not medical advice. Unhyped gives no doses and names no sellers. Talk any change through with your own doctor.</p>
 </div>`;
   return page({
-    title: 'A Miracle Plan, shared with you · Miracle Health',
-    description: 'A plan someone built with Sig and shared with you: nutrition, sleep and exercise as the foundations, and what rests on them. It travels inside the link; Miracle Health never receives it.',
+    title: 'A plan built with Sig, shared with you · Unhyped',
+    description: 'A plan someone built with Sig and shared with you: nutrition, sleep and exercise as the foundations, and what rests on them. It travels inside the link; Unhyped never receives it.',
     url: '/plan/', body, current: 'ai', bodyClass: 'plan-page', ogImage: '/img/og-plan.jpg',
     styles: [`/ai/plan.css?v=${V.plCss}`], scripts: [`/ai/plan.js?v=${V.plJs}`],
     connect: '', head: '<meta name="robots" content="noindex">',
   });
 }
 
-// My Miracle: what a member keeps on this device (their plan and its ticks, their check-ins, their
+// My stack: what a member keeps on this device (their plan and its ticks, their check-ins, their
 // saved stack), together, with their places in the community. The page reads it from the
 // browser's own storage; nothing of it reaches this site's server.
 function myPage() {
@@ -1078,23 +1078,23 @@ function myPage() {
   <section class="my-intro">
     ${glyphSvg('builder', { size: 48 })}
     <div>
-      <h1>My Miracle.</h1>
-      <p>Your plan, how it’s going, your stack and your places in the community, together. They’re kept on this device; Miracle Health never receives them.</p>
+      <h1>My stack.</h1>
+      <p>Your plan, how it’s going, your stack and your places in the community, together. They’re kept on this device; Unhyped never receives them.</p>
     </div>
   </section>
   <div id="my-app">
     <section class="my-sec my-empty my-wait" aria-labelledby="empty-h" aria-hidden="true">
       <p class="my-loading">Opening what you keep on this device…</p>
       <h2 id="empty-h">Nothing kept here yet</h2>
-      <p class="my-lede">When you keep a Miracle Plan or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.</p>
+      <p class="my-lede">When you keep a plan from Sig or save your stack in Ask Sig, it lives here: your steps to tick off, how it’s going, your stack’s evidence and Signal, and your places in the community.</p>
       <div class="my-actions"><a class="btn lime" href="/sig/">Build your plan with Sig</a><a class="btn line" href="/library/">Explore the Library</a></div>
     </section>
   </div>
-  <noscript><p class="my-loading">My Miracle needs JavaScript: it reads what you keep in this browser.</p></noscript>
+  <noscript><p class="my-loading">My stack needs JavaScript: it reads what you keep in this browser.</p></noscript>
 </div>`;
   return page({
-    title: 'My Miracle · Miracle Health',
-    description: 'Your Miracle Plan, how it’s going, what you take and your places in the community, in one place. It all stays on your device; Miracle Health never receives it.',
+    title: 'My stack · Unhyped',
+    description: 'Your plan, how it’s going, what you take and your places in the community, in one place. It all stays on your device; Unhyped never receives it.',
     url: '/my/', body, current: 'my', bodyClass: 'my-page',
     styles: [`/ai/plan.css?v=${V.plCss}`, `/my/my.css?v=${V.myCss}`],
     scripts: [`/ai/packet.js?v=${V.pkJs}`, `/ai/plan.js?v=${V.plJs}`, `/my/my.js?v=${V.myJs}`],
@@ -1107,7 +1107,7 @@ function myPage() {
 // improve anyway" and their sources
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-// The story: the new Miracle Health, told in its own windows
+// The story: Unhyped, told in its own windows
 // ---------------------------------------------------------------------------
 // One page that tells what changed and why: one app, the twelve agents and what each does, how an
 // answer is made (a real run, step by step), every compound's print, and the rules that don't
@@ -1133,9 +1133,9 @@ function storyPage() {
     <div class="wrap sy-hero-in">
       <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26, centerY: -66 })}<span class="sy-ring-n"><b>12</b>agents</span></div>
       <div class="sy-hero-copy">
-        <p class="sy-k">The new Miracle Health</p>
+        <p class="sy-k">Unhyped</p>
         <h1>One app.<br> Twelve agents.<br> <em>Every answer, checked.</em></h1>
-        <p class="lede">Miracle Health is now one app: the Library, Ask Sig, the community and My Miracle, the same everywhere. Behind every answer are twelve agents, each with one job, each signing what it made.</p>
+        <p class="lede">Unhyped is one app: the Library, Ask Sig, the community and My stack, the same everywhere. Behind every answer are twelve agents, each with one job, each signing what it made.</p>
         <div class="sy-acts"><a class="btn lime" href="/sig/">Ask Sig a question</a><a class="btn line" href="/library/">Open the Library</a></div>
       </div>
     </div>
@@ -1145,7 +1145,7 @@ function storyPage() {
     <div class="wrap">
       <p class="sy-k">The twelve</p>
       <h2 id="sy-twelve">Meet the twelve.</h2>
-      <p class="sy-lede">Eleven gather what’s known, each in its own colour round Sig’s ring. The twelfth sits at its centre and reasons it all through, last, strictly for efficacy. Colour on Miracle Health is a signature: wherever you see one, that agent made it.</p>
+      <p class="sy-lede">Eleven gather what’s known, each in its own colour round Sig’s ring. The twelfth sits at its centre and reasons it all through, last, strictly for efficacy. Colour on Unhyped is a signature: wherever you see one, that agent made it.</p>
       <ol class="sy-twelve">${AGENTS.map(([key, name, what], i) => `<li class="sy-agent" data-agent="${key}"><span class="sy-an" aria-hidden="true">${i + 1}</span>${glyphSvg(key, { size: 34 })}<h3>${e(name)}</h3><p>${e(what)}</p></li>`).join('')}</ol>
     </div>
   </section>
@@ -1191,7 +1191,7 @@ function storyPage() {
         <a class="sy-win" href="/library/">${glyphSvg('evidence', { size: 22 })}<b>Library</b><p>Every compound has its fact sheet, its family’s sheets beside it, each section signed by the agent that reads it.</p></a>
         <a class="sy-win" href="/sig/">${ringSvg(22)}<b>Ask Sig</b><p>Ask in plain words. You see each agent’s step, and the answer comes checked and signed.</p></a>
         <a class="sy-win" href="${COMMUNITY}/">${glyphSvg('community', { size: 22 })}<b>Community</b><p>Sig reads every report and you confirm what it read. The Signal is a live table of every score.</p></a>
-        <a class="sy-win" href="/my/">${glyphSvg('builder', { size: 22 })}<b>My Miracle</b><p>Your plan, how it’s going and your stack, kept in your browser. Miracle Health never receives it.</p></a>
+        <a class="sy-win" href="/my/">${glyphSvg('builder', { size: 22 })}<b>My stack</b><p>Your plan, how it’s going and your stack, kept in your browser. Unhyped never receives it.</p></a>
       </div>
     </div>
   </section>
@@ -1212,8 +1212,8 @@ function storyPage() {
   </section>
 </article>`;
   return page({
-    title: 'The story: one app, twelve agents, every answer checked · Miracle Health',
-    description: 'Miracle Health is now one app: the Library, Ask Sig, the community and My Miracle as windows in Sig’s terminal, twelve agents behind every answer, and a print for every compound.',
+    title: 'The story: one app, twelve agents, every answer checked · Unhyped',
+    description: 'Unhyped is one app: the Library, Ask Sig, the community and My stack as windows in Sig’s terminal, twelve agents behind every answer, and a print for every compound.',
     url: '/story/', body, current: '', bodyClass: 'story-page',
     ogImage: fs.existsSync(path.join(ROOT, 'img', 'og', 'story.jpg')) ? '/img/og/story.jpg' : '/og.jpg',
   });
@@ -1238,7 +1238,7 @@ function methodPage() {
   </div>
 
   <article class="wrap doc method">
-    <p class="intro">Every answer on Miracle Health draws on two sources, kept apart and always named: <b>the studies</b>, in the Library’s fact sheets, and <b>the community</b>, in the Community Signal: what members report first-hand and what people say on public forums. This page explains how each number is made, what it can and can’t tell you, and what we never do.</p>
+    <p class="intro">Every answer on Unhyped draws on two sources, kept apart and always named: <b>the studies</b>, in the Library’s fact sheets, and <b>the community</b>, in the Community Signal: what members report first-hand and what people say on public forums. This page explains how each number is made, what it can and can’t tell you, and what we never do.</p>
 
     <section class="short" aria-labelledby="short-h">
       <h2 id="short-h">The short version</h2>
@@ -1287,7 +1287,7 @@ function methodPage() {
       <li><b class="num">10%</b> how many independent voices there are</li>
       <li><b class="num">10%</b> how much there is to go on</li>
     </ul>
-    <p>Every Signal starts from Miracle Health’s reading of public forums, which counts as 50 reports; every first-hand report here shifts the balance toward members’ own experience.</p>
+    <p>Every Signal starts from Unhyped’s reading of public forums, which counts as 50 reports; every first-hand report here shifts the balance toward members’ own experience.</p>
     <p>Each Signal earns a level for how far along that line it is:</p>
     <ul>
       <li>Forum data</li>
@@ -1329,7 +1329,7 @@ function methodPage() {
     <p>Reactions Sig reads as serious, in a report, a question or a comment, are counted, moderators see them all, and their writers are pointed to medical help and to <a href="https://www.fda.gov/safety/medwatch-fda-safety-information-and-adverse-event-reporting-program" rel="noopener" target="_blank">MedWatch</a>, where anyone in the US can report a serious reaction to the FDA.</p>
 
     <h2 id="forums">What we read on the forums</h2>
-    <p>Each Signal starts from Miracle Health’s reading of public forums, podcasts and videos: what people describe most, and how often they mention each use. We show counted forum data (such as “412 posts read, 61% positive”) only from sources whose terms allow counting and showing it; Reddit, for one, doesn’t allow commercial use of its data without an agreement, so none is counted from there. We never quote or name anyone.</p>
+    <p>Each Signal starts from Unhyped’s reading of public forums, podcasts and videos: what people describe most, and how often they mention each use. We show counted forum data (such as “412 posts read, 61% positive”) only from sources whose terms allow counting and showing it; Reddit, for one, doesn’t allow commercial use of its data without an agreement, so none is counted from there. We never quote or name anyone.</p>
 
     <h2 id="ai">How Sig uses all this</h2>
     <p>For each compound and question, Sig starts with the studies when there are studies in people for it, and with what people report when there aren’t, saying so in the same breath. Safety comes before either: for anything on FDA’s list of substances with significant safety risks, the status and the studies lead; in pregnancy, what people report is left out.</p>
@@ -1346,7 +1346,7 @@ function methodPage() {
     <p>Spotted something wrong? <a href="mailto:hello@miraclehealth.us?subject=Method">Tell us</a>.</p>
   </article>`;
   return page({
-    title: 'How the numbers are made · Miracle Health',
+    title: 'How the numbers are made · Unhyped',
     description: 'How the Library grades studies, how members’ reports are read, weighted and checked, how ratings get their ranges, how many improve anyway, and the side-effect watch.',
     url: '/method/', body, current: '', bodyClass: 'doc-page', styles: [`/pages/pages.css?v=${V.pgCss}`], scripts: [`/pages/pages.js?v=${V.pgJs}`],
   });
@@ -1394,7 +1394,7 @@ out.set(path.join(ROOT, 'img', 'library-graph.svg'), GRAPH.svg);
   const gradeOf = new Map(GRAPH.data.ids.map((id, i) => [id, GRAPH.data.grade[i]]));
   const famShort = (f) => String(f || '').toLowerCase().replace(/s$/, '');
   const PAGES = [['/library/', 'Library', 'every compound and its fact sheet'], ['/sig/', 'Ask Sig', 'twelve agents, every answer checked'],
-    [`${COMMUNITY}/`, 'Community', 'say how it went'], ['/my/', 'My Miracle', 'your stack, on this device'],
+    [`${COMMUNITY}/`, 'Community', 'say how it went'], ['/my/', 'My stack', 'your stack, on this device'],
     ...MORE.map(([href, label]) => [href, label, href.startsWith('/#') ? 'on the front page' : '']),
     [`${COMMUNITY}/#/signal`, 'The Signal, the whole board', 'in the community'], ['/privacy', 'Privacy', ''], ['/terms', 'Terms', '']];
   const cmdk = {
