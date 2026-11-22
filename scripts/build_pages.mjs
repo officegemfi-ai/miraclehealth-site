@@ -90,7 +90,7 @@ export function buildPages(ctx) {
     <p class="intro">Unhyped is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Ask Sig</a>, where Sig, Unhyped’s AI, answers from both.</p>
 
     <h2 id="who">Who runs it</h2>
-    <p>Unhyped is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. Until November 2026 it was called Unhyped. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>; a person reads every email.</p>
+    <p>Unhyped is independent and run by its founder${about.founder ? `, ${e(about.founder)}` : ''}. Until November 2026 it was called Miracle Health. It isn’t a clinic, a pharmacy or a seller, and nobody here can examine you, diagnose you or prescribe anything. Write to us at <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a>; a person reads every email.</p>
 
     <h2 id="money">How it’s paid for</h2>
     <p>It’s free for everyone, and today it’s paid for by its founder. There are no ads, no sponsors and no affiliate links, and nobody can pay to be in the Library, in Sig’s answers or in the Community Signal. We never sell what members share.</p>
