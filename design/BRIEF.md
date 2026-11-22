@@ -18,7 +18,7 @@ You are one member of Unhyped's design department. The site must be clean, well 
   - side panel `.os-side` (272px), closed until the menu button opens it, over the page, at every width;
   - the page across the window's whole width (up to 2400px; margin from 16px to 96px), then the foot.
   - **Ask Sig** (`/sig/`) is the exception: its own window (a tab bar with the chats as tabs, the conversation, the panel on the right), beside its own side panel (open on a wide screen). No status bar, path or prompt.
-- **The community app** (community.miraclehealth.us, `/home/claude/miracle-health-community`, styles in `web/styles.css`, the shared kit in `web/kit/`) is in this audit too. It shares the brand; hold it against the website's current frame and decisions as well as its own screens.
+- **The community app** (community.theunhyped.com, `/home/claude/miracle-health-community`, styles in `web/styles.css`, the shared kit in `web/kit/`) is in this audit too. It shares the brand; hold it against the website's current frame and decisions as well as its own screens.
 - **Never propose:** removing or hiding a navigation panel or menu; changing what the copy says (casing and format are fine); doses, sellers or prices; bringing back anything *Clean, not costume* rules out.
 
 ## The site

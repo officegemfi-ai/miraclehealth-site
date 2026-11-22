@@ -1,6 +1,6 @@
 ---
 name: design-review
-description: Run Unhyped's design department over miraclehealth.us. Six specialist agents (brand and colour, typography, layout and symmetry, components and states, phone and tablet, and clean: no AI-looking details) audit every page, then the findings are fixed on a branch and checked. Use when asked to review, polish or check the site's design, branding, consistency or symmetry.
+description: Run Unhyped's design department over theunhyped.com. Six specialist agents (brand and colour, typography, layout and symmetry, components and states, phone and tablet, and clean: no AI-looking details) audit every page, then the findings are fixed on a branch and checked. Use when asked to review, polish or check the site's design, branding, consistency or symmetry.
 ---
 
 # The design review

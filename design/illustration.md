@@ -60,5 +60,5 @@ When a piece needs to show the product, show the product. That means the real wi
 - **Ground:** `surface` or `page`. Never white.
 - **Colour:** one signature colour per piece (`lime` for a community piece, `evidence` for a Library piece, an agent's colour for its card), except where the twelve appear together.
 - **Type:** the headline in Mona Sans Display, the kicker and every number in Monaspace Neon, the words in Mona Sans.
-- **Signature:** sign every piece in mono at the foot with what made it and where: `sig@miracle ~/story`, `miraclehealth.us`.
+- **Signature:** sign every piece in mono at the foot with what made it and where: `sig@miracle ~/story`, `theunhyped.com`.
 - **Rules:** a piece that mentions a compound never names an amount, a seller or an outcome promise.

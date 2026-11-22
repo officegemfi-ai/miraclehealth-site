@@ -1,6 +1,6 @@
 # The design department
 
-miraclehealth.us keeps to one design language: black pages under a faint grid, wide capital headlines, one electric blue main action, square corners, and colour only as a signature. This folder holds the rules, the team and tools that keep every page to them, and the brand pack made from them.
+theunhyped.com keeps to one design language: black pages under a faint grid, wide capital headlines, one electric blue main action, square corners, and colour only as a signature. This folder holds the rules, the team and tools that keep every page to them, and the brand pack made from them.
 
 ## The rules
 - `BRAND.md`: the brand book (voice, colour, type, the window, shape, motion, states, iconography, the logo).

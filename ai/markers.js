@@ -1,4 +1,4 @@
-// Beside the chat on Ask Sig (miraclehealth.us/sig): the blood tests that what Sig is talking about
+// Beside the chat on Ask Sig (theunhyped.com/sig): the blood tests that what Sig is talking about
 // may move, as a rack of test tubes. Each tube says which way (up, down, both ways, checked), and
 // which compound pushes it; tap one for what it measures and what each compound does to it.
 // Direction only, never how much, and never anyone's own results.

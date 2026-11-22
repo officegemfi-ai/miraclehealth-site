@@ -1,4 +1,4 @@
-// Sig's own page (miraclehealth.us/sig): the chat with Sig, Unhyped's AI, filling the browser
+// Sig's own page (theunhyped.com/sig): the chat with Sig, Unhyped's AI, filling the browser
 // window. The chats are kept on this device until they're deleted (see "The conversation"), with
 // the list of them in the side panel. Each message goes to the ask function (the community's Supabase
 // project), with the agents the member picked to answer (ai/who.js; the Safety agent always does),
@@ -12,13 +12,13 @@
 // Nothing here uses innerHTML for anything the AI or the visitor wrote: text is placed with
 // textContent, and the small amount of formatting the AI uses (bold, lists, Library links) is
 // built node by node.
-import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=7920a66cee';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
-import { h, svg, getSignal, groupN } from '/lib/dom.js?v=47be1f2023';
+import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=15699d1424';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=c273a251fc';
+import { h, svg, getSignal, groupN } from '/lib/dom.js?v=5b30ad4a0f';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
-import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
-import { makeMarkers } from '/ai/markers.js?v=355773ccc0';
+import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=0e1327d027';
+import { makeMarkers } from '/ai/markers.js?v=74ba1282e2';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -1600,7 +1600,7 @@ async function run(am) {
 const HELP_LINE = ' If you’re thinking about hurting yourself, call or text 988 any time; in an emergency, call 911.';
 const errorText = (status) => (status === 429 ? `Too many messages for now. Please try again later.${HELP_LINE}`
   : status === 413 ? 'That message is too long. Keep it under 2,000 characters.'
-  : status === 403 ? 'Sig only answers on miraclehealth.us.'
+  : status === 403 ? 'Sig only answers on theunhyped.com.'
   : `Sig is resting for a moment. Please try again shortly.${HELP_LINE}`);
 const textOf = (m) => (m.parts || []).filter((p) => p.t === 'text').map((p) => p.s).join('\n\n').trim();
 
@@ -2473,7 +2473,7 @@ updateSend();
 {
   let cmdk = null;
   const cmdkOpen = (from) => {
-    (cmdk ||= import('/lib/cmdk.js?v=767f876aea')).then((m) => (m.isOpen() ? m.close() : m.openCmdk(from))).catch(() => { location.assign('/library/'); });
+    (cmdk ||= import('/lib/cmdk.js?v=9ea219b9b8')).then((m) => (m.isOpen() ? m.close() : m.openCmdk(from))).catch(() => { location.assign('/library/'); });
   };
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && !e.altKey && !e.shiftKey && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); cmdkOpen(document.activeElement); }

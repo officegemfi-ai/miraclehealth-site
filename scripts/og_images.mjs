@@ -54,8 +54,8 @@ const cards = [
   })),
   { slug: 'weekly', name: 'The Signal, weekly', tab: 'issues', kick: 'The Signal, weekly', title: 'What moved, once a week', sub: 'The Community Signal, new studies and FDA news. Free, no ads.' },
   { slug: 'founders', name: 'Founding reporters', tab: 'founders.md', kick: 'Founding reporters', title: 'Be one of the first 100.', sub: 'Share a first-hand report on what you took, and how it went.' },
-  // The community's own share card (community.miraclehealth.us points its og:image here)
-  { slug: 'community', name: 'Community', tab: 'community', addr: 'community.miraclehealth.us', kick: 'The Unhyped community', title: 'Took something?<br><em>Say how it went.</em>',
+  // The community's own share card (community.theunhyped.com points its og:image here)
+  { slug: 'community', name: 'Community', tab: 'community', addr: 'community.theunhyped.com', kick: 'The Unhyped community', title: 'Took something?<br><em>Say how it went.</em>',
     sub: 'Your report moves the number for the next person, even if it did nothing. Free to join.', art: ringSvg(260) },
 ];
 
@@ -90,7 +90,7 @@ h1 em{${PUNCH}}
 .p-ground{height:8px;margin-top:-12px;background:${C.text}}
 </style></head><body>
 <div class="in">
-<div class="top">${logo(42)}<span class="addr">${e(c.addr || 'miraclehealth.us')}</span></div>
+<div class="top">${logo(42)}<span class="addr">${e(c.addr || 'theunhyped.com')}</span></div>
 <p class="kick">${e(c.kick)}</p>
 <h1>${c.title}</h1>
 ${c.sub ? `<p class="sub">${e(c.sub)}</p>` : ''}

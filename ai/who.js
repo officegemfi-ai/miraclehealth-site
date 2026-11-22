@@ -1,4 +1,4 @@
-// Who answers on Ask Sig (miraclehealth.us/sig): the picker beside the box to write in (page 19 of
+// Who answers on Ask Sig (theunhyped.com/sig): the picker beside the box to write in (page 19 of
 // the design canvas). For each chat the member keeps all twelve agents, picks a ready-made team, or
 // picks agents one by one, the way a model is picked in a chat app. The Safety agent is always on:
 // it reads every question and checks every answer, whatever is picked. The library build writes

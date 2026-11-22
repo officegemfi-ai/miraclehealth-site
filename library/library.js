@@ -1,13 +1,13 @@
 // The Library's live parts: search and filters on the front page, and on each compound's
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
-import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
+import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=c273a251fc';
 import { setPrintSignal } from '/lib/print.js?v=d7172ffaa1';
-import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=7920a66cee';
-import { wireBodyMap } from '/kit/bodymap.js?v=57440abdb8';
-import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=47be1f2023';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=15699d1424';
+import { wireBodyMap } from '/kit/bodymap.js?v=8b055d7a31';
+import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=5b30ad4a0f';
 
-const COMMUNITY = 'https://community.miraclehealth.us';
+const COMMUNITY = 'https://community.theunhyped.com';
 // Both voices for each compound and use, worked out with Sig's own code from the same
 // snapshot (the community's scripts/build_evidence.ts)
 const EVIDENCE = `${COMMUNITY}/evidence`;
