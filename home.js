@@ -7,6 +7,7 @@
 // what it was published with.
 import { sealSvg, levelOf, LEVELS } from '/library/signalviz.js?v=865e272ad0';
 import { COMMUNITY, node, askLink, meterHtml } from '/kit/kit.js?v=7920a66cee';
+import { startHow } from '/lib/how.js?v=00580c8b6b';
 import { startSigHero } from '/lib/sighero.js?v=e0fa87772c';
 import { sigField } from '/lib/sigfield.js?v=36f23eb1e2';
 import { h, getJson, getSignal, calm, groupN } from '/lib/dom.js?v=47be1f2023';
@@ -388,5 +389,8 @@ if (askForm) askForm.addEventListener('submit', (e) => {
 // The drawings that move without end only move while they're on screen
 document.querySelectorAll('svg.sig, svg.takeover, svg.flowviz').forEach(calm);
 
-// How it works has a page of its own (/how-it-works/, how-it-works/how.js); the violet band here leads to it
+// How it works has a page of its own (/how-it-works/, how-it-works/how.js); here, its violet band leads
+// to it, and under the band the finale, the Signal written in what people report, on the live Signal
+const how = document.getElementById('how');
+later(how, () => startHow(how, getSignal));
 openBelow();
