@@ -18,6 +18,8 @@ Your area, across every page in `design/pages.json` at 1440, 1024, 768 and 390 w
 5. **Logo and marks:**
    - The wordmark is 20px tall in the top bar, the side panel and Ask Sig's side, 26px in a foot, never under 16px, and always the drawn `logo.svg`, never the word set in type.
    - Sig's ring is 18px beside Ask Sig in the top bar and in Ask Sig's tab bar.
+   - The icon (the logo's u, white on electric blue: `favicon.svg`, `apple-touch-icon.png`) is the tab's and a phone's, on every page. The ring is Sig's only: it never stands for Unhyped.
+   - The line is "No miracles. Just what happened.", as written; a fact sheet's title and share card use the format "<Name>, unhyped." (`design/BRAND.md`, *Voice*).
    - The glyphs keep their colours.
 6. **Gradients and shadows:**
    - Gradients only for the Signal's bar and drawn marks such as the plate's ticks.

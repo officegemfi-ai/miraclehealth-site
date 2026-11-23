@@ -11,7 +11,17 @@ degrees, as the old script logo was. It writes, in place:
   img/wordmark.svg          the word drawn big under every page's foot: a stack of hairline outlines
                             in violet into blue, standing on the page's bottom edge
 
-Run from the repository's root (needs fontTools with brotli):  python3 design/pack/wordmark.py
+and the icon, the word's own u, for where the word can't fit (a browser's tab, a phone's home screen, a
+profile picture): white on the main action's electric blue, lit from the top as that button is.
+
+  favicon.svg               the tab's icon, which every page links
+  favicon.ico               the same at 16, 32 and 48 pixels, for a browser that can't show an SVG icon
+  apple-touch-icon.png      the same at 180 pixels, for a phone's home screen
+  design/pack/icon.svg      the icon for the brand pack, and icon-black.svg and icon-white.svg, for
+                            where blue can't be printed or the ground is blue already
+
+Run from the repository's root (needs fontTools with brotli, and Pillow for the icon's pictures):
+  python3 design/pack/wordmark.py
 (give a folder to write there instead, to try a change without touching the site)
 """
 import math
@@ -133,4 +143,107 @@ big = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{fmt(vx)} {fmt(vy)} {f
 os.makedirs(os.path.join(OUT, 'img'), exist_ok=True)
 with open(os.path.join(OUT, 'img', 'wordmark.svg'), 'w') as f:
     f.write(big)
+
+# ---------------------------------------------------------------------------
+# The icon: the word's own u, alone. Its ink is centred on a square: on the tab's icon it fills more of
+# the square, so it still reads at 16 pixels; everywhere else it has the room a phone's rounded mask
+# and a profile picture's circle need.
+# ---------------------------------------------------------------------------
+import io
+import json
+
+from fontTools.pens.basePen import BasePen
+from PIL import Image, ImageDraw
+
+TOKENS = {x['name']: x['value'] for x in json.load(open(os.path.join(ROOT, 'design', 'tokens.json')))['color']['tokens']}
+BLUE_HI, BLUE, ON_BLUE = TOKENS['accent-hi'].upper(), TOKENS['accent'].upper(), TOKENS['on-accent'].upper()
+GROUNDS = {'blue': (ON_BLUE, None), 'black': (WHITE, '#000000'), 'white': (INK, WHITE)}   # the u, its ground
+INK_TAB, INK_ICON = 0.56, 0.46      # the u's height, as a share of the square's
+U = cmap[ord('u')]
+
+
+def draw_u(pen):
+    glyphs[U].draw(TransformPen(pen, (1, 0, -t, -1, 0, 0)))
+    return pen
+
+
+ud = draw_u(SVGPathPen(glyphs, ntos=num)).getCommands()
+ux0, uy0, ux1, uy1 = draw_u(BoundsPen(glyphs)).bounds
+uw, uh = ux1 - ux0, uy1 - uy0
+
+
+def square(ink):
+    """The square round the u, in the font's units: where it starts and how long its side is."""
+    side = uh / ink
+    return ux0 - (side - uw) / 2, uy0 - (side - uh) / 2, side
+
+
+def icon_svg(ground='blue', ink=INK_ICON, size=512):
+    fg, bg = GROUNDS[ground]
+    x, y, side = square(ink)
+    box = f'x="{fmt(x)}" y="{fmt(y)}" width="{fmt(side)}" height="{fmt(side)}"'
+    fill = (f'<defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop stop-color="{BLUE_HI}"/><stop offset="1" stop-color="{BLUE}"/></linearGradient></defs>'
+            f'<rect {box} fill="url(#b)"/>') if bg is None else f'<rect {box} fill="{bg}"/>'
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{fmt(x)} {fmt(y)} {fmt(side)} {fmt(side)}" width="{size}" height="{size}" '
+            f'role="img" aria-label="Unhyped">{fill}<path fill="{fg}" d="{ud}"/></svg>\n')
+
+
+class Outline(BasePen):
+    """The u's outline as straight runs, fine enough to fill as a polygon."""
+    def __init__(self, glyph_set):
+        super().__init__(glyph_set)
+        self.runs = []
+
+    def _moveTo(self, p):
+        self.runs.append([p])
+
+    def _lineTo(self, p):
+        self.runs[-1].append(p)
+
+    def _curveToOne(self, p1, p2, p3):
+        p0 = self._getCurrentPoint()
+        for i in range(1, 33):
+            s = i / 32
+            a, b, c, e = (1 - s) ** 3, 3 * s * (1 - s) ** 2, 3 * s * s * (1 - s), s ** 3
+            self.runs[-1].append((a * p0[0] + b * p1[0] + c * p2[0] + e * p3[0], a * p0[1] + b * p1[1] + c * p2[1] + e * p3[1]))
+
+
+RUNS = draw_u(Outline(glyphs)).runs
+rgb = lambda hx: tuple(int(hx[i:i + 2], 16) for i in (1, 3, 5))
+
+
+def icon_png(px, ground='blue', ink=INK_ICON, ss=8):
+    """The icon as pixels: drawn eight times larger and brought down by plain averaging, so its edges
+    are smooth and no darker line is left round the letter."""
+    fg, bg = GROUNDS[ground]
+    x, y, side = square(ink)
+    n = px * ss
+    k = n / side
+    if bg is None:      # lit from the top, as the main action is
+        top, foot = rgb(BLUE_HI), rgb(BLUE)
+        im = Image.new('RGB', (1, n))
+        im.putdata([tuple(round(top[c] + (foot[c] - top[c]) * r / (n - 1)) for c in range(3)) for r in range(n)])
+        im = im.resize((n, n))
+    else:
+        im = Image.new('RGB', (n, n), rgb(bg))
+    g = ImageDraw.Draw(im)
+    for run in RUNS:
+        g.polygon([((px_ - x) * k, (py_ - y) * k) for px_, py_ in run], fill=rgb(fg))
+    return im.resize((px, px), Image.BOX)
+
+
+with open(os.path.join(OUT, 'favicon.svg'), 'w') as f:
+    f.write(icon_svg('blue', INK_TAB, 64))
+sizes = [16, 32, 48]
+frames = [icon_png(s, 'blue', INK_TAB) for s in sizes]
+buf = io.BytesIO()
+frames[-1].save(buf, format='ICO', sizes=[(s, s) for s in sizes], append_images=frames[:-1])
+with open(os.path.join(OUT, 'favicon.ico'), 'wb') as f:
+    f.write(buf.getvalue())
+icon_png(180).save(os.path.join(OUT, 'apple-touch-icon.png'), optimize=True)
+for ground, name in (('blue', 'icon.svg'), ('black', 'icon-black.svg'), ('white', 'icon-white.svg')):
+    with open(os.path.join(OUT, 'design', 'pack', name), 'w') as f:
+        f.write(icon_svg(ground))
+
 print(f'unhyped: {len(names)} glyphs, {fmt(w)} x {fmt(h)} units, kerning applied; wrote logo.svg, design/pack/logo.svg, design/pack/logo-ink.svg and img/wordmark.svg in {OUT}')
+print(f'the icon: the u, {fmt(uw)} x {fmt(uh)} units, in {len(RUNS)} outline{"s" if len(RUNS) != 1 else ""}; wrote favicon.svg, favicon.ico ({", ".join(map(str, sizes))} px), apple-touch-icon.png and design/pack/icon.svg, icon-black.svg, icon-white.svg')

@@ -2,7 +2,7 @@
 // and the brand guide. Every one keeps one layout: the logo and the address along the top, then a
 // kicker, a headline and one line under it, from the left. Nothing else is added: no foot, no
 // counters, no strips, nothing in the code face but numbers.
-import { BASE, C, HEAD, NAME, PUNCH, ground, violet, logo, esc } from './look.mjs';
+import { BASE, C, HEAD, NAME, PUNCH, ground, violet, logo, icon, esc } from './look.mjs';
 import { ringSvg } from '../../lib/ring.js';
 
 // The Signal's four parts: the field in the data, its name on the card, its share of the score and
@@ -130,6 +130,11 @@ const LINE = {
   rules: { kick: 'Independent and free', title: 'Nobody can buy<br><em>a better number.</em>', sub: 'No doses. No sellers. No diagnosis. Nothing for sale.' },
 };
 const NOT_ADVICE = 'What people report. Not medical advice.';
+// A compound in the brand's format, "<Name>, unhyped.", with its Signal on the day the post goes out.
+// (A fact sheet's share image says it the same way without the score: a saved picture can't follow it)
+const unhyped = (f, s, kind) => piece(f, { kick: kind, title: `${esc(s.name)},<br><em>unhyped.</em>`, note: NOT_ADVICE,
+  css: `${SIGNAL_CSS(f.scale * 1.55)}.row{display:flex;align-items:flex-end;gap:${Math.round(f.sub * 0.8)}px;margin-top:${Math.round(f.sub * 1.5)}px}.row .of{margin:0 0 ${Math.round(f.sub * 0.62)}px}.sum{margin-top:${Math.round(f.sub * 0.55)}px}`,
+  body: `<div class="row"><p class="score">${whole(s.score)}</p><p class="of">out of 100</p></div><p class="sum">${esc(said(s))}</p>` });
 
 export const posts = (top, total, kindOf, steps) => {
   const s = top[0];
@@ -145,6 +150,7 @@ h1{margin-top:22px}`;
     'posts/post-signal.png': [sq, piece(sq, { kick: 'The Community Signal', note: NOT_ADVICE,
       css: `${SIGNAL_CSS(1.8)}.name{margin-top:14px;${NAME};font-size:60px;line-height:1.05}.sub2{margin-top:10px;font:400 26px/1.2 Mona,sans-serif;color:${C['text-2']}}.row{display:flex;align-items:flex-end;gap:26px;margin-top:36px}.row .of{margin:0 0 20px}.sum{margin-top:16px}.parts{margin-top:36px}`,
       body: `<p class="name">${esc(s.name)}</p><p class="sub2">${esc(kindOf(s))} · ranked 1 of ${total}</p><div class="row"><p class="score">${whole(s.score)}</p><p class="of">out of 100</p></div><p class="sum">${esc(said(s))}</p>${parts(s)}` })],
+    'posts/post-unhyped.png': [sq, unhyped(sq, s, kindOf(s))],
     'posts/post-board.png': [sq, piece(sq, { kick: 'The Signal, weekly', note: NOT_ADVICE, css: `${BOARD_CSS(2.4)}.board{margin-top:36px}`, body: board(top.slice(0, 5)) })],
     'posts/post-report.png': [sq, piece(sq, { ...LINE.report, head: 84 })],
     'posts/post-rules.png': [sq, piece(sq, LINE.rules)],
@@ -155,6 +161,7 @@ h1{margin-top:22px}`;
     'carousel/5-your-turn.png': [pt, piece(pt, { ...LINE.report, head: 78 })],
     'stories/story-brand.png': [st, piece(st, { ...LINE.brand, go: 'miraclehealth.us' })],
     'stories/story-report.png': [st, piece(st, { ...LINE.report, head: 76 })],
+    'stories/story-unhyped.png': [st, unhyped(st, s, kindOf(s))],
   };
 };
 
@@ -181,7 +188,8 @@ h1{${HEAD};font-size:64px;line-height:.98}
 // Flat pieces: the logo and the mark on their grounds, the three grounds themselves
 // ---------------------------------------------------------------------------
 export const logoOnBlack = () => doc(1920, 1080, '.in{position:absolute;inset:0;display:grid;place-items:center}', `<div class="in">${logo(320)}</div>`, `background:${C.surface}`);
-export const appIcon = (size) => doc(size, size, '.in{position:absolute;inset:0;display:grid;place-items:center}', `<div class="in">${ringSvg(Math.round(size * 0.62))}</div>`, `background:${C.surface}`);
+// The app icon and the profile picture: the icon, edge to edge (a phone rounds its corners, a profile cuts a circle)
+export const appIcon = (size) => doc(size, size, '', icon(size), `background:${C.accent}`);
 export const groundOnly = () => doc(1920, 1080, '', '', `background:${ground(1.4)}`);
 export const violetOnly = () => doc(1920, 1080, '', '', violet(1.4));
 // The Noise card's matte grey suede (home.css .sn-noise)
