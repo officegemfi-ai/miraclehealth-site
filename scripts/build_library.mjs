@@ -1482,6 +1482,19 @@ out.set(frontFile, stampShell(front, 'index.html', { home: true, url: '/' }));
 {
   const file = path.join(ROOT, 'how-it-works', 'index.html');
   let how = fs.readFileSync(file, 'utf8');
+  // Three steps and the finale are the front page's own (between its part: markers), copied in as the
+  // front page has them now, so the two pages never differ. Three steps' headline is the page's h1, and
+  // its ways in that point at the front page's own sections point there
+  const partOf = (key) => {
+    const m = front.match(new RegExp(`<!-- ${key} -->([\\s\\S]*?)<!-- /${key} -->`));
+    if (!m) throw new Error(`index.html has no ${key} to copy to How it works`);
+    return m[1];
+  };
+  const steps = partOf('part:steps').replace(/<h2 id="st-h">([\s\S]*?)<\/h2>/, '<h1 id="st-h">$1</h1>')
+    .replace(/ href="#signal"/g, ' href="/#signal"').replace(/ href="#sig"/g, ' href="/sig/"');
+  if (!steps.includes('<h1 id="st-h">')) throw new Error('Three steps has no headline to make the page\'s h1');
+  how = fill(how, 'part:steps', steps);
+  how = fill(how, 'part:finale', partOf('part:finale'));
   how = how.replace(/<script type="module" src="\/how-it-works\/how\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/how-it-works/how.js?v=${V.howPage}"></script>`);
   for (const [f, v] of SHARED) how = how.replace(new RegExp(`(<link rel="modulepreload" href="/${f.replace(/\./g, '\\.')})(?:\\?v=[0-9a-f]+)?"`, 'g'), `$1?v=${v}"`);
   how = how.replace(/<link rel="stylesheet" href="\/home\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/home.css?v=${V.homeCss}">`);
