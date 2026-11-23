@@ -17,7 +17,7 @@
 
 /* The drawings from signalviz.js */
 .t-mono{font-family:var(--mono);font-weight:500}
-.t-head{font-family:var(--head);font-weight:600;letter-spacing:-.02em}
+.t-head{font-family:var(--head);font-weight:650;font-stretch:125%;letter-spacing:-.025em}
 .flowviz .ping{animation:fvping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes fvping{0%{transform:scale(1);opacity:.8}100%{transform:scale(3.2);opacity:0}}
 .takeover .draw{animation:draw 1.8s cubic-bezier(.2,.7,.2,1) .2s both}
@@ -28,7 +28,7 @@
 .radar{display:block;width:100%;height:auto;color:var(--on-ink);overflow:visible}
 /* the radar's labels are in its own units, so they scale with it: sized by the radar's width, they read
    about 11 to 12.5px wherever it is drawn */
-.radar .rd-label{font:500 12px var(--mono);letter-spacing:0;text-transform:lowercase;fill:var(--on-ink-2)}
+.radar .rd-label{font:500 13px var(--body);letter-spacing:0;fill:var(--on-ink-2)}
 @container radar (max-width:380px){.radar .rd-label{font-size:13.5px}}
 @container radar (max-width:320px){.radar .rd-label{font-size:15px}}
 .rd-layer{animation:grow 1.1s cubic-bezier(.2,.7,.2,1) both}
@@ -47,9 +47,9 @@
    the view and the figure on the right clear */
 .lib-hero{--col:700px;--text-r:calc(max(0px,(100vw - 1320px) / 2) + 40px + var(--col));position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;min-height:clamp(600px,48vw,820px);background:var(--darker);color:var(--on-ink);--focus:var(--accent)}
 .lib-hero-in{display:grid;grid-template-columns:minmax(0,var(--col));gap:36px;align-items:end;padding-top:calc(var(--top-h) + 72px);padding-bottom:64px}
-.lib-hero h1{margin-top:18px}
+.lib-hero h1{margin-top:16px}
 .lib-hero .lede{max-width:50ch;color:var(--text-2)}
-.lib-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:0;border-radius:0;overflow:hidden;border:1px solid var(--line-ink);background:var(--line-ink)}
+.lib-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;border-radius:0;overflow:hidden;border:1px solid var(--line-ink);background:var(--line-ink)}
 .lib-stats div{display:flex;flex-direction:column;justify-content:space-between;gap:8px;padding:18px 20px;background:var(--card)}
 .lib-stats dt{font:400 13px/1.4 var(--body);color:var(--on-ink-3)}
 .lib-stats dd{margin:0;font:500 36px/1 var(--mono);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
@@ -59,7 +59,7 @@
 .lib-search svg{position:absolute;left:16px;color:var(--muted)}
 .lib-search input{width:100%;height:48px;padding:0 16px 0 44px;border-radius:0;border:1px solid var(--line-2);background:var(--card);font:400 16px var(--body);color:var(--text);text-overflow:ellipsis}
 .lib-search input::placeholder{color:var(--muted);opacity:1}
-.lib-search input:hover{border-color:var(--text)}
+.lib-search input:hover,.lib-search input:focus,.lib-filters select:focus{border-color:var(--text)}
 .lib-search input:focus{outline:2px solid var(--bone);outline-offset:2px}
 .lib-chips{display:flex;flex-wrap:wrap;gap:8px}
 .lib-chips button{display:inline-flex;align-items:center;gap:8px;padding:0 16px;border:1px solid;cursor:pointer}
@@ -107,7 +107,7 @@
 .crumbs a{color:var(--on-ink-2);text-decoration:none}
 .crumbs a:hover{color:var(--accent)}
 .le-hero .kick{margin-top:32px}
-.le-hero h1{margin-top:12px;overflow-wrap:anywhere}
+.le-hero h1{margin-top:16px;overflow-wrap:anywhere}
 .aka{margin-top:14px;font:500 13px/1.6 var(--body);color:var(--on-ink-3)}
 .le-hero .lede{max-width:50ch;margin-top:20px}
 .le-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
@@ -142,7 +142,7 @@
 .sig-wait{color:var(--on-ink-2);max-width:52ch}
 .sig-cta{justify-self:start}
 .sig-top{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
-.sig-top .n{font:700 68px/.9 var(--mono);letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+.sig-top .n{font:650 expanded 68px/.92 var(--head);letter-spacing:-.025em;font-variant-numeric:tabular-nums}
 .sig-top .of{font:500 16px var(--mono);color:var(--on-ink-3);margin-bottom:8px}
 .sig-top .lvl{display:flex;align-items:center;gap:10px;margin-left:auto;margin-bottom:6px}
 .sig-top .lvl-name{display:block;font:600 16px/1.2 var(--body);color:var(--on-ink)}
@@ -253,8 +253,8 @@
 @media (max-width:900px){
   .lib-hero{display:block;min-height:0}
   .bl-why{font-size:18px}
-  .lib-hero-in{grid-template-columns:1fr;gap:32px;padding-top:calc(var(--top-h) + 28px);padding-bottom:48px}
-  .lib-stats{grid-template-columns:1fr 1fr}
+  .lib-hero-in{grid-template-columns:1fr;gap:32px;padding-top:calc(var(--top-h) + 72px);padding-bottom:48px}
+  .lib-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
   .le-glance-in{grid-template-columns:1fr}
   .lib-explain .explain-grid{grid-template-columns:1fr}
   .lib-tools{position:static}
@@ -310,7 +310,6 @@
 .lib-moves{display:grid;gap:10px;margin-top:40px;padding:14px 18px;border-radius:0;background:var(--ink);color:var(--on-ink)}
 .wrap.lib-moves{width:calc(100% - 80px);max-width:1240px}
 .moves-k{display:flex;align-items:center;gap:8px;font:400 13px/1 var(--body);color:var(--muted)}
-.moves-k i{width:7px;height:7px;border-radius:50%;background:var(--lime);translate:0 -1px}
 .moves-track{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
 .move{display:inline-flex;flex:none;align-items:baseline;gap:8px;padding:8px 12px;border-radius:0;border:1px solid var(--line-ink);color:var(--on-ink);text-decoration:none;font-size:14px}
 .move:hover{border-color:var(--text)}
@@ -326,10 +325,10 @@
 @keyframes lib-in{from{opacity:0}}
 @media (max-width:899px){.lib-moves.is-wait{min-height:212px}}
 @media (max-width:560px){.lib-moves.is-wait{min-height:288px}}
-.moves-focus .kick-sm{color:var(--on-ink-3)}
+.moves-focus .moves-k{flex-basis:100%;margin-bottom:2px}
 .moves-focus a{padding:5px 10px;border-radius:0;border:1px solid var(--line-ink);color:var(--on-ink);text-decoration:none}
-.moves-focus a:hover{border-color:var(--act-c);color:var(--accent)}
-.moves-focus .n{font:500 11px var(--mono);color:var(--lime)}
+.moves-focus a:hover{border-color:var(--text);color:var(--text)}
+.moves-focus .n{font:400 13px var(--body);font-variant-numeric:tabular-nums;color:var(--on-ink-2)}
 
 /* ================================================================ Plate
    Pills are hairline labels, the Library's top is words on the page (no photograph), cards are
@@ -417,7 +416,7 @@
 /* the body map's place names are words: the body face here (the shared kit, kit/kit.css, still sets them
    in the code face; it is changed with the community's kit) */
 .mh-bm-row dt{font-family:var(--body);font-size:13px}
-.le-facts .dd-log{font:400 13.5px/1.5 var(--body);text-transform:lowercase}
+.le-facts .dd-log{font:400 13.5px/1.5 var(--body)}
 
 /* The Sig system on a fact sheet (design canvas, page 9): what an agent wrote carries its colour as a
    2px mark in the gutter beside it, not a box round it: the Evidence librarian's findings and studies
@@ -435,3 +434,7 @@
 
 /* phone floors: the disclaimer reads at 15px, like the foot's */
 @media (max-width:700px){.side-note{font-size:15px}}
+/* every page opens the same way: the kicker 72px under the bar (44px on a phone), the h1 16px under it (the doc head's) */
+@media (max-width:600px){.lib-hero-in{padding-top:calc(var(--top-h) + 44px)}.le-hero:not(.has-print) .kick{margin-top:4px}}
+/* loading: Sig's ring beside the plain line (kit.css lights its pieces one by one) */
+.sig-wait .mh-wait-ring{display:inline-block;vertical-align:-3px;margin-right:10px}

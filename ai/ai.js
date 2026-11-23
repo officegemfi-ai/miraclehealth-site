@@ -12,13 +12,13 @@
 // Nothing here uses innerHTML for anything the AI or the visitor wrote: text is placed with
 // textContent, and the small amount of formatting the AI uses (bold, lists, Library links) is
 // built node by node.
-import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink } from '/kit/kit.js?v=7920a66cee';
-import { sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
+import { askFrom, meterHtml, node as fromKit, GRADES as KIT_GRADES, COMMUNITY, spaceLink, draftLink, waitRingSvg } from '/kit/kit.js?v=6fab76b0a9';
+import { sealSvg, levelOf } from '/library/signalviz.js?v=db7d8d8979';
 import { h, svg, getSignal, groupN } from '/lib/dom.js?v=47be1f2023';
 import { ringSvg, WHEEL, AGENT_COLOR, CENTER } from '/lib/ring.js?v=59d3289bb7';
 import { glyphSvg } from '/lib/glyphs.js?v=55198cff0b';
-import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=aa054cadec';
-import { makeMarkers } from '/ai/markers.js?v=355773ccc0';
+import { picker as whoPicker, tidy as tidyWho, ALL as WHO_ALL, isAll as everyone } from '/ai/who.js?v=080f51fd2a';
+import { makeMarkers } from '/ai/markers.js?v=7bd464dab4';
 
 const app = document.getElementById('ai');
 const ENDPOINT = app.dataset.endpoint;
@@ -193,9 +193,9 @@ function tagPart(el, text) {
 // The rows an answer ends with, each under its label: the studies, the safety line, the next step
 // (what to take to a doctor is a card that joins them: questionsNode)
 const ROWS = [
-  [/^\s*(?:\*\*)?the studies(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'studies', 'the studies'],
-  [/^\s*(?:\*\*)?good to know(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'safety', 'good to know'],
-  [/^\s*(?:\*\*)?next steps?(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'next', 'next step'],
+  [/^\s*(?:\*\*)?the studies(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'studies', 'The studies'],
+  [/^\s*(?:\*\*)?good to know(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'safety', 'Good to know'],
+  [/^\s*(?:\*\*)?next steps?(?:\*\*)?\s*:\s*(?:\*\*)?\s*/i, 'next', 'Next step'],
 ];
 function rowOf(text) {
   for (const [re, kind, label] of ROWS) {
@@ -489,21 +489,14 @@ const calmOf = (m) => (!!m.flag && m.flag !== 'none') || (m.parts || []).some((p
   || CRISIS_WORDS.test(questionOf(m));
 // Who answered: as Sig's server said (its first event), or as the page asked, or who reported
 const answered = (m) => (Array.isArray(m?.agents) && m.agents.length ? m.agents : Array.isArray(m?.asked) && m.asked.length ? m.asked : ranOf(m));
-// short: for a phone (Sig · 2 Signals · 12 agents)
+// While Sig works, what it is doing in plain words (the ring shows who is working); once the
+// answer is there, nothing: the answer speaks for itself. short: for a phone
 function readLine(m, short = false) {
-  const n = answered(m).length;
-  const who = n ? (n === WHO_ALL.length && !short ? `all ${n} agents` : plural(n, 'agent')) : '';
-  const line = (xs) => xs.filter(Boolean).map((x) => ` · ${x}`).join('');
-  if (!m.state) {
-    const last = (m.steps || []).filter((s) => s.status === 'run').pop();
-    return line([short ? 'working' : last ? low(last.title) : 'reading your message', who]);
-  }
-  const src = m.sources || {};
-  const sig = Number(src.community?.signals) || 0;
-  const sheets = Number(src.studies?.sheets) || 0;
-  if (short) return line([sig ? plural(sig, 'Signal') : sheets ? plural(sheets, 'fact sheet') : '', who]);
-  const read = sig || sheets ? `read ${[sig ? plural(sig, 'Signal') : '', sheets ? plural(sheets, 'fact sheet') : ''].filter(Boolean).join(' and ')}` : '';
-  return line([read, who]);
+  if (m.state) return '';
+  const last = (m.steps || []).filter((s) => s.status === 'run').pop();
+  if (short) return 'Working';
+  const t = last ? String(last.title || '') : '';
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : 'Reading your message';
 }
 function drawTrace(m) {
   const view = m.view;
@@ -514,8 +507,8 @@ function drawTrace(m) {
   view.trace.hidden = !open || !steps.length;
   view.sum.hidden = !steps.length;
   view.sum.setAttribute('aria-expanded', String(open));
-  view.sum.replaceChildren(...[h('span', { class: 'ts-car', 'aria-hidden': 'true', text: open ? '▾' : '▸' }), h('span', { text: 'how I got here' }),
-    !m.state ? h('span', { class: 'ts-busy', 'aria-hidden': 'true' }) : null].filter(Boolean));
+  view.sum.replaceChildren(...[h('span', { class: 'ts-car', 'aria-hidden': 'true', text: open ? '▾' : '▸' }), h('span', { text: 'How I got here' }),
+    !m.state ? h('span', { class: 'ts-busy', 'aria-hidden': 'true' }, svg(waitRingSvg(14))) : null].filter(Boolean));
   view.read.textContent = readLine(m);
   view.readS.textContent = readLine(m, true);
   // Sig's ring: turning while the agents work, then lit by those who answered
@@ -528,7 +521,7 @@ const moodOf = (msg) => ((msg.flag && msg.flag !== 'none') || msg.state === 'err
 function drawStep(view, s) {
   let el = view.stepEls.get(s.id);
   if (!el) {
-    el = h('li', { class: 'tstep' }, h('span', { class: 'ts-n', 'aria-hidden': 'true', text: String(view.stepEls.size + 1).padStart(2, '0') }),
+    el = h('li', { class: 'tstep' }, h('span', { class: 'ts-n', 'aria-hidden': 'true', text: String(view.stepEls.size + 1) }),
       h('span', { class: 'ts-who' }), h('span', { class: 'ts-st', 'aria-hidden': 'true' }), h('span', { class: 'ts-text' }));
     view.stepEls.set(s.id, el);
     view.steps.append(el);
@@ -537,7 +530,7 @@ function drawStep(view, s) {
   const a = agentOf(s.agent);
   el.className = `tstep ${s.status || 'done'}${flagged ? ' flag' : ''}`;
   el.dataset.agent = a;
-  el.querySelector('.ts-who').replaceChildren(h('span', { 'aria-hidden': 'true', text: AGENT_NAME[a] ? a : s.agent }), h('span', { class: 'sr', text: `${AGENT_NAME[s.agent] || s.agent}: ` }));
+  el.querySelector('.ts-who').replaceChildren(h('span', { 'aria-hidden': 'true', text: AGENT_NAME[a] ? a.charAt(0).toUpperCase() + a.slice(1) : s.agent }), h('span', { class: 'sr', text: `${AGENT_NAME[s.agent] || s.agent}: ` }));
   const text = el.querySelector('.ts-text');
   text.replaceChildren(h('span', { class: 'tstep-what', text: s.title || '' }));
   if (s.chips?.length) {
@@ -622,8 +615,8 @@ function drawParts(msg) {
         const who = cardWho(p.card);
         if (who) {
           if (el.classList.contains('card')) el.dataset.agent = who[0][0];
-          view.cardTags.set(p, h('p', { class: 'ctag', 'aria-hidden': 'true' }, h('span', { class: 'pt-k', text: `// ${who[1]}` }),
-            h('span', { class: 'pt-by' }, who[0].map((a, j) => [j ? ' · ' : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]))));
+          view.cardTags.set(p, h('p', { class: 'ctag', 'aria-hidden': 'true' },
+            h('span', { class: 'pt-by' }, who[0].map((a, j, all) => [j ? (j === all.length - 1 ? ' and ' : ', ') : '', h('b', { 'data-agent': a, text: AGENT_NAME[a] })]))));
         }
       }
       const tag = view.cardTags.get(p);
@@ -763,7 +756,7 @@ function planNode(card, msg) {
   // One line until it's opened: what it's for, and where they start
   const first = cleanName(card.first || card.first_step || '', 90);
   const box = h('details', { class: 'a-plan' }, h('summary', {},
-    h('span', { class: 'ap-k', text: 'your plan' }), h('span', { class: 'ap-t' }, h('b', { text: cleanName(card.title || 'Your plan', 70) }), first ? h('span', { text: `start: ${first}` }) : null),
+    h('span', { class: 'ap-k', text: 'Your plan' }), h('span', { class: 'ap-t' }, h('b', { text: cleanName(card.title || 'Your plan', 70) }), first ? h('span', { text: `Start: ${first}` }) : null),
     h('span', { class: 'ap-open', 'aria-hidden': 'true', text: 'open' })), el);
   if (el.fill) box.fill = el.fill;
   return box;
@@ -924,7 +917,7 @@ function communitySide(c, lead, { effects = false, note = '' } = {}) {
   return h('div', { class: `vx-side vx-community${lead ? ' lead' : ''}`, role: 'group', 'aria-label': 'What the community reports' },
     head,
     h('div', { class: 'vx-main' }, svg(sealSvg(lvl.key, 18)), h('b', { class: 'vx-score', text: Number(c.score).toFixed(1) }),
-      h('span', { class: 'vx-level', text: c.firstHand ? `${lvl.name} · ${plural(c.firstHand, 'member report')}` : `${lvl.name}, no member reports yet` }),
+      h('span', { class: 'vx-level', text: c.firstHand ? `${lvl.name}, ${plural(c.firstHand, 'member report')}` : `${lvl.name}, no member reports yet` }),
       h('span', { class: 'sr', text: ` Community Signal ${Number(c.score).toFixed(1)} of 100.` })),
     useLine(c) ? h('p', { class: 'vx-sub', text: useLine(c) }) : null,
     o && n ? h('div', { class: 'vx-split' }, splitBar(o), h('span', { text: `Overall, ${o.better} of ${n} reports said better` })) : null,
@@ -1093,7 +1086,7 @@ function sourcesNode(src) {
   }
   if (co.signals) {
     const what = [co.reports ? plural(co.reports, 'member report') : '', co.forum ? 'public forum data' : ''].filter(Boolean).join(' and ');
-    const when = src.version && !Number.isNaN(Date.parse(src.version)) ? ` · numbers of ${new Date(src.version).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}` : '';
+    const when = src.version && !Number.isNaN(Date.parse(src.version)) ? `, numbers as of ${new Date(src.version).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}` : '';
     bits.push(h('span', { class: 'src-part', title: `${names(co.names)}${when}` }, h('span', { class: 'v-dot v-community', 'aria-hidden': 'true' }),
       h('span', { text: `Community: ${plural(co.signals, 'Signal')}${what ? `, from ${what}` : ''}` })));
   }
@@ -1125,9 +1118,9 @@ function auditNode(card) {
 // What to take to a doctor: one row under the answer's own, to copy in a tap
 function questionsNode(card) {
   const items = (card.items || []).map((q) => String(q)).filter(Boolean);
-  const btn = h('button', { class: 'a-copy', type: 'button' }, h('span', { text: 'copy' }));
+  const btn = h('button', { class: 'a-copy', type: 'button' }, h('span', { text: 'Copy' }));
   btn.addEventListener('click', () => copy(['To discuss with my clinician:', ...items.map((q) => `- ${q}`)].join('\n'), btn));
-  return labelled('doctor', 'for your doctor', h('ul', { class: 'a-list' }, items.map((q) => h('li', { text: q }))), btn);
+  return labelled('doctor', 'For your doctor', h('ul', { class: 'a-list' }, items.map((q) => h('li', { text: q }))), btn);
 }
 
 // The Interpretation agent's read, last in an answer: strictly efficacy, reasoned through from what
@@ -1142,8 +1135,8 @@ function interpretationNode(card) {
   const steps = (Array.isArray(card.steps) ? card.steps : []).slice(0, 6).filter((x) => x && x.link && x.read);
   // A row under the answer: the verdict, in plain words, with how it was reasoned a tap away
   const how = h('details', { class: 'a-eff' },
-    h('summary', {}, h('span', { class: 'ae-open', text: 'how it reasoned' }), h('span', { class: 'ae-v' }, h('i', { class: `ip-dot v-${v}`, 'aria-hidden': 'true' }), card.label || v),
-      [card.size ? (card.size === 'unclear' ? 'size unclear' : `${card.size} effect`) : '', card.confidence ? `${card.confidence} confidence` : ''].filter(Boolean).map((t) => h('span', { class: 'ae-b', text: ` · ${t}` }))),
+    h('summary', {}, h('span', { class: 'ae-open', text: 'How it reasoned' }), h('span', { class: 'ae-v' }, h('i', { class: `ip-dot v-${v}`, 'aria-hidden': 'true' }), card.label || v),
+      [card.size ? (card.size === 'unclear' ? 'size unclear' : `${card.size} effect`) : '', card.confidence ? `${card.confidence} confidence` : ''].filter(Boolean).map((t) => h('span', { class: 'ae-b', text: `, ${t}` }))),
     card.subject ? h('p', { class: 'ae-sub', text: `${card.subject}. Reasoned through by the Interpretation agent, from what the other agents found; efficacy only.` }) : null,
     h('dl', { class: 'ip-steps' }, steps.map((x) => h('div', { class: 'ip-row' }, h('dt', { text: x.link }),
       h('dd', {}, x.read, RUNG[x.rung] ? h('span', { class: 'ip-rung', text: RUNG[x.rung] }) : null)))),
@@ -1151,7 +1144,7 @@ function interpretationNode(card) {
       line('likely size', [card.size, card.size_note].filter(Boolean).join(': ')),
       line('confidence', [card.confidence, card.confidence_note].filter(Boolean).join(': ')),
       line('what would change it', card.would_change || '')));
-  return labelled('efficacy', 'efficacy', card.summary ? h('p', { text: card.summary }) : null, how);
+  return labelled('efficacy', 'Efficacy', card.summary ? h('p', { text: card.summary }) : null, how);
 }
 // An answer as text to copy: its words, then the efficacy read when there is one
 const copyOf = (m) => {
@@ -1375,7 +1368,7 @@ function myBox(where) {
     });
     parts.push(h('div', { class: 'my-part' },
       h('h3', { class: 'my-kind', text: 'Your stack' }),
-      h('p', { class: 'saved-names' }, st.items.map((i, n) => [n ? ' · ' : '', isLib(i.id) ? h('a', { href: `/library/${i.id}/`, text: i.name }) : i.name])),
+      h('p', { class: 'saved-names' }, st.items.map((i, n) => [n ? ', ' : '', isLib(i.id) ? h('a', { href: `/library/${i.id}/`, text: i.name }) : i.name])),
       st.meds.length ? h('p', { class: 'saved-meds', text: `With your medicines: ${st.meds.join(', ')}` }) : null,
       changes,
       h('div', { class: 'saved-actions' }, check)));
@@ -1720,14 +1713,14 @@ function finish(am, live) {
     const edited = am.review && am.review.ok === false;
     const r = am.review || {};
     const changes = [r.edited ? `edited ${r.edited} part${r.edited === 1 ? '' : 's'}` : '', r.held ? `held back ${r.held}` : ''].filter(Boolean).join(' and ');
-    const said = am.state === 'stopped' ? 'stopped before the end; what’s shown was checked'
-      : edited ? `${changes || 'edited this'} before you saw it`
-      : am.review ? 'every part checked before you saw it' : '';
+    const said = am.state === 'stopped' ? 'Stopped before the end. What’s shown was checked.'
+      : edited ? `${changes || 'edited this'} before you saw it.`
+      : am.review ? 'Every part checked before you saw it.' : '';
     const btn = h('button', { class: 'mini', type: 'button' }, svg(ICON.copy), h('span', { text: 'Copy' }));
     btn.addEventListener('click', () => copy(copyOf(am), btn));
     const checked = am.review || am.state === 'stopped';
-    const line = !checked ? 'answered' : am.state === 'stopped' ? said : edited ? `the safety agent ${said}` : 'checked by the safety agent';
-    view.foot.append(h('span', { class: `a-check${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: line })), h('span', { class: 'foot-actions' }, btn));
+    const line = !checked ? '' : am.state === 'stopped' ? said : edited ? `The Safety agent ${said}` : 'Checked by the Safety agent';
+    view.foot.append(line ? h('span', { class: `a-check${edited ? ' edited' : ''}` }, svg(edited ? ICON.edit : ICON.check), h('span', { text: line })) : h('span', { class: 'a-check' }), h('span', { class: 'foot-actions' }, btn));
     view.foot.hidden = false;
   }
   // The newest answer ends with where to go next: a few follow-ups, and the members themselves
@@ -1808,9 +1801,9 @@ function quietNode(am) {
     store.set(FOLLOW, box.checked ? [...now, id] : now, 'local');
   });
   const card = h('section', { class: 'a-quiet', 'aria-label': `Ask the members about ${name}` },
-    h('div', { class: 'qc-head' }, svg(glyphSvg('community', { size: 18 })), h('h3', { text: 'Ask the members' }), h('span', { class: 'qc-k', text: 'you post it yourself' })),
+    h('div', { class: 'qc-head' }, svg(glyphSvg('community', { size: 18 })), h('h3', { text: 'Ask the members' }), h('span', { class: 'qc-k', text: 'You post it yourself' })),
     h('p', { class: 'qc-lede', text: `${name} has no Community Signal yet: not enough members have shared how it went. Rather than guess, ask the people who’d know.` }),
-    h('label', { class: 'qc-l', for: tid, text: `your question, ready to post in s/${id}` }), ta,
+    h('label', { class: 'qc-l', for: tid, text: `Your question, ready to post in s/${id}` }), ta,
     h('div', { class: 'qc-acts' }, go, not, h('label', { class: 'qc-follow' }, box, h('span', { text: `Show me here when ${name}’s Signal goes live` }))));
   not.addEventListener('click', () => { am.quietDone = true; save(); card.remove(); });
   return card;
@@ -1998,16 +1991,11 @@ function whoFor(t) {
   const kept = store.get(WHO_KEY, 'local');
   return tidyWho(Array.isArray(kept) ? kept : WHO_ALL);
 }
-// The count in a phone's title bar
-function drawCount(on) {
-  const el = $('tm-count-sm');
-  if (el) el.replaceChildren(h('b', { text: String(on.length) }), `/${WHO_ALL.length} agents`);
-}
 const pickRing = document.querySelector('.who-ring');
 const bigRing = document.querySelector('.who-big');
 const pick = $('ai-who') && $('ai-whopop') ? whoPicker({
   pill: $('ai-who'), pop: $('ai-whopop'), label: $('ai-who-label'),
-  onRing: (on) => { setSig(pickRing, 'idle', on); setSig(bigRing, 'idle', on); drawCount(on); },
+  onRing: (on) => { setSig(pickRing, 'idle', on); setSig(bigRing, 'idle', on); },
   onChange: (on) => {
     const t = sessions.find((x) => x.id === activeId);
     if (t) t.who = on;
@@ -2417,7 +2405,7 @@ getSignal().then((snap) => {
   // doesn't move when they arrive); with nothing to say, they go unseen, keeping their room, so the
   // welcome doesn't slide down
   if (!c || !(c.signals > 0)) { unseen(el); return; }
-  const row = (k, dd) => [h('dt', {}, k === 'Community' ? h('span', { class: 'crowd-dot', 'aria-hidden': 'true' }) : null, k), dd];
+  const row = (k, dd) => [h('dt', {}, k), dd];
   const rows = [];
   // A compound they asked to hear about has its Signal now: said once, here
   const live = followed().filter((id) => SIG?.signals?.[id] && typeof SIG.signals[id].score === 'number');
@@ -2439,7 +2427,7 @@ getSignal().then((snap) => {
   if (open.length) {
     rows.push(...row('Filling first', h('dd', { class: 'ai-focus' },
       ...open.map((f) => h('a', { href: draftLink([f.id], { title: `How ${cleanName(f.name, 40)} went for me: ${low(cleanName(f.label, 40))}`, body: '' }) },
-        `${cleanName(f.name, 40)} for ${low(cleanName(f.label, 40))}`, h('span', { class: 'n', text: ` ${fmt(f.reports)} of ${fmt(f.goal)}` }))))));
+        `${cleanName(f.name, 40)} for ${low(cleanName(f.label, 40))}`, h('span', { class: 'n', text: `${fmt(f.reports)} of ${fmt(f.goal)} reports` }))))));
   }
   el.replaceChildren(...rows);
   el.classList.remove('is-wait');

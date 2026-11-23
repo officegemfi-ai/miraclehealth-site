@@ -147,7 +147,8 @@ a.pchip-name:hover{color:var(--bone);text-decoration:underline;text-underline-of
 /* the page a plan opens */
 .plan-page{background:var(--darker);color:var(--on-ink);--focus:var(--bone)}
 .plan-page [hidden]{display:none!important}
-.plan-wrap{width:100%;max-width:820px;margin:0 auto;padding:calc(var(--top-h) + 72px) 40px 110px}
+.plan-wrap{width:100%;max-width:var(--page-max);margin:0 auto;padding:calc(var(--top-h) + 72px) var(--page-pad) 110px}
+.plan-wrap>*{max-width:740px}
 .plan-intro h1{color:var(--on-ink)}
 .plan-intro p{margin-top:10px;max-width:50ch;font-size:18px;line-height:1.6;color:var(--on-ink-2)}
 .plan-root .card.plan{margin-top:26px;border:1px solid var(--line)}
@@ -159,7 +160,6 @@ a.pchip-name:hover{color:var(--bone);text-decoration:underline;text-underline-of
 .plan-cta .btn{margin-top:16px}
 .plan-fine{max-width:52ch;margin-top:18px;font-size:13px;line-height:1.55;color:var(--on-ink-3)}
 .plan-page .foot{margin-top:24px;border-top:1px solid var(--line-ink)}
-@media (max-width:900px){.plan-wrap{padding-left:20px;padding-right:20px}}
 @media (max-width:700px){.plan-wrap{padding:calc(var(--top-h) + 40px) 16px 72px}}
 @media (max-width:600px){
   .plan-cta{padding:20px}

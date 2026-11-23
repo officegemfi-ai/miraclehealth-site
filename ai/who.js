@@ -26,10 +26,10 @@ export function tidy(list) {
 }
 export const teamOf = (on) => Object.keys(TEAMS).find((t) => TEAMS[t].length === on.length && TEAMS[t].every((a) => on.includes(a))) || '';
 export const isAll = (on) => on.length === ALL.length;
-// What the pill says: "All 12 agents", "The crowd · 4", or "6 agents"
+// What the pill says: "All 12 agents", "The crowd (4)", or "6 agents"
 export function labelOf(on) {
   const t = teamOf(on);
-  return t === 'all' ? `All ${ALL.length} agents` : t ? `${TEAM_NAME[t]} · ${on.length}` : `${on.length} agent${on.length === 1 ? '' : 's'}`;
+  return t === 'all' ? `All ${ALL.length} agents` : t ? `${TEAM_NAME[t]} (${on.length})` : `${on.length} agent${on.length === 1 ? '' : 's'}`;
 }
 
 // The picker, on the markup the build wrote: the pill opens a panel (a sheet on a phone) with the

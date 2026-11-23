@@ -20,6 +20,10 @@ profile picture): white on the main action's electric blue, lit from the top as 
   design/pack/icon.svg      the icon for the brand pack, and icon-black.svg and icon-white.svg, for
                             where blue can't be printed or the ground is blue already
 
+and the logo as pixels, for an email (an email app shows a PNG, not an SVG, and has no web fonts):
+
+  img/email/logo.png        the word in white on nothing, 264 pixels wide, shown at 132 in every email
+
 Run from the repository's root (needs fontTools with brotli, and Pillow for the icon's pictures):
   python3 design/pack/wordmark.py
 (give a folder to write there instead, to try a change without touching the site)
@@ -245,5 +249,34 @@ for ground, name in (('blue', 'icon.svg'), ('black', 'icon-black.svg'), ('white'
     with open(os.path.join(OUT, 'design', 'pack', name), 'w') as f:
         f.write(icon_svg(ground))
 
+# ---------------------------------------------------------------------------
+# The logo as pixels, for an email: the word's outlines filled even-odd (so the counters of p, e and d
+# stay open), drawn eight times larger and brought down by plain averaging
+# ---------------------------------------------------------------------------
+from PIL import ImageChops
+
+WRUNS = draw(Outline(glyphs)).runs
+wx0, wy0, wx1, wy1 = draw(BoundsPen(glyphs)).bounds
+
+
+def logo_png(px_wide, colour=WHITE, pad=2, ss=8):
+    k = (px_wide - 2 * pad) * ss / (wx1 - wx0)
+    wpx, hpx = px_wide * ss, round((wy1 - wy0) * k + 2 * pad * ss)
+    mask = Image.new('1', (wpx, hpx), 0)
+    for run in WRUNS:
+        one = Image.new('1', (wpx, hpx), 0)
+        ImageDraw.Draw(one).polygon([((x - wx0) * k + pad * ss, (y - wy0) * k + pad * ss) for x, y in run], fill=1)
+        mask = ImageChops.logical_xor(mask, one)
+    alpha = mask.convert('L').resize((px_wide, round(hpx / ss)), Image.BOX)
+    im = Image.new('RGBA', alpha.size, rgb(colour) + (0,))
+    im.putalpha(alpha)
+    return im
+
+
+os.makedirs(os.path.join(OUT, 'img', 'email'), exist_ok=True)
+email_logo = logo_png(264)
+email_logo.save(os.path.join(OUT, 'img', 'email', 'logo.png'), optimize=True)
+
 print(f'unhyped: {len(names)} glyphs, {fmt(w)} x {fmt(h)} units, kerning applied; wrote logo.svg, design/pack/logo.svg, design/pack/logo-ink.svg and img/wordmark.svg in {OUT}')
+print(f'the logo for email: img/email/logo.png, {email_logo.width} x {email_logo.height} px')
 print(f'the icon: the u, {fmt(uw)} x {fmt(uh)} units, in {len(RUNS)} outline{"s" if len(RUNS) != 1 else ""}; wrote favicon.svg, favicon.ico ({", ".join(map(str, sizes))} px), apple-touch-icon.png and design/pack/icon.svg, icon-black.svg, icon-white.svg')

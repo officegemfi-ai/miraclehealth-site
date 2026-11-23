@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { roseSvg, flowSvg, takeoverSvg, sealSvg, LEVELS } from '../library/signalviz.js';
 // Unhyped's design kit, shared with the community app (copied from the community's
 // shared/kit by its scripts/sync_kit.sh): the bar of the four places, the evidence meter, Sig
-import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompound } from '../kit/kit.js';
+import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompound, waitRingSvg } from '../kit/kit.js';
 // The body map (the kit's bodymap.js): how each compound works in the body, from body.json
 import { bodyMapHtml } from '../kit/bodymap.js';
 // The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
@@ -89,7 +89,8 @@ const HOW_COMMON = { common: 'Common', uncommon: 'Uncommon', rare: 'Rare', theor
 const AXES = uses.goals.map((g) => ({ id: g.id, label: GOAL_SHORT[g.id] || g.label }));
 const date = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 const refs = (ns) => (ns || []).filter((n) => Number.isInteger(n)).map((n) => `<a class="ref" href="#src-${n}" aria-label="Source ${n}">${n}</a>`).join('');
-const familyLine = (c) => `${SINGULAR[c.family] || c.family} · ${c.category}`;
+// a sheet's family and use, as one short kicker with no dots in it: "Peptide, metabolic & weight"
+const familyLine = (c) => `${SINGULAR[c.family] || c.family}, ${String(c.category).charAt(0).toLowerCase()}${String(c.category).slice(1)}`;
 const blendsWith = (id) => catalog.filter((c) => c.kind === 'blend' && (c.parts || []).includes(id));
 // Product and ingredient brand names stay searchable but aren't printed as "Also called":
 // the library doesn't promote brands or sellers. Class names that aren't really other names
@@ -199,7 +200,7 @@ ${osSide(current, side, url)}
     <a class="os-top-logo" href="/"><img src="/logo.svg" alt="Unhyped" width="109" height="20"></a>
     ${topLinks(current)}
     <button class="os-search" type="button" data-cmdk aria-label="Search the Library and the site (⌘K)">${ICO.search}<span class="os-search-t">Search the Library…</span><kbd class="kbd-k" aria-hidden="true">⌘K</kbd></button>
-    <a class="os-top-sig" href="/sig/"><span aria-hidden="true">${ringSvg(16)}</span><span class="os-top-sig-t">Ask Sig</span></a>
+    <a class="os-top-sig" href="/sig/"><span aria-hidden="true">${ringSvg(18)}</span><span class="os-top-sig-t">Ask Sig</span></a>
     <a class="btn bone sm os-top-join" href="${COMMUNITY}/">Join</a>
   </header>`;
 }
@@ -226,7 +227,7 @@ function osClose({ url = '/' }) {
         ${FOOT_COLS.map(([h, links]) => `<div class="foot-col"><p class="foot-h">${h}</p><ul>${links.map(([href, label]) => `<li><a href="${href}"${href.startsWith('mailto:') ? ' class="mail"' : ''}>${label}</a></li>`).join('')}</ul></div>`).join('\n        ')}
       </nav>
     </div>
-    <div class="foot-base"><p class="copy">© 2026 Unhyped</p><p class="copy">No ads, no sellers, no doses.</p></div>
+    <div class="foot-base"><p class="foot-head">No miracles. <em class="punch">Just what happened.</em></p><p class="copy">© 2026 Unhyped</p></div>
     </div>
     <div class="wrap foot-wordwrap" aria-hidden="true"><div class="foot-word"><span class="fw-dim"></span><span class="fw-glow"></span></div></div>
   </footer>
@@ -236,7 +237,7 @@ function osClose({ url = '/' }) {
 }
 // The weekly email's sign-up at the foot of every page but the weekly email's own
 const footNews = () => `<div class="foot-news">
-      <p><b>The Signal, weekly.</b> What changed, new studies and FDA news. One email a week.</p>
+      <p><b class="news-head">The Signal, weekly.</b> What changed, new studies and FDA news.</p>
       ${signupForm(e, { source: 'footer', id: 'foot-email' })}
     </div>`;
 // The hand-written pages (the front page, privacy, terms, 404) open in the same window as every
@@ -307,7 +308,7 @@ function page({
 <title>${e(fitTitle(title, titles))}</title>
 <meta name="description" content="${e(fitDescription(description))}">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#17171A">
+<meta name="theme-color" content="#000000">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' ${connect};${app ? " manifest-src 'self';" : ''} base-uri 'none'; form-action 'self' ${NEWSLETTER_ORIGIN}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="${SITE}${url}">
@@ -371,13 +372,12 @@ function indexPage() {
   const body = `<section class="lib-hero">
   <div class="wrap lib-hero-in">
     <div>
-      <p class="kick lime live"><i aria-hidden="true"></i>The Library · live community data</p>
+      <p class="kick">The Library</p>
       <h1>Look it up<br> before you take it.</h1>
       <p class="lede">${catalog.length} peptides, hormones, supplements and medications. For each one: what it is, what the studies show, the risks and the blood tests to watch, checked against FDA labels, NIH fact sheets and published trials. Next to it, the Community Signal: how it went for people who took it.</p>
       <p class="lib-guides">Guide: <a href="/library/lab-reports/">How to read a lab report (certificate of analysis)</a></p>
     </div>
     <dl class="lib-stats">
-      <div><dt>In the Library</dt><dd>${catalog.length}</dd></div>
       <div><dt>Fully checked</dt><dd>${checked}</dd></div>
       <div><dt>With a Signal</dt><dd data-live="signals">–</dd></div>
       <div><dt>Member reports</dt><dd data-live="reports">–</dd></div>
@@ -386,7 +386,7 @@ function indexPage() {
 </section>
 
 <section class="wrap lib-moves is-wait" data-live="moves" aria-label="What moved this week" aria-hidden="true">
-  <p class="moves-k"><i aria-hidden="true"></i>What moved this week</p>
+  <p class="moves-k">What moved this week</p>
   <div class="moves-track"></div>
   <p class="moves-focus" hidden></p>
 </section>
@@ -418,9 +418,9 @@ function indexPage() {
     <div class="sec-head">
       <div>
         <p class="kick lime">Two kinds of evidence</p>
-        <h2 id="two-h">What studies show. What people report.</h2>
+        <h2 id="two-h">What studies show. <em class="punch">What people report.</em></h2>
+        <p class="sec-lede">Side by side on every page, never mixed together.</p>
       </div>
-      <p class="sec-note">Side by side on every page, never mixed together.</p>
     </div>
     <div class="explain-grid">
       <div class="glass deep">
@@ -451,8 +451,8 @@ function indexPage() {
     // the Library's folders in the side panel: each family, with how many it holds and how many
     // have a sheet; the filter opens on it
     side: `<nav class="le-tree" aria-label="The Library's families">
-    <p class="lt-root"><a href="/library/" aria-current="page">library/</a><span>${catalog.length}</span></p>
-    ${FAMILIES.map((fam) => `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}"><span aria-hidden="true">▸ </span>${e(fam.toLowerCase())}/<span class="lt-n">${catalog.filter((x) => x.family === fam).length}</span></a>`).join('\n    ')}
+    <p class="lt-root"><a href="/library/" aria-current="page">The Library</a></p>
+    ${FAMILIES.map((fam) => `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}">${e(fam)}</a>`).join('\n    ')}
     <p class="lt-more">${entries.size} have a full fact sheet; the rest are being checked.</p>
   </nav>`,
   });
@@ -621,13 +621,12 @@ function entryPage(c) {
   // open the Library on them)
   const listed = (x) => entries.has(x.id) || x.kind === 'blend';
   const famFiles = catalog.filter((x) => x.family === c.family && (listed(x) || x.id === c.id)).sort((a, b) => a.id.localeCompare(b.id));
-  const famCount = (fam) => catalog.filter((x) => x.family === fam && listed(x)).length;
   const tree = `<nav class="le-tree" aria-label="Fact sheets in the Library">
     <p class="lt-root"><a href="/library/">The Library</a></p>
     ${FAMILIES.map((fam) => (fam === c.family
-      ? `<p class="lt-dir on">${e(fam)}<span class="lt-n">${famCount(fam)}</span></p>
+      ? `<p class="lt-dir on">${e(fam)}</p>
     <ul class="lt-files">${famFiles.map((x) => `<li><a href="/library/${x.id}/"${x.id === c.id ? ' aria-current="page"' : ''}>${e(x.name || x.id)}</a></li>`).join('')}</ul>`
-      : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}">${e(fam)}<span class="lt-n">${famCount(fam)}</span></a>`)).join('\n    ')}
+      : `<a class="lt-dir" href="/library/?family=${encodeURIComponent(fam)}">${e(fam)}</a>`)).join('\n    ')}
     <p class="lt-more">${catalog.filter((x) => !listed(x)).length} more compounds are listed and waiting for their sheets.</p>
   </nav>`;
   // the sheet's print: its fact sheet as one mark (lib/print.js), big beside the name
@@ -670,7 +669,7 @@ function entryPage(c) {
     </div>
     <div class="glass deep le-signal" data-live="signal" aria-live="polite">
       <div class="gc-head"><span>Community Signal</span><span class="live lime"><i aria-hidden="true"></i>Live</span></div>
-      <p class="sig-wait">Loading what members report…</p>
+      <p class="sig-wait">${waitRingSvg(16)}Loading what members report</p>
       <noscript><p>The Community Signal needs JavaScript. You can see it in the community.</p></noscript>
       <a class="btn line sm sig-cta" href="${shareLink(c.id)}">Share how it went</a>
     </div>
@@ -935,6 +934,7 @@ function aiPage() {
   const body = `<div class="ai-app tm is-empty" id="ai" data-endpoint="${e(ASK_URL)}" data-qr="/ai/vendor/qrcode.js?v=${V.qr}">
   <div class="tm-title">
     <button class="tm-menu" id="tm-menu" type="button" aria-label="Show your chats and the site's links" aria-controls="sg-side" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
+    <a class="tm-home" href="/"><img src="/logo.svg" alt="Unhyped" width="109" height="20"></a>
     <span class="tm-brand" aria-hidden="true">${ring(18, 'ai-sig tm-logo')}<b>Sig</b></span>
     <div class="tm-tabstrip" id="tm-tabstrip">
       <nav class="tm-chats" id="tm-chats" aria-label="Your chats"></nav>
@@ -948,7 +948,7 @@ function aiPage() {
     <div class="ai-scroll" id="ai-scroll">
       <div class="ai-thread" id="ai-thread" role="log" aria-label="Messages" aria-live="polite">
         <div class="ai-empty" id="ai-empty">
-          <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. Get the studies and the people, kept apart.</h2></div>
+          <div class="ai-hi">${ring(56, 'ai-hello')}<h2 class="ai-title">Ask anything. <em class="punch">Get the studies and the people, kept apart.</em></h2></div>
           <p class="ai-lede">I’m Sig, Unhyped’s AI. I’ll tell you what the studies show and what people report, and I’ll always say which is which. Your doctor has the final say.</p>
         </div>
       </div>
@@ -957,7 +957,7 @@ function aiPage() {
         <div class="ai-starts" role="group" aria-label="Start with">
           ${STARTERS.map(([goal, label, text, prefill]) => `<button type="button" class="ai-start"${text ? ` data-ask="${e(text)}"` : ''}${prefill ? ` data-prefill="${e(prefill)}"` : ''} data-goal="${goal}"><span class="start-ico" aria-hidden="true"></span>${e(label)}</button>`).join('\n        ')}
         </div>
-        <dl class="ai-pulse is-wait" id="ai-pulse" aria-hidden="true"><dt><span class="crowd-dot" aria-hidden="true"></span>Community</dt><dd class="ai-crowd"></dd><dt>Filling first</dt><dd class="ai-focus"><span></span><span></span><span></span><span></span></dd></dl>
+        <dl class="ai-pulse is-wait" id="ai-pulse" aria-hidden="true"><dt>Community</dt><dd class="ai-crowd"></dd><dt>Filling first</dt><dd class="ai-focus"><span></span><span></span><span></span><span></span></dd></dl>
       </div>
       <noscript><p class="ai-nojs">Sig needs JavaScript. The <a href="/library/">Library</a> works without it.</p></noscript>
     </div>
@@ -976,7 +976,7 @@ function aiPage() {
   </section>
   <section class="ai-rail" id="ai-rail" role="complementary" aria-label="Beside the chat: blood markers">
     <div class="rl-bar">
-      <span class="rl-title"><span class="rl-name">Blood markers</span><span class="rl-sub">what it may move</span></span>
+      <span class="rl-title"><span class="rl-name">Blood markers</span></span>
       <button class="rl-close" id="rl-close" type="button" aria-label="Close"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
     </div>
     <div class="rl-panel" id="rl-markers"><noscript><p class="rl-note">The blood markers need JavaScript.</p></noscript></div>
@@ -1004,7 +1004,7 @@ function aiPage() {
     <div class="sg-wipe-row" id="sg-wipe-row">
       <button class="sg-wipe" id="sg-wipe" type="button">${ico('M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5')}<span>Delete all chats</span></button>
     </div>
-    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><a href="/terms">Terms</a><a href="/">miraclehealth.us</a></p>
+    <p class="sg-legal"><a href="/privacy#ai">Privacy</a><a href="/terms">Terms</a><span>© 2026 Unhyped</span></p>
   </div>
 </aside>
 <div class="sg-scrim" id="sg-scrim" hidden></div>
@@ -1130,16 +1130,16 @@ function storyPage() {
   const places = BODY.places.map((x) => x.at);
   const prints = STORY_PRINTS.filter((id) => entries.has(id) && BODY.compounds[id] && byId.has(id)).map((id) => {
     const c = byId.get(id), f = entries.get(id);
-    return `<a class="sy-print" href="/library/${id}/">${printSvg({ id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[id].lines || [], places }, { size: 168 })}<span class="sy-pn">${e(c.name)}</span><span class="sy-pf">${(BODY.compounds[id].lines || []).length} lines</span></a>`;
+    return `<a class="sy-print" href="/library/${id}/">${printSvg({ id, name: c.name, family: c.family, grade: f.evidence.grade, lines: BODY.compounds[id].lines || [], places }, { size: 168 })}<span class="sy-pn">${e(c.name)}</span></a>`;
   }).join('');
   const short = (k) => (k === 'community' ? 'community' : k);
   const body = `<article class="sy">
   <section class="sy-hero">
     <div class="wrap sy-hero-in">
-      <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26, centerY: -66 })}<span class="sy-ring-n"><b>12</b>agents</span></div>
+      <div class="sy-ring" aria-hidden="true">${ringSvg(320, { sw: 26 })}</div>
       <div class="sy-hero-copy">
         <p class="sy-k">Unhyped</p>
-        <h1>One app.<br> Twelve agents.<br> <em>Every answer, checked.</em></h1>
+        <h1>One app.<br> Twelve agents.<br> <em class="punch">Every answer, checked.</em></h1>
         <p class="lede">Unhyped is one app: the Library, Ask Sig, the community and My stack, the same everywhere. Behind every answer are twelve agents, each with one job, each signing what it made.</p>
         <div class="sy-acts"><a class="btn lime" href="/sig/">Ask Sig a question</a><a class="btn line" href="/library/">Open the Library</a></div>
       </div>
@@ -1151,7 +1151,7 @@ function storyPage() {
       <p class="sy-k">The twelve</p>
       <h2 id="sy-twelve">Meet the twelve.</h2>
       <p class="sy-lede">Eleven gather what’s known, each in its own colour round Sig’s ring. The twelfth sits at its centre and reasons it all through, last, strictly for efficacy. Colour on Unhyped is a signature: wherever you see one, that agent made it.</p>
-      <ol class="sy-twelve">${AGENTS.map(([key, name, what], i) => `<li class="sy-agent" data-agent="${key}"><span class="sy-an" aria-hidden="true">${i + 1}</span>${glyphSvg(key, { size: 34 })}<h3>${e(name)}</h3><p>${e(what)}</p></li>`).join('')}</ol>
+      <ol class="sy-twelve">${AGENTS.map(([key, name, what]) => `<li class="sy-agent" data-agent="${key}">${glyphSvg(key, { size: 34 })}<h3>${e(name)}</h3><p>${e(what)}</p></li>`).join('')}</ol>
     </div>
   </section>
 
@@ -1164,9 +1164,8 @@ function storyPage() {
         <p class="sy-note">A real run, for “Is HGH plus enclomiphene good for fat loss?”</p>
       </div>
       <div class="sy-term" aria-label="A run, as Sig logs it">
-        <p class="sy-sum">${STORY_RUN.length} steps, ${AGENTS.length} agents</p>
-        <ol class="sy-log">${STORY_RUN.map(([a, t], i) => `<li data-agent="${a}"><span class="sl-n">${i + 1}</span><span class="sl-who">${short(a)[0].toUpperCase() + short(a).slice(1)}</span><span class="sl-st" aria-hidden="true"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
-        <p class="sy-ah"><b>The answer</b><span class="sy-rule" aria-hidden="true"></span><span>Checked by the Safety agent <span class="sy-ok"><svg class="i-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></p>
+        <ol class="sy-log">${STORY_RUN.map(([a, t]) => `<li data-agent="${a}"><span class="sl-who">${short(a)[0].toUpperCase() + short(a).slice(1)}</span><span class="sl-t">${e(t)}</span></li>`).join('')}</ol>
+        <p class="sy-ah"><b>The answer</b></p>
         <div class="sy-part" data-agent="recommender"><span class="sp-n">1</span><p class="sp-k"><span>The bottom line</span><b>Recommender</b></p><p>No trial has tested the two together for fat loss. They act on different hormone systems, so any effect would come from each one separately.</p></div>
         <div class="sy-part" data-agent="interpretation"><span class="sp-n">8</span><p class="sp-k"><span>Efficacy, reasoned last</span><b>Interpretation agent</b></p><p>Plausible, unproven. A small combined effect is possible; nothing has measured the pair.</p></div>
       </div>
@@ -1191,7 +1190,7 @@ function storyPage() {
   <section class="sy-sec" id="windows" aria-labelledby="sy-windows">
     <div class="wrap">
       <p class="sy-k">One app</p>
-      <h2 id="sy-windows">Four places. One app.</h2>
+      <h2 id="sy-windows">Four places. <em class="punch">One app.</em></h2>
       <div class="sy-wins">
         <a class="sy-win" href="/library/">${glyphSvg('evidence', { size: 22 })}<b>Library</b><p>Every compound has its fact sheet, its family’s sheets beside it, each section signed by the agent that reads it.</p></a>
         <a class="sy-win" href="/sig/">${ringSvg(22)}<b>Ask Sig</b><p>Ask in plain words. You see each agent’s step, and the answer comes checked and signed.</p></a>

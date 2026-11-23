@@ -9,7 +9,7 @@
 // receives or keeps it. A plan the member keeps lives only in this browser's storage. It can also
 // be saved as an image, drawn in the browser. Nothing here uses innerHTML.
 
-import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=7920a66cee';
+import { GRADES, meterHtml, node as fromKit, draftLink, COMMUNITY } from '/kit/kit.js?v=6fab76b0a9';
 import { h } from '/lib/dom.js?v=47be1f2023';
 import { b64url, unb64url, pipe } from '/lib/pack.js?v=955c60de6c';
 

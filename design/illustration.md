@@ -4,7 +4,7 @@ Unhyped draws with data, not decoration. There are three marks, all made from co
 
 ## Sig's ring
 
-The ring is the twelve agents as one mark. It is the mark of Ask Sig and of every title bar.
+The ring is the twelve agents as one mark. It is Sig's mark: Ask Sig's button, its page and its tab bar, and the spinner while something loads.
 
 - **Construction:**
   - Eleven arcs, one for each agent who gathers what's known, go round by hue: Safety (coral), Planner, Recommender, the community, Combination, Markers, Synergy, Evidence, Relatives, Mechanism, Stack builder (pink).
@@ -13,7 +13,8 @@ The ring is the twelve agents as one mark. It is the mark of Ask Sig and of ever
   - From 30px up, the Interpretation agent sits at the centre as a white dot, 3.3% of the size: it reasons it all through, last.
 - **Code:** `lib/ring.js` draws it (`ringSvg(size)`). Never redraw it by hand.
 - **Alive:** in Ask Sig each arc lights as its agent reports, and unlit arcs dim. In the launch film the ring assembles arc by arc, in the order the agents run.
-- **Don't:** recolour it, put it on a light ground, outline it, add arcs or use it as a loading spinner. It never spins.
+- **Loading:** while something loads its arcs light one by one round the ring, beside one plain line saying what's loading (`waitHtml` in `kit/kit.js`). It never turns.
+- **Don't:** recolour it, put it on a light ground, outline it or add arcs.
 
 ## The twelve
 
@@ -47,18 +48,18 @@ A print is a fact sheet drawn as one mark, so two compounds can be told apart, a
 - **Beads** sit on a spoke, one for each of the sheet's lines at that place. Each bead's colour says what the compound does there: `op-is` acts, `op-up` raises, `op-down` lowers, `op-block` blocks, `op-watch` worth a blood test, `op-warn` a caution. Cautions are outermost and ringed in `surface`.
 - **The core** is the family's shape (peptide, hormone, medication, supplement), with the evidence inside it as rungs. A rung lit in `evidence` is a grade reached: anecdotal, animal and lab, limited, moderate, strong.
 - **The edge** carries the compound's Community Signal as a `lime` arc once it is known. Until then it is not drawn.
-- **Always** set a print with its name, its file (`semaglutide.md`), its count ("9 of the body's 38 places · 12 lines") and its evidence, and give the key in words wherever the beads are read.
+- **Always** set a print with its name, its count in words and its evidence, and give the key in words wherever the beads are read.
 - **Sizes:** 120px in lists, 168px on the story page, 232–260px on a fact sheet, up to 720px as a social hero.
-- **Assets:** `assets/Prints/` has the eight on the story page, on a graphite plate.
+- **Assets:** `assets/Prints/` has the eight on the story page, on `surface`.
 
 ## The window as illustration
 
-When a piece needs to show the product, show the product. That means the real window, at real size and with real copy: the title bar with its tab (`semaglutide.md`), the path, the status bar with "safety on". Crop into it, scale it and set it on `page`, but never redraw it as a mockup with invented data, and never put it in a phone or laptop frame.
+When a piece needs to show the product, show the product: the real page, at real size and with real copy, cropped and set on `page`. Never redraw it as a mockup with invented data, and never put it in a phone or laptop frame.
 
 ## Composing a piece
 
 - **Ground:** `surface` or `page`. Never white.
 - **Colour:** one signature colour per piece (`lime` for a community piece, `evidence` for a Library piece, an agent's colour for its card), except where the twelve appear together.
-- **Type:** the headline in Mona Sans Display, the kicker and every number in Monaspace Neon, the words in Mona Sans.
-- **Signature:** sign every piece in mono at the foot with what made it and where: `sig@miracle ~/story`, `miraclehealth.us`.
+- **Type:** the headline in Mona Sans at 125% and 800, in capitals, its second sentence in the punchline; the kicker and the words in Mona Sans; numbers in Monaspace Neon.
+- **Signature:** the logo and the address along the top, as *The brand pack* in `BRAND.md` says; no foot.
 - **Rules:** a piece that mentions a compound never names an amount, a seller or an outcome promise.
