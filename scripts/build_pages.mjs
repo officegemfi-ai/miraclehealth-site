@@ -28,7 +28,7 @@ export function signupForm(e, { source, id, cls = '', button = 'Get it weekly', 
     <div class="nf-row"><input id="${id}" type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="Your email address"><button class="btn ${cls.includes('on-paper') ? 'lime' : 'line'}" type="submit">${e(button)}</button></div>
     <input type="hidden" name="source" value="${e(source)}">
     <span class="nf-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
-    <p class="nf-note">Free, once a week. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
+    <p class="nf-note">Free. We email you a link to confirm first; unsubscribe in one click. <a href="/privacy#weekly">How we handle your address</a>.</p>
   </form>`;
 }
 
@@ -89,7 +89,7 @@ export function buildPages(ctx) {
   {
     const reviewers = (about.reviewers || []).filter((r) => r && r.name);
     const corrections = (about.corrections || []).filter((c) => c && c.what);
-    const body = `${docHead('About', 'No miracles. Just what happened.', `Updated ${date(about.updated)}`)}
+    const body = `${docHead('About', 'No miracles. <em class="punch">Just what happened.</em>', `Updated ${date(about.updated)}`)}
 
   <article class="wrap doc about">
     <p class="intro">Unhyped is a free place to look up peptides, hormones, supplements and medications, ask about them, and say how they went. It has three parts, kept apart and always named: <a href="/library/">the Library</a>, where each fact sheet is checked against its sources; <a href="${COMMUNITY}/">the community</a>, where members share first-hand reports; and <a href="/ai/">Ask Sig</a>, where Sig, Unhyped’s AI, answers from both.</p>
@@ -351,7 +351,7 @@ export function buildPages(ctx) {
       ['unknown', 'That link didn’t work', 'It may be old, or already used. Sign up again below, or write to hello@miraclehealth.us.'],
       ['error', 'Something went wrong', 'Nothing changed. Try the link again in a minute.'],
     ];
-    const body = `${docHead('The Signal, weekly', 'What moved, once a week', 'A free email. Unsubscribe in one click.')}
+    const body = `${docHead('The Signal, weekly', 'What moved, once a week')}
 
   <div class="wrap pg-wrap wk">
     <div class="wk-said">${said.map(([id, t, s]) => `<p class="wk-msg" id="${id}" tabindex="-1"><b>${e(t)}.</b> ${e(s)}</p>`).join('')}</div>
@@ -397,40 +397,52 @@ export function buildPages(ctx) {
   }
 
   // The email itself: tables and inline styles, the way email apps need them. {{unsubscribe}} is
-  // filled in for each reader by the newsletter function.
+  // filled in for each reader by the newsletter function. It is a page of the site in an inbox (the
+  // owner, November 23: "add that unhyped brand identity to it. So it feels all one"): the black ground,
+  // the logo (img/email/logo.png: an email app shows a PNG, not an SVG), the headline face where the app
+  // has Mona Sans (Apple's do; others fall back to a heavy Helvetica, still in capitals), links underlined
+  // in Signal blue, the main action in electric blue with square corners, and the brand's line at the foot.
+  // design/BRAND.md, The brand pack, says the same for the sign-up email (the community's newsletter function)
   function emailHtml(i) {
-    const A = 'color:#000000;font-weight:bold;text-decoration:underline;text-decoration-color:#2E7BFF';
+    const FONT = "'Mona Sans','Helvetica Neue',Helvetica,Arial,sans-serif";
+    const HEAD = `font-family:${FONT};font-weight:800;font-stretch:125%;text-transform:uppercase;letter-spacing:-0.028em;color:#F7F8FA`;
+    const A = 'color:#F7F8FA;font-weight:600;text-decoration:underline;text-decoration-color:#7C7C7D;text-underline-offset:3px';
     const link = (t) => inline(fill(t), true).replace(/<a href="/g, `<a style="${A}" href="`);
-    const P = 'margin:0 0 14px;font-size:16px;line-height:1.6;color:#3A4644';
+    const P = 'margin:0 0 16px;font-size:16px;line-height:1.6;color:#D9DCE2';
+    const SMALL = 'margin:0 0 8px;font-size:13px;line-height:1.5;color:#A1A7B2';
     const abs = (u) => (u.startsWith('/') ? `${SITE}${u}` : u);
+    const stop = (t) => (/[.?!]$/.test(t) ? t : `${t}.`);
+    const host = SITE.replace(/^https?:\/\//, '');
     return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
 <title>${e(i.subject)}</title>
+<style>@font-face{font-family:'Mona Sans';src:url('${SITE}/fonts/mona-sans.woff2') format('woff2');font-weight:200 900;font-stretch:75% 125%}</style>
 </head>
-<body style="margin:0;padding:0;background:#F2F3F2">
+<body style="margin:0;padding:0;background:#000000">
 <span style="display:none;max-height:0;overflow:hidden;opacity:0">${e(i.preview)}</span>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F2F3F2"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#FCFCFC;font-family:Arial,Helvetica,sans-serif">
-<tr><td style="background:#000000;padding:28px 32px">
-<p style="margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#3D8BFF">The Signal #${i.n} · ${e(date(i.date))}</p>
-<h1 style="margin:0;font-size:26px;line-height:1.2;color:#FCFCFC">${e(headline(i))}</h1>
-</td></tr>
-<tr><td style="padding:28px 32px 8px">
-<p style="${P};color:#000000;font-size:17px">${link(i.intro)}</p>
-${i.sections.map((s) => `<h2 style="margin:26px 0 10px;font-size:19px;line-height:1.3;color:#000000">${e(s.h)}</h2>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#000000"><tr><td align="center" style="padding:32px 16px 40px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#000000;font-family:${FONT}">
+<tr><td style="padding:0 0 28px"><a href="${SITE}/"><img src="${SITE}/img/email/logo.png" width="132" height="26" alt="Unhyped" style="display:block;border:0;outline:none"></a></td></tr>
+<tr><td style="padding:28px 0 8px;border-top:1px solid #1A1A1A">
+<p style="margin:0 0 12px;font-size:14px;line-height:1.3;font-weight:600;color:#3D8BFF">The Signal #${i.n}, ${e(date(i.date))}</p>
+<h1 style="margin:0 0 24px;font-size:30px;line-height:1.04;${HEAD}">${e(stop(headline(i)))}</h1>
+<p style="${P};font-size:18px;line-height:1.55;color:#F7F8FA">${link(i.intro)}</p>
+${i.sections.map((s) => `<h2 style="margin:34px 0 12px;font-size:18px;line-height:1.15;${HEAD}">${e(s.h)}</h2>
 ${s.p.map((p) => `<p style="${P}">${link(p)}</p>`).join('\n')}
 ${s.more ? `<p style="${P}"><a style="${A}" href="${e(abs(s.more[1]))}">${e(s.more[0])}</a></p>` : ''}`).join('\n')}
-${i.close ? `<p style="${P};margin-top:26px">${link(i.close.lead)}</p>
-<p style="margin:0 0 8px"><a href="${e(abs(i.close.url))}" style="display:inline-block;padding:14px 24px;background:#3D8BFF;color:#000000;text-decoration:none;font-size:13px;letter-spacing:.1em;text-transform:uppercase">${e(i.close.label)}</a></p>` : ''}
+${i.close ? `<p style="${P};margin-top:30px">${link(i.close.lead)}</p>
+<p style="margin:0 0 8px"><a href="${e(abs(i.close.url))}" style="display:inline-block;padding:16px 22px;background:#1A04FF;border:1px solid #3A2BFF;color:#FFFFFF;text-decoration:none;font-family:${FONT};font-size:15px;line-height:1;font-weight:600">${e(i.close.label)}</a></p>` : ''}
 </td></tr>
-<tr><td style="padding:20px 32px 28px;border-top:1px solid #E3E5E4">
-<p style="margin:0 0 8px;font-size:13px;line-height:1.5;color:#6A6F6E">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
-<p style="margin:0;font-size:13px;line-height:1.5;color:#6A6F6E">You get this because you signed up at miraclehealth.us and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#6A6F6E">Read it on the web</a> · <a href="{{unsubscribe}}" style="color:#6A6F6E">Unsubscribe</a></p>
-${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#8A8F8E">Unhyped · ${e(about.mailing_address)}</p>` : ''}
+<tr><td style="padding:30px 0 0;border-top:1px solid #1A1A1A">
+<p style="margin:0 0 18px;font-size:20px;line-height:1.1;${HEAD}">No miracles. <span style="color:#3D8BFF">Just what happened.</span></p>
+<p style="${SMALL}">Experiences and published evidence, not medical advice. Talk to your doctor before you start, stop or change anything.</p>
+<p style="${SMALL};color:#7F8796">You get this because you signed up at ${e(host)} and confirmed. <a href="${SITE}/weekly/${i.n}/" style="color:#A1A7B2">Read it on the web</a>, or <a href="{{unsubscribe}}" style="color:#A1A7B2">unsubscribe</a>.</p>
+${about.mailing_address ? `<p data-mh-postal style="margin:8px 0 0;font-size:12px;line-height:1.5;color:#7F8796">Unhyped, ${e(about.mailing_address)}</p>` : ''}
 </td></tr>
 </table>
 </td></tr></table>

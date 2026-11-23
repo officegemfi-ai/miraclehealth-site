@@ -70,6 +70,8 @@ h1,h2,h3{margin:0;font-family:var(--head);text-wrap:balance}
 h1{font:800 expanded clamp(26px,1.2vw + 15.5px,34.5px)/1.04 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase}
 h2{font:800 expanded clamp(17px,0.43vw + 12px,19px)/1.04 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase}
 h3{font:600 16px/1.3 var(--body);letter-spacing:-.01em}
+/* a card's title is a card's (h3's look), never a page heading in capitals, whatever element holds it */
+.fd-card h2,.doc .short h2,.my-empty h2,.plan-cta h2,.pending-box h2{font:600 16px/1.3 var(--body);letter-spacing:-.01em;text-transform:none}
 p{margin:0;text-wrap:pretty}
 li,dd,td,th,figcaption{text-wrap:pretty}
 ul,ol{list-style:none;margin:0;padding:0}
@@ -86,6 +88,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .kick{color:var(--muted)}
 .kick.lime{color:var(--text-2)}
 .live{display:inline-flex;align-items:center;gap:10px}
+.kick.live{display:flex}
 .live i{position:relative;flex:none;width:25px;height:25px;margin:-9px;overflow:hidden;translate:0 -1px}
 .live i::before,.live i::after{content:'';position:absolute;left:9px;top:9px;width:7px;height:7px;border-radius:50%}
 .live i::before{background:var(--lime)}
@@ -101,7 +104,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid transparent;text-decoration:none;white-space:nowrap;transition:background-color .2s,border-color .2s,color .2s,transform .1s}
 .btn:active{transform:translateY(1px)}
 /* .btn.lime is the one main action, electric blue; the class keeps its old name */
-.btn.lime{background:var(--act);color:var(--on-accent);box-shadow:0 10px 30px rgba(26,4,255,.45),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn.lime,.tm .ai-send:not(:disabled){background:var(--act);color:var(--on-accent);box-shadow:0 10px 30px rgba(26,4,255,.45),inset 0 1px 0 rgba(255,255,255,.22)}
 .btn.lime:hover{background:var(--act-2)}
 
 /* ---------------------------------------------------------------- glass cards */
@@ -230,7 +233,7 @@ ul,ol{list-style:none;margin:0;padding:0}
 .vs-row:nth-child(1) .fi{transition-delay:.25s}.vs-row:nth-child(2) .fi{transition-delay:.4s}.vs-row:nth-child(3) .fi{transition-delay:.55s}.vs-row:nth-child(n+4) .fi{transition-delay:.7s}
 .viz-compact{display:none}
 .t-mono{font-family:var(--mono);font-weight:500}
-.t-head{font-family:var(--head);font-weight:600;letter-spacing:-.02em}
+.t-head{font-family:var(--head);font-weight:650;font-stretch:125%;letter-spacing:-.025em}
 .takeover .draw{animation:draw 1.8s cubic-bezier(.2,.7,.2,1) .2s both}
 @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 .takeover .pulse{animation:dotpulse 2.2s ease-out infinite;transform-box:fill-box;transform-origin:center}
@@ -307,8 +310,10 @@ ul,ol{list-style:none;margin:0;padding:0}
 .foot-col a{display:inline-flex;align-items:center;min-height:24px;font:500 14px/1.35 var(--body);color:var(--on-ink-2);text-decoration:none;transition:color .15s}
 .foot-col a:hover{color:#FFFFFF}
 .foot-col .mail{overflow-wrap:anywhere}
-.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:44px;padding-top:18px;border-top:1px solid var(--line-ink)}
+.foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px 24px;margin-top:44px;padding-top:18px;border-top:1px solid var(--line-ink)}
 .foot .copy{font:500 13px/1.4 var(--body);color:var(--muted)}
+/* the line signs every page off, as it signs every email: a small headline, its second sentence in the punchline */
+.foot-head{margin:0;font:800 expanded 20px/1.1 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;color:var(--on-ink)}
 /* the logo's word at the very bottom (November 17): the same drawing twice, the outlines dim, and over
    them at full strength seen only through a soft circle (img/glow.svg) that follows the pointer
    (lib/os.js sets --mx and --my) or, with no pointer, sweeps slowly across. The page's bottom edge
@@ -328,7 +333,7 @@ ul,ol{list-style:none;margin:0;padding:0}
    own pages (on paper, .on-paper). A plain form: it works with no script. */
 .foot-news{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:18px 48px;align-items:start;margin-bottom:34px;padding-bottom:30px;border-bottom:1px solid var(--line-ink)}
 .foot-news>p{max-width:420px;font-size:16px;line-height:1.5;color:var(--on-ink-2)}
-.foot-news>p b{display:block;margin-bottom:4px;font:600 22px/1.2 var(--head);letter-spacing:-.02em;color:var(--on-ink)}
+.foot-news>p .news-head{display:block;margin-bottom:8px;font:800 expanded clamp(20px,.6vw + 14px,26px)/1.04 var(--head);letter-spacing:var(--head-ls);text-transform:uppercase;text-wrap:balance;color:var(--on-ink)}
 .news-form{min-width:0}
 .nf-label{display:block;margin-bottom:10px;font:600 16px/1.4 var(--body)}
 .nf-row{display:flex;gap:8px}
@@ -455,6 +460,7 @@ ul,ol{list-style:none;margin:0;padding:0}
    and corner ticks, kickers led by a short rule, and headlines in the serif with the turn of
    the sentence in italic. */
 h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
+/* the punchline (.punch) is the design kit's (kit/kit.css), so both apps draw it the same */
 ::selection{background:var(--act);color:var(--on-accent)}
 :focus-visible{outline-color:var(--bone)}
 /* the kit's pieces on the Sig system's corners: tags 7px, rows 9px, controls 10px (the kit itself is
@@ -491,6 +497,8 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 /* sections: every other one a shade off the page */
 .sec-note{font:400 15px/1.55 var(--body);letter-spacing:0;text-transform:none;color:var(--text-2)}
 .sec-head h2,.faq-head h2{font-weight:800;font-size:clamp(26px,1.89vw + 8.5px,36px);line-height:1.04;letter-spacing:var(--head-ls)}
+/* a line under a section's heading, never beside it */
+.sec-lede{max-width:56ch;margin:14px 0 0;font:400 16px/1.55 var(--body);color:var(--text-2)}
 .step{min-height:0;justify-content:flex-start;padding:24px;border-radius:0;border:1px solid var(--line);background:var(--card)}
 
 /* the big feature cards' heads take h2 */
@@ -523,7 +531,6 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 
 /* the footer */
 .foot{background:var(--band);border-top:1px solid var(--line)}
-.foot-news>p b{font:600 22px/1.2 var(--head);letter-spacing:-.012em;text-wrap:balance}
 .nf-row input{height:48px;padding:0 16px;border-radius:0;border-color:var(--line-2);background:var(--card)}
 .nf-row input:hover{border-color:var(--text)}
 .nf-row input:focus-visible,.news-form.on-paper .nf-row input:focus-visible{outline-color:var(--bone)}
@@ -615,16 +622,14 @@ h1 em,h2 em,h3 em{font-style:normal;font-weight:inherit}
 .os-ctx .le-tree{display:block;font:400 13.5px/1.5 var(--body);color:var(--text-2)}
 .os-ctx .lt-root{display:flex;justify-content:space-between;gap:8px;margin:0 0 6px;padding:0 10px;color:var(--text)}
 .os-ctx .lt-root a{color:var(--text);text-decoration:none}
-.os-ctx .lt-root span,.os-ctx .lt-n{color:var(--muted)}
 .os-ctx .lt-dir{display:flex;gap:2px;padding:3px 10px;border-radius:0;color:var(--text-2);text-decoration:none}
-.os-ctx .lt-dir .lt-n{margin-left:auto}
 .os-ctx a.lt-dir:hover{background:var(--hover);color:var(--text)}
 .os-ctx .lt-dir.on{margin:4px 0 2px;color:var(--text)}
 .os-ctx .lt-files{margin:0 0 6px;padding:0;list-style:none}
 .os-ctx .lt-files a{display:block;overflow:hidden;padding:2px 10px 2px 24px;border-radius:0;color:var(--text-2);text-decoration:none;white-space:nowrap;text-overflow:ellipsis}
 .os-ctx .lt-files a:hover{background:var(--hover);color:var(--text)}
 .os-ctx .lt-files a[aria-current="page"]{background:rgba(255,255,255,.08);color:var(--text)}
-.os-ctx .lt-more{margin:10px 10px 6px;font-size:11.5px;line-height:1.5;color:var(--muted)}
+.os-ctx .lt-more{margin:10px 10px 6px;font-size:13px;line-height:1.5;color:var(--muted)}
 
 /* the page beside the side panel: a plain top bar that stays at the top while the page scrolls
    under it (search, Ask Sig, joining), then the page and its foot, on the faint grid under the
@@ -725,7 +730,7 @@ kbd{font:inherit}
 /* ================================================================ the story (/story/)
    Unhyped told in its own language: the ring, the twelve and their glyphs, a run
    as it runs, the prints, the four places, the rules */
-.sy{--sy-w:1320px}
+.sy{--sy-w:var(--page-max)}
 .sy .wrap{max-width:var(--sy-w)}
 .sy-k{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:600 14px/1.4 var(--body);color:var(--text-2)}
 .sy h2{margin:0;font:800 expanded clamp(26px,1.89vw + 8.5px,36px)/1.04 var(--head);letter-spacing:var(--head-ls)}
@@ -737,29 +742,22 @@ kbd{font:inherit}
 .sy-hero-in{position:relative;display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:64px;align-items:center}
 .sy-ring{position:relative;display:grid;place-items:center;width:320px;height:320px;margin:0 auto}
 .sy-ring svg{display:block}
-.sy-ring-n{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:6px;font:400 13px/1 var(--body);color:var(--muted);text-transform:lowercase}
-.sy-ring-n b{font:600 64px/1 var(--mono);letter-spacing:-.04em;color:var(--text)}
+@media (min-width:1280px){.sy-ring{margin:0}}
 .sy-hero h1{margin:0;font:800 expanded clamp(32.5px,2.92vw + 12px,51.5px)/1.03 var(--head);letter-spacing:var(--head-ls)}
-.sy-hero h1 em{font-style:normal;color:var(--text-2)}
 .sy-hero .lede{max-width:50ch;margin-top:24px;font-size:18px;line-height:1.6;color:var(--text-2)}
 .sy-twelve{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:48px 0 0;padding:0;list-style:none;border:1px solid rgba(255,255,255,.1);border-radius:0;background:rgba(255,255,255,.1);overflow:hidden}
 .sy-agent{position:relative;display:grid;align-content:start;gap:12px;min-height:220px;padding:22px 22px 24px;background:var(--os-win,#000000)}
 .sy-agent::before{content:'';position:absolute;left:0;top:0;right:0;height:2px;background:var(--ac)}
-.sy-an{position:absolute;right:18px;top:18px;font:400 11.5px/1 var(--mono);color:var(--muted)}
 .sy-agent h3{margin:6px 0 0;font:600 16px/1.3 var(--body);color:var(--ac)}
 .sy-agent p{margin:0;font-size:15px;line-height:1.55;color:var(--text-2)}
 .sy-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start}
 .sy-term{padding:16px 18px;border:1px solid rgba(255,255,255,.12);border-radius:0;background:var(--band);font:400 13.5px/1.6 var(--body);color:var(--text-2)}
-.sy-sum{margin:0 0 6px;color:var(--text-2)}
 .sy-log{display:grid;margin:0;padding:0;list-style:none}
-.sy-log li{display:grid;grid-template-columns:22px 14ch 14px minmax(0,1fr);column-gap:10px}
-.sl-n{color:var(--muted)}
-.sl-who,.sl-st{color:var(--ac)}
+.sy-log li{display:grid;grid-template-columns:14ch minmax(0,1fr);column-gap:10px}
+.sl-who{color:var(--ac)}
 .sl-t{color:var(--text-2)}
 .sy-ah{display:flex;align-items:center;gap:10px;margin:14px 0 6px;color:var(--text-2)}
 .sy-ah b{color:var(--text)}
-.sy-rule{flex:1;height:1px;background:rgba(255,255,255,.2)}
-.sy-ok{color:var(--sig-safety)}
 .sy-part{position:relative;margin:10px 0 0 28px;padding:4px 0 4px 16px}
 .sy-part::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:0;background:var(--ac)}
 .sp-n{position:absolute;left:-28px;top:4px;width:16px;text-align:right;color:var(--muted)}
@@ -773,7 +771,6 @@ kbd{font:inherit}
 .sy-print:hover{border-color:var(--text)}
 .sy-print .print{width:168px;height:168px;margin-bottom:8px}
 .sy-pn{font:600 16px/1.3 var(--body)}
-.sy-pf{font:400 13px/1.4 var(--body);color:var(--muted)}
 .sy-wins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:48px}
 .sy-win{display:grid;align-content:start;gap:10px;padding:20px;border:1px solid var(--line);border-radius:0;background:var(--card);color:var(--text);text-decoration:none}
 .sy-win:hover{border-color:var(--text)}
@@ -792,10 +789,9 @@ kbd{font:inherit}
   .sy-hero-in{grid-template-columns:1fr;gap:36px}
   .sy-ring{width:220px;height:220px}
   .sy-ring svg{width:220px;height:220px}
-  .sy-ring-n b{font-size:44px}
   .sy-sec{padding:64px 0}
   .sy-legend,.sy-promises{grid-template-columns:1fr}
-  .sy-log li{grid-template-columns:18px 14ch 12px minmax(0,1fr);font-size:11.5px}
+  .sy-log li{grid-template-columns:12ch minmax(0,1fr);font-size:13px}
 }
 @media (max-width:520px){.sy-twelve,.sy-prints,.sy-wins{grid-template-columns:1fr}}
 
@@ -806,7 +802,6 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
    the same mark as a mask, for scripts and the front page's logs */
 .ck{display:inline-block;width:.85em;height:.85em;vertical-align:-.08em;background:currentColor;-webkit-mask:url('/img/i-check.svg') center/contain no-repeat;mask:url('/img/i-check.svg') center/contain no-repeat}
 .i-check{display:inline-block;width:1em;height:1em;vertical-align:-.14em}
-.sl-st .i-check,.sy-ok .i-check{width:.95em;height:.95em}
 /* the weights table's "counts as" column is data */
 .method .mtable td.d{font:400 14px/1.5 var(--body);font-variant-numeric:tabular-nums;color:var(--text)}
 @media (max-width:430px){.net-size{display:none}}
@@ -816,7 +811,7 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
   .method .mtable-wrap .mtable{min-width:0}
   .method .mtable-wrap thead{display:none}
   .method .mtable-wrap tbody{display:grid;gap:10px}
-  .method .mtable-wrap tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:16px;border:1px solid var(--line);border-radius:0;background:var(--white)}
+  .method .mtable-wrap tr{display:grid;grid-template-columns:minmax(0,1fr) fit-content(45%);gap:8px 12px;padding:16px;border:1px solid var(--line);border-radius:0;background:var(--white)}
   .method .mtable-wrap th,.method .mtable-wrap td{padding:0;border:0}
   .method .mtable-wrap td:nth-child(3),.method .mtable-wrap td:nth-child(5){grid-column:1/-1}
 }
@@ -838,8 +833,8 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
    Words on it are white and sit in its deeper part; its main action is black, since electric blue doesn't
    hold on violet ---------- */
 .violet,.foot-news{background:url(/img/grain.svg) 0 0/180px 180px,radial-gradient(70% 130% at 24% 0%,#5d33ef 0%,rgba(93,51,239,0) 72%),linear-gradient(115deg,#5d33ef 0%,#6b48f1 55%,#9aa0f4 118%);background-blend-mode:overlay,normal,normal;color:var(--text);--focus:var(--text)}
-.violet .btn.lime,.foot-news .btn{background:var(--ink);border-color:var(--ink);color:var(--text);box-shadow:none}
-.violet .btn.lime:hover,.foot-news .btn:hover{background:var(--card);border-color:var(--card);color:var(--text)}
+.violet .btn,.foot-news .btn{background:var(--ink);border-color:var(--ink);color:var(--text);box-shadow:none}
+.violet .btn:hover,.foot-news .btn:hover{background:var(--card);border-color:var(--card);color:var(--text)}
 .violet a:not(.btn),.foot-news a:not(.btn){color:var(--text)}
 /* the weekly email: a band of its own at the top of the foot */
 .foot-news{padding:34px 36px;border-bottom:0}
@@ -847,6 +842,8 @@ main a:hover,.foot a:hover{text-decoration-color:currentColor}
 .foot-news .nf-row input{border-color:rgba(255,255,255,.42);background:rgba(0,0,0,.3);color:var(--text)}
 .foot-news .nf-row input::placeholder{color:rgba(255,255,255,.8)}
 .foot-news .nf-row input:focus-visible{outline-color:var(--text)}
+/* fields: on hover and on focus their frames turn white, in every place they stand (decision, November 13) */
+.foot-news .nf-row input:hover,.foot-news .nf-row input:focus,.news-form.on-paper .nf-row input:hover,.news-form.on-paper .nf-row input:focus,.nf-row input:focus{border-color:var(--text)}
 .foot-news .nf-note{color:var(--text)}
 .foot-news .nf-note a{text-decoration-color:rgba(255,255,255,.7)}
 @media (max-width:640px){.foot-news{padding:24px 20px}}

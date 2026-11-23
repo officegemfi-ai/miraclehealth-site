@@ -64,8 +64,7 @@
 .a-rv>p,.a-rv>ul{flex:1 1 300px;margin:0;max-width:60ch;font-size:15px;line-height:1.6;color:#D9DCE2}
 .r-studies .a-rv>p{color:var(--tm-t2)}
 .a-list{padding:0;list-style:none}
-.a-list li{display:inline}
-.a-list li+li::before{content:' · ';color:var(--tm-t3)}
+.a-list li+li{margin-top:4px}
 .a-copy{flex:none;min-height:32px;padding:0 12px;border:1px solid var(--tm-line2);border-radius:0;background:transparent;color:var(--tm-tx);font:400 13px/1 var(--body);cursor:pointer}
 .a-copy:hover{border-color:var(--tm-tx)}
 .a-copy:focus-visible,.a-q:focus-visible,.qc-go:focus-visible,.qc-not:focus-visible{outline:2px solid var(--tm-tx);outline-offset:2px}
@@ -104,7 +103,7 @@
 .tm .sheet-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;margin-top:18px}
 .a-check{display:inline-flex;align-items:center;gap:7px;font:400 13px/1.4 var(--body);color:var(--tm-t3)}
 .a-check svg{flex:none;width:14px;height:14px;color:var(--a-safety)}
-.a-check.edited svg{color:var(--a-recommender)}
+.a-check.edited svg{color:var(--a-safety)}
 
 /* where to go next */
 .a-next{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
@@ -112,7 +111,7 @@
 .a-q:hover{border-color:var(--tm-tx);background:transparent}
 .a-q.a-members{border-color:rgba(61,139,255,.6)}
 .a-q.a-members:hover{border-color:var(--a-community)}
-.a-ar{font-family:var(--mono)}
+.a-ar{font-family:var(--body)}
 
 /* a compound with no Signal yet: ask the members */
 .a-quiet{margin-top:20px;padding:0 0 14px;border:1px solid rgba(61,139,255,.6);background:#121214}
@@ -133,12 +132,12 @@
 .qc-box:focus-visible{outline:2px solid var(--tm-tx);outline-offset:2px}
 
 /* ---------------------------------------------------------------- the box to write in */
-.tm .ai-send{width:40px;height:40px;padding:0;border:0;border-radius:0;background:#1A04FF;color:#FFFFFF}
+.tm .ai-send{width:40px;height:40px;padding:0;border:0;border-radius:0;background:var(--act);color:#FFFFFF}
 .tm .ai-send svg{display:block}
 .tm .ai-send .tm-key{display:none!important}
-.tm .ai-send:not(:disabled),.tm .ai-send:not(:disabled):hover{border:0;background:#1A04FF;color:#FFFFFF}
-.tm .ai-send:not(:disabled):hover{background:#3A2BFF}
-.tm .ai-send:disabled{background:#1A04FF;color:#FFFFFF;opacity:.45}
+.tm .ai-send:not(:disabled),.tm .ai-send:not(:disabled):hover{border:0;background:var(--act);color:#FFFFFF}
+.tm .ai-send:not(:disabled):hover{background:var(--act-2)}
+.tm .ai-send:disabled{background:var(--act);color:#FFFFFF;opacity:.45;box-shadow:none}
 .tm .ai-send.stop,.tm .ai-send.stop:hover{border:1px solid var(--tm-tx);background:transparent;color:var(--tm-tx)}
 .tm .ai-send.stop .i-send{display:none}
 .tm .ai-send.stop .i-stop{display:inline}
@@ -195,7 +194,6 @@ button.who-row[aria-pressed="false"]>:not(.who-box){opacity:.55}
 .tm .ai-rail .rl-bar{position:sticky;top:0;z-index:4;display:flex;align-items:stretch;gap:12px;height:48px;padding:0 12px 0 20px;border-bottom:1px solid var(--tm-line);background:#000000}
 .rl-title{display:flex;align-items:center;gap:10px;min-width:0;overflow:hidden;white-space:nowrap}
 .rl-name{font:650 14px/1 var(--body);color:var(--tm-tx)}
-.rl-sub{overflow:hidden;font:400 13px/1 var(--body);color:var(--tm-t3);text-overflow:ellipsis}
 .rl-close{display:none;align-self:center;place-items:center;width:44px;height:44px;margin-left:auto;padding:0;border:0;border-radius:0;background:none;color:var(--tm-tx);cursor:pointer}
 .rl-close:hover{background:var(--hover)}
 .rl-close:focus-visible{outline:2px solid var(--tm-tx);outline-offset:-2px}
@@ -223,14 +221,11 @@ button.who-row[aria-pressed="false"]>:not(.who-box){opacity:.55}
 .rk-svg{display:block;overflow:visible}
 .rk-what h3{margin:0;font:650 18px/1.25 var(--body);color:var(--tm-tx)}
 .rk-state{margin:4px 0 0;font:400 13px/1.4 var(--body);color:var(--tm-tx)}
-.rk-state.s-up{color:var(--a-recommender)}
-.rk-state.s-down{color:var(--a-synergy)}
 .rk-state.s-watch,.rk-state.s-steady,.rk-state.s-none{color:var(--tm-t2)}
 .rk-def{margin:8px 0 0;font-size:13px;line-height:1.5;color:var(--tm-t2)}
 .rk-lines{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;margin:10px 0 0;padding-top:10px;border-top:1px solid var(--tm-line)}
 .rk-lines dt{font:500 13.5px/1.5 var(--body);color:var(--tm-t2);white-space:nowrap}
-.rk-lines dt.p-up{color:var(--a-recommender)}
-.rk-lines dt.p-down{color:var(--a-synergy)}
+.rk-lines dt.p-up,.rk-lines dt.p-down{color:var(--tm-tx)}
 .rk-lines dd{margin:0;font-size:13px;line-height:1.5;color:#D9DCE2}
 .rk-both{margin:10px 0 0;font:600 13px/1.5 var(--body);color:var(--tm-tx)}
 .rk-key{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:16px 0 8px;font:400 13px/1.4 var(--body);color:var(--tm-t2)}
@@ -239,17 +234,14 @@ button.who-row[aria-pressed="false"]>:not(.who-box){opacity:.55}
 .rk-key .k-up{background:var(--a-recommender)}
 .rk-key .k-down{background:var(--a-synergy)}
 .rk-key .k-line{width:14px;height:0;border-top:1px dashed var(--tm-tx)}
-.rk-tap{margin-left:auto;color:var(--tm-t3)}
 .rk-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
 .rk-tube{display:grid;justify-items:center;align-content:start;gap:2px;min-width:0;padding:6px 2px 8px;border:1px solid transparent;border-radius:0;background:transparent;color:var(--tm-tx);cursor:pointer}
 .rk-tube:hover{background:var(--hover)}
 .rk-tube[aria-pressed="true"]{border-color:var(--tm-tx);background:#121214}
 .rk-tube.s-none{opacity:.3}
-.rk-name{max-width:100%;overflow:hidden;font:600 12px/1.25 var(--body);text-align:center;white-space:nowrap;text-overflow:ellipsis}
-.rk-tag{font:400 12.5px/1.3 var(--body);color:var(--tm-t2);white-space:nowrap}
-.rk-tag.s-up{color:var(--a-recommender)}
-.rk-tag.s-down{color:var(--a-synergy)}
-.rk-tag.s-both{color:var(--tm-tx)}
+.rk-name{max-width:100%;overflow:hidden;font:600 13px/1.25 var(--body);text-align:center;white-space:nowrap;text-overflow:ellipsis}
+.rk-tag{font:400 13px/1.3 var(--body);color:var(--tm-t2);white-space:nowrap}
+.rk-tag.s-up,.rk-tag.s-down,.rk-tag.s-both{color:var(--tm-tx)}
 .rk-fine{margin-top:14px}
 .rk-own{margin-top:16px;padding-top:14px;border-top:1px solid var(--tm-line)}
 .rk-own p{margin:0;font-size:13px;line-height:1.5;color:var(--tm-t2)}

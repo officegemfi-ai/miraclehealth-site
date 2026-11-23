@@ -23,11 +23,9 @@ const json = (url) => fetch(url, { credentials: 'omit' }).then((r) => (r.ok ? r.
 const cap = (s) => String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1);
 // A compound's short name: what's in brackets (HGH), else its name
 const shortName = (name) => /\(([^)]{2,12})\)/.exec(name)?.[1] || name;
-// Its tag under a tube: hgh, encl, bpc
+// Its tag under a tube: the compound's short name as the Library writes it (HGH, Enclomiphene)
 function tagOf(name) {
-  const s = shortName(name);
-  const word = s.split(/[\s-]/)[0].replace(/[^A-Za-z0-9]/g, '');
-  return (word.length > 5 ? word.slice(0, 4) : word).toLowerCase();
+  return shortName(name);
 }
 
 // One tube, `w` wide: arrows over it, the liquid in its rounded bottom, the dashed line where it
@@ -111,7 +109,7 @@ export function makeMarkers({ h, svg, copy, onDraw }) {
     const shown = markers.filter((m) => stateOf(m).st !== 'none').length;
     const short = moved.length ? `${moved.length} blood test${moved.length === 1 ? '' : 's'} move${moved.length === 1 ? 's' : ''}`
       : shown ? `${shown} blood test${shown === 1 ? ' is' : 's are'} checked` : 'No blood test is moved by what’s on';
-    return { markers, moved, short, text: both ? `${short} · ${both} pushed both ways` : short };
+    return { markers, moved, short, text: both ? `${short}, ${both} pushed both ways` : short };
   }
   function drawRack() {
     const el = rack.el;
@@ -145,7 +143,7 @@ export function makeMarkers({ h, svg, copy, onDraw }) {
       h('div', { class: 'rk-big' }, svg(tube(s.st, `rk-${n}-big`, 60))),
       h('div', { class: 'rk-what' },
         h('h3', { text: name }),
-        h('p', { class: `rk-state s-${s.st}`, text: STATE_SAID[s.st] }),
+        h('p', { class: `rk-state s-${s.st}`, text: cap(STATE_SAID[s.st]) }),
         d.meta[rack.sel]?.what ? h('p', { class: 'rk-def', text: d.meta[rack.sel].what }) : null,
         s.act.length ? h('dl', { class: 'rk-lines' }, s.act.map((p) => [
           h('dt', { class: `p-${p.op}` }, shortName(rack.names[p.id] || p.id), p.op === 'up' ? h('span', { class: 'rk-ar', text: ' ↑' }) : p.op === 'down' ? h('span', { class: 'rk-ar', text: ' ↓' }) : null),
@@ -153,7 +151,7 @@ export function makeMarkers({ h, svg, copy, onDraw }) {
         s.st === 'both' ? h('p', { class: 'rk-both', text: `Pushed both ways: a single ${name} result can’t show either effect alone.` }) : null));
     const grid = h('div', { class: 'rk-grid', role: 'group', 'aria-label': 'Blood tests' }, markers.map((m) => {
       const r = stateOf(m);
-      const tag = r.st === 'both' ? 'both ways' : r.st === 'watch' ? 'checked' : r.st === 'steady' ? 'noted' : r.st === 'none' ? 'off'
+      const tag = r.st === 'both' ? 'Both ways' : r.st === 'watch' ? 'Checked' : r.st === 'steady' ? 'Noted' : r.st === 'none' ? 'Off'
         : [...new Set(r.act.filter((p) => p.op === r.st).map((p) => tagOf(rack.names[p.id] || p.id)))].map((t) => `${t} ${r.st === 'up' ? '↑' : '↓'}`).join(' ');
       const b = h('button', { class: `rk-tube s-${r.st}`, type: 'button', 'data-marker': m, 'aria-pressed': String(m === rack.sel), 'aria-label': `${d.meta[m]?.name || m}: ${STATE_SAID[r.st]}` },
         svg(tube(r.st, `rk-${n}-${m}`)), h('span', { class: 'rk-name', text: label(m) }), h('span', { class: `rk-tag s-${r.st}`, text: tag }));
@@ -175,7 +173,7 @@ export function makeMarkers({ h, svg, copy, onDraw }) {
     el.replaceChildren(
       h('div', { class: 'rk-top' }, h('p', { class: 'rk-sum', text }), chips),
       card,
-      h('div', { class: 'rk-key', 'aria-hidden': 'true' }, h('span', {}, h('i', { class: 'k-up' }), 'up'), h('span', {}, h('i', { class: 'k-down' }), 'down'), h('span', {}, h('i', { class: 'k-line' }), 'where it usually sits'), h('span', { class: 'rk-tap', text: 'tap a tube' })),
+      h('div', { class: 'rk-key', 'aria-hidden': 'true' }, h('span', {}, h('i', { class: 'k-up' }), 'Up'), h('span', {}, h('i', { class: 'k-down' }), 'Down'), h('span', {}, h('i', { class: 'k-line' }), 'Where it usually sits')),
       grid,
       h('p', { class: 'rl-note rk-fine', text: 'Direction only, from the Library’s fact sheets: how much depends on the person, and isn’t drawn.' }),
       h('div', { class: 'rk-own' }, h('p', { text: 'Your own results stay yours: Sig never asks for them or reads them.' }), copyBtn));

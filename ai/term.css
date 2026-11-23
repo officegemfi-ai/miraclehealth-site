@@ -52,15 +52,17 @@
 html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(--tm-tb,42px) + 12px);scroll-padding-bottom:120px}
 
 /* ---------------------------------------------------------------- Sig's ring */
-/* Every piece lit while Sig is idle; turning while the agents work; beside an answer and in the
+/* Every piece lit while Sig is idle; while the agents work its pieces light one by one round the ring
+   (the loading ring of both apps, kit.css .mh-wait, the same keyframes); beside an answer and in the
    agents' tab, lit piece by piece as each one reports */
 [data-sig]{display:block;flex:none}
 [data-sig] svg{display:block;width:100%;height:100%;overflow:visible}
 .rg{opacity:.16;transition:opacity .4s}
 .rg.on{opacity:1}
-[data-sig].is-spin svg{animation:tm-turn 2.4s linear infinite}
+[data-sig].is-spin .rg{animation:mh-wait 1.32s linear infinite}
+[data-sig].is-spin .rg:nth-child(2){animation-delay:.12s}[data-sig].is-spin .rg:nth-child(3){animation-delay:.24s}[data-sig].is-spin .rg:nth-child(4){animation-delay:.36s}[data-sig].is-spin .rg:nth-child(5){animation-delay:.48s}[data-sig].is-spin .rg:nth-child(6){animation-delay:.60s}[data-sig].is-spin .rg:nth-child(7){animation-delay:.72s}[data-sig].is-spin .rg:nth-child(8){animation-delay:.84s}[data-sig].is-spin .rg:nth-child(9){animation-delay:.96s}[data-sig].is-spin .rg:nth-child(10){animation-delay:1.08s}[data-sig].is-spin .rg:nth-child(11){animation-delay:1.20s}
+[data-sig].is-spin .rg-c{animation:none;opacity:.16}
 [data-sig].is-flag .rg[data-a="safety"]{animation:tm-pulse 1.2s ease-in-out infinite}
-@keyframes tm-turn{to{transform:rotate(360deg)}}
 @keyframes tm-pulse{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes tm-blink{0%,49.9%{opacity:1}50%,100%{opacity:0}}
 @keyframes tm-spin{to{transform:rotate(360deg)}}
@@ -100,7 +102,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm-plus:focus-visible{outline:2px solid var(--tm-tx);outline-offset:2px}
 .tm-tabdot{flex:none;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.32)}
 .tm-tab.on .tm-tabdot{background:var(--tm-tx)}
-.tm-tab.busy .tm-tabdot{width:9px;height:9px;border:1.6px solid rgba(255,255,255,.28);border-top-color:var(--tm-tx);background:none;box-shadow:none;animation:tm-spin .8s linear infinite}
+.tm-tab.busy .tm-tabdot{background:var(--tm-tx);animation:tm-pulse 1.2s ease-in-out infinite}
 .tm-tabname{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .tm-tabx{flex:none;display:grid;place-items:center;width:22px;height:22px;margin-right:5px;padding:0;border:0;border-radius:0;background:none;color:inherit;opacity:0;cursor:pointer;transition:opacity .15s,background-color .15s}
 .tm-tabx svg{width:11px;height:11px}
@@ -149,7 +151,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ai-composer{align-items:flex-start;gap:10px;max-width:900px;min-height:56px;padding:6px 10px 6px 16px;border:1px solid var(--tm-line2);border-radius:0;background:var(--tm-bar);transition:border-color .15s}
 .tm .ai-composer:focus-within{border-color:var(--tm-tx)}
 .tm .ai-composer:has(textarea:focus-visible){outline:2px solid var(--text);outline-offset:2px}
-.tm .ai-fine{max-width:900px;margin:8px 0 0;padding:0 2px;font-size:12px;line-height:1.45;color:var(--tm-t3)}
+.tm .ai-fine{max-width:900px;margin:8px 0 0;padding:0 2px;font-size:13px;line-height:1.45;color:var(--tm-t3)}
 .ai-fine-s{display:none}
 /* where the whole line won't fit on one line, the short one */
 .tm .ai-dock{container-type:inline-size}
@@ -198,7 +200,8 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .ts-sw{display:inline-flex;gap:2px}
 .ts-sw i{width:9px;height:4px;border-radius:0;background:var(--ac)}
 .ts-act{color:var(--tm-t3);text-decoration:underline;text-underline-offset:3px}
-.ts-busy{width:9px;height:9px;border-radius:50%;border:1.6px solid rgba(255,255,255,.25);border-top-color:var(--tm-tx);animation:tm-spin .8s linear infinite}
+.ts-busy{display:inline-flex;flex:none}
+.ts-busy .mh-wait-ring{display:block}
 .tm .trace .trace-steps,.tm .trace.done .trace-steps{display:none}
 .tm .trace.open .trace-steps,.tm .trace.done.open .trace-steps{display:grid;gap:0;margin-top:2px}
 .tm .tstep{display:grid;grid-template-columns:22px 15ch 12px minmax(0,1fr);column-gap:10px;align-items:start;padding:1px 0;font:400 13.5px/1.6 var(--body)}
@@ -207,8 +210,8 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .tstep-what{color:var(--tm-t2)}
 .ts-st{position:relative;height:20px;text-align:center;color:var(--ac)}
 .tstep.done .ts-st::before{content:'';display:inline-block;width:.95em;height:.95em;background:currentColor;vertical-align:-.12em;-webkit-mask:url(/img/i-check.svg) center/contain no-repeat;mask:url(/img/i-check.svg) center/contain no-repeat;text-shadow:none}
-.tstep.run .ts-st::before{content:'';position:absolute;left:1px;top:6px;width:8px;height:8px;border-radius:50%;border:1.7px solid color-mix(in srgb,var(--ac) 25%,transparent);border-top-color:var(--ac);animation:tm-spin .8s linear infinite}
-.tstep.flag .ts-st::before{content:'!';color:#F2BE4B;text-shadow:none}
+.tstep.run .ts-st::before{content:'';position:absolute;left:2px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--ac);animation:tm-pulse 1.2s ease-in-out infinite}
+.tstep.flag .ts-st::before{content:'!';color:var(--a-safety);text-shadow:none}
 .tm .tstep-chips{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0 3px}
 .tm .tstep-chips a,.tm .tstep-chips span{padding:2px 8px;border-radius:0;border:1px solid var(--tm-line2);background:transparent;color:var(--tm-t2);font:500 13px/1.5 var(--body);text-decoration:none}
 .tm .tstep-chips a:hover{border-color:var(--tm-tx);color:var(--tm-tx)}
@@ -221,7 +224,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .prose ul li::before{left:3px;top:.68em;width:5px;height:5px;background:var(--tm-t3)}
 .tm .prose ul+p,.tm .prose p+ul{margin-top:6px}
 .ctag{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 16px;margin:0 0 4px;font:400 13px/1.5 var(--body);text-transform:none;color:var(--tm-t3);user-select:none;-webkit-user-select:none}
-.ctag b{font-weight:500;color:var(--ac);text-transform:lowercase}
+.ctag b{font-weight:500;color:var(--ac)}
 .pt-by{color:var(--tm-t3)}
 /* the part's number, in the gutter */
 .tm .prose h2{margin-top:14px;font:600 16px/1.35 var(--body);font-weight:600;font-stretch:100%;text-transform:none}
@@ -242,7 +245,7 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
 .tm .ip-dot{color:var(--a-interpretation);box-shadow:none}
 /* where it came from: the studies in the Evidence librarian's blue, the community in its lime */
 .tm .answer-src{gap:4px 14px;margin-top:12px;font:400 13px/1.5 var(--body);color:var(--tm-t3)}
-.tm .answer-src .src-k{text-transform:lowercase;letter-spacing:0;font-weight:400}
+.tm .answer-src .src-k{letter-spacing:0;font-weight:400}
 .tm .src-part{color:var(--tm-t2)}
 .tm .v-dot{width:8px;height:8px;border:0;border-radius:0}
 .tm .v-dot.v-studies{background:#14ECC3;box-shadow:none}
@@ -277,9 +280,9 @@ html:has(body.ai){scroll-padding-top:calc(var(--top-h) + var(--tm-g,16px) + var(
   .tm .ai-bar .tm-tabx{opacity:.75}
   .tm .ai-chat{min-height:calc(100svh - var(--top-h) - var(--tm-tb) - var(--tm-sb));border:0}
   .tm .help-pin{top:calc(var(--top-h) + var(--tm-tb) + 8px)}
-  .tm .ai-dock{padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+  .tm .ai-dock{padding:8px var(--tm-px) calc(8px + env(safe-area-inset-bottom))}
   .tm .ai-composer{min-height:50px;padding:4px 6px 4px 12px}
-  .tm .ai-fine{margin-top:6px;font-size:11px}
+  .tm .ai-fine{margin-top:6px;font-size:13px}
   .tm .ai-composer textarea{font-size:16px}
   .tm .ai-thread{padding-top:12px}
   .tm .prose{font-size:15px}
@@ -322,7 +325,7 @@ html:has(body.sigapp){--top-h:0px}
 .sg-dot{flex:none;width:6px;height:6px;border-radius:50%}
 .sg-item.tabbed .sg-dot{background:rgba(255,255,255,.35)}
 .sg-item.on .sg-dot{background:var(--tm-tx)}
-.sg-item.busy .sg-dot{width:8px;height:8px;border:1.5px solid rgba(255,255,255,.28);border-top-color:var(--tm-tx);background:none;box-shadow:none;animation:tm-spin .8s linear infinite}
+.sg-item.busy .sg-dot{background:var(--tm-tx);animation:tm-pulse 1.2s ease-in-out infinite}
 .sg-name{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .sg-when{flex:none;font:500 12px/1 var(--body);color:var(--tm-t3)}
 .sg-del{flex:none;display:grid;place-items:center;width:28px;height:28px;margin-right:4px;padding:0;border:0;border-radius:0;background:none;color:var(--tm-t3);opacity:0;cursor:pointer}
@@ -357,7 +360,7 @@ html:has(body.sigapp){--top-h:0px}
 .sg-wipe-yes:hover,.sg-yes:hover{background:var(--hover)}
 .sg-wipe-no,.sg-no{border:1px solid var(--tm-line2);color:var(--tm-t2)}
 .sg-wipe-no:hover,.sg-no:hover{color:var(--tm-tx)}
-.sg-legal{display:flex;flex-wrap:wrap;gap:0 14px;margin:0;padding:0 10px;font-size:13px;color:var(--tm-t3)}
+.sg-legal{display:flex;flex-wrap:wrap;align-items:center;gap:0 14px;margin:0;padding:0 10px;font-size:13px;color:var(--tm-t3)}
 .sg-legal a{color:inherit}
 .sg-legal a:hover{color:var(--tm-tx)}
 .sg-scrim{position:fixed;inset:0;z-index:29;background:rgba(0,0,0,.55)}
@@ -385,7 +388,10 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 }
 /* where the site's bar would fold its links into a menu, the panel slides in over the window from
    the menu button; a little narrower until then */
+/* the logo: in the side panel when it stands beside the page; in the bar when the panel is a drawer, as on every page */
+.tm-home{display:none}
 @media (max-width:900px){
+  .tm-home{display:flex;align-items:center;flex:none;min-height:40px;margin-right:14px;align-self:center}.tm-home img{display:block;width:auto;height:20px}
   .sg,.sg.folded{grid-template-columns:minmax(0,1fr)}
   .sg-side,.sg.folded .sg-side{position:fixed;top:0;bottom:0;left:0;display:flex;width:min(86vw,300px);height:100dvh;visibility:hidden;transform:translateX(-102%);transition:transform .22s ease,visibility 0s linear .22s;box-shadow:12px 0 40px rgba(0,0,0,.5)}
   .sg.drawer .sg-side{visibility:visible;transform:none;transition:transform .22s ease}
@@ -404,7 +410,7 @@ html:has(body.sigapp),body.sigapp{height:100%;overflow:hidden;overscroll-behavio
 
 /* ---------------------------------------------------------------- less motion, and paper */
 @media (prefers-reduced-motion:reduce){
-  [data-sig].is-spin svg,[data-sig].is-flag .rg,.ts-busy,.tstep.run .ts-st::before,
+  [data-sig].is-spin .rg,[data-sig].is-flag .rg,.tstep.run .ts-st::before,.tm-tab.busy .tm-tabdot,
   .tm .prose.streaming>*::after,.tm .prose.streaming>*>li::after{animation:none!important}
   .rg,.sg-side{transition:none!important}
   .sg-item.busy .sg-dot{animation:none!important}

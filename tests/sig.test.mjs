@@ -135,7 +135,7 @@ test('the rack holds exactly the blood tests the body map says these compounds m
   assert.deepEqual(new Set(tubes.map((t) => t.attrs['data-marker'])), want);
   // the first line counts those that go up or down, and the page's bar repeats it word for word
   const first = said(all(el, 'rk-sum')[0]);
-  assert.match(first, /^\d+ blood tests move( · \d+ pushed both ways)?$/);
+  assert.match(first, /^\d+ blood tests move(, \d+ pushed both ways)?$/);
   assert.ok(m.said() && first.startsWith(m.said()) && !m.said().includes('·'), `the bar would say “${m.said()}”, the rack says “${first}”`);
   // growth hormone raises IGF-1 and enclomiphene lowers it, as their sheets say: pushed both ways, and first
   assert.ok(way(['somatropin'], 'igf1').has('up') && way(['enclomiphene'], 'igf1').has('down'), 'the fact sheets changed: pick another marker for this test');

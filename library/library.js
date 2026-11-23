@@ -1,10 +1,10 @@
 // The Library's live parts: search and filters on the front page, and on each compound's
 // page the Community Signal, from the community's public snapshot (aggregate totals only,
 // updated every hour; no posts, no names). Everything works without it, minus the numbers.
-import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=865e272ad0';
+import { roseSvg, flowSvg, takeoverSvg, sealSvg, levelOf } from '/library/signalviz.js?v=db7d8d8979';
 import { setPrintSignal } from '/lib/print.js?v=d7172ffaa1';
-import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=7920a66cee';
-import { wireBodyMap } from '/kit/bodymap.js?v=57440abdb8';
+import { askLink, meterHtml, node as fromKit } from '/kit/kit.js?v=6fab76b0a9';
+import { wireBodyMap } from '/kit/bodymap.js?v=0d48555196';
 import { h, svg, getJson, getSignal, calm, hold, groupN } from '/lib/dom.js?v=47be1f2023';
 
 const COMMUNITY = 'https://community.miraclehealth.us';
@@ -187,8 +187,9 @@ function frontPage(grid) {
       if (!list.length) moves.querySelector('.moves-track').append(h('span', { class: 'move quiet' }, 'Nothing moved yet this week.'));
       if (focus.length) {
         const fp = moves.querySelector('.moves-focus');
-        fp.replaceChildren(h('span', { class: 'kick-sm' }, 'Filling first'), ...focus.map((f) => h('a', { href: `${COMMUNITY}/#/new?c=${encodeURIComponent(f.id)}` },
-          `${String(f.name).slice(0, 40)} for ${String(f.label || '').toLowerCase().slice(0, 40)}`, h('span', { class: 'n' }, ` ${fmt(f.reports)} of ${fmt(f.goal)}`))));
+        // the Signals closest to starting, each written as the founding reporters' page writes it
+        fp.replaceChildren(h('p', { class: 'moves-k' }, 'Filling first'), ...focus.map((f) => h('a', { href: `${COMMUNITY}/#/new?c=${encodeURIComponent(f.id)}` },
+          `${String(f.name).slice(0, 40)} for ${String(f.label || '').toLowerCase().slice(0, 40)}`, h('span', { class: 'n' }, `, ${fmt(f.reports)} of ${fmt(f.goal)} reports`))));
         fp.hidden = false;
       }
       moves.classList.remove('is-wait');
@@ -278,7 +279,7 @@ function signalPanel(box, id, name, x, space, uses, snap, baselines = new Map())
   }
   const w = snap.community?.external_weight || 50;
   kids.push(h('div', { class: 'sig-sec' }, h('span', { class: 'kick-sm' }, 'On the takeover line: from forum data to members’ own'),
-    svg(takeoverSvg({ w, max: w * 6, you: { share: x.internal_share, label: name.toUpperCase().slice(0, 16) } }, { compact: true, width: 520 }))));
+    svg(takeoverSvg({ w, max: w * 6, you: { share: x.internal_share, label: name.slice(0, 16) } }, { compact: true, width: 520 }))));
   if (space && (space[0] || space[1])) kids.push(h('p', { class: 'sig-cap' }, `${fmt(space[0])} member${space[0] === 1 ? '' : 's'} · ${fmt(space[1])} post${space[1] === 1 ? '' : 's'} in s/${name}`));
   kids.push(h('p', { class: 'sig-cap' }, `Updated ${ago(snap.checked_at || snap.generated_at)}`));
   box.replaceChildren(...kids, cta);
