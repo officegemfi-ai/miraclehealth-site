@@ -33,3 +33,13 @@ page the score sits on the ring's centre as it does on the page, and the band's 
 line up with the next section's heading at 390, 600, 768 and 880 wide (centred from 901, as before);
 the spine's square stays under the band until the page places it, then runs the spine as before, with
 motion on and off. The pictures answer the live Signal from `tests/fixtures/signal.json`.
+
+## One list of questions
+
+The owner, of the front page's "Straight answers": "REMOVE THIS from the landing page we dont need it 2
+times".
+
+- `front-end-before-after.jpg`: the front page's end at 1440 wide, before and after: it now goes from
+  "What we won't do" to the footer.
+- `page-questions.jpg`: /how-it-works/'s questions at 1440 and 390 wide: the Signal's nine, then the
+  six that were only on the front page ("Is this medical advice?" was on both, and is there once).
