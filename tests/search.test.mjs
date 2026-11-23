@@ -36,13 +36,30 @@ test('every page’s title and description fit a search result, so neither is cu
   assert.deepEqual(long, []);
 });
 
-test('a fact sheet keeps its whole name when it fits, and its share card keeps the full title', () => {
-  // Brackets kept, the site's name dropped: "CDP-choline" is a name people look up
+test('a fact sheet’s title is in the brand’s format, keeps its whole name when it fits, and its share card keeps the full title', () => {
+  // "<Name>, unhyped", then what the sheet covers
+  assert.equal(head('library/bpc157/index.html').title, 'BPC-157, unhyped: evidence, risks, blood tests');
+  // Brackets kept, the brand's word dropped: "CDP-choline" is a name people look up
   assert.equal(head('library/citicoline/index.html').title, 'Citicoline (CDP-choline): evidence, risks, blood tests');
-  // Too long with its brackets: the name without them, the site's name kept
+  // Too long with its brackets: the name without them, the brand's word kept
   const klow = head('library/klow/index.html');
-  assert.equal(klow.title, 'KLOW blend: evidence, risks, blood tests · Unhyped');
-  assert.equal(klow.ogTitle, 'KLOW blend (GHK-Cu, BPC-157, TB-500, KPV): evidence, risks, blood tests · Unhyped');
+  assert.equal(klow.title, 'KLOW blend, unhyped: evidence, risks, blood tests');
+  assert.equal(klow.ogTitle, 'KLOW blend (GHK-Cu, BPC-157, TB-500, KPV), unhyped: evidence, risks, blood tests');
+});
+
+test('every fact sheet shares its own card, and every other page one that exists', () => {
+  const entries = fs.readdirSync(path.join(ROOT, 'library', 'data', 'entries')).filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5));
+  assert.ok(entries.length > 100, `found ${entries.length} fact sheets`);
+  const wrong = [];
+  for (const id of entries) {
+    const s = fs.readFileSync(path.join(ROOT, 'library', id, 'index.html'), 'utf8');
+    if (!s.includes(`/img/og/library-${id}.jpg?v=`)) wrong.push(`library/${id}: not its own card`);
+  }
+  for (const p of pages()) {
+    const m = /<meta property="og:image" content="https:\/\/[^/"]+(\/[^"?]+)/.exec(fs.readFileSync(p, 'utf8'));
+    if (m && !fs.existsSync(path.join(ROOT, m[1]))) wrong.push(`${path.relative(ROOT, p)}: ${m[1]} is missing`);
+  }
+  assert.deepEqual(wrong, []);
 });
 
 test('a description keeps whole sentences, and the share card the full text', () => {

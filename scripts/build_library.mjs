@@ -25,7 +25,7 @@ import { barHtml, PLACES, placeHref, meterHtml, sigSvg, askLink, askAboutCompoun
 import { bodyMapHtml } from '../kit/bodymap.js';
 // The pages around the Library: about, the status tracker, goals, comparisons, the weekly email
 // and the founding reporters (scripts/build_pages.mjs)
-import { buildPages, signupForm, NEWSLETTER_ORIGIN, PAIRS, slugOf } from './build_pages.mjs';
+import { buildPages, signupForm, NEWSLETTER_ORIGIN, PAIRS, slugOf, GOAL_SHORT } from './build_pages.mjs';
 import { buildGraph } from './graph.mjs';
 import { SIGNAL_URL } from '../lib/dom.js';
 // Sig's mark on Ask Sig: the eleven who gather what's known as one ring, and the Interpretation agent
@@ -86,10 +86,6 @@ const STATUS = {
   unclear: 'Status unclear', under_review: 'Under FDA review',
 };
 const HOW_COMMON = { common: 'Common', uncommon: 'Uncommon', rare: 'Rare', theoretical: 'In theory', unknown: 'Not known' };
-const GOAL_SHORT = {
-  weight: 'Weight', muscle: 'Muscle', recovery: 'Recovery', energy: 'Energy', sleep: 'Sleep', cognition: 'Focus & mood',
-  skin: 'Skin & hair', sexual: 'Sexual health', longevity: 'Aging', gut: 'Gut', immune: 'Immune', hormonal: 'Hormones',
-};
 const AXES = uses.goals.map((g) => ({ id: g.id, label: GOAL_SHORT[g.id] || g.label }));
 const date = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 const refs = (ns) => (ns || []).filter((n) => Number.isInteger(n)).map((n) => `<a class="ref" href="#src-${n}" aria-label="Source ${n}">${n}</a>`).join('');
@@ -144,10 +140,13 @@ const V = {
   myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
   home: version('home.js'), homeCss: version('home.css'), howPage: version('how-it-works/how.js'),
   // the tab's icon, by its version, so a browser that kept the old one fetches the new one
-  icon: version('favicon.svg', 'favicon.ico'),
+  icon: version('favicon.svg', 'favicon.ico'), touch: version('apple-touch-icon.png'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
 };
 
+// What a phone shows when the site is kept on its home screen: the icon (the logo's u, drawn by
+// design/pack/wordmark.py) and the name. Ask Sig, an app of its own, keeps its ring there
+const TOUCH = `<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=${V.touch}">\n<meta name="apple-mobile-web-app-title" content="Unhyped">`;
 
 // ---------------------------------------------------------------------------
 // The window every page opens in
@@ -264,8 +263,9 @@ function stampShell(html, file, { current = '', home = false, url = '/' } = {}) 
     .replace(/connect-src 'self'[^;"]*https:\/\/community\.miraclehealth\.us[^;"]*/, `connect-src 'self' ${READS_SIGNAL}`)
     .replace(/<link rel="stylesheet" href="\/?kit\/kit\.css(?:\?v=[0-9a-f]+)?">\n/, '')
     .replace(/<link rel="stylesheet" href="(\/?)styles\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">\n<link rel="stylesheet" href="$1styles.css?v=${V.css}">`)
-    // the tab's icon, by its version
-    .replace(/<link rel="icon" href="\/?favicon\.svg(?:\?v=[0-9a-f]+)?" type="image\/svg\+xml">/, `<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">`);
+    // the tab's icon, by its version, and after it the home screen's
+    .replace(/\n<link rel="apple-touch-icon" href="\/apple-touch-icon\.png(?:\?v=[0-9a-f]+)?">\n<meta name="apple-mobile-web-app-title" content="Unhyped">/, '')
+    .replace(/<link rel="icon" href="\/?favicon\.svg(?:\?v=[0-9a-f]+)?" type="image\/svg\+xml">/, `<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">\n${TOUCH}`);
 }
 
 // What a search result shows: Google cuts a title at about 60 characters and a description at about
@@ -318,7 +318,7 @@ function page({
 <meta property="og:description" content="${e(description)}">
 <meta property="og:image" content="${SITE}${ogImage}${ogVersion(ogImage)}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg?v=${V.icon}" type="image/svg+xml">${/rel="apple-touch-icon"/.test(head) ? '' : `\n${TOUCH}`}
 <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/monaspace-neon-400.woff2" as="font" type="font/woff2" crossorigin>${preload ? `\n${preload}` : ''}${head ? `\n${head}` : ''}
 <link rel="stylesheet" href="/kit/kit.css?v=${V.kitCss}">
@@ -693,9 +693,14 @@ function entryPage(c) {
   </aside>
 </div>
 </div>`;
+  // Its title says it in the brand's format, "<Name>, unhyped", then what the sheet covers; a name too
+  // long for that keeps its brackets before it keeps the brand's word (design/BRAND.md, Voice: the format). Its
+  // share card is its own once scripts/og_images.mjs has drawn it: the same words beside its print
   const what = ': evidence, risks, blood tests';
-  return page({ title: `${c.name}${what} · Unhyped`, titles: [`${c.name}${what}`, `${bare(c.name)}${what} · Unhyped`, `${bare(c.name)}${what}`, `${c.name}: evidence and risks`, `${bare(c.name)}: evidence and risks`, bare(c.name)],
-    description: desc.slice(0, 300), url: `/library/${c.id}/`,
+  const un = (name) => `${name}, unhyped`;
+  const card = `/img/og/library-${c.id}.jpg`;
+  return page({ title: `${un(c.name)}${what}`, titles: [`${c.name}${what}`, `${un(bare(c.name))}${what}`, `${bare(c.name)}${what}`, `${c.name}: evidence and risks`, `${bare(c.name)}: evidence and risks`, bare(c.name)],
+    description: desc.slice(0, 300), url: `/library/${c.id}/`, ogImage: fs.existsSync(path.join(ROOT, card)) ? card : '/og.jpg',
     side: tree, body });
 }
 

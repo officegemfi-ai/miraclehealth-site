@@ -40,6 +40,11 @@ export const PAIRS = [
   ['modafinil', 'armodafinil'], ['finasteride', 'dutasteride'], ['sildenafil', 'tadalafil'], ['semax', 'selank'],
 ];
 export const slugOf = (n) => n.toLowerCase().replace(/\+/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// A goal's short name: on a row of goals, on an axis, and on its share card ("Sleep, unhyped.")
+export const GOAL_SHORT = {
+  weight: 'Weight', muscle: 'Muscle', recovery: 'Recovery', energy: 'Energy', sleep: 'Sleep', cognition: 'Focus & mood',
+  skin: 'Skin & hair', sexual: 'Sexual health', longevity: 'Aging', gut: 'Gut', immune: 'Immune', hormonal: 'Hormones',
+};
 
 export function buildPages(ctx) {
   const {

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// The brand pack: one folder anyone can be handed, with the logo, the mark, the colours, the type, the
+// The brand pack: one folder anyone can be handed, with the logo, the icon, the colours, the type, the
 // icons, the Community Signal's pieces and the marketing formats. Every file is made from what the
 // site itself runs on (design/tokens.json, lib/ring.js, lib/glyphs.js, the fonts, the front page's own
 // step drawings, the share images, the Signal saved in tests/fixtures), so the pack matches the pages
@@ -52,13 +52,16 @@ const steps = [...read('index.html').matchAll(/<svg class="st-ico"[\s\S]*?<\/svg
 if (steps.length !== 3) throw new Error('the front page no longer has three step drawings');
 
 // ---------------------------------------------------------------------------
-// 1 Logo: the wordmark, Sig's ring, the tab and app icons, Sig in the community
+// 1 Logo: the wordmark; the icon (its own u) for a tab, an app and a profile; Sig's ring, which is Sig's
 // ---------------------------------------------------------------------------
 const XMLNS = 'xmlns="http://www.w3.org/2000/svg"';
 put('1 Logo/logo.svg', LOGO);
 const mark = ringSvg(512).replace('<svg class="ring" ', `<svg ${XMLNS} `).replace(' aria-hidden="true" focusable="false"', ' role="img" aria-label="Sig’s ring"')
   .replace(/ class="[^"]*"/g, '').replace(/ data-a="[^"]*"/g, '').replace(/ color="[^"]*"/g, '');
 put('1 Logo/mark.svg', mark);
+copy('design/pack/icon.svg', '1 Logo/icon.svg');
+copy('design/pack/icon-black.svg', '1 Logo/icon-black.svg');
+copy('design/pack/icon-white.svg', '1 Logo/icon-white.svg');
 copy('favicon.svg', '1 Logo/favicon.svg');
 copy('favicon.ico', '1 Logo/favicon.ico');
 
@@ -151,18 +154,36 @@ for (const [mood, file] of Object.entries(SIG)) {
 }
 
 // ---------------------------------------------------------------------------
-// 6 Marketing: the words, and three of the site's own share images
+// 6 Marketing: the words, and four of the site's own share images
 // ---------------------------------------------------------------------------
 copy('og.jpg', '6 Marketing/share/share-home.jpg');
+copy(`img/og/library-${board[0].id}.jpg`, '6 Marketing/share/share-fact-sheet.jpg');
 copy('img/og/community.jpg', '6 Marketing/share/share-community.jpg');
 copy('img/og/ask-sig.jpg', '6 Marketing/share/share-ask-sig.jpg');
+// A profile's bio at the three lengths the networks allow, each checked against its length
+const BIOS = [
+  [80, 'No miracles. Just what happened. Peptides, without the sales pitch. 18+'],
+  [150, 'No miracles. Just what happened. What the studies show and how it went for people who took it. Nothing for sale. Not medical advice. 18+'],
+  [160, 'No miracles. Just what happened. Peptides, hormones and supplements: what the studies show and how it went for people who took them. Not medical advice. 18+'],
+].map(([max, text]) => { if (text.length > max) throw new Error(`the ${max}-character bio is ${text.length} long`); return text; });
 put('6 Marketing/Words.txt', `UNHYPED: THE WORDS
 
 Plain, calm and exact. Sentence case in text; headlines in capitals. No emoji, no exclamation marks.
 
-Lines to use, as written:
-  Peptides, without the sales pitch.
+The line, everywhere, as written:
   No miracles. Just what happened.
+
+What Unhyped is, beside it or under the logo:
+  Peptides, without the sales pitch.
+
+A compound or a goal, in the brand's format (its name, then the brand's word in lower case, a full stop):
+  BPC-157, unhyped.
+  Sleep, unhyped.
+
+A profile's bio (80, 150 and 160 characters or fewer):
+  ${BIOS.join('\n  ')}
+
+Other lines to use, as written:
   Took something? Say how it went.
   Your report moves the number for the next person, even if it did nothing.
   Three steps, one honest number.
@@ -186,8 +207,10 @@ put('README.txt', `UNHYPED BRAND PACK
 
 Start with "Brand guide.pdf": two pages, everything that matters.
 
-1 Logo       The logo is white and sits on black, nothing else. The mark is Sig's ring;
-             use it for a profile picture, an app icon or a browser tab.
+1 Logo       The logo is white and sits on black, nothing else. The icon is the logo's own u, white on
+             electric blue: use it for a profile picture, an app icon or a browser tab (app-icon-1024.png
+             is ready to upload; icon-black and icon-white are for where blue can't be printed).
+             The mark is Sig's ring: Sig's own, for Ask Sig, never for Unhyped.
 2 Colour     The colours as CSS and JSON, and the three grounds as pictures.
 3 Type       Mona Sans for every word, Monaspace Neon for numbers. These are the web files; for Canva, Figma,
              Word or Keynote install the full families, free, from github.com/github/mona-sans and

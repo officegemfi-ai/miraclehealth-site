@@ -37,7 +37,13 @@ The owner's rule (November 18, 2026), after six screenshots of the site: these s
 
 Plain, calm and exact, like a careful friend who has read the studies. Short sentences. Talk to "you" and say what happens. Write "we" rarely and never in place of the agents: Sig and its agents speak for themselves. Use sentence case everywhere. A kicker is one short phrase over a heading, in the body face (`kicker`: "How it works"). Labels and a table's column heads are sentence case in the body face too (`label`).
 
+**The line.** Unhyped has one: "No miracles. Just what happened." It is the front page's headline, the share card every page falls back to, the first post and the opening of a profile's bio. Say it as written, both sentences, never one without the other; in a headline its second sentence takes the punchline's gradient. What Unhyped is goes beside it in its own words, "Peptides, without the sales pitch.": under the logo in a foot, in the front page's title, as the kicker over the line. A page's own headline ("One app. Twelve agents. Every answer, checked.", "Three steps, one honest number.") is that page's, not a second line (decision, November 22).
+
+**The format.** A compound or a goal is said as its name, then the brand's word: "BPC-157, unhyped.", "Sleep, unhyped." The name comes first, as the Library writes it; "unhyped" is in lower case, as the logo has it, and ends in a full stop. In a headline it is in capitals like any headline and "unhyped." takes the gradient. It is for a fact sheet's title and share card, a goal's share card and a post, never a page's own h1 (a fact sheet's h1 is the compound's name), and nothing is claimed after it: what follows is what the sheet covers ("BPC-157, unhyped: evidence, risks, blood tests").
+
 **Real copy to learn from:**
+- "No miracles. Just what happened."
+- "BPC-157, unhyped."
 - "One app. Twelve agents. Every answer, checked."
 - "Took something? Say how it went."
 - "Your report moves the number for the next person, even if it did nothing."
@@ -149,7 +155,7 @@ No window box, tabs, path line or status bar: the frame is a plain website's (de
 ## Iconography
 
 - **The twelve's glyphs** (`assets/Glyphs/`, the AgentGlyph component): a 24-unit grid, one 1.6 stroke, round caps and joins, no fills, each in its agent's colour. Each one means its agent and nothing else.
-- **Sig's ring** (`assets/Marks/`, the Ring component) is Ask Sig, every title bar and the browser tab: `favicon.svg`, with `favicon.ico` for browsers that can't show an SVG icon, both drawn by `design/favicon/make_favicon.py` from `lib/ring.js` (the owner's request, November 17). It is also the mark on the community's sign-in page, beside "The Unhyped community" (`ring()` in the community's `web/ui/art.js`, drawn the same way; the owner's request, November 18).
+- **Sig's ring** (`assets/Marks/`, the Ring component) is Sig's own mark: Ask Sig's button in the top bar, its page, its app's icon on a phone (`sig/icon-*.png`) and the loading spinner. It is also on the community's welcome page, above "The Unhyped community", where Sig is the one who reads a report in (`ring()` in the community's `web/ui/art.js`, drawn the same way; the owner's request, November 18). It was the browser tab's icon too, from November 17 to November 22, 2026; the tab's icon is now Unhyped's own (*Logo*, below). The ring is never Unhyped's mark: not a profile picture, not an app icon for the site.
 - **Sig in the community** is drawn in the same hand as the front page's three step drawings (`sigSvg` in `kit/kit.js`; the owner's request, November 20): a fine white ring on a 200 grid, the mood inside it in Signal blue, and around the mood its echoes fading out (half strength, then a fifth), in lines that stay 1.2px at any size. Nothing is filled. It is the community's own character, with moods: notifications, stickers, empty states and the Sig button.
   - **The moods:** a dot at rest, three dots while it thinks, a spark to cheer, a heart for support, a question mark when curious, an eye when watching, a moon while it rests. When something is wrong it is a warning sign in amber, the one colour it borrows; offline it is grey.
   - **Small sizes draw less:** the whole drawing from 56px up, one echo from 36px, and under that the ring and the mood alone, drawn larger. Never thicken its lines or fill its shapes to make it louder.
@@ -166,6 +172,13 @@ The logo is the word **unhyped**, lower case, in the site's own face: Mona Sans 
 - The one exception is the foot's big word (`img/wordmark.svg`, made by `design/pack/wordmark.py`): the logo's word drawn as a stack of hairline outlines in violet into blue, dim, lighting up under the pointer, standing on the page's bottom edge with its lowest strokes cut off. The owner asked for it (November 17). Use it there only, and never as the logo.
 - In the community it sits beside a "Community" tag: the word in the label style, in a `line-2` frame.
 
+**The icon** is the logo's own u, alone, for where the word can't fit: a browser's tab, a phone's home screen, a profile picture (the owner, November 22, 2026, of the brand ideas: "I like it, now lets expand on it"). It is white on the main action's electric blue (`accent`, lit from the top by `accent-hi`, as that button is), so the one colour a page acts in is the one the brand is known by. `design/pack/wordmark.py` draws it from the same outline as the word, so the two can't drift apart:
+- `favicon.svg` and `favicon.ico` are the tab's, on every page of the site and in the community; the u fills more of the square there, so it still reads at 16 pixels.
+- `apple-touch-icon.png` is a phone's home screen's (Ask Sig, an app of its own, keeps its ring there); the brand pack's `icon.svg` and `app-icon-*.png` are for a profile picture and anything else.
+- It is a square with nothing round it: a phone rounds its corners and a profile picture cuts a circle from it, and the u keeps clear of both.
+- In black (`icon-black.svg`) or white (`icon-white.svg`) only where blue can't be printed, or the ground is blue already.
+- Never beside the logo (the word has its u already), never redrawn in another face or straightened, never with the ring.
+
 ## The brand pack
 
 `design/pack/build.mjs` makes one folder to hand to anyone who makes something for Unhyped: the logo and Sig's ring, the colours, the type, the icons, the Community Signal's pieces, the marketing formats and a two-page guide. Every file is made from what the site runs on (`tokens.json`, `lib/ring.js`, `lib/glyphs.js`, the fonts, the front page's step drawings, the share images), so it matches the pages; make it again when they change (decision, November 20).
@@ -173,7 +186,8 @@ The logo is the word **unhyped**, lower case, in the site's own face: Mona Sans 
 **Marketing keeps one layout,** on a share image, a post, a story or a header: the logo and the address along the top, then one kicker, the headline and one line under it, from the left, on the page's black ground. A headline's second sentence takes the punchline's gradient. Nothing else: no foot, no strip of rules, no counters, nothing in the code face but numbers. `design/pack/look.mjs` holds that look for `scripts/og_images.mjs` (every page's share image) and the pack, so they can't drift apart.
 
 - **A statement** (Join, the weekly email) may sit on the violet band, under the logo on black; its one action is black there.
-- **A piece that shows a compound's Signal** takes its number from the live Signal on the day it goes out and carries "What people report. Not medical advice."
+- **A fact sheet's share card** is that layout with the format as its headline ("BPC-157, unhyped."), the sheet's kind as its kicker, its evidence on the meter and its print at the right, where a card's drawing goes. A goal's says it the same way ("Sleep, unhyped."). `scripts/og_images.mjs` draws one for every fact sheet, and the library build gives the sheet its own once it's there. It never carries a Community Signal: the score is checked every minute, and a picture saved in the site can't follow it.
+- **A piece that shows a compound's Signal** takes its number from the live Signal on the day it goes out (the pack's `post-unhyped.png` is the format with its score) and carries "What people report. Not medical advice."
 - **The words** are the site's own (*Voice*, above), as written. Never a dose, a seller, a brand, a lab, a price, a diagnosis or a promise, in a post as on a page.
 
 ## The Sig system

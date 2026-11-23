@@ -45,3 +45,9 @@ export const logo = (height) => {
   const h = Number((height * 0.55).toFixed(2));
   return LOGO.replace(/ width="[^"]*" height="[^"]*"/, ` class="logo" width="${Number((h * LW / LH).toFixed(2))}" height="${h}"`);
 };
+// The icon: the logo's own u, white on the main action's blue, for where the word can't fit (a tab, a
+// phone's home screen, a profile picture). design/pack/wordmark.py draws it from the logo's outline.
+// Each one drawn into a page gets its gradient under a name of its own
+export const ICON = fs.readFileSync(path.join(ROOT, 'design', 'pack', 'icon.svg'), 'utf8').trim();
+let icons = 0;
+export const icon = (size) => { const id = `ub${icons += 1}`; return ICON.replace(/ width="[^"]*" height="[^"]*"/, ` width="${size}" height="${size}"`).replace('id="b"', `id="${id}"`).replace('url(#b)', `url(#${id})`); };
