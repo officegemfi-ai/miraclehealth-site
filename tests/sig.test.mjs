@@ -51,7 +51,7 @@ test('the navigation panel keeps every link', () => {
   assert.deepEqual(links(between(side, '<nav class="sg-site', '</nav>')),
     ['The Signal /#signal', 'Library /library/', 'Ask Sig /sig/', 'Community https://community.miraclehealth.us/', 'My stack /my/']);
   assert.deepEqual(links(between(side, '<nav class="os-more sg-more"', '</nav>')),
-    ['How it works /#how', 'How the numbers are made /method/', 'FDA status tracker /status/', 'Compare /compare/', 'By goal /goals/', 'The weekly email /weekly/', 'Founding reporters /founders/', 'The story /story/', 'About /about/']);
+    ['How it works /how-it-works/', 'How the numbers are made /method/', 'FDA status tracker /status/', 'Compare /compare/', 'By goal /goals/', 'The weekly email /weekly/', 'Founding reporters /founders/', 'The story /story/', 'About /about/']);
   assert.match(side, /id="sg-new"/, 'a new chat');
   assert.match(side, /id="sg-list"/, 'the chats kept on this device');
 });

@@ -121,7 +121,7 @@ const version = (...files) => createHash('sha256').update(files.map((f) => fs.re
 // old copy of any of them (or of one a script loads later, with import()). The shared scripts
 // import nothing themselves, so their versions come first.
 const SHARED = ['kit/kit.js', 'kit/bodymap.js', 'library/signalviz.js', 'lib/dom.js', 'lib/pack.js', 'lib/graph.js', 'lib/ring.js', 'lib/glyphs.js', 'lib/print.js', 'lib/cmdk.js', 'lib/how.js', 'lib/sighero.js', 'lib/sigfield.js', 'lib/ring3d.js', 'ai/who.js', 'ai/markers.js'].map((f) => [f, version(f)]);
-const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js'];
+const IMPORTERS = ['ai/ai.js', 'ai/packet.js', 'ai/plan.js', 'library/library.js', 'my/my.js', 'home.js', 'pages/pages.js', 'lib/os.js', 'how-it-works/how.js'];
 for (const f of IMPORTERS) {
   const file = path.join(ROOT, f);
   if (!fs.existsSync(file)) continue;
@@ -142,7 +142,7 @@ const V = {
   plCss: version('ai/plan.css'), plJs: version('ai/plan.js'),
   tmCss: version('ai/term.css'), mdCss: version('ai/mind.css'),
   myCss: version('my/my.css'), myJs: version('my/my.js'), os: version('lib/os.js'),
-  home: version('home.js'), homeCss: version('home.css'),
+  home: version('home.js'), homeCss: version('home.css'), howPage: version('how-it-works/how.js'),
   // the tab's icon, by its version, so a browser that kept the old one fetches the new one
   icon: version('favicon.svg', 'favicon.ico'),
   pgCss: version('pages/pages.css'), pgJs: version('pages/pages.js', 'library/signalviz.js'),
@@ -169,7 +169,7 @@ const PLACE_ICON = { library: () => glyphSvg('evidence', { size: 16 }), ai: () =
 // The Signal leads the places (page 15 of the design canvas): the community's live score, its spectrum on
 // the front page; the front page writes in how many Signals are live
 const SIGNAL_PLACE = () => `<a href="/#signal"><span class="op-g" aria-hidden="true">${ICO.signal}</span><span class="op-n">The Signal</span></a>`;
-const MORE = [['/#how', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
+const MORE = [['/how-it-works/', 'How it works'], ['/method/', 'How the numbers are made'], ['/status/', 'FDA status tracker'],
   ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/weekly/', 'The weekly email'], ['/founders/', 'Founding reporters'], ['/story/', 'The story'], ['/about/', 'About']];
 function osSide(current, ctx = '', url = '') {
   return `<aside class="os-side" id="os-side" aria-label="Unhyped">
@@ -187,7 +187,7 @@ function osSide(current, ctx = '', url = '') {
 // The top bar names the four places most people go, so a laptop shows where things are without the
 // menu (November 17): the Signal, the Library, the community and how it works. The side panel stays,
 // with everything; on a phone and a narrow window the bar keeps only the menu, search, Ask Sig and Join
-const TOP_LINKS = [['/#signal', 'The Signal', ''], ['/library/', 'Library', 'library'], [`${COMMUNITY}/`, 'Community', 'community'], ['/#how', 'How it works', '']];
+const TOP_LINKS = [['/#signal', 'The Signal', ''], ['/library/', 'Library', 'library'], [`${COMMUNITY}/`, 'Community', 'community'], ['/how-it-works/', 'How it works', 'how']];
 const topLinks = (current) => `<nav class="os-links" aria-label="Sections">${TOP_LINKS.map(([href, label, k]) => `<a href="${href}"${k && k === current ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>`;
 function osOpen({ current = '', url = '/', side = '' }) {
   return `<div class="os" id="os">
@@ -211,7 +211,7 @@ ${osSide(current, side, url)}
 const FOOT_COLS = [
   ['Explore', [[placeHref('library', { site: '' }), 'Library'], ['/#signal', 'The Signal'], [placeHref('ai', { site: '' }), 'Ask Sig'], ['/compare/', 'Compare'], ['/goals/', 'By goal'], ['/status/', 'FDA status tracker']]],
   ['Community', [[placeHref('community', { site: '' }), 'Community'], [placeHref('my', { site: '' }), 'My stack'], ['/founders/', 'Founding reporters'], ['/weekly/', 'The weekly email'], ['/#rules', 'House rules']]],
-  ['How it works', [['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
+  ['How it works', [['/how-it-works/', 'How the Signal works'], ['/method/', 'How the numbers are made'], ['/story/', 'The story'], ['/about/', 'About']]],
   ['Contact', [['mailto:hello@miraclehealth.us', 'hello@miraclehealth.us'], ['/privacy', 'Privacy'], ['/terms', 'Terms']]],
 ];
 function osClose({ url = '/' }) {
@@ -1420,7 +1420,7 @@ const more = buildPages({
 });
 for (const [file, html] of more.files) out.set(file, html);
 const urls = ['/', '/sig/', '/library/', ...catalog.map((c) => `/library/${c.id}/`), ...GUIDES.map((g) => `/library/${g.id}/`), '/method/',
-  ...more.urls, '/story/', '/privacy', '/terms'];
+  ...more.urls, '/story/', '/how-it-works/', '/privacy', '/terms'];
 out.set(path.join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${SITE}${u}</loc></url>`).join('\n')}
@@ -1476,6 +1476,18 @@ front = front.replace(/<svg class="sig[ a-z]*"[\s\S]*?<\/svg>/g, (m) => {
 });
 if (sigN !== SIGS.length) throw new Error(`index.html has ${sigN} Sigs; the build draws ${SIGS.length}`);
 out.set(frontFile, stampShell(front, 'index.html', { home: true, url: '/' }));
+// How it works (hand-written, like the front page, whose How it works it was until November 22): the
+// shell, its script and the shared scripts it imports by their versions, the front page's stylesheet
+// (the cards and the questions are drawn the same way there) and its share image
+{
+  const file = path.join(ROOT, 'how-it-works', 'index.html');
+  let how = fs.readFileSync(file, 'utf8');
+  how = how.replace(/<script type="module" src="\/how-it-works\/how\.js(?:\?v=[0-9a-f]+)?"><\/script>/, `<script type="module" src="/how-it-works/how.js?v=${V.howPage}"></script>`);
+  for (const [f, v] of SHARED) how = how.replace(new RegExp(`(<link rel="modulepreload" href="/${f.replace(/\./g, '\\.')})(?:\\?v=[0-9a-f]+)?"`, 'g'), `$1?v=${v}"`);
+  how = how.replace(/<link rel="stylesheet" href="\/home\.css(?:\?v=[0-9a-f]+)?">/, `<link rel="stylesheet" href="/home.css?v=${V.homeCss}">`);
+  how = how.replace(/(<meta property="og:image" content="[^"]*\/img\/og\/how\.jpg)(?:\?v=[0-9a-z]+)?"/, `$1${ogVersion('/img/og/how.jpg')}"`);
+  out.set(file, stampShell(how, 'how-it-works/index.html', { current: 'how', url: '/how-it-works/' }));
+}
 // The other hand-written pages: the same top, menu, footer and stylesheets
 for (const f of ['privacy.html', 'terms.html', '404.html']) {
   const file = path.join(ROOT, f);

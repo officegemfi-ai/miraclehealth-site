@@ -43,6 +43,7 @@ const cards = [
   { slug: 'story', name: 'The story', tab: 'story.md', kick: 'The story', title: 'One app. Twelve agents.<br><em>Every answer, checked.</em>',
     sub: 'The Library, Ask Sig, the community and My stack, as one app.', art: ringSvg(260) },
   { slug: 'ask-sig', name: 'Ask Sig', tab: 'chats/new', kick: 'Ask Sig', title: 'The studies and the whole community, <em>in one answer.</em>', sub: 'Sig is Unhyped’s AI. It says which is which, and never gives doses or names sellers.', art: ringSvg(260) },
+  { slug: 'how', name: 'How it works', tab: 'how-it-works', kick: 'How it works', title: 'The system behind<br><em>one honest number.</em>', sub: 'Six steps, from one person’s report to the number everyone reads.' },
   { slug: 'about', name: 'About', tab: 'about.md', kick: 'About', title: 'No miracles.<br><em>Just what happened.</em>', sub: 'Who runs Unhyped, how it’s paid for, and how every fact sheet is checked.' },
   { slug: 'status', name: 'FDA status tracker', tab: 'status.log', kick: 'FDA status tracker', title: 'Where each compound stands with the FDA', sub: `${entries.size} peptides, hormones, supplements and medications, each checked against FDA’s own documents.` },
   { slug: 'goals', name: 'By goal', tab: 'goals', kick: 'By goal', title: 'What people take, and what the studies show', sub: 'Weight, muscle, recovery, sleep, focus, skin, aging and more.' },

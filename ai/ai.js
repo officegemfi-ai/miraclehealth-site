@@ -971,7 +971,7 @@ function voicesNode(card) {
   if (note) el.append(h('p', { class: 'short-note' }, svg(ICON.info), h('span', { text: note })));
   for (const it of items) el.append(voiceItem(it, card.use));
   el.append(h('p', { class: 'vx-foot' }, 'The community’s numbers are totals from members’ first-hand reports and public forum data: what people report, not proof. No posts or names. ',
-    h('a', { href: '/#how', text: 'How the Signal works' })));
+    h('a', { href: '/how-it-works/', text: 'How the Signal works' })));
   return el;
 }
 function voiceItem(it, use) {
