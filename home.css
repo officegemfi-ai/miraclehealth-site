@@ -702,7 +702,7 @@
   .cr.cr-play .cr-arc,.cr.cr-play .cr-core .cr-name::before{animation:none}
 }
 
-/* how:system: "The system behind one honest number", the homepage's How it works (page 18 of the design canvas).
+/* how:system: "The system behind one honest number", How it works (page 18 of the design canvas), on its own page since November 22.
    A spine you scroll down, six numbered cards that draw themselves in, and the Signal written in what people report. */
 .hs{position:relative;margin:40px 0 0;padding:0 0 40px;container-type:inline-size}
 .hs svg{display:block;overflow:visible}
@@ -778,6 +778,14 @@
   .hs-close{position:relative;top:auto;padding:40px 0 0;text-align:left}
   .hs-ctas{justify-content:flex-start}
 }
+/* How it works' own page (/how-it-works/, since November 22): the violet band right under the bar; on the
+   front page, the band alone, with the way in to that page under its words */
+.hs.hs-page{margin-top:0}
+.hs.hs-way{padding-bottom:0}
+/* with no spine beside it, the band's words keep the page's own left edge (.fp-wrap's) on a phone and a tablet */
+@container (max-width:900px){.hs-way .hs-intro.violet{padding-left:var(--page-pad);padding-right:var(--page-pad)}}
+@container fp (max-width:860px){.hs-way .hs-intro.violet{padding-left:24px;padding-right:24px}}
+@container fp (max-width:560px){.hs-way .hs-intro.violet{padding-left:16px;padding-right:16px}}
 /* /how:system */
 
 /* phone floors: running copy 15px, notes 14px */
