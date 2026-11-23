@@ -67,7 +67,7 @@
        FAQs"; and then: "put this also on the how it works page" of Three steps). It opens with the front
        page's Three steps, its headline this page's h1; then the system behind one honest number, as it
        was on the front page (page 18 of the design canvas; lib/how.js runs it, from how.js here); then
-       questions about the Signal, every answer from How the numbers are made (/method/). Three steps and
+       questions about the Signal (answered from How the numbers are made, /method/) and the site. Three steps and
        the finale are the front page's own, copied in between their part: markers by the library build
        (scripts/build_library.mjs), so the two pages never differ: change them in index.html -->
   <!-- part:steps -->
@@ -122,12 +122,13 @@
 </section>
   <!-- /how:system -->
 
-  <!-- questions: how the Signal works, in short answers -->
+  <!-- questions, in short answers: how the Signal works, then the site's own, which were on the front page
+       until November 22 (the owner: "REMOVE THIS from the landing page we dont need it 2 times") -->
   <section class="fp-sec fp-faq" id="faq" aria-labelledby="faq-h">
     <div class="fp-wrap fp-faq-in">
       <header class="fp-head">
         <p class="kick">Questions</p>
-        <h2 id="faq-h">Straight answers about the Signal.</h2>
+        <h2 id="faq-h">Straight answers.</h2>
         <p class="fp-sub">Every weight and rule is on <a href="/method/">How the numbers are made</a>. Something else? Write to <a href="mailto:hello@miraclehealth.us">hello@miraclehealth.us</a></p>
       </header>
       <div class="fp-faq-list">
@@ -168,8 +169,32 @@
           <p>It’s checked every minute and kept as a new version whenever it changes. The website, Ask Sig and the Library all read the same version.</p>
         </details>
         <details>
+          <summary>Where do the numbers come from?</summary>
+          <p>The studies come from FDA documents, NIH fact sheets and published trials, and each claim links to its source. The Community Signal is read from public forums for now, and shifts to members’ own reports as they add up. <a href="/method/">How the numbers are made</a> walks through every step.</p>
+        </details>
+        <details>
+          <summary>Who are Sig’s twelve agents?</summary>
+          <p>Sig is the AI behind Ask Sig. Its agents each do one job: the Safety agent reads every question first and checks every answer last; the Planner turns a goal into what studies measure; the Recommender reads the fact sheets and writes the answer; the Evidence librarian grades each study; the Relatives and Mechanism agents say what close relatives and biology suggest, marked as such; the Combination agent and the Synergy auditor look at what’s taken together; the Markers agent names blood tests worth asking about; the Stack builder lays out options to discuss; the community brings in what people report. The Interpretation agent reasons it all through, for efficacy alone, last.</p>
+        </details>
+        <details>
           <summary>Is this medical advice?</summary>
           <p>No. It’s published research and people’s experiences, always labeled as which is which. Talk to your doctor before you start, stop or change anything.</p>
+        </details>
+        <details>
+          <summary>Why won’t you tell me a dose?</summary>
+          <p>Because the right dose depends on you, your health and what else you take. For many of these there is no tested dose in people at all. That’s a conversation for your doctor, and Sig can help you write the questions to bring.</p>
+        </details>
+        <details>
+          <summary>Do you sell anything?</summary>
+          <p>No. There is nothing to buy here: no shop, no ads, no affiliate links. Posts that name sellers or say where to buy are taken down.</p>
+        </details>
+        <details>
+          <summary>What happens to what I share?</summary>
+          <p>You sign in to the community with your phone number, and nobody else ever sees it. Only signed-in members can read posts, unless you choose to make one of your reports public. You can delete your account and everything you wrote at any time. Sig’s chat needs no account, and we don’t store what you write there. We don’t sell your information, show ads or use tracking cookies. <a href="/privacy">Read the privacy notice</a>.</p>
+        </details>
+        <details>
+          <summary>Is it free?</summary>
+          <p>Yes. Reading the Library, asking Sig and joining the community are all free. The community is for adults 18 and over.</p>
         </details>
       </div>
     </div>
