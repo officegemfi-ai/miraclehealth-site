@@ -550,5 +550,5 @@ Left for the owner, with the reason:
 
 ## 2026-11-23 · The community's ground is cosy
 
-The owner: "can the community page background be a cosy texture?" The community's window drops the faint 64px grid for soft felt on black (`web/img/ground.jpg` in the community, a seamless 512px grayscale tile of 25 KB drawn by its `scripts/draw_ground.py`), under a softer ultramarine light that warms into violet. It runs under the docked side panel and the foot, so the page reads as one surface; cards and panels keep their solid grounds. Grain and linen were tried beside it: grain is barely felt, and linen's threads read as a grid again. The website keeps its grid: the felt is the community's own warmth, the place where members talk.
+The owner: "can the community page background be a cosy texture?" Three textures were tried (grain, felt and linen) and the owner picked grain. The community's window drops the faint 64px grid for fine grain on black (`web/img/ground.png` in the community, a seamless 256px grayscale tile of one-pixel grain, 39 KB, drawn by its `scripts/draw_ground.py`), under a softer ultramarine light that warms into violet. It runs under the docked side panel and the foot, so the page reads as one surface; cards and panels keep their solid grounds. The website keeps its grid: the grain is the community's own warmth, the place where members talk.
 
