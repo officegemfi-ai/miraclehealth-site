@@ -547,3 +547,8 @@ Left for the owner, with the reason:
 - **The community's letter tiles** (CL-07 asks to delete them, BC-12 to recolour them): two different answers to a visible part of every community screen.
 - **Repeated counts in content** (CL-05, CL-15, CL-19): what a fact sheet, the community's Signal page and a space say more than once is copy.
 - **The community rules' examples quote amounts** ("250 mcg a day"): copy, and the rules are the moderators'.
+
+## 2026-11-23 · The community's ground is cosy
+
+The owner: "can the community page background be a cosy texture?" The community's window drops the faint 64px grid for soft felt on black (`web/img/ground.jpg` in the community, a seamless 512px grayscale tile of 25 KB drawn by its `scripts/draw_ground.py`), under a softer ultramarine light that warms into violet. It runs under the docked side panel and the foot, so the page reads as one surface; cards and panels keep their solid grounds. Grain and linen were tried beside it: grain is barely felt, and linen's threads read as a grid again. The website keeps its grid: the felt is the community's own warmth, the place where members talk.
+
