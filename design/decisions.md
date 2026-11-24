@@ -547,3 +547,8 @@ Left for the owner, with the reason:
 - **The community's letter tiles** (CL-07 asks to delete them, BC-12 to recolour them): two different answers to a visible part of every community screen.
 - **Repeated counts in content** (CL-05, CL-15, CL-19): what a fact sheet, the community's Signal page and a space say more than once is copy.
 - **The community rules' examples quote amounts** ("250 mcg a day"): copy, and the rules are the moderators'.
+
+## 2026-11-23 · The community's ground is cosy
+
+The owner: "can the community page background be a cosy texture?" Grain, felt, linen and Alcantara were tried on the community, and the owner chose the suede the Noise card is made of (2026-11-19). The community's window, its docked side panel and its foot lie on it: `img/suede.svg` (copied into the community as `web/img/suede.svg` and made smoother at the owner's pick: a 0.5px blur and a gentler grain) laid on in soft light over `suede` (#28282D), lit softly from the top left, as the card is. Cards and panels keep their solid dark grounds and stand on it. On the suede the book's `muted` (#7F8796) falls to about 4:1, so the community's quiet grey is #969CA9, which keeps 4.5:1. The website keeps its black ground and grid: the suede is the community's own warmth, the place where members talk.
+
