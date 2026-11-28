@@ -66,12 +66,14 @@
 
   <!-- How it works, a page of its own since November 22 (the owner: "remove the scrolling animation
        under the purple banner and make the how it works page a seperate page with the animation and
-       FAQs"; and then: "put this also on the how it works page" of Three steps). It opens with the front
-       page's Three steps, its headline this page's h1; then the system behind one honest number, as it
-       was on the front page (page 18 of the design canvas; lib/how.js runs it, from how.js here); then
-       questions about the Signal (answered from How the numbers are made, /method/) and the site. Three steps and
-       the finale are the front page's own, copied in between their part: markers by the library build
-       (scripts/build_library.mjs), so the two pages never differ: change them in index.html -->
+       FAQs"; and then: "put this also on the how it works page" of Three steps, and on November 27 "put
+       this on the how it works page" of the house rules). It opens with the front page's Three steps, its
+       headline this page's h1; then the system behind one honest number, as it was on the front page
+       (page 18 of the design canvas; lib/how.js runs it, from how.js here); then the house rules, What we
+       won't do; then questions about the Signal (answered from How the numbers are made, /method/) and the
+       site. Three steps, the finale and the house rules are the front page's own, copied in between their
+       part: markers by the library build (scripts/build_library.mjs), so the two pages never differ:
+       change them in index.html -->
   <!-- part:steps -->
   <section class="fp-sec st" id="steps" aria-labelledby="st-h">
     <div class="fp-wrap">
@@ -123,6 +125,27 @@
   <!-- /part:finale -->
 </section>
   <!-- /how:system -->
+
+  <!-- the house rules, before the questions that answer them at length (the front page’s own, copied in) -->
+  <!-- part:rules -->
+  <section class="fp-sec fp-rules" id="rules" aria-labelledby="rules-h">
+    <div class="fp-wrap fp-rules-in">
+      <header class="fp-head">
+        <p class="kick">House rules</p>
+        <h2 id="rules-h">What we won’t do.</h2>
+      </header>
+      <div class="term fp-file">
+        <ol class="fp-rule-list">
+          <li><h3>Sell you anything</h3><p>No shop. No ads. No affiliate links. Nobody here tells you where to buy, and posts that try are taken down.</p></li>
+          <li><h3>Tell you a dose</h3><p>Not for anything, ever. The right amount depends on you and what else you take. That’s a conversation for your doctor.</p></li>
+          <li><h3>Hide the sources</h3><p>Every claim links to where it came from. <a href="/method/">How each score is worked out</a> is public too.</p></li>
+          <li><h3>Let the numbers be gamed</h3><p>Copied posts, repeats and sudden floods of reports are held out. Points are for taking part, never for what you say happened.</p></li>
+        </ol>
+        <p class="fp-members"><b>In the community, members agree to:</b> no talk of where to buy or sell; say what you did, not what others should do; be honest, even when it did nothing; adults 18 and over, one account each.</p>
+      </div>
+    </div>
+  </section>
+  <!-- /part:rules -->
 
   <!-- questions, in short answers: how the Signal works, then the site's own, which were on the front page
        until November 22 (the owner: "REMOVE THIS from the landing page we dont need it 2 times") -->
