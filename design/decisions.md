@@ -552,3 +552,10 @@ Left for the owner, with the reason:
 
 The owner: "can the community page background be a cosy texture?" Grain, felt, linen and Alcantara were tried on the community, and the owner chose the suede the Noise card is made of (2026-11-19). The community's window, its docked side panel and its foot lie on it: `img/suede.svg` (copied into the community as `web/img/suede.svg` and made smoother at the owner's pick: a 0.5px blur and a gentler grain) laid on in soft light over `suede` (#28282D), lit softly from the top left, as the card is. Cards and panels keep their solid dark grounds and stand on it. On the suede the book's `muted` (#7F8796) falls to about 4:1, so the community's quiet grey is #969CA9, which keeps 4.5:1. The website keeps its black ground and grid: the suede is the community's own warmth, the place where members talk.
 
+
+## 2026-11-27 · The house rules on How it works too
+
+The owner, of the front page's "What we won't do" (with a picture of it): "put this on the how it works page".
+
+- **How it works carries the house rules, between the system and the questions.** The library build copies the front page's section onto the page between `part:rules` markers, as it does Three steps and the finale, so the two never differ: the four things we won't do (sell, give a dose, hide the sources, let the numbers be gamed) and what members agree to. It comes before "Straight answers." because several of those questions (doses, selling, whether anyone can push a number up) are its rules answered at length.
+- **The front page keeps it too,** as its last section before the footer, so the footer's "House rules" still goes to /#rules. Three steps was asked for "also on the how it works page" and kept in both places the same way; if the owner wants the rules on How it works only, the front page's copy and the footer link move together.
